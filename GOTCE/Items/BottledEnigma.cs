@@ -1,0 +1,175 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using RoR2;
+using R2API;
+using UnityEngine;
+using BepInEx.Configuration;
+using System.Linq;
+using RoR2.Navigation;
+using UnityEngine.AddressableAssets;
+using RoR2.DirectionalSearch;
+using RoR2.Orbs;
+using RoR2.Projectile;
+using JetBrains.Annotations;
+using UnityEngine.Networking;
+using RoR2.Artifacts;
+
+namespace GOTCE.Items
+{
+    public class BottledEnigma : ItemBase<BottledEnigma>
+    {
+        public override string ConfigName => "Bottled Enigma";
+
+        public override string ItemName => "Bottled Enigma";
+
+        public override string ItemLangTokenName => "GOTCE_RapidRandomEquipmentTrigger";
+
+        public override string ItemPickupDesc => "Rapidly triggers random Equipment effects. Gain 26 max health.";
+
+        public override string ItemFullDescription => "Activates 1 random Equipment effect every frame. Increases <style=cIsHealing>maximum health</style> by <style=cIsHealing>26</style> <style=cStack>(+26 per stack)</style>.";
+
+        public override string ItemLore => "The world is a nonsensical place. Imparting any sort of universal truth or one-size-fits-all logic can only confuse you. The best way to adapt to the world is to embrace it. Let the cacophony of existence itself flow around you, rather than being destroyed by its torrential force. Power can be absorbed from insanity.";
+
+        public override ItemTier Tier => ItemTier.Tier3;
+
+        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage, ItemTag.Healing, ItemTag.Utility, ItemTag.EquipmentRelated };
+
+        public override GameObject ItemModel => null;
+
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/Bottled_Enigma.png");
+
+        public override ItemDisplayRuleDict CreateItemDisplayRules()
+        {
+            return new ItemDisplayRuleDict(null);
+        }
+
+        private static readonly System.Random random = new System.Random();
+        public override void Hooks()
+        {
+            On.RoR2.CharacterBody.OnInventoryChanged += CharacterBody_OnInventoryChanged;
+            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(BottledEnigma.OverpoweredHealthUp);
+            On.RoR2.Inventory.CalculateEquipmentCooldownScale += Inventory_CalculateEquipmentCooldownScale;
+            On.RoR2.EquipmentSlot.FixedUpdate += EquipmentSlot_FixedUpdate;
+        }
+
+        private void CharacterBody_OnInventoryChanged(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
+        {
+            orig(self);
+            var inventoryCount = GetCount(self);
+            if (inventoryCount > 0 && self.master && self.inventory)
+            {
+                switch (random.Next(1, 12))
+                {
+                    case 1:
+                        self.master.inventory.SetEquipmentIndex(RoR2Content.Equipment.Blackhole.equipmentIndex);
+                        break;
+
+                    case 2:
+                        self.master.inventory.SetEquipmentIndex(RoR2Content.Equipment.BurnNearby.equipmentIndex);
+                        break;
+
+                    case 3:
+                        self.master.inventory.SetEquipmentIndex(RoR2Content.Equipment.CommandMissile.equipmentIndex);
+                        break;
+
+                    case 4:
+                        self.master.inventory.SetEquipmentIndex(RoR2Content.Equipment.CrippleWard.equipmentIndex);
+                        break;
+
+                    case 5:
+                        self.master.inventory.SetEquipmentIndex(RoR2Content.Equipment.Saw.equipmentIndex);
+                        break;
+
+                    case 6:
+                        self.master.inventory.SetEquipmentIndex(RoR2Content.Equipment.DeathProjectile.equipmentIndex);
+                        break;
+
+                    case 7:
+                        self.master.inventory.SetEquipmentIndex(RoR2Content.Equipment.DroneBackup.equipmentIndex);
+                        break;
+
+                    case 8:
+                        self.master.inventory.SetEquipmentIndex(RoR2Content.Equipment.Scanner.equipmentIndex);
+                        break;
+
+                    case 9:
+                        self.master.inventory.SetEquipmentIndex(RoR2Content.Equipment.Meteor.equipmentIndex);
+                        break;
+
+                    case 10:
+                        self.master.inventory.SetEquipmentIndex(RoR2Content.Equipment.Gateway.equipmentIndex);
+                        break;
+
+                    case 11:
+                        self.master.inventory.SetEquipmentIndex(DLC1Content.Equipment.VendingMachine.equipmentIndex);
+                        break;
+
+                    case 12:
+                        self.master.inventory.SetEquipmentIndex(DLC1Content.Equipment.Molotov.equipmentIndex);
+                        break;
+                }
+            }
+        }
+
+        public static void OverpoweredHealthUp(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (body && body.inventory)
+            {
+                var stack = body.inventory.GetItemCount(Instance.ItemDef);
+                if (stack > 0)
+                {
+                    args.baseHealthAdd += (float)Instance.GetCount(body) * 26f;
+                }
+            }
+        }
+
+        private float Inventory_CalculateEquipmentCooldownScale(On.RoR2.Inventory.orig_CalculateEquipmentCooldownScale orig, Inventory self)
+        {
+            var stack = self.GetItemCount(BottledEnigma.Instance.ItemDef.itemIndex);
+            float thing = 0.00001f;
+            if (stack > 0)
+            {
+                return thing;
+            }
+            else
+            {
+                return orig(self);
+            }
+        }
+
+        private void EquipmentSlot_FixedUpdate(On.RoR2.EquipmentSlot.orig_FixedUpdate orig, EquipmentSlot self)
+        {
+            var body = self.GetComponent<CharacterBody>();
+            var inventoryCount = GetCount(body);
+            orig.Invoke(self);
+            if (inventoryCount > 0)
+            {
+                bool flag = false;
+                bool flag2 = self.equipmentIndex != RoR2Content.Equipment.GoldGat.equipmentIndex;
+                if (flag2)
+                {
+                    bool flag3 = !self.inputBank.activateEquipment.justPressed;
+                    if (flag3)
+                    {
+                        flag = true;
+                    }
+                }
+                bool isEquipmentActivationAllowed = self.characterBody.isEquipmentActivationAllowed;
+                bool flag4 = flag && isEquipmentActivationAllowed && self.hasEffectiveAuthority;
+                if (flag4)
+                {
+                    bool active = NetworkServer.active;
+                    if (active)
+                    {
+                        self.ExecuteIfReady();
+                    }
+                    else
+                    {
+                        self.CallCmdExecuteIfReady();
+                    }
+                }
+            }
+        }
+    }
+}

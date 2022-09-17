@@ -1,0 +1,79 @@
+﻿using R2API;
+using RoR2;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using UnityEngine;
+using BepInEx.Configuration;
+using GOTCE.Utils;
+using UnityEngine.Networking;
+
+namespace GOTCE.Items
+{
+    public class Drill : ItemBase<Drill>
+    {
+        public override string ConfigName => "Decorative Drill";
+
+        public override string ItemName => "Decorative Drill";
+
+        public override string ItemLangTokenName => "GOTCE_BarrierOnCrit";
+
+        public override string ItemPickupDesc => "'Critical Strikes' grant a temporary barrier.";
+
+        public override string ItemFullDescription => "Gain <style=cIsDamage>5% critical strike chance</style>. Gain a <style=cIsHealing>temporary barrier</style> on <style=cIsDamage>critical strike</style> for <style=cIsHealing>30 health</style> <style=cStack>(+15 per stack)</style>.";
+
+        public override string ItemLore => "...That’s a drill. Why do you have that in your home?” “Why not? Any day now, there might be some sort of hostile rock monster that busts down my door and tries to kill me.” “Is that even a real drill? Mining drills are really expensive. I’ll go get a rock.” “It’ll work, I’m telling you.” zzzzzzzzzzzzzz..zzz..zz... “...That did absolutely nothing.” “But it might not do nothing! It could still be helpful!” “I think you just got a fake drill. Who sold you this?” “It’s gonna help!”";
+
+        public override ItemTier Tier => ItemTier.Tier2;
+
+        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Healing, ItemTag.Utility };
+
+        public override GameObject ItemModel => null;
+
+        public override Sprite ItemIcon => null;
+
+        public override void Init(ConfigFile config)
+        {
+            base.Init(config);
+        }
+
+        public override ItemDisplayRuleDict CreateItemDisplayRules()
+        {
+            return new ItemDisplayRuleDict(null);
+        }
+
+        public override void Hooks()
+        {
+            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(Drill.CritIncrease);
+            On.RoR2.GlobalEventManager.OnCrit += GlobalEventManager_OnCrit;
+        }
+
+        private void GlobalEventManager_OnCrit(On.RoR2.GlobalEventManager.orig_OnCrit orig, GlobalEventManager self, CharacterBody body, DamageInfo damageInfo, CharacterMaster master, float procCoefficient, ProcChainMask procChainMask)
+        {
+            if (body && procCoefficient > 0f && master && master.inventory)
+            {
+                Inventory inventory = master.inventory;
+                int itemCount = inventory.GetItemCount(Drill.Instance.ItemDef);
+                if (itemCount > 0 && body.healthComponent)
+                {
+                    if (NetworkServer.active)
+                    {
+                        body.healthComponent.AddBarrier((15f + (15f * (float)itemCount)) * procCoefficient);
+                    }
+                }
+            }
+        }
+
+        public static void CritIncrease(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (body && body.inventory)
+            {
+                var stack = body.inventory.GetItemCount(Instance.ItemDef);
+                if (stack > 0)
+                {
+                    args.critAdd += 5f;
+                }
+            }
+        }
+    }
+}
