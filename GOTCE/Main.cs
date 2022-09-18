@@ -49,6 +49,7 @@ namespace GOTCE
         {
             MainAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "macterabrundle"));
             Debug.Log("Trolling");
+            Debug.Log("test");
             ModLogger = Logger;
 
             // Don't know how to create/use an asset bundle, or don't have a unity project set up?
@@ -64,8 +65,9 @@ namespace GOTCE
             var ArtifactTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(ArtifactBase)));
 
             foreach (var artifactType in ArtifactTypes)
-            {
+            {   
                 ArtifactBase artifact = (ArtifactBase)Activator.CreateInstance(artifactType);
+                //ModLogger.LogInfo(artifact.ArtifactDescription);
                 if (ValidateArtifact(artifact, Artifacts))
                 {
                     artifact.Init(Config);
