@@ -36,7 +36,7 @@ namespace GOTCE.Artifact
         public override void Hooks()
         {
             On.RoR2.CharacterMaster.OnServerStageBegin += RushOrDie.Hook_OnServerStageBegin;
-            On.RoR2.Run.Update += RushOrDie.Hook_Update;
+            On.RoR2.Run.FixedUpdate += RushOrDie.Hook_FixedUpdate;
         }
 
         public class RushOrDie : MonoBehaviour
@@ -48,7 +48,7 @@ namespace GOTCE.Artifact
                 orig(self, stage);
                 
             }
-            public static void Hook_Update(On.RoR2.Run.orig_Update orig, Run self) {
+            public static void Hook_FixedUpdate(On.RoR2.Run.orig_FixedUpdate orig, Run self) {
                 orig(self);
                 int currentTime = (int)self.time;
                 if (currentTime - prevTime > 300) {
