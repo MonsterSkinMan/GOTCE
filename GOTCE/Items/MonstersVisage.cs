@@ -57,7 +57,7 @@ namespace GOTCE.Items
 
         private void On_HCTakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, RoR2.HealthComponent self, RoR2.DamageInfo damageInfo)
         {
-            if (damageInfo.attacker && damageInfo.attacker.GetComponent<CharacterBody>().inventory)
+            if (damageInfo.attacker && damageInfo.attacker.GetComponent<CharacterBody>() && damageInfo.attacker.GetComponent<CharacterBody>().inventory)
             {
                 var inv = damageInfo.attacker.GetComponent<CharacterBody>().inventory;
 
