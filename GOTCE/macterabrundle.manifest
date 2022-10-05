@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 451868813
+CRC: 499941374
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: acc8adacf452d026377439bed9dbed79
+    Hash: 18cf59521e37e9e998e5f49cc740bad5
   TypeTreeHash:
     serializedVersion: 2
     Hash: 700cce780156dfdd5fdd2ee7678caad4
@@ -20,6 +20,7 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Materials/Item/MonstersVisage/MonstersVisageMaterial.mat
+- Assets/Textures/Icons/Artifact/disabledfear.png
 - Assets/Textures/Icons/Artifact/woolifact.png
 - Assets/Textures/Icons/Artifact/artifactofartifact.png
 - Assets/Textures/Icons/Item/NEA.png
