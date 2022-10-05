@@ -20,7 +20,7 @@ namespace GOTCE.Items
 
         public override string ItemFullDescription => "The radius of all area of effect attacks is increased by <style=cIsDamage>2m</style> <style=cStack>(+2m per stack)</style>.";
 
-        public override string ItemLore => "among us";
+        public override string ItemLore => "10 seconds nearby enemy charges 10 power. every 45 power gain +2 aoe effect on your primary. hitting 2 enemies with primary gives m2 +1 charge. Landing 2 m2 hits in a row gives you a temporary barrier that when destroyed deals 500% damage to enemies within the equivalent meters to current power. (edited)";
 
         public override ItemTier Tier => ItemTier.Tier1;
 
@@ -28,7 +28,7 @@ namespace GOTCE.Items
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BangSnap.png");
 
         public override void Init(ConfigFile config)
         {
@@ -43,12 +43,6 @@ namespace GOTCE.Items
         public override void Hooks()
         {
             On.RoR2.BlastAttack.Fire += BlastAttack_Fire;
-            On.RoR2.OverlapAttack.Fire += OverlapAttack_Fire;
-        }
-
-        private bool OverlapAttack_Fire(On.RoR2.OverlapAttack.orig_Fire orig, OverlapAttack self, List<HurtBox> hitResults)
-        {
-            throw new NotImplementedException();
         }
 
         private BlastAttack.Result BlastAttack_Fire(On.RoR2.BlastAttack.orig_Fire orig, BlastAttack self)

@@ -20,7 +20,7 @@ namespace GOTCE.Items
 
         public override string ItemFullDescription => "Increases <style=cIsUtility>jump height</style> by <style=cIsUtility>30%</style> <style=cStack>(+30% per stack)</style>.";
 
-        public override string ItemLore => "Sproing! Sproing! Sproing!";
+        public override string ItemLore => "\"Against all the evil that plants can conjure, all the wickedness that Wall-Nuts can produce, we will send unto them... only you. Boing and sproing, until it is done.\"\n-Dr. Zomboss in 4-8";
 
         public override ItemTier Tier => ItemTier.Tier1;
 
@@ -28,7 +28,7 @@ namespace GOTCE.Items
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/pogo.png");
 
         public override void Init(ConfigFile config)
         {

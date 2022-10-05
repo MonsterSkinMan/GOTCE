@@ -22,7 +22,7 @@ namespace GOTCE.Items
 
         public override string ItemFullDescription => "Gain <style=cIsDamage>5% critical strike chance</style>. Gain a <style=cIsHealing>temporary barrier</style> on <style=cIsDamage>critical strike</style> for <style=cIsHealing>30 health</style> <style=cStack>(+15 per stack)</style>.";
 
-        public override string ItemLore => "...That’s a drill. Why do you have that in your home?” “Why not? Any day now, there might be some sort of hostile rock monster that busts down my door and tries to kill me.” “Is that even a real drill? Mining drills are really expensive. I’ll go get a rock.” “It’ll work, I’m telling you.” zzzzzzzzzzzzzz..zzz..zz... “...That did absolutely nothing.” “But it might not do nothing! It could still be helpful!” “I think you just got a fake drill. Who sold you this?” “It’s gonna help!”";
+        public override string ItemLore => "\"...That’s a drill. Why do you have that in your home?\"\n\"Why not? Any day now, there might be some sort of hostile rock monster that busts down my door and tries to kill me.\"\n\"Is that even a real drill? Mining drills are really expensive. I’ll go get a rock.\"\n\"It’ll work, I’m telling you.\"\nzzzzzzzzzzzzzz..zzz..zz...\n\"...That did absolutely nothing.\"\n\"But it might not do nothing! It could still be helpful!\"\n\"I think you just got a fake drill. Who sold you this?\"\n\"It’s gonna help!\"";
 
         public override ItemTier Tier => ItemTier.Tier2;
 
@@ -30,7 +30,7 @@ namespace GOTCE.Items
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/drill.png");
 
         public override void Init(ConfigFile config)
         {

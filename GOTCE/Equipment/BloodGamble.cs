@@ -39,7 +39,6 @@ namespace GOTCE.Equipment
             CreateEquipment();
             Hooks();
         }
-
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(BloodGamble.Skissue);
@@ -47,7 +46,7 @@ namespace GOTCE.Equipment
 
         public static void Skissue(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
         {
-            if (body && body.inventory.currentEquipmentIndex == Instance.EquipmentDef.equipmentIndex)
+            if (body != null && body.inventory != null && body.inventory.currentEquipmentIndex != null && body.inventory.currentEquipmentIndex == Instance.EquipmentDef.equipmentIndex)
             {
                 args.healthMultAdd -= 0.5f;
                 args.moveSpeedMultAdd -= 0.5f;

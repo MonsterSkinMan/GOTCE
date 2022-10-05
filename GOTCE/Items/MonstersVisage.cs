@@ -85,16 +85,17 @@ namespace GOTCE.Items
                             damageInfo.damage *= Mathf.Pow(0.5f, monstersVisageCount);
                         }
                     }
-                }       
-                orig(self, damageInfo);
+                }
 
                 if (damageInfo == null || damageInfo.rejected || !damageInfo.attacker || damageInfo.attacker == self.gameObject || damageInfo.attacker.GetComponent<HealthComponent>() == null || damageInfo.attacker.GetComponent<HealthComponent>().body == null)
                 {
+                    orig(self, damageInfo);
                     return;
                 }
 
                 float num = damageInfo.damage;
             }
+            orig(self, damageInfo);
         }
     }
 }
