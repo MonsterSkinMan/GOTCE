@@ -6,3 +6,7 @@ C:\Users\Periphery\source\repos\GOTCE\GOTCE\obj\Debug\GOTCE.AssemblyInfoInputs.c
 C:\Users\Periphery\source\repos\GOTCE\GOTCE\obj\Debug\GOTCE.AssemblyInfo.cs
 C:\Users\Periphery\source\repos\GOTCE\GOTCE\obj\Debug\GOTCE.csproj.CoreCompileInputs.cache
 C:\Users\Periphery\source\repos\GOTCE\GOTCE\obj\Debug\GOTCE.dll
+C:\Users\Matthew\AppData\Roaming\r2modmanPlus-local\RiskOfRain2\profiles\GOTCE Testing\BepInEx\plugins\Unknown-GOTCE\GOTCE.deps.json
+C:\Users\Matthew\AppData\Roaming\r2modmanPlus-local\RiskOfRain2\profiles\GOTCE Testing\BepInEx\plugins\Unknown-GOTCE\GOTCE.dll
+C:\Users\Matthew\AppData\Roaming\r2modmanPlus-local\RiskOfRain2\profiles\GOTCE Testing\BepInEx\plugins\Unknown-GOTCE\GOTCE.pdb
+C:\Users\Periphery\source\repos\GOTCE\GOTCE\obj\Debug\GOTCE.pdb
