@@ -1,13 +1,7 @@
 ﻿using R2API;
 using RoR2;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using BepInEx.Configuration;
-using UnityEngine.Networking;
-
-using UnityEngine.AddressableAssets;
 
 namespace GOTCE.Items
 {
@@ -53,8 +47,7 @@ namespace GOTCE.Items
             orig(self, body, damageInfo, master, procCoefficient, procChainMask);
             if (body && procCoefficient > 0f && master && master.inventory)
             {
-                Inventory inventory = master.inventory;
-                int itemCount = inventory.GetItemCount(GrandfatherClock.Instance.ItemDef);
+                int itemCount = master.inventory.GetItemCount(Instance.ItemDef);
                 if (itemCount > 0 && body.healthComponent)
                 {
                     body.healthComponent.Suicide(body.gameObject, body.gameObject, DamageType.BypassArmor | DamageType.BypassBlock | DamageType.BypassOneShotProtection);

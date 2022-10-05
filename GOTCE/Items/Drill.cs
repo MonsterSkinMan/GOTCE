@@ -1,11 +1,7 @@
 ﻿using R2API;
 using RoR2;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using BepInEx.Configuration;
-using GOTCE.Utils;
 using UnityEngine.Networking;
 
 namespace GOTCE.Items
@@ -44,7 +40,7 @@ namespace GOTCE.Items
 
         public override void Hooks()
         {
-            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(Drill.CritIncrease);
+            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(CritIncrease);
             On.RoR2.GlobalEventManager.OnCrit += GlobalEventManager_OnCrit;
         }
 
@@ -52,13 +48,12 @@ namespace GOTCE.Items
         {
             if (body && procCoefficient > 0f && master && master.inventory)
             {
-                Inventory inventory = master.inventory;
-                int itemCount = inventory.GetItemCount(Drill.Instance.ItemDef);
+                int itemCount = master.inventory.GetItemCount(Instance.ItemDef);
                 if (itemCount > 0 && body.healthComponent)
                 {
                     if (NetworkServer.active)
                     {
-                        body.healthComponent.AddBarrier((15f + (15f * (float)itemCount)) * procCoefficient);
+                        body.healthComponent.AddBarrier((15f + (15f * itemCount)) * procCoefficient);
                     }
                 }
             }

@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using RoR2;
+﻿using RoR2;
 using R2API;
 using UnityEngine;
-using BepInEx.Configuration;
-using System.Linq;
-using RoR2.Navigation;
-using UnityEngine.AddressableAssets;
-using RoR2.DirectionalSearch;
-using RoR2.Orbs;
-using RoR2.Projectile;
-using JetBrains.Annotations;
 using UnityEngine.Networking;
-using RoR2.Artifacts;
 
 namespace GOTCE.Items
 {
@@ -141,26 +129,20 @@ namespace GOTCE.Items
         private void EquipmentSlot_FixedUpdate(On.RoR2.EquipmentSlot.orig_FixedUpdate orig, EquipmentSlot self)
         {
             var body = self.GetComponent<CharacterBody>();
-            var inventoryCount = GetCount(body);
-            orig.Invoke(self);
-            if (inventoryCount > 0)
+            orig(self);
+            if (GetCount(body) > 0)
             {
-                bool flag = false;
-                bool flag2 = self.equipmentIndex != RoR2Content.Equipment.GoldGat.equipmentIndex;
-                if (flag2)
+                bool shouldRun = false;
+                if (self.equipmentIndex != RoR2Content.Equipment.GoldGat.equipmentIndex)
                 {
-                    bool flag3 = !self.inputBank.activateEquipment.justPressed;
-                    if (flag3)
+                    if (!self.inputBank.activateEquipment.justPressed)
                     {
-                        flag = true;
+                        shouldRun = true;
                     }
                 }
-                bool isEquipmentActivationAllowed = self.characterBody.isEquipmentActivationAllowed;
-                bool flag4 = flag && isEquipmentActivationAllowed && self.hasEffectiveAuthority;
-                if (flag4)
+                if (shouldRun && self.characterBody.isEquipmentActivationAllowed && self.hasEffectiveAuthority)
                 {
-                    bool active = NetworkServer.active;
-                    if (active)
+                    if (NetworkServer.active)
                     {
                         self.ExecuteIfReady();
                     }

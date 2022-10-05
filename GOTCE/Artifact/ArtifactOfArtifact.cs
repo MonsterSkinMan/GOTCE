@@ -1,13 +1,7 @@
-﻿/*using BepInEx.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using BepInEx.Configuration;
 using UnityEngine;
 using RoR2;
 using R2API;
-using R2API.Utils;
-using GOTCE.Artifact;
-using MonoMod.Cil;
 
 namespace GOTCE.Artifact
 {
@@ -23,8 +17,6 @@ namespace GOTCE.Artifact
 
         public override Sprite ArtifactDisabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png");
 
-        public static ArtifactDef artifact;
-
         public override void Init(ConfigFile config)
         {
             CreateLang();
@@ -34,15 +26,16 @@ namespace GOTCE.Artifact
 
         public override void Hooks()
         {
-            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(ArtifactOfArtifact.SplashPotionOfSlowness);
+            RecalculateStatsAPI.GetStatCoefficients += SplashPotionOfSlowness;
         }
 
-        public static void SplashPotionOfSlowness(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        public static void SplashPotionOfSlowness(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
-            if (RunArtifactManager.instance.IsArtifactEnabled(artifact) && body)
+            if (Instance.ArtifactEnabled && sender)
             {
-                args.moveSpeedMultAdd += -0.75f;
+                args.moveSpeedReductionMultAdd += 3f;
+                // 3f is 25% move speed, or 75% actual reduction using the game's stupid formula
             }
         }
     }
-}*/
+}

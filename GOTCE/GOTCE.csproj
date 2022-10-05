@@ -98,6 +98,7 @@
     <Folder Include="Enemies\Bosses\" />
     <Folder Include="Enemies\Basic Enemies\" />
     <Folder Include="libs\" />
+    <Folder Include="Tiers\" />
   </ItemGroup>
 
 </Project>
