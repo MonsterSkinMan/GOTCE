@@ -1,26 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/home/pseudopulse/Repos/GOTCE/GOTCE/GOTCE.csproj": {}
+    "C:\\Users\\Matthew\\source\\repos\\GOTCE\\GOTCE\\GOTCE.csproj": {}
   },
   "projects": {
-    "/home/pseudopulse/Repos/GOTCE/GOTCE/GOTCE.csproj": {
+    "C:\\Users\\Matthew\\source\\repos\\GOTCE\\GOTCE\\GOTCE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/pseudopulse/Repos/GOTCE/GOTCE/GOTCE.csproj",
+        "projectUniqueName": "C:\\Users\\Matthew\\source\\repos\\GOTCE\\GOTCE\\GOTCE.csproj",
         "projectName": "GOTCE",
-        "projectPath": "/home/pseudopulse/Repos/GOTCE/GOTCE/GOTCE.csproj",
-        "packagesPath": "/home/pseudopulse/.nuget/packages/",
-        "outputPath": "/home/pseudopulse/Repos/GOTCE/GOTCE/obj/",
+        "projectPath": "C:\\Users\\Matthew\\source\\repos\\GOTCE\\GOTCE\\GOTCE.csproj",
+        "packagesPath": "C:\\Users\\Matthew\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Matthew\\source\\repos\\GOTCE\\GOTCE\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/pseudopulse/Repos/GOTCE/nuget.config",
-          "/home/pseudopulse/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Matthew\\source\\repos\\GOTCE\\NuGet.Config",
+          "C:\\Users\\Matthew\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://nuget.bepinex.dev/v3/index.json": {}
         },
@@ -80,7 +86,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.109/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.407\\RuntimeIdentifierGraph.json"
         }
       }
     }
