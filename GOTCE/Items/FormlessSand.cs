@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using RoR2;
+﻿using RoR2;
 using R2API;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using BepInEx.Configuration;
-using RoR2.ExpansionManagement;
-using RoR2.Items;
 using HarmonyLib;
 
 namespace GOTCE.Items
@@ -50,31 +44,19 @@ namespace GOTCE.Items
 
         public override void Hooks()
         {
-            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(FormlessSand.DamageDecrease);
-            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(FormlessSand.HealthIncrease);
+            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(StatChanges);
             On.RoR2.Items.ContagiousItemManager.Init += WoolieDimension;
         }
 
-        public static void DamageDecrease(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        public static void StatChanges(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
         {
             if (body && body.inventory)
             {
                 var stack = body.inventory.GetItemCount(Instance.ItemDef);
                 if (stack > 0)
                 {
-                    args.damageMultAdd -= (Mathf.Pow(2f, (float)stack) - 1) / Mathf.Pow(2f, (float)stack);
-                }
-            }
-        }
-
-        public static void HealthIncrease(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
-        {
-            if (body && body.inventory)
-            {
-                var stack = body.inventory.GetItemCount(Instance.ItemDef);
-                if (stack > 0)
-                {
-                    args.healthMultAdd += Mathf.Pow(2f, (float)stack) - 1f;
+                    args.damageMultAdd -= (Mathf.Pow(2f, stack) - 1) / Mathf.Pow(2f, stack);
+                    args.healthMultAdd += Mathf.Pow(2f, stack) - 1f;
                 }
             }
         }

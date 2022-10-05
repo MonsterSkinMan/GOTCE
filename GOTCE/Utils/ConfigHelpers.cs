@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.CompilerServices;
-using BepInEx.Configuration;
+﻿using BepInEx.Configuration;
 
 namespace GOTCE.Utils
 {
     public class ConfigOption<T>
     {
-        ConfigEntry<T> Bind;
+        readonly ConfigEntry<T> Bind;
 
         public ConfigOption(ConfigFile config, string categoryName, string configOptionName, T defaultValue, string fullDescription)
         {

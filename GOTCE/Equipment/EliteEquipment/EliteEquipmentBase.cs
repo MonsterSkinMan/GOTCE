@@ -4,10 +4,8 @@ using RoR2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 using static RoR2.CombatDirector;
-using static GOTCE.Main;
 
 namespace GOTCE.Equipment.EliteEquipment
 {

@@ -134,16 +134,16 @@ namespace GOTCE.Utils
         /// <param name="duration">The duration of the buff or dot.</param>
         /// <param name="stackCount">The amount of buff stacks to apply.</param>
         /// <param name="body">The body to apply the buff or dot to.</param>
-        public static void AddBuffAndDot(BuffDef buff, float duration, int stackCount, RoR2.CharacterBody body)
+        public static void AddBuffAndDot(BuffDef buff, float duration, int stackCount, CharacterBody body)
         {
             if (!NetworkServer.active) { return; }
 
-            RoR2.DotController.DotIndex index = (RoR2.DotController.DotIndex)Array.FindIndex(RoR2.DotController.dotDefs, (dotDef) => dotDef.associatedBuff == buff);
+            DotController.DotIndex index = (DotController.DotIndex)Array.FindIndex(DotController.dotDefs, (dotDef) => dotDef.associatedBuff == buff);
             for (int y = 0; y < stackCount; y++)
             {
-                if (index != RoR2.DotController.DotIndex.None)
+                if (index != DotController.DotIndex.None)
                 {
-                    RoR2.DotController.InflictDot(body.gameObject, body.gameObject, index, duration, 0.25f);
+                    DotController.InflictDot(body.gameObject, body.gameObject, index, duration, 0.25f);
                 }
                 else
                 {
@@ -159,7 +159,7 @@ namespace GOTCE.Utils
         /// <returns>A dotindex of the DotController the target buff is associated with, else, it will return an invalid index.</returns>
         public static DotController.DotIndex FindAssociatedDotForBuff(BuffDef buff)
         {
-            RoR2.DotController.DotIndex index = (RoR2.DotController.DotIndex)Array.FindIndex(RoR2.DotController.dotDefs, (dotDef) => dotDef.associatedBuff == buff);
+            DotController.DotIndex index = (DotController.DotIndex)Array.FindIndex(DotController.dotDefs, (dotDef) => dotDef.associatedBuff == buff);
 
             return index;
         }

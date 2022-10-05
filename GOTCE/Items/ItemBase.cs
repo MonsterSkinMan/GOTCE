@@ -4,11 +4,6 @@ using RoR2;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using On.RoR2.Items;
-using MonoMod.Cil;
-using System.Linq;
-using HarmonyLib;
-using GOTCE.Utils;
 
 namespace GOTCE.Items
 {

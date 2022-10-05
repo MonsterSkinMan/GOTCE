@@ -1,18 +1,10 @@
-using BepInEx.Configuration;
-using R2API;
 using RoR2;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using On.RoR2.Items;
-using MonoMod.Cil;
-using System.Linq;
-using HarmonyLib;
-using GOTCE.Utils;
 using UnityEngine.AddressableAssets;
 
 namespace GOTCE.Tiers {
-    public class LunarVoid : TierBase<LunarVoid> {
+    public class LunarVoid : TierBase<LunarVoid>
+    {
         public override string TierName => "LunarVoid";
         public override bool CanScrap => false;
         public override ColorCatalog.ColorIndex ColorIndex => ColorCatalog.ColorIndex.VoidItem;

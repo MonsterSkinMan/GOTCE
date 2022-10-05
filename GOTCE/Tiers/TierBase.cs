@@ -1,17 +1,11 @@
-using BepInEx.Configuration;
-using R2API;
 using RoR2;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using On.RoR2.Items;
-using MonoMod.Cil;
-using System.Linq;
-using HarmonyLib;
-using GOTCE.Utils;
 
-namespace GOTCE.Tiers {
-    public abstract class TierBase<T> : TierBase where T : TierBase<T> {
+namespace GOTCE.Tiers
+{
+    public abstract class TierBase<T> : TierBase where T : TierBase<T>
+    {
         public static T Instance { get; private set; }
 
         public TierBase()
@@ -21,7 +15,8 @@ namespace GOTCE.Tiers {
         }
     }
 
-    public abstract class TierBase {
+    public abstract class TierBase
+    {
         public abstract string TierName { get;}
         public abstract bool CanScrap { get;}
         public abstract bool IsDroppable { get;}
@@ -34,11 +29,13 @@ namespace GOTCE.Tiers {
 
         public ItemTierDef tier;
 
-        public virtual void Awake() {
+        public virtual void Awake()
+        {
             CreateTier();
         }
 
-        protected void CreateTier() {
+        protected void CreateTier()
+        {
             tier = ScriptableObject.CreateInstance<ItemTierDef>();
 
             tier.name = TierName;

@@ -4,7 +4,6 @@ using RoR2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace GOTCE.Equipment
@@ -190,8 +189,7 @@ namespace GOTCE.Equipment
                 TargetFinder.teamMaskFilter.RemoveTeam(self.characterBody.teamComponent.teamIndex);
                 TargetFinder.sortMode = BullseyeSearch.SortMode.Angle;
                 TargetFinder.filterByLoS = true;
-                float num;
-                Ray ray = CameraRigController.ModifyAimRayIfApplicable(self.GetAimRay(), self.gameObject, out num);
+                Ray ray = CameraRigController.ModifyAimRayIfApplicable(self.GetAimRay(), self.gameObject, out float num);
                 TargetFinder.searchOrigin = ray.origin;
                 TargetFinder.searchDirection = ray.direction;
                 TargetFinder.maxAngleFilter = 10f;

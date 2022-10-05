@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using RoR2;
+﻿using RoR2;
 using R2API;
 using UnityEngine;
 using BepInEx.Configuration;
-using System.Linq;
-
 namespace GOTCE.Equipment
 {
     public class BloodGamble : EquipmentBase<BloodGamble>
@@ -41,15 +36,16 @@ namespace GOTCE.Equipment
         }
         public override void Hooks()
         {
-            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(BloodGamble.Skissue);
+            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(Skissue);
         }
 
         public static void Skissue(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
         {
-            if (body != null && body.inventory != null && body.inventory.currentEquipmentIndex != null && body.inventory.currentEquipmentIndex == Instance.EquipmentDef.equipmentIndex)
+            if (body && body.inventory && body.inventory.currentEquipmentIndex == Instance.EquipmentDef.equipmentIndex)
             {
                 args.healthMultAdd -= 0.5f;
-                args.moveSpeedMultAdd -= 0.5f;
+                args.moveSpeedReductionMultAdd += 1f;
+                // 1f is 50% move speed, or 50% actual reduction using the game's stupid formula
             }
         }
 

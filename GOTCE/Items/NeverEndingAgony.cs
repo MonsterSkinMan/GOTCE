@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using RoR2;
+﻿using RoR2;
 using R2API;
 using UnityEngine;
 using BepInEx.Configuration;
-using RoR2.CharacterAI;
-using RoR2.Stats;
-using UnityEngine.Events;
 using System.Linq;
 using UnityEngine.AddressableAssets;
 
@@ -23,7 +17,7 @@ namespace GOTCE.Items
 
         public override string ItemPickupDesc => "Gup is not a funny meme shut the fuck up.";
 
-        public override string ItemFullDescription => "Die. (Same goes for your allies, fucker ! !)";
+        public override string ItemFullDescription => "<style=cIsHealth>Die</style>. (Same goes for your allies, fucker ! !)";
 
         public override string ItemLore => "Fuck you. Can you imagine how much I fucking HATE you right now? I don’t think I could express that using human language. You chose that stupid fucking orange ball- why? WHY?!? What does that stupid fucking glob have that I don’t? I hate you. I hate you. You piece of shit. Fuck you.";
 

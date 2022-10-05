@@ -5,7 +5,6 @@ using GOTCE.Enemies.Changes;
 using GOTCE.Equipment;
 using GOTCE.Equipment.EliteEquipment;
 using GOTCE.Items;
-using GOTCE.Tiers;
 using R2API;
 using R2API.Networking;
 using R2API.Utils;
@@ -32,7 +31,7 @@ namespace GOTCE
         public const string ModGuid = "com.TheBestAssociatedLargelyLudicrousSillyheadGroup.GOTCE";
         public const string ModName = "Gamers of the Cracked Emoji";
         public const string ModVer = "0.0.1";
-        
+
         public static AssetBundle MainAssets;
 
         public List<ArtifactBase> Artifacts = new List<ArtifactBase>();
@@ -65,27 +64,20 @@ namespace GOTCE
 
             //using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("GOTCE.macterabrundle"))
             //{
-                //MainAssets = AssetBundle.LoadFromStream(stream);
+            //MainAssets = AssetBundle.LoadFromStream(stream);
             //}
 
             //This section automatically scans the project for all artifacts
             var ArtifactTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(ArtifactBase)));
 
             foreach (var artifactType in ArtifactTypes)
-            {   
+            {
                 ArtifactBase artifact = (ArtifactBase)Activator.CreateInstance(artifactType);
                 //ModLogger.LogInfo(artifact.ArtifactDescription);
                 if (ValidateArtifact(artifact, Artifacts))
                 {
                     artifact.Init(Config);
                 }
-            }
-
-            // grab tiers and add them
-            var Tiers = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(TierBase)));
-            foreach (var tier in Tiers) {
-                TierBase Tier = (TierBase)Activator.CreateInstance(tier);
-                Tier.Awake();
             }
 
 
