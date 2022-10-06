@@ -20,7 +20,7 @@ namespace GOTCE.Items
 
         public override string ItemPickupDesc => "Increases a random stat.\n";
 
-        public override string ItemFullDescription => "Increases <style=cIsUtility>1</style> <style=cStack>(+1 per stack)</style> random stat(s) by <style=cIsDamage>50%</style>.";
+        public override string ItemFullDescription => "Increases <style=cIsUtility>1</style> <style=cStack>(+1 per stack)</style> random stat(s) by <style=cIsDamage>100%</style>.";
 
         public override string ItemLore => "\"So, what've you been up to recently?\"\n\"Oh, I've been getting into these things called NFTs- have you heard of them?\"\n\"Are you getting scammed?\"\n\"No, I just bought one of this anime girl I like-\"\n\"It better not be that fucking Spikestrip Chan you always talk about.\"\n\"Oh umm... It miiight be?\"\n\"How much did you spend on it?\"\n\"Erm... four grand.\"\n\"...Why don't you try going outside for once? Meeting some real women?\"";
 
@@ -72,16 +72,16 @@ namespace GOTCE.Items
                 GOTCENFT component = inventory.GetComponent<GOTCENFT>();
                 if (component)
                 {
-                    args.healthMultAdd += 0.5f * component.buffStacks[GOTCENFT.BuffType.MaxHealth];
-                    args.damageMultAdd += 0.5f * component.buffStacks[GOTCENFT.BuffType.Damage];
-                    args.regenMultAdd += 0.5f * component.buffStacks[GOTCENFT.BuffType.Regen];
-                    args.jumpPowerMultAdd += 0.5f * component.buffStacks[GOTCENFT.BuffType.JumpPower];
-                    args.moveSpeedMultAdd += 0.5f * component.buffStacks[GOTCENFT.BuffType.MoveSpeed];
-                    args.attackSpeedMultAdd += 0.5f * component.buffStacks[GOTCENFT.BuffType.AttackSpeed];
-                    args.critAdd += 0.5f * component.buffStacks[GOTCENFT.BuffType.Crit];
-                    args.armorAdd += 50f * component.buffStacks[GOTCENFT.BuffType.Armor];
-                    args.critDamageMultAdd += 0.5f * component.buffStacks[GOTCENFT.BuffType.CritDamage];
-                    args.shieldMultAdd += 0.5f * component.buffStacks[GOTCENFT.BuffType.Shield];
+                    args.healthMultAdd += 1f * component.buffStacks[GOTCENFT.BuffType.MaxHealth];
+                    args.damageMultAdd += 1f * component.buffStacks[GOTCENFT.BuffType.Damage];
+                    args.regenMultAdd += 1f * component.buffStacks[GOTCENFT.BuffType.Regen];
+                    args.jumpPowerMultAdd += 1f * component.buffStacks[GOTCENFT.BuffType.JumpPower];
+                    args.moveSpeedMultAdd += 1f * component.buffStacks[GOTCENFT.BuffType.MoveSpeed];
+                    args.attackSpeedMultAdd += 1f * component.buffStacks[GOTCENFT.BuffType.AttackSpeed];
+                    args.critAdd += 100f * component.buffStacks[GOTCENFT.BuffType.Crit];
+                    args.armorAdd += 100f * component.buffStacks[GOTCENFT.BuffType.Armor];
+                    args.critDamageMultAdd += 1f * component.buffStacks[GOTCENFT.BuffType.CritDamage];
+                    args.shieldMultAdd += 1f * component.buffStacks[GOTCENFT.BuffType.Shield];
                 }
             }
         }

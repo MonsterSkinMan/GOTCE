@@ -7,7 +7,7 @@ namespace GOTCE.Artifact
 {
     public class ArtifactOfArtifact : ArtifactBase<ArtifactOfArtifact>
     {
-        public override string ArtifactName => "Artifact Of Artifact";
+        public override string ArtifactName => "Artifact Of Loader";
 
         public override string ArtifactLangTokenName => "GOTCE_ArtifactOfLodr";
 

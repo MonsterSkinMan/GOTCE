@@ -14,7 +14,7 @@ namespace GOTCE.Artifact
 
         public override Sprite ArtifactEnabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Artifact/woolifact.png");
 
-        public override Sprite ArtifactDisabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Artifact/woolifact.png");
+        public override Sprite ArtifactDisabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Artifact/disabledfear.png");
         // public override ArtifactDef artifact;
 
         public override void Init(ConfigFile config)

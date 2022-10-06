@@ -41,7 +41,7 @@ namespace GOTCE.Equipment
 
         public static void Skissue(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
         {
-            if (body && body.inventory && body.inventory.currentEquipmentIndex == Instance.EquipmentDef.equipmentIndex)
+            if (body != null && body.inventory != null && body.inventory.currentEquipmentIndex != null && body.inventory.currentEquipmentIndex == Instance.EquipmentDef.equipmentIndex)
             {
                 args.healthMultAdd -= 0.5f;
                 args.moveSpeedReductionMultAdd += 1f;

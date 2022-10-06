@@ -30,7 +30,7 @@ namespace GOTCE
     {
         public const string ModGuid = "com.TheBestAssociatedLargelyLudicrousSillyheadGroup.GOTCE";
         public const string ModName = "Gamers of the Cracked Emoji";
-        public const string ModVer = "0.0.1";
+        public const string ModVer = "1.0.2";
 
         public static AssetBundle MainAssets;
 
