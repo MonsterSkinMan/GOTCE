@@ -40,7 +40,6 @@ namespace GOTCE.Items
             CreateLang();
             CreateItem();
             Hooks();
-            MetamorphoTimer.Init();
         }
 
         public override void CreateConfig(ConfigFile config)
@@ -104,23 +103,5 @@ namespace GOTCE.Items
 
     }
 
-    class MetamorphoTimer {
-        public static BuffDef Buff;
-        public static string BuffName = "MetamorphoTimer";
-
-        public static void Init()
-        {
-            Buff = ScriptableObject.CreateInstance<BuffDef>();
-            Buff.name = BuffName;
-            Buff.canStack = false;
-            Buff.buffColor = new Color(1.5f, 1.5f, 1.5f);
-            Buff.iconSprite = Resources.Load<Sprite>("Textures/MedKit/texBuffMedKitHealIcon");
-            Buff.isDebuff = false;
-            Buff.eliteDef = null;
-            Buff.isHidden = false;
-            
-            ContentAddition.AddBuffDef(Buff);
-        }
-    }
 
 }
