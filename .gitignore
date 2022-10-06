@@ -28,7 +28,10 @@ bld/
 [Ll]og/
 
 
-libs/
+GOTCE/libs/
+
+GOTCE/obj/
+GOTCE/bin/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
