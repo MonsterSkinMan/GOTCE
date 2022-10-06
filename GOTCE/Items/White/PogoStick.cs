@@ -3,7 +3,7 @@ using R2API;
 using RoR2;
 using UnityEngine;
 
-namespace GOTCE.Items
+namespace GOTCE.Items.White
 {
     public class PogoStick : ItemBase<PogoStick>
     {
@@ -11,7 +11,7 @@ namespace GOTCE.Items
 
         public override string ItemName => "Pogo Stick";
 
-        public override string ItemLangTokenName => "GOTCE_JumpBoost";
+        public override string ItemLangTokenName => "GOTCE_PogoStick";
 
         public override string ItemPickupDesc => "Increase jump height.";
 
@@ -39,7 +39,7 @@ namespace GOTCE.Items
 
         public override void Hooks()
         {
-            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(PogoStick.SproingSproing);
+            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(SproingSproing);
         }
 
         public static void SproingSproing(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)

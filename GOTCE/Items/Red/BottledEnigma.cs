@@ -3,7 +3,7 @@ using R2API;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace GOTCE.Items
+namespace GOTCE.Items.Red
 {
     public class BottledEnigma : ItemBase<BottledEnigma>
     {
@@ -11,11 +11,11 @@ namespace GOTCE.Items
 
         public override string ItemName => "Bottled Enigma";
 
-        public override string ItemLangTokenName => "GOTCE_RapidRandomEquipmentTrigger";
+        public override string ItemLangTokenName => "GOTCE_BottledEnigma";
 
         public override string ItemPickupDesc => "Rapidly triggers random Equipment effects. Gain 26 max health.";
 
-        public override string ItemFullDescription => "Activates 1 random Equipment effect every frame. Increases <style=cIsHealing>maximum health</style> by <style=cIsHealing>26</style> <style=cStack>(+26 per stack)</style>.";
+        public override string ItemFullDescription => "Activates <style=cIsUtility>1</style> random <style=cIsUtilityequipment</style> every frame. Increases <style=cIsHealing>maximum health</style> by <style=cIsHealing>26</style> <style=cStack>(+26 per stack)</style>.";
 
         public override string ItemLore => "The world is a nonsensical place. Imparting any sort of universal truth or one-size-fits-all logic can only confuse you. The best way to adapt to the world is to embrace it. Let the cacophony of existence itself flow around you, rather than being destroyed by its torrential force. Power can be absorbed from insanity.";
 
@@ -36,7 +36,7 @@ namespace GOTCE.Items
         public override void Hooks()
         {
             On.RoR2.CharacterBody.OnInventoryChanged += CharacterBody_OnInventoryChanged;
-            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(BottledEnigma.OverpoweredHealthUp);
+            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(OverpoweredHealthUp);
             On.RoR2.Inventory.CalculateEquipmentCooldownScale += Inventory_CalculateEquipmentCooldownScale;
             On.RoR2.EquipmentSlot.FixedUpdate += EquipmentSlot_FixedUpdate;
         }
@@ -107,14 +107,14 @@ namespace GOTCE.Items
                 var stack = body.inventory.GetItemCount(Instance.ItemDef);
                 if (stack > 0)
                 {
-                    args.baseHealthAdd += (float)Instance.GetCount(body) * 26f;
+                    args.baseHealthAdd += Instance.GetCount(body) * 26f;
                 }
             }
         }
 
         private float Inventory_CalculateEquipmentCooldownScale(On.RoR2.Inventory.orig_CalculateEquipmentCooldownScale orig, Inventory self)
         {
-            var stack = self.GetItemCount(BottledEnigma.Instance.ItemDef.itemIndex);
+            var stack = self.GetItemCount(Instance.ItemDef.itemIndex);
             float thing = 0.00001f;
             if (stack > 0)
             {

@@ -3,7 +3,7 @@ using R2API;
 using RoR2;
 using UnityEngine;
 
-namespace GOTCE.Items
+namespace GOTCE.Items.White
 {
     public class BangSnap : ItemBase<BangSnap>
     {
@@ -11,11 +11,11 @@ namespace GOTCE.Items
 
         public override string ItemName => "Bang Snap";
 
-        public override string ItemLangTokenName => "GOTCE_Plus2AOEEffect";
+        public override string ItemLangTokenName => "GOTCE_BangSnap";
 
         public override string ItemPickupDesc => "+2 AOE effect to all explosions.";
 
-        public override string ItemFullDescription => "The radius of all area of effect attacks is increased by <style=cIsDamage>2m</style> <style=cStack>(+2m per stack)</style>.";
+        public override string ItemFullDescription => "The <style=cIsDamage>radius</style> of all area of effect attacks is increased by <style=cIsDamage>2m</style> <style=cStack>(+2m per stack)</style>.";
 
         public override string ItemLore => "10 seconds nearby enemy charges 10 power. every 45 power gain +2 aoe effect on your primary. hitting 2 enemies with primary gives m2 +1 charge. Landing 2 m2 hits in a row gives you a temporary barrier that when destroyed deals 500% damage to enemies within the equivalent meters to current power. (edited)";
 
@@ -44,20 +44,20 @@ namespace GOTCE.Items
 
         private BlastAttack.Result BlastAttack_Fire(On.RoR2.BlastAttack.orig_Fire orig, BlastAttack self)
         {
-            orig(self);
             if (self.attacker)
             {
-                CharacterBody component = self.attacker.GetComponent<CharacterBody>();
-                if (component && component.inventory)
+                var body = self.attacker.GetComponent<CharacterBody>();
+                if (body && body.inventory)
                 {
-                    var stack = component.inventory.GetItemCount(Instance.ItemDef);
+                    var stack = body.inventory.GetItemCount(Instance.ItemDef);
                     if (stack > 0)
                     {
                         self.radius += 2 * stack;
                     }
                 }
             }
-            return default;
+            orig(self);
+            return default(BlastAttack.Result);
         }
     }
 }
