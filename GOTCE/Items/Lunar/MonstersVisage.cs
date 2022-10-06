@@ -4,7 +4,7 @@ using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace GOTCE.Items
+namespace GOTCE.Items.Lunar
 {
     public class MonstersVisage : ItemBase<MonstersVisage>
     {
@@ -14,11 +14,11 @@ namespace GOTCE.Items
 
         public override string ItemName => "Monster's Visage";
 
-        public override string ItemLangTokenName => "GOTCE_LunarNearbyDamageBonus";
+        public override string ItemLangTokenName => "GOTCE_MonstersVisage";
 
-        public override string ItemPickupDesc => "Deal double damage to nearby enemies... <color=#FF7F7F>BUT deal halved damage to faraway enemies.</color>\n";
+        public override string ItemPickupDesc => "Deal double damage to nearby enemies... <color=#FF7F7F>BUT deal halved damage to enemies outside the radius.</color>\n";
 
-        public override string ItemFullDescription => "Increase damage to enemies within <style=cIsDamage>10m</style> by <style=cIsDamage>100%</style> <style=cStack>(+100% per stack)</style>. Reduce damage to enemies not within <style=cIsDamage>10m</style> by <style=cIsDamage>50%</style> <style=cStack>(+50% per stack)</style>.";
+        public override string ItemFullDescription => "Increase damage to enemies within <style=cIsDamage>10m</style> by <style=cIsDamage>100%</style> <style=cStack>(+100% per stack)</style>. Reduce <style=cIsDamage>damage</style> to enemies outside <style=cIsDamage>the radius</style> by <style=cIsDamage>50%</style> <style=cStack>(+50% per stack)</style>.";
 
         public override string ItemLore => "You have to push through in life. No matter what happens, you can’t give up. You can’t let yourself be defined by your own weaknesses and shortcomings.  It is okay to have flaws; perfection is overrated anyways. However, you can’t let yourself be consumed by your flaws. Instead, achieve greatness in spite of them. Time may be limited, but that’s all the more reason to make the most of it that you can. Never lose focus of your ultimate goal. The true meaning of life is to create your own destiny.";
 
@@ -42,7 +42,7 @@ namespace GOTCE.Items
         public void MonsterSkinMan()
         {
             var MonstersPissage = Addressables.LoadAssetAsync<GameObject>("Prefabs/NetworkedObjects/NearbyDamageBonusIndicator").WaitForCompletion();
-            HideAndShriek = PrefabAPI.InstantiateClone(MonstersPissage, "ADHDEffect", true);
+            HideAndShriek = MonstersPissage.InstantiateClone("ADHDEffect", true);
             Transform transform = HideAndShriek.transform.Find("Radius, Spherical");
             transform.localScale = Vector3.one * 10f * 2f;
         }
@@ -52,7 +52,7 @@ namespace GOTCE.Items
             On.RoR2.HealthComponent.TakeDamage += On_HCTakeDamage;
         }
 
-        private void On_HCTakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, RoR2.HealthComponent self, RoR2.DamageInfo damageInfo)
+        private void On_HCTakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)
         {
             if (damageInfo.attacker && damageInfo.attacker.GetComponent<CharacterBody>() && damageInfo.attacker.GetComponent<CharacterBody>().inventory)
             {

@@ -5,7 +5,7 @@ using BepInEx.Configuration;
 using System.Linq;
 using UnityEngine.AddressableAssets;
 
-namespace GOTCE.Items
+namespace GOTCE.Items.Yellow
 {
     public class NeverEndingAgony : ItemBase<NeverEndingAgony>
     {
@@ -13,7 +13,7 @@ namespace GOTCE.Items
 
         public override string ItemName => "Never-Ending Agony";
 
-        public override string ItemLangTokenName => "GOTCE_TeamTrueKill";
+        public override string ItemLangTokenName => "GOTCE_NeverEndingAgony";
 
         public override string ItemPickupDesc => "Gup is not a funny meme shut the fuck up.";
 

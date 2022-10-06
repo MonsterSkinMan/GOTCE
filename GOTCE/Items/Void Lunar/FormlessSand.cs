@@ -12,11 +12,11 @@ namespace GOTCE.Items
 
         public override string ItemName => "Formless Sand";
 
-        public override string ItemLangTokenName => "GOTCE_LunarDaggerVoid";
+        public override string ItemLangTokenName => "GOTCE_FormlessSand";
 
         public override string ItemPickupDesc => "Double your health... <color=#FF7F7F>BUT halve your damage.</color> <style=cIsVoid>Corrupts all Shaped Glasses</style>.";
 
-        public override string ItemFullDescription => "<style=cIsHealing>Increase maximum health by 100%</style> <style=cStack>(+100% per stack)</style>. Reduce base damage by <style=cIsDamage>50%</style> <style=cStack>(+50% per stack)</style>. <style=cIsVoid>Corrupts all Shaped Glasses</style>.";
+        public override string ItemFullDescription => "<style=cIsHealing>Increase maximum health by 100%</style> <style=cStack>(+100% per stack)</style>. <style=cIsHealing>Reduce base damage by 50%</style> <style=cStack>(+50% per stack)</style>. <style=cIsVoid>Corrupts all Shaped Glasses</style>.";
 
         public override string ItemLore => "Gaze upon it. Does order need to permeate all things in order to keep it in this world? Feel it in your hand, flowing like water in an ocean. Grasp it firmly, and it hardens to fit, feeling like a solid stone. Do you think chaos is innately evil? Disorder leads only to ruin? No. Order and law do not guarantee peace and good, just as the sun shining does not guarantee a warm day. You have much to learn from this world.";
 

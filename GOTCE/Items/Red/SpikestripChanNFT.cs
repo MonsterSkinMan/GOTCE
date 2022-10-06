@@ -8,15 +8,15 @@ using R2API.Networking;
 using UnityEngine.Networking;
 using R2API.Networking.Interfaces;
 
-namespace GOTCE.Items
+namespace GOTCE.Items.Red
 {
-    public class NFT : ItemBase<NFT>
+    public class SpikestripChanNFT : ItemBase<SpikestripChanNFT>
     {
         public override string ConfigName => "Spikestrip Chan NFT";
 
         public override string ItemName => "Spikestrip Chan NFT";
 
-        public override string ItemLangTokenName => "GOTCE_NFT";
+        public override string ItemLangTokenName => "GOTCE_SpikestripChanNFT";
 
         public override string ItemPickupDesc => "Increases a random stat.\n";
 

@@ -4,19 +4,19 @@ using UnityEngine;
 using BepInEx.Configuration;
 using UnityEngine.Networking;
 
-namespace GOTCE.Items
+namespace GOTCE.Items.Green
 {
-    public class Drill : ItemBase<Drill>
+    public class DecorativeDrill : ItemBase<DecorativeDrill>
     {
         public override string ConfigName => "Decorative Drill";
 
         public override string ItemName => "Decorative Drill";
 
-        public override string ItemLangTokenName => "GOTCE_BarrierOnCrit";
+        public override string ItemLangTokenName => "GOTCE_DecorativeDrill";
 
         public override string ItemPickupDesc => "'Critical Strikes' grant a temporary barrier.";
 
-        public override string ItemFullDescription => "Gain <style=cIsDamage>5% critical strike chance</style>. Gain a <style=cIsHealing>temporary barrier</style> on <style=cIsDamage>critical strike</style> for <style=cIsHealing>30 health</style> <style=cStack>(+15 per stack)</style>.";
+        public override string ItemFullDescription => "Gain <style=cIsDamage>5% critical strike chance</style>. Gain a <style=cIsHealing>temporary barrier</style> on <style=cIsDamage>critical strike</style> for <style=cIsHealing>30</style> <style=cStack>(+15 per stack)</style> health.";
 
         public override string ItemLore => "\"...That’s a drill. Why do you have that in your home?\"\n\"Why not? Any day now, there might be some sort of hostile rock monster that busts down my door and tries to kill me.\"\n\"Is that even a real drill? Mining drills are really expensive. I’ll go get a rock.\"\n\"It’ll work, I’m telling you.\"\nzzzzzzzzzzzzzz..zzz..zz...\n\"...That did absolutely nothing.\"\n\"But it might not do nothing! It could still be helpful!\"\n\"I think you just got a fake drill. Who sold you this?\"\n\"It’s gonna help!\"";
 
@@ -53,7 +53,7 @@ namespace GOTCE.Items
                 {
                     if (NetworkServer.active)
                     {
-                        body.healthComponent.AddBarrier((15f + (15f * itemCount)) * procCoefficient);
+                        body.healthComponent.AddBarrier((15f + 15f * itemCount) * procCoefficient);
                     }
                 }
             }

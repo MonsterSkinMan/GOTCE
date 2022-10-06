@@ -3,7 +3,7 @@ using R2API;
 using RoR2;
 using UnityEngine;
 
-namespace GOTCE.Items
+namespace GOTCE.Items.White
 {
     public class MoldySteak : ItemBase<MoldySteak>
     {
@@ -13,7 +13,7 @@ namespace GOTCE.Items
 
         public override string ItemName => "Moldy Steak";
 
-        public override string ItemLangTokenName => "GOTCE_ShittyFlatHealth";
+        public override string ItemLangTokenName => "GOTCE_MoldySteak";
 
         public override string ItemPickupDesc => "Lose 25 max health.";
 
@@ -41,7 +41,7 @@ namespace GOTCE.Items
 
         public override void Hooks()
         {
-            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(MoldySteak.HealthIncrease);
+            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(HealthIncrease);
         }
 
         public static void HealthIncrease(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
@@ -51,7 +51,7 @@ namespace GOTCE.Items
                 var stack = body.inventory.GetItemCount(Instance.ItemDef);
                 if (stack > 0)
                 {
-                    args.baseHealthAdd += (float)Instance.GetCount(body) * -25f;
+                    args.baseHealthAdd += Instance.GetCount(body) * -25f;
                 }
             }
         }

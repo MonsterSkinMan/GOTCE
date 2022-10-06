@@ -98,6 +98,9 @@
   <ItemGroup>
     <Folder Include="Enemies\Bosses\" />
     <Folder Include="Enemies\Basic Enemies\" />
+    <Folder Include="Items\Void Red\" />
+    <Folder Include="Items\Void Green\" />
+    <Folder Include="Items\Void White\" />
     <Folder Include="libs\" />
     <Folder Include="Tiers\" />
   </ItemGroup>
