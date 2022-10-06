@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>C:\Users\Matthew\AppData\Roaming\r2modmanPlus-local\RiskOfRain2\profiles\GOTCE Testing\BepInEx\plugins\Unknown-GOTCE\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
   
    <PropertyGroup>
