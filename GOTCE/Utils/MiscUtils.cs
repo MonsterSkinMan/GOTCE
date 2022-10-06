@@ -1,9 +1,7 @@
 ﻿using RoR2;
 using RoR2.Navigation;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace GOTCE.Utils
@@ -46,7 +44,6 @@ namespace GOTCE.Utils
         /// <returns>The position of a node closest to our desired destination, else a Vector3(0, 0, 0).</returns>
         public static Vector3 FindClosestNodeToPosition(Vector3 position, HullClassification hullClassification, bool checkAirNodes = false)
         {
-            Vector3 ResultPosition;
 
             NodeGraph nodesToCheck = checkAirNodes ? SceneInfo.instance.airNodes : SceneInfo.instance.groundNodes;
 
@@ -54,7 +51,7 @@ namespace GOTCE.Utils
 
             if (closestNode != NodeGraph.NodeIndex.invalid)
             {
-                nodesToCheck.GetNodePosition(closestNode, out ResultPosition);
+                nodesToCheck.GetNodePosition(closestNode, out Vector3 ResultPosition);
                 return ResultPosition;
             }
 

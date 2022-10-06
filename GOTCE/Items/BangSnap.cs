@@ -1,9 +1,6 @@
 ﻿using BepInEx.Configuration;
 using R2API;
 using RoR2;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
 namespace GOTCE.Items
@@ -14,7 +11,7 @@ namespace GOTCE.Items
 
         public override string ItemName => "Bang Snap";
 
-        public override string ItemLangTokenName => "GOTCE_Plus2aoeEffect";
+        public override string ItemLangTokenName => "GOTCE_Plus2AOEEffect";
 
         public override string ItemPickupDesc => "+2 AOE effect to all explosions.";
 
@@ -60,7 +57,7 @@ namespace GOTCE.Items
                     }
                 }
             }
-            return default(BlastAttack.Result);
+            return default;
         }
     }
 }

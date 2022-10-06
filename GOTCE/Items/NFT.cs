@@ -1,18 +1,12 @@
 ﻿using BepInEx.Configuration;
 using R2API;
 using RoR2;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using System.Linq;
 using R2API.Networking;
 using UnityEngine.Networking;
 using R2API.Networking.Interfaces;
-using R2API.Utils;
-using Mono.Cecil.Cil;
-using MonoMod.Cil;
 
 namespace GOTCE.Items
 {
@@ -26,7 +20,7 @@ namespace GOTCE.Items
 
         public override string ItemPickupDesc => "Increases a random stat.\n";
 
-        public override string ItemFullDescription => "Increases 1 <style=cStack>(+1 per stack)</style> random stat(s) by 50%.";
+        public override string ItemFullDescription => "Increases <style=cIsUtility>1</style> <style=cStack>(+1 per stack)</style> random stat(s) by <style=cIsDamage>50%</style>.";
 
         public override string ItemLore => "\"So, what've you been up to recently?\"\n\"Oh, I've been getting into these things called NFTs- have you heard of them?\"\n\"Are you getting scammed?\"\n\"No, I just bought one of this anime girl I like-\"\n\"It better not be that fucking Spikestrip Chan you always talk about.\"\n\"Oh umm... It miiight be?\"\n\"How much did you spend on it?\"\n\"Erm... four grand.\"\n\"...Why don't you try going outside for once? Meeting some real women?\"";
 
