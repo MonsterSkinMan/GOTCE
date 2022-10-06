@@ -142,7 +142,7 @@ namespace GOTCE.Items
             stopwatch -= Time.fixedDeltaTime;
             if (body.inventory) {
                 if (body.inventory.GetItemCount(BottledMetamorphosis.Instance.ItemDef) > 0) {
-                    Main.ModLogger.LogDebug(stopwatch);
+                    // Main.ModLogger.LogDebug(stopwatch);
                     if (stopwatch <= 0) {
                         body.master.bodyPrefab = BottledMetamorphosis.GetRandomCharacterBodyPrefab();
                         body.master.Respawn(body.master.GetBody().transform.position, body.master.GetBody().transform.rotation);
