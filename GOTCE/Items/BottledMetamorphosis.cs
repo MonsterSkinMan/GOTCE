@@ -14,9 +14,9 @@ namespace GOTCE.Items
 
         public override string ItemLangTokenName => "GOTCE_RandomBody";
 
-        public override string ItemPickupDesc => "Periodically transform into a random CharacterBody. Gain an affliction on spawn that reduces ALL stats.";
+        public override string ItemPickupDesc => "Periodically transform into a random CharacterBody.";
 
-        public override string ItemFullDescription => "Every 5s, turn into a random CharacterBody. Every time you respawn, gain 1 (+1 stack) Tonic Affliction.";
+        public override string ItemFullDescription => "Every 5 seconds <style=cStack>(-10% stack)</style>, turn into a random CharacterBody.";
 
         public override string ItemLore => "The world inhabited by life is a nonsensical place. Imparting any sort of rules towards nature or general logic on the way the world behaves can only confuse you. The best way to integrate yourself into the animalistic side of our world is to embrace it. Let the chaos of life itself flow around you, rather than being destroyed by its torrential force. Many benefits can be absorbed from the disorder of life.";
         public override string ConfigName => ItemName;
