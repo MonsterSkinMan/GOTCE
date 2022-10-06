@@ -42,6 +42,7 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             On.RoR2.GlobalEventManager.ServerDamageDealt += Poison;
+            RecalculateStatsAPI.GetStatCoefficients += Crit;
         }
 
         public void Poison(On.RoR2.GlobalEventManager.orig_ServerDamageDealt orig, DamageReport report) {
@@ -58,6 +59,13 @@ namespace GOTCE.Items.White
                 }
             }
         }
+
+        public void Crit(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
+            if (body && body.inventory && body.inventory.GetItemCount(ItemDef) > 0) {
+                args.critAdd += 5f;
+            }
+        }
+
 
         
     }

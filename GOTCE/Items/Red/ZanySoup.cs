@@ -42,7 +42,7 @@ namespace GOTCE.Items.Red
         public void Increase(On.RoR2.Inventory.orig_GiveItem_ItemIndex_int orig, Inventory self, ItemIndex index, int count) {
             orig(self, index, count);
             if (NetworkServer.active && index == ItemDef.itemIndex) {
-                Main.ModLogger.LogDebug("network server is active");
+                // Main.ModLogger.LogDebug("network server is active");
             
                 int toIncrease = self.GetItemCount(index) > 1 ? 1 : 3;
                 List<ItemIndex> foodRelated = new List<ItemIndex>() {
@@ -51,7 +51,7 @@ namespace GOTCE.Items.Red
 
                 foreach (ItemIndex item in self.itemAcquisitionOrder) {
                     if (foodRelated.Contains(item)) {
-                        Main.ModLogger.LogDebug("Food item found: " + item);
+                        // Main.ModLogger.LogDebug("Food item found: " + item);
                         self.GiveItem(item, toIncrease);
                     }
                 }
