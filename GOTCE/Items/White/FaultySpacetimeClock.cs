@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 using GOTCE.Components;
 using R2API.Networking;
 using R2API.Networking.Interfaces;
+using System;
 
 namespace GOTCE.Items.White
 {
@@ -26,6 +27,8 @@ namespace GOTCE.Items.White
 
         private bool lastStageWasCrit = false;
 
+        public EventHandler<StageCritEventArgs> OnStageCrit;
+
         public override ItemTier Tier => ItemTier.Tier1;
 
         public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.OnStageBeginEffect, ItemTag.AIBlacklist };
@@ -38,7 +41,7 @@ namespace GOTCE.Items.White
         public override void Init(ConfigFile config)
         {
             base.Init(config);
-            NetworkingAPI.RegisterMessageType<StageCrit>();
+            // NetworkingAPI.RegisterMessageType<StageCrit>();
         }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
@@ -61,7 +64,12 @@ namespace GOTCE.Items.White
                 bool lastStageWasCritPrev = lastStageWasCrit;
 
                 if (lastStageWasCrit) {
-                    NetMessageExtensions.Send(new StageCrit(), NetworkDestination.Clients);
+                    // NetMessageExtensions.Send(new StageCrit(), NetworkDestination.Clients);
+                    EventHandler<StageCritEventArgs> raiseEvent = OnStageCrit;
+
+                    if (raiseEvent != null) {
+                        raiseEvent(this, new StageCritEventArgs());
+                    }
                     lastStageWasCrit = false;
                 }
                 // var instances = PlayerCharacterMasterController.instances;
@@ -85,7 +93,13 @@ namespace GOTCE.Items.White
         
     }
 
-    public class StageCrit : INetMessage, ISerializableObject
+    public class StageCritEventArgs : EventArgs {
+        public StageCritEventArgs() {
+            
+        }
+    }
+
+    /* public class StageCrit : INetMessage, ISerializableObject
     {
         public void Serialize(NetworkWriter writer)
         {
@@ -119,5 +133,5 @@ namespace GOTCE.Items.White
                 Main.ModLogger.LogDebug("client received stagecrit");
             }
         }
-    }
+    } */
 }
