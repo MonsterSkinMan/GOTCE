@@ -46,7 +46,7 @@ namespace GOTCE.Items.Red
             
                 int toIncrease = self.GetItemCount(index) > 1 ? 1 : 3;
                 List<ItemIndex> foodRelated = new List<ItemIndex>() {
-                    RoR2.RoR2Content.Items.FlatHealth.itemIndex, RoR2.RoR2Content.Items.ParentEgg.itemIndex
+                    RoR2.RoR2Content.Items.FlatHealth.itemIndex, RoR2.RoR2Content.Items.ParentEgg.itemIndex, GOTCE.Items.White.MoldySteak.Instance.ItemDef.itemIndex, RoR2.RoR2Content.Items.Mushroom.itemIndex, RoR2.DLC1Content.Items.MushroomVoid.itemIndex, RoR2.DLC1Content.Items.AttackSpeedAndMoveSpeed.itemIndex, RoR2.RoR2Content.Items.SprintBonus.itemIndex, RoR2.RoR2Content.Items.Plant.itemIndex, GOTCE.Items.Green.SpafnarsFries.Instance.ItemDef.itemIndex
                 };
 
                 foreach (ItemIndex item in self.itemAcquisitionOrder) {

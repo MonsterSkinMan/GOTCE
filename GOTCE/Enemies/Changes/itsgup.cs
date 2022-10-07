@@ -20,7 +20,7 @@ namespace GOTCE.Enemies.Changes
             DeathRewards deathRewards = gupBodyPrefab.GetComponent<DeathRewards>();
             var item = new SerializablePickupIndex()
             {
-                pickupName = "ItemIndex.ITEM_GOTCE_TeamTrueKill"
+                pickupName = "ItemIndex.ITEM_GOTCE_NeverEndingAgony"
             };
             ExplicitPickupDropTable dt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();
             dt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]
