@@ -68,30 +68,23 @@ namespace GOTCE.Items.Lunar
 
         private void HealthComponent_TakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)
         {
-            if (self.body.inventory && Util.CheckRoll(self.body.inventory.GetItemCount(Instance.ItemDef) * 50f * damageInfo.procCoefficient, self.body.master))
-            {
-                damageInfo.damageType |= DamageType.VoidDeath;
-                if (self.health > 0f)
-                {
-                    self.Networkhealth = 0f;
+            if (damageInfo.attacker) {
+                if (damageInfo.attacker.GetComponent<CharacterBody>()) {
+                    CharacterBody body = damageInfo.attacker.GetComponent<CharacterBody>();
+
+                    if (body.inventory) {
+                        if (Util.CheckRoll(body.inventory.GetItemCount(ItemDef) * 50f * damageInfo.procCoefficient, body.master)) {
+                            damageInfo.damageType |= DamageType.VoidDeath;
+                            EffectManager.SpawnEffect(voidVFX, new EffectData
+                            {
+                                origin = self.body.transform.position,
+                                scale = 1f
+                            }, true);
+                        }
+                    }
                 }
-                if (self.shield > 0f)
-                {
-                    self.Networkshield = 0f;
-                }
-                if (self.barrier > 0f)
-                {
-                    self.Networkbarrier = 0f;
-                }
-                EffectManager.SpawnEffect(voidVFX, new EffectData
-                {
-                    origin = self.transform.position,
-                    scale = 1f
-                }, true);
             }
-            orig(self, damageInfo);
-        }
-        // this doesnt work
+        orig(self, damageInfo);
     }
 
     public class CorruptedShardComponent : MonoBehaviour
@@ -158,4 +151,4 @@ namespace GOTCE.Items.Lunar
             }
         }
     }
-}
+}};

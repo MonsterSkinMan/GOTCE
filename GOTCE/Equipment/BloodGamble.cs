@@ -13,7 +13,7 @@ namespace GOTCE.Equipment
 
         public override string EquipmentPickupDesc => "Fire a singular missile with a chance to die.";
 
-        public override string EquipmentFullDescription => "Passively halves your health and movement speed. Fire <style=cIsDamage>a</style> missile that deals <style=cIsDamage>300% damage</style>, has a 25% chance to kill you, and applies the malachite debuff to yourself for 4 seconds.";
+        public override string EquipmentFullDescription => "Passively halves your health and movement speed. Fire <style=cIsDamage>a</style> missile that deals <style=cIsDamage>300% damage</style>, deals 25% of your maximum hp as self-damage, applies 4 random damagetypes to yourself, and applies the malachite debuff to yourself for 4 seconds.";
 
         public override string EquipmentLore => "This is fucking trash.\n-Literally everybody";
 

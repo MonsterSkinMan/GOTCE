@@ -13,7 +13,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemLangTokenName => "GOTCE_GrandfatherClock";
 
-        public override string ItemPickupDesc => "On 'Critical Strike', die. (stage crits aren't implemented yet so we're just going with normal crits for now)";
+        public override string ItemPickupDesc => "On Stage Transition Crit, die.";
 
         public override string ItemFullDescription => "On <style=cIsDamage>critical strike</style>, literally fucking <style=cIsHealth>die</style>. Stage crits aren't implemented yet so we're just going with normal crits for now.";
 
