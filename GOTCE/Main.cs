@@ -16,6 +16,7 @@ using System.Reflection;
 using UnityEngine;
 using BepInEx.Bootstrap;
 using UnityEngine.AddressableAssets;
+using GOTCE.Components;
 using SearchableAttribute = HG.Reflection.SearchableAttribute;
 [assembly: SearchableAttribute.OptIn]
 
@@ -53,6 +54,8 @@ namespace GOTCE
             Debug.Log("Trolling");
             Debug.Log("test");
             ModLogger = Logger;
+
+
 
             /* if (Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI")) {
                 ItemSorting.tierMap.Add(LunarVoid.Instance.TierEnum, 3);
@@ -122,6 +125,7 @@ namespace GOTCE
             }
 
             Itsgup.OhTheMisery();
+
 
         }
 
