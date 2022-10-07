@@ -2,6 +2,7 @@
 using R2API;
 using UnityEngine;
 using BepInEx.Configuration;
+using System;
 namespace GOTCE.Equipment
 {
     public class BloodGamble : EquipmentBase<BloodGamble>
@@ -21,6 +22,7 @@ namespace GOTCE.Equipment
         public override Sprite EquipmentIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Equipment/BloodGamble.png");
 
         public override float Cooldown => 0f;
+        private System.Random rand = new System.Random();
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
@@ -34,6 +36,7 @@ namespace GOTCE.Equipment
             CreateEquipment();
             Hooks();
         }
+        
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(Skissue);
@@ -53,10 +56,17 @@ namespace GOTCE.Equipment
         {
             if (slot.characterBody)
             {
-                if (Util.CheckRoll(25f, slot.characterBody.master))
+                /* if (Util.CheckRoll(25f, slot.characterBody.master))
                 {
                     slot.characterBody.healthComponent.Suicide(slot.characterBody.gameObject, slot.characterBody.gameObject, DamageType.BypassArmor | DamageType.BypassBlock | DamageType.BypassOneShotProtection);
-                }
+                } */
+                DamageInfo info = new DamageInfo();
+                info.attacker = null;
+                info.damage = slot.characterBody.healthComponent.fullCombinedHealth * 0.25f;
+                int[] damageTypes = (int[])Enum.GetValues(typeof(DamageType));
+                info.damageType = (DamageType)damageTypes[rand.Next(0, damageTypes.Length - 1)] | (DamageType)damageTypes[rand.Next(0, damageTypes.Length - 1)] | (DamageType)damageTypes[rand.Next(0, damageTypes.Length - 1)] | DamageType.NonLethal;
+                info.procCoefficient = 0f;
+                slot.characterBody.healthComponent.TakeDamage(info);
                 slot.characterBody.AddTimedBuff(RoR2Content.Buffs.HealingDisabled, 4f);
                 slot.characterBody.GetComponent<CharacterBody>().equipmentSlot.remainingMissiles += 1;
             }

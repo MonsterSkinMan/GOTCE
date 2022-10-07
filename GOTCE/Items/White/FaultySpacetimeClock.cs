@@ -22,7 +22,9 @@ namespace GOTCE.Items.White
         public override string ItemFullDescription => "Gain a 10% (+10% per stack) chance to critically stage transition, skipping the next stage.";
 
         public override string ItemLore => "";
-        private bool shouldCrit = true;
+        // private bool shouldCrit = true;
+
+        private bool lastStageWasCrit = false;
 
         public override ItemTier Tier => ItemTier.Tier1;
 
@@ -47,12 +49,21 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             CharacterBody.onBodyStartGlobal += Crit;
+            RoR2.Run.onRunStartGlobal += (run) => {
+                lastStageWasCrit = false;
+            };
         }
 
         public void Crit(CharacterBody body) { // there is a 99% chance this code is horrible
             body.gameObject.AddComponent<BodyVars>();
-            if (NetworkServer.active && Stage.instance.entryTime.timeSince <= 300f && body.isPlayerControlled) {
-                shouldCrit = !shouldCrit; 
+            if (NetworkServer.active && Stage.instance.entryTime.timeSince <= 3f && body.isPlayerControlled) {
+
+                bool lastStageWasCritPrev = lastStageWasCrit;
+
+                if (lastStageWasCrit) {
+                    NetMessageExtensions.Send(new StageCrit(), NetworkDestination.Clients);
+                    lastStageWasCrit = false;
+                }
                 // var instances = PlayerCharacterMasterController.instances;
                 float totalChance = 0f;
                 // Main.ModLogger.LogDebug(Stage.instance.entryTime.timeSince);
@@ -62,20 +73,10 @@ namespace GOTCE.Items.White
                     // Main.ModLogger.LogDebug(vars.stageCritChance + " stagecritplayer");
                     totalChance += vars.stageCritChance;
                 };
-                /* foreach (PlayerCharacterMasterController playerCharacterMaster in instances)
-                {
-                    if (playerCharacterMaster.master.GetBody() && playerCharacterMaster.master.GetBody().gameObject.GetComponent<BodyVars>()) {
-                        BodyVars vars = playerCharacterMaster.master.GetBody().gameObject.GetComponent<BodyVars>();
-                        Main.ModLogger.LogDebug(vars.stageCritChance+ " stagecritplayer");
-                        totalChance += vars.stageCritChance;
-                    }
-                } */
 
-                // Main.ModLogger.LogDebug(totalChance);
-
-                if (rand.Next(0, 101) < totalChance && shouldCrit) {
+                if (Util.CheckRoll(totalChance) && !lastStageWasCritPrev) {
+                    lastStageWasCrit = true;
                     Run.instance.AdvanceStage(Run.instance.nextStageScene);
-                    NetMessageExtensions.Send(new StageCrit(), NetworkDestination.Clients);
                     // NetMessageExtensions.Send(new StageCrit(), NetworkDestination.Server);
                 }
             }
@@ -96,6 +97,27 @@ namespace GOTCE.Items.White
         public void OnReceived()
         {
             // do things on stage crit here
+            // this will be called on first stage load but the player has no items there so it shouldnt matter
+            if (NetworkServer.active) { // server stuff
+                CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
+                if (body.inventory && body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0) {
+                    if (body.gameObject.GetComponent<BodyVars>()) {
+                        body.gameObject.GetComponent<BodyVars>().clockDeathCount += body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef);
+                    }
+                }
+
+                Main.ModLogger.LogDebug("server received stagecrit");
+            }
+            if (!NetworkServer.active) { // client stuff
+                CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
+                if (body.inventory && body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0) {
+                    if (body.gameObject.GetComponent<BodyVars>()) {
+                        body.gameObject.GetComponent<BodyVars>().clockDeathCount += body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef);
+                    }
+                }
+
+                Main.ModLogger.LogDebug("client received stagecrit");
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using static GOTCE.Main;
+using UnityEngine.AddressableAssets;
 
 namespace GOTCE.Components {
 
@@ -17,8 +18,14 @@ namespace GOTCE.Components {
         public float sprintCritChance;
         public float fovCritChance;
 
+        public int clockDeathCount = 0;
+
+        private float deathTimer = 0f;
+        private GameObject voidVFX;
+
         public void Start() {
                 RecalculateStatsAPI.GetStatCoefficients += UpdateChances;
+                voidVFX = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
         }
 
         private void UpdateChances(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
@@ -27,6 +34,24 @@ namespace GOTCE.Components {
 
                     // sprint crit (unimplemented)
                 }
+
+                if (clockDeathCount > 0 && deathTimer >= 3f) {
+                    // Main.ModLogger.LogDebug("clock death pre: " + clockDeathCount);
+                    clockDeathCount--;
+                    // Main.ModLogger.LogDebug("clock death post: " + clockDeathCount);
+                    EffectManager.SpawnEffect(voidVFX, new EffectData
+                    {
+                        origin = body.transform.position,
+                        scale = 1f
+                    }, true);
+                    body.healthComponent.Suicide(null, null, DamageType.BypassOneShotProtection | DamageType.VoidDeath);
+                    deathTimer = 0f;
+                    
+                }
+        }
+
+        public void FixedUpdate() {
+            deathTimer += Time.fixedDeltaTime;
         }
 
         public void DetermineStageCrit() { // stage crit goes here so i can make sure it's been determined BEFORE the characterbody tries to get it
