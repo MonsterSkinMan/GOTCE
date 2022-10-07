@@ -95,7 +95,7 @@ namespace GOTCE.Items.White
 
         public void OnReceived()
         {
-            Chat.SendBroadcastChat(new RoR2.Chat.SimpleChatMessage { baseToken = "<color=#e5eefc>{0}</color>", paramTokens = new[] { "Critical stage transition!" } });
+            // do things on stage crit here
         }
     }
 }
