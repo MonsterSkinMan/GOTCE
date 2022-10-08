@@ -19,6 +19,7 @@ using UnityEngine.AddressableAssets;
 using GOTCE.Components;
 using SearchableAttribute = HG.Reflection.SearchableAttribute;
 using RoR2.Navigation;
+using GOTCE.Enemies.Skills;
 [assembly: SearchableAttribute.OptIn]
 
 namespace GOTCE
@@ -126,37 +127,78 @@ namespace GOTCE
                 }
             }
 
+            //this section automatically scans the project for all equipment
+            var SkillTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(SkillBase)));
+
+            foreach (var skillType in SkillTypes)
+            {
+                SkillBase skill = (SkillBase)System.Activator.CreateInstance(skillType);
+                skill.Create();
+                
+            }
+
             Itsgup.OhTheMisery();
             Enemies.LivingSuppressiveFire.Create();
+            Enemies.CrackedPest.Create();
             
             RoR2.CharacterBody.onBodyStartGlobal += (body) => {
                 if (body.baseNameToken == "LIVING_SUPPRESSIVE_FIRE_NAME") {
                     body.inventory.GiveItem(RoR2.RoR2Content.Items.LunarBadLuck, 10);
                     CharacterModel model = body.modelLocator.modelTransform.GetComponent<CharacterModel>();
-                    model.baseRendererInfos[1].defaultMaterial = Addressables.LoadAssetAsync<UnityEngine.Material>("RoR2/Base/Common/VFX/matLightningSphere.mat").WaitForCompletion();
+                    model.baseRendererInfos[0].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Item/MoldySteak/matSteak.mat");
+                    model.baseRendererInfos[1].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Item/MoldySteak/matSteak.mat");
+                }
+                if (body.baseNameToken == "CRACKED_PEST_NAME") {
+                    body.inventory.GiveItem(RoR2.RoR2Content.Items.Behemoth, 3);
+                    CharacterModel model = body.modelLocator.modelTransform.GetComponent<CharacterModel>();
+                    model.baseRendererInfos[0].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Item/MoldySteak/matSteak.mat");
+                    model.baseRendererInfos[1].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Item/MoldySteak/matSteak.mat");
                 }
             };
 
-            CharacterSpawnCard spawncard = new CharacterSpawnCard() {
+            CharacterSpawnCard spawncardS = new CharacterSpawnCard() {
                 name = "cscKirn",
                 prefab = Enemies.LivingSuppressiveFire.LivingSuppressiveFireMaster,
                 sendOverNetwork = true,
                 nodeGraphType = MapNodeGroup.GraphType.Air,
                 requiredFlags = NodeFlags.None,
                 forbiddenFlags = NodeFlags.NoCharacterSpawn,
-                directorCreditCost = 10,
+                directorCreditCost = 20,
                 eliteRules = SpawnCard.EliteRules.Default
                 
             };
 
-            DirectorCard directorCard = new DirectorCard() {
-                spawnCard = spawncard,
+            CharacterSpawnCard spawncardC = new CharacterSpawnCard() {
+                name = "cscCracked",
+                prefab = Enemies.CrackedPest.CrackedPestMaster,
+                sendOverNetwork = true,
+                nodeGraphType = MapNodeGroup.GraphType.Air,
+                requiredFlags = NodeFlags.None,
+                forbiddenFlags = NodeFlags.NoCharacterSpawn,
+                directorCreditCost = 100,
+                eliteRules = SpawnCard.EliteRules.ArtifactOnly
+                
+            };
+
+            DirectorCard directorCardS = new DirectorCard() {
+                spawnCard = spawncardS,
                 spawnDistance = DirectorCore.MonsterSpawnDistance.Standard,
-                selectionWeight = 2,
+                selectionWeight = 1,
+                preventOverhead = false
+            };
+            DirectorCard directorCardC = new DirectorCard() {
+                spawnCard = spawncardC,
+                spawnDistance = DirectorCore.MonsterSpawnDistance.Far,
+                selectionWeight = 1,
                 preventOverhead = false
             };
 
-            R2API.DirectorAPI.Helpers.AddNewMonster(directorCard, DirectorAPI.MonsterCategory.BasicMonsters);
+            R2API.DirectorAPI.Helpers.AddNewMonster(directorCardS, DirectorAPI.MonsterCategory.BasicMonsters);
+            R2API.DirectorAPI.Helpers.RemoveExistingMonsterFromStage("cscKirn", DirectorAPI.Stage.Commencement);
+            R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.SulfurPools);
+            R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.RallypointDelta);
+            R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.AphelianSanctuary);
+            R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.SiphonedForest);
 
 
         }
