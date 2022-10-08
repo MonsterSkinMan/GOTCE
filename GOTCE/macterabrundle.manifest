@@ -1,43 +1,65 @@
 ManifestFileVersion: 0
-CRC: 297754475
+CRC: 957719780
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e025ee71d616ff5ffdb2574b1eeeb942
+    Hash: 0132030ec20a5b1cc3bd76296e889716
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 700cce780156dfdd5fdd2ee7678caad4
+    Hash: 39cd3a3f27bddabb88c4bd1ed5edf8b6
 HashAppended: 0
 ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
 - Class: 21
+  Script: {instanceID: 0}
+- Class: 23
   Script: {instanceID: 0}
 - Class: 28
   Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
 - Class: 48
+  Script: {instanceID: 0}
+- Class: 89
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Materials/Item/MonstersVisage/MonstersVisageMaterial.mat
+- Assets/Textures/Icons/Item/zanysoup.png
 - Assets/Textures/Icons/Artifact/disabledfear.png
 - Assets/Textures/Icons/Artifact/woolifact.png
 - Assets/Textures/Icons/Item/BottledMetamorphosis.png
 - Assets/Textures/Icons/Artifact/artifactofartifact.png
+- Assets/Materials/Enemies/Materials/kirn.mat
 - Assets/Textures/Icons/Item/NEA.png
+- Assets/Textures/Icons/Item/Yhjtumgrhtfyddc.png
+- Assets/Textures/Icons/Item/bigshoe.png
 - Assets/Textures/Icons/Item/FormlessSand.png
-- Assets/Textures/Icons/Item/BangSnap.png
+- Assets/Textures/Icons/Item/bottledcommand.png
+- Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png
 - Assets/Textures/Icons/Item/drill.png
 - Assets/Textures/Icons/Item/GrandfatherClock.png
-- Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png
 - Assets/Materials/Item/MoldySteak/matSteak.mat
 - Assets/Textures/Icons/Item/shittyvisage.png
+- Assets/Models/Prefabs/Enemies/livingsuppfire.png
+- Assets/Textures/Icons/Item/amalgamspoon.png
 - Assets/Textures/Icons/Item/skeletonkey.png
 - Assets/Textures/Icons/Item/sscnft.png
+- Assets/Textures/Icons/Item/backuphammer.png
+- Assets/Textures/Icons/Item/Bottled_Enigma.png
+- Assets/Models/Raw Models/LivingSuppModel.fbx
 - Assets/Materials/Item/MoldySteak/MoldySteakmaterial.mat
 - Assets/Textures/Icons/Item/MoldySteak.png
+- Assets/Textures/Icons/Item/BangSnap.png
 - Assets/Textures/Icons/Item/pogo.png
+- Assets/Textures/Icons/Item/animalhead.png
 - Assets/Textures/Icons/Item/AmberRabbit.png
 - Assets/Textures/Icons/Equipment/BloodGamble.png
-- Assets/Textures/Icons/Item/Bottled_Enigma.png
 Dependencies: []
