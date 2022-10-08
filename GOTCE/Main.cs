@@ -18,6 +18,7 @@ using BepInEx.Bootstrap;
 using UnityEngine.AddressableAssets;
 using GOTCE.Components;
 using SearchableAttribute = HG.Reflection.SearchableAttribute;
+using RoR2.Navigation;
 [assembly: SearchableAttribute.OptIn]
 
 namespace GOTCE
@@ -126,6 +127,36 @@ namespace GOTCE
             }
 
             Itsgup.OhTheMisery();
+            Enemies.LivingSuppressiveFire.Create();
+            
+            RoR2.CharacterBody.onBodyStartGlobal += (body) => {
+                if (body.baseNameToken == "LIVING_SUPPRESSIVE_FIRE_NAME") {
+                    body.inventory.GiveItem(RoR2.RoR2Content.Items.LunarBadLuck, 10);
+                    CharacterModel model = body.modelLocator.modelTransform.GetComponent<CharacterModel>();
+                    model.baseRendererInfos[1].defaultMaterial = Addressables.LoadAssetAsync<UnityEngine.Material>("RoR2/Base/Common/VFX/matLightningSphere.mat").WaitForCompletion();
+                }
+            };
+
+            CharacterSpawnCard spawncard = new CharacterSpawnCard() {
+                name = "cscKirn",
+                prefab = Enemies.LivingSuppressiveFire.LivingSuppressiveFireMaster,
+                sendOverNetwork = true,
+                nodeGraphType = MapNodeGroup.GraphType.Air,
+                requiredFlags = NodeFlags.None,
+                forbiddenFlags = NodeFlags.NoCharacterSpawn,
+                directorCreditCost = 10,
+                eliteRules = SpawnCard.EliteRules.Default
+                
+            };
+
+            DirectorCard directorCard = new DirectorCard() {
+                spawnCard = spawncard,
+                spawnDistance = DirectorCore.MonsterSpawnDistance.Standard,
+                selectionWeight = 2,
+                preventOverhead = false
+            };
+
+            R2API.DirectorAPI.Helpers.AddNewMonster(directorCard, DirectorAPI.MonsterCategory.BasicMonsters);
 
 
         }
