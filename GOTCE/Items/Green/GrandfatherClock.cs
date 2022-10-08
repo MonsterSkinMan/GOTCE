@@ -45,15 +45,16 @@ namespace GOTCE.Items.Green
             FaultySpacetimeClock.Instance.OnStageCrit += Kill;
         }
 
-        public void Kill(object sender, StageCritEventArgs args) {
+        public void Kill(object sender, StageCritEventArgs args)
+        {
             CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
-                if (body.inventory && body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0) {
-                    if (body.gameObject.GetComponent<BodyVars>()) {
-                        body.gameObject.GetComponent<BodyVars>().clockDeathCount += body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef);
-                    }
+            if (body.inventory && body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0)
+            {
+                if (body.gameObject.GetComponent<GOTCE_StatsComponent>())
+                {
+                    body.gameObject.GetComponent<GOTCE_StatsComponent>().clockDeathCount += body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef);
                 }
+            }
         }
-
-        
     }
 }
