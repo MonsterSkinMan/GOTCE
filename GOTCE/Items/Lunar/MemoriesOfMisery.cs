@@ -10,7 +10,6 @@ namespace GOTCE.Items.Lunar
 {
     public class MemoriesOfMisery : ItemBase<MemoriesOfMisery>
     {
-
         public override string ConfigName => "Memories of Misery";
 
         public override string ItemName => "Memories of Misery";
@@ -40,6 +39,7 @@ namespace GOTCE.Items.Lunar
         {
             return new ItemDisplayRuleDict(null);
         }
+
         public override void Hooks()
         {
             On.RoR2.PlayerCharacterMasterController.FixedUpdate += PlayerCharacterMasterController_FixedUpdate;

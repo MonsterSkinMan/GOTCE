@@ -20,3 +20,6 @@ C:\Users\Matthew\source\repos\GOTCE\GOTCE\obj\Debug\GOTCE.pdb
 C:\Users\Matthew\source\repos\GOTCE\GOTCE\bin\GOTCE.deps.json
 C:\Users\Matthew\source\repos\GOTCE\GOTCE\bin\GOTCE.dll
 C:\Users\Matthew\source\repos\GOTCE\GOTCE\bin\GOTCE.pdb
+C:\Users\Periphery\source\repos\GOTCE\GOTCE\bin\GOTCE.deps.json
+C:\Users\Periphery\source\repos\GOTCE\GOTCE\bin\GOTCE.dll
+C:\Users\Periphery\source\repos\GOTCE\GOTCE\bin\GOTCE.pdb

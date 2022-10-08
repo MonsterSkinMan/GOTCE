@@ -27,8 +27,6 @@ namespace GOTCE.Items.White
 
         public override Sprite ItemIcon => null;
 
-
-
         private static readonly System.Random random = new System.Random();
 
         public override void Init(ConfigFile config)
@@ -41,7 +39,6 @@ namespace GOTCE.Items.White
 
         public override void CreateConfig(ConfigFile config)
         {
-
         }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
@@ -53,10 +50,9 @@ namespace GOTCE.Items.White
         {
             // On.RoR2.CharacterBody.FixedUpdate += Transform;
             // On.RoR2.CharacterBody.OnInventoryChanged += StackTimer;
-            // On.RoR2.Stage.FixedUpdate += UpdateTimer; 
+            // On.RoR2.Stage.FixedUpdate += UpdateTimer;
             On.RoR2.CharacterBody.OnInventoryChanged += AttachController;
         }
-
 
         public static GameObject GetRandomCharacterBodyPrefab()
         {
@@ -135,7 +131,6 @@ namespace GOTCE.Items.White
                 stopwatch = 5f;
             }
         } */
-
     }
 
     public class MetaController : MonoBehaviour
@@ -143,7 +138,6 @@ namespace GOTCE.Items.White
         private CharacterBody body;
         private static float interval = 5f;
         private float stopwatch = interval;
-
 
         public void Start()
         {
@@ -169,6 +163,4 @@ namespace GOTCE.Items.White
             }
         }
     }
-
-
 }

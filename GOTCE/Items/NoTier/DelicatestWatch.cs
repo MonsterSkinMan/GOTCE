@@ -14,9 +14,9 @@ namespace GOTCE.Items.NoTier
 
         public override string ItemLangTokenName => "GOTCE_DelicatestWatch";
 
-        public override string ItemPickupDesc => "Does nothing.";
+        public override string ItemPickupDesc => "Skill issue";
 
-        public override string ItemFullDescription => "Does nothing.";
+        public override string ItemFullDescription => "Skill issue";
 
         public override string ItemLore => "";
 

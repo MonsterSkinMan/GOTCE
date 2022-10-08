@@ -14,7 +14,6 @@ namespace GOTCE.Items.Lunar
 {
     public class CorruptedShard : ItemBase<CorruptedShard>
     {
-
         public override string ConfigName => "Corrupted Shard";
 
         public override string ItemName => "Corrupted Shard";
@@ -47,6 +46,7 @@ namespace GOTCE.Items.Lunar
         {
             return new ItemDisplayRuleDict(null);
         }
+
         public override void Hooks()
         {
             On.RoR2.CharacterBody.OnInventoryChanged += CharacterBody_OnInventoryChanged;
@@ -64,7 +64,6 @@ namespace GOTCE.Items.Lunar
             }
             orig(self);
         }
-
 
         private void HealthComponent_TakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)
         {
@@ -91,6 +90,7 @@ namespace GOTCE.Items.Lunar
             }
             orig(self, damageInfo);
         }
+
         // this doesnt work
     }
 
@@ -99,7 +99,7 @@ namespace GOTCE.Items.Lunar
         private IEnumerator crash;
         private bool shouldCrash = false;
 
-        void Start()
+        private void Start()
         {
             crash = Crash(0.5f);
             for (int i = 0; i < NetworkUser.readOnlyInstancesList.Count; i++)
@@ -114,7 +114,7 @@ namespace GOTCE.Items.Lunar
             StartCoroutine(crash);
         }
 
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             if (Util.CheckRoll(0.1f))
             {
@@ -138,7 +138,6 @@ namespace GOTCE.Items.Lunar
             }
             yield break;
         }
-
     }
 
     public class SyncCrash : INetMessage, ISerializableObject
@@ -146,6 +145,7 @@ namespace GOTCE.Items.Lunar
         public void Serialize(NetworkWriter writer)
         {
         }
+
         public void Deserialize(NetworkReader reader)
         {
         }

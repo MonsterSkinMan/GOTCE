@@ -2,6 +2,10 @@
 using R2API;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections;
+using System.Collections.Generic;
+using BepInEx.Configuration;
+using System.Linq;
 
 namespace GOTCE.Items.Red
 {
@@ -32,6 +36,16 @@ namespace GOTCE.Items.Red
             return new ItemDisplayRuleDict(null);
         }
 
+        private static readonly List<ItemTier> woolieTierlist = new();
+        // private static readonly List<ItemTag> rndTierlist = new();
+
+        public override void Init(ConfigFile config)
+        {
+            base.Init(config);
+            woolieTierlist.AddRange(new List<ItemTier> { ItemTier.VoidTier1, ItemTier.VoidTier2, ItemTier.VoidTier3, ItemTier.VoidBoss, ItemTier.NoTier });
+            // rndTierlist.AddRange(new List<ItemTag> { ItemTag.WorldUnique });
+        }
+
         public override void Hooks()
         {
             On.RoR2.Inventory.GiveItem_ItemIndex_int += Inventory_GiveItem_ItemIndex_int;
@@ -44,10 +58,10 @@ namespace GOTCE.Items.Red
             {
                 foreach (ItemDef itemDef in RoR2.ContentManagement.ContentManager._itemDefs)
                 {
-                    if (ItemDef.tier != ItemTier.NoTier && itemDef.deprecatedTier != ItemTier.NoTier && ItemDef.tier != ItemTier.VoidTier1 && itemDef.tier != ItemTier.VoidTier2 && ItemDef.tier != ItemTier.VoidTier3 && ItemDef.deprecatedTier != ItemTier.VoidTier1 && ItemDef.deprecatedTier != ItemTier.VoidTier2 && ItemDef.deprecatedTier != ItemTier.VoidTier3 && itemDef != Instance.ItemDef)
+                    if (!woolieTierlist.Contains(ItemDef.tier) && !woolieTierlist.Contains(ItemDef.deprecatedTier) && itemDef != Instance.ItemDef)
                     {
                         Debug.Log("item def is " + itemDef);
-                        self.GiveItem(itemDef);
+                        //self.GiveItem(itemDef);
                     }
                 }
             }

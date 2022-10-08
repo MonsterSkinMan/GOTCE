@@ -8,7 +8,6 @@ namespace GOTCE.Items.Lunar
 {
     public class PaleAle : ItemBase<PaleAle>
     {
-
         public override string ConfigName => "Pale Ale";
 
         public override string ItemName => "Pale Ale";

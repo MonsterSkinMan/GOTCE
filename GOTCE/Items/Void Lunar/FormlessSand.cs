@@ -4,7 +4,7 @@ using UnityEngine;
 using BepInEx.Configuration;
 using HarmonyLib;
 
-namespace GOTCE.Items
+namespace GOTCE.Items.VoidLunar
 {
     public class FormlessSand : ItemBase<FormlessSand>
     {

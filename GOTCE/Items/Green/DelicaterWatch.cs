@@ -26,7 +26,7 @@ namespace GOTCE.Items.Green
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null; 
+        public override Sprite ItemIcon => null;
 
         public override void Init(ConfigFile config)
         {
@@ -44,23 +44,29 @@ namespace GOTCE.Items.Green
             RecalculateStatsAPI.GetStatCoefficients += Damage;
         }
 
-        public void BreakStacks(On.RoR2.TeleporterInteraction.orig_OnInteractionBegin orig, TeleporterInteraction self, Interactor activator) {
+        public void BreakStacks(On.RoR2.TeleporterInteraction.orig_OnInteractionBegin orig, TeleporterInteraction self, Interactor activator)
+        {
             var instances = PlayerCharacterMasterController.instances;
             foreach (PlayerCharacterMasterController playerCharacterMaster in instances)
             {
-                if (playerCharacterMaster.master.GetBody().inventory.GetItemCount(ItemDef) > 0) {
-                    playerCharacterMaster.master.GetBody().inventory.GiveItem(GOTCE.Items.NoTier.DelicatestWatch.Instance.ItemDef, playerCharacterMaster.master.GetBody().inventory.GetItemCount(ItemDef));
-                    playerCharacterMaster.master.GetBody().inventory.RemoveItem(ItemDef, playerCharacterMaster.master.GetBody().inventory.GetItemCount(ItemDef));
+                if (playerCharacterMaster.master.GetBody().inventory.GetItemCount(ItemDef) > 0)
+                {
+                    var body = playerCharacterMaster.master.GetBody();
+                    body.inventory.GiveItem(GOTCE.Items.NoTier.DelicatestWatch.Instance.ItemDef, playerCharacterMaster.master.GetBody().inventory.GetItemCount(ItemDef));
+                    body.inventory.RemoveItem(ItemDef, playerCharacterMaster.master.GetBody().inventory.GetItemCount(ItemDef));
                     CharacterMasterNotificationQueue.SendTransformNotification(playerCharacterMaster.master, ItemDef.itemIndex, GOTCE.Items.NoTier.DelicatestWatch.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
                 }
             }
             orig(self, activator);
         }
 
-        public void Damage(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (body && body.inventory) {
-                if (body.inventory.GetItemCount(ItemDef) > 0) {
-                    args.damageMultAdd += 2f + 1f*(body.inventory.GetItemCount(ItemDef) - 1);
+        public void Damage(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (body && body.inventory)
+            {
+                if (body.inventory.GetItemCount(ItemDef) > 0)
+                {
+                    args.damageMultAdd += 2f + 1f * (body.inventory.GetItemCount(ItemDef) - 1);
                 }
             }
         }
