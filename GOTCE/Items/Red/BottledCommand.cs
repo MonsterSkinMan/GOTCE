@@ -25,7 +25,7 @@ namespace GOTCE.Items.Red
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null; /* Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/Bottled_Enigma.png"); */ // replace with bottled command icon
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/bottledcommand.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {

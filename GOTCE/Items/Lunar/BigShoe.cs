@@ -27,7 +27,7 @@ namespace GOTCE.Items.Lunar
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;/* Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/shittyvisage.png"); */ // replace with big shoe icon
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/bigshoe.png");
         
         public override void Init(ConfigFile config)
         {

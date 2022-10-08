@@ -28,7 +28,7 @@ namespace GOTCE.Items.Lunar
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;/* Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/shittyvisage.png"); */ // replace with backup hammer icon
+        public override Sprite ItemIcon =>Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/backuphammer.png");
 
         private SkillDef lockedDef;
 
