@@ -22,7 +22,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemPickupDesc => "Seems to do nothing... <color=#FF7F7F>BUT seems to do nothing...</color>\n";
 
-        public override string ItemFullDescription => "Your attacks have a <style=cIsDamage>50%</style> <style=cStack>(+50% per stack)</style> chance to <style=cIsDamage>instantly kill</style> an enemy. The game has a <style=cIsHealth>0.1%</style> <style=cStack>(+0.1% per stack)</style> chance to <style=cIsHealth>crash</style> every second.";
+        public override string ItemFullDescription => "Your attacks have a <style=cIsDamage>50%</style> <style=cStack>(+50% per stack)</style> chance to <style=cIsDamage>instantly kill</style> an enemy. The game has a <style=cIsHealth>0.3%</style> chance to <style=cIsHealth>crash</style> every second.";
 
         public override string ItemLore => "";
 
@@ -67,26 +67,25 @@ namespace GOTCE.Items.Lunar
 
         private void HealthComponent_TakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)
         {
-            if (self.body.inventory && Util.CheckRoll(self.body.inventory.GetItemCount(Instance.ItemDef) * 50f * damageInfo.procCoefficient, self.body.master))
+            if (damageInfo.attacker)
             {
-                damageInfo.damageType |= DamageType.VoidDeath;
-                if (self.health > 0f)
+                if (damageInfo.attacker.GetComponent<CharacterBody>())
                 {
-                    self.Networkhealth = 0f;
+                    CharacterBody body = damageInfo.attacker.GetComponent<CharacterBody>();
+
+                    if (body.inventory)
+                    {
+                        if (Util.CheckRoll(body.inventory.GetItemCount(ItemDef) * 50f * damageInfo.procCoefficient, body.master))
+                        {
+                            damageInfo.damageType |= DamageType.VoidDeath;
+                            EffectManager.SpawnEffect(voidVFX, new EffectData
+                            {
+                                origin = self.body.transform.position,
+                                scale = 2f
+                            }, true);
+                        }
+                    }
                 }
-                if (self.shield > 0f)
-                {
-                    self.Networkshield = 0f;
-                }
-                if (self.barrier > 0f)
-                {
-                    self.Networkbarrier = 0f;
-                }
-                EffectManager.SpawnEffect(voidVFX, new EffectData
-                {
-                    origin = self.transform.position,
-                    scale = 1f
-                }, true);
             }
             orig(self, damageInfo);
         }
@@ -116,7 +115,7 @@ namespace GOTCE.Items.Lunar
 
         private void FixedUpdate()
         {
-            if (Util.CheckRoll(0.1f))
+            if (Util.CheckRoll(0.3f))
             {
                 shouldCrash = true;
             }

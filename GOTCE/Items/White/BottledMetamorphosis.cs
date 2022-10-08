@@ -56,7 +56,7 @@ namespace GOTCE.Items.White
 
         public static GameObject GetRandomCharacterBodyPrefab()
         {
-            List<string> donot = new List<string>() {
+            List<string> donot = new() {
                 "BirdsharkBody", "ArtifactShellBody","AltarSkeletonBody", "BackupDroneOldBody", "BeetleCrystalBody", "BeetleGuardAllyBody", "BeetleGuardCrystalBody",
             "BeetleWard", "DeathProjectile", "ExplosivePotDestructibleBody", "FusionCellDestructibleBody", "GolemBodyInvincible",
             "GravekeeperTrackingFireball", "LemurianBruiserBody", "LunarWispTrackingBomb", "MinorConstructAttachableBody", "MinorConstructBody", "MinorConstructOnKillBody", "NullifierBody", "OilBeetle",
