@@ -16,7 +16,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemPickupDesc => "Deal increased damage. Breaks upon activating the teleporter.";
 
-        public override string ItemFullDescription => "Gain +100% (+100% per stack) damage. All stacks break upon activating the teleporter.";
+        public override string ItemFullDescription => "Gain <style=cIsDamage>+100%</style> <style=cStack>(+100% per stack)</style> <style=cIsDamage>damage</style>. Activating the teleporter <style=cIsUtility>breaks</style> this item.";
 
         public override string ItemLore => "";
 

@@ -20,7 +20,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "Gain a chance to critically Stage Transition, skipping the next stage and unlocking powerful synergies...";
 
-        public override string ItemFullDescription => "Gain a <style=cIsUtility>10%</style> <style=cStack>(+10% per stack)</style> chance to <style=cIsUtility>critically stage transition</style>, skipping the next stage.";
+        public override string ItemFullDescription => "Gain a <style=cIsUtility>10%</style> <style=cStack>(+10% per stack)</style> chance to '<style=cIsUtility>Stage Transition Crit</style>', skipping the next stage.";
 
         public override string ItemLore => "";
         // private bool shouldCrit = true;

@@ -56,6 +56,7 @@ namespace GOTCE.Items.Lunar
                     body.AddBuff(buffDef);
                 }
             }
+            // TODO: remove invincibility buffs and stun/root debuffs
         }
     }
 }
