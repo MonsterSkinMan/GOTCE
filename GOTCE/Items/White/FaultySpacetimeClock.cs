@@ -60,7 +60,7 @@ namespace GOTCE.Items.White
 
         public void Crit(CharacterBody body)
         { // there is a 99% chance this code is horrible
-            body.gameObject.AddComponent<BodyVars>();
+            body.gameObject.AddComponent<GOTCE_StatsComponent>();
             if (NetworkServer.active && Stage.instance.entryTime.timeSince <= 3f && body.isPlayerControlled)
             {
                 bool lastStageWasCritPrev = lastStageWasCrit;
@@ -79,9 +79,9 @@ namespace GOTCE.Items.White
                 // var instances = PlayerCharacterMasterController.instances;
                 float totalChance = 0f;
                 // Main.ModLogger.LogDebug(Stage.instance.entryTime.timeSince);
-                if (body.gameObject.GetComponent<BodyVars>())
+                if (body.gameObject.GetComponent<GOTCE_StatsComponent>())
                 {
-                    BodyVars vars = body.gameObject.GetComponent<BodyVars>();
+                    GOTCE_StatsComponent vars = body.gameObject.GetComponent<GOTCE_StatsComponent>();
                     vars.DetermineStageCrit();
                     // Main.ModLogger.LogDebug(vars.stageCritChance + " stagecritplayer");
                     totalChance += vars.stageCritChance;
@@ -119,8 +119,8 @@ namespace GOTCE.Items.White
             if (NetworkServer.active) { // server stuff
                 CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
                 if (body.inventory && body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0) {
-                    if (body.gameObject.GetComponent<BodyVars>()) {
-                        body.gameObject.GetComponent<BodyVars>().clockDeathCount += body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef);
+                    if (body.gameObject.GetComponent<GOTCE_StatsComponent>()) {
+                        body.gameObject.GetComponent<GOTCE_StatsComponent>().clockDeathCount += body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef);
                     }
                 }
                 Main.ModLogger.LogDebug("server received stagecrit");
@@ -128,8 +128,8 @@ namespace GOTCE.Items.White
             if (!NetworkServer.active) { // client stuff
                 CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
                 if (body.inventory && body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0) {
-                    if (body.gameObject.GetComponent<BodyVars>()) {
-                        body.gameObject.GetComponent<BodyVars>().clockDeathCount += body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef);
+                    if (body.gameObject.GetComponent<GOTCE_StatsComponent>()) {
+                        body.gameObject.GetComponent<GOTCE_StatsComponent>().clockDeathCount += body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef);
                     }
                 }
                 Main.ModLogger.LogDebug("client received stagecrit");
