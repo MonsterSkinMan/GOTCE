@@ -2,6 +2,7 @@
 using R2API;
 using UnityEngine;
 using UnityEngine.Networking;
+using BepInEx.Configuration;
 
 namespace GOTCE.Items.Red
 {
@@ -27,12 +28,18 @@ namespace GOTCE.Items.Red
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/Bottled_Enigma.png");
 
+        public override void Init(ConfigFile config)
+        {
+            base.Init(config);
+        }
+
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
             return new ItemDisplayRuleDict(null);
         }
 
-        private static readonly System.Random random = new System.Random();
+        private static readonly System.Random random = new();
+
         public override void Hooks()
         {
             On.RoR2.CharacterBody.OnInventoryChanged += CharacterBody_OnInventoryChanged;

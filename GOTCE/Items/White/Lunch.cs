@@ -1,25 +1,27 @@
-﻿using RoR2;
-using R2API;
-using UnityEngine;
+﻿/*
 using BepInEx.Configuration;
+using R2API;
+using RoR2;
+using System;
+using UnityEngine;
 
-namespace GOTCE.Items.Green
+namespace GOTCE.Items.White
 {
-    public class SpafnarsFries : ItemBase<SpafnarsFries>
+    public class Lunch : ItemBase<Lunch>
     {
-        public override string ConfigName => "Spafnars Fries";
+        public override string ConfigName => "Lunch";
 
-        public override string ItemName => "Spafnar's Fries";
+        public override string ItemName => "Lunch";
 
-        public override string ItemLangTokenName => "GOTCE_SpafnarsFries";
+        public override string ItemLangTokenName => "GOTCE_Lunch";
 
-        public override string ItemPickupDesc => "Gain +50% max health. #JusticeForSpafnar";
+        public override string ItemPickupDesc => "If it's lunch time, gain 10% max health.";
 
-        public override string ItemFullDescription => "Increases <style=cIsHealing>maximum health</style> by <style=cIsHealing>50%</style> <style=cStack>(+50% per stack)</style>.";
+        public override string ItemFullDescription => "Gain <style=cIsHealing>10%</style> <style=cStack>(+7% per stack)</style> <style=cIsHealing>maximum health</style> if the time is between 12 PM and 4 PM.";
 
         public override string ItemLore => "";
 
-        public override ItemTier Tier => ItemTier.Tier2;
+        public override ItemTier Tier => ItemTier.Tier1;
 
         public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Healing, ItemTag.Utility };
 
@@ -46,12 +48,16 @@ namespace GOTCE.Items.Green
         {
             if (body && body.inventory)
             {
+                bool lunchTime = DateTime.Now.Hour >= 12 && DateTime.Now.Hour <= 16;
                 var stack = body.inventory.GetItemCount(Instance.ItemDef);
-                if (stack > 0)
+                if (stack > 0 && lunchTime)
                 {
-                    args.healthMultAdd += 0.5f * (stack);
+                    args.healthMultAdd += 0.1f + 0.07f * (stack - 1);
                 }
             }
         }
     }
 }
+*/
+
+// seems to not update, borrow groove's code later

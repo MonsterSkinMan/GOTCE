@@ -53,8 +53,8 @@ namespace GOTCE.Artifact
                         {
                             CharacterMaster.readOnlyInstancesList[i].TrueKill();
                             prevTime = 0;
-                            RoR2.RoR2Application.onNextUpdate += () => {
-                                Chat.SendBroadcastChat(new RoR2.Chat.SimpleChatMessage { baseToken = "<color=#e5eefc>{0}</color>", paramTokens = new[] { "You got outscaled, idiot." } });
+                            RoR2Application.onNextUpdate += () => {
+                                Chat.SendBroadcastChat(new Chat.SimpleChatMessage { baseToken = "<color=#e5eefc>{0}</color>", paramTokens = new[] { "You got outscaled, idiot." } });
                             };
                         }
                     }

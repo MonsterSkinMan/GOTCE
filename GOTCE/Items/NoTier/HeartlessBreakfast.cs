@@ -6,17 +6,17 @@ using UnityEngine.Networking;
 
 namespace GOTCE.Items.NoTier
 {
-    public class DelicatestWatch : ItemBase<DelicatestWatch>
+    public class HeartlessBreakfast : ItemBase<HeartlessBreakfast>
     {
-        public override string ConfigName => "Delicatest Watch";
+        public override string ConfigName => "Heartless Breakfast";
 
-        public override string ItemName => "Delicatest Watch";
+        public override string ItemName => "Heartless Breakfast";
 
-        public override string ItemLangTokenName => "GOTCE_DelicatestWatch";
+        public override string ItemLangTokenName => "GOTCE_HeartlessBreakfast";
 
-        public override string ItemPickupDesc => "Skill issue";
+        public override string ItemPickupDesc => "Does nothing.";
 
-        public override string ItemFullDescription => "Skill issue";
+        public override string ItemFullDescription => "Does nothing.";
 
         public override string ItemLore => "";
 

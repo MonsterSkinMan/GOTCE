@@ -16,7 +16,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "Periodically transform into a random entity.";
 
-        public override string ItemFullDescription => "Every <style=cIsUtility>5</style> <style=cStack>(-10% stack)</style> seconds, turn into a <style=cIsUtility>random entity</style>.";
+        public override string ItemFullDescription => "Every <style=cIsUtility>5</style> <style=cStack>(-10% per stack)</style> seconds, turn into a <style=cIsUtility>random entity</style>.";
 
         public override string ItemLore => "The world inhabited by life is a nonsensical place. Imparting any sort of rules towards nature or general logic on the way the world behaves can only confuse you. The best way to integrate yourself into the animalistic side of our world is to embrace it. Let the chaos of life itself flow around you, rather than being destroyed by its torrential force. Many benefits can be absorbed from the disorder of life.";
         public override string ConfigName => ItemName;
@@ -26,8 +26,6 @@ namespace GOTCE.Items.White
         public override GameObject ItemModel => null;
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BottledMetamorphosis.png");
-
-
 
         private static readonly System.Random random = new System.Random();
 
@@ -41,7 +39,6 @@ namespace GOTCE.Items.White
 
         public override void CreateConfig(ConfigFile config)
         {
-
         }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
@@ -53,14 +50,13 @@ namespace GOTCE.Items.White
         {
             // On.RoR2.CharacterBody.FixedUpdate += Transform;
             // On.RoR2.CharacterBody.OnInventoryChanged += StackTimer;
-            // On.RoR2.Stage.FixedUpdate += UpdateTimer; 
+            // On.RoR2.Stage.FixedUpdate += UpdateTimer;
             On.RoR2.CharacterBody.OnInventoryChanged += AttachController;
         }
 
-
         public static GameObject GetRandomCharacterBodyPrefab()
         {
-            List<string> donot = new List<string>() {
+            List<string> donot = new() {
                 "BirdsharkBody", "ArtifactShellBody","AltarSkeletonBody", "BackupDroneOldBody", "BeetleCrystalBody", "BeetleGuardAllyBody", "BeetleGuardCrystalBody",
             "BeetleWard", "DeathProjectile", "ExplosivePotDestructibleBody", "FusionCellDestructibleBody", "GolemBodyInvincible",
             "GravekeeperTrackingFireball", "LemurianBruiserBody", "LunarWispTrackingBomb", "MinorConstructAttachableBody", "MinorConstructBody", "MinorConstructOnKillBody", "NullifierBody", "OilBeetle",
@@ -135,7 +131,6 @@ namespace GOTCE.Items.White
                 stopwatch = 5f;
             }
         } */
-
     }
 
     public class MetaController : MonoBehaviour
@@ -143,7 +138,6 @@ namespace GOTCE.Items.White
         private CharacterBody body;
         private static float interval = 5f;
         private float stopwatch = interval;
-
 
         public void Start()
         {
@@ -169,6 +163,4 @@ namespace GOTCE.Items.White
             }
         }
     }
-
-
 }

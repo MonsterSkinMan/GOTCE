@@ -10,7 +10,6 @@ namespace GOTCE.Items.Lunar
 {
     public class Yhjtumgrhtfyddc : ItemBase<Yhjtumgrhtfyddc>
     {
-
         public override string ConfigName => "Yhjtumgrhtfyddc";
 
         public override string ItemName => "Yhjtumgrhtfyddc";
@@ -40,6 +39,7 @@ namespace GOTCE.Items.Lunar
         {
             return new ItemDisplayRuleDict(null);
         }
+
         public override void Hooks()
         {
             On.RoR2.Inventory.GiveItem_ItemIndex_int += Inventory_GiveItem_ItemIndex_int;
@@ -56,6 +56,7 @@ namespace GOTCE.Items.Lunar
                     body.AddBuff(buffDef);
                 }
             }
+            // TODO: remove invincibility buffs and stun/root debuffs
         }
     }
 }

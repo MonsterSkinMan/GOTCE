@@ -8,7 +8,6 @@ namespace GOTCE.Items.Lunar
 {
     public class BigShoe : ItemBase<BigShoe>
     {
-
         public override string ConfigName => "Big Shoe";
 
         public override string ItemName => "Big Shoe";
@@ -38,6 +37,7 @@ namespace GOTCE.Items.Lunar
         {
             return new ItemDisplayRuleDict(null);
         }
+
         public override void Hooks()
         {
             On.RoR2.DamageInfo.ModifyDamageInfo += DamageInfo_ModifyDamageInfo;
@@ -53,13 +53,17 @@ namespace GOTCE.Items.Lunar
                     var stack = body.inventory.GetItemCount(Instance.ItemDef);
                     if (stack > 0)
                     {
-                        self.procCoefficient = 3f;
-                        self.procChainMask = default(ProcChainMask);
+                        if (!self.procChainMask.HasProc(ProcType.Behemoth))
+                        {
+                            self.procCoefficient = 3f;
+                            self.procChainMask = default(ProcChainMask);
+                        }
                     }
                 }
             }
             orig(self, damageModifier);
         }
+
         // this works too well lmaooo
         // sticky bombs infinitely proc themselves, prepatch singuband style
     }

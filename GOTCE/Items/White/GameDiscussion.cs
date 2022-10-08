@@ -17,7 +17,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "'Critical Strikes' poison enemies.";
 
-        public override string ItemFullDescription => "On Critical Strike, poison target for 5 (+3 stack) seconds. Gain +5% critical strike chance.";
+        public override string ItemFullDescription => "Gain <style=cIsDamage>+5% critical strike chance</style>. On '<style=cIsDamage>Critical Strike<style>', <style=cIsDamage>poison</style> your target for <style=cIsDamage>5</style> <style=cStack>(+3 per stack)</style> seconds.";
 
         public override string ItemLore => "";
 
@@ -45,14 +45,19 @@ namespace GOTCE.Items.White
             RecalculateStatsAPI.GetStatCoefficients += Crit;
         }
 
-        public void Poison(On.RoR2.GlobalEventManager.orig_ServerDamageDealt orig, DamageReport report) {
+        public void Poison(On.RoR2.GlobalEventManager.orig_ServerDamageDealt orig, DamageReport report)
+        {
             orig(report);
-            if (report.attacker && report.attackerBody) {
-                if (report.attackerBody.inventory) {
+            if (report.attacker && report.attackerBody)
+            {
+                if (report.attackerBody.inventory)
+                {
                     int count = report.attackerBody.inventory.GetItemCount(ItemDef);
                     float duration = 5f + (3f * (count - 1));
-                    if (count > 0 && report.damageInfo.crit) {
-                        if (report.victim && report.victimBody) {
+                    if (count > 0 && report.damageInfo.crit)
+                    {
+                        if (report.victim && report.victimBody)
+                        {
                             report.victimBody.AddTimedBuff(RoR2Content.Buffs.Poisoned, duration); // ror2 is not a spreadsheet
                         }
                     }
@@ -60,13 +65,12 @@ namespace GOTCE.Items.White
             }
         }
 
-        public void Crit(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (body && body.inventory && body.inventory.GetItemCount(ItemDef) > 0) {
+        public void Crit(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (body && body.inventory && body.inventory.GetItemCount(ItemDef) > 0)
+            {
                 args.critAdd += 5f;
             }
         }
-
-
-        
     }
 }

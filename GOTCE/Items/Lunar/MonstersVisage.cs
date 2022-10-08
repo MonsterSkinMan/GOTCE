@@ -39,6 +39,7 @@ namespace GOTCE.Items.Lunar
         {
             return new ItemDisplayRuleDict(null);
         }
+
         public void MonsterSkinMan()
         {
             var MonstersPissage = Addressables.LoadAssetAsync<GameObject>("Prefabs/NetworkedObjects/NearbyDamageBonusIndicator").WaitForCompletion();

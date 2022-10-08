@@ -117,6 +117,7 @@ namespace GOTCE.Items.Red
                 CritDamage,
                 Shield
             }
+
             public static List<BuffType> buffTypes;
             public List<BuffType> buffOrder;
             public Dictionary<BuffType, int> buffStacks;
@@ -145,6 +146,7 @@ namespace GOTCE.Items.Red
                 if (!buffOrder.Contains(chosenBuffType)) buffOrder.Add(chosenBuffType);
                 buffStacks[chosenBuffType]++;
             }
+
             public void RemoveBuff()
             {
                 if (NetworkServer.active)
@@ -158,8 +160,8 @@ namespace GOTCE.Items.Red
 
             public class SyncAddBuff : INetMessage
             {
-                NetworkInstanceId objID;
-                int chosenBuffType;
+                private NetworkInstanceId objID;
+                private int chosenBuffType;
 
                 public SyncAddBuff()
                 {
@@ -200,7 +202,7 @@ namespace GOTCE.Items.Red
 
             public class SyncRemoveBuff : INetMessage
             {
-                NetworkInstanceId objID;
+                private NetworkInstanceId objID;
 
                 public SyncRemoveBuff()
                 {

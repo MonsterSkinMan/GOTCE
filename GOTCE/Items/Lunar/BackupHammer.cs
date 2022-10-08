@@ -9,7 +9,6 @@ namespace GOTCE.Items.Lunar
 {
     public class BackupHammer : ItemBase<BackupHammer>
     {
-
         public override string ConfigName => "Backup Hammer";
 
         public override string ItemName => "Backup Hammer";
@@ -42,12 +41,11 @@ namespace GOTCE.Items.Lunar
         {
             return new ItemDisplayRuleDict(null);
         }
+
         public override void Hooks()
         {
-            RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
         }
-
 
         private void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
         {
@@ -70,20 +68,10 @@ namespace GOTCE.Items.Lunar
                     {
                         sl.special.SetSkillOverride(self.masterObject, lockedDef, GenericSkill.SkillOverridePriority.Replacement);
                     }
-
-                    sl.secondary.SetBonusStockFromBody(sl.secondary.bonusStockFromBody + 10 * stack);
-                }
-            }
-        }
-
-        private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
-        {
-            if (sender && sender.inventory)
-            {
-                var stack = sender.inventory.GetItemCount(Instance.ItemDef);
-                if (stack > 0)
-                {
-                    args.secondaryCooldownMultAdd += 1f + (0.5f * (stack - 1));
+                    if (sl.secondary)
+                    {
+                        sl.secondary.SetBonusStockFromBody(sl.secondary.bonusStockFromBody + 10 * stack);
+                    }
                 }
             }
         }
