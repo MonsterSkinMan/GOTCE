@@ -14,12 +14,31 @@ namespace GOTCE.Components
         private float timer = 0f;
         private bool swapped = false;
         private CharacterBody body;
+        private CharacterDirection direction;
         public void Start() {
             body = gameObject.GetComponent<CharacterBody>();
+            GameObject the = Instantiate(Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Enemies/livingsuppfire.png"));
+            direction = body.gameObject.GetComponent<CharacterDirection>();
+            // direction.modelAnimator.enabled = false;
+
+            foreach (var thisItem in direction.modelAnimator.GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                thisItem.gameObject.SetActive(false);
+            }
+            foreach (var thisItem in direction.modelAnimator.GetComponentsInChildren<MeshRenderer>())
+            {
+                thisItem.gameObject.SetActive(false);
+            }
+            
+            the.transform.position = direction.modelAnimator.transform.position;
+            the.transform.rotation = direction.modelAnimator.transform.rotation;
+
+            
+
         }
 
         public void FixedUpdate() {
-            if (!swapped) {
+            /* if (!swapped) {
                 timer += Time.fixedDeltaTime;
                 if (timer > 1.5f) {
                     swapped = true;
@@ -30,7 +49,7 @@ namespace GOTCE.Components
                     model.baseRendererInfos[1].defaultMaterial = mat;
                     model.baseRendererInfos[2].defaultMaterial = mat;
                 }
-            }
+            } */
         }
     }
 }
