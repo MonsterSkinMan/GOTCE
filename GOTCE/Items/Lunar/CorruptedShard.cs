@@ -33,7 +33,7 @@ namespace GOTCE.Items.Lunar
         public override GameObject ItemModel => null;
         private GameObject voidVFX;
 
-        public override Sprite ItemIcon => null;/* Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/shittyvisage.png"); */ // replace with corrupted shard icon
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/corruptedshard.png");
 
         public override void Init(ConfigFile config)
         {
