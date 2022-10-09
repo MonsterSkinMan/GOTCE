@@ -70,18 +70,19 @@ namespace GOTCE.Enemies.EntityStatesCustom {
                 bulletAttack.weapon = base.gameObject;
                 bulletAttack.origin = aimRay.origin;
                 bulletAttack.aimVector = aimRay.direction;
-                bulletAttack.minSpread = 5;
-                bulletAttack.maxSpread = 7;
+                bulletAttack.minSpread = 3;
+                bulletAttack.maxSpread = 6;
                 bulletAttack.bulletCount = 1u;
-                bulletAttack.damage = base.characterBody.damage * 0.1f;
-                bulletAttack.force = 3;
+                bulletAttack.damage = base.characterBody.damage * 0;
+                bulletAttack.force = 25;
                 bulletAttack.tracerEffectPrefab = tracerEffectPrefab;
                 // bulletAttack.muzzleName = muzzleName;
                 bulletAttack.hitEffectPrefab = hitEffectPrefab;
                 bulletAttack.isCrit = Util.CheckRoll(critStat, base.characterBody.master);
                 bulletAttack.radius = 2;
                 bulletAttack.smartCollision = true;
-                bulletAttack.damageType = DamageType.Stun1s;
+                bulletAttack.maxDistance = 9000;
+                bulletAttack.damageType = DamageType.Stun1s | DamageType.Nullify | DamageType.SlowOnHit | DamageType.CrippleOnHit | DamageType.LunarSecondaryRootOnHit | DamageType.Freeze2s | DamageType.ClayGoo | DamageType.WeakOnHit;
                 bulletAttack.Fire();
             }
             totalBulletsFired++;

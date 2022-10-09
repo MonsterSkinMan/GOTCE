@@ -7,11 +7,14 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using System.Collections.Generic;
 using RoR2.Skills;
+using GOTCE;
+using UnityEngine.Scripting;
 
 namespace GOTCE.Enemies {
     public class LivingSuppressiveFire {
         public static GameObject LivingSuppressiveFireObj;
         public static GameObject LivingSuppressiveFireMaster;
+        public static CharacterDirection direction;
 
         public static void Create() {
             LivingSuppressiveFireObj = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Wisp/WispBody.prefab").WaitForCompletion(), "LivingSuppressiveFire");
@@ -33,7 +36,17 @@ namespace GOTCE.Enemies {
             // component.name = "LivingSuppressiveFire";
             component.baseNameToken = "LIVING_SUPPRESSIVE_FIRE_NAME";
             component.bodyFlags |= CharacterBody.BodyFlags.IgnoreFallDamage;
+            component.visionDistance = 20000f;
+
+            CharacterModel model = LivingSuppressiveFireObj.GetComponentInChildren<CharacterModel>();
+            Animator anim = LivingSuppressiveFireObj.GetComponentInChildren<Animator>();
             
+            // Main.ModLogger.LogDebug(model.name);
+            model.baseRendererInfos[0].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
+            model.baseRendererInfos[1].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
+            // model.baseRendererInfos[0].renderer.GetComponent<SkinnedMeshRenderer>().sharedMesh = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/frozenwall/HumanCrate2Mesh.prefab").WaitForCompletion().GetComponentInChildren<Mesh>();
+            model.baseRendererInfos[1].renderer.gameObject.SetActive(false);
+            // Main.ModLogger.LogDebug(model.mainSkinnedMeshRenderer.name);
 
             SkillLocator locator = LivingSuppressiveFireObj.GetComponent<SkillLocator>();
             SkillFamily family = ScriptableObject.CreateInstance<SkillFamily>();
