@@ -16,8 +16,8 @@ namespace GOTCE.Enemies
             CrackedPestMaster = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/FlyingVermin/FlyingVerminMaster.prefab").WaitForCompletion(), "CrackedPestMaster");
             // R2API.ContentAddition.AddBody(CrackedPestObj);
             CharacterBody body = CrackedPestObj.GetComponent<CharacterBody>();
-            body.baseDamage = 12f;
-            body.levelDamage = 2.4f;
+            body.baseDamage = 50f;
+            body.levelDamage = 10f;
 
             body.baseMaxHealth = 150f;
             body.levelMaxHealth = 30f;
