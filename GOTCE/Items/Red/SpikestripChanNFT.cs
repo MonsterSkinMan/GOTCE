@@ -58,7 +58,7 @@ namespace GOTCE.Items.Red
         private void CharacterBody_OnInventoryChanged(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
             orig(self);
-            if (!self.inventory.GetComponent<GOTCENFT>())
+            if (!self.inventory.GetComponent<GOTCENFT>() && self.isPlayerControlled)
             {
                 self.inventory.gameObject.AddComponent<GOTCENFT>();
             }
