@@ -15,7 +15,9 @@ namespace GOTCE.Components
         private bool swapped = false;
         private CharacterBody body;
         private CharacterDirection direction;
-        public void Start() {
+
+        public void Start()
+        {
             body = gameObject.GetComponent<CharacterBody>();
             GameObject the = Instantiate(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/ArtifactCompounds/ArtifactCompoundSquareDisplay.prefab").WaitForCompletion());
             direction = body.gameObject.GetComponent<CharacterDirection>();
@@ -29,7 +31,7 @@ namespace GOTCE.Components
             {
                 thisItem.gameObject.SetActive(false);
             }
-            
+
             the.transform.position = direction.modelAnimator.transform.position;
             the.transform.rotation = direction.modelAnimator.transform.rotation;
             the.transform.SetParent(direction.modelAnimator.transform);
@@ -37,10 +39,10 @@ namespace GOTCE.Components
             var model = body.GetComponentInChildren<CharacterModel>();
             if (model != null)
                 model.itemDisplayRuleSet = null;
-
         }
 
-        public void FixedUpdate() {
+        public void FixedUpdate()
+        {
             /* if (!swapped) {
                 timer += Time.fixedDeltaTime;
                 if (timer > 1.5f) {

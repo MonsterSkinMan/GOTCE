@@ -15,26 +15,28 @@ namespace GOTCE.Enemies
             CrackedPestObj = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/FlyingVermin/FlyingVerminBody.prefab").WaitForCompletion(), "CrackedPest");
             CrackedPestMaster = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/FlyingVermin/FlyingVerminMaster.prefab").WaitForCompletion(), "CrackedPestMaster");
             // R2API.ContentAddition.AddBody(CrackedPestObj);
-            CharacterBody component = CrackedPestObj.GetComponent<CharacterBody>();
-            component.baseDamage = 50f;
-            component.levelDamage = 15f;
+            CharacterBody body = CrackedPestObj.GetComponent<CharacterBody>();
+            body.baseDamage = 12f;
+            body.levelDamage = 2.4f;
 
-            component.baseMaxHealth = 150f;
-            component.levelMaxHealth = 30f;
+            body.baseMaxHealth = 150f;
+            body.levelMaxHealth = 30f;
 
-            component.baseMoveSpeed = 20f;
+            body.baseMoveSpeed = 35f;
 
-            component.baseAttackSpeed = 1f;
+            body.baseAttackSpeed = 1f;
 
-            component.hasOneShotProtection = true;
+            body.hasOneShotProtection = true;
 
-            component.oneShotProtectionFraction = 0.5f;
+            body.oneShotProtectionFraction = 0.5f;
 
-            component.baseNameToken = "CRACKED_PEST_NAME";
-            component.bodyFlags |= CharacterBody.BodyFlags.HasBackstabImmunity | CharacterBody.BodyFlags.ImmuneToGoo | CharacterBody.BodyFlags.ImmuneToExecutes | CharacterBody.BodyFlags.ResistantToAOE | CharacterBody.BodyFlags.HasBackstabPassive;
+            body.baseNameToken = "CRACKED_PEST_NAME";
+
+            body.name = "CrackedPestBody";
 
             CharacterMaster master = CrackedPestMaster.GetComponent<CharacterMaster>();
             master.bodyPrefab = CrackedPestObj;
+            master.name = "CrackedPestMaster";
 
             LanguageAPI.Add("CRACKED_PEST_NAME", "Cracked Pest");
             LanguageAPI.Add("CRACKED_PEST_SUBTITLE", "Emoji Crack");

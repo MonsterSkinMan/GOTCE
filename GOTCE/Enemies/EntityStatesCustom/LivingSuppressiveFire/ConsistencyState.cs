@@ -20,13 +20,13 @@ namespace GOTCE.Enemies.EntityStatesCustom
 
         public static float maxSpread;
 
-        public static float baseDurationBetweenShots = 0.001f;
+        public static float baseDurationBetweenShots = 7 / 60f;
 
         public static float totalDuration = 2f;
 
         public static float bulletRadius = 1.5f;
 
-        public static int baseBulletCount = 2000;
+        public static int baseBulletCount = 25;
 
         public static string fireBarrageSoundString;
 
@@ -75,8 +75,8 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     minSpread = 1f,
                     maxSpread = 2f,
                     bulletCount = 1u,
-                    damage = base.characterBody.damage * 0.06f,
-                    force = 3,
+                    damage = base.characterBody.damage * 0.1f,
+                    force = 30,
                     tracerEffectPrefab = tracerEffectPrefab,
                     // bulletAttack.muzzleName = muzzleName;
                     hitEffectPrefab = hitEffectPrefab,
@@ -95,8 +95,8 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     minSpread = 90f,
                     maxSpread = 360f,
                     bulletCount = 1u,
-                    damage = base.characterBody.damage * 0.01f,
-                    force = 30,
+                    damage = base.characterBody.damage * 0.1f,
+                    force = 300,
                     tracerEffectPrefab = tracerEffectPrefab,
                     // bulletAttack.muzzleName = muzzleName;
                     hitEffectPrefab = hitEffectPrefab,

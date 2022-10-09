@@ -58,12 +58,12 @@ namespace GOTCE.Enemies
             AISkillDriver StrafeAndAttack = (from x in master.GetComponents<AISkillDriver>()
                                              where x.maxDistance == 30
                                              select x).First();
-            StrafeAndAttack.maxDistance = 60f;
+            StrafeAndAttack.maxDistance = 70f;
 
             AISkillDriver What = (from x in master.GetComponents<AISkillDriver>()
                                   where x.maxDistance == 40
                                   select x).First();
-            What.maxDistance = 60f;
+            What.maxDistance = 70f;
 
             LanguageAPI.Add("LIVING_SUPPRESSIVE_FIRE_NAME", "Living Suppressive Fire");
             LanguageAPI.Add("LIVING_SUPPRESSIVE_FIRE_LORE", "Even if frags did 2000% with no falloff...");

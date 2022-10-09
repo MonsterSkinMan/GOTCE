@@ -148,7 +148,7 @@ namespace GOTCE
                 }
                 if (body.baseNameToken == "CRACKED_PEST_NAME")
                 {
-                    body.inventory.GiveItem(RoR2Content.Items.Behemoth, 3);
+                    body.inventory.GiveItem(RoR2Content.Items.Behemoth, 2);
                     body.gameObject.AddComponent<GOTCE_CrackedComponent>();
                 }
             };
