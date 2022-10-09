@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using GOTCE.Artifact;
 using GOTCE.Enemies.Changes;
+
 //using GOTCE.Enemies.Normal_Enemies;
 using GOTCE.Equipment;
 using GOTCE.Equipment.EliteEquipment;
@@ -20,6 +21,7 @@ using GOTCE.Components;
 using SearchableAttribute = HG.Reflection.SearchableAttribute;
 using RoR2.Navigation;
 using GOTCE.Enemies.Skills;
+
 [assembly: SearchableAttribute.OptIn]
 
 namespace GOTCE
@@ -57,9 +59,6 @@ namespace GOTCE
             Debug.Log("test");
             ModLogger = Logger;
 
-
-
-
             /* if (Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI")) {
                 ItemSorting.tierMap.Add(LunarVoid.Instance.TierEnum, 3);
             } */
@@ -85,7 +84,6 @@ namespace GOTCE
                     artifact.Init(Config);
                 }
             }
-
 
             //This section automatically scans the project for all items
             var ItemTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(ItemBase)));
@@ -123,7 +121,6 @@ namespace GOTCE
                 if (ValidateEliteEquipment(eliteEquipment, EliteEquipments))
                 {
                     eliteEquipment.Init(Config);
-
                 }
             }
 
@@ -134,28 +131,43 @@ namespace GOTCE
             {
                 SkillBase skill = (SkillBase)System.Activator.CreateInstance(skillType);
                 skill.Create();
-                
             }
 
             Itsgup.OhTheMisery();
             Enemies.LivingSuppressiveFire.Create();
             Enemies.CrackedPest.Create();
+<<<<<<< HEAD
             
             RoR2.CharacterBody.onBodyStartGlobal += (body) => {
                 if (body.baseNameToken == "LIVING_SUPPRESSIVE_FIRE_NAME") {
                     body.inventory.GiveItem(RoR2.RoR2Content.Items.LunarBadLuck, 10);
                     body.inventory.GiveItem(RoR2.RoR2Content.Items.SlowOnHit, 1);
+=======
+
+            RoR2.CharacterBody.onBodyStartGlobal += (body) =>
+            {
+                if (body.baseNameToken == "LIVING_SUPPRESSIVE_FIRE_NAME")
+                {
+                    body.inventory.GiveItem(RoR2.RoR2Content.Items.LunarBadLuck, 1);
+>>>>>>> a3433fbbf2b870fa40ae36599a9a42f8cfa0e4dd
                     //CharacterModel model = body.modelLocator.modelTransform.GetComponent<CharacterModel>();
                     //model.baseRendererInfos[0].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
                     //model.baseRendererInfos[1].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
                 }
+<<<<<<< HEAD
                 if (body.baseNameToken == "CRACKED_PEST_NAME") {
                     body.inventory.GiveItem(RoR2.RoR2Content.Items.Behemoth, 3);
+=======
+                if (body.baseNameToken == "CRACKED_PEST_NAME")
+                {
+                    body.inventory.GiveItem(RoR2Content.Items.Behemoth, 2);
+>>>>>>> a3433fbbf2b870fa40ae36599a9a42f8cfa0e4dd
                     body.gameObject.AddComponent<GOTCE_CrackedComponent>();
                 }
             };
 
-            CharacterSpawnCard spawncardS = new CharacterSpawnCard() {
+            CharacterSpawnCard spawncardS = new CharacterSpawnCard()
+            {
                 name = "cscKirn",
                 prefab = Enemies.LivingSuppressiveFire.LivingSuppressiveFireMaster,
                 sendOverNetwork = true,
@@ -164,10 +176,10 @@ namespace GOTCE
                 forbiddenFlags = NodeFlags.NoCharacterSpawn,
                 directorCreditCost = 20,
                 eliteRules = SpawnCard.EliteRules.Default
-                
             };
 
-            CharacterSpawnCard spawncardC = new CharacterSpawnCard() {
+            CharacterSpawnCard spawncardC = new CharacterSpawnCard()
+            {
                 name = "cscCracked",
                 prefab = Enemies.CrackedPest.CrackedPestMaster,
                 sendOverNetwork = true,
@@ -176,16 +188,17 @@ namespace GOTCE
                 forbiddenFlags = NodeFlags.NoCharacterSpawn,
                 directorCreditCost = 100,
                 eliteRules = SpawnCard.EliteRules.ArtifactOnly
-                
             };
 
-            DirectorCard directorCardS = new DirectorCard() {
+            DirectorCard directorCardS = new DirectorCard()
+            {
                 spawnCard = spawncardS,
                 spawnDistance = DirectorCore.MonsterSpawnDistance.Standard,
                 selectionWeight = 1,
                 preventOverhead = false
             };
-            DirectorCard directorCardC = new DirectorCard() {
+            DirectorCard directorCardC = new DirectorCard()
+            {
                 spawnCard = spawncardC,
                 spawnDistance = DirectorCore.MonsterSpawnDistance.Far,
                 selectionWeight = 1,
@@ -198,10 +211,7 @@ namespace GOTCE
             R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.RallypointDelta);
             R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.AphelianSanctuary);
             R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.SiphonedForest);
-
-
         }
-
 
         /// <summary>
         /// A helper to easily set up and initialize an artifact from your artifact classes if the user has it enabled in their configuration files.

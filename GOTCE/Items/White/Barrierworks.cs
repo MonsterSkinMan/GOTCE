@@ -20,7 +20,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "Activating an interactable grants a temporary barrier.";
 
-        public override string ItemFullDescription => "Activating an interactable grants a <style=cIsHealing>temporary barrier</style> for <style=cIsHealing>5% health</style> <style=cStack>(+5% per stack)</style>.";
+        public override string ItemFullDescription => "Activating an interactable grants a <style=cIsHealing>temporary barrier</style> for <style=cIsHealing>5% maximum health</style> <style=cStack>(+5% per stack)</style>.";
 
         public override string ItemLore => "Do not let yourself waste anything. Utilize your surroundings and all available material to the greatest extent; waste is as grave a sin as failure itself. In a true situation of life and death, there is nothing that is useless. Everything can be used as a weapon or as protection. The job just falls on you to recognize these things and use them to the fullest extent. Even things like containers can be assimilated into your war machine to best ensure your survival.\n\nFailure is not an option, and with the right knowledge and materials, not a possibility.";
 

@@ -16,7 +16,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemPickupDesc => "Rapidly triggers random Equipment effects. Gain 26 max health.";
 
-        public override string ItemFullDescription => "Activates <style=cIsUtility>1</style> random <style=cIsUtilityequipment</style> every frame. Increases <style=cIsHealing>maximum health</style> by <style=cIsHealing>26</style> <style=cStack>(+26 per stack)</style>.";
+        public override string ItemFullDescription => "Activates <style=cIsUtility>1</style> random <style=cIsUtility>equipment</style> every frame. Increases <style=cIsHealing>maximum health</style> by <style=cIsHealing>26</style> <style=cStack>(+26 per stack)</style>.";
 
         public override string ItemLore => "The world is a nonsensical place. Imparting any sort of universal truth or one-size-fits-all logic can only confuse you. The best way to adapt to the world is to embrace it. Let the cacophony of existence itself flow around you, rather than being destroyed by its torrential force. Power can be absorbed from insanity.";
 
