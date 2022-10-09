@@ -75,7 +75,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     minSpread = 1f,
                     maxSpread = 2f,
                     bulletCount = 1u,
-                    damage = base.characterBody.damage * 0.08f,
+                    damage = base.characterBody.damage * 0.06f,
                     force = 3,
                     tracerEffectPrefab = tracerEffectPrefab,
                     // bulletAttack.muzzleName = muzzleName;
@@ -95,7 +95,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     minSpread = 90f,
                     maxSpread = 360f,
                     bulletCount = 1u,
-                    damage = base.characterBody.damage * 0.02f,
+                    damage = base.characterBody.damage * 0.01f,
                     force = 30,
                     tracerEffectPrefab = tracerEffectPrefab,
                     // bulletAttack.muzzleName = muzzleName;
