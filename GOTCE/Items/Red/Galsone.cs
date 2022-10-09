@@ -29,11 +29,11 @@ namespace GOTCE.Items.Red
         // white gasoline string
         public override ItemTier Tier => ItemTier.Tier3;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage, ItemTag.Healing, ItemTag.Utility, ItemTag.EquipmentRelated };
+        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;/*Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/Bottled_Enigma.png"); */
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/galsone.png");
 
         private static readonly SphereSearch galsoneSphereSearch = new();
         private static readonly List<HurtBox> galsoneHurtBoxBuffer = new();

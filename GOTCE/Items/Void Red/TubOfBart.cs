@@ -31,7 +31,7 @@ namespace GOTCE.Items.VoidRed
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/tubofbart.png");
 
         public override void Init(ConfigFile config)
         {
