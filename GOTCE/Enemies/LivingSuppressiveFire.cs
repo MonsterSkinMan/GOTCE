@@ -3,8 +3,11 @@ using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using RoR2.Skills;
+using GOTCE;
+using UnityEngine.Scripting;
 using System.Linq;
 using RoR2.CharacterAI;
+
 
 namespace GOTCE.Enemies
 {
@@ -12,6 +15,7 @@ namespace GOTCE.Enemies
     {
         public static GameObject LivingSuppressiveFireObj;
         public static GameObject LivingSuppressiveFireMaster;
+        public static CharacterDirection direction;
 
         public static void Create()
         {
@@ -31,6 +35,16 @@ namespace GOTCE.Enemies
             body.bodyFlags |= CharacterBody.BodyFlags.IgnoreFallDamage;
 
             body.name = "LivingSuppressiveFireBody";
+
+            CharacterModel model = LivingSuppressiveFireObj.GetComponentInChildren<CharacterModel>();
+            Animator anim = LivingSuppressiveFireObj.GetComponentInChildren<Animator>();
+            
+            // Main.ModLogger.LogDebug(model.name);
+            model.baseRendererInfos[0].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
+            model.baseRendererInfos[1].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
+            // model.baseRendererInfos[0].renderer.GetComponent<SkinnedMeshRenderer>().sharedMesh = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/frozenwall/HumanCrate2Mesh.prefab").WaitForCompletion().GetComponentInChildren<Mesh>();
+            model.baseRendererInfos[1].renderer.gameObject.SetActive(false);
+            // Main.ModLogger.LogDebug(model.mainSkinnedMeshRenderer.name);
 
             SkillLocator locator = LivingSuppressiveFireObj.GetComponent<SkillLocator>();
             SkillFamily family = ScriptableObject.CreateInstance<SkillFamily>();
@@ -69,9 +83,6 @@ namespace GOTCE.Enemies
             LanguageAPI.Add("LIVING_SUPPRESSIVE_FIRE_LORE", "Even if frags did 2000% with no falloff...");
             LanguageAPI.Add("LIVING_SUPPRESSIVE_FIRE_SUBTITLE", "Overwhelmed with Consistency");
 
-            CharacterModel model = LivingSuppressiveFireObj.GetComponentInChildren<CharacterModel>();
-            model.baseRendererInfos[0].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
-            model.baseRendererInfos[1].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
 
             ContentAddition.AddBody(LivingSuppressiveFireObj);
             ContentAddition.AddMaster(LivingSuppressiveFireMaster);

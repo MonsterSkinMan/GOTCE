@@ -59,6 +59,7 @@ namespace GOTCE.Items.White
                         if (report.victim && report.victimBody)
                         {
                             report.victimBody.AddTimedBuff(RoR2Content.Buffs.Poisoned, duration); // ror2 is not a spreadsheet
+                            DotController.InflictDot(report.victim.gameObject, report.attacker, DotController.DotIndex.Poison, duration);
                         }
                     }
                 }

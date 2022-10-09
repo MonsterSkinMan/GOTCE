@@ -85,6 +85,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     smartCollision = false,
                     damageType = DamageType.Stun1s
                 };
+
                 bulletAttack.Fire();
                 BulletAttack bulletAttack2 = new()
                 {
