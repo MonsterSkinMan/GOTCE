@@ -151,13 +151,8 @@ namespace GOTCE
                 }
                 if (body.baseNameToken == "CRACKED_PEST_NAME") {
                     body.inventory.GiveItem(RoR2.RoR2Content.Items.Behemoth, 3);
-<<<<<<< HEAD
                     body.gameObject.AddComponent<GOTCE_CrackedComponent>();
-=======
-                    CharacterModel model = body.modelLocator.modelTransform.GetComponent<CharacterModel>();
-                    model.baseRendererInfos[0].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/crackedPestMaterial.mat");
-                    model.baseRendererInfos[1].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/crackedPestMaterial.mat");
->>>>>>> 95a6306cf09422f04ef4b0461c396cff193b3e29
+
                 }
             };
 

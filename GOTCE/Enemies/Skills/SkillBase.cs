@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using System;
 using System.Collections.Generic;
-using RoR2.Skills;
 using EntityStates;
 
 // WIP
