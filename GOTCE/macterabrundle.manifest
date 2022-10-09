@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 957719780
+CRC: 4243482217
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 0132030ec20a5b1cc3bd76296e889716
+    Hash: 502f4d1f2b66343b9a89985eb715f7b7
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 39cd3a3f27bddabb88c4bd1ed5edf8b6
+    Hash: 1fe3abd029edb3522ae5dbbc711d0a74
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,19 +25,18 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
-- Class: 89
-  Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
+- Assets/Materials/Enemies/kirnMaterial.mat
 - Assets/Materials/Item/MonstersVisage/MonstersVisageMaterial.mat
 - Assets/Textures/Icons/Item/zanysoup.png
 - Assets/Textures/Icons/Artifact/disabledfear.png
+- Assets/Materials/Enemies/crackedPestMaterial.mat
 - Assets/Textures/Icons/Artifact/woolifact.png
 - Assets/Textures/Icons/Item/BottledMetamorphosis.png
 - Assets/Textures/Icons/Artifact/artifactofartifact.png
-- Assets/Materials/Enemies/Materials/kirn.mat
 - Assets/Textures/Icons/Item/NEA.png
 - Assets/Textures/Icons/Item/Yhjtumgrhtfyddc.png
 - Assets/Textures/Icons/Item/bigshoe.png
