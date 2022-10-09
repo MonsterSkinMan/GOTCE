@@ -22,7 +22,7 @@ namespace GOTCE.Enemies
             body.baseMaxHealth = 150f;
             body.levelMaxHealth = 30f;
 
-            body.baseMoveSpeed = 35f;
+            body.baseMoveSpeed = 45f;
 
             body.baseAttackSpeed = 1f;
 
