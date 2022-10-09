@@ -150,9 +150,7 @@ namespace GOTCE
                 }
                 if (body.baseNameToken == "CRACKED_PEST_NAME") {
                     body.inventory.GiveItem(RoR2.RoR2Content.Items.Behemoth, 3);
-                    CharacterModel model = body.modelLocator.modelTransform.GetComponent<CharacterModel>();
-                    model.baseRendererInfos[0].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Item/MoldySteak/matSteak.mat");
-                    model.baseRendererInfos[1].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Item/MoldySteak/matSteak.mat");
+                    body.gameObject.AddComponent<GOTCE_CrackedComponent>();
                 }
             };
 
