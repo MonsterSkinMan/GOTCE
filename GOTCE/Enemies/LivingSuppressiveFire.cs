@@ -18,43 +18,22 @@ namespace GOTCE.Enemies {
             LivingSuppressiveFireMaster = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Wisp/WispMaster.prefab").WaitForCompletion(), "LivingSuppressiveFireMaster");
             // R2API.ContentAddition.AddBody(LivingSuppressiveFireObj);
             CharacterBody component = LivingSuppressiveFireObj.GetComponent<CharacterBody>();
-            component.baseDamage = 1f;
+            component.baseDamage = 0.05f;
             component.baseCrit = 0f;
             component.levelCrit = 0f;
-            component.baseMaxHealth = 400f;
-            component.levelMaxHealth = 200f;
-            component.baseArmor = -36f;
+            component.baseMaxHealth = 200f;
+            component.levelMaxHealth = 15f;
+            component.baseArmor = 25f;
             component.baseRegen = 0f;
             component.levelRegen = 0f;
-            component.baseMoveSpeed = 27f;
+            component.baseMoveSpeed = 11f;
             component.levelMoveSpeed = 0f;
             component.levelDamage = 0;
-            component.baseAttackSpeed = 1f;
+            component.baseAttackSpeed = 2f;
             // component.name = "LivingSuppressiveFire";
             component.baseNameToken = "LIVING_SUPPRESSIVE_FIRE_NAME";
             component.bodyFlags |= CharacterBody.BodyFlags.IgnoreFallDamage;
-            // UnityEngine.Object.Destroy(component.master);
-            // component.gameObject.AddComponent<CharacterMaster>(LivingSuppressiveFireMaster);
-
-            // SkillLocator sl = LivingSuppressiveFireObj.GetComponent<SkillLocator>();
-            // RoR2.Skills.SkillDef supp = Addressables.LoadAssetAsync<RoR2.Skills.SkillDef>("RoR2/Base/Commando/CommandoBodyBarrage.asset").WaitForCompletion();
-            // sl.primary.defaultSkillDef = supp;
-
-            /*Array.Resize(ref sl.primary.skillFamily.variants, sl.primary.skillFamily.variants.Length + 1);
-            sl.primary.skillFamily.variants[sl.primary.skillFamily.variants.Length - 1] = new RoR2.Skills.SkillFamily.Variant
-            {
-                skillDef = ionsurge,
-            }; */
-            /* sl.primary.skillFamily.variants[0] = new RoR2.Skills.SkillFamily.Variant 
-            {
-                skillDef = supp
-            }; */
             
-            
-            /* foreach (GenericSkill obj in LivingSuppressiveFireObj.GetComponentsInChildren<GenericSkill>())
-            {
-                UnityEngine.Object.DestroyImmediate(obj);
-            } */
 
             SkillLocator locator = LivingSuppressiveFireObj.GetComponent<SkillLocator>();
             SkillFamily family = ScriptableObject.CreateInstance<SkillFamily>();
@@ -63,7 +42,11 @@ namespace GOTCE.Enemies {
             locator.primary._skillFamily = family;
             locator.primary._skillFamily.variants = new SkillFamily.Variant[1];
 
-            RoR2.Skills.SkillDef supp = Addressables.LoadAssetAsync<RoR2.Skills.SkillDef>("RoR2/Base/Commando/CommandoBodyBarrage.asset").WaitForCompletion();
+            // RoR2.Skills.SkillDef supp = Addressables.LoadAssetAsync<RoR2.Skills.SkillDef>("RoR2/Base/Commando/CommandoBodyBarrage.asset").WaitForCompletion();
+            //supp.baseMaxStock = 9000;
+            //supp.stockToConsume = 0;
+
+            RoR2.Skills.SkillDef supp = Skills.Consistency.Instance.SkillDef;
 
             locator.primary._skillFamily.variants[0] = new RoR2.Skills.SkillFamily.Variant 
             {

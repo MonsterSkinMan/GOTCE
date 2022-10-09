@@ -20,7 +20,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemFullDescription => "Gain <style=cIsUtility>1</style> of every <style=cIsUtility>buff</style>. Gain <style=cIsHealth>1</style> of every <style=cIsHealth>debuff</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Jimmy:\n\"Oweraugohuy ubyo uoyeriuhom i iumoh iuhodrsaiuw. Eriuogqeoii3h5hj,iub aejg? Pjisrb oinb rsui nbrnii. Fce uyw sagweie uihb! SDJDBNHBS BEUHWB BRYERBN R$HOIH%IJ! IUBHY! IUBHY! IUBHY! Erhkjdnbd brobo iojb oijre98h y374q h890.\"\nJommy:\n\"From my perspective on this topic and I think a lot of them are either of them or the fire one is not the same way that you are doing it for a while now and I think you are a good fit for the damage loss in the future to the fucking ground in a way they are very good and they are not the only ones that are not in a good condition or are there other things you can do to help them understand the problem.\"";
 
         public override ItemTier Tier => ItemTier.Lunar;
 
@@ -28,7 +28,7 @@ namespace GOTCE.Items.Lunar
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;/* Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/shittyvisage.png"); */ // replace with Yhjtumgrhtfyddc icon
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/Yhjtumgrhtfyddc.png");
 
         public override void Init(ConfigFile config)
         {
