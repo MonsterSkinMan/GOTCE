@@ -17,7 +17,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "'Critical Strikes' poison enemies.";
 
-        public override string ItemFullDescription => "Gain <style=cIsDamage>+5% critical strike chance</style>. On '<style=cIsDamage>Critical Strike<style>', <style=cIsDamage>poison</style> your target for <style=cIsDamage>5</style> <style=cStack>(+3 per stack)</style> seconds.";
+        public override string ItemFullDescription => "Gain <style=cIsDamage>+5% critical strike chance</style>. On '<style=cIsDamage>Critical Strike</style>', <style=cIsDamage>poison</style> your target for <style=cIsDamage>5</style> <style=cStack>(+3 per stack)</style> seconds.";
 
         public override string ItemLore => "";
 
