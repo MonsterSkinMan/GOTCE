@@ -17,7 +17,7 @@ namespace GOTCE.Components
         private CharacterDirection direction;
         public void Start() {
             body = gameObject.GetComponent<CharacterBody>();
-            GameObject the = Instantiate(Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Enemies/livingsuppfire.png"));
+            GameObject the = Instantiate(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/ArtifactCompounds/ArtifactCompoundSquareDisplay.prefab").WaitForCompletion());
             direction = body.gameObject.GetComponent<CharacterDirection>();
             // direction.modelAnimator.enabled = false;
 
@@ -32,8 +32,11 @@ namespace GOTCE.Components
             
             the.transform.position = direction.modelAnimator.transform.position;
             the.transform.rotation = direction.modelAnimator.transform.rotation;
+            the.transform.SetParent(direction.modelAnimator.transform);
 
-            
+            var model = body.GetComponentInChildren<CharacterModel>();
+            if (model != null)
+                model.itemDisplayRuleSet = null;
 
         }
 
