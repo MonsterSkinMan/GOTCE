@@ -24,11 +24,12 @@ namespace GOTCE.Components
                 if (timer > 1.5f) {
                     swapped = true;
                     CharacterModel model = body.modelLocator.modelTransform.GetComponent<CharacterModel>();
-                    Material mat = MainAssets.LoadAsset<Material>("Assets/Materials/Item/MoldySteak/matSteak.mat");
+                    Material mat = MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/crackedPestMaterial.mat");
+                    Material mat2 = MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/tongueMaterial.mat");
                     // CharacterModel model = body.gameObject.GetComponent<ModelLocator>().modelTransform.GetComponent<CharacterModel>();
                     model.baseRendererInfos[0].defaultMaterial = mat;
                     model.baseRendererInfos[1].defaultMaterial = mat;
-                    model.baseRendererInfos[2].defaultMaterial = mat;
+                    model.baseRendererInfos[2].defaultMaterial = mat2;
                 }
             }
         }

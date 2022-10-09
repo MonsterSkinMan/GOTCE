@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4243482217
+CRC: 3273361076
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 502f4d1f2b66343b9a89985eb715f7b7
+    Hash: 620901903d890350b4b1049706981130
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 1fe3abd029edb3522ae5dbbc711d0a74
+    Hash: 51c682616bd7f3dc763b52b2f08205a8
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -24,6 +24,8 @@ ClassTypes:
 - Class: 43
   Script: {instanceID: 0}
 - Class: 48
+  Script: {instanceID: 0}
+- Class: 65
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
@@ -54,6 +56,7 @@ Assets:
 - Assets/Textures/Icons/Item/backuphammer.png
 - Assets/Textures/Icons/Item/Bottled_Enigma.png
 - Assets/Models/Raw Models/LivingSuppModel.fbx
+- Assets/Models/Prefabs/Item/Drill/Cube.prefab
 - Assets/Materials/Item/MoldySteak/MoldySteakmaterial.mat
 - Assets/Textures/Icons/Item/MoldySteak.png
 - Assets/Textures/Icons/Item/BangSnap.png
@@ -61,4 +64,5 @@ Assets:
 - Assets/Textures/Icons/Item/animalhead.png
 - Assets/Textures/Icons/Item/AmberRabbit.png
 - Assets/Textures/Icons/Equipment/BloodGamble.png
+- Assets/Materials/Enemies/tongueMaterial.mat
 Dependencies: []
