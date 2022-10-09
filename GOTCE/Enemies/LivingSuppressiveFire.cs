@@ -18,7 +18,7 @@ namespace GOTCE.Enemies {
             LivingSuppressiveFireMaster = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Wisp/WispMaster.prefab").WaitForCompletion(), "LivingSuppressiveFireMaster");
             // R2API.ContentAddition.AddBody(LivingSuppressiveFireObj);
             CharacterBody component = LivingSuppressiveFireObj.GetComponent<CharacterBody>();
-            component.baseDamage = 1f;
+            component.baseDamage = 0.05f;
             component.baseCrit = 0f;
             component.levelCrit = 0f;
             component.baseMaxHealth = 200f;
