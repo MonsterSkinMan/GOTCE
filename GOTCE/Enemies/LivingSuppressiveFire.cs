@@ -37,12 +37,12 @@ namespace GOTCE.Enemies
             body.name = "LivingSuppressiveFireBody";
 
             CharacterModel model = LivingSuppressiveFireObj.GetComponentInChildren<CharacterModel>();
-            Animator anim = LivingSuppressiveFireObj.GetComponentInChildren<Animator>();
+            // Animator anim = LivingSuppressiveFireObj.GetComponentInChildren<Animator>();
             
             // Main.ModLogger.LogDebug(model.name);
             model.baseRendererInfos[0].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
             model.baseRendererInfos[1].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
-            // model.baseRendererInfos[0].renderer.GetComponent<SkinnedMeshRenderer>().sharedMesh = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/frozenwall/HumanCrate2Mesh.prefab").WaitForCompletion().GetComponentInChildren<Mesh>();
+            model.baseRendererInfos[0].renderer.GetComponent<SkinnedMeshRenderer>().sharedMesh = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/frozenwall/HumanCrate2Mesh.prefab").WaitForCompletion().GetComponentInChildren<Mesh>();
             model.baseRendererInfos[1].renderer.gameObject.SetActive(false);
             // Main.ModLogger.LogDebug(model.mainSkinnedMeshRenderer.name);
 

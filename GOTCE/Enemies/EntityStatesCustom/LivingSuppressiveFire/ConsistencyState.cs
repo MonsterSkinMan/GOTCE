@@ -83,7 +83,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     isCrit = Util.CheckRoll(critStat, base.characterBody.master),
                     radius = 2,
                     smartCollision = false,
-                    damageType = DamageType.Stun1s
+                    damageType = DamageType.Stun1s,
                 };
 
                 bulletAttack.Fire();
@@ -104,7 +104,6 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     isCrit = Util.CheckRoll(critStat, base.characterBody.master),
                     radius = 2,
                     smartCollision = false,
-                    damageType = DamageType.Stun1s
                 };
                 bulletAttack2.Fire();
             }

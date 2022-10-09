@@ -48,9 +48,6 @@ namespace GOTCE.Items.White
 
         public override void Hooks()
         {
-            // On.RoR2.CharacterBody.FixedUpdate += Transform;
-            // On.RoR2.CharacterBody.OnInventoryChanged += StackTimer;
-            // On.RoR2.Stage.FixedUpdate += UpdateTimer;
             On.RoR2.CharacterBody.OnInventoryChanged += AttachController;
         }
 
@@ -76,45 +73,19 @@ namespace GOTCE.Items.White
             return bodies[random.Next(0, bodies.Count)];
         }
 
-        /* public void Transform(On.RoR2.CharacterBody.orig_FixedUpdate orig, CharacterBody self) {
-            orig(self);
-            if (self.inventory) {
-                if (self.inventory.GetItemCount(ItemDef) > 0) {
-                    // Main.ModLogger.LogDebug(stopwatch);
-                    if (stopwatch <= 0) {
-                        self.master.bodyPrefab = GetRandomCharacterBodyPrefab();
-                        self.master.Respawn(self.master.GetBody().transform.position, self.master.GetBody().transform.rotation);
-                        // self.AddTimedBuff(MetamorphoTimer.Buff, 5f);
-                    }
-                }
-            }
-        } */
-
-        public void StackTimer(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
-        {
-            orig(self);
-            if (self.inventory && self.inventory.GetItemCount(ItemDef) > 0)
-            {
-                // interval = 5f * Mathf.Pow(0.9f, self.inventory.GetItemCount(ItemDef));
-                if (self.gameObject.GetComponent<MetaController>())
-                {
-                    // self.gameObject.GetComponent<MetaController>().interval =  5f * Mathf.Pow(0.9f, self.inventory.GetItemCount(ItemDef));
-                }
-            }
-        }
-
         public void AttachController(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
-            orig(self);
+            
             if (self.inventory)
             {
                 bool flag = self.inventory.GetItemCount(ItemDef) > 0;
-                MetaController controller = self.GetComponent<MetaController>();
+                MetaController controller = self.gameObject.GetComponent<MetaController>();
+                
                 if (flag != controller)
                 {
                     if (flag)
                     {
-                        self.gameObject.AddComponent<MetaController>();
+                        self.gameObject.AddComponent<MetaController>(); 
                     }
                     else
                     {
@@ -122,15 +93,10 @@ namespace GOTCE.Items.White
                     }
                 }
             }
+            orig(self);
         }
 
-        /* public void UpdateTimer(On.RoR2.Stage.orig_FixedUpdate orig, Stage self) {
-            orig(self);
-            stopwatch -= Time.fixedDeltaTime;
-            if (stopwatch <= 0) {
-                stopwatch = 5f;
-            }
-        } */
+        
     }
 
     public class MetaController : MonoBehaviour
@@ -152,12 +118,10 @@ namespace GOTCE.Items.White
             {
                 if (body.inventory.GetItemCount(BottledMetamorphosis.Instance.ItemDef) > 0)
                 {
-                    // Main.ModLogger.LogDebug(stopwatch);
                     if (stopwatch <= 0)
                     {
                         body.master.bodyPrefab = BottledMetamorphosis.GetRandomCharacterBodyPrefab();
                         body.master.Respawn(body.master.GetBody().transform.position, body.master.GetBody().transform.rotation);
-                        // self.AddTimedBuff(MetamorphoTimer.Buff, 5f);
                     }
                 }
             }

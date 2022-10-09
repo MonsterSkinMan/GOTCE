@@ -137,22 +137,7 @@ namespace GOTCE
             Enemies.LivingSuppressiveFire.Create();
             Enemies.CrackedPest.Create();
 
-            RoR2.CharacterBody.onBodyStartGlobal += (body) =>
-            {
-                if (body.baseNameToken == "LIVING_SUPPRESSIVE_FIRE_NAME")
-                {
-                    body.inventory.GiveItem(RoR2.RoR2Content.Items.LunarBadLuck, 1);
-                    //CharacterModel model = body.modelLocator.modelTransform.GetComponent<CharacterModel>();
-                    //model.baseRendererInfos[0].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
-                    //model.baseRendererInfos[1].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
-                }
-                if (body.baseNameToken == "CRACKED_PEST_NAME")
-                {
-                    body.inventory.GiveItem(RoR2Content.Items.Behemoth, 2);
-                    body.gameObject.AddComponent<GOTCE_CrackedComponent>();
-                }
-            };
-
+ 
             CharacterSpawnCard spawncardS = new CharacterSpawnCard()
             {
                 name = "cscKirn",
