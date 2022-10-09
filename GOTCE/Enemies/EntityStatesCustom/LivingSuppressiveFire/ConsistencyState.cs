@@ -4,7 +4,8 @@ using UnityEngine;
 using GOTCE;
 using EntityStates.Commando.CommandoWeapon;
 
-namespace GOTCE.Enemies.EntityStatesCustom {
+namespace GOTCE.Enemies.EntityStatesCustom
+{
     public class ConsistencyState : BaseSkillState
     {
         public static GameObject hitEffectPrefab = FireBarrage.hitEffectPrefab;
@@ -65,24 +66,46 @@ namespace GOTCE.Enemies.EntityStatesCustom {
             // string muzzleName = "MuzzleRight";
             if (base.isAuthority)
             {
-                BulletAttack bulletAttack = new BulletAttack();
-                bulletAttack.owner = base.gameObject;
-                bulletAttack.weapon = base.gameObject;
-                bulletAttack.origin = aimRay.origin;
-                bulletAttack.aimVector = aimRay.direction;
-                bulletAttack.minSpread = 5;
-                bulletAttack.maxSpread = 7;
-                bulletAttack.bulletCount = 1u;
-                bulletAttack.damage = base.characterBody.damage * 0.1f;
-                bulletAttack.force = 3;
-                bulletAttack.tracerEffectPrefab = tracerEffectPrefab;
-                // bulletAttack.muzzleName = muzzleName;
-                bulletAttack.hitEffectPrefab = hitEffectPrefab;
-                bulletAttack.isCrit = Util.CheckRoll(critStat, base.characterBody.master);
-                bulletAttack.radius = 2;
-                bulletAttack.smartCollision = true;
-                bulletAttack.damageType = DamageType.Stun1s;
+                BulletAttack bulletAttack = new()
+                {
+                    owner = base.gameObject,
+                    weapon = base.gameObject,
+                    origin = aimRay.origin,
+                    aimVector = aimRay.direction,
+                    minSpread = 1f,
+                    maxSpread = 2f,
+                    bulletCount = 1u,
+                    damage = base.characterBody.damage * 0.08f,
+                    force = 3,
+                    tracerEffectPrefab = tracerEffectPrefab,
+                    // bulletAttack.muzzleName = muzzleName;
+                    hitEffectPrefab = hitEffectPrefab,
+                    isCrit = Util.CheckRoll(critStat, base.characterBody.master),
+                    radius = 2,
+                    smartCollision = false,
+                    damageType = DamageType.Stun1s
+                };
                 bulletAttack.Fire();
+                BulletAttack bulletAttack2 = new()
+                {
+                    owner = base.gameObject,
+                    weapon = base.gameObject,
+                    origin = aimRay.origin,
+                    aimVector = aimRay.direction,
+                    minSpread = 90f,
+                    maxSpread = 360f,
+                    bulletCount = 1u,
+                    damage = base.characterBody.damage * 0.02f,
+                    force = 30,
+                    tracerEffectPrefab = tracerEffectPrefab,
+                    // bulletAttack.muzzleName = muzzleName;
+                    hitEffectPrefab = hitEffectPrefab,
+                    isCrit = Util.CheckRoll(critStat, base.characterBody.master),
+                    radius = 2,
+                    smartCollision = false,
+                    damageType = DamageType.Stun1s
+                };
+                bulletAttack2.Fire();
             }
             totalBulletsFired++;
             Util.PlaySound(fireBarrageSoundString, base.gameObject);
