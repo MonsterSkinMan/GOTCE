@@ -3,13 +3,11 @@ using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using RoR2.Skills;
-<<<<<<< HEAD
 using GOTCE;
 using UnityEngine.Scripting;
-=======
 using System.Linq;
 using RoR2.CharacterAI;
->>>>>>> a3433fbbf2b870fa40ae36599a9a42f8cfa0e4dd
+
 
 namespace GOTCE.Enemies
 {
@@ -85,9 +83,6 @@ namespace GOTCE.Enemies
             LanguageAPI.Add("LIVING_SUPPRESSIVE_FIRE_LORE", "Even if frags did 2000% with no falloff...");
             LanguageAPI.Add("LIVING_SUPPRESSIVE_FIRE_SUBTITLE", "Overwhelmed with Consistency");
 
-            CharacterModel model = LivingSuppressiveFireObj.GetComponentInChildren<CharacterModel>();
-            model.baseRendererInfos[0].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
-            model.baseRendererInfos[1].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
 
             ContentAddition.AddBody(LivingSuppressiveFireObj);
             ContentAddition.AddMaster(LivingSuppressiveFireMaster);
