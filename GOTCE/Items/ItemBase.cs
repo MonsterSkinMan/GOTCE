@@ -4,6 +4,7 @@ using RoR2;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace GOTCE.Items
 {
@@ -23,6 +24,7 @@ namespace GOTCE.Items
             Instance = this as T;
         }
     }
+
     public abstract class ItemBase
     {
         public abstract string ConfigName { get; }
@@ -58,15 +60,21 @@ namespace GOTCE.Items
         /// <para>P.S. CreateItemDisplayRules(); does not have to be called in this, as it already gets called in CreateItem();</para>
         /// </summary>
         /// <param name="config">The config file that will be passed into this from the main class.</param>
+        ///
+
+        private static GameObject emptyModel;
+
         public virtual void Init(ConfigFile config)
         {
+            emptyModel = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mystery/PickupMystery.prefab").WaitForCompletion();
             CreateItem();
             CreateLang();
             CreateConfig(config);
             Hooks();
         }
 
-        public virtual void CreateConfig(ConfigFile config) { }
+        public virtual void CreateConfig(ConfigFile config)
+        { }
 
         protected virtual void CreateLang()
         {
@@ -77,6 +85,7 @@ namespace GOTCE.Items
         }
 
         public abstract ItemDisplayRuleDict CreateItemDisplayRules();
+
         protected void CreateItem()
         {
             if (AIBlacklisted)
@@ -90,7 +99,14 @@ namespace GOTCE.Items
             ItemDef.pickupToken = "ITEM_" + ItemLangTokenName + "_PICKUP";
             ItemDef.descriptionToken = "ITEM_" + ItemLangTokenName + "_DESCRIPTION";
             ItemDef.loreToken = "ITEM_" + ItemLangTokenName + "_LORE";
-            ItemDef.pickupModelPrefab = ItemModel;
+            if (ItemDef.pickupModelPrefab == null)
+            {
+                ItemDef.pickupModelPrefab = emptyModel;
+            }
+            else
+            {
+                ItemDef.pickupModelPrefab = ItemModel;
+            }
             ItemDef.pickupIconSprite = ItemIcon;
             ItemDef.hidden = false;
             ItemDef.canRemove = CanRemove;
@@ -108,7 +124,8 @@ namespace GOTCE.Items
             ItemAPI.Add(new CustomItem(ItemDef, CreateItemDisplayRules()));
         }
 
-        public virtual void Hooks() { }
+        public virtual void Hooks()
+        { }
 
         //Based on ThinkInvis' methods
         public int GetCount(CharacterBody body)
