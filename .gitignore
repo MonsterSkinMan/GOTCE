@@ -34,6 +34,7 @@ GOTCE/libs/
 
 GOTCE/obj/
 GOTCE/bin/
+.vs/GOTCE/DesignTimeBuild/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
