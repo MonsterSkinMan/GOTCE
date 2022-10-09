@@ -34,7 +34,7 @@ namespace GOTCE.Items.White
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/faultyspacetimeclock.png");
         private System.Random rand = new();
 
         public override void Init(ConfigFile config)

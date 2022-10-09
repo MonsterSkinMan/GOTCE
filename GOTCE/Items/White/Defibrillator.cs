@@ -1,4 +1,4 @@
-﻿/* using BepInEx.Configuration;
+/* using BepInEx.Configuration;
 using GOTCE.Components;
 using R2API;
 using RoR2;
@@ -44,8 +44,22 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             On.RoR2.Inventory.GiveItem_ItemIndex_int += Inventory_GiveItem_ItemIndex_int;
+            On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
             On.RoR2.CharacterMaster.OnBodyDeath += CharacterMaster_OnBodyDeath;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+        }
+
+        private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
+        {
+            orig(self, itemIndex, count);
+            if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
+            {
+                if (self.gameObject.GetComponent<GOTCE_StatsComponent> != null)
+                {
+                    var stack = self.GetItemCount(Instance.ItemDef);
+                    self.gameObject.GetComponent<CharacterMaster>().GetBody().GetComponent<GOTCE_StatsComponent>().defibrillatorRespawnChance = 8f * stack;
+                }
+            }
         }
 
         private void CharacterMaster_OnBodyDeath(On.RoR2.CharacterMaster.orig_OnBodyDeath orig, CharacterMaster self, CharacterBody body)

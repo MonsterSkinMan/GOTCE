@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3273361076
+CRC: 2921674413
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 620901903d890350b4b1049706981130
+    Hash: cb30835c683b2d8fb9a441fe4b8d9a66
   TypeTreeHash:
     serializedVersion: 2
     Hash: 51c682616bd7f3dc763b52b2f08205a8
@@ -31,11 +31,15 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
+- Assets/Models/Raw Models/LivingSuppMesh.fbx
 - Assets/Materials/Enemies/kirnMaterial.mat
 - Assets/Materials/Item/MonstersVisage/MonstersVisageMaterial.mat
 - Assets/Textures/Icons/Item/zanysoup.png
 - Assets/Textures/Icons/Artifact/disabledfear.png
 - Assets/Materials/Enemies/crackedPestMaterial.mat
+- Assets/Textures/Icons/Item/barrierstone.png
+- Assets/Textures/Icons/Item/faultyspacetimeclock.png
+- Assets/Textures/Icons/Item/HealingScrap.png
 - Assets/Textures/Icons/Artifact/woolifact.png
 - Assets/Textures/Icons/Item/BottledMetamorphosis.png
 - Assets/Textures/Icons/Artifact/artifactofartifact.png
@@ -43,24 +47,30 @@ Assets:
 - Assets/Textures/Icons/Item/Yhjtumgrhtfyddc.png
 - Assets/Textures/Icons/Item/bigshoe.png
 - Assets/Textures/Icons/Item/FormlessSand.png
+- Assets/Textures/Icons/Item/corruptedshard.png
 - Assets/Textures/Icons/Item/bottledcommand.png
 - Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png
+- Assets/Textures/Icons/Item/barrierworks.png
+- Assets/Textures/Icons/Item/HealingScrapConsumed.png
 - Assets/Textures/Icons/Item/drill.png
-- Assets/Textures/Icons/Item/GrandfatherClock.png
+- Assets/Textures/Icons/Item/spafnarsfries.png
 - Assets/Materials/Item/MoldySteak/matSteak.mat
 - Assets/Textures/Icons/Item/shittyvisage.png
 - Assets/Models/Prefabs/Enemies/livingsuppfire.png
+- Assets/Textures/Icons/Item/tuboflard.png
 - Assets/Textures/Icons/Item/amalgamspoon.png
-- Assets/Textures/Icons/Item/skeletonkey.png
 - Assets/Textures/Icons/Item/sscnft.png
+- Assets/Textures/Icons/Item/tubofbart.png
 - Assets/Textures/Icons/Item/backuphammer.png
 - Assets/Textures/Icons/Item/Bottled_Enigma.png
-- Assets/Models/Raw Models/LivingSuppModel.fbx
+- Assets/Textures/Icons/Item/GrandfatherClock.png
 - Assets/Models/Prefabs/Item/Drill/Cube.prefab
 - Assets/Materials/Item/MoldySteak/MoldySteakmaterial.mat
 - Assets/Textures/Icons/Item/MoldySteak.png
+- Assets/Textures/Icons/Item/skullkey.png
 - Assets/Textures/Icons/Item/BangSnap.png
 - Assets/Textures/Icons/Item/pogo.png
+- Assets/Textures/Icons/Item/galsone.png
 - Assets/Textures/Icons/Item/animalhead.png
 - Assets/Textures/Icons/Item/AmberRabbit.png
 - Assets/Textures/Icons/Equipment/BloodGamble.png

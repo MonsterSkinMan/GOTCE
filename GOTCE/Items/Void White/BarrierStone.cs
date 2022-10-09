@@ -36,7 +36,7 @@ namespace GOTCE.Items.Void_White
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/barrierstone.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
