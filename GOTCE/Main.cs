@@ -136,32 +136,19 @@ namespace GOTCE
             Itsgup.OhTheMisery();
             Enemies.LivingSuppressiveFire.Create();
             Enemies.CrackedPest.Create();
-<<<<<<< HEAD
-            
-            RoR2.CharacterBody.onBodyStartGlobal += (body) => {
-                if (body.baseNameToken == "LIVING_SUPPRESSIVE_FIRE_NAME") {
-                    body.inventory.GiveItem(RoR2.RoR2Content.Items.LunarBadLuck, 10);
-                    body.inventory.GiveItem(RoR2.RoR2Content.Items.SlowOnHit, 1);
-=======
 
             RoR2.CharacterBody.onBodyStartGlobal += (body) =>
             {
                 if (body.baseNameToken == "LIVING_SUPPRESSIVE_FIRE_NAME")
                 {
                     body.inventory.GiveItem(RoR2.RoR2Content.Items.LunarBadLuck, 1);
->>>>>>> a3433fbbf2b870fa40ae36599a9a42f8cfa0e4dd
                     //CharacterModel model = body.modelLocator.modelTransform.GetComponent<CharacterModel>();
                     //model.baseRendererInfos[0].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
                     //model.baseRendererInfos[1].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
                 }
-<<<<<<< HEAD
-                if (body.baseNameToken == "CRACKED_PEST_NAME") {
-                    body.inventory.GiveItem(RoR2.RoR2Content.Items.Behemoth, 3);
-=======
                 if (body.baseNameToken == "CRACKED_PEST_NAME")
                 {
                     body.inventory.GiveItem(RoR2Content.Items.Behemoth, 2);
->>>>>>> a3433fbbf2b870fa40ae36599a9a42f8cfa0e4dd
                     body.gameObject.AddComponent<GOTCE_CrackedComponent>();
                 }
             };

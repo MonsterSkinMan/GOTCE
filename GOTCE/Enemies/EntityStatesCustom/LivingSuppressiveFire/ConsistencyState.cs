@@ -66,26 +66,6 @@ namespace GOTCE.Enemies.EntityStatesCustom
             // string muzzleName = "MuzzleRight";
             if (base.isAuthority)
             {
-<<<<<<< HEAD
-                BulletAttack bulletAttack = new BulletAttack();
-                bulletAttack.owner = base.gameObject;
-                bulletAttack.weapon = base.gameObject;
-                bulletAttack.origin = aimRay.origin;
-                bulletAttack.aimVector = aimRay.direction;
-                bulletAttack.minSpread = 3;
-                bulletAttack.maxSpread = 6;
-                bulletAttack.bulletCount = 1u;
-                bulletAttack.damage = base.characterBody.damage * 0;
-                bulletAttack.force = 25;
-                bulletAttack.tracerEffectPrefab = tracerEffectPrefab;
-                // bulletAttack.muzzleName = muzzleName;
-                bulletAttack.hitEffectPrefab = hitEffectPrefab;
-                bulletAttack.isCrit = Util.CheckRoll(critStat, base.characterBody.master);
-                bulletAttack.radius = 2;
-                bulletAttack.smartCollision = true;
-                bulletAttack.maxDistance = 9000;
-                bulletAttack.damageType = DamageType.Stun1s | DamageType.Nullify | DamageType.SlowOnHit | DamageType.CrippleOnHit | DamageType.LunarSecondaryRootOnHit | DamageType.Freeze2s | DamageType.ClayGoo | DamageType.WeakOnHit;
-=======
                 BulletAttack bulletAttack = new()
                 {
                     owner = base.gameObject,
@@ -105,7 +85,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     smartCollision = false,
                     damageType = DamageType.Stun1s
                 };
->>>>>>> a3433fbbf2b870fa40ae36599a9a42f8cfa0e4dd
+
                 bulletAttack.Fire();
                 BulletAttack bulletAttack2 = new()
                 {
