@@ -101,7 +101,8 @@ namespace GOTCE
                 }
             }
             [SystemInitializer(dependencies: typeof(ItemCatalog))]
-            void the() {
+            void the()
+            {
                 var interactableTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(InteractableBase)));
 
                 foreach (var interactableType in interactableTypes)
@@ -148,52 +149,7 @@ namespace GOTCE
             Enemies.LivingSuppressiveFire.Create();
             Enemies.CrackedPest.Create();
 
- 
-            CharacterSpawnCard spawncardS = new CharacterSpawnCard()
-            {
-                name = "cscKirn",
-                prefab = Enemies.LivingSuppressiveFire.LivingSuppressiveFireMaster,
-                sendOverNetwork = true,
-                nodeGraphType = MapNodeGroup.GraphType.Air,
-                requiredFlags = NodeFlags.None,
-                forbiddenFlags = NodeFlags.NoCharacterSpawn,
-                directorCreditCost = 20,
-                eliteRules = SpawnCard.EliteRules.Default
-            };
-
-            CharacterSpawnCard spawncardC = new CharacterSpawnCard()
-            {
-                name = "cscCracked",
-                prefab = Enemies.CrackedPest.CrackedPestMaster,
-                sendOverNetwork = true,
-                nodeGraphType = MapNodeGroup.GraphType.Air,
-                requiredFlags = NodeFlags.None,
-                forbiddenFlags = NodeFlags.NoCharacterSpawn,
-                directorCreditCost = 100,
-                eliteRules = SpawnCard.EliteRules.ArtifactOnly
-            };
-
-            DirectorCard directorCardS = new DirectorCard()
-            {
-                spawnCard = spawncardS,
-                spawnDistance = DirectorCore.MonsterSpawnDistance.Standard,
-                selectionWeight = 1,
-                preventOverhead = false
-            };
-            DirectorCard directorCardC = new DirectorCard()
-            {
-                spawnCard = spawncardC,
-                spawnDistance = DirectorCore.MonsterSpawnDistance.Far,
-                selectionWeight = 1,
-                preventOverhead = false
-            };
-
-            R2API.DirectorAPI.Helpers.AddNewMonster(directorCardS, DirectorAPI.MonsterCategory.BasicMonsters);
-            R2API.DirectorAPI.Helpers.RemoveExistingMonsterFromStage("cscKirn", DirectorAPI.Stage.Commencement);
-            R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.SulfurPools);
-            R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.RallypointDelta);
-            R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.AphelianSanctuary);
-            R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.SiphonedForest);
+            Enemies.SetupEnemies.Init();
         }
 
         /// <summary>

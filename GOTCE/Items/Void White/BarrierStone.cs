@@ -19,9 +19,9 @@ namespace GOTCE.Items.Void_White
 
         public override string ItemLangTokenName => "GOTCE_BarrierStone";
 
-        public override string ItemPickupDesc => "Gain a miniscule temporary barrier on hit. Does nothing on the first stack because <color=#FF7F7F>this item is total dogshit</color>.";
+        public override string ItemPickupDesc => "Gain a miniscule temporary barrier on hit. Does nothing on the first stack because it's <style=cHealth>total dogshit</color>. <style=cIsVoid>Corrupts all Barrierworks</style>.";
 
-        public override string ItemFullDescription => "Gain a <style=cIsHealing>temporary barrier</style> on hit for <style=cIsHealing>0 health</style> <style=cStack>(+2 per stack)</style>.";
+        public override string ItemFullDescription => "Gain a <style=cIsHealing>temporary barrier</style> on hit for <style=cIsHealing>0</style> <style=cStack>(+2 per stack)</style> <style=cIsHealing>maximum health</style>. <style=cIsVoid>Corrupts all Barrierworks</style>.";
 
         public override string ItemLore => "...But what if your environment is devoid of everything? Fighting in a barren wasteland? At that point, your final choice is to push your own body into the role of protection. Convert the strikes of your foe into a defensive option. Rush head on into combat and fear nothing, letting yourself absorb injury. You will emerge better because of it.";
 
