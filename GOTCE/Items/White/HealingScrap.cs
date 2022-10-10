@@ -40,5 +40,21 @@ namespace GOTCE.Items.White
         {
             return new ItemDisplayRuleDict(null);
         }
+
+        public override void Hooks()
+        {
+            On.RoR2.Inventory.RemoveItem_ItemDef_int += Inventory_RemoveItem_ItemDef_int;
+        }
+
+        private void Inventory_RemoveItem_ItemDef_int(On.RoR2.Inventory.orig_RemoveItem_ItemDef_int orig, Inventory self, ItemDef itemDef, int count)
+        {
+            orig(self, itemDef, count);
+            CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
+            if (body.inventory && body.inventory.GetItemCount(itemDef) > 0)
+            {
+                body.inventory.GiveItem(GOTCE.Items.NoTier.HealingScrapConsumed.Instance.ItemDef, 1);
+                CharacterMasterNotificationQueue.SendTransformNotification(body.master, itemDef.itemIndex, NoTier.HealingScrapConsumed.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
+            }
+        }
     }
 }

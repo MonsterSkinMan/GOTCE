@@ -52,6 +52,7 @@ namespace GOTCE.Enemies
             DirectorAPI.Helpers.RemoveExistingMonsterFromStage("cscKirn", DirectorAPI.Stage.SiphonedForest);
             DirectorAPI.Helpers.RemoveExistingMonsterFromStage("cscKirn", DirectorAPI.Stage.TitanicPlains);
             DirectorAPI.Helpers.RemoveExistingMonsterFromStage("cscKirn", DirectorAPI.Stage.DistantRoost);
+            DirectorAPI.Helpers.RemoveExistingMonsterFromStage("cscKirn", DirectorAPI.Stage.VoidLocus);
             DirectorAPI.Helpers.AddNewMonsterToStage(CrackedPestDC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.SulfurPools);
             DirectorAPI.Helpers.AddNewMonsterToStage(CrackedPestDC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.RallypointDelta);
             DirectorAPI.Helpers.AddNewMonsterToStage(CrackedPestDC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.AphelianSanctuary);

@@ -29,7 +29,7 @@ namespace GOTCE.Enemies
             body.baseDamage = 5.5f;
             body.levelDamage = 1.1f;
 
-            body.baseMoveSpeed = 16f;
+            body.baseMoveSpeed = 7f;
 
             body.baseNameToken = "LIVING_SUPPRESSIVE_FIRE_NAME";
             body.bodyFlags |= CharacterBody.BodyFlags.IgnoreFallDamage;
