@@ -13,7 +13,7 @@ namespace GOTCE.Artifact
 
         public override string ArtifactDescription => "The fog is coming";
 
-        public override Sprite ArtifactEnabledIcon => null;
+        public override Sprite ArtifactEnabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/zanysoup.png");
 
         public override Sprite ArtifactDisabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/GrandfatherClock.png");
 
