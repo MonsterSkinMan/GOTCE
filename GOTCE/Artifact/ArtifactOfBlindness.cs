@@ -22,7 +22,7 @@ namespace GOTCE.Artifact
 
         public override void Init(ConfigFile config)
         {
-            ppHolder = new("PPInferno");
+            ppHolder = new("GOTCE_ArtifactOfBlindnessPP");
             Object.DontDestroyOnLoad(ppHolder);
             ppHolder.layer = LayerIndex.postProcess.intVal;
             ppHolder.AddComponent<GOTCE_ArtifactOfBlindnessPostProcessingController>();
@@ -33,15 +33,17 @@ namespace GOTCE.Artifact
             pp.priority = float.MaxValue - 1;
             PostProcessProfile ppProfile = ScriptableObject.CreateInstance<PostProcessProfile>();
             Object.DontDestroyOnLoad(ppProfile);
-            ppProfile.name = "ppInferno";
+            ppProfile.name = "GOTCE_ArtifactOfBlindness";
             fog = ppProfile.AddSettings<RampFog>();
             fog.SetAllOverridesTo(true);
             fog.fogColorStart.value = new Color32(45, 45, 53, 165);
             fog.fogColorMid.value = new Color32(44, 44, 56, 255);
             fog.fogColorEnd.value = new Color32(44, 44, 56, 255);
             fog.skyboxStrength.value = 0.02f;
-            fog.fogZero.value = -0.02f;
-            fog.fogOne.value = 0.03f;
+            fog.fogPower.value = 0.35f;
+            fog.fogIntensity.value = 0.994f;
+            fog.fogZero.value = 0f;
+            fog.fogOne.value = 0.05f;
 
             pp.sharedProfile = ppProfile;
             CreateLang();
