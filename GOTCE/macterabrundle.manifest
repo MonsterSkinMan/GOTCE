@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2921674413
+CRC: 2837268980
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: cb30835c683b2d8fb9a441fe4b8d9a66
+    Hash: a54b7047090534f915128081ca1378bd
   TypeTreeHash:
     serializedVersion: 2
     Hash: 51c682616bd7f3dc763b52b2f08205a8
@@ -38,6 +38,7 @@ Assets:
 - Assets/Textures/Icons/Artifact/disabledfear.png
 - Assets/Materials/Enemies/crackedPestMaterial.mat
 - Assets/Textures/Icons/Item/barrierstone.png
+- Assets/Textures/Icons/Item/kirn.png
 - Assets/Textures/Icons/Item/faultyspacetimeclock.png
 - Assets/Textures/Icons/Item/HealingScrap.png
 - Assets/Textures/Icons/Artifact/woolifact.png
@@ -60,6 +61,7 @@ Assets:
 - Assets/Textures/Icons/Item/tuboflard.png
 - Assets/Textures/Icons/Item/amalgamspoon.png
 - Assets/Textures/Icons/Item/sscnft.png
+- Assets/Textures/Icons/Artifact/artifactofblindnessoff.png
 - Assets/Textures/Icons/Item/tubofbart.png
 - Assets/Textures/Icons/Item/backuphammer.png
 - Assets/Textures/Icons/Item/Bottled_Enigma.png
@@ -67,6 +69,7 @@ Assets:
 - Assets/Models/Prefabs/Item/Drill/Cube.prefab
 - Assets/Materials/Item/MoldySteak/MoldySteakmaterial.mat
 - Assets/Textures/Icons/Item/MoldySteak.png
+- Assets/Textures/Icons/Artifact/artifactofblindnesson.png
 - Assets/Textures/Icons/Item/skullkey.png
 - Assets/Textures/Icons/Item/BangSnap.png
 - Assets/Textures/Icons/Item/pogo.png

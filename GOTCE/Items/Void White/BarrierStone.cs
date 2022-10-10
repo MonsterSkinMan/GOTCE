@@ -60,7 +60,7 @@ namespace GOTCE.Items.Void_White
                     if (component.inventory != null)
                     {
                         int stack = component.inventory.GetItemCount(GOTCE.Items.Void_White.BarrierStone.Instance.ItemDef.itemIndex);
-                        if (stack > 0)
+                        if (stack > 0 && damageInfo.procCoefficient > 0)
                         {
                             CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
                             body.healthComponent.AddBarrier((2f * stack) - 2f);

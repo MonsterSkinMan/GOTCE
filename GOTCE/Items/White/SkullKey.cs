@@ -47,10 +47,7 @@ namespace GOTCE.Items.White
             FaultySpacetimeClock.Instance.OnStageCrit += MeWhenWithor;
         }
 
-
         // add stage crit chance, idk how
-
-
 
         public void MeWhenWithor(object sender, StageCritEventArgs args)
         {
