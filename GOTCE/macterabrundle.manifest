@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2921674413
+CRC: 2464659483
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: cb30835c683b2d8fb9a441fe4b8d9a66
+    Hash: c78af5560ebd8f0d6cab9bdfa173e6cb
   TypeTreeHash:
     serializedVersion: 2
     Hash: 51c682616bd7f3dc763b52b2f08205a8
@@ -38,6 +38,7 @@ Assets:
 - Assets/Textures/Icons/Artifact/disabledfear.png
 - Assets/Materials/Enemies/crackedPestMaterial.mat
 - Assets/Textures/Icons/Item/barrierstone.png
+- Assets/Textures/Icons/Item/kirn.png
 - Assets/Textures/Icons/Item/faultyspacetimeclock.png
 - Assets/Textures/Icons/Item/HealingScrap.png
 - Assets/Textures/Icons/Artifact/woolifact.png

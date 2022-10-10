@@ -5,7 +5,7 @@ using UnityEngine;
 using BepInEx.Configuration;
 using System;
 
-namespace GOTCE.Items.Green
+namespace GOTCE.Items.White
 {
     public class TuesdayMagazine : ItemBase<TuesdayMagazine>
     {
@@ -21,7 +21,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemLore => "";
 
-        public override ItemTier Tier => ItemTier.Tier2;
+        public override ItemTier Tier => ItemTier.Tier1;
 
         public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility };
 
