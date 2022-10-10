@@ -2,8 +2,6 @@
 using R2API;
 using UnityEngine;
 using BepInEx.Configuration;
-using System.Reflection;
-using UnityEngine.Networking;
 using HarmonyLib;
 using GOTCE.Items.Red;
 
@@ -17,9 +15,9 @@ namespace GOTCE.Items.VoidRed
 
         public override string ItemLangTokenName => "GOTCE_TubOfBart";
 
-        public override string ItemPickupDesc => "Increases agility.";
+        public override string ItemPickupDesc => "Increases agility. <style=cIsVoid>Corrupts all Tubs of Lard</style>.";
 
-        public override string ItemFullDescription => "Increases <style=cIsUtility>acceleration, air control and move speed</style> by <style=cIsUtility>50%</style> <style=cStack>(+20% per stack)</style>.";
+        public override string ItemFullDescription => "Increases <style=cIsUtility>acceleration, air control and move speed</style> by <style=cIsUtility>50%</style> <style=cStack>(+20% per stack)</style>. <style=cIsVoid>Corrupts all Tubs of Lard</style>.";
 
         // implement bhop l8r
         // either bubbet's bunny foot item or mint tea mod

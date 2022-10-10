@@ -8,7 +8,6 @@ using UnityEngine.Scripting;
 using System.Linq;
 using RoR2.CharacterAI;
 
-
 namespace GOTCE.Enemies
 {
     public class LivingSuppressiveFire
@@ -16,20 +15,21 @@ namespace GOTCE.Enemies
         public static GameObject LivingSuppressiveFireObj;
         public static GameObject LivingSuppressiveFireMaster;
         public static CharacterDirection direction;
+        public static GameObject bodyModel;
 
         public static void Create()
         {
             LivingSuppressiveFireObj = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Wisp/WispBody.prefab").WaitForCompletion(), "LivingSuppressiveFire");
             LivingSuppressiveFireMaster = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Wisp/WispMaster.prefab").WaitForCompletion(), "LivingSuppressiveFireMaster");
-
+            bodyModel = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/frozenwall/HumanCrate2Mesh.prefab").WaitForCompletion();
             CharacterBody body = LivingSuppressiveFireObj.GetComponent<CharacterBody>();
-            body.baseMaxHealth = 90f;
-            body.levelMaxHealth = 27f;
+            body.baseMaxHealth = 110f;
+            body.levelMaxHealth = 33f;
 
-            body.baseDamage = 5f;
-            body.levelDamage = 1f;
+            body.baseDamage = 5.5f;
+            body.levelDamage = 1.1f;
 
-            body.baseMoveSpeed = 15f;
+            body.baseMoveSpeed = 16f;
 
             body.baseNameToken = "LIVING_SUPPRESSIVE_FIRE_NAME";
             body.bodyFlags |= CharacterBody.BodyFlags.IgnoreFallDamage;
@@ -38,11 +38,11 @@ namespace GOTCE.Enemies
 
             CharacterModel model = LivingSuppressiveFireObj.GetComponentInChildren<CharacterModel>();
             // Animator anim = LivingSuppressiveFireObj.GetComponentInChildren<Animator>();
-            
+
             // Main.ModLogger.LogDebug(model.name);
             model.baseRendererInfos[0].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
             model.baseRendererInfos[1].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
-            model.baseRendererInfos[0].renderer.GetComponent<SkinnedMeshRenderer>().sharedMesh = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/frozenwall/HumanCrate2Mesh.prefab").WaitForCompletion().GetComponentInChildren<Mesh>();
+            model.baseRendererInfos[0].renderer.GetComponent<SkinnedMeshRenderer>().sharedMesh = bodyModel.GetComponentInChildren<Mesh>();
             model.baseRendererInfos[1].renderer.gameObject.SetActive(false);
             // Main.ModLogger.LogDebug(model.mainSkinnedMeshRenderer.name);
 
@@ -67,22 +67,21 @@ namespace GOTCE.Enemies
             AISkillDriver FleeAndAttack = (from x in master.GetComponents<AISkillDriver>()
                                            where x.maxDistance == 20
                                            select x).First();
-            FleeAndAttack.maxDistance = 15f;
+            FleeAndAttack.maxDistance = 13f;
 
             AISkillDriver StrafeAndAttack = (from x in master.GetComponents<AISkillDriver>()
                                              where x.maxDistance == 30
                                              select x).First();
-            StrafeAndAttack.maxDistance = 70f;
+            StrafeAndAttack.maxDistance = 55f;
 
             AISkillDriver What = (from x in master.GetComponents<AISkillDriver>()
                                   where x.maxDistance == 40
                                   select x).First();
-            What.maxDistance = 70f;
+            What.maxDistance = 55f;
 
             LanguageAPI.Add("LIVING_SUPPRESSIVE_FIRE_NAME", "Living Suppressive Fire");
             LanguageAPI.Add("LIVING_SUPPRESSIVE_FIRE_LORE", "Even if frags did 2000% with no falloff...");
             LanguageAPI.Add("LIVING_SUPPRESSIVE_FIRE_SUBTITLE", "Overwhelmed with Consistency");
-
 
             ContentAddition.AddBody(LivingSuppressiveFireObj);
             ContentAddition.AddMaster(LivingSuppressiveFireMaster);

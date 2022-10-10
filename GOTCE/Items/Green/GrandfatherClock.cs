@@ -18,7 +18,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemPickupDesc => "On Stage Transition Crit, die.";
 
-        public override string ItemFullDescription => "On '<style=cIsDamage>Stage Transition Crit</style>', literally fucking <style=cIsHealth>die</style>. ";
+        public override string ItemFullDescription => "On '<style=cIsUtility>Stage Transition Crit</style>', literally fucking <style=cIsHealth>die</style>. ";
 
         public override string ItemLore => "Order: 12-Hour Decorative Clock\nTracking Number: 59******\nEstimated Delivery: 16/02/2061\nShipping Method: Delicate\nShipping Address: **** 8th Avenue, New York, Earth\nShipping Details:\n\n\"I know how much you valued old Pop. He was one tough son-of-a-bitch, and he admired that in you. You did know why he spent so much time in his lab, right? Why he spent so much time overseas?\nIf not, well... I have so much to tell you. Not here, but some day.\"";
 

@@ -20,7 +20,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "'Critical Stage Transitions' give you 5 powerful items. Not consumed on use.";
 
-        public override string ItemFullDescription => "Gain 5% stage crit chance. On stage crit, gain 5 (+5 per stack) items that can be either red or yellow rarity.";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>5%</style> '<style=cIsUtility>Stage Transition Crit</style>' chance. On '<style=cIsUtility>Stage Transition Crit</style>', gain <style=cIsUtility>5</style> <style=cStack>(+5 per stack)</style> items (<style=cIsHealth>50%</style>/<style=cShrine>50%</style>).";
 
         public override string ItemLore => "Perhaps the crack itself has treasures to be found. So far, its purpose has been as a slingshot along the borders of our reality, but this new artifact is a direct wedge into another dimension, uprooting its treasures and bringing them here. A parallel space carrying boundless treasures- imagine that! Everything I've pulled from within the crack has been incredibly useful; I've gotten rocket launchers, detritivore desk plants, and even a spaceship part. I can't wait to see what all I can gather.";
 
@@ -47,30 +47,36 @@ namespace GOTCE.Items.White
             FaultySpacetimeClock.Instance.OnStageCrit += MeWhenWithor;
         }
 
+
+        // add stage crit chance, idk how
+
+
+
         public void MeWhenWithor(object sender, StageCritEventArgs args)
         {
-            if (NetworkServer.active) {
+            if (NetworkServer.active)
+            {
                 var instances = PlayerCharacterMasterController.instances;
                 foreach (PlayerCharacterMasterController playerCharacterMaster in instances)
                 {
-                    if (playerCharacterMaster.master.inventory.GetItemCount(ItemDef) > 0) {
+                    if (playerCharacterMaster.master.inventory.GetItemCount(ItemDef) > 0)
+                    {
                         int maxLockboxes = playerCharacterMaster.master.inventory.GetItemCount(ItemDef) * 5;
-                        for (int i = 0; i < maxLockboxes; i++) {
+                        for (int i = 0; i < maxLockboxes; i++)
+                        {
                             CharacterMaster master = playerCharacterMaster.master;
                             // NodeGraph nodes = SceneInfo.instance.GetNodeGraph(RoR2.Navigation.MapNodeGroup.GraphType.Ground);
                             // Vector3 pos;
                             // NodeGraph.NodeIndex node = nodes.FindClosestNodeWithFlagConditions(master.GetBody().transform.position += new Vector3(r1, -2, r2), HullClassification.Human, NodeFlags.None, NodeFlags.None, false);
                             // nodes.GetNodePosition(node, out pos);
-                            DirectorCore.instance.TrySpawnObject(new DirectorSpawnRequest(Interactables.SkullLockbox.Instance.isc, new DirectorPlacementRule {
+                            DirectorCore.instance.TrySpawnObject(new DirectorSpawnRequest(Interactables.SkullLockbox.Instance.isc, new DirectorPlacementRule
+                            {
                                 minDistance = 2f,
                                 maxDistance = 5f,
                                 placementMode = DirectorPlacementRule.PlacementMode.NearestNode,
                                 preventOverhead = false,
                                 position = master.GetBody().transform.position,
-                                
-                                
-                            }, Run.instance.treasureRng)); 
-                            
+                            }, Run.instance.treasureRng));
                         }
                     }
                 }
