@@ -58,10 +58,10 @@ namespace GOTCE.Items.Red
             {
                 foreach (ItemDef itemDef in RoR2.ContentManagement.ContentManager._itemDefs)
                 {
-                    if (!woolieTierlist.Contains(ItemDef.tier) && !woolieTierlist.Contains(ItemDef.deprecatedTier) && itemDef != Instance.ItemDef)
+                    if (!woolieTierlist.Contains(ItemDef.tier) && !woolieTierlist.Contains(ItemDef.deprecatedTier) && itemDef != Instance.ItemDef && itemDef != BottledEnigma.Instance.ItemDef)
                     {
                         Debug.Log("item def is " + itemDef);
-                        //self.GiveItem(itemDef);
+                        self.GiveItem(itemDef);
                     }
                 }
             }
