@@ -21,6 +21,7 @@ using GOTCE.Components;
 using SearchableAttribute = HG.Reflection.SearchableAttribute;
 using RoR2.Navigation;
 using GOTCE.Enemies.Skills;
+using GOTCE.Interactables;
 
 [assembly: SearchableAttribute.OptIn]
 
@@ -99,7 +100,17 @@ namespace GOTCE
                     item.Init(Config);
                 }
             }
+            [SystemInitializer(dependencies: typeof(ItemCatalog))]
+            void the() {
+                var interactableTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(InteractableBase)));
 
+                foreach (var interactableType in interactableTypes)
+                {
+                    Debug.Log("Populating interactables...");
+                    InteractableBase inter = (InteractableBase)System.Activator.CreateInstance(interactableType);
+                    inter.Create();
+                }
+            }
             //this section automatically scans the project for all equipment
             var EquipmentTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EquipmentBase)));
 

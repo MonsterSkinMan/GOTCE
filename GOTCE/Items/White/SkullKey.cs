@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Networking;
+using RoR2.Navigation;
 
 namespace GOTCE.Items.White
 {
@@ -47,10 +49,31 @@ namespace GOTCE.Items.White
 
         public void MeWhenWithor(object sender, StageCritEventArgs args)
         {
-            CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
-            if (body.inventory && body.inventory.GetItemCount(ItemDef) > 0)
-            {
-                //ok I don't feel like finishing this rn
+            if (NetworkServer.active) {
+                var instances = PlayerCharacterMasterController.instances;
+                foreach (PlayerCharacterMasterController playerCharacterMaster in instances)
+                {
+                    if (playerCharacterMaster.master.inventory.GetItemCount(ItemDef) > 0) {
+                        int maxLockboxes = playerCharacterMaster.master.inventory.GetItemCount(ItemDef) * 5;
+                        for (int i = 0; i < maxLockboxes; i++) {
+                            CharacterMaster master = playerCharacterMaster.master;
+                            // NodeGraph nodes = SceneInfo.instance.GetNodeGraph(RoR2.Navigation.MapNodeGroup.GraphType.Ground);
+                            // Vector3 pos;
+                            // NodeGraph.NodeIndex node = nodes.FindClosestNodeWithFlagConditions(master.GetBody().transform.position += new Vector3(r1, -2, r2), HullClassification.Human, NodeFlags.None, NodeFlags.None, false);
+                            // nodes.GetNodePosition(node, out pos);
+                            DirectorCore.instance.TrySpawnObject(new DirectorSpawnRequest(Interactables.SkullLockbox.Instance.isc, new DirectorPlacementRule {
+                                minDistance = 2f,
+                                maxDistance = 5f,
+                                placementMode = DirectorPlacementRule.PlacementMode.NearestNode,
+                                preventOverhead = false,
+                                position = master.GetBody().transform.position,
+                                
+                                
+                            }, Run.instance.treasureRng)); 
+                            
+                        }
+                    }
+                }
             }
         }
     }
