@@ -38,7 +38,7 @@ namespace GOTCE.Interactables {
             }
             DirectorAPI.DirectorCardHolder holder = new DirectorAPI.DirectorCardHolder();
             holder.Card = card;
-            DirectorAPI.Helpers.AddNewInteractableToStage(card, category, DirectorAPI.Stage.Custom, "moon1");
+            // DirectorAPI.Helpers.AddNewInteractableToStage(card, category, DirectorAPI.Stage.Custom, "moon1");
         }
 
         public virtual void MakeSpawnCard() {

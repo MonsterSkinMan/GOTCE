@@ -74,6 +74,9 @@ namespace GOTCE.Components
                     // Main.ModLogger.LogDebug("this ran");
                     float stageCritChanceInc = 0;
                     stageCritChanceInc += 10f * body.inventory.GetItemCount(GOTCE.Items.White.FaultySpacetimeClock.Instance.ItemDef);
+                    if (body.inventory.GetItemCount(Items.Green.HeartyBreakfast.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
+                    if (body.inventory.GetItemCount(Items.White.SkullKey.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
+                    if (body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
                     stageCritChance = stageCritChanceInc;
                 }
             };
