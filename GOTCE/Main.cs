@@ -21,6 +21,7 @@ using GOTCE.Components;
 using SearchableAttribute = HG.Reflection.SearchableAttribute;
 using RoR2.Navigation;
 using GOTCE.Enemies.Skills;
+using GOTCE.Interactables;
 
 [assembly: SearchableAttribute.OptIn]
 
@@ -99,7 +100,18 @@ namespace GOTCE
                     item.Init(Config);
                 }
             }
+            [SystemInitializer(dependencies: typeof(ItemCatalog))]
+            void the()
+            {
+                var interactableTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(InteractableBase)));
 
+                foreach (var interactableType in interactableTypes)
+                {
+                    Debug.Log("Populating interactables...");
+                    InteractableBase inter = (InteractableBase)System.Activator.CreateInstance(interactableType);
+                    inter.Create();
+                }
+            }
             //this section automatically scans the project for all equipment
             var EquipmentTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EquipmentBase)));
 
@@ -137,67 +149,7 @@ namespace GOTCE
             Enemies.LivingSuppressiveFire.Create();
             Enemies.CrackedPest.Create();
 
-            RoR2.CharacterBody.onBodyStartGlobal += (body) =>
-            {
-                if (body.baseNameToken == "LIVING_SUPPRESSIVE_FIRE_NAME")
-                {
-                    body.inventory.GiveItem(RoR2.RoR2Content.Items.LunarBadLuck, 1);
-                    //CharacterModel model = body.modelLocator.modelTransform.GetComponent<CharacterModel>();
-                    //model.baseRendererInfos[0].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
-                    //model.baseRendererInfos[1].defaultMaterial = MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
-                }
-                if (body.baseNameToken == "CRACKED_PEST_NAME")
-                {
-                    body.inventory.GiveItem(RoR2Content.Items.Behemoth, 2);
-                    body.gameObject.AddComponent<GOTCE_CrackedComponent>();
-                }
-            };
-
-            CharacterSpawnCard spawncardS = new CharacterSpawnCard()
-            {
-                name = "cscKirn",
-                prefab = Enemies.LivingSuppressiveFire.LivingSuppressiveFireMaster,
-                sendOverNetwork = true,
-                nodeGraphType = MapNodeGroup.GraphType.Air,
-                requiredFlags = NodeFlags.None,
-                forbiddenFlags = NodeFlags.NoCharacterSpawn,
-                directorCreditCost = 20,
-                eliteRules = SpawnCard.EliteRules.Default
-            };
-
-            CharacterSpawnCard spawncardC = new CharacterSpawnCard()
-            {
-                name = "cscCracked",
-                prefab = Enemies.CrackedPest.CrackedPestMaster,
-                sendOverNetwork = true,
-                nodeGraphType = MapNodeGroup.GraphType.Air,
-                requiredFlags = NodeFlags.None,
-                forbiddenFlags = NodeFlags.NoCharacterSpawn,
-                directorCreditCost = 100,
-                eliteRules = SpawnCard.EliteRules.ArtifactOnly
-            };
-
-            DirectorCard directorCardS = new DirectorCard()
-            {
-                spawnCard = spawncardS,
-                spawnDistance = DirectorCore.MonsterSpawnDistance.Standard,
-                selectionWeight = 1,
-                preventOverhead = false
-            };
-            DirectorCard directorCardC = new DirectorCard()
-            {
-                spawnCard = spawncardC,
-                spawnDistance = DirectorCore.MonsterSpawnDistance.Far,
-                selectionWeight = 1,
-                preventOverhead = false
-            };
-
-            R2API.DirectorAPI.Helpers.AddNewMonster(directorCardS, DirectorAPI.MonsterCategory.BasicMonsters);
-            R2API.DirectorAPI.Helpers.RemoveExistingMonsterFromStage("cscKirn", DirectorAPI.Stage.Commencement);
-            R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.SulfurPools);
-            R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.RallypointDelta);
-            R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.AphelianSanctuary);
-            R2API.DirectorAPI.Helpers.AddNewMonsterToStage(directorCardC, DirectorAPI.MonsterCategory.Minibosses, DirectorAPI.Stage.SiphonedForest);
+            Enemies.SetupEnemies.Init();
         }
 
         /// <summary>

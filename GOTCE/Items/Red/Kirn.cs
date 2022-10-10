@@ -53,6 +53,7 @@ namespace GOTCE.Items.Red
                     self.skillLocator.special.SetSkillOverride(self.masterObject, consistency, GenericSkill.SkillOverridePriority.Upgrade);
                 }
             }
+            orig(self);
         }
     }
 }

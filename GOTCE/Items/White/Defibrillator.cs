@@ -1,5 +1,4 @@
-﻿/*
-using BepInEx.Configuration;
+/* using BepInEx.Configuration;
 using GOTCE.Components;
 using R2API;
 using RoR2;
@@ -30,7 +29,7 @@ namespace GOTCE.Items.White
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => null; Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BangSnap.png"); // replace with defibrillator icon
 
         public override void Init(ConfigFile config)
         {
@@ -112,5 +111,4 @@ namespace GOTCE.Items.White
             }
         }
     }
-}
-*/
+} */

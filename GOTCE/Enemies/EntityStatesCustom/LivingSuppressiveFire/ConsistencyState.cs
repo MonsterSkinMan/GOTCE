@@ -75,7 +75,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     minSpread = 1f,
                     maxSpread = 2f,
                     bulletCount = 1u,
-                    damage = base.characterBody.damage * 0.1f,
+                    damage = base.characterBody.damage * 0.13f,
                     force = 30,
                     tracerEffectPrefab = tracerEffectPrefab,
                     // bulletAttack.muzzleName = muzzleName;
@@ -83,7 +83,9 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     isCrit = Util.CheckRoll(critStat, base.characterBody.master),
                     radius = 2,
                     smartCollision = false,
-                    damageType = DamageType.Stun1s
+                    damageType = DamageType.BypassArmor,
+                    falloffModel = BulletAttack.FalloffModel.None,
+                    procCoefficient = 0.05f
                 };
 
                 bulletAttack.Fire();
@@ -96,7 +98,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     minSpread = 90f,
                     maxSpread = 360f,
                     bulletCount = 1u,
-                    damage = base.characterBody.damage * 0.1f,
+                    damage = base.characterBody.damage * 0.13f,
                     force = 300,
                     tracerEffectPrefab = tracerEffectPrefab,
                     // bulletAttack.muzzleName = muzzleName;
@@ -104,7 +106,9 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     isCrit = Util.CheckRoll(critStat, base.characterBody.master),
                     radius = 2,
                     smartCollision = false,
-                    damageType = DamageType.Stun1s
+                    damageType = DamageType.BypassArmor,
+                    falloffModel = BulletAttack.FalloffModel.None,
+                    procCoefficient = 0.05f
                 };
                 bulletAttack2.Fire();
             }

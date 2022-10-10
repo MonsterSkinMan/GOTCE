@@ -23,7 +23,6 @@ namespace GOTCE.Items.White
         public override string ItemFullDescription => "Gain a <style=cIsUtility>10%</style> <style=cStack>(+10% per stack)</style> chance to '<style=cIsUtility>Stage Transition Crit</style>', skipping the next stage.";
 
         public override string ItemLore => "";
-        // private bool shouldCrit = true;
 
         private bool lastStageWasCrit = false;
 
@@ -41,7 +40,6 @@ namespace GOTCE.Items.White
         public override void Init(ConfigFile config)
         {
             base.Init(config);
-            // NetworkingAPI.RegisterMessageType<StageCrit>();
         }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
@@ -67,7 +65,6 @@ namespace GOTCE.Items.White
 
                 if (lastStageWasCrit)
                 {
-                    // NetMessageExtensions.Send(new StageCrit(), NetworkDestination.Clients);
                     EventHandler<StageCritEventArgs> raiseEvent = OnStageCrit;
 
                     if (raiseEvent != null)
@@ -76,14 +73,11 @@ namespace GOTCE.Items.White
                     }
                     lastStageWasCrit = false;
                 }
-                // var instances = PlayerCharacterMasterController.instances;
                 float totalChance = 0f;
-                // Main.ModLogger.LogDebug(Stage.instance.entryTime.timeSince);
                 if (body.gameObject.GetComponent<GOTCE_StatsComponent>())
                 {
                     GOTCE_StatsComponent vars = body.gameObject.GetComponent<GOTCE_StatsComponent>();
                     vars.DetermineStageCrit();
-                    // Main.ModLogger.LogDebug(vars.stageCritChance + " stagecritplayer");
                     totalChance += vars.stageCritChance;
                 };
 
@@ -91,7 +85,6 @@ namespace GOTCE.Items.White
                 {
                     lastStageWasCrit = true;
                     Run.instance.AdvanceStage(Run.instance.nextStageScene);
-                    // NetMessageExtensions.Send(new StageCrit(), NetworkDestination.Server);
                 }
             }
         }
@@ -103,37 +96,4 @@ namespace GOTCE.Items.White
         {
         }
     }
-
-    /* public class StageCrit : INetMessage, ISerializableObject
-    {
-        public void Serialize(NetworkWriter writer)
-        {
-        }
-        public void Deserialize(NetworkReader reader)
-        {
-        }
-        public void OnReceived()
-        {
-            // do things on stage crit here
-            // this will be called on first stage load but the player has no items there so it shouldnt matter
-            if (NetworkServer.active) { // server stuff
-                CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
-                if (body.inventory && body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0) {
-                    if (body.gameObject.GetComponent<GOTCE_StatsComponent>()) {
-                        body.gameObject.GetComponent<GOTCE_StatsComponent>().clockDeathCount += body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef);
-                    }
-                }
-                Main.ModLogger.LogDebug("server received stagecrit");
-            }
-            if (!NetworkServer.active) { // client stuff
-                CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
-                if (body.inventory && body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0) {
-                    if (body.gameObject.GetComponent<GOTCE_StatsComponent>()) {
-                        body.gameObject.GetComponent<GOTCE_StatsComponent>().clockDeathCount += body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef);
-                    }
-                }
-                Main.ModLogger.LogDebug("client received stagecrit");
-            }
-        }
-    } */
 }
