@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2837268980
+CRC: 2673977261
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a54b7047090534f915128081ca1378bd
+    Hash: 2c50d084fb35a1a81577a77806ed0b6b
   TypeTreeHash:
     serializedVersion: 2
     Hash: 51c682616bd7f3dc763b52b2f08205a8
@@ -43,14 +43,12 @@ Assets:
 - Assets/Textures/Icons/Item/HealingScrap.png
 - Assets/Textures/Icons/Artifact/woolifact.png
 - Assets/Textures/Icons/Item/BottledMetamorphosis.png
-- Assets/Textures/Icons/Artifact/artifactofartifact.png
 - Assets/Textures/Icons/Item/NEA.png
 - Assets/Textures/Icons/Item/Yhjtumgrhtfyddc.png
 - Assets/Textures/Icons/Item/bigshoe.png
 - Assets/Textures/Icons/Item/FormlessSand.png
 - Assets/Textures/Icons/Item/corruptedshard.png
 - Assets/Textures/Icons/Item/bottledcommand.png
-- Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png
 - Assets/Textures/Icons/Item/barrierworks.png
 - Assets/Textures/Icons/Item/HealingScrapConsumed.png
 - Assets/Textures/Icons/Item/drill.png
@@ -60,6 +58,7 @@ Assets:
 - Assets/Models/Prefabs/Enemies/livingsuppfire.png
 - Assets/Textures/Icons/Item/tuboflard.png
 - Assets/Textures/Icons/Item/amalgamspoon.png
+- Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png
 - Assets/Textures/Icons/Item/sscnft.png
 - Assets/Textures/Icons/Artifact/artifactofblindnessoff.png
 - Assets/Textures/Icons/Item/tubofbart.png
@@ -75,6 +74,7 @@ Assets:
 - Assets/Textures/Icons/Item/pogo.png
 - Assets/Textures/Icons/Item/galsone.png
 - Assets/Textures/Icons/Item/animalhead.png
+- Assets/Textures/Icons/Artifact/artifactofartifact.png
 - Assets/Textures/Icons/Item/AmberRabbit.png
 - Assets/Textures/Icons/Equipment/BloodGamble.png
 - Assets/Materials/Enemies/tongueMaterial.mat

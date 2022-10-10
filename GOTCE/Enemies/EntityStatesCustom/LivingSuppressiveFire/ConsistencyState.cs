@@ -66,6 +66,9 @@ namespace GOTCE.Enemies.EntityStatesCustom
             // string muzzleName = "MuzzleRight";
             if (base.isAuthority)
             {
+                ProcChainMask behemoth = new ProcChainMask();
+                behemoth.AddProc(ProcType.AACannon);
+                behemoth.AddProc(ProcType.Behemoth); // dont double dip, AACannon alreadu provides a weaker behemoth efect
                 BulletAttack bulletAttack = new()
                 {
                     owner = base.gameObject,
@@ -83,7 +86,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     isCrit = Util.CheckRoll(critStat, base.characterBody.master),
                     radius = 2,
                     smartCollision = false,
-                    damageType = DamageType.BypassArmor,
+                    damageType = DamageType.BypassArmor | DamageType.Stun1s | DamageType.BypassOneShotProtection,
                     falloffModel = BulletAttack.FalloffModel.None,
                     procCoefficient = 0.05f
                 };
@@ -108,9 +111,12 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     smartCollision = false,
                     damageType = DamageType.BypassArmor,
                     falloffModel = BulletAttack.FalloffModel.None,
-                    procCoefficient = 0.05f
+                    procCoefficient = 0.05f,
+                    procChainMask = behemoth,
                 };
-                bulletAttack2.Fire();
+                for (int i = 0; i < 10; i++) {
+                    bulletAttack2.Fire();
+                }
             }
             totalBulletsFired++;
             Util.PlaySound(fireBarrageSoundString, base.gameObject);

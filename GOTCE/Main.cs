@@ -100,7 +100,7 @@ namespace GOTCE
                     item.Init(Config);
                 }
             }
-            [SystemInitializer(dependencies: typeof(ItemCatalog))]
+            [SystemInitializer(dependencies: typeof(ItemCatalog))] // wait until after the catalog initializes to add interactables
             void the()
             {
                 var interactableTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(InteractableBase)));

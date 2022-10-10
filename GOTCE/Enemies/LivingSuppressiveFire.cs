@@ -42,9 +42,12 @@ namespace GOTCE.Enemies
             // Main.ModLogger.LogDebug(model.name);
             model.baseRendererInfos[0].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
             model.baseRendererInfos[1].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat");
-            model.baseRendererInfos[0].renderer.GetComponent<SkinnedMeshRenderer>().sharedMesh = bodyModel.GetComponentInChildren<Mesh>();
+            // Main.ModLogger.LogDebug(model.mainSkinnedMeshRenderer.name);\
             model.baseRendererInfos[1].renderer.gameObject.SetActive(false);
-            // Main.ModLogger.LogDebug(model.mainSkinnedMeshRenderer.name);
+            MeshFilter mesh = GameObject.CreatePrimitive(PrimitiveType.Capsule).GetComponent<MeshFilter>();
+            mesh.transform.localScale += new Vector3(3, 3, 3);
+            model.baseRendererInfos[0].renderer.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = mesh.sharedMesh;
+            
 
             SkillLocator locator = LivingSuppressiveFireObj.GetComponent<SkillLocator>();
             SkillFamily family = ScriptableObject.CreateInstance<SkillFamily>();

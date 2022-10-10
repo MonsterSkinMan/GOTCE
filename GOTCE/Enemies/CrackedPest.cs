@@ -37,13 +37,17 @@ namespace GOTCE.Enemies
 
             body.name = "CrackedPestBody";
 
+            // CharacterModel model = CrackedPestObj.GetComponentInChildren<CharacterModel>();
+            /* model.baseRendererInfos[0].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/crackedPestMaterial.mat");
+            model.baseRendererInfos[1].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/crackedPestMaterial.mat");
+            model.baseRendererInfos[2].defaultMaterial = Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/crackedPestMaterial.mat"); */
+
             SkillLocator locator = CrackedPestObj.GetComponent<SkillLocator>();
             SkillFamily family = ScriptableObject.CreateInstance<SkillFamily>();
             ((ScriptableObject)family).name = "cracked";
             // family.variants = new SkillFamily.Variant[1];
             locator.primary._skillFamily = family;
             locator.primary._skillFamily.variants = new SkillFamily.Variant[1];
-
             SkillDef cracked = Skills.CrackedVerminSpit.Instance.SkillDef;
 
             locator.primary._skillFamily.variants[0] = new SkillFamily.Variant

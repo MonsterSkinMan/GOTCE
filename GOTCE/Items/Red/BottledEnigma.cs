@@ -3,11 +3,13 @@ using R2API;
 using UnityEngine;
 using UnityEngine.Networking;
 using BepInEx.Configuration;
+using UnityEngine.AddressableAssets;
 
 namespace GOTCE.Items.Red
 {
     public class BottledEnigma : ItemBase<BottledEnigma>
     {
+        
         public override string ConfigName => "Bottled Enigma";
 
         public override string ItemName => "Bottled Enigma";
@@ -158,7 +160,59 @@ namespace GOTCE.Items.Red
                         self.CallCmdExecuteIfReady();
                     }
                 }
-            }
+                // the j
+                /* GameObject the;
+                if (true) {
+                    for (int i = 0; i < 69; i++) {
+                        the = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
+                    }
+                    if (true) {
+                        for (int i = 0; i < 69; i++) {
+                            the = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
+                        }
+                        if (true) {
+                            for (int i = 0; i < 69; i++) {
+                                the = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
+                            }
+                            if (true) {
+                                for (int i = 0; i < 69; i++) {
+                                    the = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
+                                }   
+                                if (true) {
+                                    for (int i = 0; i < 69; i++) {
+                                        the = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
+                                    }
+                                    if (!false) {
+                                        for (int i = 0; i < 69; i++) {
+                                            the = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
+                                        }
+                                        if (true) {
+                                            for (int i = 0; i < 69; i++) {
+                                                the = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
+                                            }
+                                            if (true) {
+                                                for (int i = 0; i < 69; i++) {
+                                                    the = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
+                                                }
+                                                if (!false) {
+                                                    for (int i = 0; i < 69; i++) {
+                                                        the = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
+                                                    }
+                                                    if (true) {
+                                                        for (int i = 0; i < 69; i++) {
+                                                            the = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } */
+            } 
         }
     }
 }
