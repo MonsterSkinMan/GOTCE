@@ -161,7 +161,7 @@ namespace GOTCE.Items.Red
                     }
                 }
                 // the j
-                GameObject the;
+                /* GameObject the;
                 if (true) {
                     for (int i = 0; i < 69; i++) {
                         the = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
@@ -211,8 +211,8 @@ namespace GOTCE.Items.Red
                             }
                         }
                     }
-                }
-            }
+                } */
+            } 
         }
     }
 }
