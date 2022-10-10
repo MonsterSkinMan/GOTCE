@@ -1,7 +1,10 @@
 ﻿using BepInEx.Configuration;
 using RoR2;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 
 namespace GOTCE.Artifact
 {
@@ -19,6 +22,7 @@ namespace GOTCE.Artifact
 
         public static RampFog fog;
         public static GameObject ppHolder;
+        private static readonly string[] blacklistedScenes = { "artifactworld", "crystalworld", "eclipseworld", "infinitetowerworld", "intro", "loadingbasic", "lobby", "logbook", "mysteryspace", "outro", "PromoRailGunner", "PromoVoidSurvivor", "splash", "title", "voidoutro" };
 
         public override void Init(ConfigFile config)
         {
@@ -54,12 +58,25 @@ namespace GOTCE.Artifact
         public override void Hooks()
         {
             On.RoR2.SceneDirector.Start += SceneDirector_Start;
+            Run.onRunDestroyGlobal += Run_onRunDestroyGlobal;
+        }
+
+        private void Run_onRunDestroyGlobal(Run obj)
+        {
+            var ppVolume = ppHolder.GetComponent<PostProcessVolume>();
+            var sceneName = SceneManager.GetActiveScene().name;
+            if (!blacklistedScenes.Contains(sceneName))
+            {
+                ppVolume.weight = 0f;
+            }
         }
 
         private void SceneDirector_Start(On.RoR2.SceneDirector.orig_Start orig, SceneDirector self)
         {
             var ppVolume = ppHolder.GetComponent<PostProcessVolume>();
-            if (Instance.ArtifactEnabled)
+
+            var sceneName = SceneManager.GetActiveScene().name;
+            if (Instance.ArtifactEnabled && !blacklistedScenes.Contains(sceneName))
             {
                 ppVolume.weight = 1f;
             }
