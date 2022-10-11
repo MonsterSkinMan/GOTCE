@@ -148,6 +148,7 @@ namespace GOTCE
             Itsgup.OhTheMisery();
             Enemies.LivingSuppressiveFire.Create();
             Enemies.CrackedPest.Create();
+            Enemies.IonSurger.Create();
 
             Enemies.SetupEnemies.Init();
         }
