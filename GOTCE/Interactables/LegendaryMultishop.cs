@@ -8,13 +8,13 @@ namespace GOTCE.Interactables
     internal class LegendaryMultishop : InteractableBase<LegendaryMultishop>
     {
         public override DirectorAPI.InteractableCategory category => DirectorAPI.InteractableCategory.Chests;
-        public GameObject prefab = Object.Instantiate(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/TripleShop/TripleShop.prefab").WaitForCompletion());
+        public GameObject prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/TripleShop/TripleShop.prefab").WaitForCompletion().InstantiateClone("LegendaryTripleShop");
         public Material fuckYouUnity = Object.Instantiate(Addressables.LoadAssetAsync<Material>("RoR2/Base/MultiShopTerminal/matMultishop.mat").WaitForCompletion());
 
         public override void Modify()
         {
             base.Modify();
-            prefab.name = "LegendaryMultishop";
+            // prefab.name = "LegendaryMultishop";
             var tex = fuckYouUnity.mainTexture;
             var pole = prefab.transform.GetChild(4).GetComponent<MeshRenderer>();
             pole.sharedMaterial.mainTexture = tex;
