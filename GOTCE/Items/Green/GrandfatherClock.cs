@@ -5,6 +5,7 @@ using BepInEx.Configuration;
 using GOTCE.Items.White;
 using System;
 using GOTCE.Components;
+using UnityEngine.Networking;
 
 namespace GOTCE.Items.Green
 {
@@ -47,12 +48,19 @@ namespace GOTCE.Items.Green
 
         public void Kill(object sender, StageCritEventArgs args)
         {
-            CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
-            if (body.inventory && body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0)
+            if (NetworkServer.active)
             {
-                if (body.gameObject.GetComponent<GOTCE_StatsComponent>())
+                var instances = PlayerCharacterMasterController.instances;
+                foreach (PlayerCharacterMasterController playerCharacterMaster in instances)
                 {
-                    body.gameObject.GetComponent<GOTCE_StatsComponent>().clockDeathCount += body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef);
+                    if (playerCharacterMaster.master.inventory.GetItemCount(ItemDef) > 0)
+                    {
+                        CharacterBody body = playerCharacterMaster.master.GetBody();
+                        if (body.gameObject.GetComponent<GOTCE_StatsComponent>())
+                        {
+                            body.gameObject.GetComponent<GOTCE_StatsComponent>().clockDeathCount += body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef);
+                        }
+                    }
                 }
             }
         }
