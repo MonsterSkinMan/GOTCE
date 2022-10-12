@@ -34,9 +34,11 @@ namespace GOTCE.Enemies.Minibosses {
             body.levelMaxHealth = 10f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_IONSURGER_NAME";
+            body.subtitleNameToken = "GOTCE_IONSURGER_SUBTITLE";
             body.baseRegen = 0f;
             body.levelRegen = 0f;
             body.bodyFlags |= CharacterBody.BodyFlags.IgnoreFallDamage;
+            body.visionDistance = 2000000f;
         }
         public override void Modify()
         {
@@ -63,6 +65,10 @@ namespace GOTCE.Enemies.Minibosses {
                 ai.shouldSprint = true;
                 ai.skillSlot = SkillSlot.Primary;
             }
+
+            BaseAI baseAI = prefabMaster.GetComponent<BaseAI>();
+            baseAI.enemyAttentionDuration = 100000f;
+            baseAI.fullVision = true;
 
             ReplaceSkill(sl.primary, ion);
             ReplaceSkill(sl.secondary, ion);

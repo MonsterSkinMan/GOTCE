@@ -101,6 +101,14 @@ namespace GOTCE.Enemies {
             }
         }
 
+        public void RelocateMeshTransform(GameObject prefab, Transform transform, bool parent = false) {
+            CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();
+            model.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+            if (parent) {
+                model.transform.SetParent(transform);
+            }
+        }
+
         public void SwapMeshes(GameObject prefab, Mesh mesh, bool all = false, List<int> renders = null) {
             CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();
             if (all) {
@@ -139,12 +147,7 @@ namespace GOTCE.Enemies {
         public void DisableMeshes(GameObject prefab, List<int> renders) {
             CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();
             foreach(int i in renders) {
-                if (model.baseRendererInfos[i].renderer.GetComponentInChildren<SkinnedMeshRenderer>()) {
-                    model.baseRendererInfos[i].renderer.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-                }
-                if (model.baseRendererInfos[i].renderer.GetComponentInChildren<MeshRenderer>()) {
-                    model.baseRendererInfos[i].renderer.GetComponentInChildren<MeshRenderer>().gameObject.SetActive(false);
-                }
+                model.baseRendererInfos[i].renderer.gameObject.SetActive(false);
             }
         }
 

@@ -150,7 +150,7 @@ namespace GOTCE
             }
 
             Itsgup.OhTheMisery();
-            LivingSuppressiveFire.Create();
+            // LivingSuppressiveFire.Create();
             CrackedPest.Create();
             // IonSurger.Create(); // ION SURGER IS BROKEN
 
