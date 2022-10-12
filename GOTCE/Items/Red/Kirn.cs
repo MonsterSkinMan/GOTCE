@@ -18,7 +18,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemPickupDesc => "Even if frags did 2000% with no falloff...";
 
-        public override string ItemFullDescription => "Upgrades all of your skills with <style=cIsDamage>suppressive fire</style>. Increases jump height by 10% (+10% per stack). Corrupts ALL damage items.";
+        public override string ItemFullDescription => "Upgrades all of your skills with <style=cIsDamage>suppressive fire</style>. Increases attack speed by 10% (+10% per stack).";
 
         public override string ItemLore => "";
 
@@ -39,7 +39,6 @@ namespace GOTCE.Items.Red
         {
             On.RoR2.CharacterBody.OnInventoryChanged += GainConsistency;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
-            On.RoR2.Items.ContagiousItemManager.Init += ConsistencyIsBetterThanDamage;
         }
 
         public void GainConsistency(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
@@ -66,20 +65,10 @@ namespace GOTCE.Items.Red
                 var stack = sender.inventory.GetItemCount(Instance.ItemDef);
                 if (stack > 0)
                 {
+                    args.damageMultAdd -= (Mathf.Pow(2f, stack) - 1) / Mathf.Pow(2f, stack);
                     args.attackSpeedMultAdd += 0.1f * stack;
                 }
             }
-        }
-
-        private void ConsistencyIsBetterThanDamage(On.RoR2.Items.ContagiousItemManager.orig_Init orig)
-        {
-            ItemDef.Pair transformation = new ItemDef.Pair()
-            {
-                itemDef1 = RoR2Content.Items.ArmorReductionOnHit,
-                itemDef2 = Instance.ItemDef
-            };
-            ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem] = ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem].AddToArray(transformation);
-            orig();
         }
     }
 }

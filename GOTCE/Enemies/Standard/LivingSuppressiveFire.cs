@@ -32,6 +32,9 @@ namespace GOTCE.Enemies.Standard
 
             body.baseMoveSpeed = 7f;
 
+            body.baseAttackSpeed = 0.7f;
+            body.levelAttackSpeed = 0.15f;
+
             body.baseNameToken = "LIVING_SUPPRESSIVE_FIRE_NAME";
             body.bodyFlags |= CharacterBody.BodyFlags.IgnoreFallDamage;
 

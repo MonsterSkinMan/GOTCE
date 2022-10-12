@@ -25,9 +25,9 @@ namespace GOTCE.Enemies.Bosses {
             body.attackSpeed = 1f;
             body.levelAttackSpeed = 0f;
             body.damage = 20f;
-            body.levelDamage = 7f;
+            body.levelDamage = 4f;
             body.baseMaxHealth = 2000f;
-            body.levelMaxHealth = 200f;
+            body.levelMaxHealth = 600f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLING_NAME";
             body.baseRegen = 0f;
@@ -52,7 +52,7 @@ namespace GOTCE.Enemies.Bosses {
         public override void AddDirectorCard()
         {
             base.AddDirectorCard();
-            card.minimumStageCompletions = 5;
+            card.minimumStageCompletions = 0;
             card.selectionWeight = 1;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
@@ -68,10 +68,12 @@ namespace GOTCE.Enemies.Bosses {
             List<DirectorAPI.Stage> stages = new() {
                 DirectorAPI.Stage.SiphonedForest,
                 DirectorAPI.Stage.AphelianSanctuary,
-                DirectorAPI.Stage.SkyMeadow,
                 DirectorAPI.Stage.VoidLocus,
                 DirectorAPI.Stage.VoidCell,
-                DirectorAPI.Stage.RallypointDelta
+                DirectorAPI.Stage.RallypointDelta,
+                DirectorAPI.Stage.SirensCall,
+                DirectorAPI.Stage.TitanicPlains,
+                DirectorAPI.Stage.AbyssalDepths
             };
             LanguageAPI.Add("GOTCE_VOIDLINGLING_NAME", "Voidlingling");
             LanguageAPI.Add("GOTCE_VOIDLINGLING_LORE", "Literally just Voidling as a teleporter boss.");

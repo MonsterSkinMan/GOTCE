@@ -19,8 +19,8 @@ namespace GOTCE.Enemies.Minibosses
             CrackedPestMaster = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/FlyingVermin/FlyingVerminMaster.prefab").WaitForCompletion(), "CrackedPestMaster");
             // R2API.ContentAddition.AddBody(CrackedPestObj);
             CharacterBody body = CrackedPestObj.GetComponent<CharacterBody>();
-            body.baseDamage = 50f;
-            body.levelDamage = 10f;
+            body.baseDamage = 30f;
+            body.levelDamage = 6f;
 
             body.baseMaxHealth = 150f;
             body.levelMaxHealth = 30f;
@@ -28,6 +28,7 @@ namespace GOTCE.Enemies.Minibosses
             body.baseMoveSpeed = 45f;
 
             body.baseAttackSpeed = 1f;
+            body.levelAttackSpeed = 1f;
 
             body.hasOneShotProtection = true;
 

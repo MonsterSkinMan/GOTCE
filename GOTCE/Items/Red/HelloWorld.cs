@@ -7,13 +7,13 @@ using UnityEngine.Profiling.Memory.Experimental;
 
 namespace GOTCE.Items.Red
 {
-    public class StretPC : ItemBase<StretPC>
+    public class HelloWorld : ItemBase<HelloWorld>
     {
-        public override string ItemName => "Stret PC";
+        public override string ItemName => "Hello World";
 
         public override string ConfigName => ItemName;
 
-        public override string ItemLangTokenName => "GOTCE_StretPC";
+        public override string ItemLangTokenName => "GOTCE_HelloWorld";
 
         public override string ItemPickupDesc => "Double your common items.";
 
