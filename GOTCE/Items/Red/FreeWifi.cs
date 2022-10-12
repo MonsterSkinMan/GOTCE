@@ -18,7 +18,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemPickupDesc => "Unblock orbital skills. Instantly die if picked up again.";
 
-        public override string ItemFullDescription => "Captain can use his orbital skills anywhere. If you have more than 1 stack, you are immediately truekilled";
+        public override string ItemFullDescription => "Captain can use his orbital skills anywhere. If you have more than 1 stack, you are immediately killed";
 
         public override string ItemLore => "";
 
@@ -58,6 +58,11 @@ namespace GOTCE.Items.Red
                             SceneCatalog.GetSceneDefFromSceneName("arena"),
                             SceneCatalog.GetSceneDefFromSceneName("voidstage"),
                             SceneCatalog.GetSceneDefFromSceneName("voidraid"),
+                            SceneCatalog.GetSceneDefFromSceneName("goldshores"),
+                            SceneCatalog.GetSceneDefFromSceneName("artifactworld"),
+                            SceneCatalog.GetSceneDefFromSceneName("limbo"),
+                            SceneCatalog.GetSceneDefFromSceneName("mysteryspace"),
+                            SceneCatalog.GetSceneDefFromSceneName("testscene")
                         };
 
                         foreach (SceneDef scene in scenes) {
