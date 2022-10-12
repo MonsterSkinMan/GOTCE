@@ -7,8 +7,9 @@ using GOTCE;
 using UnityEngine.Scripting;
 using System.Linq;
 using RoR2.CharacterAI;
+using GOTCE.Skills;
 
-namespace GOTCE.Enemies
+namespace GOTCE.Enemies.Standard
 {
     public class LivingSuppressiveFire
     {

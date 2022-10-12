@@ -4,7 +4,7 @@ using UnityEngine;
 using GOTCE;
 using EntityStates.Commando.CommandoWeapon;
 
-namespace GOTCE.Enemies.EntityStatesCustom
+namespace GOTCE.EntityStatesCustom.LivingSuppressiveFire
 {
     public class ConsistencyState : BaseSkillState
     {

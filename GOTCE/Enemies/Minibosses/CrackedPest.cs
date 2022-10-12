@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using RoR2.Skills;
 using UnityEngine.Networking;
+using GOTCE.Skills;
 
-namespace GOTCE.Enemies
+namespace GOTCE.Enemies.Minibosses
 {
     public class CrackedPest
     {

@@ -20,8 +20,12 @@ using UnityEngine.AddressableAssets;
 using GOTCE.Components;
 using SearchableAttribute = HG.Reflection.SearchableAttribute;
 using RoR2.Navigation;
-using GOTCE.Enemies.Skills;
+using GOTCE.Skills;
 using GOTCE.Interactables;
+using GOTCE.Enemies;
+using GOTCE.Enemies.Bosses;
+using GOTCE.Enemies.Minibosses;
+using GOTCE.Enemies.Standard;
 
 [assembly: SearchableAttribute.OptIn]
 
@@ -146,11 +150,21 @@ namespace GOTCE
             }
 
             Itsgup.OhTheMisery();
-            Enemies.LivingSuppressiveFire.Create();
-            Enemies.CrackedPest.Create();
-            Enemies.IonSurger.Create();
+            LivingSuppressiveFire.Create();
+            CrackedPest.Create();
+            // IonSurger.Create(); // ION SURGER IS BROKEN
 
-            Enemies.SetupEnemies.Init();
+            SetupEnemies.Init();
+
+            var enemyTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EnemyBase)));
+
+            foreach (var enemyType in enemyTypes)
+            {
+                Debug.Log("Woolie");
+                EnemyBase enemy = (EnemyBase)System.Activator.CreateInstance(enemyType);
+                // Debug.Log(item.ConfigName);
+                enemy.Create();
+            }
         }
 
         /// <summary>

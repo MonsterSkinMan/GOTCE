@@ -6,7 +6,7 @@ using EntityStates.FlyingVermin.Weapon;
 using UnityEngine.AddressableAssets;
 using RoR2.Projectile;
 
-namespace GOTCE.Enemies.EntityStatesCustom
+namespace GOTCE.EntityStatesCustom.CrackedPest
 {
     public class CrackedVerminSpitState : BaseSkillState
     {

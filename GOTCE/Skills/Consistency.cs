@@ -7,9 +7,10 @@ using UnityEngine.AddressableAssets;
 using System;
 using System.Collections.Generic;
 using EntityStates;
-using GOTCE.Enemies.EntityStatesCustom;
+using GOTCE.EntityStatesCustom.LivingSuppressiveFire;
+using GOTCE.Skills;
 
-namespace GOTCE.Enemies.Skills {
+namespace GOTCE.Skills {
     public class Consistency : SkillBase<Consistency> {
         public override SerializableEntityStateType ActivationState => new SerializableEntityStateType(typeof(ConsistencyState));
         public override string NameToken => "GOTCE_CONSISTENCY_NAME";
@@ -26,7 +27,7 @@ namespace GOTCE.Enemies.Skills {
         public override bool MustKeyPress => false;
         public override int RechargeStock => 1;
         public override int StockToConsume => 0;
-        public override Sprite Icon => null;
+        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
         
     }
 }
