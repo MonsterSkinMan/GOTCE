@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using EntityStates;
 
-namespace GOTCE.Enemies.Bosses {
+namespace GOTCE.Enemies.Minibosses {
     public class Voidlinglingling : EnemyBase<Voidlinglingling> {
         public override string PathToClone => "RoR2/DLC1/VoidRaidCrab/MiniVoidRaidCrabBodyBase.prefab";
         public override string CloneName => "Voidlinglingling";
