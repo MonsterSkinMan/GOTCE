@@ -8,6 +8,9 @@ using UnityEngine.Scripting;
 using System.Linq;
 using RoR2.CharacterAI;
 using GOTCE.Skills;
+using EntityStates;
+using GOTCE.Utils;
+using System.Collections.Generic;
 
 namespace GOTCE.Enemies.Minibosses {
     public class IonSurger : EnemyBase<IonSurger> {
@@ -41,8 +44,25 @@ namespace GOTCE.Enemies.Minibosses {
             master = prefabMaster.GetComponent<CharacterMaster>();
             master.bodyPrefab = prefab;
 
+            DisableSkins(prefab);
+            SwapMaterials(prefab, Addressables.LoadAssetAsync<Material>("RoR2/Base/Common/VFX/matLightningSphere.mat").WaitForCompletion(), true);
+
+            Light light = prefab.AddComponent<Light>();
+            light.color = Color.blue;
+            light.intensity = 250f;
+
             SkillDef ion = IonSurgerSurge.Instance.SkillDef;
             SkillLocator sl = prefab.GetComponent<SkillLocator>();
+
+            foreach (AISkillDriver ai in prefabMaster.GetComponents<AISkillDriver>()) {
+                ai.aimType = AISkillDriver.AimType.AtCurrentEnemy;
+                ai.minDistance = 2;
+                ai.maxDistance = 1000;
+                ai.moveTargetType = AISkillDriver.TargetType.CurrentEnemy;
+                ai.movementType = AISkillDriver.MovementType.ChaseMoveTarget;
+                ai.shouldSprint = true;
+                ai.skillSlot = SkillSlot.Primary;
+            }
 
             ReplaceSkill(sl.primary, ion);
             ReplaceSkill(sl.secondary, ion);
@@ -52,6 +72,7 @@ namespace GOTCE.Enemies.Minibosses {
             LanguageAPI.Add("GOTCE_IONSURGER_NAME", "Ion Surger");
             LanguageAPI.Add("GOTCE_IONSURGER_LORE", "Melee range isn't viable.");
             LanguageAPI.Add("GOTCE_IONSURGER_SUBTITLE", "Horde of Many");
+            
             RegisterEnemy(prefab, prefabMaster, null, DirectorAPI.MonsterCategory.Minibosses, true);
         }
 

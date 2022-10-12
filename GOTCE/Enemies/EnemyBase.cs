@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using EntityStates;
 using UnityEngine.Networking;
+using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 
 // WIP
 
@@ -70,13 +72,11 @@ namespace GOTCE.Enemies {
 
         public void DestroyModelLeftovers(GameObject prefab) {
             GameObject.Destroy(prefab.transform.Find("ModelBase").gameObject);
-            GameObject.Destroy(prefab.transform.Find("CameraPivot").gameObject);
-            GameObject.Destroy(prefab.transform.Find("AimOrigin").gameObject);
         }
 
         public virtual void CreatePrefab() {
             prefab = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToClone).WaitForCompletion(), CloneName + "Body");
-            prefab.GetComponent<NetworkIdentity>().localPlayerAuthority = false;
+            // prefab.GetComponent<NetworkIdentity>().localPlayerAuthority = false;
             prefabMaster = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToCloneMaster).WaitForCompletion(), CloneName + "Master");
         }
 
@@ -91,6 +91,76 @@ namespace GOTCE.Enemies {
             {
                 skillDef = replaceWith
             };
+        }
+
+        public void DisableSkins(GameObject prefab) {
+            CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();
+            if (prefab.GetComponentInChildren<ModelSkinController>()) {
+                ModelSkinController controller = prefab.GetComponentInChildren<ModelSkinController>();
+                controller.enabled = false;
+            }
+        }
+
+        public void SwapMeshes(GameObject prefab, Mesh mesh, bool all = false, List<int> renders = null) {
+            CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();
+            if (all) {
+                foreach(CharacterModel.RendererInfo info in model.baseRendererInfos) {
+                    if (info.renderer.GetComponentInChildren<SkinnedMeshRenderer>()) {
+                        info.renderer.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = mesh;
+                    }
+                }
+            }
+
+            if (renders != null) {
+                foreach(int i in renders) {
+                    if (model.baseRendererInfos[i].renderer.GetComponentInChildren<SkinnedMeshRenderer>()) {
+                        model.baseRendererInfos[i].renderer.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = mesh;
+                    }
+                }
+            }
+
+            if (all) {
+                foreach(CharacterModel.RendererInfo info in model.baseRendererInfos) {
+                    if (info.renderer.GetComponentInChildren<MeshRenderer>()) {
+                        info.renderer.GetComponentInChildren<MeshFilter>().sharedMesh = mesh;
+                    }
+                }
+            }
+
+            if (renders != null) {
+                foreach(int i in renders) {
+                    if (model.baseRendererInfos[i].renderer.GetComponentInChildren<MeshRenderer>()) {
+                        model.baseRendererInfos[i].renderer.GetComponentInChildren<MeshFilter>().sharedMesh = mesh;
+                    }
+                }
+            }
+        }
+
+        public void DisableMeshes(GameObject prefab, List<int> renders) {
+            CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();
+            foreach(int i in renders) {
+                if (model.baseRendererInfos[i].renderer.GetComponentInChildren<SkinnedMeshRenderer>()) {
+                    model.baseRendererInfos[i].renderer.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+                }
+                if (model.baseRendererInfos[i].renderer.GetComponentInChildren<MeshRenderer>()) {
+                    model.baseRendererInfos[i].renderer.GetComponentInChildren<MeshRenderer>().gameObject.SetActive(false);
+                }
+            }
+        }
+
+        public void SwapMaterials(GameObject prefab, Material mat, bool all = false, List<int> renders = null) {
+            CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();
+            if (all) {
+                for (int i = 0; i < model.baseRendererInfos.Length; i++) {
+                    model.baseRendererInfos[i].defaultMaterial = mat;
+                }
+            }
+
+            if (renders != null) {
+                foreach(int i in renders) {
+                    model.baseRendererInfos[i].defaultMaterial = mat;
+                }
+            }
         }
 
     }

@@ -17,8 +17,8 @@ namespace GOTCE.Skills {
         public override string NameToken => "GOTCE_IonSurgerSurge_NAME";
         public override string DescToken => "GOTCE_IonSurgerSurge_DESC";
         public override string ActivationStateMachineName => "Weapon";
-        public override int BaseMaxStock => 10;
-        public override float BaseRechargeInterval => 3f;
+        public override int BaseMaxStock => 1;
+        public override float BaseRechargeInterval => 4f;
         public override bool BeginSkillCooldownOnSkillEnd => true;
         public override bool CancledFromSprinting => false;
         public override bool CancelSprintingOnActivation => true;
@@ -26,7 +26,7 @@ namespace GOTCE.Skills {
         public override InterruptPriority SkillInterruptPriority => InterruptPriority.Any;
         public override bool IsCombatSkill => true;
         public override bool MustKeyPress => true;
-        public override int RechargeStock => 10;
+        public override int RechargeStock => 1;
         public override int StockToConsume => 1;
         public override Sprite Icon => null;
         
