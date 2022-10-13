@@ -27,7 +27,7 @@ namespace GOTCE.Enemies.Minibosses {
             body.damage = 15f;
             body.levelDamage = 3f;
             body.baseMaxHealth = 150f;
-            body.levelMaxHealth = 20f;
+            body.levelMaxHealth = 45f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLINGLING_NAME";
             body.baseRegen = 0f;
@@ -52,7 +52,7 @@ namespace GOTCE.Enemies.Minibosses {
         public override void AddDirectorCard()
         {
             base.AddDirectorCard();
-            card.minimumStageCompletions = 5;
+            card.minimumStageCompletions = 1;
             card.selectionWeight = 1;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
@@ -68,10 +68,12 @@ namespace GOTCE.Enemies.Minibosses {
             List<DirectorAPI.Stage> stages = new() {
                 DirectorAPI.Stage.SiphonedForest,
                 DirectorAPI.Stage.AphelianSanctuary,
-                DirectorAPI.Stage.SkyMeadow,
                 DirectorAPI.Stage.VoidLocus,
                 DirectorAPI.Stage.VoidCell,
-                DirectorAPI.Stage.RallypointDelta
+                DirectorAPI.Stage.RallypointDelta,
+                DirectorAPI.Stage.SirensCall,
+                DirectorAPI.Stage.TitanicPlains,
+                DirectorAPI.Stage.AbyssalDepths
             };
             LanguageAPI.Add("GOTCE_VOIDLINGLINGLING_NAME", "Voidlinglingling");
             LanguageAPI.Add("GOTCE_VOIDLINGLINGLING_LORE", "Literally just Voidling as a miniboss.");

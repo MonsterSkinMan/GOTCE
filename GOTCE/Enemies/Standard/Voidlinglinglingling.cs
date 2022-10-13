@@ -24,10 +24,10 @@ namespace GOTCE.Enemies.Standard {
             body.levelArmor = 0;
             body.attackSpeed = 1f;
             body.levelAttackSpeed = 0f;
-            body.damage = 5f;
+            body.damage = 10f;
             body.levelDamage = 2f;
-            body.baseMaxHealth = 10f;
-            body.levelMaxHealth = 5f;
+            body.baseMaxHealth = 80f;
+            body.levelMaxHealth = 24f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLINGLINGLING_NAME";
             body.baseRegen = 0f;
@@ -37,7 +37,7 @@ namespace GOTCE.Enemies.Standard {
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 5;
+            isc.directorCreditCost = 15;
             isc.eliteRules = SpawnCard.EliteRules.ArtifactOnly;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.None;
@@ -52,7 +52,7 @@ namespace GOTCE.Enemies.Standard {
         public override void AddDirectorCard()
         {
             base.AddDirectorCard();
-            card.minimumStageCompletions = 5;
+            card.minimumStageCompletions = 1;
             card.selectionWeight = 1;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
@@ -68,10 +68,12 @@ namespace GOTCE.Enemies.Standard {
             List<DirectorAPI.Stage> stages = new() {
                 DirectorAPI.Stage.SiphonedForest,
                 DirectorAPI.Stage.AphelianSanctuary,
-                DirectorAPI.Stage.SkyMeadow,
                 DirectorAPI.Stage.VoidLocus,
                 DirectorAPI.Stage.VoidCell,
-                DirectorAPI.Stage.RallypointDelta
+                DirectorAPI.Stage.RallypointDelta,
+                DirectorAPI.Stage.SirensCall,
+                DirectorAPI.Stage.TitanicPlains,
+                DirectorAPI.Stage.AbyssalDepths
             };
             LanguageAPI.Add("GOTCE_VOIDLINGLINGLINGLING_NAME", "Voidlinglinglingling");
             LanguageAPI.Add("GOTCE_VOIDLINGLINGLINGLING_LORE", "Literally just Voidling as a basic enemy.");
