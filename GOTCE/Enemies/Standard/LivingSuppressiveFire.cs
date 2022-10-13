@@ -65,7 +65,7 @@ namespace GOTCE.Enemies.Standard {
             master = prefabMaster.GetComponent<CharacterMaster>();
             master.bodyPrefab = prefab;
 
-            SwapMaterials(prefab, Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat"), true, null);
+            /* SwapMaterials(prefab, Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat"), true, null);
             DisableMeshes(prefab, new List<int> { 1 });
             SwapMeshes(prefab, Utils.MiscUtils.GetMeshFromPrimitive(PrimitiveType.Sphere), true);
 
@@ -73,7 +73,7 @@ namespace GOTCE.Enemies.Standard {
             light.color = Color.yellow;
             light.intensity = 100f;
             light.bounceIntensity = 50f;
-            light.shadows = LightShadows.Hard;
+            light.shadows = LightShadows.Hard; */
 
             foreach(AISkillDriver driver in prefabMaster.GetComponentsInChildren<AISkillDriver>()) {
                 driver.maxDistance = 120f;
@@ -86,7 +86,20 @@ namespace GOTCE.Enemies.Standard {
                 driver.skillSlot = SkillSlot.Primary;
             }
 
-            RelocateMeshTransform(prefab, light.transform, true);
+            // RelocateMeshTransform(prefab, light.transform, true);
+            DestroyModelLeftovers(prefab);
+
+            GameObject modelbase = new("Model Base");
+            modelbase.transform.SetParent(prefab.transform);
+            modelbase.transform.SetPositionAndRotation(prefab.transform.position, prefab.transform.rotation);
+
+            GameObject model = GameObject.Instantiate(Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Enemies/LivingSuppressiveFire/mdlKirn.prefab"));
+            model.transform.SetParent(modelbase.transform);
+            model.transform.SetPositionAndRotation(modelbase.transform.position, modelbase.transform.rotation);
+
+            ModelLocator modelLocator = prefab.GetComponentInChildren<ModelLocator>();
+            modelLocator.modelTransform = model.transform;
+            modelLocator.modelBaseTransform = modelbase.transform;
             
             SkillLocator sl = prefab.GetComponentInChildren<SkillLocator>();
             ReplaceSkill(sl.primary, Skills.Consistency.Instance.SkillDef);

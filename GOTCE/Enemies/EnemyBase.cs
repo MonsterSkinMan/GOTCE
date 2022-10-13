@@ -71,7 +71,7 @@ namespace GOTCE.Enemies {
         }
 
         public void DestroyModelLeftovers(GameObject prefab) {
-            GameObject.Destroy(prefab.transform.Find("ModelBase").gameObject);
+            GameObject.Destroy(prefab.GetComponentInChildren<ModelLocator>().modelBaseTransform.gameObject);
         }
 
         public virtual void CreatePrefab() {

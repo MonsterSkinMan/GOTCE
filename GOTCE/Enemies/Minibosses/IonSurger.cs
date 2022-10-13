@@ -47,11 +47,20 @@ namespace GOTCE.Enemies.Minibosses {
             master.bodyPrefab = prefab;
 
             DisableSkins(prefab);
-            SwapMaterials(prefab, Addressables.LoadAssetAsync<Material>("RoR2/Base/Common/VFX/matLightningSphere.mat").WaitForCompletion(), true);
+            // SwapMaterials(prefab, Addressables.LoadAssetAsync<Material>("RoR2/Base/Common/VFX/matLightningSphere.mat").WaitForCompletion(), true);
+            DestroyModelLeftovers(prefab);
 
-            Light light = prefab.AddComponent<Light>();
-            light.color = Color.blue;
-            light.intensity = 250f;
+            GameObject modelbase = new("Model Base");
+            modelbase.transform.SetParent(prefab.transform);
+            modelbase.transform.SetPositionAndRotation(prefab.transform.position, prefab.transform.rotation);
+
+            GameObject model = GameObject.Instantiate(Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Enemies/IonSurger/mdlIonSurger.prefab"));
+            model.transform.SetParent(modelbase.transform);
+            model.transform.SetPositionAndRotation(modelbase.transform.position, modelbase.transform.rotation);
+
+            ModelLocator modelLocator = prefab.GetComponentInChildren<ModelLocator>();
+            modelLocator.modelTransform = model.transform;
+            modelLocator.modelBaseTransform = modelbase.transform;
 
             SkillDef ion = IonSurgerSurge.Instance.SkillDef;
             SkillLocator sl = prefab.GetComponent<SkillLocator>();
