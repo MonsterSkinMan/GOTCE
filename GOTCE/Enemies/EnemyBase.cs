@@ -166,5 +166,59 @@ namespace GOTCE.Enemies {
             }
         }
 
+        public void SetupModel(GameObject prefab, GameObject model, float turnSpeed = 1200f) {
+            DestroyModelLeftovers(prefab);
+            foreach (HurtBoxGroup hurtboxes in prefab.GetComponentsInChildren<HurtBoxGroup>()) {
+                GameObject.Destroy(hurtboxes);
+            }
+            foreach (HurtBox hurtbox in prefab.GetComponentsInChildren<HurtBox>()) {
+                GameObject.Destroy(hurtbox);
+            }
+
+            GameObject modelbase = new("Model Base");
+            modelbase.transform.SetParent(prefab.transform);
+            modelbase.transform.SetPositionAndRotation(prefab.transform.position, prefab.transform.rotation);
+
+            model.transform.SetParent(modelbase.transform);
+            model.transform.SetPositionAndRotation(modelbase.transform.position, modelbase.transform.rotation);
+
+            ModelLocator modelLocator = prefab.GetComponentInChildren<ModelLocator>();
+            modelLocator.modelTransform = model.transform;
+            modelLocator.modelBaseTransform = modelbase.transform;
+            modelLocator.dontReleaseModelOnDeath = false;
+            modelLocator.dontDetatchFromParent = false;
+            modelLocator.noCorpse = true;
+            modelLocator.preserveModel = false;
+            modelLocator.autoUpdateModelTransform = true;
+
+            CharacterDirection characterDirection = prefab.GetComponent<CharacterDirection>();
+            if (characterDirection) {
+                characterDirection.targetTransform = modelbase.transform;
+                characterDirection.turnSpeed = turnSpeed;
+            }
+
+            CharacterDeathBehavior characterDeathBehavior = prefab.GetComponent<CharacterDeathBehavior>();
+            characterDeathBehavior.deathStateMachine = prefab.GetComponent<EntityStateMachine>();
+            characterDeathBehavior.deathState = new SerializableEntityStateType(typeof(GenericCharacterDeath));
+            
+
+            GameObject.Destroy(prefab.GetComponentInChildren<Animator>());
+
+            model.AddComponent<HurtBoxGroup>();
+
+        }
+
+        public void SetupHurtbox(GameObject prefab, GameObject model, CapsuleCollider collidier, short index, bool weakPoint = false, HurtBox.DamageModifier damageModifier = HurtBox.DamageModifier.Normal) {
+            HurtBoxGroup hurtBoxGroup = model.GetComponent<HurtBoxGroup>();
+
+            HurtBox componentInChildren = collidier.gameObject.AddComponent<HurtBox>();
+            componentInChildren.gameObject.layer = LayerIndex.entityPrecise.intVal;
+            componentInChildren.healthComponent = prefab.GetComponent<HealthComponent>();
+            componentInChildren.isBullseye = weakPoint;
+            componentInChildren.damageModifier = damageModifier;
+            componentInChildren.hurtBoxGroup = hurtBoxGroup;
+            componentInChildren.indexInGroup = index;
+        }
+
     }
 }

@@ -151,7 +151,6 @@ namespace GOTCE
 
             Itsgup.OhTheMisery();
             // LivingSuppressiveFire.Create();
-            CrackedPest.Create();
             // IonSurger.Create(); // ION SURGER IS BROKEN
 
             SetupEnemies.Init();

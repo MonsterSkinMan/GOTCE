@@ -28,7 +28,7 @@ namespace GOTCE.Enemies.Minibosses {
             body.levelArmor = 0;
             body.attackSpeed = 1f;
             body.levelAttackSpeed = 0f;
-            body.damage = 15f;
+            body.damage = 3f;
             body.levelDamage = 3f;
             body.baseMaxHealth = 600f;
             body.levelMaxHealth = 180f;
@@ -48,19 +48,23 @@ namespace GOTCE.Enemies.Minibosses {
 
             DisableSkins(prefab);
             // SwapMaterials(prefab, Addressables.LoadAssetAsync<Material>("RoR2/Base/Common/VFX/matLightningSphere.mat").WaitForCompletion(), true);
-            DestroyModelLeftovers(prefab);
-
-            GameObject modelbase = new("Model Base");
-            modelbase.transform.SetParent(prefab.transform);
-            modelbase.transform.SetPositionAndRotation(prefab.transform.position, prefab.transform.rotation);
-
+            // DestroyModelLeftovers(prefab);
             GameObject model = GameObject.Instantiate(Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Enemies/IonSurger/mdlIonSurger.prefab"));
-            model.transform.SetParent(modelbase.transform);
-            model.transform.SetPositionAndRotation(modelbase.transform.position, modelbase.transform.rotation);
+            SetupModel(prefab, model);
 
-            ModelLocator modelLocator = prefab.GetComponentInChildren<ModelLocator>();
-            modelLocator.modelTransform = model.transform;
-            modelLocator.modelBaseTransform = modelbase.transform;
+            CapsuleCollider box1 = model.transform.Find("RightHitbox").gameObject.GetComponent<CapsuleCollider>();
+            CapsuleCollider boxweak = model.transform.Find("LeftHitbox").gameObject.GetComponent<CapsuleCollider>();
+
+            SetupModel(prefab, model);
+            SetupHurtbox(prefab, model, box1, 0);
+            SetupHurtbox(prefab, model, boxweak, 1, true, HurtBox.DamageModifier.SniperTarget);
+
+            model.GetComponent<HurtBoxGroup>().hurtBoxes = new HurtBox[] {
+                box1.gameObject.GetComponent<HurtBox>(),
+                boxweak.gameObject.GetComponent<HurtBox>()
+            };
+            model.GetComponent<HurtBoxGroup>().bullseyeCount = 1;
+            model.GetComponent<HurtBoxGroup>().mainHurtBox = box1.gameObject.GetComponent<HurtBox>();
 
             SkillDef ion = IonSurgerSurge.Instance.SkillDef;
             SkillLocator sl = prefab.GetComponent<SkillLocator>();

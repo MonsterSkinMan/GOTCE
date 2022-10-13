@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2080600991
+CRC: 772077180
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 52edb8f3070419b5684df6beec68aa11
+    Hash: 411d690d85a64a39c50a7a7e176c526e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 947c5e20f10c3379f3c8ea0bdfaaa8f3
+    Hash: 1572d93b9eefe5749d515c98c4fb318b
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -27,11 +27,17 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 65
   Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
 - Class: 95
   Script: {instanceID: 0}
 - Class: 108
   Script: {instanceID: 0}
-- Class: 135
+- Class: 136
   Script: {instanceID: 0}
 - Class: 137
   Script: {instanceID: 0}
@@ -66,7 +72,7 @@ Assets:
 - Assets/Textures/Icons/Item/spafnarsfries.png
 - Assets/Materials/Item/MoldySteak/matSteak.mat
 - Assets/Textures/Icons/Item/shittyvisage.png
-- Assets/Models/Prefabs/Enemies/LivingSuppressiveFire/livingsuppfire.png
+- Assets/Models/Prefabs/Enemies/livingsuppfire.png
 - Assets/Textures/Icons/Item/tuboflard.png
 - Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png
 - Assets/Textures/Icons/Item/sscnft.png
@@ -86,6 +92,7 @@ Assets:
 - Assets/Textures/Icons/Item/BangSnap.png
 - Assets/Textures/Icons/Item/galsone.png
 - Assets/Textures/Icons/Item/animalhead.png
+- Assets/Models/Prefabs/Enemies/CrackedPest/mdlCrackedPest.prefab
 - Assets/Textures/Icons/Artifact/artifactofartifact.png
 - Assets/Textures/Icons/Item/AmberRabbit.png
 - Assets/Textures/Icons/Item/amalgamspoon.png

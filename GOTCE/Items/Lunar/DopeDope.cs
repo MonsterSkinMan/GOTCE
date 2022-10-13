@@ -1,5 +1,4 @@
-﻿/*
-using BepInEx.Configuration;
+﻿using BepInEx.Configuration;
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -51,11 +50,10 @@ namespace GOTCE.Items.Lunar
                 if (stack > 0)
                 {
                     args.shieldMultAdd += 2f * stack;
-                    args.baseAttackSpeedAdd += sender.damage;
-                    args.damageMultAdd -= 1f;
+                    args.baseAttackSpeedAdd = sender.damage;
+                    args.baseDamageAdd =- sender.damage + 1;
                 }
             }
         }
     }
 }
-*/

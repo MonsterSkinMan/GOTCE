@@ -65,15 +65,29 @@ namespace GOTCE.Enemies.Standard {
             master = prefabMaster.GetComponent<CharacterMaster>();
             master.bodyPrefab = prefab;
 
-            /* SwapMaterials(prefab, Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat"), true, null);
-            DisableMeshes(prefab, new List<int> { 1 });
-            SwapMeshes(prefab, Utils.MiscUtils.GetMeshFromPrimitive(PrimitiveType.Sphere), true);
+            // SwapMaterials(prefab, Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat"), true, null);
+            // DisableMeshes(prefab, new List<int> { 1 });
+            // SwapMeshes(prefab, Utils.MiscUtils.GetMeshFromPrimitive(PrimitiveType.Sphere), true);
 
-            Light light = prefab.AddComponent<Light>();
-            light.color = Color.yellow;
-            light.intensity = 100f;
-            light.bounceIntensity = 50f;
-            light.shadows = LightShadows.Hard; */
+            GameObject model = Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Enemies/LivingSuppressiveFire/mdlKirn.prefab");
+            CapsuleCollider box1 = model.transform.Find("BarrelHitbox").gameObject.GetComponent<CapsuleCollider>();
+            CapsuleCollider box2 = model.transform.Find("HandleHitbox").gameObject.GetComponent<CapsuleCollider>();
+            CapsuleCollider boxweak = model.transform.Find("WeakPointHitbox").gameObject.GetComponent<CapsuleCollider>();
+
+            SetupModel(prefab, model);
+            SetupHurtbox(prefab, model, box1, 0);
+            SetupHurtbox(prefab, model, box2, 1);
+            SetupHurtbox(prefab, model, boxweak, 2, true, HurtBox.DamageModifier.SniperTarget);
+
+            model.GetComponent<HurtBoxGroup>().hurtBoxes = new HurtBox[] {
+                box1.gameObject.GetComponent<HurtBox>(),
+                box2.gameObject.GetComponent<HurtBox>(),
+                boxweak.gameObject.GetComponent<HurtBox>()
+            };
+
+            model.GetComponent<HurtBoxGroup>().bullseyeCount = 1;
+            model.GetComponent<HurtBoxGroup>().mainHurtBox = box1.gameObject.GetComponent<HurtBox>();
+
 
             foreach(AISkillDriver driver in prefabMaster.GetComponentsInChildren<AISkillDriver>()) {
                 driver.maxDistance = 120f;
@@ -86,20 +100,6 @@ namespace GOTCE.Enemies.Standard {
                 driver.skillSlot = SkillSlot.Primary;
             }
 
-            // RelocateMeshTransform(prefab, light.transform, true);
-            DestroyModelLeftovers(prefab);
-
-            GameObject modelbase = new("Model Base");
-            modelbase.transform.SetParent(prefab.transform);
-            modelbase.transform.SetPositionAndRotation(prefab.transform.position, prefab.transform.rotation);
-
-            GameObject model = GameObject.Instantiate(Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Enemies/LivingSuppressiveFire/mdlKirn.prefab"));
-            model.transform.SetParent(modelbase.transform);
-            model.transform.SetPositionAndRotation(modelbase.transform.position, modelbase.transform.rotation);
-
-            ModelLocator modelLocator = prefab.GetComponentInChildren<ModelLocator>();
-            modelLocator.modelTransform = model.transform;
-            modelLocator.modelBaseTransform = modelbase.transform;
             
             SkillLocator sl = prefab.GetComponentInChildren<SkillLocator>();
             ReplaceSkill(sl.primary, Skills.Consistency.Instance.SkillDef);
