@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2673977261
+CRC: 2080600991
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2c50d084fb35a1a81577a77806ed0b6b
+    Hash: 52edb8f3070419b5684df6beec68aa11
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 51c682616bd7f3dc763b52b2f08205a8
+    Hash: 947c5e20f10c3379f3c8ea0bdfaaa8f3
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -27,12 +27,21 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 65
   Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 135
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Models/Raw Models/LivingSuppMesh.fbx
 - Assets/Materials/Enemies/kirnMaterial.mat
+- Assets/Textures/Icons/Item/heartybreakfast.png
 - Assets/Materials/Item/MonstersVisage/MonstersVisageMaterial.mat
 - Assets/Textures/Icons/Item/zanysoup.png
 - Assets/Textures/Icons/Artifact/disabledfear.png
@@ -41,25 +50,27 @@ Assets:
 - Assets/Textures/Icons/Item/kirn.png
 - Assets/Textures/Icons/Item/faultyspacetimeclock.png
 - Assets/Textures/Icons/Item/HealingScrap.png
+- Assets/Models/Prefabs/Item/LunarGat/mdlGoldGat.prefab
 - Assets/Textures/Icons/Artifact/woolifact.png
 - Assets/Textures/Icons/Item/BottledMetamorphosis.png
+- Assets/Textures/Icons/Item/memoriesofmisery.png
 - Assets/Textures/Icons/Item/NEA.png
-- Assets/Textures/Icons/Item/Yhjtumgrhtfyddc.png
 - Assets/Textures/Icons/Item/bigshoe.png
 - Assets/Textures/Icons/Item/FormlessSand.png
 - Assets/Textures/Icons/Item/corruptedshard.png
 - Assets/Textures/Icons/Item/bottledcommand.png
 - Assets/Textures/Icons/Item/barrierworks.png
+- Assets/Models/Prefabs/Enemies/IonSurger/mdlIonSurger.prefab
 - Assets/Textures/Icons/Item/HealingScrapConsumed.png
 - Assets/Textures/Icons/Item/drill.png
 - Assets/Textures/Icons/Item/spafnarsfries.png
 - Assets/Materials/Item/MoldySteak/matSteak.mat
 - Assets/Textures/Icons/Item/shittyvisage.png
-- Assets/Models/Prefabs/Enemies/livingsuppfire.png
+- Assets/Models/Prefabs/Enemies/LivingSuppressiveFire/livingsuppfire.png
 - Assets/Textures/Icons/Item/tuboflard.png
-- Assets/Textures/Icons/Item/amalgamspoon.png
 - Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png
 - Assets/Textures/Icons/Item/sscnft.png
+- Assets/Textures/Icons/Item/Yhjtumgrhtfyddc.png
 - Assets/Textures/Icons/Artifact/artifactofblindnessoff.png
 - Assets/Textures/Icons/Item/tubofbart.png
 - Assets/Textures/Icons/Item/backuphammer.png
@@ -67,15 +78,17 @@ Assets:
 - Assets/Textures/Icons/Item/GrandfatherClock.png
 - Assets/Models/Prefabs/Item/Drill/Cube.prefab
 - Assets/Materials/Item/MoldySteak/MoldySteakmaterial.mat
+- Assets/Models/Prefabs/Enemies/LivingSuppressiveFire/mdlKirn.prefab
 - Assets/Textures/Icons/Item/MoldySteak.png
 - Assets/Textures/Icons/Artifact/artifactofblindnesson.png
 - Assets/Textures/Icons/Item/skullkey.png
-- Assets/Textures/Icons/Item/BangSnap.png
 - Assets/Textures/Icons/Item/pogo.png
+- Assets/Textures/Icons/Item/BangSnap.png
 - Assets/Textures/Icons/Item/galsone.png
 - Assets/Textures/Icons/Item/animalhead.png
 - Assets/Textures/Icons/Artifact/artifactofartifact.png
 - Assets/Textures/Icons/Item/AmberRabbit.png
+- Assets/Textures/Icons/Item/amalgamspoon.png
 - Assets/Textures/Icons/Equipment/BloodGamble.png
 - Assets/Materials/Enemies/tongueMaterial.mat
 Dependencies: []

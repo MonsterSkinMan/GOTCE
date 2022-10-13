@@ -44,6 +44,7 @@ namespace GOTCE.Equipment
         public virtual bool IsBoss { get; } = false;
 
         public virtual bool IsLunar { get; } = false;
+        public virtual bool CanBeRandomlyTriggered { get; }= false;
 
         public EquipmentDef EquipmentDef;
 
@@ -92,6 +93,7 @@ namespace GOTCE.Equipment
             EquipmentDef.enigmaCompatible = EnigmaCompatible;
             EquipmentDef.isBoss = IsBoss;
             EquipmentDef.isLunar = IsLunar;
+            EquipmentDef.canBeRandomlyTriggered = CanBeRandomlyTriggered;
 
             ItemAPI.Add(new CustomEquipment(EquipmentDef, CreateItemDisplayRules()));
             On.RoR2.EquipmentSlot.PerformEquipmentAction += PerformEquipmentAction;
