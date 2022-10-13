@@ -9,7 +9,7 @@ namespace GOTCE.Equipment
 {
     public class LunarCrunder : EquipmentBase<LunarCrunder>
     {
-        public override string EquipmentName => "Crowdfunder 2.0";
+        public override string EquipmentName => "The Crowdfunder 2";
 
         public override string EquipmentLangTokenName => "GOTCE_LunarCrunder";
 

@@ -26,8 +26,8 @@ namespace GOTCE.Enemies.Minibosses {
             body.levelAttackSpeed = 0f;
             body.damage = 15f;
             body.levelDamage = 3f;
-            body.baseMaxHealth = 150f;
-            body.levelMaxHealth = 45f;
+            body.baseMaxHealth = 400f;
+            body.levelMaxHealth = 120f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLINGLING_NAME";
             body.baseRegen = 0f;

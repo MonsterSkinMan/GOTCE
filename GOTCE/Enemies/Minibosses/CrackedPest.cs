@@ -23,7 +23,7 @@ namespace GOTCE.Enemies.Minibosses
             body.levelDamage = 6f;
 
             body.baseMaxHealth = 150f;
-            body.levelMaxHealth = 30f;
+            body.levelMaxHealth = 45f;
 
             body.baseMoveSpeed = 45f;
 
