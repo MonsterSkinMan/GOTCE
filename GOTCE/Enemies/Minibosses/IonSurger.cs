@@ -98,7 +98,7 @@ namespace GOTCE.Enemies.Minibosses {
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 50;
+            isc.directorCreditCost = 80;
             isc.eliteRules = SpawnCard.EliteRules.ArtifactOnly;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;

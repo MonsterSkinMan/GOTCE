@@ -26,8 +26,8 @@ namespace GOTCE.Enemies.Standard {
             body.levelArmor = 0;
             body.attackSpeed = 1f;
             body.levelAttackSpeed = 0f;
-            body.damage = 7.5f;
-            body.levelDamage = 2f;
+            body.damage = 5.5f;
+            body.levelDamage = 1.1f;
             body.baseMaxHealth = 25f;
             body.levelMaxHealth = 5f;
             body.autoCalculateLevelStats = true;
