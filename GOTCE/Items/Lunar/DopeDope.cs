@@ -1,4 +1,4 @@
-﻿/*
+﻿
 using BepInEx.Configuration;
 using R2API;
 using RoR2;
@@ -53,9 +53,9 @@ namespace GOTCE.Items.Lunar
                     args.shieldMultAdd += 2f * stack;
                     args.baseAttackSpeedAdd += sender.damage;
                     args.damageMultAdd -= 1f;
+                    args.baseDamageAdd += 1f;
                 }
             }
         }
     }
 }
-*/

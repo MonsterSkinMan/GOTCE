@@ -2,12 +2,13 @@
 using R2API;
 using RoR2;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.Networking;
-using KinematicCharacterController;
 
 namespace GOTCE.Items.Lunar
 {
+    //TODO:
+
+    // cache movement keybinds at the start of every run, and set them in fixedupdate to prevent cheese
+
     public class MemoriesOfMisery : ItemBase<MemoriesOfMisery>
     {
         public override string ConfigName => "Memories of Misery";

@@ -22,7 +22,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemPickupDesc => "Seems to do nothing... <color=#FF7F7F>BUT seems to do nothing...</color>\n";
 
-        public override string ItemFullDescription => "Your attacks have a <style=cIsDamage>50%</style> <style=cStack>(+50% per stack)</style> chance to <style=cIsDamage>instantly kill</style> an enemy. The game has a <style=cIsHealth>0.3%</style> chance to <style=cIsHealth>crash</style> every second.";
+        public override string ItemFullDescription => "Your attacks have a <style=cIsDamage>50%</style> <style=cStack>(+50% per stack)</style> chance to <style=cIsDamage>instantly kill</style> an enemy. The game has a <style=cIsHealth>0.5%</style> chance to <style=cIsHealth>crash</style> every second.";
 
         public override string ItemLore => "";
 
@@ -115,7 +115,7 @@ namespace GOTCE.Items.Lunar
 
         private void FixedUpdate()
         {
-            if (Util.CheckRoll(0.3f))
+            if (Util.CheckRoll(0.5f))
             {
                 shouldCrash = true;
             }

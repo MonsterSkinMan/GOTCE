@@ -4,16 +4,17 @@ using UnityEngine;
 using UnityEngine.Networking;
 using BepInEx.Configuration;
 using UnityEngine.Profiling.Memory.Experimental;
+using System.Reflection;
 
 namespace GOTCE.Items.Red
 {
-    public class StretPC : ItemBase<StretPC>
+    public class HelloWorld : ItemBase<HelloWorld>
     {
-        public override string ItemName => "Stret PC";
+        public override string ItemName => "Hello World";
 
         public override string ConfigName => ItemName;
 
-        public override string ItemLangTokenName => "GOTCE_StretPC";
+        public override string ItemLangTokenName => "GOTCE_HelloWorld";
 
         public override string ItemPickupDesc => "Double your common items.";
 
@@ -42,7 +43,23 @@ namespace GOTCE.Items.Red
         public override void Hooks()
         {
             On.RoR2.Inventory.GiveItem_ItemIndex_int += Increase;
+            On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+        }
+
+        private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
+        {
+            orig(self, itemIndex, count);
+            if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
+            {
+                foreach (ItemIndex itemIndex2 in self.itemAcquisitionOrder)
+                {
+                    if (ItemCatalog.GetItemDef(itemIndex2).tier == ItemTier.Tier1 || ItemCatalog.GetItemDef(itemIndex2).deprecatedTier == ItemTier.Tier1)
+                    {
+                        self.RemoveItem(itemIndex2);
+                    }
+                }
+            }
         }
 
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)

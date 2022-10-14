@@ -17,7 +17,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemPickupDesc => "Even if frags did 2000% with no falloff...";
 
-        public override string ItemFullDescription => "Upgrades all of your skills with <style=cIsDamage>suppressive fire</style>.";
+        public override string ItemFullDescription => "<style=cIsUtility>Upgrades</style> all of your skills with <style=cIsDamage>suppressive fire</style>.";
 
         public override string ItemLore => "";
 

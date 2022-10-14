@@ -1,7 +1,8 @@
-﻿/*
-using BepInEx.Configuration;
+﻿using BepInEx.Configuration;
+using MonoMod.Cil;
 using R2API;
 using RoR2;
+using System;
 using UnityEngine;
 
 namespace GOTCE.Items.Lunar
@@ -37,11 +38,30 @@ namespace GOTCE.Items.Lunar
         {
             return new ItemDisplayRuleDict(null);
         }
+
         public override void Hooks()
         {
-            On.RoR2.PlayerCharacterMasterController.FixedUpdate += PlayerCharacterMasterController_FixedUpdate;
-            On.RoR2.PlayerCharacterMasterController.Update += PlayerCharacterMasterController_Update;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+            IL.RoR2.PlayerCharacterMasterController.Update += PlayerCharacterMasterController_Update;
+        }
+
+        private static bool shouldRun = false;
+
+        private void PlayerCharacterMasterController_Update(ILContext il)
+        {
+            ILCursor c = new(il);
+
+            if (c.TryGotoNext(MoveType.Before,
+                x => x.MatchLdcI4(0),
+                x => x.MatchCallOrCallvirt(typeof(Rewired.Player).GetMethod("GetAxis", new Type[] { typeof(int) })),
+                x => x.MatchLdloc(out _),
+                x => x.MatchLdcI4(1)
+                ) && shouldRun)
+            {
+                c.Next.Operand = 1;
+                c.Index += 3;
+                c.Next.Operand = 0;
+            }
         }
 
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
@@ -53,30 +73,9 @@ namespace GOTCE.Items.Lunar
                 {
                     args.damageMultAdd += 0.6f + 0.4f * (stack - 1);
                     args.cooldownMultAdd += 0f + 0.35f * (stack - 1);
+                    shouldRun = true;
                 }
-            }
-        }
-
-        private bool hasItem = false;
-
-        private void PlayerCharacterMasterController_FixedUpdate(On.RoR2.PlayerCharacterMasterController.orig_FixedUpdate orig, PlayerCharacterMasterController self)
-        {
-            orig(self);
-            var body = self.gameObject.GetComponent<CharacterMaster>().GetBody();
-            if (body && body.inventory && body.inventory.GetItemCount(Instance.ItemDef) > 0)
-            {
-                hasItem = true;
-            }
-        }
-
-        private void PlayerCharacterMasterController_Update(On.RoR2.PlayerCharacterMasterController.orig_Update orig, PlayerCharacterMasterController self)
-        {
-            orig(self);
-            if (hasItem)
-            {
-                self.bodyInputs.aimDirection = -self.bodyInputs.aimDirection;
             }
         }
     }
 }
-*/

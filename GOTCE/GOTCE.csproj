@@ -97,12 +97,7 @@
       <Private>false</Private>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <when Condition="Exists('~/.steam/steam/steamapps/common/Risk of Rain 2/Risk of Rain 2_Data/Managed/Unity.Postprocessing.Runtime.dll')">
-        <HintPath>~/.steam/steam/steamapps/common/Risk of Rain 2/Risk of Rain 2_Data/Managed/Unity.Postprocessing.Runtime.dll</HintPath>
-      </when>
-      <otherwise>
-        <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\Unity.Postprocessing.Runtime.dll</HintPath>
-      </otherwise>
+      <HintPath>P:\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
