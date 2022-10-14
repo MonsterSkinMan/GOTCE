@@ -114,7 +114,8 @@ namespace GOTCE.EntityStatesCustom.LivingSuppressiveFire
                     procCoefficient = 0.05f,
                     procChainMask = behemoth,
                 };
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < 10; i++)
+                {
                     bulletAttack2.Fire();
                 }
             }
