@@ -9,7 +9,6 @@ namespace GOTCE.Items.Red
 {
     public class BottledEnigma : ItemBase<BottledEnigma>
     {
-        
         public override string ConfigName => "Bottled Enigma";
 
         public override string ItemName => "Bottled Enigma";
@@ -177,7 +176,7 @@ namespace GOTCE.Items.Red
                             if (true) {
                                 for (int i = 0; i < 69; i++) {
                                     the = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
-                                }   
+                                }
                                 if (true) {
                                     for (int i = 0; i < 69; i++) {
                                         the = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
@@ -212,7 +211,7 @@ namespace GOTCE.Items.Red
                         }
                     }
                 } */
-            } 
+            }
         }
     }
 }

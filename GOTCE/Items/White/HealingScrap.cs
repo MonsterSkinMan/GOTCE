@@ -48,9 +48,11 @@ namespace GOTCE.Items.White
 
         private void Inventory_RemoveItem_ItemDef_int(On.RoR2.Inventory.orig_RemoveItem_ItemDef_int orig, Inventory self, ItemDef itemDef, int count)
         {
-            if (self.gameObject.GetComponent<CharacterBody>()) {
+            if (self.gameObject.GetComponent<CharacterBody>())
+            {
                 CharacterBody body = self.gameObject.GetComponent<CharacterBody>();
-                if (itemDef == ItemDef) {
+                if (itemDef == ItemDef)
+                {
                     self.GiveItem(GOTCE.Items.NoTier.HealingScrapConsumed.Instance.ItemDef, count);
                     CharacterMasterNotificationQueue.SendTransformNotification(body.master, itemDef.itemIndex, NoTier.HealingScrapConsumed.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
                 }

@@ -15,11 +15,10 @@ namespace GOTCE.Interactables
         {
             base.Modify();
             prefab.name = "LegendaryTripleShop";
-
-            var texture = fuckYouUnity.mainTexture;
+            fuckYouUnity.name = "matLegendaryMultiShop";
             var pole = prefab.transform.GetChild(4).GetComponent<MeshRenderer>();
             pole.name = "mdlLegendaryMultiShopTerminalCenter";
-            pole.sharedMaterial.mainTexture = texture;
+            pole.sharedMaterial = fuckYouUnity;
             pole.sharedMaterial.color = new Color32(107, 40, 41, 255);
 
             var multiShopController = prefab.GetComponent<MultiShopController>();
@@ -28,7 +27,7 @@ namespace GOTCE.Interactables
             terminalPrefab.name = "LegendaryMultiShopTerminal";
 
             var skinnedMeshRenderer = terminalPrefab.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>();
-            skinnedMeshRenderer.sharedMaterials[0].mainTexture = texture;
+            skinnedMeshRenderer.sharedMaterials[0] = fuckYouUnity;
             skinnedMeshRenderer.sharedMaterials[0].color = new Color32(107, 40, 41, 255);
 
             var purchaseInteraction = terminalPrefab.GetComponent<PurchaseInteraction>();
@@ -56,16 +55,18 @@ namespace GOTCE.Interactables
             isc.name = "iscLegendaryMultishop";
             isc.prefab = prefab;
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Ground;
-            isc.hullSize = HullClassification.Golem;
+            isc.hullSize = HullClassification.Human;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.None;
-            isc.forbiddenFlags = RoR2.Navigation.NodeFlags.None;
-            isc.directorCreditCost = 1;
+            isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoChestSpawn;
+            isc.directorCreditCost = 120;
             isc.occupyPosition = true;
-            isc.orientToFloor = true;
+            isc.orientToFloor = false;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.skipSpawnWhenSacrificeArtifactEnabled = true;
-            isc.slightlyRandomizeOrientation = true;
-            isc.maxSpawnsPerStage = 69;
+            isc.weightScalarWhenSacrificeArtifactEnabled = 0f;
+            isc.slightlyRandomizeOrientation = false;
+            isc.maxSpawnsPerStage = 1;
+            isc.sendOverNetwork = true;
         }
     }
 }

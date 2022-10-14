@@ -43,19 +43,22 @@ namespace GOTCE.Interactables
         public override void MakeSpawnCard()
         {
             base.MakeSpawnCard();
-            isc.directorCreditCost = 10000;
+            isc.directorCreditCost = 0;
             isc.name = "iscUlley";
             isc.prefab = prefab;
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Ground;
             isc.hullSize = HullClassification.Human;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.None;
-            isc.forbiddenFlags = RoR2.Navigation.NodeFlags.None;
+            isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoChestSpawn;
             isc.directorCreditCost = 0;
             isc.occupyPosition = true;
             isc.orientToFloor = true;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.skipSpawnWhenSacrificeArtifactEnabled = false;
             isc.slightlyRandomizeOrientation = true;
+            isc.maxSpawnsPerStage = -1;
+            isc.weightScalarWhenSacrificeArtifactEnabled = 1f;
+            isc.sendOverNetwork = true;
         }
     }
 
