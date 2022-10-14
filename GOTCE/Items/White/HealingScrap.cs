@@ -19,7 +19,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "Prioritized when used with Common 3D Printers. Usable once per stage.";
 
-        public override string ItemFullDescription => "Literally just Regenerating Scrap but as a Common item.";
+        public override string ItemFullDescription => "Literally just Regenerating Scrap but as a <style=cSub>common item</style>.";
 
         public override string ItemLore => "there is no lore this is literally just regen scrap but as a common item I don't know what you were expecting";
 

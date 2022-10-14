@@ -10,7 +10,7 @@ namespace GOTCE.Items.Red
 {
     public class FreeWifi : ItemBase<FreeWifi>
     {
-        public override string ItemName => "Free Wifi";
+        public override string ItemName => "Free WiFi";
 
         public override string ConfigName => ItemName;
 
@@ -18,7 +18,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemPickupDesc => "Unblock orbital skills. Instantly die if picked up again.";
 
-        public override string ItemFullDescription => "Captain can use his orbital skills anywhere. If you have more than 1 stack, you are immediately killed";
+        public override string ItemFullDescription => "Captain can use his <style=cIsUtility>orbital skills</style> anywhere. <style=cIsHealth>Die</style> 0 <style=cStack>(+1 per stack)</style> times.";
 
         public override string ItemLore => "";
 
@@ -40,19 +40,24 @@ namespace GOTCE.Items.Red
             On.RoR2.CharacterBody.OnInventoryChanged += Hopoo;
         }
 
-        public void Hopoo(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self) {
-            if (NetworkServer.active) {
-                if (self.isPlayerControlled) {
+        public void Hopoo(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
+        {
+            if (NetworkServer.active)
+            {
+                if (self.isPlayerControlled)
+                {
                     // SkillLocator sl = self.skillLocator;
-                    if (self.inventory.GetItemCount(ItemDef) > 0) {
+                    if (self.inventory.GetItemCount(ItemDef) > 0)
+                    {
                         SceneCatalog.mostRecentSceneDef.blockOrbitalSkills = false;
-                        
                     }
-                    if (self.inventory.GetItemCount(ItemDef) > 1) {
+                    if (self.inventory.GetItemCount(ItemDef) > 1)
+                    {
                         self.healthComponent.Suicide();
                         self.master.inventory.RemoveItem(ItemDef, 1);
                     }
-                    if (self.inventory.GetItemCount(ItemDef) <= 0) {
+                    if (self.inventory.GetItemCount(ItemDef) <= 0)
+                    {
                         List<SceneDef> scenes = new() {
                             SceneCatalog.GetSceneDefFromSceneName("bazaar"),
                             SceneCatalog.GetSceneDefFromSceneName("arena"),
@@ -65,9 +70,11 @@ namespace GOTCE.Items.Red
                             SceneCatalog.GetSceneDefFromSceneName("testscene")
                         };
 
-                        foreach (SceneDef scene in scenes) {
+                        foreach (SceneDef scene in scenes)
+                        {
                             scene.blockOrbitalSkills = true;
-                            if (SceneCatalog.mostRecentSceneDef.cachedName == scene.cachedName) {
+                            if (SceneCatalog.mostRecentSceneDef.cachedName == scene.cachedName)
+                            {
                                 SceneCatalog.mostRecentSceneDef.blockOrbitalSkills = true;
                             }
                         }

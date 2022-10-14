@@ -18,7 +18,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemPickupDesc => "Double your common items.";
 
-        public override string ItemFullDescription => "Increases your <style=cSub>common item</style> amount by <style=cIsUtility>100%</style> <style=cStack>(+100% per stack)</style>. Generates NRE's every frame.";
+        public override string ItemFullDescription => "Increases your <style=cSub>common item</style> amount by <style=cIsUtility>100%</style> <style=cStack>(+100% per stack)</style>. Generates <style=cIsHealth>NRE's</style> every frame.";
 
         public override string ItemLore => "";
 

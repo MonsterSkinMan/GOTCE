@@ -17,9 +17,9 @@ namespace GOTCE.Items.VoidGreen
 
         public override string ItemLangTokenName => "GOTCE_AncientAxe";
 
-        public override string ItemPickupDesc => "Guaranteed 'Critical Strikes' against low health enemies. Corrupts all Old Guillotines.";
+        public override string ItemPickupDesc => "Guaranteed 'Critical Strikes' against low health enemies. <style=cIsVoid>Corrupts all Old Guillotines</style>.";
 
-        public override string ItemFullDescription => "Attacks against enemies below 9% max health (+9% per stack) are always critical. Corrupts all Old Guillotines";
+        public override string ItemFullDescription => "Attacks against enemies below <style=cIsHealing>9% max health</style> <style=cStack>(+9% per stack)</style> are always <style=cIsDamage>critical</style>. <style=cIsVoid>Corrupts all Old Guillotines</style>.";
 
         public override string ItemLore => "";
 
