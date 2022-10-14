@@ -75,6 +75,22 @@ namespace GOTCE.Enemies.Bosses {
                 DirectorAPI.Stage.TitanicPlains,
                 DirectorAPI.Stage.AbyssalDepths
             };
+
+            DeathRewards deathRewards = prefab.GetComponent<DeathRewards>();
+            if (deathRewards) {
+
+            }
+            else {
+                deathRewards = prefab.AddComponent<DeathRewards>();
+                deathRewards.characterBody = body;
+            }
+            ExplicitPickupDropTable dt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();
+            dt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]
+            {
+                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = Equipment.VoidDonut.Instance.EquipmentDef, pickupWeight = 1f},
+            };
+            deathRewards.bossDropTable = dt;
+
             LanguageAPI.Add("GOTCE_VOIDLINGLING_NAME", "Voidlingling");
             LanguageAPI.Add("GOTCE_VOIDLINGLING_LORE", "Literally just Voidling as a teleporter boss.");
             LanguageAPI.Add("GOTCE_VOIDLINGLING_SUBTITLE", "A Fun and Engaging Boss");
