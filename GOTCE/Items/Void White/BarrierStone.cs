@@ -1,15 +1,12 @@
 ﻿using R2API;
 using RoR2;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using BepInEx.Configuration;
 using UnityEngine.Networking;
 using GOTCE.Items.White;
 using HarmonyLib;
 
-namespace GOTCE.Items.Void_White
+namespace GOTCE.Items.VoidWhite
 {
     public class BarrierStone : ItemBase<BarrierStone>
     {
@@ -59,7 +56,7 @@ namespace GOTCE.Items.Void_White
                     CharacterBody component = damageInfo.attacker.GetComponent<CharacterBody>();
                     if (component.inventory != null)
                     {
-                        int stack = component.inventory.GetItemCount(GOTCE.Items.Void_White.BarrierStone.Instance.ItemDef.itemIndex);
+                        int stack = component.inventory.GetItemCount(GOTCE.Items.VoidWhite.BarrierStone.Instance.ItemDef.itemIndex);
                         if (stack > 0 && damageInfo.procCoefficient > 0)
                         {
                             CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();

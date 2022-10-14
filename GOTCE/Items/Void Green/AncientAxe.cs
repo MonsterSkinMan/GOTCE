@@ -7,7 +7,7 @@ using UnityEngine;
 using BepInEx.Configuration;
 using HarmonyLib;
 
-namespace GOTCE.Items.Void_Green
+namespace GOTCE.Items.VoidGreen
 {
     public class AncientAxe : ItemBase<AncientAxe>
     {

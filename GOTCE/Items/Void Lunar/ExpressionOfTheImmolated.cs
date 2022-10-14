@@ -1,12 +1,9 @@
 ﻿using BepInEx.Configuration;
 using R2API;
 using RoR2;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 
-namespace GOTCE.Items.Void_Lunar
+namespace GOTCE.Items.VoidLunar
 {
     public class ExpressionOfTheImmolated : ItemBase<ExpressionOfTheImmolated>
     {
