@@ -8,8 +8,10 @@ using System;
 using System.Collections.Generic;
 using EntityStates;
 
-namespace GOTCE.Enemies.Minibosses {
-    public class Voidlinglingling : EnemyBase<Voidlinglingling> {
+namespace GOTCE.Enemies.Minibosses
+{
+    public class Voidlinglingling : EnemyBase<Voidlinglingling>
+    {
         public override string PathToClone => "RoR2/DLC1/VoidRaidCrab/MiniVoidRaidCrabBodyBase.prefab";
         public override string CloneName => "Voidlinglingling";
         public override string PathToCloneMaster => "RoR2/DLC1/VoidRaidCrab/MiniVoidRaidCrabMasterBase.prefab";
@@ -21,23 +23,20 @@ namespace GOTCE.Enemies.Minibosses {
             base.CreatePrefab();
             body = prefab.GetComponent<CharacterBody>();
             body.baseArmor = 0;
-            body.levelArmor = 0;
             body.attackSpeed = 1f;
-            body.levelAttackSpeed = 0f;
-            body.damage = 15f;
-            body.levelDamage = 3f;
-            body.baseMaxHealth = 400f;
-            body.levelMaxHealth = 120f;
+            body.damage = 17f;
+            body.levelDamage = 3.4f;
+            body.baseMaxHealth = 450f;
+            body.levelMaxHealth = 135f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLINGLING_NAME";
             body.baseRegen = 0f;
-            body.levelRegen = 0f;
         }
 
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 100;
+            isc.directorCreditCost = 110;
             isc.eliteRules = SpawnCard.EliteRules.ArtifactOnly;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
@@ -63,10 +62,10 @@ namespace GOTCE.Enemies.Minibosses {
             master = prefabMaster.GetComponent<CharacterMaster>();
             master.bodyPrefab = prefab;
 
-            prefab.transform.Find("Model Base").gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            prefab.transform.Find("Model Base").gameObject.transform.localScale = new Vector3(0.125f, 0.125f, 0.125f);
 
             List<DirectorAPI.Stage> stages = new() {
-                DirectorAPI.Stage.SiphonedForest,
+                DirectorAPI.Stage.DistantRoost,
                 DirectorAPI.Stage.AphelianSanctuary,
                 DirectorAPI.Stage.VoidLocus,
                 DirectorAPI.Stage.VoidCell,

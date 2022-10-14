@@ -12,8 +12,10 @@ using EntityStates;
 using GOTCE.Utils;
 using System.Collections.Generic;
 
-namespace GOTCE.Enemies.Minibosses {
-    public class IonSurger : EnemyBase<IonSurger> {
+namespace GOTCE.Enemies.Minibosses
+{
+    public class IonSurger : EnemyBase<IonSurger>
+    {
         public override string CloneName => "IonSurger";
         public override string PathToClone => "RoR2/Base/Mage/MageBody.prefab";
         public override string PathToCloneMaster => "RoR2/Base/Merc/MercMonsterMaster.prefab";
@@ -25,21 +27,18 @@ namespace GOTCE.Enemies.Minibosses {
             base.CreatePrefab();
             body = prefab.GetComponent<CharacterBody>();
             body.baseArmor = 0;
-            body.levelArmor = 0;
             body.attackSpeed = 1f;
-            body.levelAttackSpeed = 0f;
             body.damage = 3f;
-            body.levelDamage = 3f;
+            body.levelDamage = 0.6f;
             body.baseMaxHealth = 600f;
             body.levelMaxHealth = 180f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_IONSURGER_NAME";
             body.subtitleNameToken = "GOTCE_IONSURGER_SUBTITLE";
             body.baseRegen = 0f;
-            body.levelRegen = 0f;
             body.bodyFlags |= CharacterBody.BodyFlags.IgnoreFallDamage;
-            body.visionDistance = 2000000f;
         }
+
         public override void Modify()
         {
             base.Modify();
@@ -69,7 +68,8 @@ namespace GOTCE.Enemies.Minibosses {
             SkillDef ion = IonSurgerSurge.Instance.SkillDef;
             SkillLocator sl = prefab.GetComponent<SkillLocator>();
 
-            foreach (AISkillDriver ai in prefabMaster.GetComponents<AISkillDriver>()) {
+            foreach (AISkillDriver ai in prefabMaster.GetComponents<AISkillDriver>())
+            {
                 ai.aimType = AISkillDriver.AimType.AtCurrentEnemy;
                 ai.minDistance = 2;
                 ai.maxDistance = 1000;
@@ -80,7 +80,7 @@ namespace GOTCE.Enemies.Minibosses {
             }
 
             BaseAI baseAI = prefabMaster.GetComponent<BaseAI>();
-            baseAI.enemyAttentionDuration = 100000f;
+            baseAI.enemyAttentionDuration = 5f;
             baseAI.fullVision = true;
 
             ReplaceSkill(sl.primary, ion);
@@ -91,14 +91,14 @@ namespace GOTCE.Enemies.Minibosses {
             LanguageAPI.Add("GOTCE_IONSURGER_NAME", "Ion Surger");
             LanguageAPI.Add("GOTCE_IONSURGER_LORE", "Melee range isn't viable.");
             LanguageAPI.Add("GOTCE_IONSURGER_SUBTITLE", "Horde of Many");
-            
+
             RegisterEnemy(prefab, prefabMaster, null, DirectorAPI.MonsterCategory.Minibosses, true);
         }
 
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 80;
+            isc.directorCreditCost = 90;
             isc.eliteRules = SpawnCard.EliteRules.ArtifactOnly;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
@@ -113,7 +113,7 @@ namespace GOTCE.Enemies.Minibosses {
         public override void AddDirectorCard()
         {
             base.AddDirectorCard();
-            card.minimumStageCompletions = 0;
+            card.minimumStageCompletions = 1;
             card.selectionWeight = 1;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Close;
         }

@@ -54,7 +54,7 @@ namespace GOTCE.Enemies.Standard {
         public override void AddDirectorCard()
         {
             base.AddDirectorCard();
-            card.minimumStageCompletions = 5;
+            card.minimumStageCompletions = 2;
             card.selectionWeight = 1;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
