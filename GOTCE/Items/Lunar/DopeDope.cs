@@ -1,6 +1,7 @@
 ﻿using BepInEx.Configuration;
 using R2API;
 using RoR2;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -50,10 +51,11 @@ namespace GOTCE.Items.Lunar
                 var stack = sender.inventory.GetItemCount(Instance.ItemDef);
                 if (stack > 0)
                 {
-                    args.shieldMultAdd += 2f * stack;
-                    args.baseAttackSpeedAdd += sender.damage;
-                    args.damageMultAdd -= 1f;
-                    args.baseDamageAdd += 1f;
+                    args.baseShieldAdd += 0.02f * sender.healthComponent.fullHealth * stack;
+                    var cachedAS = sender.attackSpeed;
+                    var cachedDMG = sender.damage;
+                    args.baseAttackSpeedAdd += cachedDMG;
+                    args.baseDamageAdd -= cachedAS;
                 }
             }
         }

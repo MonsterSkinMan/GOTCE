@@ -1,6 +1,7 @@
 ﻿using BepInEx.Configuration;
 using MonoMod.Cil;
 using R2API;
+using Rewired;
 using RoR2;
 using System;
 using UnityEngine;
@@ -42,27 +43,20 @@ namespace GOTCE.Items.Lunar
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
-            IL.RoR2.PlayerCharacterMasterController.Update += PlayerCharacterMasterController_Update;
+            On.RoR2.PlayerCharacterMasterController.Update += PlayerCharacterMasterController_Update;
+        }
+
+        private void PlayerCharacterMasterController_Update(On.RoR2.PlayerCharacterMasterController.orig_Update orig, PlayerCharacterMasterController self)
+        {
+            orig(self);
+            if (shouldRun && PlayerCharacterMasterController.CanSendBodyInput(self.networkUser, out LocalUser localUser, out Player player, out CameraRigController crg))
+            {
+                var negativeInputs = -(crg.crosshairWorldPosition - self.bodyInputs.aimOrigin).normalized;
+                self.bodyInputs.aimDirection = negativeInputs;
+            }
         }
 
         private static bool shouldRun = false;
-
-        private void PlayerCharacterMasterController_Update(ILContext il)
-        {
-            ILCursor c = new(il);
-
-            if (c.TryGotoNext(MoveType.Before,
-                x => x.MatchLdcI4(0),
-                x => x.MatchCallOrCallvirt(typeof(Rewired.Player).GetMethod("GetAxis", new Type[] { typeof(int) })),
-                x => x.MatchLdloc(out _),
-                x => x.MatchLdcI4(1)
-                ) && shouldRun)
-            {
-                c.Next.Operand = 1;
-                c.Index += 3;
-                c.Next.Operand = 0;
-            }
-        }
 
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {

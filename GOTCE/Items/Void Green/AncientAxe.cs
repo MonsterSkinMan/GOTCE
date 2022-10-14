@@ -45,7 +45,6 @@ namespace GOTCE.Items.VoidGreen
         {
             On.RoR2.HealthComponent.TakeDamage += HealthComponent_TakeDamage;
             On.RoR2.Items.ContagiousItemManager.Init += Sussy;
-
         }
 
         private void HealthComponent_TakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)
