@@ -18,12 +18,14 @@ namespace GOTCE.Interactables
 
             var texture = fuckYouUnity.mainTexture;
             var pole = prefab.transform.GetChild(4).GetComponent<MeshRenderer>();
+            pole.name = "mdlLegendaryMultiShopTerminalCenter";
             pole.sharedMaterial.mainTexture = texture;
             pole.sharedMaterial.color = new Color32(107, 40, 41, 255);
 
             var multiShopController = prefab.GetComponent<MultiShopController>();
             multiShopController.baseCost = 500;
             var terminalPrefab = multiShopController.terminalPrefab;
+            terminalPrefab.name = "LegendaryMultiShopTerminal";
 
             var skinnedMeshRenderer = terminalPrefab.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<SkinnedMeshRenderer>();
             skinnedMeshRenderer.sharedMaterials[0].mainTexture = texture;

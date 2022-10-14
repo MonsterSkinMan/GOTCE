@@ -12,6 +12,7 @@ namespace GOTCE.Interactables
 {
     public class SkullLockbox : InteractableBase<SkullLockbox>
     {
+        public override DirectorAPI.Stage[] stages => null;
         public override DirectorAPI.InteractableCategory category => DirectorAPI.InteractableCategory.Chests;
         public GameObject prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/TreasureCache/Lockbox.prefab").WaitForCompletion().InstantiateClone("SkullIssue");
 
