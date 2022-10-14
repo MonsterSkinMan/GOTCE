@@ -1,16 +1,9 @@
 using R2API;
 using RoR2;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using RoR2.Skills;
-using GOTCE;
-using UnityEngine.Scripting;
-using System.Linq;
 using RoR2.CharacterAI;
 using GOTCE.Skills;
-using EntityStates;
-using GOTCE.Utils;
-using System.Collections.Generic;
 
 namespace GOTCE.Enemies.Minibosses
 {

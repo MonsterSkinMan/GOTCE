@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using RoR2;
-using R2API;
-using BepInEx.Configuration;
-using RoR2.ContentManagement;
-using System.Linq;
-using RoR2.Items;
 using GOTCE.Items.Yellow;
 
 namespace GOTCE.Enemies.Changes

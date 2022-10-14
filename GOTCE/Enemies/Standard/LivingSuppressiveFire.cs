@@ -1,17 +1,12 @@
-using BepInEx.Configuration;
 using R2API;
 using RoR2;
-using RoR2.Skills;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using System;
-using System.Collections.Generic;
-using EntityStates;
 using RoR2.CharacterAI;
-using System.Linq;
 
-namespace GOTCE.Enemies.Standard {
-    public class LivingSuppressiveFire : EnemyBase<LivingSuppressiveFire> {
+namespace GOTCE.Enemies.Standard
+{
+    public class LivingSuppressiveFire : EnemyBase<LivingSuppressiveFire>
+    {
         public override string PathToClone => "RoR2/Base/Wisp/WispBody.prefab";
         public override string CloneName => "LivingSuppressiveFire";
         public override string PathToCloneMaster => "RoR2/Base/Wisp/WispMaster.prefab";
@@ -88,8 +83,8 @@ namespace GOTCE.Enemies.Standard {
             model.GetComponent<HurtBoxGroup>().bullseyeCount = 1;
             model.GetComponent<HurtBoxGroup>().mainHurtBox = box1.gameObject.GetComponent<HurtBox>();
 
-
-            foreach(AISkillDriver driver in prefabMaster.GetComponentsInChildren<AISkillDriver>()) {
+            foreach (AISkillDriver driver in prefabMaster.GetComponentsInChildren<AISkillDriver>())
+            {
                 driver.maxDistance = 120f;
                 driver.minDistance = 30f;
                 driver.aimType = AISkillDriver.AimType.AtCurrentEnemy;
@@ -100,7 +95,6 @@ namespace GOTCE.Enemies.Standard {
                 driver.skillSlot = SkillSlot.Primary;
             }
 
-            
             SkillLocator sl = prefab.GetComponentInChildren<SkillLocator>();
             ReplaceSkill(sl.primary, Skills.Consistency.Instance.SkillDef);
 
