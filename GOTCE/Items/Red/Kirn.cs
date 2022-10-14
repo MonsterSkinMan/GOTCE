@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
+using HarmonyLib;
 
 namespace GOTCE.Items.Red
 {
@@ -17,7 +18,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemPickupDesc => "Even if frags did 2000% with no falloff...";
 
-        public override string ItemFullDescription => "<style=cIsUtility>Upgrades</style> all of your skills with <style=cIsDamage>suppressive fire</style>.";
+        public override string ItemFullDescription => "<style=cIsUtility>Upgrades</style> all of your skills with <style=cIsDamage>suppressive fire</style>. Increase <style=cIsDamage>attack speed</style> by <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style>.";
 
         public override string ItemLore => "";
 
@@ -37,6 +38,7 @@ namespace GOTCE.Items.Red
         public override void Hooks()
         {
             On.RoR2.CharacterBody.OnInventoryChanged += GainConsistency;
+            RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
         }
 
         public void GainConsistency(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
@@ -54,6 +56,19 @@ namespace GOTCE.Items.Red
                 }
             }
             orig(self);
+        }
+
+        private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (sender && sender.inventory)
+            {
+                var stack = sender.inventory.GetItemCount(Instance.ItemDef);
+                if (stack > 0)
+                {
+                    args.damageMultAdd -= (Mathf.Pow(2f, stack) - 1) / Mathf.Pow(2f, stack);
+                    args.attackSpeedMultAdd += 0.1f * stack;
+                }
+            }
         }
     }
 }

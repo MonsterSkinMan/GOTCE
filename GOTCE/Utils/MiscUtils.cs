@@ -207,7 +207,11 @@ namespace GOTCE.Utils
 
             return SurfaceAlignmentInfo;
         }
-
+        
+        public static Mesh GetMeshFromPrimitive(PrimitiveType primitiveType) {
+            MeshFilter mesh = GameObject.CreatePrimitive(primitiveType).GetComponent<MeshFilter>();
+            return mesh.sharedMesh;
+        }
 
     }
 }

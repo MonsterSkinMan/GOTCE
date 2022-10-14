@@ -7,10 +7,11 @@ using UnityEngine.AddressableAssets;
 using System;
 using System.Collections.Generic;
 using EntityStates;
+using GOTCE.Skills;
 
 // WIP
 
-namespace GOTCE.Enemies.Skills {
+namespace GOTCE.Skills {
     public abstract class SkillBase<T> : SkillBase where T : SkillBase<T> {
         public static T Instance { get; private set; }
 

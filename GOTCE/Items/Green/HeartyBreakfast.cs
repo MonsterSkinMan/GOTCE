@@ -46,14 +46,22 @@ namespace GOTCE.Items.Green
 
         public void ILoveAegis(object sender, StageCritEventArgs args)
         {
-            CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
-            if (body.inventory && body.inventory.GetItemCount(ItemDef) > 0)
+            if (NetworkServer.active)
             {
-                body.healthComponent.AddBarrier(body.healthComponent.fullHealth * 0.5f);
-                body.inventory.RemoveItem(ItemDef, 1);
-                body.inventory.GiveItem(Items.NoTier.HeartlessBreakfast.Instance.ItemDef, 1);
-                CharacterMasterNotificationQueue.SendTransformNotification(body.master, ItemDef.itemIndex, GOTCE.Items.NoTier.HeartlessBreakfast.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
+                var instances = PlayerCharacterMasterController.instances;
+                foreach (PlayerCharacterMasterController playerCharacterMaster in instances)
+                {
+                    if (playerCharacterMaster.master.inventory.GetItemCount(ItemDef) > 0)
+                    {
+                        CharacterBody body = playerCharacterMaster.master.GetBody();
+                        body.healthComponent.AddBarrier(body.healthComponent.fullHealth * 0.5f);
+                        body.inventory.RemoveItem(ItemDef, 1);
+                        body.inventory.GiveItem(Items.NoTier.HeartlessBreakfast.Instance.ItemDef, 1);
+                        CharacterMasterNotificationQueue.SendTransformNotification(body.master, ItemDef.itemIndex, GOTCE.Items.NoTier.HeartlessBreakfast.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
+                    }
+                }
             }
         }
+        
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using GOTCE;
 using EntityStates.Commando.CommandoWeapon;
 
-namespace GOTCE.Enemies.EntityStatesCustom
+namespace GOTCE.EntityStatesCustom.LivingSuppressiveFire
 {
     public class ConsistencyState : BaseSkillState
     {
@@ -76,8 +76,8 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     origin = aimRay.origin,
                     aimVector = aimRay.direction,
                     minSpread = 1f,
-                    maxSpread = 2f,
-                    bulletCount = 1u,
+                    maxSpread = 2.5f,
+                    bulletCount = 3u,
                     damage = base.characterBody.damage * 0.13f,
                     force = 30,
                     tracerEffectPrefab = tracerEffectPrefab,
@@ -100,7 +100,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     aimVector = aimRay.direction,
                     minSpread = 90f,
                     maxSpread = 360f,
-                    bulletCount = 1u,
+                    bulletCount = 5u,
                     damage = base.characterBody.damage * 0.13f,
                     force = 300,
                     tracerEffectPrefab = tracerEffectPrefab,
