@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using BepInEx.Configuration;
 using UnityEngine.Profiling.Memory.Experimental;
+using System.Reflection;
 
 namespace GOTCE.Items.Red
 {
@@ -17,7 +18,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemPickupDesc => "Double your common items.";
 
-        public override string ItemFullDescription => "Increases your <style=cSub>common item</style> amount by <style=cIsUtility>100%</style> <style=cStack>(+100% per stack)</style>. Generates NRE's every frame.";
+        public override string ItemFullDescription => "Increases your <style=cSub>common item</style> amount by <style=cIsUtility>100%</style> <style=cStack>(+100% per stack)</style>. Generates <style=cIsHealth>NRE's</style> every frame.";
 
         public override string ItemLore => "";
 
@@ -27,7 +28,7 @@ namespace GOTCE.Items.Red
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/HelloWorld.png");
 
         public override void Init(ConfigFile config)
         {
@@ -42,7 +43,23 @@ namespace GOTCE.Items.Red
         public override void Hooks()
         {
             On.RoR2.Inventory.GiveItem_ItemIndex_int += Increase;
+            On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+        }
+
+        private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
+        {
+            orig(self, itemIndex, count);
+            if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
+            {
+                foreach (ItemIndex itemIndex2 in self.itemAcquisitionOrder)
+                {
+                    if (ItemCatalog.GetItemDef(itemIndex2).tier == ItemTier.Tier1 || ItemCatalog.GetItemDef(itemIndex2).deprecatedTier == ItemTier.Tier1)
+                    {
+                        self.RemoveItem(itemIndex2);
+                    }
+                }
+            }
         }
 
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)

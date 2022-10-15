@@ -20,7 +20,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "'Critical Stage Transitions' give you 5 powerful items. Not consumed on use.";
 
-        public override string ItemFullDescription => "Gain <style=cIsUtility>5%</style> '<style=cIsUtility>Stage Transition Crit</style>' chance. On '<style=cIsUtility>Stage Transition Crit</style>', gain <style=cIsUtility>5</style> <style=cStack>(+5 per stack)</style> items (<style=cIsHealth>50%</style>/<style=cShrine>50%</style>).";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>5%</style> Stage Transition Crit chance. On '<style=cIsUtility>Stage Transition Crit</style>', gain <style=cIsUtility>5</style> <style=cStack>(+5 per stack)</style> items (<style=cIsHealth>50%</style>/<style=cShrine>50%</style>).";
 
         public override string ItemLore => "Perhaps the crack itself has treasures to be found. So far, its purpose has been as a slingshot along the borders of our reality, but this new artifact is a direct wedge into another dimension, uprooting its treasures and bringing them here. A parallel space carrying boundless treasures- imagine that! Everything I've pulled from within the crack has been incredibly useful; I've gotten rocket launchers, detritivore desk plants, and even a spaceship part. I can't wait to see what all I can gather.";
 

@@ -2,12 +2,13 @@
 using R2API;
 using RoR2;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.Networking;
-using KinematicCharacterController;
 
 namespace GOTCE.Items.Lunar
 {
+    //TODO:
+
+    // cache movement keybinds at the start of every run, and set them in fixedupdate to prevent cheese
+
     public class MemoriesOfMisery : ItemBase<MemoriesOfMisery>
     {
         public override string ConfigName => "Memories of Misery";
@@ -28,7 +29,7 @@ namespace GOTCE.Items.Lunar
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;/* Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/shittyvisage.png"); */ // replace with Memories of Misery icon
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/memoriesofmisery.png");
 
         public override void Init(ConfigFile config)
         {

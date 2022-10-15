@@ -3,6 +3,7 @@ using R2API;
 using UnityEngine;
 using BepInEx.Configuration;
 using System;
+
 namespace GOTCE.Equipment
 {
     public class BloodGamble : EquipmentBase<BloodGamble>
@@ -13,7 +14,7 @@ namespace GOTCE.Equipment
 
         public override string EquipmentPickupDesc => "Fire a singular missile with a chance to die.";
 
-        public override string EquipmentFullDescription => "Passively halves your health and movement speed. Fire <style=cIsDamage>a</style> missile that deals <style=cIsDamage>300% damage</style>, deals 25% of your maximum hp as self-damage, applies 4 random damagetypes to yourself, and applies the malachite debuff to yourself for 4 seconds.";
+        public override string EquipmentFullDescription => "Passively halves your <style=cIsHealing>maximum health</style> and <style=cIsUtility>movement speed</style>. Fire <style=cIsDamage>1</style> missile that deals <style=cIsDamage>1x300% damage</style>, inflict <style=cIsHealing>25% of your maximum hp</style>, apply <style=cIsUtility>4 random debuffs</style> and the <style=cIsHealing>malachite debuff</style> to yourself for <style=cIsUtlity>4</style> seconds.";
 
         public override string EquipmentLore => "This is fucking trash.\n-Literally everybody";
 
@@ -36,7 +37,7 @@ namespace GOTCE.Equipment
             CreateEquipment();
             Hooks();
         }
-        
+
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(Skissue);

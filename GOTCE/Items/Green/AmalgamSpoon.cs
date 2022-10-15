@@ -16,7 +16,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemPickupDesc => "Killing an elite enemy with a 'Critical Strike' grants a temporary barrier based on secondary charges.";
 
-        public override string ItemFullDescription => "Gain <style=cIsDamage>5% critical strike chance</style>. Gain a <style=cIsHealing>temporary barrier</style> on killing an elite enemy with a '<style=cIsDamage>Critical Strike</style>' for <style=cIsHealing>100</style> <style=cStack>(+50 per stack)</style> health, multiplied by the amount of your <style=cIsUtility>secondary charges</style>.";
+        public override string ItemFullDescription => "Gain <style=cIsDamage>5% critical chance</style>. Gain a <style=cIsHealing>temporary barrier</style> on killing an elite enemy with a '<style=cIsDamage>Critical Strike</style>' for <style=cIsHealing>100</style> <style=cStack>(+50 per stack)</style> health, multiplied by the amount of your <style=cIsUtility>secondary charges</style>.";
 
         public override string ItemLore => "";
 

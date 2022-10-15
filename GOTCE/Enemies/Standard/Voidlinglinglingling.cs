@@ -1,15 +1,13 @@
-using BepInEx.Configuration;
+/*
 using R2API;
 using RoR2;
-using RoR2.Skills;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using System;
 using System.Collections.Generic;
-using EntityStates;
 
-namespace GOTCE.Enemies.Standard {
-    public class Voidlinglinglingling : EnemyBase<Voidlinglinglingling> {
+namespace GOTCE.Enemies.Standard
+{
+    public class Voidlinglinglingling : EnemyBase<Voidlinglinglingling>
+    {
         public override string PathToClone => "RoR2/DLC1/VoidRaidCrab/MiniVoidRaidCrabBodyBase.prefab";
         public override string CloneName => "Voidlinglinglingling";
         public override string PathToCloneMaster => "RoR2/DLC1/VoidRaidCrab/MiniVoidRaidCrabMasterBase.prefab";
@@ -21,23 +19,20 @@ namespace GOTCE.Enemies.Standard {
             base.CreatePrefab();
             body = prefab.GetComponent<CharacterBody>();
             body.baseArmor = 0;
-            body.levelArmor = 0;
             body.attackSpeed = 1f;
-            body.levelAttackSpeed = 0f;
-            body.damage = 10f;
-            body.levelDamage = 2f;
-            body.baseMaxHealth = 80f;
-            body.levelMaxHealth = 24f;
+            body.damage = 9.5f;
+            body.levelDamage = 1.9f;
+            body.baseMaxHealth = 120f;
+            body.levelMaxHealth = 36f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLINGLINGLING_NAME";
             body.baseRegen = 0f;
-            body.levelRegen = 0f;
         }
 
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 15;
+            isc.directorCreditCost = 50;
             isc.eliteRules = SpawnCard.EliteRules.ArtifactOnly;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.None;
@@ -66,7 +61,7 @@ namespace GOTCE.Enemies.Standard {
             prefab.transform.Find("Model Base").gameObject.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
 
             List<DirectorAPI.Stage> stages = new() {
-                DirectorAPI.Stage.SiphonedForest,
+                DirectorAPI.Stage.DistantRoost,
                 DirectorAPI.Stage.AphelianSanctuary,
                 DirectorAPI.Stage.VoidLocus,
                 DirectorAPI.Stage.VoidCell,
@@ -81,4 +76,11 @@ namespace GOTCE.Enemies.Standard {
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.BasicMonsters);
         }
     }
+
+    // TODO:
+
+    // remove spawn vfx (probably in an entitystate)
+    // remove footstep vfx
+    // make the spawn entitystate much faster
 }
+*/

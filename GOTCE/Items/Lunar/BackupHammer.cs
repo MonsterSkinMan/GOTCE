@@ -27,7 +27,7 @@ namespace GOTCE.Items.Lunar
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon =>Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/backuphammer.png");
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/backuphammer.png");
 
         private SkillDef lockedDef;
 
@@ -45,6 +45,19 @@ namespace GOTCE.Items.Lunar
         public override void Hooks()
         {
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
+            RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+        }
+
+        private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (sender && sender.inventory)
+            {
+                var stack = sender.inventory.GetItemCount(Instance.ItemDef);
+                if (stack > 0)
+                {
+                    args.secondaryCooldownMultAdd += 0.5f * (stack - 1);
+                }
+            }
         }
 
         private void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)

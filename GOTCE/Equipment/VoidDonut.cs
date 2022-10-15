@@ -4,6 +4,7 @@ using UnityEngine;
 using BepInEx.Configuration;
 using System;
 using EntityStates.VoidRaidCrab;
+
 namespace GOTCE.Equipment
 {
     public class VoidDonut : EquipmentBase<VoidDonut>
@@ -14,13 +15,13 @@ namespace GOTCE.Equipment
 
         public override string EquipmentPickupDesc => "Briefly unleash a devastating void laser.";
 
-        public override string EquipmentFullDescription => "Fire a controllable void laser for 1500% damage per frame.";
+        public override string EquipmentFullDescription => "Fire a <style=cIsUtility>controllable</style> void laser for <style=cIsDamage>1500% damage</style> per frame.";
 
         public override string EquipmentLore => "";
 
         public override GameObject EquipmentModel => null;
 
-        public override Sprite EquipmentIcon => null;
+        public override Sprite EquipmentIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Equipment/VoidDonut.png");
 
         public override float Cooldown => 45f;
 
@@ -36,12 +37,10 @@ namespace GOTCE.Equipment
             CreateEquipment();
             Hooks();
         }
-        
+
         public override void Hooks()
         {
-            
         }
-
 
         protected override bool ActivateEquipment(EquipmentSlot slot)
         {
@@ -53,23 +52,27 @@ namespace GOTCE.Equipment
         }
     }
 
-    public class VoidLaser : MonoBehaviour {
+    public class VoidLaser : MonoBehaviour
+    {
         private CharacterBody body;
         private float stopwatch = 0f;
         private GameObject prefab = SpinBeamAttack.beamVfxPrefab;
         private GameObject beamVfxInstance;
 
-        public void Awake() {
+        public void Awake()
+        {
             body = gameObject.GetComponent<CharacterBody>();
             beamVfxInstance = UnityEngine.Object.Instantiate(prefab);
-		    beamVfxInstance.transform.SetParent(body.transform);
+            beamVfxInstance.transform.SetParent(body.transform);
             beamVfxInstance.transform.localScale += new Vector3(-10, -10, -10);
         }
 
-        public void FixedUpdate() {
+        public void FixedUpdate()
+        {
             stopwatch += Time.fixedDeltaTime;
             Ray beamRay = body.equipmentSlot.GetAimRay();
-            if (body.localPlayerAuthority) {
+            if (body.localPlayerAuthority)
+            {
                 BulletAttack bulletAttack = new BulletAttack();
                 // bulletAttack.muzzleName = BaseSpinBeamAttackState.muzzleTransformNameInChildLocator;
                 bulletAttack.origin = beamRay.origin;
@@ -99,12 +102,13 @@ namespace GOTCE.Equipment
                 bulletAttack.Fire();
             }
 
-		    beamVfxInstance.transform.SetPositionAndRotation(beamRay.origin, Quaternion.LookRotation(beamRay.direction));
+            beamVfxInstance.transform.SetPositionAndRotation(beamRay.origin, Quaternion.LookRotation(beamRay.direction));
 
-            if (stopwatch >= 10f) {
+            if (stopwatch >= 10f)
+            {
                 VfxKillBehavior.KillVfxObject(beamVfxInstance);
                 GameObject.Destroy(gameObject.GetComponent<VoidLaser>());
             }
-         }
+        }
     }
 }

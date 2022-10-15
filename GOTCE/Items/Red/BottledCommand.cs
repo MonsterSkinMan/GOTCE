@@ -17,15 +17,15 @@ namespace GOTCE.Items.Red
 
         public override string ItemLangTokenName => "GOTCE_BottledCommand";
 
-        public override string ItemPickupDesc => "Gain 1 stack of every <style=cIsVoid>non-void</style> item. Have fun.";
+        public override string ItemPickupDesc => "Gain 2 stacks of every vanilla S Tier green item. Have fun.";
 
-        public override string ItemFullDescription => "Gain <style=cIsUtility>1</style> <style=cStack>(+1 per stack)</style> stack of every non-void item.";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>2</style> <style=cStack>(+2 per stack)</style> stacks of every vanilla <style=cIsHealth>S Tier</style> <style=cIsHealing>green item</style>.";
 
         public override string ItemLore => "";
 
         public override ItemTier Tier => ItemTier.Tier3;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage, ItemTag.Healing, ItemTag.Utility };
+        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage, ItemTag.Healing, ItemTag.Utility, ItemTag.AIBlacklist };
 
         public override GameObject ItemModel => null;
 
@@ -36,19 +36,37 @@ namespace GOTCE.Items.Red
             return new ItemDisplayRuleDict(null);
         }
 
-        private static readonly List<ItemTier> woolieTierlist = new();
-        // private static readonly List<ItemTag> rndTierlist = new();
-
         public override void Init(ConfigFile config)
         {
             base.Init(config);
-            woolieTierlist.AddRange(new List<ItemTier> { ItemTier.VoidTier1, ItemTier.VoidTier2, ItemTier.VoidTier3, ItemTier.VoidBoss, ItemTier.NoTier });
-            // rndTierlist.AddRange(new List<ItemTag> { ItemTag.WorldUnique });
         }
 
         public override void Hooks()
         {
             On.RoR2.Inventory.GiveItem_ItemIndex_int += Inventory_GiveItem_ItemIndex_int;
+            On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
+        }
+
+        private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
+        {
+            orig(self, itemIndex, count);
+            if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
+            {
+                List<ItemDef> items = new()
+                {
+                    RoR2Content.Items.Missile, RoR2Content.Items.Bandolier, RoR2Content.Items.Feather, RoR2Content.Items.FireRing, RoR2Content.Items.Thorns,
+                    RoR2Content.Items.SprintArmor, RoR2Content.Items.IceRing, RoR2Content.Items.ChainLightning, RoR2Content.Items.JumpBoost
+                };
+
+                var stack = self.GetItemCount(itemIndex);
+                foreach (ItemDef itemDef in RoR2.ContentManagement.ContentManager._itemDefs)
+                {
+                    if (items.Contains(itemDef))
+                    {
+                        self.RemoveItem(itemDef, 2 * stack);
+                    }
+                }
+            }
         }
 
         private void Inventory_GiveItem_ItemIndex_int(On.RoR2.Inventory.orig_GiveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
@@ -56,12 +74,17 @@ namespace GOTCE.Items.Red
             orig(self, itemIndex, count);
             if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
             {
+                List<ItemDef> items = new()
+                {
+                    RoR2Content.Items.Missile, RoR2Content.Items.Bandolier, RoR2Content.Items.Feather, RoR2Content.Items.FireRing, RoR2Content.Items.Thorns,
+                    RoR2Content.Items.SprintArmor, RoR2Content.Items.IceRing, RoR2Content.Items.ChainLightning, RoR2Content.Items.JumpBoost
+                };
+                var stack = self.GetItemCount(itemIndex);
                 foreach (ItemDef itemDef in RoR2.ContentManagement.ContentManager._itemDefs)
                 {
-                    if (!woolieTierlist.Contains(ItemDef.tier) && !woolieTierlist.Contains(ItemDef.deprecatedTier) && itemDef != Instance.ItemDef && itemDef != BottledEnigma.Instance.ItemDef)
+                    if (items.Contains(itemDef))
                     {
-                        Debug.Log("item def is " + itemDef);
-                        self.GiveItem(itemDef);
+                        self.GiveItem(itemDef, 2 * stack);
                     }
                 }
             }

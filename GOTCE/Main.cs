@@ -15,17 +15,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
-using BepInEx.Bootstrap;
-using UnityEngine.AddressableAssets;
-using GOTCE.Components;
 using SearchableAttribute = HG.Reflection.SearchableAttribute;
-using RoR2.Navigation;
 using GOTCE.Skills;
 using GOTCE.Interactables;
 using GOTCE.Enemies;
-using GOTCE.Enemies.Bosses;
-using GOTCE.Enemies.Minibosses;
-using GOTCE.Enemies.Standard;
+using RoR2.ExpansionManagement;
+using Object = UnityEngine.Object;
 
 [assembly: SearchableAttribute.OptIn]
 
@@ -40,19 +35,22 @@ namespace GOTCE
     {
         public const string ModGuid = "com.TheBestAssociatedLargelyLudicrousSillyheadGroup.GOTCE";
         public const string ModName = "Gamers of the Cracked Emoji";
-        public const string ModVer = "1.0.2";
+        public const string ModVer = "1.1.0";
 
         public static AssetBundle MainAssets;
 
-        public List<ArtifactBase> Artifacts = new List<ArtifactBase>();
-        public List<ItemBase> Items = new List<ItemBase>();
-        public List<EquipmentBase> Equipments = new List<EquipmentBase>();
-        public List<EliteEquipmentBase> EliteEquipments = new List<EliteEquipmentBase>();
+        public List<ArtifactBase> Artifacts = new();
+        public List<ItemBase> Items = new();
+        public List<EquipmentBase> Equipments = new();
+        public List<EliteEquipmentBase> EliteEquipments = new();
 
-        public static Dictionary<ArtifactBase, bool> ArtifactStatusDictionary = new Dictionary<ArtifactBase, bool>();
-        public static Dictionary<ItemBase, bool> ItemStatusDictionary = new Dictionary<ItemBase, bool>();
-        public static Dictionary<EquipmentBase, bool> EquipmentStatusDictionary = new Dictionary<EquipmentBase, bool>();
-        public static Dictionary<EliteEquipmentBase, bool> EliteEquipmentStatusDictionary = new Dictionary<EliteEquipmentBase, bool>();
+        public static Dictionary<ArtifactBase, bool> ArtifactStatusDictionary = new();
+        public static Dictionary<ItemBase, bool> ItemStatusDictionary = new();
+        public static Dictionary<EquipmentBase, bool> EquipmentStatusDictionary = new();
+        public static Dictionary<EliteEquipmentBase, bool> EliteEquipmentStatusDictionary = new();
+
+        public static ExpansionDef GOTCEExpansionDef;
+        public static GameObject GOTCERunBehavior;
 
         //Provides a direct access to this plugin's logger for use in any of your other classes.
         public static BepInEx.Logging.ManualLogSource ModLogger;
@@ -164,6 +162,7 @@ namespace GOTCE
                 // Debug.Log(item.ConfigName);
                 enemy.Create();
             }
+            //CreateExpansion();
         }
 
         /// <summary>
@@ -234,6 +233,36 @@ namespace GOTCE
                 return true;
             }
             return false;
+        }
+
+        public void CreateExpansion()
+        {
+            var sotv = LegacyResourcesAPI.Load<ExpansionDef>("ExpansionDefs/DLC1");
+
+            GOTCEExpansionDef = ScriptableObject.CreateInstance<ExpansionDef>();
+            //var what = Addressables.LoadAssetAsync<GameObject>("12bf89dabb4bb914382a0e31546446cc").WaitForCompletion();
+            GOTCERunBehavior = PrefabAPI.InstantiateClone(gameObject, "GOTCERunBehavior", true);
+            DestroyImmediate(GOTCERunBehavior.GetComponent<GlobalDeathRewards>());
+            var expansionRequirement = GOTCERunBehavior.GetComponent<ExpansionRequirementComponent>();
+            expansionRequirement.requiredExpansion = GOTCEExpansionDef;
+            /*
+            GOTCERunBehavior.AddComponent<GOTCEVisuals>();
+            GOTCERunBehavior.AddComponent<GOTCEBuffs>();
+            GOTCERunBehavior.AddComponent<GOTCEEliteRamps>();
+            GOTCERunBehavior.AddComponent<GOTCEDamageColors>();
+            */
+            PrefabAPI.RegisterNetworkPrefab(GOTCERunBehavior);
+            // SpikestripContentBase.networkedObjectContent.Add(GOTCERunBehavior);
+            GOTCEExpansionDef.name = "GOTCECONTENT_EXPANSION";
+            GOTCEExpansionDef.nameToken = "GOTCECONTENT_EXPANSION_NAME";
+            GOTCEExpansionDef.descriptionToken = "GOTCECONTENT_EXPANSION_DESCRIPTION";
+            GOTCEExpansionDef.iconSprite = MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
+            GOTCEExpansionDef.disabledIconSprite = sotv.disabledIconSprite;
+            GOTCEExpansionDef.requiredEntitlement = sotv.requiredEntitlement;
+            GOTCEExpansionDef.runBehaviorPrefab = GOTCERunBehavior;
+            //SpikestripContentBase.expansionDefContent.Add(GOTCEExpansionDef);
+            LanguageAPI.Add(GOTCEExpansionDef.nameToken, "Gamers of The Cracked Emoji");
+            LanguageAPI.Add(GOTCEExpansionDef.descriptionToken, "Adds content from the 'GOTCE' mod to the game.");
         }
     }
 }

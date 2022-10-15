@@ -1,7 +1,10 @@
 ﻿/*
 using BepInEx.Configuration;
+using MonoMod.Cil;
 using R2API;
+using Rewired;
 using RoR2;
+using System;
 using UnityEngine;
 
 namespace GOTCE.Items.Lunar
@@ -26,7 +29,7 @@ namespace GOTCE.Items.Lunar
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/PaleAle.png");
 
         public override void Init(ConfigFile config)
         {
@@ -37,12 +40,24 @@ namespace GOTCE.Items.Lunar
         {
             return new ItemDisplayRuleDict(null);
         }
+
         public override void Hooks()
         {
-            On.RoR2.PlayerCharacterMasterController.FixedUpdate += PlayerCharacterMasterController_FixedUpdate;
-            On.RoR2.PlayerCharacterMasterController.Update += PlayerCharacterMasterController_Update;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+            On.RoR2.PlayerCharacterMasterController.Update += PlayerCharacterMasterController_Update;
         }
+
+        private void PlayerCharacterMasterController_Update(On.RoR2.PlayerCharacterMasterController.orig_Update orig, PlayerCharacterMasterController self)
+        {
+            orig(self);
+            if (shouldRun && PlayerCharacterMasterController.CanSendBodyInput(self.networkUser, out LocalUser localUser, out Player player, out CameraRigController crg))
+            {
+                var negativeInputs = -(crg.crosshairWorldPosition - self.bodyInputs.aimOrigin).normalized;
+                self.bodyInputs.aimDirection = negativeInputs;
+            }
+        }
+
+        private static bool shouldRun = false;
 
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
@@ -53,28 +68,8 @@ namespace GOTCE.Items.Lunar
                 {
                     args.damageMultAdd += 0.6f + 0.4f * (stack - 1);
                     args.cooldownMultAdd += 0f + 0.35f * (stack - 1);
+                    shouldRun = true;
                 }
-            }
-        }
-
-        private bool hasItem = false;
-
-        private void PlayerCharacterMasterController_FixedUpdate(On.RoR2.PlayerCharacterMasterController.orig_FixedUpdate orig, PlayerCharacterMasterController self)
-        {
-            orig(self);
-            var body = self.gameObject.GetComponent<CharacterMaster>().GetBody();
-            if (body && body.inventory && body.inventory.GetItemCount(Instance.ItemDef) > 0)
-            {
-                hasItem = true;
-            }
-        }
-
-        private void PlayerCharacterMasterController_Update(On.RoR2.PlayerCharacterMasterController.orig_Update orig, PlayerCharacterMasterController self)
-        {
-            orig(self);
-            if (hasItem)
-            {
-                self.bodyInputs.aimDirection = -self.bodyInputs.aimDirection;
             }
         }
     }

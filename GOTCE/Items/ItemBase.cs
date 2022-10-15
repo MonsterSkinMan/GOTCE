@@ -1,6 +1,7 @@
 ﻿using BepInEx.Configuration;
 using R2API;
 using RoR2;
+using RoR2.ExpansionManagement;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,6 +50,7 @@ namespace GOTCE.Items
         public virtual bool AIBlacklisted { get; set; } = false;
 
         public virtual ItemTierDef OverrideTierDef { get; } = null;
+        public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.GOTCEExpansionDef;
 
         /// <summary>
         /// This method structures your code execution of this class. An example implementation inside of it would be:
@@ -93,19 +95,26 @@ namespace GOTCE.Items
                 ItemTags = new List<ItemTag>(ItemTags) { ItemTag.AIBlacklist }.ToArray();
             }
 
+
             ItemDef = ScriptableObject.CreateInstance<ItemDef>();
             ItemDef.name = "ITEM_" + ItemLangTokenName;
             ItemDef.nameToken = "ITEM_" + ItemLangTokenName + "_NAME";
             ItemDef.pickupToken = "ITEM_" + ItemLangTokenName + "_PICKUP";
             ItemDef.descriptionToken = "ITEM_" + ItemLangTokenName + "_DESCRIPTION";
             ItemDef.loreToken = "ITEM_" + ItemLangTokenName + "_LORE";
-            if (ItemDef.pickupModelPrefab == null)
+            /*if (ItemDef.pickupModelPrefab == null)
             {
-                ItemDef.pickupModelPrefab = emptyModel;
-            }
-            else
-            {
+                GameObject prefab = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                Material mat = new(new Shader());
+                
+            }*/
+    
+            if (ItemModel != null) {
                 ItemDef.pickupModelPrefab = ItemModel;
+            }
+            else {
+                GameObject prefab = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                ItemDef.pickupModelPrefab = prefab;
             }
             ItemDef.pickupIconSprite = ItemIcon;
             ItemDef.hidden = false;

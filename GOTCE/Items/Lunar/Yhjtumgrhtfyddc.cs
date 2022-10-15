@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Networking;
 using KinematicCharacterController;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace GOTCE.Items.Lunar
 {
@@ -43,6 +45,32 @@ namespace GOTCE.Items.Lunar
         public override void Hooks()
         {
             On.RoR2.Inventory.GiveItem_ItemIndex_int += Inventory_GiveItem_ItemIndex_int;
+            On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
+            // TODO:
+
+            // Figure out how to make the buffs persist per stage, or give them per stage
+        }
+
+        private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
+        {
+            orig(self, itemIndex, count);
+            if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
+            {
+                List<BuffDef> buffs = new()
+                {
+                    RoR2Content.Buffs.Immune, RoR2Content.Buffs.Intangible, RoR2Content.Buffs.Nullified, RoR2Content.Buffs.Entangle,
+                    RoR2Content.Buffs.LunarSecondaryRoot, RoR2Content.Buffs.HiddenInvincibility, DLC1Content.Buffs.BearVoidReady
+                };
+
+                foreach (BuffDef buffDef in RoR2.ContentManagement.ContentManager._buffDefs)
+                {
+                    if (!buffs.Contains(buffDef))
+                    {
+                        var body = self.gameObject.GetComponent<CharacterMaster>().GetBody();
+                        body.RemoveBuff(buffDef);
+                    }
+                }
+            }
         }
 
         private void Inventory_GiveItem_ItemIndex_int(On.RoR2.Inventory.orig_GiveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
@@ -50,13 +78,21 @@ namespace GOTCE.Items.Lunar
             orig(self, itemIndex, count);
             if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
             {
+                List<BuffDef> buffs = new()
+                {
+                    RoR2Content.Buffs.Immune, RoR2Content.Buffs.Intangible, RoR2Content.Buffs.Nullified, RoR2Content.Buffs.Entangle,
+                    RoR2Content.Buffs.LunarSecondaryRoot, RoR2Content.Buffs.HiddenInvincibility, DLC1Content.Buffs.BearVoidReady
+                };
+
                 foreach (BuffDef buffDef in RoR2.ContentManagement.ContentManager._buffDefs)
                 {
-                    var body = self.gameObject.GetComponent<CharacterMaster>().GetBody();
-                    body.AddBuff(buffDef);
+                    if (!buffs.Contains(buffDef))
+                    {
+                        var body = self.gameObject.GetComponent<CharacterMaster>().GetBody();
+                        body.AddBuff(buffDef);
+                    }
                 }
             }
-            // TODO: remove invincibility buffs and stun/root debuffs
         }
     }
 }

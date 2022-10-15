@@ -1,15 +1,13 @@
-using BepInEx.Configuration;
+/*
 using R2API;
 using RoR2;
-using RoR2.Skills;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using System;
 using System.Collections.Generic;
-using EntityStates;
 
-namespace GOTCE.Enemies.Bosses {
-    public class Voidlingling : EnemyBase<Voidlingling> {
+namespace GOTCE.Enemies.Bosses
+{
+    public class Voidlingling : EnemyBase<Voidlingling>
+    {
         public override string PathToClone => "RoR2/DLC1/VoidRaidCrab/MiniVoidRaidCrabBodyBase.prefab";
         public override string CloneName => "Voidlingling";
         public override string PathToCloneMaster => "RoR2/DLC1/VoidRaidCrab/MiniVoidRaidCrabMasterBase.prefab";
@@ -24,10 +22,10 @@ namespace GOTCE.Enemies.Bosses {
             body.levelArmor = 0;
             body.attackSpeed = 1f;
             body.levelAttackSpeed = 0f;
-            body.damage = 20f;
-            body.levelDamage = 4f;
-            body.baseMaxHealth = 2000f;
-            body.levelMaxHealth = 600f;
+            body.damage = 21f;
+            body.levelDamage = 4.2f;
+            body.baseMaxHealth = 2400f;
+            body.levelMaxHealth = 720f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLING_NAME";
             body.baseRegen = 0f;
@@ -37,7 +35,7 @@ namespace GOTCE.Enemies.Bosses {
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 1000;
+            isc.directorCreditCost = 600;
             isc.eliteRules = SpawnCard.EliteRules.ArtifactOnly;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
@@ -52,7 +50,7 @@ namespace GOTCE.Enemies.Bosses {
         public override void AddDirectorCard()
         {
             base.AddDirectorCard();
-            card.minimumStageCompletions = 0;
+            card.minimumStageCompletions = 1;
             card.selectionWeight = 1;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
@@ -63,10 +61,10 @@ namespace GOTCE.Enemies.Bosses {
             master = prefabMaster.GetComponent<CharacterMaster>();
             master.bodyPrefab = prefab;
 
-            prefab.transform.Find("Model Base").gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            prefab.transform.Find("Model Base").gameObject.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
 
             List<DirectorAPI.Stage> stages = new() {
-                DirectorAPI.Stage.SiphonedForest,
+                DirectorAPI.Stage.DistantRoost,
                 DirectorAPI.Stage.AphelianSanctuary,
                 DirectorAPI.Stage.VoidLocus,
                 DirectorAPI.Stage.VoidCell,
@@ -77,10 +75,11 @@ namespace GOTCE.Enemies.Bosses {
             };
 
             DeathRewards deathRewards = prefab.GetComponent<DeathRewards>();
-            if (deathRewards) {
-
+            if (deathRewards)
+            {
             }
-            else {
+            else
+            {
                 deathRewards = prefab.AddComponent<DeathRewards>();
                 deathRewards.characterBody = body;
             }
@@ -97,4 +96,11 @@ namespace GOTCE.Enemies.Bosses {
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Champions);
         }
     }
+
+    // TODO:
+
+    // remove spawn vfx (probably in an entitystate)
+    // remove footstep vfx
+    // make the spawn entitystate much faster
 }
+*/

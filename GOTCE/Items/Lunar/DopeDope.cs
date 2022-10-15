@@ -1,6 +1,8 @@
-﻿using BepInEx.Configuration;
+﻿/*
+using BepInEx.Configuration;
 using R2API;
 using RoR2;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -26,7 +28,7 @@ namespace GOTCE.Items.Lunar
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/DopeDope.png");
 
         public override void Init(ConfigFile config)
         {
@@ -37,6 +39,7 @@ namespace GOTCE.Items.Lunar
         {
             return new ItemDisplayRuleDict(null);
         }
+
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
@@ -49,11 +52,14 @@ namespace GOTCE.Items.Lunar
                 var stack = sender.inventory.GetItemCount(Instance.ItemDef);
                 if (stack > 0)
                 {
-                    args.shieldMultAdd += 2f * stack;
-                    args.baseAttackSpeedAdd = sender.damage;
-                    args.baseDamageAdd =- sender.damage + 1;
+                    args.baseShieldAdd += 0.02f * sender.healthComponent.fullHealth * stack;
+                    var cachedAS = sender.attackSpeed;
+                    var cachedDMG = sender.damage;
+                    args.baseAttackSpeedAdd += cachedDMG;
+                    args.baseDamageAdd -= cachedAS;
                 }
             }
         }
     }
 }
+*/

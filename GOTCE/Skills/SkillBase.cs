@@ -11,8 +11,10 @@ using GOTCE.Skills;
 
 // WIP
 
-namespace GOTCE.Skills {
-    public abstract class SkillBase<T> : SkillBase where T : SkillBase<T> {
+namespace GOTCE.Skills
+{
+    public abstract class SkillBase<T> : SkillBase where T : SkillBase<T>
+    {
         public static T Instance { get; private set; }
 
         public SkillBase()
@@ -20,13 +22,14 @@ namespace GOTCE.Skills {
             if (Instance != null) throw new InvalidOperationException("Singleton class \"" + typeof(T).Name + "\" inheriting ItemBase was instantiated twice");
             Instance = this as T;
         }
-    } 
+    }
 
-    public abstract class SkillBase {
+    public abstract class SkillBase
+    {
         public abstract string NameToken { get; }
         public abstract string DescToken { get; }
 
-        public abstract EntityStates.SerializableEntityStateType ActivationState { get;}
+        public abstract EntityStates.SerializableEntityStateType ActivationState { get; }
         public abstract string ActivationStateMachineName { get; }
         public virtual int BaseMaxStock { get; } = 1;
         public virtual float BaseRechargeInterval { get; } = 0f;
@@ -43,7 +46,8 @@ namespace GOTCE.Skills {
 
         public SkillDef SkillDef;
 
-        public virtual void Create() {
+        public virtual void Create()
+        {
             SkillDef = ScriptableObject.CreateInstance<SkillDef>();
             SkillDef.activationState = ActivationState;
             SkillDef.activationStateMachineName = ActivationStateMachineName;
@@ -64,6 +68,5 @@ namespace GOTCE.Skills {
 
             ContentAddition.AddSkillDef(SkillDef);
         }
-
     }
-} 
+}

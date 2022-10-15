@@ -7,7 +7,7 @@ using UnityEngine;
 using BepInEx.Configuration;
 using HarmonyLib;
 
-namespace GOTCE.Items.Void_Green
+namespace GOTCE.Items.VoidGreen
 {
     public class AncientAxe : ItemBase<AncientAxe>
     {
@@ -17,9 +17,9 @@ namespace GOTCE.Items.Void_Green
 
         public override string ItemLangTokenName => "GOTCE_AncientAxe";
 
-        public override string ItemPickupDesc => "Guaranteed 'Critical Strikes' against low health enemies. Corrupts all Old Guillotines.";
+        public override string ItemPickupDesc => "Guaranteed 'Critical Strikes' against low health enemies. <style=cIsVoid>Corrupts all Old Guillotines</style>.";
 
-        public override string ItemFullDescription => "Attacks against enemies below 9% max health (+9% per stack) are always critical. Corrupts all Old Guillotines";
+        public override string ItemFullDescription => "Attacks against enemies below <style=cIsHealing>9% max health</style> <style=cStack>(+9% per stack)</style> are always <style=cIsDamage>critical</style>. <style=cIsVoid>Corrupts all Old Guillotines</style>.";
 
         public override string ItemLore => "";
 
@@ -29,7 +29,7 @@ namespace GOTCE.Items.Void_Green
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/AncientAxe.png");
 
         public override void Init(ConfigFile config)
         {
@@ -45,7 +45,6 @@ namespace GOTCE.Items.Void_Green
         {
             On.RoR2.HealthComponent.TakeDamage += HealthComponent_TakeDamage;
             On.RoR2.Items.ContagiousItemManager.Init += Sussy;
-
         }
 
         private void HealthComponent_TakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)
