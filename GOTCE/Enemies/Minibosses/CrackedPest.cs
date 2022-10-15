@@ -1,3 +1,4 @@
+/*
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -133,21 +134,24 @@ namespace GOTCE.Enemies.Minibosses
                         rotation = Util.QuaternionSafeLookRotation(info.force)
                     }, transmit: true);
 
-                    BlastAttack blast = new BlastAttack();
-                    blast.attacker = info.attacker;
-                    blast.baseDamage = damage;
-                    blast.radius = num;
-                    blast.inflictor = null;
-                    blast.falloffModel = BlastAttack.FalloffModel.None;
-                    blast.crit = info.crit;
-                    blast.position = info.position;
-                    blast.procCoefficient = 0f;
-                    blast.damageColorIndex = DamageColorIndex.Item;
-                    blast.teamIndex = TeamComponent.GetObjectTeam(info.attacker);
-                    blast.damageType = info.damageType;
+                    BlastAttack blast = new()
+                    {
+                        attacker = info.attacker,
+                        baseDamage = damage,
+                        radius = num,
+                        inflictor = null,
+                        falloffModel = BlastAttack.FalloffModel.None,
+                        crit = info.crit,
+                        position = info.position,
+                        procCoefficient = 0f,
+                        damageColorIndex = DamageColorIndex.Item,
+                        teamIndex = TeamComponent.GetObjectTeam(info.attacker),
+                        damageType = info.damageType
+                    };
                     blast.Fire();
                 }
             }
         }
     }
 }
+*/

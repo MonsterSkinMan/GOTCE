@@ -1,6 +1,7 @@
 ﻿using BepInEx.Configuration;
 using R2API;
 using RoR2;
+using RoR2.ExpansionManagement;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,6 +50,7 @@ namespace GOTCE.Items
         public virtual bool AIBlacklisted { get; set; } = false;
 
         public virtual ItemTierDef OverrideTierDef { get; } = null;
+        public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.GOTCEExpansionDef;
 
         /// <summary>
         /// This method structures your code execution of this class. An example implementation inside of it would be:

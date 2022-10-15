@@ -7,6 +7,7 @@ using UnityEngine.AddressableAssets;
 using System;
 using System.Collections.Generic;
 using EntityStates;
+using RoR2.ExpansionManagement;
 
 // WIP
 
@@ -42,6 +43,7 @@ namespace GOTCE.Interactables
 
         public abstract DirectorAPI.InteractableCategory category { get; }
         public virtual DirectorAPI.Stage[] stages { get; } = staegis;
+        public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.GOTCEExpansionDef;
 
         public void Create()
         {

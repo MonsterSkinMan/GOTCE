@@ -1,10 +1,12 @@
 ﻿using BepInEx.Configuration;
 using R2API;
 using RoR2;
+using RoR2.ExpansionManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace GOTCE.Equipment
 {
@@ -18,6 +20,7 @@ namespace GOTCE.Equipment
             Instance = this as T;
         }
     }
+
     public abstract class EquipmentBase
     {
         public abstract string EquipmentName { get; }
@@ -44,9 +47,12 @@ namespace GOTCE.Equipment
         public virtual bool IsBoss { get; } = false;
 
         public virtual bool IsLunar { get; } = false;
-        public virtual bool CanBeRandomlyTriggered { get; }= false;
+        public virtual bool CanBeRandomlyTriggered { get; } = false;
 
         public EquipmentDef EquipmentDef;
+        public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.GOTCEExpansionDef;
+
+        public static GameObject emptyModel;
 
         public abstract ItemDisplayRuleDict CreateItemDisplayRules();
 
@@ -62,8 +68,8 @@ namespace GOTCE.Equipment
         /// <param name="config">The config file that will be passed into this from the main class.</param>
         public abstract void Init(ConfigFile config);
 
-        protected virtual void CreateConfig(ConfigFile config) { }
-
+        protected virtual void CreateConfig(ConfigFile config)
+        { }
 
         /// <summary>
         /// Take care to call base.CreateLang()!
@@ -78,13 +84,21 @@ namespace GOTCE.Equipment
 
         protected void CreateEquipment()
         {
+            emptyModel = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mystery/PickupMystery.prefab").WaitForCompletion();
             EquipmentDef = ScriptableObject.CreateInstance<EquipmentDef>();
             EquipmentDef.name = "EQUIPMENT_" + EquipmentLangTokenName;
             EquipmentDef.nameToken = "EQUIPMENT_" + EquipmentLangTokenName + "_NAME";
             EquipmentDef.pickupToken = "EQUIPMENT_" + EquipmentLangTokenName + "_PICKUP";
             EquipmentDef.descriptionToken = "EQUIPMENT_" + EquipmentLangTokenName + "_DESCRIPTION";
             EquipmentDef.loreToken = "EQUIPMENT_" + EquipmentLangTokenName + "_LORE";
-            EquipmentDef.pickupModelPrefab = EquipmentModel;
+            if (EquipmentDef.pickupModelPrefab == null)
+            {
+                EquipmentDef.pickupModelPrefab = emptyModel;
+            }
+            else
+            {
+                EquipmentDef.pickupModelPrefab = EquipmentModel;
+            }
             EquipmentDef.pickupIconSprite = EquipmentIcon;
             EquipmentDef.appearsInSinglePlayer = AppearsInSinglePlayer;
             EquipmentDef.appearsInMultiPlayer = AppearsInMultiPlayer;
@@ -113,17 +127,22 @@ namespace GOTCE.Equipment
 
         protected abstract bool ActivateEquipment(EquipmentSlot slot);
 
-        public virtual void Hooks() { }
+        public virtual void Hooks()
+        { }
 
         #region Targeting Setup
+
         //Targeting Support
         public virtual bool UseTargeting { get; } = false;
+
         public GameObject TargetingIndicatorPrefabBase = null;
+
         public enum TargetingType
         {
             Enemies,
             Friendlies,
         }
+
         public virtual TargetingType TargetingTypeEnum { get; } = TargetingType.Enemies;
 
         //Based on MysticItem's targeting code.
@@ -147,6 +166,7 @@ namespace GOTCE.Equipment
                         case (TargetingType.Enemies):
                             targetingComponent.ConfigureTargetFinderForEnemies(self);
                             break;
+
                         case (TargetingType.Friendlies):
                             targetingComponent.ConfigureTargetFinderForFriendlies(self);
                             break;
@@ -217,7 +237,6 @@ namespace GOTCE.Equipment
                 TargetFinder.FilterOutGameObject(self.gameObject);
                 AdditionalBullseyeFunctionality(TargetFinder);
                 PlaceTargetingIndicator(TargetFinder.GetResults());
-
             }
 
             public void PlaceTargetingIndicator(IEnumerable<HurtBox> TargetFinderResults)

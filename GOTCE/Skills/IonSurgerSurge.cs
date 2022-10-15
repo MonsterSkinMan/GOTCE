@@ -1,3 +1,4 @@
+/*
 using BepInEx.Configuration;
 using R2API;
 using RoR2;
@@ -9,10 +10,12 @@ using System.Collections.Generic;
 using EntityStates;
 using GOTCE;
 
-namespace GOTCE.Skills {
-    public class IonSurgerSurge : SkillBase<IonSurgerSurge> {
+namespace GOTCE.Skills
+{
+    public class IonSurgerSurge : SkillBase<IonSurgerSurge>
+    {
         // private EntityStateConfiguration state = Addressables.LoadAssetAsync<EntityStateConfiguration>("RoR2/Base/Mage/EntityStates.Mage.FlyUpState.asset").WaitForCompletion();
-        
+
         public override SerializableEntityStateType ActivationState => new SerializableEntityStateType(typeof(EntityStates.Mage.FlyUpState));
         public override string NameToken => "GOTCE_IonSurgerSurge_NAME";
         public override string DescToken => "GOTCE_IonSurgerSurge_DESC";
@@ -29,6 +32,6 @@ namespace GOTCE.Skills {
         public override int RechargeStock => 1;
         public override int StockToConsume => 1;
         public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
-        
     }
 }
+*/

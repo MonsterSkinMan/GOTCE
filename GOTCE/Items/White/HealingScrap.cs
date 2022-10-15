@@ -43,21 +43,21 @@ namespace GOTCE.Items.White
 
         public override void Hooks()
         {
-            On.RoR2.Inventory.RemoveItem_ItemDef_int += Inventory_RemoveItem_ItemDef_int;
+            On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
         }
 
-        private void Inventory_RemoveItem_ItemDef_int(On.RoR2.Inventory.orig_RemoveItem_ItemDef_int orig, Inventory self, ItemDef itemDef, int count)
+        private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
         {
+            orig(self, itemIndex, count);
             if (self.gameObject.GetComponent<CharacterBody>())
             {
-                CharacterBody body = self.gameObject.GetComponent<CharacterBody>();
-                if (itemDef == ItemDef)
+                var body = self.gameObject.GetComponent<CharacterBody>();
+                if (itemIndex == Instance.ItemDef.itemIndex)
                 {
-                    self.GiveItem(GOTCE.Items.NoTier.HealingScrapConsumed.Instance.ItemDef, count);
-                    CharacterMasterNotificationQueue.SendTransformNotification(body.master, itemDef.itemIndex, NoTier.HealingScrapConsumed.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
+                    self.GiveItem(NoTier.HealingScrapConsumed.Instance.ItemDef, count);
+                    CharacterMasterNotificationQueue.SendTransformNotification(body.master, Instance.ItemDef.itemIndex, NoTier.HealingScrapConsumed.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.RegeneratingScrapRegen);
                 }
             }
-            orig(self, itemDef, count);
         }
     }
 }

@@ -1,7 +1,9 @@
+/*
 using R2API;
 using RoR2;
 using UnityEngine;
 using RoR2.CharacterAI;
+using System.Linq;
 
 namespace GOTCE.Enemies.Standard
 {
@@ -18,17 +20,14 @@ namespace GOTCE.Enemies.Standard
             base.CreatePrefab();
             body = prefab.GetComponent<CharacterBody>();
             body.baseArmor = 0;
-            body.levelArmor = 0;
             body.attackSpeed = 1f;
-            body.levelAttackSpeed = 0f;
             body.damage = 5.5f;
             body.levelDamage = 1.1f;
-            body.baseMaxHealth = 25f;
-            body.levelMaxHealth = 5f;
+            body.baseMaxHealth = 110f;
+            body.levelMaxHealth = 33f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_LIVINGSUPPRESSIVEFIRE_NAME";
             body.baseRegen = 0f;
-            body.levelRegen = 0f;
         }
 
         public override void AddSpawnCard()
@@ -49,7 +48,7 @@ namespace GOTCE.Enemies.Standard
         public override void AddDirectorCard()
         {
             base.AddDirectorCard();
-            card.minimumStageCompletions = 2;
+            card.minimumStageCompletions = 1;
             card.selectionWeight = 1;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
@@ -59,10 +58,12 @@ namespace GOTCE.Enemies.Standard
             base.Modify();
             master = prefabMaster.GetComponent<CharacterMaster>();
             master.bodyPrefab = prefab;
-
+            prefab.GetComponent<TeamComponent>().teamIndex = TeamIndex.Monster;
             // SwapMaterials(prefab, Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat"), true, null);
             // DisableMeshes(prefab, new List<int> { 1 });
             // SwapMeshes(prefab, Utils.MiscUtils.GetMeshFromPrimitive(PrimitiveType.Sphere), true);
+
+            body.GetComponent<SphereCollider>().radius = 3f;
 
             GameObject model = Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Enemies/LivingSuppressiveFire/mdlKirn.prefab");
             CapsuleCollider box1 = model.transform.Find("BarrelHitbox").gameObject.GetComponent<CapsuleCollider>();
@@ -83,17 +84,34 @@ namespace GOTCE.Enemies.Standard
             model.GetComponent<HurtBoxGroup>().bullseyeCount = 1;
             model.GetComponent<HurtBoxGroup>().mainHurtBox = box1.gameObject.GetComponent<HurtBox>();
 
-            foreach (AISkillDriver driver in prefabMaster.GetComponentsInChildren<AISkillDriver>())
-            {
-                driver.maxDistance = 120f;
-                driver.minDistance = 30f;
-                driver.aimType = AISkillDriver.AimType.AtCurrentEnemy;
-                driver.activationRequiresAimTargetLoS = true;
-                driver.buttonPressType = AISkillDriver.ButtonPressType.TapContinuous;
-                driver.movementType = AISkillDriver.MovementType.StrafeMovetarget;
-                driver.moveTargetType = AISkillDriver.TargetType.CurrentEnemy;
-                driver.skillSlot = SkillSlot.Primary;
-            }
+            var livingSuppMesh = model.transform.GetChild(0).transform;
+            var barrel = model.transform.GetChild(1).transform;
+            var handle = model.transform.GetChild(2).transform;
+            var weakpoint = model.transform.GetChild(3).transform;
+            livingSuppMesh.localPosition = new Vector3(0.15f, 0.05f, 0f);
+            barrel.localPosition = new Vector3(0.5f, 0.39f, 0.24f);
+            barrel.localScale = new Vector3(0.5f, 0.7f, 0.19f);
+            handle.gameObject.SetActive(false);
+            // position is absolute position
+            // localPosition is parent position + local position
+
+            // make an empty in the model hierarchy, place it in the barrel and make it the model transform in consistency state so it actually fires from the barrel
+
+            AISkillDriver FleeAndAttack = (from x in master.GetComponents<AISkillDriver>()
+                                           where x.maxDistance == 20
+                                           select x).First();
+            FleeAndAttack.maxDistance = 25f;
+
+            AISkillDriver StrafeAndAttack = (from x in master.GetComponents<AISkillDriver>()
+                                             where x.maxDistance == 30
+                                             select x).First();
+            StrafeAndAttack.minDistance = 25f;
+            StrafeAndAttack.maxDistance = 55f;
+
+            AISkillDriver What = (from x in master.GetComponents<AISkillDriver>()
+                                  where x.maxDistance == 40
+                                  select x).First();
+            What.maxDistance = 55f;
 
             SkillLocator sl = prefab.GetComponentInChildren<SkillLocator>();
             ReplaceSkill(sl.primary, Skills.Consistency.Instance.SkillDef);
@@ -105,3 +123,4 @@ namespace GOTCE.Enemies.Standard
         }
     }
 }
+*/

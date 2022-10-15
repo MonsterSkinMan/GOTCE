@@ -1,3 +1,4 @@
+/*
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -19,10 +20,10 @@ namespace GOTCE.Enemies.Minibosses
             body = prefab.GetComponent<CharacterBody>();
             body.baseArmor = 0;
             body.attackSpeed = 1f;
-            body.damage = 17f;
-            body.levelDamage = 3.4f;
-            body.baseMaxHealth = 450f;
-            body.levelMaxHealth = 135f;
+            body.damage = 14.5f;
+            body.levelDamage = 2.9f;
+            body.baseMaxHealth = 650f;
+            body.levelMaxHealth = 195f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLINGLING_NAME";
             body.baseRegen = 0f;
@@ -75,4 +76,11 @@ namespace GOTCE.Enemies.Minibosses
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Minibosses);
         }
     }
+
+    // TODO:
+
+    // remove spawn vfx (probably in an entitystate)
+    // remove footstep vfx
+    // make the spawn entitystate much faster
 }
+*/

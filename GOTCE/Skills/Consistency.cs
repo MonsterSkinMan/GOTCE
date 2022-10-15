@@ -1,17 +1,12 @@
-using BepInEx.Configuration;
-using R2API;
-using RoR2;
-using RoR2.Skills;
+/*
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using System;
-using System.Collections.Generic;
 using EntityStates;
-using GOTCE.EntityStatesCustom.LivingSuppressiveFire;
-using GOTCE.Skills;
+using GOTCE.Enemies.EntityStatesCustom;
 
-namespace GOTCE.Skills {
-    public class Consistency : SkillBase<Consistency> {
+namespace GOTCE.Skills
+{
+    public class Consistency : SkillBase<Consistency>
+    {
         public override SerializableEntityStateType ActivationState => new SerializableEntityStateType(typeof(ConsistencyState));
         public override string NameToken => "GOTCE_CONSISTENCY_NAME";
         public override string DescToken => "GOTCE_CONSISTENCY_DESC";
@@ -28,6 +23,6 @@ namespace GOTCE.Skills {
         public override int RechargeStock => 1;
         public override int StockToConsume => 0;
         public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
-        
     }
 }
+*/

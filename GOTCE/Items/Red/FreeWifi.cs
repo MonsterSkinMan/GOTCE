@@ -16,7 +16,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemLangTokenName => "GOTCE_FreeWifi";
 
-        public override string ItemPickupDesc => "Unblock orbital skills. Instantly die if picked up again.";
+        public override string ItemPickupDesc => "Unlock orbital skills in hidden realms. Instantly die if picked up again.";
 
         public override string ItemFullDescription => "Captain can use his <style=cIsUtility>orbital skills</style> anywhere. <style=cIsHealth>Die</style> 0 <style=cStack>(+1 per stack)</style> times.";
 
