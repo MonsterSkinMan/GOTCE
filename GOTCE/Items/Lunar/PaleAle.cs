@@ -1,4 +1,5 @@
-﻿using BepInEx.Configuration;
+﻿/*
+using BepInEx.Configuration;
 using MonoMod.Cil;
 using R2API;
 using Rewired;
@@ -73,3 +74,4 @@ namespace GOTCE.Items.Lunar
         }
     }
 }
+*/

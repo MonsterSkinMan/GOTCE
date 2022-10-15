@@ -36,12 +36,6 @@ namespace GOTCE.Items.Red
             return new ItemDisplayRuleDict(null);
         }
 
-        private static readonly ItemDef[] items =
-        {
-            RoR2Content.Items.Missile, RoR2Content.Items.Bandolier, RoR2Content.Items.Feather, RoR2Content.Items.FireRing, RoR2Content.Items.Thorns,
-            RoR2Content.Items.SprintArmor, RoR2Content.Items.IceRing, RoR2Content.Items.ChainLightning, RoR2Content.Items.JumpBoost
-        };
-
         public override void Init(ConfigFile config)
         {
             base.Init(config);
@@ -58,11 +52,18 @@ namespace GOTCE.Items.Red
             orig(self, itemIndex, count);
             if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
             {
+                List<ItemDef> items = new()
+                {
+                    RoR2Content.Items.Missile, RoR2Content.Items.Bandolier, RoR2Content.Items.Feather, RoR2Content.Items.FireRing, RoR2Content.Items.Thorns,
+                    RoR2Content.Items.SprintArmor, RoR2Content.Items.IceRing, RoR2Content.Items.ChainLightning, RoR2Content.Items.JumpBoost
+                };
+
+                var stack = self.GetItemCount(itemIndex);
                 foreach (ItemDef itemDef in RoR2.ContentManagement.ContentManager._itemDefs)
                 {
                     if (items.Contains(itemDef))
                     {
-                        self.RemoveItem(itemDef);
+                        self.RemoveItem(itemDef, 2 * stack);
                     }
                 }
             }
@@ -73,11 +74,17 @@ namespace GOTCE.Items.Red
             orig(self, itemIndex, count);
             if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
             {
+                List<ItemDef> items = new()
+                {
+                    RoR2Content.Items.Missile, RoR2Content.Items.Bandolier, RoR2Content.Items.Feather, RoR2Content.Items.FireRing, RoR2Content.Items.Thorns,
+                    RoR2Content.Items.SprintArmor, RoR2Content.Items.IceRing, RoR2Content.Items.ChainLightning, RoR2Content.Items.JumpBoost
+                };
+                var stack = self.GetItemCount(itemIndex);
                 foreach (ItemDef itemDef in RoR2.ContentManagement.ContentManager._itemDefs)
                 {
                     if (items.Contains(itemDef))
                     {
-                        self.GiveItem(itemDef);
+                        self.GiveItem(itemDef, 2 * stack);
                     }
                 }
             }

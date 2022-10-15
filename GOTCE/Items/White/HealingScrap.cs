@@ -19,7 +19,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "Prioritized when used with Common 3D Printers. Usable once per stage.";
 
-        public override string ItemFullDescription => "Literally just Regenerating Scrap but as a Common item.";
+        public override string ItemFullDescription => "Literally just Regenerating Scrap but as a <style=cSub>common item</style>.";
 
         public override string ItemLore => "there is no lore this is literally just regen scrap but as a common item I don't know what you were expecting";
 
@@ -43,19 +43,21 @@ namespace GOTCE.Items.White
 
         public override void Hooks()
         {
-            On.RoR2.Inventory.RemoveItem_ItemDef_int += Inventory_RemoveItem_ItemDef_int;
+            On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
         }
 
-        private void Inventory_RemoveItem_ItemDef_int(On.RoR2.Inventory.orig_RemoveItem_ItemDef_int orig, Inventory self, ItemDef itemDef, int count)
+        private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
         {
-            if (self.gameObject.GetComponent<CharacterBody>()) {
-                CharacterBody body = self.gameObject.GetComponent<CharacterBody>();
-                if (itemDef == ItemDef) {
-                    self.GiveItem(GOTCE.Items.NoTier.HealingScrapConsumed.Instance.ItemDef, count);
-                    CharacterMasterNotificationQueue.SendTransformNotification(body.master, itemDef.itemIndex, NoTier.HealingScrapConsumed.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
+            orig(self, itemIndex, count);
+            if (self.gameObject.GetComponent<CharacterBody>())
+            {
+                var body = self.gameObject.GetComponent<CharacterBody>();
+                if (itemIndex == Instance.ItemDef.itemIndex)
+                {
+                    self.GiveItem(NoTier.HealingScrapConsumed.Instance.ItemDef, count);
+                    CharacterMasterNotificationQueue.SendTransformNotification(body.master, Instance.ItemDef.itemIndex, NoTier.HealingScrapConsumed.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.RegeneratingScrapRegen);
                 }
             }
-            orig(self, itemDef, count);
         }
     }
 }

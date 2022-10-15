@@ -1,3 +1,4 @@
+/*
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -95,4 +96,11 @@ namespace GOTCE.Enemies.Bosses
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Champions);
         }
     }
+
+    // TODO:
+
+    // remove spawn vfx (probably in an entitystate)
+    // remove footstep vfx
+    // make the spawn entitystate much faster
 }
+*/

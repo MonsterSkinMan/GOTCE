@@ -24,6 +24,5 @@ namespace GOTCE.Enemies.Changes
             };
             deathRewards.bossDropTable = dt;
         }
-
     }
 }

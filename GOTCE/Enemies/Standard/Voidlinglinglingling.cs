@@ -1,3 +1,4 @@
+/*
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -19,8 +20,8 @@ namespace GOTCE.Enemies.Standard
             body = prefab.GetComponent<CharacterBody>();
             body.baseArmor = 0;
             body.attackSpeed = 1f;
-            body.damage = 11f;
-            body.levelDamage = 2.2f;
+            body.damage = 9.5f;
+            body.levelDamage = 1.9f;
             body.baseMaxHealth = 120f;
             body.levelMaxHealth = 36f;
             body.autoCalculateLevelStats = true;
@@ -75,4 +76,11 @@ namespace GOTCE.Enemies.Standard
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.BasicMonsters);
         }
     }
+
+    // TODO:
+
+    // remove spawn vfx (probably in an entitystate)
+    // remove footstep vfx
+    // make the spawn entitystate much faster
 }
+*/

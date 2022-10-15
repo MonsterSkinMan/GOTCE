@@ -1,3 +1,4 @@
+/*
 using EntityStates;
 using RoR2;
 using UnityEngine;
@@ -20,7 +21,8 @@ namespace GOTCE.EntityStatesCustom.CrackedPest
             duration = 1f / base.attackSpeedStat;
             Ray aimray = base.GetAimRay();
             base.StartAimMode(aimray);
-            if (base.isAuthority) {
+            if (base.isAuthority)
+            {
                 FireProjectileInfo info = new FireProjectileInfo();
                 ProcChainMask behemoth = new ProcChainMask();
                 behemoth.AddProc(ProcType.AACannon);
@@ -33,13 +35,13 @@ namespace GOTCE.EntityStatesCustom.CrackedPest
                 info.crit = Util.CheckRoll(base.characterBody.crit, base.characterBody.master);
                 info.procChainMask = behemoth;
                 info.damageColorIndex = DamageColorIndex.Poison;
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 5; i++)
+                {
                     info.rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(aimray.direction, 1, 3, 1, 3));
                     ProjectileManager.instance.FireProjectile(info);
                 }
             }
         }
-   
 
         public override void OnExit()
         {
@@ -49,7 +51,7 @@ namespace GOTCE.EntityStatesCustom.CrackedPest
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            
+
             if (base.fixedAge >= duration)
             {
                 outer.SetNextStateToMain();
@@ -63,3 +65,4 @@ namespace GOTCE.EntityStatesCustom.CrackedPest
         }
     }
 }
+*/

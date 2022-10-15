@@ -1,10 +1,11 @@
+/*
 using EntityStates;
 using RoR2;
 using UnityEngine;
 using GOTCE;
 using EntityStates.Commando.CommandoWeapon;
 
-namespace GOTCE.EntityStatesCustom.LivingSuppressiveFire
+namespace GOTCE.Enemies.EntityStatesCustom
 {
     public class ConsistencyState : BaseSkillState
     {
@@ -56,7 +57,7 @@ namespace GOTCE.EntityStatesCustom.LivingSuppressiveFire
             durationBetweenShots = baseDurationBetweenShots / attackSpeedStat;
             bulletCount = (int)((float)baseBulletCount * attackSpeedStat);
             modelAnimator = GetModelAnimator();
-            modelTransform = GetModelTransform();
+            modelTransform = GetModelBaseTransform();
             FireBullet();
         }
 
@@ -66,18 +67,15 @@ namespace GOTCE.EntityStatesCustom.LivingSuppressiveFire
             // string muzzleName = "MuzzleRight";
             if (base.isAuthority)
             {
-                ProcChainMask behemoth = new ProcChainMask();
-                behemoth.AddProc(ProcType.AACannon);
-                behemoth.AddProc(ProcType.Behemoth); // dont double dip, AACannon alreadu provides a weaker behemoth efect
                 BulletAttack bulletAttack = new()
                 {
                     owner = base.gameObject,
                     weapon = base.gameObject,
                     origin = aimRay.origin,
                     aimVector = aimRay.direction,
-                    minSpread = 1f,
-                    maxSpread = 2.5f,
-                    bulletCount = 3u,
+                    minSpread = 0.2f,
+                    maxSpread = 0.35f,
+                    bulletCount = 1u,
                     damage = base.characterBody.damage * 0.13f,
                     force = 30,
                     tracerEffectPrefab = tracerEffectPrefab,
@@ -86,7 +84,7 @@ namespace GOTCE.EntityStatesCustom.LivingSuppressiveFire
                     isCrit = Util.CheckRoll(critStat, base.characterBody.master),
                     radius = 2,
                     smartCollision = false,
-                    damageType = DamageType.BypassArmor | DamageType.Stun1s | DamageType.BypassOneShotProtection,
+                    damageType = DamageType.BypassArmor,
                     falloffModel = BulletAttack.FalloffModel.None,
                     procCoefficient = 0.05f
                 };
@@ -100,7 +98,7 @@ namespace GOTCE.EntityStatesCustom.LivingSuppressiveFire
                     aimVector = aimRay.direction,
                     minSpread = 90f,
                     maxSpread = 360f,
-                    bulletCount = 5u,
+                    bulletCount = 1u,
                     damage = base.characterBody.damage * 0.13f,
                     force = 300,
                     tracerEffectPrefab = tracerEffectPrefab,
@@ -111,12 +109,9 @@ namespace GOTCE.EntityStatesCustom.LivingSuppressiveFire
                     smartCollision = false,
                     damageType = DamageType.BypassArmor,
                     falloffModel = BulletAttack.FalloffModel.None,
-                    procCoefficient = 0.05f,
-                    procChainMask = behemoth,
+                    procCoefficient = 0.05f
                 };
-                for (int i = 0; i < 10; i++) {
-                    bulletAttack2.Fire();
-                }
+                bulletAttack2.Fire();
             }
             totalBulletsFired++;
             Util.PlaySound(fireBarrageSoundString, base.gameObject);
@@ -148,3 +143,4 @@ namespace GOTCE.EntityStatesCustom.LivingSuppressiveFire
         }
     }
 }
+*/
