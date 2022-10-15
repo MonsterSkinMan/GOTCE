@@ -23,7 +23,9 @@ namespace GOTCE.Equipment
 
         public override Sprite EquipmentIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Equipment/VoidDonut.png");
 
-        public override float Cooldown => 45f;
+        public override float Cooldown => 900f;
+
+        public override bool IsBoss => true;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
@@ -104,7 +106,7 @@ namespace GOTCE.Equipment
 
             beamVfxInstance.transform.SetPositionAndRotation(beamRay.origin, Quaternion.LookRotation(beamRay.direction));
 
-            if (stopwatch >= 10f)
+            if (stopwatch >= 3f)
             {
                 VfxKillBehavior.KillVfxObject(beamVfxInstance);
                 GameObject.Destroy(gameObject.GetComponent<VoidLaser>());

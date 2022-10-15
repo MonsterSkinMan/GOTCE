@@ -62,12 +62,12 @@ namespace GOTCE.Items.Lunar
 
         private void PlayerCharacterMasterController_FixedUpdate(On.RoR2.PlayerCharacterMasterController.orig_FixedUpdate orig, PlayerCharacterMasterController self)
         {
-            orig(self);
             var body = self.gameObject.GetComponent<CharacterMaster>().GetBody();
             if (body && body.inventory && body.inventory.GetItemCount(Instance.ItemDef) > 0)
             {
                 self.bodyInputs.moveVector = -self.bodyInputs.moveVector;
             }
+            orig(self);
         }
     }
 }
