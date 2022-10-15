@@ -16,9 +16,9 @@ namespace GOTCE.Items.Red
 
         public override string ItemLangTokenName => "GOTCE_ZanySoup";
 
-        public override string ItemPickupDesc => "Quadruple the amount of food-related items you have.";
+        public override string ItemPickupDesc => "Triple the amount of food-related items you have.";
 
-        public override string ItemFullDescription => "Gain <style=cIsUtility>+3</style> <style=cStack>(+1 per stack)</style> of every <style=cIsHealing>food-related item</style> you have.";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>+2</style> <style=cStack>(+1 per stack)</style> of every <style=cIsHealing>food-related item</style> you have.";
 
         public override string ItemLore => "";
 
@@ -53,7 +53,7 @@ namespace GOTCE.Items.Red
             {
                 // Main.ModLogger.LogDebug("network server is active");
 
-                int toIncrease = self.GetItemCount(itemIndex) > 1 ? 1 : 3;
+                int toIncrease = self.GetItemCount(itemIndex) > 1 ? 1 : 2;
 
                 List<ItemIndex> foodRelated = new()
                 {
@@ -104,7 +104,7 @@ namespace GOTCE.Items.Red
             {
                 // Main.ModLogger.LogDebug("network server is active");
 
-                int toIncrease = self.GetItemCount(index) > 1 ? 1 : 3;
+                int toIncrease = self.GetItemCount(index) > 1 ? 1 : 2;
 
                 List<ItemIndex> foodRelated = new()
                 {

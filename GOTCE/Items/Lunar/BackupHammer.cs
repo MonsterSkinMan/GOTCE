@@ -55,7 +55,7 @@ namespace GOTCE.Items.Lunar
                 var stack = sender.inventory.GetItemCount(Instance.ItemDef);
                 if (stack > 0)
                 {
-                    args.secondaryCooldownMultAdd += 0.5f * (stack - 1);
+                    args.cooldownMultAdd += 0.5f * (stack - 1);
                 }
             }
         }

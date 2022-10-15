@@ -49,7 +49,7 @@ namespace GOTCE.Items.Green
             var instances = PlayerCharacterMasterController.instances;
             foreach (PlayerCharacterMasterController playerCharacterMaster in instances)
             {
-                if (playerCharacterMaster.master.GetBody().inventory.GetItemCount(ItemDef) > 0)
+                if (playerCharacterMaster.master.GetBody().inventory != null && playerCharacterMaster.master.GetBody().inventory.GetItemCount(ItemDef) > 0)
                 {
                     var body = playerCharacterMaster.master.GetBody();
                     body.inventory.GiveItem(GOTCE.Items.NoTier.DelicatestWatch.Instance.ItemDef, playerCharacterMaster.master.GetBody().inventory.GetItemCount(ItemDef));
@@ -66,7 +66,7 @@ namespace GOTCE.Items.Green
             {
                 if (body.inventory.GetItemCount(ItemDef) > 0)
                 {
-                    args.damageMultAdd += 2f + 1f * (body.inventory.GetItemCount(ItemDef) - 1);
+                    args.damageMultAdd += 1f + 1f * (body.inventory.GetItemCount(ItemDef) - 1);
                 }
             }
         }

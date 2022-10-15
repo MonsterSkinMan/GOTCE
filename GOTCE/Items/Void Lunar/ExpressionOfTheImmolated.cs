@@ -59,7 +59,7 @@ namespace GOTCE.Items.VoidLunar
         {
             var result = orig(self);
             CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
-            if (result && body.inventory && body && body.inventory.GetItemCount(ItemDef) > 0)
+            if (body && body.inventory && body.inventory.GetItemCount(ItemDef) > 0)
             {
                 self.ExecuteIfReady();
             }

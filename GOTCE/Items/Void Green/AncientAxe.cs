@@ -56,11 +56,14 @@ namespace GOTCE.Items.VoidGreen
             }
             if (damageInfo.attacker.GetComponent<CharacterBody>())
             {
-                var inv = damageInfo.attacker.GetComponent<HealthComponent>().body.inventory;
-                int stack = inv.GetItemCount(Instance.ItemDef);
-                if (inv && self.health < (self.fullCombinedHealth * (0.09 * stack)))
+                if (damageInfo.attacker.GetComponent<HealthComponent>().body.inventory)
                 {
-                    damageInfo.crit = true;
+                    var inv = damageInfo.attacker.GetComponent<HealthComponent>().body.inventory;
+                    int stack = inv.GetItemCount(Instance.ItemDef);
+                    if (self.health < (self.fullCombinedHealth * (0.09 * stack)))
+                    {
+                        damageInfo.crit = true;
+                    }
                 }
             }
             orig(self, damageInfo);
