@@ -14,9 +14,9 @@ namespace GOTCE.Items.White
 
         public override string ItemLangTokenName => "GOTCE_BottledMetamorphosis";
 
-        public override string ItemPickupDesc => "Periodically transform into a random entity.";
+        public override string ItemPickupDesc => "Periodically transform into a random survivor.";
 
-        public override string ItemFullDescription => "Every <style=cIsUtility>5</style> <style=cStack>(-10% per stack)</style> seconds, turn into a <style=cIsUtility>random entity</style>.";
+        public override string ItemFullDescription => "Every <style=cIsUtility>60</style> <style=cStack>(-10% per stack)</style> seconds, turn into a <style=cIsUtility>random survivor</style>.";
 
         public override string ItemLore => "The world inhabited by life is a nonsensical place. Imparting any sort of rules towards nature or general logic on the way the world behaves can only confuse you. The best way to integrate yourself into the animalistic side of our world is to embrace it. Let the chaos of life itself flow around you, rather than being destroyed by its torrential force. Many benefits can be absorbed from the disorder of life.";
         public override string ConfigName => ItemName;
@@ -49,53 +49,45 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             On.RoR2.CharacterBody.OnInventoryChanged += AttachController;
+            On.RoR2.Inventory.GiveItem_ItemDef_int += Inventory_GiveItem_ItemDef_int;
         }
 
-        public static GameObject GetRandomCharacterBodyPrefab()
+        private void Inventory_GiveItem_ItemDef_int(On.RoR2.Inventory.orig_GiveItem_ItemDef_int orig, Inventory self, ItemDef itemDef, int count)
         {
-            /*List<string> donot = new() {
-                "BirdsharkBody", "ArtifactShellBody","AltarSkeletonBody", "BackupDroneOldBody", "BeetleCrystalBody", "BeetleGuardAllyBody", "BeetleGuardCrystalBody",
-            "BeetleWard", "DeathProjectile", "ExplosivePotDestructibleBody", "FusionCellDestructibleBody", "GolemBodyInvincible",
-            "GravekeeperTrackingFireball", "LemurianBruiserBody", "LunarWispTrackingBomb", "MinorConstructAttachableBody", "MinorConstructBody", "MinorConstructOnKillBody", "NullifierBody", "OilBeetle",
-            "ParentPodBody", "SMInfiniteTowerMaulingRockLarge", "SMInfiniteTowerMaulingRockMedium", "SMInfiniteTowerMaulingRockSmall", "SMMaulingRockLarge", "SMMaulingRockMedium", "SMMaulingRockSmall", "ScavSackProjectile",
-            "SpectatorBody", "SpectatorSlowBody", "SulfurPodBody", "TimeCrystalBody", "UrchinTurretBody", "VagrantTrackingBomb", "VoidBarnacleNoCastBody", "VoidRaidCrabJointBody",
-            "VultureEggBody", "Pot2Body", "AcidLarvaBody", "AffixEarthHealerBody"
-            }; */
-            List<GameObject> bodies = new List<GameObject>();
-            /* foreach (GameObject body in BodyCatalog.allBodyPrefabs)
+            orig(self, itemDef, count);
+            if (NetworkServer.active && itemDef == Instance.ItemDef)
             {
-                if (SurvivorCatalog.FindSurvivorDefFromBody(body.gameObject) != null)
+                var stack = self.GetItemCount(Instance.ItemDef);
+                if (stack > 0)
                 {
-                    List<string> woolie = new()
-                    {
-                        "CommandoBody", "HuntressBody", "Bandit2Body", "EngiBody", "ToolbotBody", "MercBody", "MageBody", "TreebotBody", "LoaderBody", "CrocoBody", "CaptainBody", "HereticBody", "RailgunnerBody", "VoidSurvivor"
-                    };
+                    self.gameObject.GetComponent<MetaController>().interval = 60 * Mathf.Pow(0.9f, stack - 1);
+                    // diminishing stacking like safer spaces
                 }
-            } */
+            }
+        }
 
-            foreach(SurvivorDef def in SurvivorCatalog.allSurvivorDefs) {
+        public static GameObject GetRandomSurvivorBodyPrefab()
+        {
+            List<GameObject> bodies = new();
+            foreach (SurvivorDef def in SurvivorCatalog.allSurvivorDefs)
+            {
                 bodies.Add(def.bodyPrefab);
             }
-            /*foreach (string str in donot)
-            {
-                bodies.Remove(BodyCatalog.FindBodyPrefab(str));
-            }*/
             return bodies[random.Next(0, bodies.Count)];
         }
 
         public void AttachController(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
-            
             if (self.inventory)
             {
                 bool flag = self.inventory.GetItemCount(ItemDef) > 0;
                 MetaController controller = self.gameObject.GetComponent<MetaController>();
-                
+
                 if (flag != controller)
                 {
                     if (flag)
                     {
-                        self.gameObject.AddComponent<MetaController>(); 
+                        self.gameObject.AddComponent<MetaController>();
                     }
                     else
                     {
@@ -105,20 +97,19 @@ namespace GOTCE.Items.White
             }
             orig(self);
         }
-
-        
     }
 
     public class MetaController : MonoBehaviour
     {
         private CharacterBody body;
-        private static float interval = 30f;
-        private float stopwatch = interval;
+        public float interval;
+        private float stopwatch;
 
         public void Start()
         {
             body = gameObject.GetComponent<CharacterBody>();
-            interval = 30f;
+            interval = 60f;
+            stopwatch = interval;
         }
 
         public void FixedUpdate()
@@ -130,9 +121,11 @@ namespace GOTCE.Items.White
                 {
                     if (stopwatch <= 0)
                     {
-                        body.master.bodyPrefab = BottledMetamorphosis.GetRandomCharacterBodyPrefab();
-                        body.master.Respawn(body.master.GetBody().transform.position, body.master.GetBody().transform.rotation);
+                        body.master.bodyPrefab = BottledMetamorphosis.GetRandomSurvivorBodyPrefab();
+                        body.master.Respawn(body.master.GetBody().transform.position + new Vector3(0f, 5f, 0f), body.master.GetBody().transform.rotation);
                     }
+                    // respawn slightly off the ground to prevent weird teleports
+                    // had it happen once on commencement, where i encountered mithrix and suddenly got teleported to soul pillars lmao
                 }
             }
         }
