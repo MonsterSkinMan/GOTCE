@@ -90,18 +90,25 @@ namespace GOTCE
                 }
             }
 
+            // add spacetime clock before other items since others might depend on it's event
+            ItemBase faulty = (ItemBase)System.Activator.CreateInstance(typeof(GOTCE.Items.White.FaultySpacetimeClock));
+            faulty.Init(Config);
+
             //This section automatically scans the project for all items
             var ItemTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(ItemBase)));
 
             foreach (var itemType in ItemTypes)
             {
-                Debug.Log("Woolie");
-                ItemBase item = (ItemBase)System.Activator.CreateInstance(itemType);
-                // Debug.Log(item.ConfigName);
-                if (ValidateItem(item, Items))
-                {
-                    Debug.Log("RNDThursday");
-                    item.Init(Config);
+                if (itemType != typeof(GOTCE.Items.White.FaultySpacetimeClock)) {
+                    Debug.Log("Woolie");
+                    ItemBase item = (ItemBase)System.Activator.CreateInstance(itemType);
+                    // Debug.Log(item.ConfigName);
+                    if (ValidateItem(item, Items))
+                    {
+                        Debug.Log("RNDThursday");
+                        item.Init(Config);
+                        
+                    }
                 }
             }
             [SystemInitializer(dependencies: typeof(ItemCatalog))] // wait until after the catalog initializes to add interactables

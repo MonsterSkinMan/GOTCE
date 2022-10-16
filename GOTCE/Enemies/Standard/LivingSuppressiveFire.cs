@@ -90,7 +90,7 @@ namespace GOTCE.Enemies.Standard
             model.GetComponent<HurtBoxGroup>().mainHurtBox = box1.gameObject.GetComponent<HurtBox>();
 
             var livingSuppMesh = model.transform.GetChild(0).transform;
-            var barrel = model.transform.GetChild(1).transform;
+            Transform barrel = model.transform.GetChild(1).transform;
             var handle = model.transform.GetChild(2).transform;
             var weakpoint = model.transform.GetChild(3).transform;
             /* livingSuppMesh.localPosition = new Vector3(0.15f, 0.05f, 0f);
@@ -101,6 +101,8 @@ namespace GOTCE.Enemies.Standard
             // localPosition is parent position + local position
 
             // make an empty in the model hierarchy, place it in the barrel and make it the model transform in consistency state so it actually fires from the barrel
+
+            // body.aimOriginTransform = barrel;
 
             AISkillDriver FleeAndAttack = (from x in master.GetComponents<AISkillDriver>()
                                            where x.maxDistance == 20
@@ -147,6 +149,11 @@ namespace GOTCE.Enemies.Standard
         } */
 
         public static Vector3 InputBankTest_aimOrigin_Get(orig_aimOrigin orig, InputBankTest self) {
+            if (self.characterBody) {
+                if (self.characterBody.aimOriginTransform) {
+                    return self.characterBody.aimOriginTransform.position;
+                }
+            }
             return self.transform.position;
         }
     }

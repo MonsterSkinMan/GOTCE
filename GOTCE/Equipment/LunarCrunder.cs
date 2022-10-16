@@ -168,11 +168,13 @@ namespace GOTCE.Equipment
 
         public void Awake()
         {
-            prefab = UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Brother/LunarShardProjectile.prefab").WaitForCompletion();
+            prefab = UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Brother/LunarShardProjectile.prefab").WaitForCompletion().InstantiateClone("goldgatcrunder13567.5%3.0");
             body = gameObject.GetComponent<CharacterBody>();
             input = gameObject.GetComponent<InputBankTest>();
             master = body.master;
             net = Util.LookUpBodyNetworkUser(body);
+            prefab.GetComponent<ProjectileController>().procCoefficient = 5f;
+            PrefabAPI.RegisterNetworkPrefab(prefab);
         }
 
         public void FixedUpdate()

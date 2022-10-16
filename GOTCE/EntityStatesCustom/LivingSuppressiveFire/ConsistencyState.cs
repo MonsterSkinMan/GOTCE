@@ -56,7 +56,8 @@ namespace GOTCE.Enemies.EntityStatesCustom
             durationBetweenShots = baseDurationBetweenShots / attackSpeedStat;
             bulletCount = (int)((float)baseBulletCount * attackSpeedStat);
             modelAnimator = GetModelAnimator();
-            modelTransform = GetModelBaseTransform();
+            // modelTransform = base.characterBody.modelLocator.modelTransform.GetChild(1).transform;
+            modelTransform = base.characterBody.modelLocator.modelTransform.Find("BarrelHitbox").transform;
             FireBullet();
         }
 
@@ -71,7 +72,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
                 {
                     owner = base.gameObject,
                     weapon = base.gameObject,
-                    origin = aimRay.origin,
+                    origin = base.characterBody.modelLocator.modelTransform.Find("BarrelHitbox").transform.position,
                     aimVector = aimRay.direction,
                     minSpread = 0.2f,
                     maxSpread = 0.35f,
@@ -94,7 +95,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
                 {
                     owner = base.gameObject,
                     weapon = base.gameObject,
-                    origin = aimRay.origin,
+                    origin = base.characterBody.modelLocator.modelTransform.Find("BarrelHitbox").transform.position,
                     aimVector = aimRay.direction,
                     minSpread = 90f,
                     maxSpread = 360f,

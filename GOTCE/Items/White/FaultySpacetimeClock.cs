@@ -58,8 +58,10 @@ namespace GOTCE.Items.White
 
         public void Crit(CharacterBody body)
         { // there is a 99% chance this code is horrible
-            body.gameObject.AddComponent<GOTCE_StatsComponent>();
-            if (NetworkServer.active && body.isPlayerControlled && Stage.instance.entryTime.timeSince <= 3f)
+            if (body.masterObject && !body.masterObject.GetComponent<GOTCE_StatsComponent>()) {
+                body.masterObject.AddComponent<GOTCE_StatsComponent>();
+            }
+            if (NetworkServer.active && body.isPlayerControlled && Stage.instance.entryTime.timeSince <= 3f && body.masterObject.GetComponent<GOTCE_StatsComponent>())
             {
                 bool lastStageWasCritPrev = lastStageWasCrit;
 
@@ -74,9 +76,9 @@ namespace GOTCE.Items.White
                     lastStageWasCrit = false;
                 }
                 float totalChance = 0f;
-                if (body.gameObject.GetComponent<GOTCE_StatsComponent>())
+                if (body.masterObject.GetComponent<GOTCE_StatsComponent>())
                 {
-                    GOTCE_StatsComponent vars = body.gameObject.GetComponent<GOTCE_StatsComponent>();
+                    GOTCE_StatsComponent vars = body.masterObject.GetComponent<GOTCE_StatsComponent>();
                     vars.DetermineStageCrit();
                     totalChance += vars.stageCritChance;
                 };
