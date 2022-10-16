@@ -21,6 +21,8 @@ using GOTCE.Interactables;
 using GOTCE.Enemies;
 using RoR2.ExpansionManagement;
 using Object = UnityEngine.Object;
+using GOTCE.Enemies.Standard;
+using MonoMod.RuntimeDetour;
 
 [assembly: SearchableAttribute.OptIn]
 
@@ -30,7 +32,7 @@ namespace GOTCE
     [BepInDependency(R2API.R2API.PluginGUID, R2API.R2API.PluginVersion)]
     // [BepInDependency("com.xoxfaby.BetterUI", BepInDependency.DependencyFlags.SoftDependency)] // soft dependency so betterui doesnt go insane when it sees a custom tier
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
-    [R2APISubmoduleDependency(nameof(ItemAPI), nameof(LanguageAPI), nameof(EliteAPI), nameof(RecalculateStatsAPI), nameof(DirectorAPI), nameof(NetworkingAPI))]
+    [R2APISubmoduleDependency(nameof(ItemAPI), nameof(LanguageAPI), nameof(EliteAPI), nameof(RecalculateStatsAPI), nameof(DirectorAPI), nameof(NetworkingAPI), nameof(PrefabAPI))]
     public class Main : BaseUnityPlugin
     {
         public const string ModGuid = "com.TheBestAssociatedLargelyLudicrousSillyheadGroup.GOTCE";
@@ -162,6 +164,11 @@ namespace GOTCE
                 // Debug.Log(item.ConfigName);
                 enemy.Create();
             }
+
+            Hook aimHook = new Hook(
+                typeof(InputBankTest).GetProperty("aimOrigin", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).GetGetMethod(),
+                typeof(LivingSuppressiveFire).GetMethod("InputBankTest_aimOrigin_Get", System.Reflection.BindingFlags.Public | BindingFlags.Static)
+            );
             //CreateExpansion();
         }
 

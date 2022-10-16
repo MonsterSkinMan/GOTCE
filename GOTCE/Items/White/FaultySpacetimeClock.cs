@@ -59,7 +59,7 @@ namespace GOTCE.Items.White
         public void Crit(CharacterBody body)
         { // there is a 99% chance this code is horrible
             body.gameObject.AddComponent<GOTCE_StatsComponent>();
-            if (NetworkServer.active && Stage.instance.entryTime.timeSince <= 3f && body.isPlayerControlled)
+            if (NetworkServer.active && body.isPlayerControlled && Stage.instance.entryTime.timeSince <= 3f)
             {
                 bool lastStageWasCritPrev = lastStageWasCrit;
 

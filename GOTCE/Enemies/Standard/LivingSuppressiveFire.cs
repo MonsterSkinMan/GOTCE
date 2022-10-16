@@ -1,9 +1,12 @@
-/*
 using R2API;
 using RoR2;
 using UnityEngine;
 using RoR2.CharacterAI;
 using System.Linq;
+using MonoMod.Cil;
+using Mono.Cecil.Cil;
+using System;
+using MonoMod.RuntimeDetour;
 
 namespace GOTCE.Enemies.Standard
 {
@@ -14,6 +17,8 @@ namespace GOTCE.Enemies.Standard
         public override string PathToCloneMaster => "RoR2/Base/Wisp/WispMaster.prefab";
         public CharacterBody body;
         public CharacterMaster master;
+
+        public delegate Vector3 orig_aimOrigin(InputBankTest self);
 
         public override void CreatePrefab()
         {
@@ -88,10 +93,10 @@ namespace GOTCE.Enemies.Standard
             var barrel = model.transform.GetChild(1).transform;
             var handle = model.transform.GetChild(2).transform;
             var weakpoint = model.transform.GetChild(3).transform;
-            livingSuppMesh.localPosition = new Vector3(0.15f, 0.05f, 0f);
+            /* livingSuppMesh.localPosition = new Vector3(0.15f, 0.05f, 0f);
             barrel.localPosition = new Vector3(0.5f, 0.39f, 0.24f);
-            barrel.localScale = new Vector3(0.5f, 0.7f, 0.19f);
-            handle.gameObject.SetActive(false);
+            barrel.localScale = new Vector3(0.5f, 0.7f, 0.19f); */
+            // handle.gameObject.SetActive(false);
             // position is absolute position
             // localPosition is parent position + local position
 
@@ -120,7 +125,29 @@ namespace GOTCE.Enemies.Standard
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_LORE", "Even if frags did 2000% with no falloff...");
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_SUBTITLE", "Horde of Many");
             RegisterEnemy(prefab, prefabMaster, null, DirectorAPI.MonsterCategory.BasicMonsters, true);
+
+            /* IL.RoR2.InputBankTest.GetAimRay += (il) => {
+                ILCursor c = new ILCursor(il);
+                c.GotoNext(
+                    x => x.MatchLdarg(0),
+                    x => x.MatchCallOrCallvirt(typeof(Vector3), "get_aimOrigin")
+                );
+                c.Index += 1;
+                c.Remove();
+                c.Emit(OpCodes.Ldarg_0);
+                c.Emit(OpCodes.Ldfld, typeof(InputBankTest).GetField("characterBody"));
+                c.EmitDelegate<Func<CharacterBody, Vector3>>((cb) => {
+                    return cb.transform.position;
+                });
+            }; */
+        }
+
+        /* private Ray the(On.EntityStates.BaseState.orig_GetAimRay orig, EntityStates.BaseState self) {
+            return new Ray(self.transform.position, self.transform.forward);
+        } */
+
+        public static Vector3 InputBankTest_aimOrigin_Get(orig_aimOrigin orig, InputBankTest self) {
+            return self.transform.position;
         }
     }
 }
-*/

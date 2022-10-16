@@ -1,4 +1,3 @@
-/*
 using EntityStates;
 using RoR2;
 using UnityEngine;
@@ -65,6 +64,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
         {
             Ray aimRay = GetAimRay();
             // string muzzleName = "MuzzleRight";
+            // Ray aimRay = GetAim();
             if (base.isAuthority)
             {
                 BulletAttack bulletAttack = new()
@@ -143,4 +143,3 @@ namespace GOTCE.Enemies.EntityStatesCustom
         }
     }
 }
-*/

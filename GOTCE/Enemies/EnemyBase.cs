@@ -39,9 +39,9 @@ namespace GOTCE.Enemies
             {
                 CreatePrefab();
             }
+            Modify();
             AddSpawnCard();
             AddDirectorCard();
-            Modify();
         }
 
         public virtual void Modify()

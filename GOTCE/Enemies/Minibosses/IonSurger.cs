@@ -1,5 +1,4 @@
-/*
-using R2API;
+/* using R2API;
 using RoR2;
 using UnityEngine;
 using RoR2.Skills;
@@ -130,5 +129,4 @@ namespace GOTCE.Enemies.Minibosses
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Minibosses, true);
         }
     }
-}
-*/
+} */
