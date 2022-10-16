@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 386004741
+CRC: 2248697349
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 314cdd32c2d3b4e8c592c2be50706d35
+    Hash: 0994d7e35e242df35e0e79cd05f8f94e
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1572d93b9eefe5749d515c98c4fb318b
@@ -51,43 +51,33 @@ Assets:
 - Assets/Materials/Item/MonstersVisage/MonstersVisageMaterial.mat
 - Assets/Textures/Icons/Item/zanysoup.png
 - Assets/Textures/Icons/Artifact/disabledfear.png
-- Assets/Textures/Icons/Equipment/VoidDonut.png
 - Assets/Materials/Enemies/crackedPestMaterial.mat
 - Assets/Textures/Icons/Item/barrierstone.png
-- Assets/Textures/Icons/Item/memoriesofmisery.png
+- Assets/Textures/Icons/Item/kirn.png
+- Assets/Textures/Icons/Item/faultyspacetimeclock.png
 - Assets/Textures/Icons/Item/HealingScrap.png
 - Assets/Models/Prefabs/Item/LunarGat/mdlGoldGat.prefab
 - Assets/Textures/Icons/Artifact/woolifact.png
-- Assets/Textures/Icons/Item/faultyspacetimeclock.png
 - Assets/Textures/Icons/Item/BottledMetamorphosis.png
-- Assets/Textures/Icons/Item/kirn.png
-- Assets/Textures/Icons/Item/NEAplaceholder.png
-- Assets/Textures/Icons/Equipment/crunder2.png
+- Assets/Textures/Icons/Item/memoriesofmisery.png
+- Assets/Textures/Icons/Item/NEA.png
 - Assets/Textures/Icons/Item/bigshoe.png
 - Assets/Textures/Icons/Item/FormlessSand.png
 - Assets/Textures/Icons/Item/corruptedshard.png
 - Assets/Textures/Icons/Item/bottledcommand.png
 - Assets/Textures/Icons/Item/barrierworks.png
-- Assets/Textures/Icons/Item/PaleAle.png
 - Assets/Models/Prefabs/Enemies/IonSurger/mdlIonSurger.prefab
 - Assets/Textures/Icons/Item/HealingScrapConsumed.png
 - Assets/Textures/Icons/Item/drill.png
 - Assets/Textures/Icons/Item/spafnarsfries.png
-- Assets/Textures/Icons/Item/ExpressionOfTheImmolated.png
 - Assets/Materials/Item/MoldySteak/matSteak.mat
 - Assets/Textures/Icons/Item/shittyvisage.png
 - Assets/Models/Prefabs/Enemies/livingsuppfire.png
-- Assets/Textures/Icons/Item/HelloWorld.png
 - Assets/Textures/Icons/Item/tuboflard.png
-- Assets/Textures/Icons/Item/DopeDope.png
-- Assets/Textures/Icons/Item/GD1Nullified.png
 - Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png
 - Assets/Textures/Icons/Item/sscnft.png
 - Assets/Textures/Icons/Item/Yhjtumgrhtfyddc.png
-- Assets/Textures/Icons/Item/galsone.png
-- Assets/Textures/Icons/Item/NEA.png
 - Assets/Textures/Icons/Artifact/artifactofblindnessoff.png
-- Assets/Textures/Icons/Item/AncientAxe.png
 - Assets/Textures/Icons/Item/tubofbart.png
 - Assets/Textures/Icons/Item/backuphammer.png
 - Assets/Textures/Icons/Item/Bottled_Enigma.png
@@ -97,11 +87,10 @@ Assets:
 - Assets/Models/Prefabs/Enemies/LivingSuppressiveFire/mdlKirn.prefab
 - Assets/Textures/Icons/Item/MoldySteak.png
 - Assets/Textures/Icons/Artifact/artifactofblindnesson.png
-- Assets/Textures/Icons/Item/DelicaterWatch.png
-- Assets/Textures/Icons/Item/ViscousBlast.png
 - Assets/Textures/Icons/Item/skullkey.png
 - Assets/Textures/Icons/Item/pogo.png
 - Assets/Textures/Icons/Item/BangSnap.png
+- Assets/Textures/Icons/Item/galsone.png
 - Assets/Textures/Icons/Item/animalhead.png
 - Assets/Models/Prefabs/Enemies/CrackedPest/mdlCrackedPest.prefab
 - Assets/Textures/Icons/Artifact/artifactofartifact.png

@@ -62,7 +62,7 @@ namespace GOTCE.Items.White
             "VultureEggBody", "Pot2Body", "AcidLarvaBody", "AffixEarthHealerBody"
             }; */
             List<GameObject> bodies = new List<GameObject>();
-            foreach (GameObject body in BodyCatalog.allBodyPrefabs)
+            /* foreach (GameObject body in BodyCatalog.allBodyPrefabs)
             {
                 if (SurvivorCatalog.FindSurvivorDefFromBody(body.gameObject) != null)
                 {
@@ -71,6 +71,10 @@ namespace GOTCE.Items.White
                         "CommandoBody", "HuntressBody", "Bandit2Body", "EngiBody", "ToolbotBody", "MercBody", "MageBody", "TreebotBody", "LoaderBody", "CrocoBody", "CaptainBody", "HereticBody", "RailgunnerBody", "VoidSurvivor"
                     };
                 }
+            } */
+
+            foreach(SurvivorDef def in SurvivorCatalog.allSurvivorDefs) {
+                bodies.Add(def.bodyPrefab);
             }
             /*foreach (string str in donot)
             {
