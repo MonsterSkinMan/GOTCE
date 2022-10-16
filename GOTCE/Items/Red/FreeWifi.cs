@@ -51,9 +51,9 @@ namespace GOTCE.Items.Red
                     {
                         SceneCatalog.mostRecentSceneDef.blockOrbitalSkills = false;
                     }
-                    if (self.inventory.GetItemCount(ItemDef) > 1)
+                    if (self.inventory.GetItemCount(ItemDef) >= 1 && self.master && self.inventory)
                     {
-                        self.healthComponent.Suicide();
+                        self.healthComponent.Suicide(self.gameObject, self.gameObject, DamageType.Generic);
                         self.master.inventory.RemoveItem(ItemDef, 1);
                     }
                     if (self.inventory.GetItemCount(ItemDef) <= 0)

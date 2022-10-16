@@ -48,7 +48,6 @@ namespace GOTCE.Items.White
 
         private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
         {
-            orig(self, itemIndex, count);
             if (self.gameObject.GetComponent<CharacterBody>())
             {
                 var body = self.gameObject.GetComponent<CharacterBody>();
@@ -58,6 +57,7 @@ namespace GOTCE.Items.White
                     CharacterMasterNotificationQueue.SendTransformNotification(body.master, Instance.ItemDef.itemIndex, NoTier.HealingScrapConsumed.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.RegeneratingScrapRegen);
                 }
             }
+            orig(self, itemIndex, count);
         }
     }
 }

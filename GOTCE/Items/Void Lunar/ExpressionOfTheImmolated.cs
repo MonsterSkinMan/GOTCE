@@ -25,7 +25,7 @@ namespace GOTCE.Items.VoidLunar
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/ExpressionOfTheImmolated.png");
 
         public override void Init(ConfigFile config)
         {
@@ -59,7 +59,7 @@ namespace GOTCE.Items.VoidLunar
         {
             var result = orig(self);
             CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
-            if (result && body.inventory && body && body.inventory.GetItemCount(ItemDef) > 0)
+            if (body && body.inventory && body.inventory.GetItemCount(ItemDef) > 0)
             {
                 self.ExecuteIfReady();
             }

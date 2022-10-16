@@ -29,7 +29,7 @@ namespace GOTCE.Items.Lunar
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;/* Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/shittyvisage.png"); */ // replace with Memories of Misery icon
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/memoriesofmisery.png");
 
         public override void Init(ConfigFile config)
         {
@@ -62,12 +62,12 @@ namespace GOTCE.Items.Lunar
 
         private void PlayerCharacterMasterController_FixedUpdate(On.RoR2.PlayerCharacterMasterController.orig_FixedUpdate orig, PlayerCharacterMasterController self)
         {
-            orig(self);
             var body = self.gameObject.GetComponent<CharacterMaster>().GetBody();
             if (body && body.inventory && body.inventory.GetItemCount(Instance.ItemDef) > 0)
             {
                 self.bodyInputs.moveVector = -self.bodyInputs.moveVector;
             }
+            orig(self);
         }
     }
 }

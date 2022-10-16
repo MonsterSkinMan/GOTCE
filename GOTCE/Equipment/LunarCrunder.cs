@@ -5,6 +5,10 @@ using BepInEx.Configuration;
 using System;
 using RoR2.Projectile;
 using UnityEngine.Networking;
+using UnityEngine.Diagnostics;
+using R2API.Networking.Interfaces;
+using R2API.Networking;
+using System.Collections;
 
 namespace GOTCE.Equipment
 {
@@ -24,7 +28,7 @@ namespace GOTCE.Equipment
 
         public override GameObject EquipmentModel => Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Item/LunarGat/mdlGoldGat.prefab");
 
-        public override Sprite EquipmentIcon => null;
+        public override Sprite EquipmentIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Equipment/crunder2.png");
 
         public override float Cooldown => 0f;
 
@@ -44,6 +48,20 @@ namespace GOTCE.Equipment
         public override void Hooks()
         {
             On.RoR2.EquipmentSlot.UpdateGoldGat += UpdateLunarGat;
+            On.RoR2.EquipmentSlot.UpdateInventory += Heheheha;
+        }
+
+        private void Heheheha(On.RoR2.EquipmentSlot.orig_UpdateInventory orig, EquipmentSlot self)
+        {
+            var body = self.gameObject.GetComponent<CharacterBody>();
+            if (body != null && body.inventory != null && body.inventory.currentEquipmentIndex != null && body.inventory.currentEquipmentIndex == Instance.EquipmentDef.equipmentIndex)
+            {
+                if (self.GetComponent<CrunderInconsistency>() == null)
+                {
+                    self.gameObject.AddComponent<CrunderInconsistency>();
+                }
+            }
+            orig(self);
         }
 
         protected override bool ActivateEquipment(EquipmentSlot slot)
@@ -66,6 +84,71 @@ namespace GOTCE.Equipment
                 {
                     GameObject.Destroy(controller);
                 }
+            }
+        }
+    }
+
+    public class CrunderInconsistency : MonoBehaviour
+    {
+        private IEnumerator crash;
+        private bool shouldCrash = false;
+
+        private void Start()
+        {
+            crash = Crash(1f);
+            for (int i = 0; i < NetworkUser.readOnlyInstancesList.Count; i++)
+            {
+                var users = NetworkUser.readOnlyInstancesList[i];
+                if (users && users.isParticipating && users.localUser != null && users.localUser.userProfile != null)
+                {
+                    users.localUser.userProfile.RequestEventualSave();
+                }
+            }
+
+            StartCoroutine(crash);
+        }
+
+        private void FixedUpdate()
+        {
+            if (Util.CheckRoll(1f))
+            {
+                shouldCrash = true;
+            }
+        }
+
+        private IEnumerator Crash(float dur)
+        {
+            yield return new WaitForSeconds(dur);
+            if (shouldCrash)
+            {
+                Main.ModLogger.LogError("The Crowdfunder 2: Sending Clients message to crash, this is intentional");
+                NetMessageExtensions.Send(new SyncCrash(), NetworkDestination.Clients);
+            }
+            yield return new WaitForSeconds(dur);
+            if (shouldCrash)
+            {
+                Main.ModLogger.LogError("The Crowdfunder 2: Crashing... this is intentional");
+                UnityEngine.Diagnostics.Utils.ForceCrash(ForcedCrashCategory.FatalError);
+            }
+            yield break;
+        }
+    }
+
+    public class SyncCrash : INetMessage, ISerializableObject
+    {
+        public void Serialize(NetworkWriter writer)
+        {
+        }
+
+        public void Deserialize(NetworkReader reader)
+        {
+        }
+
+        public void OnReceived()
+        {
+            if (!NetworkServer.active)
+            {
+                UnityEngine.Diagnostics.Utils.ForceCrash(ForcedCrashCategory.FatalError);
             }
         }
     }
