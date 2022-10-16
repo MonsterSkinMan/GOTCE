@@ -53,23 +53,29 @@ namespace GOTCE.Items.White
 
         public static GameObject GetRandomCharacterBodyPrefab()
         {
-            List<string> donot = new() {
+            /*List<string> donot = new() {
                 "BirdsharkBody", "ArtifactShellBody","AltarSkeletonBody", "BackupDroneOldBody", "BeetleCrystalBody", "BeetleGuardAllyBody", "BeetleGuardCrystalBody",
             "BeetleWard", "DeathProjectile", "ExplosivePotDestructibleBody", "FusionCellDestructibleBody", "GolemBodyInvincible",
             "GravekeeperTrackingFireball", "LemurianBruiserBody", "LunarWispTrackingBomb", "MinorConstructAttachableBody", "MinorConstructBody", "MinorConstructOnKillBody", "NullifierBody", "OilBeetle",
             "ParentPodBody", "SMInfiniteTowerMaulingRockLarge", "SMInfiniteTowerMaulingRockMedium", "SMInfiniteTowerMaulingRockSmall", "SMMaulingRockLarge", "SMMaulingRockMedium", "SMMaulingRockSmall", "ScavSackProjectile",
             "SpectatorBody", "SpectatorSlowBody", "SulfurPodBody", "TimeCrystalBody", "UrchinTurretBody", "VagrantTrackingBomb", "VoidBarnacleNoCastBody", "VoidRaidCrabJointBody",
-            "VultureEggBody", "Pot2Body"
-            };
+            "VultureEggBody", "Pot2Body", "AcidLarvaBody", "AffixEarthHealerBody"
+            }; */
             List<GameObject> bodies = new List<GameObject>();
             foreach (GameObject body in BodyCatalog.allBodyPrefabs)
             {
-                bodies.Add(body);
+                if (SurvivorCatalog.FindSurvivorDefFromBody(body.gameObject) != null)
+                {
+                    List<string> woolie = new()
+                    {
+                        "CommandoBody", "HuntressBody", "Bandit2Body", "EngiBody", "ToolbotBody", "MercBody", "MageBody", "TreebotBody", "LoaderBody", "CrocoBody", "CaptainBody", "HereticBody", "RailgunnerBody", "VoidSurvivor"
+                    };
+                }
             }
-            foreach (string str in donot)
+            /*foreach (string str in donot)
             {
                 bodies.Remove(BodyCatalog.FindBodyPrefab(str));
-            }
+            }*/
             return bodies[random.Next(0, bodies.Count)];
         }
 
@@ -102,13 +108,13 @@ namespace GOTCE.Items.White
     public class MetaController : MonoBehaviour
     {
         private CharacterBody body;
-        private static float interval = 5f;
+        private static float interval = 30f;
         private float stopwatch = interval;
 
         public void Start()
         {
             body = gameObject.GetComponent<CharacterBody>();
-            interval = 5f * Mathf.Pow(0.9f, body.inventory.GetItemCount(BottledMetamorphosis.Instance.ItemDef));
+            interval = 30f;
         }
 
         public void FixedUpdate()

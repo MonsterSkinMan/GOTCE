@@ -83,7 +83,6 @@ namespace GOTCE.Items.Red
                     // 57 leaf clover, alien head, bottled chaos, brainstalks, symbiotic scorpion, genesis loop, mired urn,
                     // shatterspleen, benthic bloom, needletick, newly hatched zoea, plasma shrimp, pluripotent larva,
                     // safer spaces, tentabauble, animal head, bottled command, bottled enigma
-                    // maybe we could nerf it to 2x items later down the line
                 };
 
                 foreach (ItemIndex item in self.itemAcquisitionOrder)

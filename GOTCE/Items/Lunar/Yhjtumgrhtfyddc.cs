@@ -59,7 +59,8 @@ namespace GOTCE.Items.Lunar
                 List<BuffDef> buffs = new()
                 {
                     RoR2Content.Buffs.Immune, RoR2Content.Buffs.Intangible, RoR2Content.Buffs.Nullified, RoR2Content.Buffs.Entangle,
-                    RoR2Content.Buffs.LunarSecondaryRoot, RoR2Content.Buffs.HiddenInvincibility, DLC1Content.Buffs.BearVoidReady
+                    RoR2Content.Buffs.LunarSecondaryRoot, RoR2Content.Buffs.HiddenInvincibility, DLC1Content.Buffs.BearVoidReady, DLC1Content.Buffs.EliteVoid, RoR2Content.Buffs.LunarShell, 
+                    RoR2Content.Buffs.VoidFogMild, RoR2Content.Buffs.VoidFogStrong, DLC1Content.Buffs.ImmuneToDebuffReady
                 };
 
                 foreach (BuffDef buffDef in RoR2.ContentManagement.ContentManager._buffDefs)
@@ -81,7 +82,8 @@ namespace GOTCE.Items.Lunar
                 List<BuffDef> buffs = new()
                 {
                     RoR2Content.Buffs.Immune, RoR2Content.Buffs.Intangible, RoR2Content.Buffs.Nullified, RoR2Content.Buffs.Entangle,
-                    RoR2Content.Buffs.LunarSecondaryRoot, RoR2Content.Buffs.HiddenInvincibility, DLC1Content.Buffs.BearVoidReady
+                    RoR2Content.Buffs.LunarSecondaryRoot, RoR2Content.Buffs.HiddenInvincibility, DLC1Content.Buffs.BearVoidReady, DLC1Content.Buffs.EliteVoid, RoR2Content.Buffs.LunarShell,
+                    RoR2Content.Buffs.VoidFogMild, RoR2Content.Buffs.VoidFogStrong, DLC1Content.Buffs.ImmuneToDebuffReady
                 };
 
                 foreach (BuffDef buffDef in RoR2.ContentManagement.ContentManager._buffDefs)
