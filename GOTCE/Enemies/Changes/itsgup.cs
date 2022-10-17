@@ -26,7 +26,7 @@ namespace GOTCE.Enemies.Changes
             deathRewards.bossDropTable = dt;
 
             GameObject jellyfishBodyPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Jellyfish/JellyfishBody.prefab").WaitForCompletion();
-            DeathRewards jdeathRewards = gupBodyPrefab.GetComponent<DeathRewards>();
+            DeathRewards jdeathRewards = jellyfishBodyPrefab.GetComponent<DeathRewards>();
             ExplicitPickupDropTable jdt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();
             dt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]
             {

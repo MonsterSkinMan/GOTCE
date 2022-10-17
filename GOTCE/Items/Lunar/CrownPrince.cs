@@ -20,7 +20,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemFullDescription => "Cheat death, but taking ANY damage instantly kills you. Breaks after 50 (+50 per stack) uses. 0% (+5% per stack) chance for a death to be a true kill.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Hell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.";
 
         public override ItemTier Tier => ItemTier.Lunar;
 

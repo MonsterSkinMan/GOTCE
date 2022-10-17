@@ -20,7 +20,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemFullDescription => "Captain can use his <style=cIsUtility>orbital skills</style> anywhere. <style=cIsHealth>Die</style> 0 <style=cStack>(+1 per stack)</style> times.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Having trouble with committing murder using orbit-based weaponry? Struggling with controlling crowds from outside of normal time and space? With our revolutionary new product, you can get free wifi anywhere you go!\n<i>Note that FreeWifiCo is not responsible for any harm to you or your collaborators brought about with misuse of our product. The FreeWifiEmitter does emit harmful radiation which can be lethal in concentrations produced by multiple emitters. We are not responsible for any bodily injury, illness, or death brought about by this effect.</i>";
 
         public override ItemTier Tier => ItemTier.Tier3;
 

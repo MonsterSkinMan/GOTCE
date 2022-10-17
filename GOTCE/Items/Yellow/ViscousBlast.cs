@@ -20,7 +20,7 @@ namespace GOTCE.Items.Yellow
 
         public override string ItemFullDescription => "On death, explode in a 1000m radius for 20,000% damage (+10,000% per stack)";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "I really don't like this stuff. I know it's just moisturizing jellyfish goop, but something about it makes me deeply uncomfortable. The thing we scooped it from- I don't like how that exploded, either. Exploding jellyfish guts can't be good for you.";
 
         public override ItemTier Tier => ItemTier.Boss;
 

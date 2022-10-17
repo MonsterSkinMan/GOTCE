@@ -22,7 +22,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "Gain a <style=cIsUtility>10%</style> <style=cStack>(+10% per stack)</style> chance to '<style=cIsUtility>Stage Transition Crit</style>', skipping the next stage.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Order: [ERR 04: DATABASE CORRUPTION]\nTracking Number: 95******\nEstimated Delivery: 15/02/2051\nShipping Method: Delicate\nShipping Address: **** Espl. des Particules, Switzerland, Earth\nShipping Details:\n\n...think I'm on the verge of a breakthrough. This broken clock I found seems to have incredibly anomalous properties, dramatically affecting the flow of local time and space. It's easily the weirdest thing I've ever found. I genuinely believe it could revolutionize everything, to the the point where I...";
 
         private bool lastStageWasCrit = false;
 
