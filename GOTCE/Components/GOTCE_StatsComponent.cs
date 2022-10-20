@@ -55,24 +55,25 @@ namespace GOTCE.Components
                 // crownPrinceTrueKillChance = body.inventory.GetItemCount();
             }
 
-            if (clockDeathCount > 0 && deathTimer >= 3f)
+            if (clockDeathCount > 0)
             {
-                // Main.ModLogger.LogDebug("clock death pre: " + clockDeathCount);
                 clockDeathCount--;
-                // Main.ModLogger.LogDebug("clock death post: " + clockDeathCount);
+                Invoke(nameof(Die), 3f);
                 EffectManager.SpawnEffect(voidVFX, new EffectData
                 {
                     origin = body.transform.position,
                     scale = 1f
                 }, true);
-                body.healthComponent.Suicide(null, null, DamageType.BypassOneShotProtection | DamageType.VoidDeath);
-                deathTimer = 0f;
             }
         }
 
         public void FixedUpdate()
         {
-            deathTimer += Time.fixedDeltaTime;
+            
+        }
+
+        public void Die() {
+            body.healthComponent.Suicide();
         }
 
         public void DetermineStageCrit()
