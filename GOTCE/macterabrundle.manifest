@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2646510031
+CRC: 386004741
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9ef1e8dda5ef0cf8d1cde2a477fa375a
+    Hash: 314cdd32c2d3b4e8c592c2be50706d35
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 39708ddaa86e87f9659d5117240e4012
+    Hash: 1572d93b9eefe5749d515c98c4fb318b
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,10 +25,6 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
-- Class: 54
-  Script: {instanceID: 0}
-- Class: 64
-  Script: {instanceID: 0}
 - Class: 65
   Script: {instanceID: 0}
 - Class: 74
@@ -40,56 +36,6 @@ ClassTypes:
 - Class: 95
   Script: {instanceID: 0}
 - Class: 108
-  Script: {instanceID: 0}
-- Class: 114
-  Script: {fileID: 372142912, guid: d382a022563c7517aadbc92ca1060016, type: 3}
-- Class: 114
-  Script: {fileID: -197296741, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: -1277448904, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: -1077198318, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: 1143142494, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: 1530905962, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: -226763392, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: 1297580292, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: 1144835783, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: 298587437, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: -365436499, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: -202159943, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: -1792105662, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: -1549848242, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: -359660931, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: 1512185436, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: -1888550019, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: -1699741063, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: 1918207524, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: -789927658, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: -1627637702, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: 306635731, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: -315171339, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: -1568778350, guid: 050936fea8909af15a3fd3b64da1ff83, type: 3}
-- Class: 115
   Script: {instanceID: 0}
 - Class: 136
   Script: {instanceID: 0}
@@ -105,34 +51,43 @@ Assets:
 - Assets/Materials/Item/MonstersVisage/MonstersVisageMaterial.mat
 - Assets/Textures/Icons/Item/zanysoup.png
 - Assets/Textures/Icons/Artifact/disabledfear.png
+- Assets/Textures/Icons/Equipment/VoidDonut.png
 - Assets/Materials/Enemies/crackedPestMaterial.mat
 - Assets/Textures/Icons/Item/barrierstone.png
-- Assets/Textures/Icons/Item/kirn.png
-- Assets/Textures/Icons/Item/faultyspacetimeclock.png
+- Assets/Textures/Icons/Item/memoriesofmisery.png
 - Assets/Textures/Icons/Item/HealingScrap.png
 - Assets/Models/Prefabs/Item/LunarGat/mdlGoldGat.prefab
 - Assets/Textures/Icons/Artifact/woolifact.png
+- Assets/Textures/Icons/Item/faultyspacetimeclock.png
 - Assets/Textures/Icons/Item/BottledMetamorphosis.png
-- Assets/Textures/Icons/Item/memoriesofmisery.png
-- Assets/Textures/Icons/Item/NEA.png
+- Assets/Textures/Icons/Item/kirn.png
+- Assets/Textures/Icons/Item/NEAplaceholder.png
+- Assets/Textures/Icons/Equipment/crunder2.png
 - Assets/Textures/Icons/Item/bigshoe.png
 - Assets/Textures/Icons/Item/FormlessSand.png
 - Assets/Textures/Icons/Item/corruptedshard.png
 - Assets/Textures/Icons/Item/bottledcommand.png
 - Assets/Textures/Icons/Item/barrierworks.png
+- Assets/Textures/Icons/Item/PaleAle.png
 - Assets/Models/Prefabs/Enemies/IonSurger/mdlIonSurger.prefab
 - Assets/Textures/Icons/Item/HealingScrapConsumed.png
 - Assets/Textures/Icons/Item/drill.png
-- Assets/Models/Prefabs/Enemies/NaeNaeLord/NaeNaeBody.prefab
 - Assets/Textures/Icons/Item/spafnarsfries.png
+- Assets/Textures/Icons/Item/ExpressionOfTheImmolated.png
 - Assets/Materials/Item/MoldySteak/matSteak.mat
 - Assets/Textures/Icons/Item/shittyvisage.png
 - Assets/Models/Prefabs/Enemies/livingsuppfire.png
+- Assets/Textures/Icons/Item/HelloWorld.png
 - Assets/Textures/Icons/Item/tuboflard.png
+- Assets/Textures/Icons/Item/DopeDope.png
+- Assets/Textures/Icons/Item/GD1Nullified.png
 - Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png
 - Assets/Textures/Icons/Item/sscnft.png
 - Assets/Textures/Icons/Item/Yhjtumgrhtfyddc.png
+- Assets/Textures/Icons/Item/galsone.png
+- Assets/Textures/Icons/Item/NEA.png
 - Assets/Textures/Icons/Artifact/artifactofblindnessoff.png
+- Assets/Textures/Icons/Item/AncientAxe.png
 - Assets/Textures/Icons/Item/tubofbart.png
 - Assets/Textures/Icons/Item/backuphammer.png
 - Assets/Textures/Icons/Item/Bottled_Enigma.png
@@ -142,10 +97,11 @@ Assets:
 - Assets/Models/Prefabs/Enemies/LivingSuppressiveFire/mdlKirn.prefab
 - Assets/Textures/Icons/Item/MoldySteak.png
 - Assets/Textures/Icons/Artifact/artifactofblindnesson.png
+- Assets/Textures/Icons/Item/DelicaterWatch.png
+- Assets/Textures/Icons/Item/ViscousBlast.png
 - Assets/Textures/Icons/Item/skullkey.png
 - Assets/Textures/Icons/Item/pogo.png
 - Assets/Textures/Icons/Item/BangSnap.png
-- Assets/Textures/Icons/Item/galsone.png
 - Assets/Textures/Icons/Item/animalhead.png
 - Assets/Models/Prefabs/Enemies/CrackedPest/mdlCrackedPest.prefab
 - Assets/Textures/Icons/Artifact/artifactofartifact.png

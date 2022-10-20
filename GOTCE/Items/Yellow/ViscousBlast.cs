@@ -20,7 +20,7 @@ namespace GOTCE.Items.Yellow
 
         public override GameObject ItemModel => null;
         public override string ItemLangTokenName => "GOTCE_ViscousBlast";
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/ViscousBlast.png");
 
         public override string ItemName => "Viscous Blast";
 
