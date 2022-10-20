@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using static GOTCE.Main;
+// using UnityEngine.AddressableAssets;
 
 namespace GOTCE.Items.White
 {
@@ -28,6 +29,7 @@ namespace GOTCE.Items.White
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BottledMetamorphosis.png");
 
         private static readonly System.Random random = new System.Random();
+        private static GameObject heretic;
 
         public override void Init(ConfigFile config)
         {
@@ -35,6 +37,7 @@ namespace GOTCE.Items.White
             CreateLang();
             CreateItem();
             Hooks();
+            heretic = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Heretic/HereticBody.prefab").WaitForCompletion();
         }
 
         public override void CreateConfig(ConfigFile config)
@@ -71,7 +74,9 @@ namespace GOTCE.Items.White
             List<GameObject> bodies = new();
             foreach (SurvivorDef def in SurvivorCatalog.allSurvivorDefs)
             {
-                bodies.Add(def.bodyPrefab);
+                if (def.bodyPrefab.name != heretic.name) {
+                    bodies.Add(def.bodyPrefab);
+                }
             }
             return bodies[random.Next(0, bodies.Count)];
         }

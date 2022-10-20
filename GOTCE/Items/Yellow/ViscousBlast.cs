@@ -1,8 +1,8 @@
-using RoR2;
-using R2API;
-using UnityEngine;
-using BepInEx.Configuration;
 using System.Linq;
+using BepInEx.Configuration;
+using R2API;
+using RoR2;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Networking;
 
@@ -10,32 +10,27 @@ namespace GOTCE.Items.Yellow
 {
     public class ViscousBlast : ItemBase<ViscousBlast>
     {
+
+        public ItemDef itemDef;
         public override string ConfigName => "Viscous Blast";
-
-        public override string ItemName => "Viscous Blast";
-
-        public override string ItemLangTokenName => "GOTCE_ViscousBlast";
-
-        public override string ItemPickupDesc => "Emit a devastating explosion on death..";
 
         public override string ItemFullDescription => "On death, explode in a 1000m radius for 20,000% damage (+10,000% per stack)";
 
+        public override Sprite ItemIcon => null;
+
+        public override string ItemLangTokenName => "GOTCE_ViscousBlast";
+
         public override string ItemLore => "";
-
-        public override ItemTier Tier => ItemTier.Boss;
-
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override string ItemName => "Viscous Blast";
 
-        public ItemDef itemDef;
+        public override string ItemPickupDesc => "Emit a devastating explosion on death..";
 
-        public override void Init(ConfigFile config)
-        {
-            base.Init(config);
-        }
+        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
+
+        public override ItemTier Tier => ItemTier.Boss;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
@@ -47,14 +42,24 @@ namespace GOTCE.Items.Yellow
             On.RoR2.GlobalEventManager.OnCharacterDeath += boom;
         }
 
-        public void boom(On.RoR2.GlobalEventManager.orig_OnCharacterDeath orig, GlobalEventManager self, DamageReport report) {
-            if (report.victim && report.victimBody) {
+        public override void Init(ConfigFile config)
+        {
+            base.Init(config);
+        }
+
+        public void boom(On.RoR2.GlobalEventManager.orig_OnCharacterDeath orig, GlobalEventManager self, DamageReport report)
+        {
+            if (report.victim && report.victimBody)
+            {
                 CharacterBody body = report.victimBody;
-                if (body.inventory) {
+                if (body.inventory)
+                {
                     int count = body.inventory.GetItemCount(ItemDef);
-                    float novaDamageCoefficient = 20000f + 10000*(count - 1);
-                    if (count > 0) {
-                        if (NetworkServer.active) {
+                    float novaDamageCoefficient = 20000f + 10000 * (count - 1);
+                    if (count > 0)
+                    {
+                        if (NetworkServer.active)
+                        {
                             EffectManager.SimpleMuzzleFlash(EntityStates.VagrantMonster.FireMegaNova.novaEffectPrefab, body.gameObject, "Body", transmit: true);
                             BlastAttack blastAttack = new BlastAttack();
                             blastAttack.attacker = body.gameObject;
@@ -80,6 +85,6 @@ namespace GOTCE.Items.Yellow
                 }
             }
         }
-        
+
     }
 }

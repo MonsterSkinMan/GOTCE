@@ -11,8 +11,8 @@ namespace GOTCE.Components
 {
     public class GOTCE_StatsComponent : MonoBehaviour
     {
-        // this monobehavior is attached to every characterbody when they spawn
-        // store per-body variables here (like sprint crit chance etc)
+        // this monobehavior is attached to every charactermaster when they spawn
+        // store per-master variables here (like sprint crit chance etc)
 
         public float stageCritChance;
         public float sprintCritChance;
@@ -93,7 +93,7 @@ namespace GOTCE.Components
                 }
             };
         }
-
+        
         public void RespawnExtraLife() {
             // inventory.GiveItem(RoR2Content.Items.ExtraLifeConsumed);
             // CharacterMasterNotificationQueue.SendTransformNotification(this, RoR2Content.Items.ExtraLife.itemIndex, RoR2Content.Items.ExtraLifeConsumed.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);

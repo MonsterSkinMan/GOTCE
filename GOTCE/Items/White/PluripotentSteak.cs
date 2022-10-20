@@ -76,6 +76,6 @@ namespace GOTCE.Items.White
                 args.healthMultAdd += bonus;
             }
         }
-        
+
     }
 } */
