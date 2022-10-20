@@ -14,8 +14,6 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemFullDescription => "Cheat death, but taking ANY damage instantly kills you. Breaks after 50 (+50 per stack) uses. 0% (+5% per stack) chance for a death to be a true kill.";
 
-<<<<<<< HEAD
-=======
         public override string ItemLore => "Hell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.";
 
         public override ItemTier Tier => ItemTier.Lunar;
@@ -24,22 +22,14 @@ namespace GOTCE.Items.Lunar
 
         public override GameObject ItemModel => null;
 
->>>>>>> 1fa07417373c0c8f53a6c9055f497d83cd6112c0
         public override Sprite ItemIcon => null;
 
         public override string ItemLangTokenName => "GOTCE_CrownPrince";
 
-        public override string ItemLore => "";
-
-        public override GameObject ItemModel => null;
 
         public override string ItemName => "Crown Prince";
 
         public override string ItemPickupDesc => "Cheat death, but you die in a single hit... Breaks after 50 uses";
-
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Healing, ItemTag.AIBlacklist, ItemTag.BrotherBlacklist };
-
-        public override ItemTier Tier => ItemTier.Lunar;
 
         public void AddUses(On.RoR2.Inventory.orig_GiveItem_ItemIndex_int orig, Inventory self, ItemIndex def, int count)
         {
