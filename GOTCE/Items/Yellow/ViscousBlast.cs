@@ -16,11 +16,15 @@ namespace GOTCE.Items.Yellow
 
         public override string ItemFullDescription => "On death, explode in a 1000m radius for 20,000% damage (+10,000% per stack)";
 
+<<<<<<< HEAD
         public override Sprite ItemIcon => null;
 
         public override string ItemLangTokenName => "GOTCE_ViscousBlast";
 
         public override string ItemLore => "";
+=======
+        public override string ItemLore => "I really don't like this stuff. I know it's just moisturizing jellyfish goop, but something about it makes me deeply uncomfortable. The thing we scooped it from- I don't like how that exploded, either. Exploding jellyfish guts can't be good for you.";
+>>>>>>> 1fa07417373c0c8f53a6c9055f497d83cd6112c0
 
         public override GameObject ItemModel => null;
 

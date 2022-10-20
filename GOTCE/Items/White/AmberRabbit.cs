@@ -14,6 +14,17 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "On 'Critical Stage Transition', double your item count exponentially";
 
+<<<<<<< HEAD
+=======
+        public override string ItemLore => "The old clock was just the beginning. Now that I've seen this little blip, this little tear in the fabric of reality, everything looks like a tool to widen it. My newest discovery is a small figurine of a rabbit that appears to be covered in some odd form of amber. On a subatomic scale, something incredibly odd appears to be happening. When I shine a light on it, not only is some absorbed, but an equal amount is emitted by the amber itself. Perfectly equal. So far, it's just light, but I believe this can go further. Much further.";
+
+        public override ItemTier Tier => ItemTier.Tier1;
+
+        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility };
+
+        public override GameObject ItemModel => null;
+
+>>>>>>> 1fa07417373c0c8f53a6c9055f497d83cd6112c0
         public override Sprite ItemIcon => null;
 
         public override string ItemLangTokenName => "GOTCE_AmberRabbit";

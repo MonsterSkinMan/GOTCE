@@ -19,7 +19,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "Gain <style=cIsDamage>+5% critical strike chance</style>. On '<style=cIsDamage>Critical Strike</style>', <style=cIsDamage>poison</style> your target for <style=cIsDamage>5</style> <style=cStack>(+3 per stack)</style> seconds.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "<b>Me when I instantly kill God with one shot as Railgunner</b>\nAs he falls to the ground, the lifeless ethereal body makes only a faint sound. Railgunner reflects on these actions before turning around to see a man standing at the pearly gates holding a tome.\n\"About time we balanced the scales, don't you think old friend?\"\nHe opens his tome and from it spews a load of C# lines across the arena.\n\"N-no!\" The Railgunner cries, \"We sealed you away! You're supposed to be gone!\"\nThe man simply smiles and nods at the Railgunner.\n\"Yes. But my people needed me: needed me to end your reign of terror!\"\nIn a flash Railgunner's numbers are heavily nerfed, perhaps even halved, and her proc coeff reduced to 1.\nIn a final act of desperation, she charges her gun and blasts Ghor, and his body too falls to the ground lifeless. Even half the damage was enough to instantly kill him because she had bands.\n...and so she left, with the gd1ers forever living under the tyrannical boot of power creep.\n<b>(BAD END)</b>";
 
         public override ItemTier Tier => ItemTier.Tier1;
 
