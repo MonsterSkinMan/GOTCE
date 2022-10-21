@@ -84,6 +84,7 @@ namespace GOTCE.Equipment
                     GameObject.Destroy(controller);
                 }
             }
+            orig(self);
         }
     }
 
