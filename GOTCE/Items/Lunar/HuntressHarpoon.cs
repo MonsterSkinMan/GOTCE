@@ -11,7 +11,7 @@ namespace GOTCE.Items.Lunar
     {
         public override string ConfigName => "Huntress Harpoon";
 
-        public override string ItemFullDescription => "Gain 3 charges of your utility skill and 50% (+30% per stack) movement speed. Reduce your damage by 90% (-90%)";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>3 charges</style> of your <style=cIsUtility>utility skill</style> and <style=cIsUtility>50%</style> <style=cStack>(+30% per stack)</style> <style=cIsUtility>movement speed</style>. Reduce your <style=cIsDamage>damage</style> by <style=cIsDamage>90%</style> <style=cStack>(-90% per stack)</style>.";
 
         public override Sprite ItemIcon => null;
 

@@ -12,7 +12,7 @@ namespace GOTCE.Items.Lunar
     {
         public override string ConfigName => "Crown Prince";
 
-        public override string ItemFullDescription => "Cheat death, but taking ANY damage instantly kills you. Breaks after 50 (+50 per stack) uses. 0% (+5% per stack) chance for a death to be a true kill.";
+        public override string ItemFullDescription => "<style=cIsUtility>Cheat death</style>, but taking ANY damage instantly kills you. <style=cIsUtility>Breaks</style> after <style=cIsUtility>50</style> <style=cStack>(+50 per stack)</style> uses. <style=cIsUtility>0%</style> <style=cStack>(+5% per stack)</style> chance for a death to be a true kill.";
 
         public override string ItemLore => "Hell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.";
 
@@ -25,7 +25,6 @@ namespace GOTCE.Items.Lunar
         public override Sprite ItemIcon => null;
 
         public override string ItemLangTokenName => "GOTCE_CrownPrince";
-
 
         public override string ItemName => "Crown Prince";
 
@@ -64,7 +63,6 @@ namespace GOTCE.Items.Lunar
         public override void Init(ConfigFile config)
         {
             base.Init(config);
-
         }
 
         public void Instakill(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo info)
@@ -111,7 +109,6 @@ namespace GOTCE.Items.Lunar
                         report.victimMaster.inventory.RemoveItem(ItemDef, countp);
                     }
                 }
-
             }
             orig(self, report, netuser);
         } */
@@ -138,6 +135,5 @@ namespace GOTCE.Items.Lunar
                 }
             }
         }
-
     }
 }

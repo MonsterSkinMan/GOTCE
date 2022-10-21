@@ -113,8 +113,9 @@ namespace GOTCE.Items
                 ItemDef.pickupModelPrefab = ItemModel;
             }
             else {
-                GameObject prefab = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                ItemDef.pickupModelPrefab = prefab;
+                // GameObject prefab = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                // doesnt work or too small
+                ItemDef.pickupModelPrefab = emptyModel;
             }
             ItemDef.pickupIconSprite = ItemIcon;
             ItemDef.hidden = false;
