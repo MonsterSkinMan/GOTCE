@@ -46,7 +46,7 @@ namespace GOTCE.Enemies.Standard
             isc.occupyPosition = true;
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Air;
             isc.sendOverNetwork = true;
-            isc.prefab = prefab;
+            isc.prefab = prefabMaster;
             isc.name = "cscLivingSuppressiveFire";
         }
 
@@ -62,8 +62,12 @@ namespace GOTCE.Enemies.Standard
         {
             base.Modify();
             master = prefabMaster.GetComponent<CharacterMaster>();
-            master.bodyPrefab = prefab;
-            prefab.GetComponent<TeamComponent>().teamIndex = TeamIndex.Monster;
+
+            if (!prefab.GetComponent<TeamComponent>()) {
+                TeamComponent team = prefab.AddComponent<TeamComponent>();
+                team.teamIndex = TeamIndex.Monster;
+            }
+            // prefab.GetComponent<TeamComponent>().teamIndex = TeamIndex.Monster;
             // SwapMaterials(prefab, Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat"), true, null);
             // DisableMeshes(prefab, new List<int> { 1 });
             // SwapMeshes(prefab, Utils.MiscUtils.GetMeshFromPrimitive(PrimitiveType.Sphere), true);
@@ -86,6 +90,15 @@ namespace GOTCE.Enemies.Standard
                 boxweak.gameObject.GetComponent<HurtBox>()
             };
 
+            if (!model.GetComponent<ChildLocator>()) {
+                model.AddComponent<ChildLocator>();
+            }
+
+            ChildLocator locator = model.GetComponent<ChildLocator>();
+            locator.transformPairs = new ChildLocator.NameTransformPair[1];
+            locator.transformPairs[0].name = "Muzzle";
+            locator.transformPairs[0].transform = model.transform.Find("BarrelHitbox");
+
             model.GetComponent<HurtBoxGroup>().bullseyeCount = 1;
             model.GetComponent<HurtBoxGroup>().mainHurtBox = box1.gameObject.GetComponent<HurtBox>();
 
@@ -93,17 +106,7 @@ namespace GOTCE.Enemies.Standard
             Transform barrel = model.transform.GetChild(1).transform;
             var handle = model.transform.GetChild(2).transform;
             var weakpoint = model.transform.GetChild(3).transform;
-            /* livingSuppMesh.localPosition = new Vector3(0.15f, 0.05f, 0f);
-            barrel.localPosition = new Vector3(0.5f, 0.39f, 0.24f);
-            barrel.localScale = new Vector3(0.5f, 0.7f, 0.19f); */
-            // handle.gameObject.SetActive(false);
-            // position is absolute position
-            // localPosition is parent position + local position
-
-            // make an empty in the model hierarchy, place it in the barrel and make it the model transform in consistency state so it actually fires from the barrel
-
-            // body.aimOriginTransform = barrel;
-
+        
             AISkillDriver FleeAndAttack = (from x in master.GetComponents<AISkillDriver>()
                                            where x.maxDistance == 20
                                            select x).First();
@@ -123,30 +126,20 @@ namespace GOTCE.Enemies.Standard
             SkillLocator sl = prefab.GetComponentInChildren<SkillLocator>();
             ReplaceSkill(sl.primary, Skills.Consistency.Instance.SkillDef);
 
+            master.bodyPrefab = prefab;
+
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_NAME", "Living Suppressive Fire");
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_LORE", "Even if frags did 2000% with no falloff...");
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_SUBTITLE", "Horde of Many");
-            RegisterEnemy(prefab, prefabMaster, null, DirectorAPI.MonsterCategory.BasicMonsters, true);
 
-            /* IL.RoR2.InputBankTest.GetAimRay += (il) => {
-                ILCursor c = new ILCursor(il);
-                c.GotoNext(
-                    x => x.MatchLdarg(0),
-                    x => x.MatchCallOrCallvirt(typeof(Vector3), "get_aimOrigin")
-                );
-                c.Index += 1;
-                c.Remove();
-                c.Emit(OpCodes.Ldarg_0);
-                c.Emit(OpCodes.Ldfld, typeof(InputBankTest).GetField("characterBody"));
-                c.EmitDelegate<Func<CharacterBody, Vector3>>((cb) => {
-                    return cb.transform.position;
-                });
-            }; */
+            
         }
 
-        /* private Ray the(On.EntityStates.BaseState.orig_GetAimRay orig, EntityStates.BaseState self) {
-            return new Ray(self.transform.position, self.transform.forward);
-        } */
+        public override void PostCreation()
+        {
+            base.PostCreation();
+            RegisterEnemy(prefab, prefabMaster, null, DirectorAPI.MonsterCategory.BasicMonsters, true);
+        }
 
         public static Vector3 InputBankTest_aimOrigin_Get(orig_aimOrigin orig, InputBankTest self) {
             if (self.characterBody) {

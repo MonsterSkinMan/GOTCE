@@ -42,7 +42,7 @@ namespace GOTCE.Enemies.Bosses
             isc.occupyPosition = true;
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Air;
             isc.sendOverNetwork = true;
-            isc.prefab = prefab;
+            isc.prefab = prefabMaster;
             isc.name = "cscVoidlingling";
         }
 
@@ -61,17 +61,6 @@ namespace GOTCE.Enemies.Bosses
             master.bodyPrefab = prefab;
 
             prefab.transform.Find("Model Base").gameObject.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-
-            List<DirectorAPI.Stage> stages = new() {
-                DirectorAPI.Stage.DistantRoost,
-                DirectorAPI.Stage.AphelianSanctuary,
-                DirectorAPI.Stage.VoidLocus,
-                DirectorAPI.Stage.VoidCell,
-                DirectorAPI.Stage.RallypointDelta,
-                DirectorAPI.Stage.SirensCall,
-                DirectorAPI.Stage.TitanicPlains,
-                DirectorAPI.Stage.AbyssalDepths
-            };
 
             DeathRewards deathRewards = prefab.GetComponent<DeathRewards>();
             if (deathRewards)
@@ -92,6 +81,22 @@ namespace GOTCE.Enemies.Bosses
             LanguageAPI.Add("GOTCE_VOIDLINGLING_NAME", "Voidlingling");
             LanguageAPI.Add("GOTCE_VOIDLINGLING_LORE", "Literally just Voidling as a teleporter boss.");
             LanguageAPI.Add("GOTCE_VOIDLINGLING_SUBTITLE", "A Fun and Engaging Boss");
+        }
+
+        public override void PostCreation()
+        {
+            base.PostCreation();
+            List<DirectorAPI.Stage> stages = new() {
+                DirectorAPI.Stage.DistantRoost,
+                DirectorAPI.Stage.AphelianSanctuary,
+                DirectorAPI.Stage.VoidLocus,
+                DirectorAPI.Stage.VoidCell,
+                DirectorAPI.Stage.RallypointDelta,
+                DirectorAPI.Stage.SirensCall,
+                DirectorAPI.Stage.TitanicPlains,
+                DirectorAPI.Stage.AbyssalDepths
+                
+            };
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Champions);
         }
     }

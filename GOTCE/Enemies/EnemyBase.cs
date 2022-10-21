@@ -42,10 +42,15 @@ namespace GOTCE.Enemies
             Modify();
             AddSpawnCard();
             AddDirectorCard();
+            PostCreation();
         }
 
         public virtual void Modify()
         {
+        }
+
+        public virtual void PostCreation() {
+            
         }
 
         public virtual void AddSpawnCard()
@@ -60,10 +65,12 @@ namespace GOTCE.Enemies
         }
 
         public void RegisterEnemy(GameObject bodyPrefab, GameObject masterPrefab, List<DirectorAPI.Stage> stages = null, DirectorAPI.MonsterCategory category = DirectorAPI.MonsterCategory.BasicMonsters, bool all = false)
-        {
+        {   
+            // bodyPrefab.GetComponent<CharacterBody>()._masterObject = masterPrefab;
+            PrefabAPI.RegisterNetworkPrefab(bodyPrefab);
+            PrefabAPI.RegisterNetworkPrefab(masterPrefab);
             ContentAddition.AddBody(bodyPrefab);
             ContentAddition.AddMaster(masterPrefab);
-
             if (stages != null)
             {
                 foreach (DirectorAPI.Stage stage in stages)

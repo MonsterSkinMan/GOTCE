@@ -61,14 +61,25 @@ namespace GOTCE.Items.White
                         raiseEvent(this, new StageCritEventArgs());
                     }
                     lastStageWasCrit = false;
+                    // Debug.Log("Laststagewascrit");
                 }
                 float totalChance = 0f;
-                if (body.masterObject.GetComponent<GOTCE_StatsComponent>())
+                /* if (body.masterObject.GetComponent<GOTCE_StatsComponent>())
                 {
                     GOTCE_StatsComponent vars = body.masterObject.GetComponent<GOTCE_StatsComponent>();
                     vars.DetermineStageCrit();
                     totalChance += vars.stageCritChance;
-                };
+                    Debug.Log("Chance: " + vars.stageCritChance);
+                }; */
+
+                foreach (PlayerCharacterMasterController masterController in PlayerCharacterMasterController.instances) {
+                    CharacterMaster master = masterController.master;
+                    if (master.gameObject.GetComponent<GOTCE_StatsComponent>()) {
+                        GOTCE_StatsComponent vars = master.gameObject.GetComponent<GOTCE_StatsComponent>();
+                        vars.DetermineStageCrit();
+                        totalChance += vars.stageCritChance;
+                    }
+                }
 
                 if (Util.CheckRoll(totalChance) && !lastStageWasCritPrev)
                 {
