@@ -100,12 +100,10 @@ namespace GOTCE
             foreach (var itemType in ItemTypes)
             {
                 if (itemType != typeof(GOTCE.Items.White.FaultySpacetimeClock)) {
-                    Debug.Log("Woolie");
                     ItemBase item = (ItemBase)System.Activator.CreateInstance(itemType);
                     // Debug.Log(item.ConfigName);
                     if (ValidateItem(item, Items))
                     {
-                        Debug.Log("RNDThursday");
                         item.Init(Config);
                         
                     }

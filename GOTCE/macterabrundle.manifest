@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1793688306
+CRC: 2733500401
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 70572a987c77ed228bd0008233a674f1
+    Hash: a250908a8772a028661ccbf9f474b534
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1572d93b9eefe5749d515c98c4fb318b
@@ -71,6 +71,7 @@ Assets:
 - Assets/Textures/Icons/Item/barrierworks.png
 - Assets/Textures/Icons/Item/PaleAle.png
 - Assets/Models/Prefabs/Enemies/IonSurger/mdlIonSurger.prefab
+- Assets/Textures/Icons/Item/CrownPrince.png
 - Assets/Textures/Icons/Item/HealingScrapConsumed.png
 - Assets/Textures/Icons/Item/drill.png
 - Assets/Textures/Icons/Item/spafnarsfries.png
@@ -110,5 +111,6 @@ Assets:
 - Assets/Textures/Icons/Item/AmberRabbit.png
 - Assets/Textures/Icons/Item/amalgamspoon.png
 - Assets/Textures/Icons/Equipment/BloodGamble.png
+- Assets/Textures/Icons/Item/HuntressHarpoon.png
 - Assets/Materials/Enemies/tongueMaterial.mat
 Dependencies: []

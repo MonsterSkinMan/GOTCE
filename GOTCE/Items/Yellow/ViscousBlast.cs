@@ -79,6 +79,7 @@ namespace GOTCE.Items.Yellow
                         }
                     }
                 }
+                orig(self, report);
             }
         }
 
