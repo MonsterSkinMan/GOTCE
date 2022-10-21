@@ -4,7 +4,6 @@ using System.Text;
 using UnityEngine;
 using RoR2;
 using GOTCE.Items.Yellow;
-using UnityEngine.AddressableAssets;
 
 namespace GOTCE.Enemies.Changes
 {

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using R2API.Networking;
-using UnityEngine.Networking;
 using R2API.Networking.Interfaces;
 
 namespace GOTCE.Items.Red

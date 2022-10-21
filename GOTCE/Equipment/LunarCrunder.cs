@@ -4,7 +4,6 @@ using UnityEngine;
 using BepInEx.Configuration;
 using System;
 using RoR2.Projectile;
-using UnityEngine.Networking;
 using UnityEngine.Diagnostics;
 using R2API.Networking.Interfaces;
 using R2API.Networking;

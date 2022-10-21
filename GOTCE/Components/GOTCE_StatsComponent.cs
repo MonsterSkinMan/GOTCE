@@ -3,9 +3,7 @@ using R2API;
 using RoR2;
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.Networking;
 using static GOTCE.Main;
-using UnityEngine.AddressableAssets;
 
 namespace GOTCE.Components
 {
@@ -89,7 +87,7 @@ namespace GOTCE.Components
                     if (body.inventory.GetItemCount(Items.Green.HeartyBreakfast.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
                     if (body.inventory.GetItemCount(Items.White.SkullKey.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
                     if (body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
-                     if (body.inventory.GetItemCount(Items.White.AmberRabbit.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
+                     if (body.inventory.GetItemCount(Items.Green.AmberRabbit.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
                     stageCritChance = stageCritChanceInc;
                 }
             };

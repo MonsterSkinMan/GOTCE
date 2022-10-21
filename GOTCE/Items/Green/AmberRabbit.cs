@@ -5,7 +5,6 @@ using GOTCE.Items.White;
 using R2API;
 using RoR2;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace GOTCE.Items.Green
 {
@@ -23,7 +22,7 @@ namespace GOTCE.Items.Green
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/AmberRabbit.png");
 
         public override string ItemLangTokenName => "GOTCE_AmberRabbit";
 

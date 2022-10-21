@@ -2,7 +2,6 @@ using R2API;
 using RoR2;
 using UnityEngine;
 using BepInEx.Configuration;
-using UnityEngine.Networking;
 
 namespace GOTCE.Items.Green
 {

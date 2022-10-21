@@ -26,7 +26,7 @@ namespace GOTCE.Items.NoTier
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null; 
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/DelicaterWatchConsumed.png");
 
         public override void Init(ConfigFile config)
         {

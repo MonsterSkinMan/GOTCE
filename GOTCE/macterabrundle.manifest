@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 386004741
+CRC: 1793688306
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 314cdd32c2d3b4e8c592c2be50706d35
+    Hash: 70572a987c77ed228bd0008233a674f1
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1572d93b9eefe5749d515c98c4fb318b
@@ -47,6 +47,7 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Models/Raw Models/LivingSuppMesh.fbx
 - Assets/Materials/Enemies/kirnMaterial.mat
+- Assets/Textures/Icons/Item/FreeWiFi.png
 - Assets/Textures/Icons/Item/heartybreakfast.png
 - Assets/Materials/Item/MonstersVisage/MonstersVisageMaterial.mat
 - Assets/Textures/Icons/Item/zanysoup.png
@@ -99,6 +100,7 @@ Assets:
 - Assets/Textures/Icons/Artifact/artifactofblindnesson.png
 - Assets/Textures/Icons/Item/DelicaterWatch.png
 - Assets/Textures/Icons/Item/ViscousBlast.png
+- Assets/Textures/Icons/Item/DelicaterWatchConsumed.png
 - Assets/Textures/Icons/Item/skullkey.png
 - Assets/Textures/Icons/Item/pogo.png
 - Assets/Textures/Icons/Item/BangSnap.png

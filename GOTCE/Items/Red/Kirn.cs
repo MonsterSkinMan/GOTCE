@@ -16,11 +16,11 @@ namespace GOTCE.Items.Red
 
         public override string ItemLangTokenName => "GOTCE_Kirn";
 
-        public override string ItemPickupDesc => "\"Even if frags did 2000% with no falloff I'd still use suppressive because I value survivability and consistency more than anything\" \"Suppressive fire is a guaranteed stun. All of your damage is m1. Suppressive is also perfectly accurate (Resetting bloom on commando needs you to shoot 4 times a second which is pretty lole). Suppressive also scales more with attack speed\"\n-a fucking insane person";
+        public override string ItemPickupDesc => "Even if frags did 2000% with no falloff I'd still use suppressive because I value survivability and consistency more than anything.";
 
         public override string ItemFullDescription => "<style=cIsUtility>Upgrades</style> all of your skills with <style=cIsDamage>Suppressive Fire</style>. Increase <style=cIsDamage>attack speed</style> by <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "\"Even if frags did 2000% with no falloff I'd still use suppressive because I value survivability and consistency more than anything\" \"Suppressive fire is a guaranteed stun. All of your damage is m1. Suppressive is also perfectly accurate (Resetting bloom on commando needs you to shoot 4 times a second which is pretty lole). Suppressive also scales more with attack speed\"\n-a fucking insane person";
 
         public override ItemTier Tier => ItemTier.Tier3;
 

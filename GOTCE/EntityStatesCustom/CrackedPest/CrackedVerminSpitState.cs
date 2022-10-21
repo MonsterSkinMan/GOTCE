@@ -3,7 +3,6 @@ using RoR2;
 using UnityEngine;
 using GOTCE;
 using EntityStates.FlyingVermin.Weapon;
-using UnityEngine.AddressableAssets;
 using RoR2.Projectile;
 
 namespace GOTCE.EntityStatesCustom.CrackedPest

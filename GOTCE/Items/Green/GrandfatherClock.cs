@@ -5,7 +5,6 @@ using BepInEx.Configuration;
 using GOTCE.Items.White;
 using System;
 using GOTCE.Components;
-using UnityEngine.Networking;
 
 namespace GOTCE.Items.Green
 {

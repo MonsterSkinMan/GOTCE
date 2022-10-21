@@ -3,8 +3,6 @@ using BepInEx.Configuration;
 using R2API;
 using RoR2;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.Networking;
 
 namespace GOTCE.Items.Yellow
 {
