@@ -22,7 +22,7 @@ namespace GOTCE.Items.Lunar
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/CrownPrince.png");
 
         public override string ItemLangTokenName => "GOTCE_CrownPrince";
 

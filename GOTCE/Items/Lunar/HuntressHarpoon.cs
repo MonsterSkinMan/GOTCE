@@ -13,7 +13,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemFullDescription => "Gain <style=cIsUtility>3 charges</style> of your <style=cIsUtility>utility skill</style> and <style=cIsUtility>50%</style> <style=cStack>(+30% per stack)</style> <style=cIsUtility>movement speed</style>. Reduce your <style=cIsDamage>damage</style> by <style=cIsDamage>90%</style> <style=cStack>(-90% per stack)</style>.";
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/HuntressHarpoon.png");
 
         public override string ItemLangTokenName => "GOTCE_HuntressHarpoon";
 

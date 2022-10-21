@@ -51,7 +51,7 @@ namespace GOTCE.Items.White
             if (self.gameObject.GetComponent<CharacterBody>())
             {
                 var body = self.gameObject.GetComponent<CharacterBody>();
-                if (itemIndex == Instance.ItemDef.itemIndex)
+                if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
                 {
                     self.GiveItem(NoTier.HealingScrapConsumed.Instance.ItemDef, count);
                     CharacterMasterNotificationQueue.SendTransformNotification(body.master, Instance.ItemDef.itemIndex, NoTier.HealingScrapConsumed.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.RegeneratingScrapRegen);
