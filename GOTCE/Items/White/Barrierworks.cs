@@ -65,6 +65,7 @@ namespace GOTCE.Items.White
                     }
                 }
             }
+            orig(self, interactor, interactable, interactableObject);
         }
     }
 }

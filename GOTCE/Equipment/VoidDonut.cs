@@ -64,7 +64,7 @@ namespace GOTCE.Equipment
         public void Awake()
         {
             body = gameObject.GetComponent<CharacterBody>();
-            beamVfxInstance = UnityEngine.Object.Instantiate(prefab);
+            beamVfxInstance = Instantiate(prefab);
             beamVfxInstance.transform.SetParent(body.transform);
             beamVfxInstance.transform.localScale += new Vector3(-10, -10, -10);
         }

@@ -168,7 +168,7 @@ namespace GOTCE.Equipment
 
         public void Awake()
         {
-            prefab = UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Brother/LunarShardProjectile.prefab").WaitForCompletion().InstantiateClone("goldgatcrunder13567.5%3.0");
+            prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Brother/LunarShardProjectile.prefab").WaitForCompletion().InstantiateClone("goldgatcrunder13567.5%3.0");
             body = gameObject.GetComponent<CharacterBody>();
             input = gameObject.GetComponent<InputBankTest>();
             master = body.master;
@@ -193,16 +193,18 @@ namespace GOTCE.Equipment
             if (timer >= interval && shouldFire)
             {
                 timer = 0f;
-                FireProjectileInfo info = new FireProjectileInfo();
-                info.damage = body.damage *= 5000f;
-                info.projectilePrefab = prefab;
-                info.speedOverride = 350f;
-                info.crit = Util.CheckRoll(body.crit, body.master);
-                info.damageColorIndex = DamageColorIndex.WeakPoint;
-                info.position = body.corePosition;
-                info.rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(body.equipmentSlot.GetAimRay().direction, -1.5f, 1.5f, -1.5f, 1.5f));
-                info.owner = body.gameObject;
-                info.damageTypeOverride = DamageType.CrippleOnHit;
+                FireProjectileInfo info = new()
+                {
+                    damage = body.damage *= 5000f,
+                    projectilePrefab = prefab,
+                    speedOverride = 350f,
+                    crit = Util.CheckRoll(body.crit, body.master),
+                    damageColorIndex = DamageColorIndex.WeakPoint,
+                    position = body.corePosition,
+                    rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(body.equipmentSlot.GetAimRay().direction, -1.5f, 1.5f, -1.5f, 1.5f)),
+                    owner = body.gameObject,
+                    damageTypeOverride = DamageType.CrippleOnHit
+                };
 
                 ProjectileManager.instance.FireProjectileServer(info);
             }

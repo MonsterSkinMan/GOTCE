@@ -61,9 +61,11 @@ namespace GOTCE.Equipment
                 {
                     slot.characterBody.healthComponent.Suicide(slot.characterBody.gameObject, slot.characterBody.gameObject, DamageType.BypassArmor | DamageType.BypassBlock | DamageType.BypassOneShotProtection);
                 } */
-                DamageInfo info = new DamageInfo();
-                info.attacker = null;
-                info.damage = slot.characterBody.healthComponent.fullCombinedHealth * 0.25f;
+                DamageInfo info = new()
+                {
+                    attacker = null,
+                    damage = slot.characterBody.healthComponent.fullCombinedHealth * 0.25f
+                };
                 int[] damageTypes = (int[])Enum.GetValues(typeof(DamageType));
                 info.damageType = (DamageType)damageTypes[rand.Next(0, damageTypes.Length - 1)] | (DamageType)damageTypes[rand.Next(0, damageTypes.Length - 1)] | (DamageType)damageTypes[rand.Next(0, damageTypes.Length - 1)] | DamageType.NonLethal;
                 info.procCoefficient = 0f;

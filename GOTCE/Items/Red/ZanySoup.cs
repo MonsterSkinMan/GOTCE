@@ -48,7 +48,6 @@ namespace GOTCE.Items.Red
 
         private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
         {
-            orig(self, itemIndex, count);
             if (NetworkServer.active && itemIndex == ItemDef.itemIndex)
             {
                 // Main.ModLogger.LogDebug("network server is active");
@@ -94,6 +93,7 @@ namespace GOTCE.Items.Red
                     }
                 }
             }
+            orig(self, itemIndex, count);
         }
 
         public void Increase(On.RoR2.Inventory.orig_GiveItem_ItemIndex_int orig, Inventory self, ItemIndex index, int count)

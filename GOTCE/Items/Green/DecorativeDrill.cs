@@ -56,6 +56,7 @@ namespace GOTCE.Items.Green
                     }
                 }
             }
+            orig(self, body, damageInfo, master, procCoefficient, procChainMask);
         }
 
         public static void CritIncrease(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)

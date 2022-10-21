@@ -49,7 +49,6 @@ namespace GOTCE.Items.Red
 
         private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
         {
-            orig(self, itemIndex, count);
             if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
             {
                 List<ItemDef> items = new()
@@ -67,6 +66,7 @@ namespace GOTCE.Items.Red
                     }
                 }
             }
+            orig(self, itemIndex, count);
         }
 
         private void Inventory_GiveItem_ItemIndex_int(On.RoR2.Inventory.orig_GiveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)

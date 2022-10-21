@@ -36,8 +36,21 @@ namespace GOTCE.Items.Lunar
 
         public override void Hooks()
         {
-            // RecalculateStatsAPI.GetStatCoefficients += Huntress;
+            RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
             On.RoR2.CharacterBody.RecalculateStats += Huntress;
+        }
+
+        private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (sender && sender.inventory)
+            {
+                var stack = sender.inventory.GetItemCount(Instance.ItemDef);
+                if (stack > 0)
+                {
+                    args.damageMultAdd -= Utils.MathHelpers.InverseHyperbolicScaling(0.9f, 0.9f, 1f, stack);
+                    args.moveSpeedMultAdd += 0.5f + 0.3f * (stack - 1);
+                }
+            }
         }
 
         public void Huntress(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody body)
@@ -48,11 +61,13 @@ namespace GOTCE.Items.Lunar
                 int count = body.inventory.GetItemCount(ItemDef);
                 if (count > 0)
                 {
+                    /*
                     float reduction = 0.1f * Mathf.Pow((1 - 0.1f), (count - 1));
                     float increase = 1.5f + 0.35f * (count - 1);
                     // args.damageMultAdd -= reduction;
                     body.damage *= reduction;
                     body.moveSpeed *= increase;
+                    */
                     body.skillLocator.utility.SetBonusStockFromBody(body.skillLocator.utility.bonusStockFromBody + 3);
                 }
             }
@@ -60,8 +75,7 @@ namespace GOTCE.Items.Lunar
 
         public override void Init(ConfigFile config)
         {
-            base.Init(config); ;
+            base.Init(config);
         }
-
     }
 }
