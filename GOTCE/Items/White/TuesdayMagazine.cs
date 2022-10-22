@@ -1,5 +1,4 @@
-﻿/* ok can somebody else do this plz I am confused
-using RoR2;
+﻿using RoR2;
 using R2API;
 using UnityEngine;
 using BepInEx.Configuration;
@@ -50,11 +49,11 @@ namespace GOTCE.Items.White
             if (self && self.inventory)
             {
                 var stack = self.inventory.GetItemCount(Instance.ItemDef);
-                if (stack > 0 && self.skillLocator)
+                bool tuesday = DateTime.Now.DayOfWeek == DayOfWeek.Tuesday;
+                if (stack > 0 && self.skillLocator && tuesday)
                 {
-                    bool tuesday = DateTime.Now.DayOfWeek == DayOfWeek.Tuesday;
                     var sl = self.skillLocator;
-                    if (sl.secondary && tuesday)
+                    if (sl.secondary)
                     {
                         sl.secondary.SetBonusStockFromBody(sl.secondary.bonusStockFromBody + 3 * stack);
                     }
@@ -63,6 +62,3 @@ namespace GOTCE.Items.White
         }
     }
 }
-*/
-
-// seems to not WORK, borrow groove's code later and fix

@@ -1,4 +1,4 @@
-﻿/*
+﻿
 using BepInEx.Configuration;
 using MonoMod.Cil;
 using R2API;
@@ -74,4 +74,3 @@ namespace GOTCE.Items.Lunar
         }
     }
 }
-*/
