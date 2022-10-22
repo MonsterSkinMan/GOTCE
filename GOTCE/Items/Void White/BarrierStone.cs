@@ -16,7 +16,7 @@ namespace GOTCE.Items.VoidWhite
 
         public override string ItemLangTokenName => "GOTCE_BarrierStone";
 
-        public override string ItemPickupDesc => "Gain a miniscule temporary barrier on hit. Does nothing on the first stack because it's <style=cHealth>total dogshit</color>. <style=cIsVoid>Corrupts all Barrierworks</style>.";
+        public override string ItemPickupDesc => "Gain a miniscule temporary barrier on hit. Does nothing on the first stack because it's <style=cHealth>total dogshit</style>. <style=cIsVoid>Corrupts all Barrierworks</style>.";
 
         public override string ItemFullDescription => "Gain a <style=cIsHealing>temporary barrier</style> on hit for <style=cIsHealing>0</style> <style=cStack>(+2 per stack)</style> <style=cIsHealing>maximum health</style>. <style=cIsVoid>Corrupts all Barrierworks</style>.";
 

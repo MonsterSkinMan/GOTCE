@@ -28,7 +28,7 @@ namespace GOTCE.Items.White
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/ChaosRounds.png");
         private string EngiMineName = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Engi/EngiMine.prefab").WaitForCompletion().name;
         private string SpiderMineName = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Engi/SpiderMine.prefab").WaitForCompletion().name;
 
