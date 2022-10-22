@@ -67,23 +67,9 @@ namespace GOTCE.Equipment
                     attacker = null,
                     damage = slot.characterBody.healthComponent.fullCombinedHealth * 0.25f
                 };
-                List<int> damageTypes = Enum.GetValues(typeof(DamageType)).Cast<int>().ToList();
-                damageTypes.Remove((int)DamageType.AOE);
-                damageTypes.Remove((int)DamageType.BonusToLowHealth);
-                damageTypes.Remove((int)DamageType.BypassOneShotProtection);
-                damageTypes.Remove((int)DamageType.DoT);
-                damageTypes.Remove((int)DamageType.FallDamage);
-                damageTypes.Remove((int)DamageType.BypassArmor);
-                damageTypes.Remove((int)DamageType.BypassBlock);
-                damageTypes.Remove((int)DamageType.NonLethal);
-                damageTypes.Remove((int)DamageType.Generic);
-                damageTypes.Remove((int)DamageType.OutOfBounds);
-                damageTypes.Remove((int)DamageType.ResetCooldownsOnKill);
-                damageTypes.Remove((int)DamageType.Silent);
-                damageTypes.Remove((int)DamageType.WeakPointHit);
-                damageTypes.Remove((int)DamageType.VoidDeath);
+                int[] damageTypes = (int[])Enum.GetValues(typeof(DamageType));
                 
-                info.damageType = (DamageType)damageTypes[rand.Next(0, damageTypes.Count - 1)] | (DamageType)damageTypes[rand.Next(0, damageTypes.Count - 1)] | (DamageType)damageTypes[rand.Next(0, damageTypes.Count - 1)] | DamageType.NonLethal;
+                info.damageType = (DamageType)damageTypes[rand.Next(0, damageTypes.Length - 1)] | (DamageType)damageTypes[rand.Next(0, damageTypes.Length - 1)] | (DamageType)damageTypes[rand.Next(0, damageTypes.Length - 1)] | DamageType.NonLethal;
                 info.procCoefficient = 10f;
                 info.attacker = slot.characterBody.gameObject;
                 slot.characterBody.healthComponent.TakeDamage(info);
