@@ -38,7 +38,7 @@ namespace GOTCE.Enemies.Standard
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 35;
+            isc.directorCreditCost = 45;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.None;

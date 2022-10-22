@@ -62,7 +62,8 @@ namespace GOTCE.Items.VoidGreen
                             attackerObject = damageInfo.attacker,
                             victimObject = victim,
                             dotIndex = DotController.DotIndex.Burn,
-                            damageMultiplier = 1f
+                            damageMultiplier = 1f,
+                            totalDamage = damageInfo.attacker.GetComponent<CharacterBody>().damage * 0.5f
                         };
                         for (int i = 0; i < stack; i++)
                         {
