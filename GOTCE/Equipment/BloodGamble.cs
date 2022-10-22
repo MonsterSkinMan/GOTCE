@@ -82,7 +82,7 @@ namespace GOTCE.Equipment
                 damageTypes.Remove((int)DamageType.Silent);
                 damageTypes.Remove((int)DamageType.WeakPointHit);
                 damageTypes.Remove((int)DamageType.VoidDeath);
-                
+
                 info.damageType = (DamageType)damageTypes[rand.Next(0, damageTypes.Count - 1)] | (DamageType)damageTypes[rand.Next(0, damageTypes.Count - 1)] | (DamageType)damageTypes[rand.Next(0, damageTypes.Count - 1)] | DamageType.NonLethal;
                 info.procCoefficient = 10f;
                 info.attacker = slot.characterBody.gameObject;

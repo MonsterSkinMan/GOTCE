@@ -17,7 +17,9 @@ namespace GOTCE.Enemies.Changes
             };
             deathRewards.bossDropTable = dt;
         }
-        public static void SoMyMainGoalIsToBlowUp() {
+
+        public static void SoMyMainGoalIsToBlowUp()
+        {
             GameObject jellyfishBodyPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Jellyfish/JellyfishBody.prefab").WaitForCompletion();
             DeathRewards jdeathRewards = jellyfishBodyPrefab.GetComponent<DeathRewards>();
             ExplicitPickupDropTable jdt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();

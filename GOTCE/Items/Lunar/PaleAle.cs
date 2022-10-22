@@ -6,9 +6,11 @@ using Rewired;
 using RoR2;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
 namespace GOTCE.Items.Lunar
@@ -34,6 +36,7 @@ namespace GOTCE.Items.Lunar
         public override GameObject ItemModel => null;
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/PaleAle.png");
+        private static readonly string[] blacklistedScenes = { "artifactworld", "crystalworld", "eclipseworld", "infinitetowerworld", "intro", "loadingbasic", "lobby", "logbook", "mysteryspace", "outro", "PromoRailGunner", "PromoVoidSurvivor", "splash", "title", "voidoutro" };
 
         public static GameObject ppHolder;
         public static AmbientOcclusion ao;
@@ -45,6 +48,8 @@ namespace GOTCE.Items.Lunar
 
         public static LensDistortion lensdist;
         public static MotionBlur mblur;
+
+        private static bool shouldRun;
 
         // public static Vignette vign;
 
@@ -123,6 +128,23 @@ namespace GOTCE.Items.Lunar
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
             On.RoR2.Inventory.GiveItem_ItemIndex_int += Inventory_GiveItem_ItemIndex_int;
             On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
+            On.RoR2.SceneDirector.Start += SceneDirector_Start;
+        }
+
+        private void SceneDirector_Start(On.RoR2.SceneDirector.orig_Start orig, SceneDirector self)
+        {
+            var ppVolume = ppHolder.GetComponent<PostProcessVolume>();
+
+            var sceneName = SceneManager.GetActiveScene().name;
+            if (shouldRun && !blacklistedScenes.Contains(sceneName))
+            {
+                ppVolume.gameObject.SetActive(true);
+            }
+            else
+            {
+                ppVolume.gameObject.SetActive(true);
+            }
+            orig(self);
         }
 
         private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
@@ -133,20 +155,24 @@ namespace GOTCE.Items.Lunar
                 var stack = self.GetItemCount(Instance.ItemDef);
                 if (stack <= 0)
                 {
-                    ppVolume.weight = 0f;
+                    ppVolume.gameObject.SetActive(false);
+                    shouldRun = false;
                 }
             }
+            orig(self, itemIndex, count);
         }
 
         private void Inventory_GiveItem_ItemIndex_int(On.RoR2.Inventory.orig_GiveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
         {
+            orig(self, itemIndex, count);
             var ppVolume = ppHolder.GetComponent<PostProcessVolume>();
             if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
             {
                 var stack = self.GetItemCount(Instance.ItemDef);
                 if (stack > 0)
                 {
-                    ppVolume.weight = 1f;
+                    ppVolume.gameObject.SetActive(true);
+                    shouldRun = true;
                 }
             }
         }
@@ -172,6 +198,7 @@ namespace GOTCE.Items.Lunar
         public void Start()
         {
             volume = GetComponent<PostProcessVolume>();
+            volume.gameObject.SetActive(false);
         }
     }
 }
