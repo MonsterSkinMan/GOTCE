@@ -50,9 +50,9 @@ namespace GOTCE.Items.Green
             {
                 if (playerCharacterMaster && playerCharacterMaster.master && playerCharacterMaster.master.inventory && playerCharacterMaster.master.inventory.GetItemCount(ItemDef) > 0)
                 {
-                    var body = playerCharacterMaster.master.GetBody();
-                    body.inventory.GiveItem(GOTCE.Items.NoTier.DelicatestWatch.Instance.ItemDef, playerCharacterMaster.master.GetBody().inventory.GetItemCount(ItemDef));
-                    body.inventory.RemoveItem(ItemDef, playerCharacterMaster.master.GetBody().inventory.GetItemCount(ItemDef));
+                    var inventory = playerCharacterMaster.master.inventory;
+                    inventory.GiveItem(GOTCE.Items.NoTier.DelicatestWatch.Instance.ItemDef, playerCharacterMaster.master.GetBody().inventory.GetItemCount(ItemDef));
+                    inventory.RemoveItem(ItemDef, playerCharacterMaster.master.GetBody().inventory.GetItemCount(ItemDef));
                     CharacterMasterNotificationQueue.SendTransformNotification(playerCharacterMaster.master, ItemDef.itemIndex, GOTCE.Items.NoTier.DelicatestWatch.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
                 }
             }

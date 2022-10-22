@@ -55,11 +55,13 @@ namespace GOTCE.Items.Green
                     if (controller.master && controller.master.GetBody())
                     {
                         Inventory inv = controller.master.GetBody().inventory;
-                        List<ItemIndex> items = inv.itemAcquisitionOrder;
-                        foreach (ItemIndex itemIndex in items)
-                        {
-                            int toIncrease = inv.GetItemCount(itemIndex) ^ inv.GetItemCount(ItemDef);
-                            inv.GiveItem(itemIndex, toIncrease);
+                        if (inv.GetItemCount(ItemDef) > 0) {
+                            List<ItemIndex> items = inv.itemAcquisitionOrder;
+                            foreach (ItemIndex itemIndex in items)
+                            {
+                                int toIncrease = inv.GetItemCount(itemIndex) ^ inv.GetItemCount(ItemDef);
+                                inv.GiveItem(itemIndex, toIncrease);
+                            }
                         }
                     }
                 }

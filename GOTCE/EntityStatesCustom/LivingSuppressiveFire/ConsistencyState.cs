@@ -80,7 +80,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     damage = base.characterBody.damage * 0.13f,
                     force = 30,
                     tracerEffectPrefab = tracerEffectPrefab,
-                    // bulletAttack.muzzleName = muzzleName;
+                    muzzleName = "Muzzle",
                     hitEffectPrefab = hitEffectPrefab,
                     isCrit = Util.CheckRoll(critStat, base.characterBody.master),
                     radius = 2,
@@ -105,6 +105,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
                     tracerEffectPrefab = tracerEffectPrefab,
                     // bulletAttack.muzzleName = muzzleName;
                     hitEffectPrefab = hitEffectPrefab,
+                    muzzleName = "Muzzle",
                     isCrit = Util.CheckRoll(critStat, base.characterBody.master),
                     radius = 2,
                     smartCollision = false,

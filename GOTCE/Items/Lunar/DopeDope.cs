@@ -17,7 +17,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemPickupDesc => "<color=#FF7F7F>Your base damage is converted into attack speed.</color>\n";
 
-        public override string ItemFullDescription => "Convert your <style=cIsDamage>base damage</style> to <style=cIsDamage>attack speed</style>. Gain a shield equal to <style=cIsHealing>2%</style> <style=cStack>(+2% per stack)</style> of your maximum health.";
+        public override string ItemFullDescription => "Convert your <style=cIsDamage>base damage</style> to <style=cIsDamage>attack speed</style>. Gain a shield equal to <style=cIsHealing>2%</style> <style=cStack>(+2% per stack)</style> of your <style=cIsHealing>maximum health</style>.";
 
         public override string ItemLore => "";
 

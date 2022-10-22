@@ -81,6 +81,12 @@ namespace GOTCE.Enemies.Minibosses
             LanguageAPI.Add("GOTCE_CRACKEDPEST_LORE", "temp");
             LanguageAPI.Add("GOTCE_CRACKEDPEST_SUBTITLE", "Horde of Many");
 
+            On.RoR2.GlobalEventManager.OnHitAll += vineboom;
+        }
+
+        public override void PostCreation()
+        {
+            base.PostCreation();
             List<DirectorAPI.Stage> stages = new() {
                 DirectorAPI.Stage.RallypointDelta,
                 DirectorAPI.Stage.AphelianSanctuary,
@@ -89,14 +95,12 @@ namespace GOTCE.Enemies.Minibosses
             };
 
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Minibosses, false);
-
-            On.RoR2.GlobalEventManager.OnHitAll += vineboom;
         }
 
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 100;
+            isc.directorCreditCost = 50;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
@@ -104,7 +108,7 @@ namespace GOTCE.Enemies.Minibosses
             isc.occupyPosition = true;
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Air;
             isc.sendOverNetwork = true;
-            isc.prefab = prefab;
+            isc.prefab = prefabMaster;
             isc.name = "cscCrackedPest";
         }
 
@@ -113,7 +117,7 @@ namespace GOTCE.Enemies.Minibosses
             base.AddDirectorCard();
             card.minimumStageCompletions = 0;
             card.selectionWeight = 1;
-            card.spawnDistance = DirectorCore.MonsterSpawnDistance.Close;
+            card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
 
         public static void vineboom(On.RoR2.GlobalEventManager.orig_OnHitAll orig, GlobalEventManager self, DamageInfo info, GameObject target)

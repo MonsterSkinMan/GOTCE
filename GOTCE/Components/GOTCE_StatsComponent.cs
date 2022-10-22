@@ -76,21 +76,14 @@ namespace GOTCE.Components
 
         public void DetermineStageCrit()
         { // stage crit goes here so i can make sure it's been determined BEFORE the characterbody tries to get it
-            if (gameObject.GetComponent<CharacterBody>())
-            {
-                CharacterBody body = gameObject.GetComponent<CharacterBody>();
-                if (body.isPlayerControlled)
-                {
-                    // Main.ModLogger.LogDebug("this ran");
-                    float stageCritChanceInc = 0;
-                    stageCritChanceInc += 10f * body.inventory.GetItemCount(GOTCE.Items.White.FaultySpacetimeClock.Instance.ItemDef);
-                    if (body.inventory.GetItemCount(Items.Green.HeartyBreakfast.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
-                    if (body.inventory.GetItemCount(Items.White.SkullKey.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
-                    if (body.inventory.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
-                     if (body.inventory.GetItemCount(Items.Green.AmberRabbit.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
-                    stageCritChance = stageCritChanceInc;
-                }
-            };
+            Inventory inv = gameObject.GetComponent<Inventory>();
+            float stageCritChanceInc = 0;
+            stageCritChanceInc += 10f * inv.GetItemCount(GOTCE.Items.White.FaultySpacetimeClock.Instance.ItemDef);
+            if (inv.GetItemCount(Items.Green.HeartyBreakfast.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
+            if (inv.GetItemCount(Items.White.SkullKey.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
+            if (inv.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
+            if (inv.GetItemCount(Items.Green.AmberRabbit.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
+            stageCritChance = stageCritChanceInc;
         }
         
         public void RespawnExtraLife() {
