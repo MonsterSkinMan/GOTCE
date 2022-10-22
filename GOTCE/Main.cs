@@ -157,9 +157,8 @@ namespace GOTCE
             Itsgup.OhTheMisery();
             // LivingSuppressiveFire.Create();
             // IonSurger.Create(); // ION SURGER IS BROKEN
-
-            SetupEnemies.Init();
-
+            Itsgup.SoMyMainGoalIsToBlowUp();
+            
             var enemyTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EnemyBase)));
 
             foreach (var enemyType in enemyTypes)

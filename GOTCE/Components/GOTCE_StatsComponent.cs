@@ -43,10 +43,12 @@ namespace GOTCE.Components
 
         private void UpdateChances(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
         {
-            if (body && body.inventory && body.gameObject.GetComponent<GOTCE_StatsComponent>())
+            if (body && body.inventory && body.masterObject.GetComponent<GOTCE_StatsComponent>())
             {
-                // fov crit (unimplemented)
-
+                // fov crit 
+                float fovCritChanceTmp = 0f;
+                fovCritChanceTmp += 10f*(inventory.GetItemCount(Items.White.ZoomLenses.Instance.ItemDef));
+                fovCritChance = fovCritChanceTmp;
                 // sprint crit (unimplemented)
 
                 respawnChance = defibrillatorRespawnChance;
