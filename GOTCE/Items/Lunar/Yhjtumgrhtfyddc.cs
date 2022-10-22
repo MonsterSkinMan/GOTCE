@@ -26,7 +26,7 @@ namespace GOTCE.Items.Lunar
 
         public override ItemTier Tier => ItemTier.Lunar;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
+        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage, ItemTag.BrotherBlacklist };
 
         public override GameObject ItemModel => null;
 
@@ -46,9 +46,52 @@ namespace GOTCE.Items.Lunar
         {
             On.RoR2.Inventory.GiveItem_ItemIndex_int += Inventory_GiveItem_ItemIndex_int;
             On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
+            RoR2.CharacterBody.onBodyStartGlobal += CharacterBody_onBodyStartGlobal;
             // TODO:
 
             // Figure out how to make the buffs persist per stage, or give them per stage
+        }
+
+        private void CharacterBody_onBodyStartGlobal(CharacterBody obj)
+        {
+            List<BuffDef> buffs = new()
+                {
+                    RoR2Content.Buffs.Immune, RoR2Content.Buffs.Intangible, RoR2Content.Buffs.Nullified, RoR2Content.Buffs.Entangle,
+                    RoR2Content.Buffs.LunarSecondaryRoot, RoR2Content.Buffs.HiddenInvincibility, DLC1Content.Buffs.BearVoidReady, DLC1Content.Buffs.EliteVoid, RoR2Content.Buffs.LunarShell,
+                    RoR2Content.Buffs.VoidFogMild, RoR2Content.Buffs.VoidFogStrong, DLC1Content.Buffs.ImmuneToDebuffReady
+                };
+            foreach (CharacterBody body in CharacterBody.readOnlyInstancesList)
+            {
+                if (body && body.inventory)
+                {
+                    var stack = body.inventory.GetItemCount(Instance.ItemDef);
+                    if (stack > 0)
+                    {
+                        AddBuffs(buffs, body, false);
+                    }
+                }
+            }
+        }
+
+        private void AddBuffs(List<BuffDef> blacklist, CharacterBody body, bool remove)
+        {
+            if (NetworkServer.active)
+            {
+                foreach (BuffDef buffDef in RoR2.ContentManagement.ContentManager._buffDefs)
+                {
+                    if (!blacklist.Contains(buffDef))
+                    {
+                        if (remove)
+                        {
+                            body.RemoveBuff(buffDef);
+                        }
+                        else
+                        {
+                            body.AddBuff(buffDef);
+                        }
+                    }
+                }
+            }
         }
 
         private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
@@ -59,18 +102,11 @@ namespace GOTCE.Items.Lunar
                 List<BuffDef> buffs = new()
                 {
                     RoR2Content.Buffs.Immune, RoR2Content.Buffs.Intangible, RoR2Content.Buffs.Nullified, RoR2Content.Buffs.Entangle,
-                    RoR2Content.Buffs.LunarSecondaryRoot, RoR2Content.Buffs.HiddenInvincibility, DLC1Content.Buffs.BearVoidReady, DLC1Content.Buffs.EliteVoid, RoR2Content.Buffs.LunarShell, 
+                    RoR2Content.Buffs.LunarSecondaryRoot, RoR2Content.Buffs.HiddenInvincibility, DLC1Content.Buffs.BearVoidReady, DLC1Content.Buffs.EliteVoid, RoR2Content.Buffs.LunarShell,
                     RoR2Content.Buffs.VoidFogMild, RoR2Content.Buffs.VoidFogStrong, DLC1Content.Buffs.ImmuneToDebuffReady
                 };
-
-                foreach (BuffDef buffDef in RoR2.ContentManagement.ContentManager._buffDefs)
-                {
-                    if (!buffs.Contains(buffDef))
-                    {
-                        var body = self.gameObject.GetComponent<CharacterMaster>().GetBody();
-                        body.RemoveBuff(buffDef);
-                    }
-                }
+                var body = self.gameObject.GetComponent<CharacterMaster>().GetBody();
+                AddBuffs(buffs, body, true);
             }
         }
 
@@ -86,14 +122,8 @@ namespace GOTCE.Items.Lunar
                     RoR2Content.Buffs.VoidFogMild, RoR2Content.Buffs.VoidFogStrong, DLC1Content.Buffs.ImmuneToDebuffReady
                 };
 
-                foreach (BuffDef buffDef in RoR2.ContentManagement.ContentManager._buffDefs)
-                {
-                    if (!buffs.Contains(buffDef))
-                    {
-                        var body = self.gameObject.GetComponent<CharacterMaster>().GetBody();
-                        body.AddBuff(buffDef);
-                    }
-                }
+                var body = self.gameObject.GetComponent<CharacterMaster>().GetBody();
+                AddBuffs(buffs, body, false);
             }
         }
     }

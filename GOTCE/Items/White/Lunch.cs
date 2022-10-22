@@ -1,5 +1,4 @@
-﻿/*
-using BepInEx.Configuration;
+﻿using BepInEx.Configuration;
 using R2API;
 using RoR2;
 using System;
@@ -58,6 +57,5 @@ namespace GOTCE.Items.White
         }
     }
 }
-*/
 
 // seems to not update, borrow groove's code later

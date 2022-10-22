@@ -1,11 +1,17 @@
-﻿/*
-using BepInEx.Configuration;
+﻿using BepInEx.Configuration;
+using IL.RoR2.Projectile;
 using MonoMod.Cil;
 using R2API;
 using Rewired;
 using RoR2;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace GOTCE.Items.Lunar
 {
@@ -17,9 +23,9 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLangTokenName => "GOTCE_PaleAle";
 
-        public override string ItemPickupDesc => "Increase your damage... <color=#FF7F7F>BUT invert your camera movement.</color>\n";
+        public override string ItemPickupDesc => "Increase your damage... <color=#FF7F7F>BUT majorly fuck up everyone's vision.</color>\n";
 
-        public override string ItemFullDescription => "Increase your <style=cIsDamage>damage</style> by <style=cIsUtility>60%</style> <style=cStack>(+40% per stack)</style>. Invert your camera movement. Increase <style=cIsUtility>cooldowns</style> by <style=cIsUtility>0%</style> <style=cStack>(+35% per stack)</style>.";
+        public override string ItemFullDescription => "Increase your <style=cIsDamage>damage</style> by <style=cIsUtility>60%</style> <style=cStack>(+40% per stack)</style>. Majorly fuck up everyone's vision. Increase <style=cIsUtility>cooldowns</style> by <style=cIsUtility>0%</style> <style=cStack>(+50% per stack)</style>.";
 
         public override string ItemLore => "Holy shit brother! I figured out how to turn these worthless moon rocks into booze! Hot damn!\r\nSo basically I [REDACTED] and then I [REDACTED] and then after a little [REDACTED] I [REDACTED] Commando’s mother. Hot damn indeed! Anyways, it’s time to get wasted. Glug glug glug…\r\nHoooly shit this stuff is strong, brother. I feel so much more powerful, but I also feel like my camera controls have been inverted. Ohhhhh god…\r\nFuck you, brother. I hate you so fucking much, and I hate you even more because I’m drunk as shit. That gift should’ve been for ME! Not… YOU! It reminds me of a little ditty I once heard on my smartphone. It went a little something like this: There once was a man named Joe, and my tooth fell out on his head, and he put it under his pillow. And then, the Tooth Fairy took it and gave him a one dollar bill! That money should have been mine, not his! And so, I punched his guts in and poured acid all over his butt! And then I threw bananas at him like a wild monkey! After that, Joe ran away to the bottom of the Atlantic Ocean, with his glasses and moustache. But when he was running away, he dropped the one dollar bill, and it was finally mine!!!!!!!!!!!!!!!!!!!!!!!!!!!\r\nSo what did you think of the song, brother? W-what? You thought it was shit? Well, fuck you, you insignificant WHORE!!!\r\n";
 
@@ -30,10 +36,86 @@ namespace GOTCE.Items.Lunar
         public override GameObject ItemModel => null;
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/PaleAle.png");
+        private static readonly string[] blacklistedScenes = { "artifactworld", "crystalworld", "eclipseworld", "infinitetowerworld", "intro", "loadingbasic", "lobby", "logbook", "mysteryspace", "outro", "PromoRailGunner", "PromoVoidSurvivor", "splash", "title", "voidoutro" };
+
+        public static GameObject ppHolder;
+        public static AmbientOcclusion ao;
+        public static Bloom bloom;
+        public static ChromaticAberration chromab;
+        public static ColorGrading grading;
+        public static DepthOfField dof;
+        public static Grain grain;
+
+        public static LensDistortion lensdist;
+        public static MotionBlur mblur;
+
+        private static bool shouldRun;
+
+        // public static Vignette vign;
 
         public override void Init(ConfigFile config)
         {
             base.Init(config);
+            ppHolder = new("PPPaleAle");
+            Object.DontDestroyOnLoad(ppHolder);
+            ppHolder.layer = LayerIndex.postProcess.intVal;
+            ppHolder.AddComponent<PaleAlePostProcessingController>();
+            PostProcessVolume pp = ppHolder.AddComponent<PostProcessVolume>();
+            Object.DontDestroyOnLoad(pp);
+            pp.isGlobal = true;
+            pp.weight = 0f;
+            pp.priority = float.MaxValue;
+            PostProcessProfile ppProfile = ScriptableObject.CreateInstance<PostProcessProfile>();
+            Object.DontDestroyOnLoad(ppProfile);
+            ppProfile.name = "PaleAlePP";
+
+            ao = ppProfile.AddSettings<AmbientOcclusion>();
+            ao.SetAllOverridesTo(true);
+            ao.intensity.value = 0.71f;
+            ao.thicknessModifier.value = 3.07f;
+            ao.ambientOnly.value = false;
+
+            bloom = ppProfile.AddSettings<Bloom>();
+            bloom.SetAllOverridesTo(true);
+            bloom.intensity.value = 1.2f;
+            bloom.softKnee.value = 4.4f;
+            bloom.threshold.value = -0.2f;
+
+            chromab = ppProfile.AddSettings<ChromaticAberration>();
+            chromab.SetAllOverridesTo(true);
+            chromab.intensity.value = 20f;
+
+            grading = ppProfile.AddSettings<ColorGrading>();
+            grading.SetAllOverridesTo(true);
+            grading.hueShift.value = 147f;
+            grading.saturation.value = 45f;
+
+            dof = ppProfile.AddSettings<DepthOfField>();
+            dof.SetAllOverridesTo(true);
+            dof.aperture.value = 15f;
+            dof.focalLength.value = 124.56f;
+            dof.focusDistance.value = 5f;
+
+            grain = ppProfile.AddSettings<Grain>();
+            grain.SetAllOverridesTo(true);
+            grain.intensity.value = 0.02f;
+            grain.size.value = 11.18f;
+            grain.lumContrib.value = 7.17f;
+            grain.colored.value = true;
+
+            mblur = ppProfile.AddSettings<MotionBlur>();
+            mblur.SetAllOverridesTo(true);
+            mblur.shutterAngle.value = 270f;
+            mblur.sampleCount.value = 10;
+
+            lensdist = ppProfile.AddSettings<LensDistortion>();
+            lensdist.SetAllOverridesTo(true);
+            lensdist.intensity.value = -1f;
+            lensdist.intensityX.value = 1f;
+            lensdist.intensityY.value = 0.9f;
+            lensdist.scale.value = 0.33f;
+
+            pp.sharedProfile = ppProfile;
         }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
@@ -44,20 +126,60 @@ namespace GOTCE.Items.Lunar
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
-            On.RoR2.PlayerCharacterMasterController.Update += PlayerCharacterMasterController_Update;
+            On.RoR2.Inventory.GiveItem_ItemIndex_int += Inventory_GiveItem_ItemIndex_int;
+            On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
+            On.RoR2.SceneDirector.Start += SceneDirector_Start;
         }
 
-        private void PlayerCharacterMasterController_Update(On.RoR2.PlayerCharacterMasterController.orig_Update orig, PlayerCharacterMasterController self)
+        private void SceneDirector_Start(On.RoR2.SceneDirector.orig_Start orig, SceneDirector self)
         {
-            orig(self);
-            if (shouldRun && PlayerCharacterMasterController.CanSendBodyInput(self.networkUser, out LocalUser localUser, out Player player, out CameraRigController crg))
+            var ppVolume = ppHolder.GetComponent<PostProcessVolume>();
+
+            var sceneName = SceneManager.GetActiveScene().name;
+            if (shouldRun && !blacklistedScenes.Contains(sceneName))
             {
-                var negativeInputs = -(crg.crosshairWorldPosition - self.bodyInputs.aimOrigin).normalized;
-                self.bodyInputs.aimDirection = negativeInputs;
+                ppVolume.gameObject.SetActive(true);
+                ppVolume.weight = 1f;
+            }
+            else
+            {
+                ppVolume.gameObject.SetActive(false);
+                ppVolume.weight = 0f;
+            }
+            orig(self);
+        }
+
+        private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
+        {
+            var ppVolume = ppHolder.GetComponent<PostProcessVolume>();
+            if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
+            {
+                var stack = self.GetItemCount(Instance.ItemDef);
+                if (stack <= 0)
+                {
+                    ppVolume.gameObject.SetActive(false);
+                    ppVolume.weight = 0f;
+                    shouldRun = false;
+                }
+            }
+            orig(self, itemIndex, count);
+        }
+
+        private void Inventory_GiveItem_ItemIndex_int(On.RoR2.Inventory.orig_GiveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
+        {
+            orig(self, itemIndex, count);
+            var ppVolume = ppHolder.GetComponent<PostProcessVolume>();
+            if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
+            {
+                var stack = self.GetItemCount(Instance.ItemDef);
+                if (stack > 0)
+                {
+                    ppVolume.gameObject.SetActive(true);
+                    ppVolume.weight = 1f;
+                    shouldRun = true;
+                }
             }
         }
-
-        private static bool shouldRun = false;
 
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
@@ -67,11 +189,20 @@ namespace GOTCE.Items.Lunar
                 if (stack > 0)
                 {
                     args.damageMultAdd += 0.6f + 0.4f * (stack - 1);
-                    args.cooldownMultAdd += 0f + 0.35f * (stack - 1);
-                    shouldRun = true;
+                    args.cooldownMultAdd += 0f + 0.5f * (stack - 1);
                 }
             }
         }
     }
+
+    public class PaleAlePostProcessingController : MonoBehaviour
+    {
+        public PostProcessVolume volume;
+
+        public void Start()
+        {
+            volume = GetComponent<PostProcessVolume>();
+            volume.gameObject.SetActive(false);
+        }
+    }
 }
-*/
