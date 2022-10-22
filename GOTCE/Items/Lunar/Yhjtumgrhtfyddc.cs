@@ -46,13 +46,13 @@ namespace GOTCE.Items.Lunar
         {
             On.RoR2.Inventory.GiveItem_ItemIndex_int += Inventory_GiveItem_ItemIndex_int;
             On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
-            On.RoR2.SceneDirector.Start += SceneDirector_Start;
+            RoR2.CharacterBody.onBodyStartGlobal += CharacterBody_onBodyStartGlobal;
             // TODO:
 
             // Figure out how to make the buffs persist per stage, or give them per stage
         }
 
-        private void SceneDirector_Start(On.RoR2.SceneDirector.orig_Start orig, SceneDirector self)
+        private void CharacterBody_onBodyStartGlobal(CharacterBody obj)
         {
             List<BuffDef> buffs = new()
                 {
@@ -71,7 +71,6 @@ namespace GOTCE.Items.Lunar
                     }
                 }
             }
-            orig(self);
         }
 
         private void AddBuffs(List<BuffDef> blacklist, CharacterBody body, bool remove)
