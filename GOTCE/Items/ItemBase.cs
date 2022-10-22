@@ -95,7 +95,6 @@ namespace GOTCE.Items
                 ItemTags = new List<ItemTag>(ItemTags) { ItemTag.AIBlacklist }.ToArray();
             }
 
-
             ItemDef = ScriptableObject.CreateInstance<ItemDef>();
             ItemDef.name = "ITEM_" + ItemLangTokenName;
             ItemDef.nameToken = "ITEM_" + ItemLangTokenName + "_NAME";
@@ -106,16 +105,17 @@ namespace GOTCE.Items
             {
                 GameObject prefab = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 Material mat = new(new Shader());
-                
             }*/
-    
-            if (ItemModel != null) {
-                ItemDef.pickupModelPrefab = ItemModel;
-            }
-            else {
+
+            if (ItemModel == null)
+            {
                 // GameObject prefab = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 // doesnt work or too small
                 ItemDef.pickupModelPrefab = emptyModel;
+            }
+            else
+            {
+                ItemDef.pickupModelPrefab = ItemModel;
             }
             ItemDef.pickupIconSprite = ItemIcon;
             ItemDef.hidden = false;
