@@ -53,14 +53,13 @@ namespace GOTCE.Items.VoidWhite
             {
                 if (damageInfo.attacker.GetComponent<CharacterBody>() != null)
                 {
-                    CharacterBody component = damageInfo.attacker.GetComponent<CharacterBody>();
-                    if (component.inventory != null)
+                    var body = damageInfo.attacker.GetComponent<CharacterBody>();
+                    if (body.inventory)
                     {
-                        int stack = component.inventory.GetItemCount(GOTCE.Items.VoidWhite.BarrierStone.Instance.ItemDef.itemIndex);
+                        int stack = body.inventory.GetItemCount(Instance.ItemDef.itemIndex);
                         if (stack > 0 && damageInfo.procCoefficient > 0)
                         {
-                            CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
-                            body.healthComponent.AddBarrier((2f * stack) - 2f);
+                            body.healthComponent.AddBarrier(((2f * stack) - 2f) / damageInfo.procCoefficient);
                         }
                     }
                 }

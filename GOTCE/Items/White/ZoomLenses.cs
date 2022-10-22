@@ -53,12 +53,12 @@ namespace GOTCE.Items.White
     }
 
     public class GOTCE_FovComponent : MonoBehaviour {
-        private CharacterBody body;
-        private Components.GOTCE_StatsComponent stats;
+        public CharacterBody body;
+        public Components.GOTCE_StatsComponent stats;
         private int baseFov;
-        private bool critting = false;
-        private float interval = 1f;
-        private float stopwatch = 0f;
+        public bool critting = false;
+        public float interval = 1f;
+        public float stopwatch = 0f;
         private CameraTargetParams.CameraParamsOverrideHandle handle;
         private void Start() {
             body = gameObject.GetComponent<CharacterBody>();

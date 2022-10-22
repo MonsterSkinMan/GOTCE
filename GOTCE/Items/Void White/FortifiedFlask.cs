@@ -60,7 +60,7 @@ namespace GOTCE.Items.VoidWhite
                         body.inventory.RemoveItem(Instance.ItemDef);
                         body.inventory.GiveItem(DilutedFlask.Instance.ItemDef);
                         CharacterMasterNotificationQueue.SendTransformNotification(body.master, Instance.ItemDef.itemIndex, DilutedFlask.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
-                        self.AddBarrier(self.combinedHealth);
+                        self.AddBarrier(self.fullCombinedHealth);
                     }
                 }
             }

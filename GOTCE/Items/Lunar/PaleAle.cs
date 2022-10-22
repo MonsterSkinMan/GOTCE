@@ -139,10 +139,12 @@ namespace GOTCE.Items.Lunar
             if (shouldRun && !blacklistedScenes.Contains(sceneName))
             {
                 ppVolume.gameObject.SetActive(true);
+                ppVolume.weight = 1f;
             }
             else
             {
-                ppVolume.gameObject.SetActive(true);
+                ppVolume.gameObject.SetActive(false);
+                ppVolume.weight = 0f;
             }
             orig(self);
         }
@@ -156,6 +158,7 @@ namespace GOTCE.Items.Lunar
                 if (stack <= 0)
                 {
                     ppVolume.gameObject.SetActive(false);
+                    ppVolume.weight = 0f;
                     shouldRun = false;
                 }
             }
@@ -172,6 +175,7 @@ namespace GOTCE.Items.Lunar
                 if (stack > 0)
                 {
                     ppVolume.gameObject.SetActive(true);
+                    ppVolume.weight = 1f;
                     shouldRun = true;
                 }
             }
