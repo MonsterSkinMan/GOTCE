@@ -15,11 +15,7 @@ namespace GOTCE.Equipment
 
         public override string EquipmentPickupDesc => "Fire a singular missile with a chance to die.";
 
-<<<<<<< HEAD
-        public override string EquipmentFullDescription => "Passively halves your <style=cIsHealing>maximum health</style> and <style=cIsUtility>movement speed</style>. Fire <style=cIsDamage>1</style> missile that deals <style=cIsDamage>1x300% damage</style>. Inflict <style=cIsHealing>25% of your maximum hp</style>, apply <style=cIsUtility>4 random debuffs</style> and the <style=cIsHealing>malachite debuff</style> to yourself for <style=cIsUtility>4</style> seconds.";
-=======
-        public override string EquipmentFullDescription => "Passively halves your <style=cIsHealing>maximum health</style> and <style=cIsUtility>movement speed</style>. Fire <style=cIsDamage>1</style> missile that deals <style=cIsDamage>1x300% damage</style>, inflict <style=cIsHealing>25% of your maximum hp as self damage</style>, apply <style=cIsUtility>3 random debuffs</style> and the <style=cIsHealing>malachite debuff</style> to yourself for <style=cIsUtlity>4</style> seconds.";
->>>>>>> 77d4e73e616880fa3671934022c767eb8226d6d5
+        public override string EquipmentFullDescription => "Passively halves your <style=cIsHealing>maximum health</style> and <style=cIsUtility>movement speed</style>. Fire <style=cIsDamage>1</style> missile that deals <style=cIsDamage>1x300% damage</style>, inflict <style=cIsHealing>25% of your maximum hp as self damage</style>, apply <style=cIsUtility>3 random debuffs</style> and the <style=cIsHealing>malachite debuff</style> to yourself for <style=cIsUtility>4</style> seconds.";
 
         public override string EquipmentLore => "This is fucking trash.\n-Literally everybody";
 
