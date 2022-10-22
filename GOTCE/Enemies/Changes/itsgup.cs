@@ -16,8 +16,10 @@ namespace GOTCE.Enemies.Changes
                 new ExplicitPickupDropTable.PickupDefEntry {pickupDef = NeverEndingAgony.Instance.ItemDef, pickupWeight = 1f},
             };
             deathRewards.bossDropTable = dt;
-
+        }
+        public static void SoMyMainGoalIsToBlowUp() {
             GameObject jellyfishBodyPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Jellyfish/JellyfishBody.prefab").WaitForCompletion();
+<<<<<<< HEAD
             DeathRewards jdeathRewards = jellyfishBodyPrefab.GetComponent<DeathRewards>();
             ExplicitPickupDropTable jdt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();
             jdt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]
@@ -25,6 +27,15 @@ namespace GOTCE.Enemies.Changes
                 new ExplicitPickupDropTable.PickupDefEntry {pickupDef = ViscousBlast.Instance.ItemDef, pickupWeight = 1f},
             };
             jdeathRewards.bossDropTable = jdt;
+=======
+            DeathRewards deathRewards = jellyfishBodyPrefab.GetComponent<DeathRewards>();
+            ExplicitPickupDropTable dt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();
+            dt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]
+            {
+                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = ViscousBlast.Instance.ItemDef, pickupWeight = 1f},
+            };
+            deathRewards.bossDropTable = dt;
+>>>>>>> 77d4e73e616880fa3671934022c767eb8226d6d5
         }
     }
 }
