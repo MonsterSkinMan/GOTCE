@@ -38,7 +38,7 @@ namespace GOTCE.Enemies.Standard
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 20;
+            isc.directorCreditCost = 35;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.None;
@@ -63,7 +63,8 @@ namespace GOTCE.Enemies.Standard
             base.Modify();
             master = prefabMaster.GetComponent<CharacterMaster>();
 
-            if (!prefab.GetComponent<TeamComponent>()) {
+            if (!prefab.GetComponent<TeamComponent>())
+            {
                 TeamComponent team = prefab.AddComponent<TeamComponent>();
                 team.teamIndex = TeamIndex.Monster;
             }
@@ -90,7 +91,8 @@ namespace GOTCE.Enemies.Standard
                 boxweak.gameObject.GetComponent<HurtBox>()
             };
 
-            if (!model.GetComponent<ChildLocator>()) {
+            if (!model.GetComponent<ChildLocator>())
+            {
                 model.AddComponent<ChildLocator>();
             }
 
@@ -106,7 +108,7 @@ namespace GOTCE.Enemies.Standard
             Transform barrel = model.transform.GetChild(1).transform;
             var handle = model.transform.GetChild(2).transform;
             var weakpoint = model.transform.GetChild(3).transform;
-        
+
             AISkillDriver FleeAndAttack = (from x in master.GetComponents<AISkillDriver>()
                                            where x.maxDistance == 20
                                            select x).First();
@@ -131,8 +133,6 @@ namespace GOTCE.Enemies.Standard
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_NAME", "Living Suppressive Fire");
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_LORE", "Even if frags did 2000% with no falloff...");
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_SUBTITLE", "Horde of Many");
-
-            
         }
 
         public override void PostCreation()
@@ -141,9 +141,12 @@ namespace GOTCE.Enemies.Standard
             RegisterEnemy(prefab, prefabMaster, null, DirectorAPI.MonsterCategory.BasicMonsters, true);
         }
 
-        public static Vector3 InputBankTest_aimOrigin_Get(orig_aimOrigin orig, InputBankTest self) {
-            if (self.characterBody) {
-                if (self.characterBody.aimOriginTransform) {
+        public static Vector3 InputBankTest_aimOrigin_Get(orig_aimOrigin orig, InputBankTest self)
+        {
+            if (self.characterBody)
+            {
+                if (self.characterBody.aimOriginTransform)
+                {
                     return self.characterBody.aimOriginTransform.position;
                 }
             }

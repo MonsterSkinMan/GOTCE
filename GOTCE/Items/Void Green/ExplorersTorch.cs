@@ -52,7 +52,7 @@ namespace GOTCE.Items.VoidGreen
             if (damageInfo.attacker && damageInfo.attacker.GetComponent<CharacterBody>().inventory)
             {
                 var inv = damageInfo.attacker.GetComponent<CharacterBody>().inventory;
-                var stack = inv.GetItemCount(DLC1Content.Items.StrengthenBurn);
+                var stack = inv.GetItemCount(Instance.ItemDef);
                 if (stack > 0)
                 {
                     if (Util.CheckRoll(25f * damageInfo.procCoefficient, damageInfo.attacker.GetComponent<CharacterBody>().master.luck))

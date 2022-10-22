@@ -55,7 +55,7 @@ namespace GOTCE.Items.VoidWhite
                 if (body.inventory)
                 {
                     var stack = body.inventory.GetItemCount(Instance.ItemDef);
-                    if (stack > 0)
+                    if (stack > 0 && self.isHealthLow)
                     {
                         body.inventory.RemoveItem(Instance.ItemDef);
                         body.inventory.GiveItem(DilutedFlask.Instance.ItemDef);
