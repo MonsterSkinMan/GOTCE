@@ -26,10 +26,9 @@ namespace GOTCE.Enemies.Standard
             body.baseNameToken = "GOTCE_VOIDLINGLINGLINGLING_NAME";
             body.baseRegen = 0f;
             //body.preferredInitialStateType = new SerializableEntityStateType(typeof(EntityStatesCustom.SpawnState));
+            // preferred initial state type in vanilla is uninitialized apparently
 
-            EntityStateMachine esmBody = (from x in body.GetComponents<EntityStateMachine>()
-                                          where x.customName == "Body"
-                                          select x).First();
+            EntityStateMachine esmBody = EntityStateMachine.FindByCustomName(body.gameObject, "Body");
             esmBody.initialStateType = new SerializableEntityStateType(typeof(EntityStatesCustom.SpawnState));
 
             body.GetComponent<CharacterDeathBehavior>().deathState = new SerializableEntityStateType(typeof(EntityStatesCustom.DeathState));
