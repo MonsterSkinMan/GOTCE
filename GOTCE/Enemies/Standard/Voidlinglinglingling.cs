@@ -1,6 +1,7 @@
 using EntityStates;
 using R2API;
 using RoR2;
+using System.Linq;
 using UnityEngine;
 
 namespace GOTCE.Enemies.Standard
@@ -24,8 +25,13 @@ namespace GOTCE.Enemies.Standard
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLINGLINGLING_NAME";
             body.baseRegen = 0f;
-            body.preferredInitialStateType = new SerializableEntityStateType(typeof(EntityStatesCustom.SpawnState));
-            body.GetComponent<EntityStateMachine>().initialStateType = new SerializableEntityStateType(typeof(EntityStatesCustom.SpawnState));
+            //body.preferredInitialStateType = new SerializableEntityStateType(typeof(EntityStatesCustom.SpawnState));
+
+            EntityStateMachine esmBody = (from x in body.GetComponents<EntityStateMachine>()
+                                          where x.customName == "Body"
+                                          select x).First();
+            esmBody.initialStateType = new SerializableEntityStateType(typeof(EntityStatesCustom.SpawnState));
+
             body.GetComponent<CharacterDeathBehavior>().deathState = new SerializableEntityStateType(typeof(EntityStatesCustom.DeathState));
         }
 
