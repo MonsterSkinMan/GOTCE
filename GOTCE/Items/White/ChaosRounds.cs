@@ -61,15 +61,16 @@ namespace GOTCE.Items.White
                         List<GameObject> prefabs = ProjectileCatalog.projectilePrefabs.ToList();
                         for (int i = 0; i < prefabs.Count; i++)
                         {
-                            if (prefabs[i].name == EngiMineName || prefabs[i].name == SpiderMineName)
+                            if (prefabs[i].name == EngiMineName || prefabs[i].name == SpiderMineName || prefabs[i].GetComponent<ProjectileSimple>() == null || prefabs[i].GetComponent<ProjectileCharacterController>() == null || prefabs[i].GetComponent<ProjectileController>() == null || prefabs[i].GetComponent<ProjectileDamage>() == null || prefabs[i].GetComponent<ProjectileDotZone>() == null || prefabs[i].GetComponent<ProjectileExplosion>() == null || prefabs[i].GetComponent<ProjectileImpactExplosion>() == null)
                             {
                                 prefabs.RemoveAt(i);
                             }
                         }
-                        GameObject prefab = prefabs[UnityEngine.Random.RandomRange(0, prefabs.Count - 1)];
+                        GameObject prefab = prefabs[UnityEngine.Random.Range(0, prefabs.Count - 1)];
 
                         FireProjectileInfo info = default(FireProjectileInfo);
                         info.crit = Util.CheckRoll(self.crit, self.master);
+                        info.damage = self.damage * 1.2f;
                         info.damage = self.damage * 1.2f;
                         info.projectilePrefab = prefab;
                         info.procChainMask = default(ProcChainMask);

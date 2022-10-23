@@ -3,10 +3,6 @@ using RoR2;
 using UnityEngine;
 using RoR2.CharacterAI;
 using System.Linq;
-using MonoMod.Cil;
-using Mono.Cecil.Cil;
-using System;
-using MonoMod.RuntimeDetour;
 
 namespace GOTCE.Enemies.Standard
 {
@@ -36,7 +32,7 @@ namespace GOTCE.Enemies.Standard
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 45;
+            isc.directorCreditCost = 40;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.None;
@@ -127,8 +123,6 @@ namespace GOTCE.Enemies.Standard
 
             SkillLocator sl = prefab.GetComponentInChildren<SkillLocator>();
             ReplaceSkill(sl.primary, Skills.Consistency.Instance.SkillDef);
-
-            master.bodyPrefab = prefab;
 
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_NAME", "Living Suppressive Fire");
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_LORE", "Even if frags did 2000% with no falloff...");
