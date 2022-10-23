@@ -17,7 +17,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemFullDescription => "Increases <style=cIsHealing>maximum health</style> by <style=cIsHealing>50%</style> <style=cStack>(+50% per stack)</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "\"Hello and welcome to SpafDonalds, how may I help you?\"\n\"Yes hello I would like to get the 15-piece chicken SpafNuggets with a side of large fries and a medium Eclipse 16 with no ice.\"\n\"Certainly. That will be 20 bobux please.\"\n\"Yeah here you go.\"\n\"Thank you very much. Enjoy your meal.\"\n\"Yeah you too.\"\n\n\n\n...\n\"Wait fuck.\"";
 
         public override ItemTier Tier => ItemTier.Tier2;
 

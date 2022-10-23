@@ -23,13 +23,14 @@ namespace GOTCE.Enemies.Minibosses
             body.baseArmor = 0;
             body.attackSpeed = 1f;
             body.damage = 20f;
-            body.levelDamage = 3f;
+            body.levelDamage = 4f;
             body.baseMaxHealth = 500f;
-            body.levelMaxHealth = 50f;
+            body.levelMaxHealth = 150f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_CRACKEDPEST_NAME";
             body.subtitleNameToken = "GOTCE_CRACKEDPEST_SUBTITLE";
             body.baseRegen = 0f;
+            body.portraitIcon = Main.MainAssets.LoadAsset<Texture2D>("Assets/Textures/Icons/Enemies/CrackedPest.png");
         }
 
         public override void Modify()
@@ -78,7 +79,7 @@ namespace GOTCE.Enemies.Minibosses
             ReplaceSkill(sl.primary, spit);
 
             LanguageAPI.Add("GOTCE_CRACKEDPEST_NAME", "Cracked Pest");
-            LanguageAPI.Add("GOTCE_CRACKEDPEST_LORE", "temp");
+            LanguageAPI.Add("GOTCE_CRACKEDPEST_LORE", "What’s popping D. Furthen gang it’s D. Furthen back with another vlog. So this morning, we ran into a group of Blind Pests, except we noticed that one of them was orange and was wearing some really epic sunglasses so I sent Tharson to check it out because I’m a terrible fucking person and enjoy making him do all of my dirty work and suffering for it. Anyways, he kept screaming “HOLY SHIT IT’S SO FUCKING CRACKED” over and over, and I guess he was too much of a baby to handle it, because it battered him with its explosive spit and he fucking died lol. I guess Tharson ISN’T okay from this encounter. What a funny joke, I love Tharson memes and I hope that the RoR2 community- I mean my fanbase doesn’t run the joke into the center of the Earth. I don’t even know what a RoR2 is lol wait yeah I do since RoR1 at least is canon to the Risk of Rain canon. Eh, whatever. The so-called Cracked Pest did seem a bit… odd, however. I’m worried about the existence of more Cracked entities and what that could mean for the stability of the universe.\n<color=#e64b13>Heheheha! Well, you won’t be able to worry about it once I’m done with you.</color>");
             LanguageAPI.Add("GOTCE_CRACKEDPEST_SUBTITLE", "Horde of Many");
 
             On.RoR2.GlobalEventManager.OnHitAll += vineboom;

@@ -19,7 +19,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemFullDescription => "On '<style=cIsUtility>Stage Transition Crit</style>', gain <style=cIsHealing>50%</style> of your <style=cIsHealing>maximum health</style> as <style=cIsHealing>temporary barrier</style>, <style=cIsUtility>consuming</style> this item.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "\"It's breakfast time!\"\n\"Oh boy! I'm so hungry, I could eat an Octorok! What's for breakfast?\"\n\"A can of beans.\"\n\"Wh-what the fuck? Who the fuck eats a can of beans for breakfast?!\"\n\"Me.\"\n\"The fuck is wrong with you?\"\n\"Everything.\"\n\"Yeah, that checks out.\"";
 
         public override ItemTier Tier => ItemTier.Tier2;
 

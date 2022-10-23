@@ -26,7 +26,7 @@ namespace GOTCE.Enemies.EntityStatesCustom
 
         public static float bulletRadius = 1.5f;
 
-        public static int baseBulletCount = 25;
+        public static int baseBulletCount = 20;
 
         public static string fireBarrageSoundString;
 

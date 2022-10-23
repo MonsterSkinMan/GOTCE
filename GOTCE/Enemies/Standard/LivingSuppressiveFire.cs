@@ -33,6 +33,7 @@ namespace GOTCE.Enemies.Standard
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_LIVINGSUPPRESSIVEFIRE_NAME";
             body.baseRegen = 0f;
+            body.portraitIcon = Main.MainAssets.LoadAsset<Texture2D>("Assets/Textures/Icons/Enemies/LivingSuppressiveFire.png");
         }
 
         public override void AddSpawnCard()
@@ -131,7 +132,7 @@ namespace GOTCE.Enemies.Standard
             master.bodyPrefab = prefab;
 
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_NAME", "Living Suppressive Fire");
-            LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_LORE", "Even if frags did 2000% with no falloff...");
+            LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_LORE", "\"I-is that a fucking floating gun?\"\n\"What are you talking abou- wait what the fuck how is this happening?\"\n\"I genuinely have no idea? Wh-what is it even doing there?\"\n\"It seems to be searching for something? Is it alive?\"\n\"I guess so? This planet is fucking crazy ma- oh shit I think it heard us.\"\n\"Oh fuck you're right it's coming this way.\"\n<i>I value survivability and consistency...</i>\n\"What the fuck? It can talk? And what's it saying about survivability and consist-\"\n<i>Too inconsistent!</i>\nThe two were then promplty shredded to bits as the gun unleashed a suppressing flood of bullets upon them.");
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_SUBTITLE", "Horde of Many");
         }
 

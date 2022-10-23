@@ -20,7 +20,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "Gain a 10% <style=cStack>(+10% per stack)</style> chance to fire a <style=cIsUtility>random projectile</style> on skill use.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "<color=#e64b13>That D. Furthen idiot is dead now, I suppose. I guess it's time I started introducing some more chaos. How about... this item?</color>";
 
         public override ItemTier Tier => ItemTier.Tier1;
 

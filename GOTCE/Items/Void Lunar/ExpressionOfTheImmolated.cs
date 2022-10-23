@@ -17,7 +17,7 @@ namespace GOTCE.Items.VoidLunar
 
         public override string ItemFullDescription => "<style=cIsUtility>Reduce Skill cooldown</style> by <style=cIsUtility>50%</style> <style=cStack>(+15% per stack)</style>. Forces all players' Skills to <style=cIsUtility>activate</style> whenever they are off <style=cIsUtility>cooldown</style>. <style=cIsVoid>Corrupts all Gestures of the Drowned</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "This is a stupid item. At least it’s more interesting than gesture.";
 
         public override ItemTier Tier => ItemTier.VoidTier1;
 

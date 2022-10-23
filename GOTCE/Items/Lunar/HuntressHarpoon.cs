@@ -17,7 +17,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLangTokenName => "GOTCE_HuntressHarpoon";
 
-        public override string ItemLore => "'The Huntress is an agile survivor with a high damage output'\n- Hopoo Games";
+        public override string ItemLore => "\"The Huntress is an agile survivor with a high damage output\"\n- Hopoo Games";
 
         public override GameObject ItemModel => null;
 

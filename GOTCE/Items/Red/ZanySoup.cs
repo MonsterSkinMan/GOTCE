@@ -20,7 +20,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemFullDescription => "Gain <style=cIsUtility>+2</style> <style=cStack>(+1 per stack)</style> of every <style=cIsHealing>food-related item</style> you have.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Your soup, sir. We made sure to cook it using the <i>finest</i> banter and the <i>wackiest</i> takes, harvested from our server farms in the Alps. Garnished with a gentle portion of absolute degeneracy and sprinkled with a thin dusting of incompetent ownership, the Zany Soup is the pride of our dear establishment.";
 
         public override ItemTier Tier => ItemTier.Tier3;
 

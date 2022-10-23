@@ -17,7 +17,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "The <style=cIsDamage>radius</style> of all area of effect attacks is increased by <style=cIsDamage>2m</style> <style=cStack>(+2m per stack)</style>.";
 
-        public override string ItemLore => "10 seconds nearby enemy charges 10 power. every 45 power gain +2 aoe effect on your primary. hitting 2 enemies with primary gives m2 +1 charge. Landing 2 m2 hits in a row gives you a temporary barrier that when destroyed deals 500% damage to enemies within the equivalent meters to current power. (edited)";
+        public override string ItemLore => "\"Weren't you arrested for arson?\"\n\"Yeah, I was. But the court order got nullified, and I stole Jay's ID to make it here.\"\n\"It's just fireworks. Are you seriously going to risk going back to jail for this?\"\n\"Oh, these aren't just fireworks. I just got the wrappers FROM the fireworks dude. They're full of a secret surprise-\"";
 
         public override ItemTier Tier => ItemTier.Tier1;
 

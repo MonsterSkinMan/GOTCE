@@ -17,7 +17,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemFullDescription => "Gain <style=cIsDamage>5% critical chance</style>. Gain a <style=cIsHealing>temporary barrier</style> on killing an elite enemy with a '<style=cIsDamage>Critical Strike</style>' for <style=cIsHealing>100</style> <style=cStack>(+50 per stack)</style> health, multiplied by the amount of your <style=cIsUtility>secondary charges</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Imagine if you had a spoon, but like, it was made of more spoons. That would be pretty epic, wouldn't it?";
 
         public override ItemTier Tier => ItemTier.Tier2;
 

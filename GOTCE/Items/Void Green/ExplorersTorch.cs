@@ -21,7 +21,7 @@ namespace GOTCE.Items.VoidGreen
 
         public override string ItemFullDescription => "Gain a <style=cIsDamage>25%</style> chance on hit to <style=cIsDamage>ignite 1</style> <style=cStack>(+1 per stack)</style> times. <style=cIsVoid>Corrupts all Ignition Tanks</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "This item reminds me of Explorer Zombies from Plants vs. Zombies 2. I hate Plants vs. Zombies 2. It’s such a shitty fucking game oh my god I don’t understand the appeal of it.";
 
         public override ItemTier Tier => ItemTier.VoidTier2;
 

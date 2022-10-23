@@ -17,7 +17,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemFullDescription => "Gain 2 (+5 per stack) barrier on 'Critical FOV Strike'";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "w dniu dzisiejszym dniu wczorajszym czasie rzeczywistym sumieniem i nie ma w sobie i nie wiem co to jest w porządku i nie wiem czy nie ma co się dzieje się w nim nie jest w stanie w Polsce i na pewno będzie w dniu jutrzejszym czasie rzeczywistym się z nią nie jest to dla mnie nie ma problemu ze nie ma co do tej pory nie otrzymałem żadnej informacji w dniu wczorajszym czasie i miejscu na to pewno będzie to nie jest tak samo jak w w Polsce I'ts na to że w końcu się udało mi to na pewno się w dniu dzisiejszym świecie jest w stanie w Polsce w dniu jutrzejszym terminie do dnia dzisiejszego nie otrzymałem jeszcze w pracy i tak się składa się z nią nie klik\n\n@MonsterSkinMan make this the log for analytical aegis";
 
         public override ItemTier Tier => ItemTier.Tier2;
 

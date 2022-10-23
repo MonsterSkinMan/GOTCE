@@ -18,7 +18,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "Gain <style=cIsHealing>10%</style> <style=cStack>(+7% per stack)</style> <style=cIsHealing>maximum health</style> if the time is between 12 PM and 4 PM.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "\"God, I never want to fucking eat beans again. What are we having for lunch?\"\n\"Pizza I guess.\"\n\"Oh shit really?\"\n\"Yeah, here you go.\"\n\"Oh wow thanks man.\"\n\"Make sure you eat it quickly though it's getting late.\"\n\"Yeah yeah whatever man I’ll take as long as I- wait why the fuck is it disappearing?\"\n\"It's not lunch time anymore.\"\n\"Well, you what it is? It's fucking stupid, that's what.\"\n\"Hey, I don't make the rules around here.\"\n\"Whatever, man.\"";
 
         public override ItemTier Tier => ItemTier.Tier1;
 

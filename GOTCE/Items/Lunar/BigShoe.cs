@@ -14,11 +14,11 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLangTokenName => "GOTCE_BigShoe";
 
-        public override string ItemPickupDesc => "Reduce the proc coefficient of all your attacks to 3.0... <color=#FF7F7F>EVEN if they are normally higher.</color> Yes, this affects the proc coefficient of EVERYTHING.\n";
+        public override string ItemPickupDesc => "\"Reduce\" the proc coefficient of all your attacks to 3.0... <color=#FF7F7F>EVEN if they are normally higher.</color> Yes, this affects the proc coefficient of EVERYTHING.\n";
 
         public override string ItemFullDescription => "Reduce the <style=cIsDamage>proc coefficient</style> of all your attacks to <style=cIsDamage>3.0</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "God fucking damnit! That stupid Railgunner is going to be here soon! Ugh, she’s such an atrocity! She kills everything with her stupid 13567.5% 3.0 death blast and then uses her stupidly overtuned concussion mine to fly across the stage and away from danger! And her stupid bigass shoes! Fuck I hate her giant goddamn shoes! Although… perhaps I could use her stupid obsession with shoes against her? Yes, I could use some of this lunar leather to make the biggest shoes, and then when she gets here, I can use them to lure her into a false sense of security before I stomp her from existence! Hot damn that’s a good idea! Let’s just hope that stupid crippled newt doesn’t get his deformed hands on them and sell it at his bazaar for 2 lunar coins to Railgunner and her teammates so that all of their proc coefficients are set to 3.0 and all proc masks are removed aside from behemoth because behemoth with a proc coefficient crashes the game unless you give it a proc mask and they then proceed to troll the fuck out of the game, including my boss fight. What are the chances that happens, though?";
 
         public override ItemTier Tier => ItemTier.Lunar;
 

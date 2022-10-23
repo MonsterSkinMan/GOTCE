@@ -18,7 +18,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "Increases your <style=cIsUtility>secondary charges</style> by <style=cIsUtility>3</style> <style=cStack>(+3 per stack)</style> if it's Tuesday.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "\"Oh boy I sure do love having an item that has the effect of three backup mags and only works on Tuesdays!\"\n-Literally fucking nobody";
 
         public override ItemTier Tier => ItemTier.Tier1;
 

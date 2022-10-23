@@ -18,7 +18,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "Every second, you have a 10% <style=cStack>(+10% chance per stack)</style> to <style=cIsUtility>'Critically FOV Strike'</style>, zooming in your vision for 1 second";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Jesus fucking christ what drugs were we on when we came up with FOV crits god this is such a dogshit mechanic I hate this.";
         public EventHandler<FovCritEventArgs> OnFovCrit;
 
         public override ItemTier Tier => ItemTier.Tier1;

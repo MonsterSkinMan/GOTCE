@@ -17,7 +17,7 @@ namespace GOTCE.Equipment
 
         public override string EquipmentFullDescription => "Fire a <style=cIsUtility>controllable</style> void laser for <style=cIsDamage>1500% damage</style> per frame.";
 
-        public override string EquipmentLore => "";
+        public override string EquipmentLore => "I can’t believe this. How could they demote me? It’s not my fault my assignment has made nearly no progress since it started. It’s not my fault I got stuck trying to invade the chaotic death planet guarded by a sword-wielding maniac. I need a donut...\nIt would also be nice if they would stop demeaning me.\nDo they have to give me such an insulting nickname? Especially since I legally have to go by it?\nHm? What are they calling me now? Ummm... what was it again... OH! Yeah, they called me...\nVoidling.";
 
         public override GameObject EquipmentModel => null;
 

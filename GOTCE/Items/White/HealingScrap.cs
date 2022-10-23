@@ -21,7 +21,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "Literally just Regenerating Scrap but as a <style=cSub>common item</style>.";
 
-        public override string ItemLore => "there is no lore this is literally just regen scrap but as a common item I don't know what you were expecting";
+        public override string ItemLore => "<color=#e64b13>there is no lore this is literally just regen scrap but as a common item I don't know what you were expecting.</color>";
 
         public override ItemTier Tier => ItemTier.Tier1;
 

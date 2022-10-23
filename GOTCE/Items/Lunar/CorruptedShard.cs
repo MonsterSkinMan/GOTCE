@@ -20,7 +20,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLangTokenName => "GOTCE_CorruptedShard";
 
-        public override string ItemPickupDesc => "Seems to do nothing... <color=#FF7F7F>BUT seems to do nothing...</color>\n";
+        public override string ItemPickupDesc => "<color=#e64b13>Seems to do nothing...</color> <color=#FF7F7F>BUT seems to do nothing...</color>\n";
 
         public override string ItemFullDescription => "Your attacks have a <style=cIsDamage>50%</style> <style=cStack>(+50% per stack)</style> chance to <style=cIsDamage>instantly kill</style> an enemy. The game has a <style=cIsHealth>0.5%</style> chance to <style=cIsHealth>crash</style> every second.";
 

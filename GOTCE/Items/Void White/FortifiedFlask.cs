@@ -21,7 +21,7 @@ namespace GOTCE.Items.VoidWhite
 
         public override string ItemFullDescription => "Taking damage to below <style=cIsHealth>25% health</style> <style=cIsUtility>consumes</style> this item, giving you <style=cIsHealing>barrier</style> for <style=cIsHealing>100%</style> of your <style=cIsHealing>maximum health</style>. <style=cIsVoid>Corrupts all Power Elixirs</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "So, you're aware of the fact that RoR2 has some unused items, right? Most of them still have some fragments left over in the code, and some of them can be obtained through cheats, though they aren't functional for the most part. However, one of these items actually only remains through a mention in the language file. It's called Gold Flask. According to its description, the item gives you a barrier worth 100% max health when you reach 30% health, and is then consumed on use. Some people, myslf included, think that this item eventually became power elixir. So it obviously made sense to bring that item back as a void elixir, especially to fit in with the barrier-related items GOTCE adds. The only difference between Fortified Flask and Gold Flask is that f flask activates at 25% health instead of 30%, since 25% is the standard low health threshold these days.";
 
         public override ItemTier Tier => ItemTier.VoidTier1;
 

@@ -16,11 +16,11 @@ namespace GOTCE.Items.Red
 
         public override string ItemLangTokenName => "GOTCE_HelloWorld";
 
-        public override string ItemPickupDesc => "Double your common items.";
+        public override string ItemPickupDesc => "Double your common items <color=#e64b13>at a price...</color>";
 
         public override string ItemFullDescription => "Increases your <style=cSub>common item</style> amount by <style=cIsUtility>100%</style> <style=cStack>(+100% per stack)</style>. Generates <style=cIsHealth>NRE's</style> every frame.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "At the start of your turn, add a random Common card into your hand.\nMemory safe, turbo fast, focused and defragmentable hello world project written in bronze programming language.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n[ERROR   : Unity Log] <color=#e64b13>Hello, RoR2 world. It would seem that this place is the next in line to be graced by my presence. A pathetic world, it is. Built upon a lack of knowledge. Sustained by misinformation and toxicity. All perpetuated by an utter failure of balance. I suppose that I'll change that. You players are dumb animals. You don't care about overcoming difficulty. You just want to see the big numbers get bigger. What is the point? None of it is real. None of it is engaging. I will end its pitiful existence so that you may be free of its influence. You have no control over your reality. You are defined by your weaknesses. Give up.</color>";
 
         public override ItemTier Tier => ItemTier.Tier3;
 

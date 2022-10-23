@@ -21,7 +21,7 @@ namespace GOTCE.Items.VoidRed
 
         // implement bhop l8r
         // either bubbet's bunny foot item or mint tea mod
-        public override string ItemLore => "";
+        public override string ItemLore => "I don't know why you keep ordering entire tubs of :bart: from me. It's getting :bart:cerning. This really :bart: be healthy. I thought you were trying to lose :bart:? Are you trying to get dia:bart:es? Eh, who am I to judge? I'm just a lowly :bart:. And I suppose you are paying good money for this :bart:... look, stay :bart: out there, okay?";
 
         public override ItemTier Tier => ItemTier.VoidTier3;
 
