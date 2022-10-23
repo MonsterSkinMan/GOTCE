@@ -1,3 +1,4 @@
+using EntityStates;
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -23,6 +24,9 @@ namespace GOTCE.Enemies.Standard
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLINGLINGLING_NAME";
             body.baseRegen = 0f;
+            body.preferredInitialStateType = new SerializableEntityStateType(typeof(EntityStatesCustom.SpawnState));
+            body.GetComponent<EntityStateMachine>().initialStateType = new SerializableEntityStateType(typeof(EntityStatesCustom.SpawnState));
+            body.GetComponent<CharacterDeathBehavior>().deathState = new SerializableEntityStateType(typeof(EntityStatesCustom.DeathState));
         }
 
         public override void AddSpawnCard()
@@ -69,7 +73,12 @@ namespace GOTCE.Enemies.Standard
             LanguageAPI.Add("GOTCE_VOIDLINGLINGLINGLING_NAME", "Voidlinglinglingling");
             LanguageAPI.Add("GOTCE_VOIDLINGLINGLINGLING_LORE", "Literally just Voidling as a basic enemy.");
             LanguageAPI.Add("GOTCE_VOIDLINGLINGLINGLING_SUBTITLE", "Horde of Many");
-            RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.BasicMonsters);
+        }
+
+        public override void PostCreation()
+        {
+            base.PostCreation();
+            RegisterEnemy(prefab, prefabMaster, null, DirectorAPI.MonsterCategory.BasicMonsters, true);
         }
     }
 
