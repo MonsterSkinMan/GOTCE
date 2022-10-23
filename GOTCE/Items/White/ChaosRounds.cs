@@ -18,7 +18,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "Chance to fire a <style=cIsUtility>random projectile</style> when attacking.";
 
-        public override string ItemFullDescription => "Gain a 10% <style=cStack>(+10% per stack)</style> chance to fire a <style=cIsUtility>random projectile</style> on skill use.";
+        public override string ItemFullDescription => "Gain a <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style> chance to fire a <style=cIsUtility>random projectile</style> on skill use.";
 
         public override string ItemLore => "";
 

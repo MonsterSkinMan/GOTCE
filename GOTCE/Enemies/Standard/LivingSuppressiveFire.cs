@@ -27,9 +27,7 @@ namespace GOTCE.Enemies.Standard
             body.baseArmor = 0;
             body.attackSpeed = 1f;
             body.damage = 5.5f;
-            body.levelDamage = 1.1f;
             body.baseMaxHealth = 110f;
-            body.levelMaxHealth = 33f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_LIVINGSUPPRESSIVEFIRE_NAME";
             body.baseRegen = 0f;
@@ -90,6 +88,8 @@ namespace GOTCE.Enemies.Standard
                 box2.gameObject.GetComponent<HurtBox>(),
                 boxweak.gameObject.GetComponent<HurtBox>()
             };
+
+            box1.transform.localScale = new Vector3(0.2f, 0.7f, 0.3f);
 
             if (!model.GetComponent<ChildLocator>())
             {
