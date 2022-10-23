@@ -72,7 +72,7 @@ namespace GOTCE.Items.White
                         info.position = self.corePosition;
                         info.rotation = Util.QuaternionSafeLookRotation(self.equipmentSlot.GetAimRay().direction);
                         info.owner = self.gameObject;
-                        ProjectileManager.instance.FireProjectileServer(info);
+                        ProjectileManager.instance.FireProjectile(info);
                     }
                 }
             }

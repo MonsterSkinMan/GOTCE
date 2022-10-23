@@ -20,6 +20,8 @@ namespace GOTCE.Equipment
         public override string EquipmentLore => "";
 
         public override GameObject EquipmentModel => null;
+        public override bool CanDrop => false;
+        public override ColorCatalog.ColorIndex ColorIndex => ColorCatalog.ColorIndex.BossItem;
 
         public override Sprite EquipmentIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Equipment/VoidDonut.png");
 

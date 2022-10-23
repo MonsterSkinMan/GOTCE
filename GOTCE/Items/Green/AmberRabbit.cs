@@ -47,7 +47,7 @@ namespace GOTCE.Items.Green
 
         public void the(object sender, StageCritEventArgs args)
         {
-            if (NetworkServer.active)
+            if (NetworkServer.active && Run.instance.stageClearCount != 0)
             {
                 var instances = PlayerCharacterMasterController.instances;
                 foreach (PlayerCharacterMasterController controller in instances)
