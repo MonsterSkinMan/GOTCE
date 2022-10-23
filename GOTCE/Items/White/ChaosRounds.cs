@@ -18,7 +18,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "Chance to fire a <style=cIsUtility>random projectile</style> when attacking.";
 
-        public override string ItemFullDescription => "Gain a <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style> chance to fire a <style=cIsUtility>random projectile</style> on skill use.";
+        public override string ItemFullDescription => "Gain a <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style> chance to fire a <style=cIsUtility>random projectile</style> for <style=cIsDamage>120% base damage</style> on skill use.";
 
         public override string ItemLore => "";
 
@@ -47,19 +47,24 @@ namespace GOTCE.Items.White
             On.RoR2.CharacterBody.OnSkillActivated += Chaos;
         }
 
-        public void Chaos(On.RoR2.CharacterBody.orig_OnSkillActivated orig, CharacterBody self, GenericSkill skill) {
+        public void Chaos(On.RoR2.CharacterBody.orig_OnSkillActivated orig, CharacterBody self, GenericSkill skill)
+        {
             orig(self, skill);
-            if (self.hasAuthority) {
-                if (self.inventory) {
+            if (self.hasAuthority)
+            {
+                if (self.inventory)
+                {
                     Inventory inv = self.inventory;
-                    float chance = 10f*inv.GetItemCount(ItemDef);
-                    if (Util.CheckRoll(chance, self.master)) {
+                    float chance = 10f * inv.GetItemCount(ItemDef);
+                    if (Util.CheckRoll(chance, self.master))
+                    {
                         List<GameObject> prefabs = ProjectileCatalog.projectilePrefabs.ToList();
-                        for (int i = 0; i < prefabs.Count; i++) {
-                            if (prefabs[i].name == EngiMineName || prefabs[i].name == SpiderMineName) {
+                        for (int i = 0; i < prefabs.Count; i++)
+                        {
+                            if (prefabs[i].name == EngiMineName || prefabs[i].name == SpiderMineName)
+                            {
                                 prefabs.RemoveAt(i);
                             }
-                            
                         }
                         GameObject prefab = prefabs[UnityEngine.Random.RandomRange(0, prefabs.Count - 1)];
 
@@ -77,6 +82,5 @@ namespace GOTCE.Items.White
                 }
             }
         }
-
     }
 }
