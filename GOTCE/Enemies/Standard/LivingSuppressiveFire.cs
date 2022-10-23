@@ -3,10 +3,6 @@ using RoR2;
 using UnityEngine;
 using RoR2.CharacterAI;
 using System.Linq;
-using MonoMod.Cil;
-using Mono.Cecil.Cil;
-using System;
-using MonoMod.RuntimeDetour;
 
 namespace GOTCE.Enemies.Standard
 {
@@ -27,9 +23,7 @@ namespace GOTCE.Enemies.Standard
             body.baseArmor = 0;
             body.attackSpeed = 1f;
             body.damage = 5.5f;
-            body.levelDamage = 1.1f;
             body.baseMaxHealth = 110f;
-            body.levelMaxHealth = 33f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_LIVINGSUPPRESSIVEFIRE_NAME";
             body.baseRegen = 0f;
@@ -39,7 +33,7 @@ namespace GOTCE.Enemies.Standard
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 45;
+            isc.directorCreditCost = 40;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.None;
@@ -92,6 +86,8 @@ namespace GOTCE.Enemies.Standard
                 boxweak.gameObject.GetComponent<HurtBox>()
             };
 
+            box1.transform.localScale = new Vector3(0.2f, 0.7f, 0.3f);
+
             if (!model.GetComponent<ChildLocator>())
             {
                 model.AddComponent<ChildLocator>();
@@ -128,8 +124,6 @@ namespace GOTCE.Enemies.Standard
 
             SkillLocator sl = prefab.GetComponentInChildren<SkillLocator>();
             ReplaceSkill(sl.primary, Skills.Consistency.Instance.SkillDef);
-
-            master.bodyPrefab = prefab;
 
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_NAME", "Living Suppressive Fire");
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_LORE", "\"I-is that a fucking floating gun?\"\n\"What are you talking abou- wait what the fuck how is this happening?\"\n\"I genuinely have no idea? Wh-what is it even doing there?\"\n\"It seems to be searching for something? Is it alive?\"\n\"I guess so? This planet is fucking crazy ma- oh shit I think it heard us.\"\n\"Oh fuck you're right it's coming this way.\"\n<i>I value survivability and consistency...</i>\n\"What the fuck? It can talk? And what's it saying about survivability and consist-\"\n<i>Too inconsistent!</i>\nThe two were then promplty shredded to bits as the gun unleashed a suppressing flood of bullets upon them.");

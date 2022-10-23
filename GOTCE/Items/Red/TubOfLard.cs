@@ -23,7 +23,7 @@ namespace GOTCE.Items.Red
 
         public override ItemTier Tier => ItemTier.Tier3;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility };
+        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility, ItemTag.Healing };
 
         public override GameObject ItemModel => null;
 

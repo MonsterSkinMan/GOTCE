@@ -18,7 +18,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "Chance to fire a <style=cIsUtility>random projectile</style> when attacking.";
 
-        public override string ItemFullDescription => "Gain a 10% <style=cStack>(+10% per stack)</style> chance to fire a <style=cIsUtility>random projectile</style> on skill use.";
+        public override string ItemFullDescription => "Gain a <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style> chance to fire a <style=cIsUtility>random projectile</style> for <style=cIsDamage>120% base damage</style> on skill use.";
 
         public override string ItemLore => "<color=#e64b13>That D. Furthen idiot is dead now, I suppose. I guess it's time I started introducing some more chaos. How about... this item?</color>";
 
@@ -47,24 +47,30 @@ namespace GOTCE.Items.White
             On.RoR2.CharacterBody.OnSkillActivated += Chaos;
         }
 
-        public void Chaos(On.RoR2.CharacterBody.orig_OnSkillActivated orig, CharacterBody self, GenericSkill skill) {
+        public void Chaos(On.RoR2.CharacterBody.orig_OnSkillActivated orig, CharacterBody self, GenericSkill skill)
+        {
             orig(self, skill);
-            if (self.hasAuthority) {
-                if (self.inventory) {
+            if (self.hasAuthority)
+            {
+                if (self.inventory)
+                {
                     Inventory inv = self.inventory;
-                    float chance = 10f*inv.GetItemCount(ItemDef);
-                    if (Util.CheckRoll(chance, self.master)) {
+                    float chance = 10f * inv.GetItemCount(ItemDef);
+                    if (Util.CheckRoll(chance, self.master))
+                    {
                         List<GameObject> prefabs = ProjectileCatalog.projectilePrefabs.ToList();
-                        for (int i = 0; i < prefabs.Count; i++) {
-                            if (prefabs[i].name == EngiMineName || prefabs[i].name == SpiderMineName) {
+                        for (int i = 0; i < prefabs.Count; i++)
+                        {
+                            if (prefabs[i].name == EngiMineName || prefabs[i].name == SpiderMineName || prefabs[i].GetComponent<ProjectileSimple>() == null || prefabs[i].GetComponent<ProjectileCharacterController>() == null || prefabs[i].GetComponent<ProjectileController>() == null || prefabs[i].GetComponent<ProjectileDamage>() == null || prefabs[i].GetComponent<ProjectileDotZone>() == null || prefabs[i].GetComponent<ProjectileExplosion>() == null || prefabs[i].GetComponent<ProjectileImpactExplosion>() == null)
+                            {
                                 prefabs.RemoveAt(i);
                             }
-                            
                         }
-                        GameObject prefab = prefabs[UnityEngine.Random.RandomRange(0, prefabs.Count - 1)];
+                        GameObject prefab = prefabs[UnityEngine.Random.Range(0, prefabs.Count - 1)];
 
                         FireProjectileInfo info = default(FireProjectileInfo);
                         info.crit = Util.CheckRoll(self.crit, self.master);
+                        info.damage = self.damage * 1.2f;
                         info.damage = self.damage * 1.2f;
                         info.projectilePrefab = prefab;
                         info.procChainMask = default(ProcChainMask);
@@ -72,11 +78,10 @@ namespace GOTCE.Items.White
                         info.position = self.corePosition;
                         info.rotation = Util.QuaternionSafeLookRotation(self.equipmentSlot.GetAimRay().direction);
                         info.owner = self.gameObject;
-                        ProjectileManager.instance.FireProjectileServer(info);
+                        ProjectileManager.instance.FireProjectile(info);
                     }
                 }
             }
         }
-
     }
 }

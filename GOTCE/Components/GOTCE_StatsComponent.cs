@@ -26,6 +26,7 @@ namespace GOTCE.Components
         private CharacterMaster master;
         private Inventory inventory;
         private CharacterBody body;
+        public int game_count;
 
         // add more of these for every respawn chance item
         public int deathCount;

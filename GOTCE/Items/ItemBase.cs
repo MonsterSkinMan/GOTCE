@@ -42,6 +42,7 @@ namespace GOTCE.Items
         public abstract Sprite ItemIcon { get; }
 
         public ItemDef ItemDef;
+        public GameObject prefab = null;
 
         public virtual bool CanRemove { get; } = true;
 
@@ -111,7 +112,17 @@ namespace GOTCE.Items
             {
                 // GameObject prefab = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 // doesnt work or too small
-                ItemDef.pickupModelPrefab = emptyModel;
+                // ItemDef.pickupModelPrefab = emptyModel;
+                if (ItemIcon != null) {
+                    prefab = PrefabAPI.InstantiateClone(GameObject.CreatePrimitive(PrimitiveType.Cube), $"{ItemName}-model");
+                    prefab.GetComponentInChildren<MeshRenderer>().transform.localScale = new(5, 5, 5);
+                    prefab.GetComponentInChildren<MeshRenderer>().material.mainTexture = ItemIcon.texture;
+                    GameObject.DontDestroyOnLoad(prefab);
+                    ItemDef.pickupModelPrefab = prefab;
+                }
+                else {
+                    ItemDef.pickupModelPrefab = emptyModel;
+                }
             }
             else
             {

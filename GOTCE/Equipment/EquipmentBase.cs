@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.Reflection;
 
 namespace GOTCE.Equipment
 {
@@ -47,6 +48,8 @@ namespace GOTCE.Equipment
 
         public virtual bool IsLunar { get; } = false;
         public virtual bool CanBeRandomlyTriggered { get; } = false;
+        public virtual ColorCatalog.ColorIndex ColorIndex { get; } = ColorCatalog.ColorIndex.Equipment;
+        public virtual Texture BgIconTexture { get; } = null;
 
         public EquipmentDef EquipmentDef;
         public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.GOTCEExpansionDef;
@@ -90,7 +93,7 @@ namespace GOTCE.Equipment
             EquipmentDef.pickupToken = "EQUIPMENT_" + EquipmentLangTokenName + "_PICKUP";
             EquipmentDef.descriptionToken = "EQUIPMENT_" + EquipmentLangTokenName + "_DESCRIPTION";
             EquipmentDef.loreToken = "EQUIPMENT_" + EquipmentLangTokenName + "_LORE";
-            if (EquipmentDef.pickupModelPrefab == null)
+            if (EquipmentModel == null)
             {
                 EquipmentDef.pickupModelPrefab = emptyModel;
             }
@@ -107,6 +110,12 @@ namespace GOTCE.Equipment
             EquipmentDef.isBoss = IsBoss;
             EquipmentDef.isLunar = IsLunar;
             EquipmentDef.canBeRandomlyTriggered = CanBeRandomlyTriggered;
+            EquipmentDef.colorIndex = ColorIndex;
+            if (BgIconTexture != null) {
+                Type type = EquipmentDef.GetType();
+                PropertyInfo prop = type.GetProperty("bgIconTexture");
+                prop.SetValue(EquipmentDef, BgIconTexture);
+            }
 
             ItemAPI.Add(new CustomEquipment(EquipmentDef, CreateItemDisplayRules()));
             On.RoR2.EquipmentSlot.PerformEquipmentAction += PerformEquipmentAction;

@@ -23,15 +23,15 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLangTokenName => "GOTCE_PaleAle";
 
-        public override string ItemPickupDesc => "Increase your damage... <color=#FF7F7F>BUT majorly fuck up everyone's vision.</color>\n";
+        public override string ItemPickupDesc => "Increase your damage... <color=#FF7F7F>BUT majorly fuck up everyone's vision.</color> Currently host only :(\n";
 
-        public override string ItemFullDescription => "Increase your <style=cIsDamage>damage</style> by <style=cIsUtility>60%</style> <style=cStack>(+40% per stack)</style>. Majorly fuck up everyone's vision. Increase <style=cIsUtility>cooldowns</style> by <style=cIsUtility>0%</style> <style=cStack>(+50% per stack)</style>.";
+        public override string ItemFullDescription => "Increase your <style=cIsDamage>damage</style> by <style=cIsDamage>60%</style> <style=cStack>(+40% per stack)</style>. Majorly fuck up everyone's vision. Increase <style=cIsUtility>cooldowns</style> by <style=cIsUtility>0%</style> <style=cStack>(+50% per stack)</style>. Currently host only :(";
 
         public override string ItemLore => "Holy shit brother! I figured out how to turn these worthless moon rocks into booze! Hot damn!\r\nSo basically I [REDACTED] and then I [REDACTED] and then after a little [REDACTED] I [REDACTED] Commando’s mother. Hot damn indeed! Anyways, it’s time to get wasted. Glug glug glug…\r\nHoooly shit this stuff is strong, brother. I feel so much more powerful, but I also feel like there's a really horrible screen filter on my vision. Ohhhhh god…\r\nFuck you, brother. I hate you so fucking much, and I hate you even more because I’m drunk as shit. That gift should’ve been for ME! Not… YOU! It reminds me of a little ditty I once heard on my smartphone. It went a little something like this: There once was a man named Joe, and my tooth fell out on his head, and he put it under his pillow. And then, the Tooth Fairy took it and gave him a one dollar bill! That money should have been mine, not his! And so, I punched his guts in and poured acid all over his butt! And then I threw bananas at him like a wild monkey! After that, Joe ran away to the bottom of the Atlantic Ocean, with his glasses and moustache. But when he was running away, he dropped the one dollar bill, and it was finally mine!!!!!!!!!!!!!!!!!!!!!!!!!!!\r\nSo what did you think of the song, brother? W-what? You thought it was shit? Well, fuck you, you insignificant WHORE!!!\r\n";
 
         public override ItemTier Tier => ItemTier.Lunar;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
+        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage, ItemTag.AIBlacklist };
 
         public override GameObject ItemModel => null;
 
@@ -116,9 +116,36 @@ namespace GOTCE.Items.Lunar
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
-            On.RoR2.Inventory.GiveItem_ItemIndex_int += Inventory_GiveItem_ItemIndex_int;
-            On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
-            On.RoR2.SceneDirector.Start += SceneDirector_Start;
+            Inventory.onInventoryChangedGlobal += Inventory_onInventoryChangedGlobal;
+            Run.onRunDestroyGlobal += Run_onRunDestroyGlobal;
+            //On.RoR2.SceneDirector.Start += SceneDirector_Start;
+        }
+
+        private void Inventory_onInventoryChangedGlobal(Inventory i)
+        {
+            if (NetworkServer.active && i)
+            {
+                var ppVolume = ppHolder.GetComponent<PostProcessVolume>();
+                var stack = i.GetItemCount(Instance.ItemDef);
+                if (stack > 0)
+                {
+                    ppVolume.weight = 1f;
+                }
+                else
+                {
+                    ppVolume.weight = 0f;
+                }
+            }
+        }
+
+        private void Run_onRunDestroyGlobal(Run obj)
+        {
+            var ppVolume = ppHolder.GetComponent<PostProcessVolume>();
+            var sceneName = SceneManager.GetActiveScene().name;
+            if (!blacklistedScenes.Contains(sceneName))
+            {
+                ppVolume.weight = 0f;
+            }
         }
 
         private void SceneDirector_Start(On.RoR2.SceneDirector.orig_Start orig, SceneDirector self)
@@ -128,47 +155,15 @@ namespace GOTCE.Items.Lunar
             var sceneName = SceneManager.GetActiveScene().name;
             if (shouldRun && !blacklistedScenes.Contains(sceneName))
             {
-                ppVolume.gameObject.SetActive(true);
+                //ppVolume.gameObject.SetActive(true);
                 ppVolume.weight = 1f;
             }
             else
             {
-                ppVolume.gameObject.SetActive(false);
+                //ppVolume.gameObject.SetActive(false);
                 ppVolume.weight = 0f;
             }
             orig(self);
-        }
-
-        private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
-        {
-            var ppVolume = ppHolder.GetComponent<PostProcessVolume>();
-            if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
-            {
-                var stack = self.GetItemCount(Instance.ItemDef);
-                if (stack <= 0)
-                {
-                    ppVolume.gameObject.SetActive(false);
-                    ppVolume.weight = 0f;
-                    shouldRun = false;
-                }
-            }
-            orig(self, itemIndex, count);
-        }
-
-        private void Inventory_GiveItem_ItemIndex_int(On.RoR2.Inventory.orig_GiveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
-        {
-            orig(self, itemIndex, count);
-            var ppVolume = ppHolder.GetComponent<PostProcessVolume>();
-            if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
-            {
-                var stack = self.GetItemCount(Instance.ItemDef);
-                if (stack > 0)
-                {
-                    ppVolume.gameObject.SetActive(true);
-                    ppVolume.weight = 1f;
-                    shouldRun = true;
-                }
-            }
         }
 
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
@@ -192,7 +187,7 @@ namespace GOTCE.Items.Lunar
         public void Start()
         {
             volume = GetComponent<PostProcessVolume>();
-            volume.gameObject.SetActive(false);
+            // volume.gameObject.SetActive(false);
         }
     }
 }
