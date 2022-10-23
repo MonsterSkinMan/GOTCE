@@ -1,16 +1,16 @@
-/*
+using EntityStates;
 using R2API;
 using RoR2;
+using System.Linq;
 using UnityEngine;
-using System.Collections.Generic;
 
 namespace GOTCE.Enemies.Standard
 {
     public class Voidlinglinglingling : EnemyBase<Voidlinglinglingling>
     {
-        public override string PathToClone => "RoR2/DLC1/VoidRaidCrab/MiniVoidRaidCrabBodyBase.prefab";
+        public override string PathToClone => "RoR2/DLC1/VoidRaidCrab/MiniVoidRaidCrabBodyPhase1.prefab";
         public override string CloneName => "Voidlinglinglingling";
-        public override string PathToCloneMaster => "RoR2/DLC1/VoidRaidCrab/MiniVoidRaidCrabMasterBase.prefab";
+        public override string PathToCloneMaster => "RoR2/DLC1/VoidRaidCrab/MiniVoidRaidCrabMasterPhase1.prefab";
         public CharacterBody body;
         public CharacterMaster master;
 
@@ -20,13 +20,18 @@ namespace GOTCE.Enemies.Standard
             body = prefab.GetComponent<CharacterBody>();
             body.baseArmor = 0;
             body.attackSpeed = 1f;
-            body.damage = 9.5f;
-            body.levelDamage = 1.9f;
+            body.damage = 6.5f;
             body.baseMaxHealth = 120f;
-            body.levelMaxHealth = 36f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLINGLINGLING_NAME";
             body.baseRegen = 0f;
+            //body.preferredInitialStateType = new SerializableEntityStateType(typeof(EntityStatesCustom.SpawnState));
+            // preferred initial state type in vanilla is uninitialized apparently
+
+            EntityStateMachine esmBody = EntityStateMachine.FindByCustomName(body.gameObject, "Body");
+            esmBody.initialStateType = new SerializableEntityStateType(typeof(EntityStatesCustom.SpawnState));
+
+            body.GetComponent<CharacterDeathBehavior>().deathState = new SerializableEntityStateType(typeof(EntityStatesCustom.DeathState));
         }
 
         public override void AddSpawnCard()
@@ -40,7 +45,7 @@ namespace GOTCE.Enemies.Standard
             isc.occupyPosition = true;
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Air;
             isc.sendOverNetwork = true;
-            isc.prefab = prefab;
+            isc.prefab = prefabMaster;
             isc.name = "cscVoidlinglingling";
         }
 
@@ -73,7 +78,12 @@ namespace GOTCE.Enemies.Standard
             LanguageAPI.Add("GOTCE_VOIDLINGLINGLINGLING_NAME", "Voidlinglinglingling");
             LanguageAPI.Add("GOTCE_VOIDLINGLINGLINGLING_LORE", "Literally just Voidling as a basic enemy.");
             LanguageAPI.Add("GOTCE_VOIDLINGLINGLINGLING_SUBTITLE", "Horde of Many");
-            RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.BasicMonsters);
+        }
+
+        public override void PostCreation()
+        {
+            base.PostCreation();
+            RegisterEnemy(prefab, prefabMaster, null, DirectorAPI.MonsterCategory.BasicMonsters, true);
         }
     }
 
@@ -83,4 +93,3 @@ namespace GOTCE.Enemies.Standard
     // remove footstep vfx
     // make the spawn entitystate much faster
 }
-*/

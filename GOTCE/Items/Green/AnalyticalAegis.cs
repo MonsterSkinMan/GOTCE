@@ -13,19 +13,19 @@ namespace GOTCE.Items.Green
 
         public override string ItemLangTokenName => "GOTCE_AnalyticalAegis";
 
-        public override string ItemPickupDesc => "Gain a miniscule temporary barrier on 'Critcal FOV Strike'";
+        public override string ItemPickupDesc => "Gain a miniscule temporary barrier on FOV Crit";
 
-        public override string ItemFullDescription => "Gain 2 (+5 per stack) barrier on 'Critical FOV Strike'";
+        public override string ItemFullDescription => "On '<style=cIsUtility>FOV Crit</style>', gain <style=cIsHealing>2</style> <style=cStack>(+5 per stack)</style> <style=cIsHealing>barrier</style>.";
 
         public override string ItemLore => "";
 
         public override ItemTier Tier => ItemTier.Tier2;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Healing };
+        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Healing, ItemTag.AIBlacklist };
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/AnalyticalAegis.png");
 
         public override void Init(ConfigFile config)
         {
@@ -42,14 +42,19 @@ namespace GOTCE.Items.Green
             White.ZoomLenses.Instance.OnFovCrit += Aegis;
         }
 
-        public void Aegis(object sender, White.FovCritEventArgs args) {
-            if (args.Body) {
-                if (args.Body.inventory) {
-                    if (NetworkServer.active) {
+        public void Aegis(object sender, White.FovCritEventArgs args)
+        {
+            if (args.Body)
+            {
+                if (args.Body.inventory)
+                {
+                    if (NetworkServer.active)
+                    {
                         Inventory inv = args.Body.inventory;
                         int count = inv.GetItemCount(ItemDef);
-                        int barrier = 5 * (count-1);
-                        if (count > 0) {
+                        int barrier = 5 * (count - 1);
+                        if (count > 0)
+                        {
                             barrier += 2;
                             args.Body.healthComponent.AddBarrier(barrier);
                         }

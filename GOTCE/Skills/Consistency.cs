@@ -7,12 +7,14 @@ namespace GOTCE.Skills
     public class Consistency : SkillBase<Consistency>
     {
         public override SerializableEntityStateType ActivationState => new SerializableEntityStateType(typeof(ConsistencyState));
+
         // public override SerializableEntityStateType ActivationState => new SerializableEntityStateType(typeof(EntityStates.Commando.CommandoWeapon.FireBarrage));
         public override string NameToken => "GOTCE_CONSISTENCY_NAME";
+
         public override string DescToken => "GOTCE_CONSISTENCY_DESC";
         public override string ActivationStateMachineName => "Weapon";
         public override int BaseMaxStock => 1;
-        public override float BaseRechargeInterval => 0f;
+        public override float BaseRechargeInterval => 2.5f;
         public override bool BeginSkillCooldownOnSkillEnd => true;
         public override bool CancledFromSprinting => false;
         public override bool CancelSprintingOnActivation => true;
@@ -24,4 +26,4 @@ namespace GOTCE.Skills
         public override int StockToConsume => 0;
         public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
     }
-} 
+}

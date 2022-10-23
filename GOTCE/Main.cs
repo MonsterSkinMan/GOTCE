@@ -23,6 +23,7 @@ using RoR2.ExpansionManagement;
 using Object = UnityEngine.Object;
 using GOTCE.Enemies.Standard;
 using MonoMod.RuntimeDetour;
+using GOTCE.Based;
 
 [assembly: SearchableAttribute.OptIn]
 
@@ -60,8 +61,6 @@ namespace GOTCE
         private void Awake()
         {
             MainAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "macterabrundle"));
-            Debug.Log("Trolling");
-            Debug.Log("test");
             ModLogger = Logger;
 
             /* if (Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI")) {
@@ -99,13 +98,13 @@ namespace GOTCE
 
             foreach (var itemType in ItemTypes)
             {
-                if (itemType != typeof(GOTCE.Items.White.FaultySpacetimeClock)) {
+                if (itemType != typeof(GOTCE.Items.White.FaultySpacetimeClock))
+                {
                     ItemBase item = (ItemBase)System.Activator.CreateInstance(itemType);
                     // Debug.Log(item.ConfigName);
                     if (ValidateItem(item, Items))
                     {
                         item.Init(Config);
-                        
                     }
                 }
             }
@@ -116,7 +115,6 @@ namespace GOTCE
 
                 foreach (var interactableType in interactableTypes)
                 {
-                    Debug.Log("Populating interactables...");
                     InteractableBase inter = (InteractableBase)System.Activator.CreateInstance(interactableType);
                     inter.Create();
                 }
@@ -158,7 +156,8 @@ namespace GOTCE
             // LivingSuppressiveFire.Create();
             // IonSurger.Create(); // ION SURGER IS BROKEN
             Itsgup.SoMyMainGoalIsToBlowUp();
-            
+            Zased.DoTheBased();
+
             var enemyTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EnemyBase)));
 
             foreach (var enemyType in enemyTypes)
@@ -174,6 +173,10 @@ namespace GOTCE
                 typeof(LivingSuppressiveFire).GetMethod("InputBankTest_aimOrigin_Get", System.Reflection.BindingFlags.Public | BindingFlags.Static)
             );
             //CreateExpansion();
+            /* On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
+            local multiplayer hook
+            run modded ror2 twice, create a multiplayer lobby in one, then do connect localhost:7777 in the other instance
+            */
         }
 
         /// <summary>

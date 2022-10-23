@@ -93,7 +93,7 @@ namespace GOTCE.Equipment
             EquipmentDef.pickupToken = "EQUIPMENT_" + EquipmentLangTokenName + "_PICKUP";
             EquipmentDef.descriptionToken = "EQUIPMENT_" + EquipmentLangTokenName + "_DESCRIPTION";
             EquipmentDef.loreToken = "EQUIPMENT_" + EquipmentLangTokenName + "_LORE";
-            if (EquipmentDef.pickupModelPrefab == null)
+            if (EquipmentModel == null)
             {
                 EquipmentDef.pickupModelPrefab = emptyModel;
             }

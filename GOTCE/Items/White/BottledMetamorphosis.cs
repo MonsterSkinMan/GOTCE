@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using static GOTCE.Main;
+
 // using UnityEngine.AddressableAssets;
 
 namespace GOTCE.Items.White
@@ -25,6 +26,7 @@ namespace GOTCE.Items.White
         public override ItemTier Tier => ItemTier.Tier1;
 
         public override GameObject ItemModel => null;
+        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility, ItemTag.AIBlacklist };
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BottledMetamorphosis.png");
 
@@ -74,7 +76,8 @@ namespace GOTCE.Items.White
             List<GameObject> bodies = new();
             foreach (SurvivorDef def in SurvivorCatalog.allSurvivorDefs)
             {
-                if (def.bodyPrefab.name != heretic.name) {
+                if (def.bodyPrefab.name != heretic.name)
+                {
                     bodies.Add(def.bodyPrefab);
                 }
             }

@@ -29,7 +29,7 @@ namespace GOTCE.Items.VoidGreen
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/ExplorersTorch.png");
 
         public override void Init(ConfigFile config)
         {
@@ -62,7 +62,8 @@ namespace GOTCE.Items.VoidGreen
                             attackerObject = damageInfo.attacker,
                             victimObject = victim,
                             dotIndex = DotController.DotIndex.Burn,
-                            damageMultiplier = 1f
+                            damageMultiplier = 1f,
+                            totalDamage = damageInfo.attacker.GetComponent<CharacterBody>().damage * 0.5f
                         };
                         for (int i = 0; i < stack; i++)
                         {

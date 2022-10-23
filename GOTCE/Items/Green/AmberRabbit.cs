@@ -12,13 +12,13 @@ namespace GOTCE.Items.Green
     {
         public override string ConfigName => "Amber Rabbit";
 
-        public override string ItemFullDescription => "On 'Critical Stage Transition', double your item count exponentially";
+        public override string ItemFullDescription => "On '<style=cIsUtility>Stage Transition Crit</style>', double your item count exponentially";
 
         public override string ItemLore => "The old clock was just the beginning. Now that I've seen this little blip, this little tear in the fabric of reality, everything looks like a tool to widen it. My newest discovery is a small figurine of a rabbit that appears to be covered in some odd form of amber. On a subatomic scale, something incredibly odd appears to be happening. When I shine a light on it, not only is some absorbed, but an equal amount is emitted by the amber itself. Perfectly equal. So far, it's just light, but I believe this can go further. Much further.";
 
         public override ItemTier Tier => ItemTier.Tier2;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility };
+        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility, ItemTag.AIBlacklist };
 
         public override GameObject ItemModel => null;
 
@@ -28,7 +28,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemName => "Amber Rabbit";
 
-        public override string ItemPickupDesc => "'Critical Stage Transisitons' double your item count.";
+        public override string ItemPickupDesc => "On Stage Transition Crit, double your item count.";
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
@@ -55,7 +55,8 @@ namespace GOTCE.Items.Green
                     if (controller.master && controller.master.GetBody())
                     {
                         Inventory inv = controller.master.GetBody().inventory;
-                        if (inv.GetItemCount(ItemDef) > 0) {
+                        if (inv.GetItemCount(ItemDef) > 0)
+                        {
                             List<ItemIndex> items = inv.itemAcquisitionOrder;
                             foreach (ItemIndex itemIndex in items)
                             {
@@ -67,6 +68,5 @@ namespace GOTCE.Items.Green
                 }
             }
         }
-
     }
 }

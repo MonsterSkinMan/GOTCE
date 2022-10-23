@@ -19,7 +19,7 @@ namespace GOTCE.Items.VoidWhite
 
         public override string ItemPickupDesc => "Receive instant barrier at low health. Consumed on use. <style=cIsVoid>Corrupts all Power Elixirs</style>.";
 
-        public override string ItemFullDescription => "Taking damage to below <style=cIsHealth>25% health</style> <style=cIsUtility>consumes</style> this item, giving you <style=cIsHealing>barrier</style> for </style=cIsHealing>100%</style> of your <style=cIsHealing>maximum health</style>. <style=cIsVoid>Corrupts all Power Elixirs</style>.";
+        public override string ItemFullDescription => "Taking damage to below <style=cIsHealth>25% health</style> <style=cIsUtility>consumes</style> this item, giving you <style=cIsHealing>barrier</style> for <style=cIsHealing>100%</style> of your <style=cIsHealing>maximum health</style>. <style=cIsVoid>Corrupts all Power Elixirs</style>.";
 
         public override string ItemLore => "";
 
@@ -34,7 +34,7 @@ namespace GOTCE.Items.VoidWhite
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/FortifiedFlask.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
@@ -60,7 +60,7 @@ namespace GOTCE.Items.VoidWhite
                         body.inventory.RemoveItem(Instance.ItemDef);
                         body.inventory.GiveItem(DilutedFlask.Instance.ItemDef);
                         CharacterMasterNotificationQueue.SendTransformNotification(body.master, Instance.ItemDef.itemIndex, DilutedFlask.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
-                        self.AddBarrier(self.combinedHealth);
+                        self.AddBarrier(self.fullCombinedHealth);
                     }
                 }
             }
