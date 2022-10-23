@@ -8,19 +8,18 @@ namespace GOTCE.Items.Yellow
 {
     public class ViscousBlast : ItemBase<ViscousBlast>
     {
-
         public ItemDef itemDef;
         public override string ConfigName => "Viscous Blast";
 
-        public override string ItemFullDescription => "On death, explode in a 1000m radius for 20,000% damage (+10,000% per stack)";
+        public override string ItemFullDescription => "On death, explode in a <style=cIsUtility>1000m radius</style> for <style=cIsDamage>20000% damage</style> <style=cStack>(+10000% per stack)</style>.";
 
         public override string ItemLore => "I really don't like this stuff. I know it's just moisturizing jellyfish goop, but something about it makes me deeply uncomfortable. The thing we scooped it from- I don't like how that exploded, either. Exploding jellyfish guts can't be good for you.";
 
         public override GameObject ItemModel => null;
         public override string ItemLangTokenName => "GOTCE_ViscousBlast";
-        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/ViscousBlast.png"); 
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/ViscousBlast.png");
         public override string ItemName => "Viscous Blast";
-        public override string ItemPickupDesc => "Emit a devastating explosion on death..";
+        public override string ItemPickupDesc => "Emit a devastating explosion on death.";
 
         public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
 
@@ -49,30 +48,32 @@ namespace GOTCE.Items.Yellow
                 if (body.inventory)
                 {
                     int count = body.inventory.GetItemCount(ItemDef);
-                    float novaDamageCoefficient = 20000f + 10000 * (count - 1);
+                    float novaDamageCoefficient = (20000f + 10000 * (count - 1)) / 100f;
                     if (count > 0)
                     {
                         if (NetworkServer.active)
                         {
                             EffectManager.SimpleMuzzleFlash(EntityStates.VagrantMonster.FireMegaNova.novaEffectPrefab, body.gameObject, "Body", transmit: true);
-                            BlastAttack blastAttack = new BlastAttack();
-                            blastAttack.attacker = body.gameObject;
-                            blastAttack.baseDamage = body.damage * novaDamageCoefficient;
-                            blastAttack.baseForce = 10002;
-                            blastAttack.bonusForce = Vector3.zero;
-                            blastAttack.attackerFiltering = AttackerFiltering.NeverHitSelf;
-                            blastAttack.crit = body.RollCrit();
-                            blastAttack.damageColorIndex = DamageColorIndex.Default;
-                            blastAttack.damageType = DamageType.Generic;
-                            blastAttack.falloffModel = BlastAttack.FalloffModel.None;
-                            blastAttack.inflictor = body.gameObject;
-                            blastAttack.position = body.transform.position;
-                            blastAttack.procChainMask = default(ProcChainMask);
-                            blastAttack.procCoefficient = 3f;
-                            blastAttack.radius = 1000;
-                            blastAttack.losType = BlastAttack.LoSType.NearestHit;
-                            blastAttack.teamIndex = body.teamComponent.teamIndex;
-                            blastAttack.impactEffect = EffectCatalog.FindEffectIndexFromPrefab(EntityStates.VagrantMonster.FireMegaNova.novaImpactEffectPrefab);
+                            BlastAttack blastAttack = new()
+                            {
+                                attacker = body.gameObject,
+                                baseDamage = body.damage * novaDamageCoefficient,
+                                baseForce = 10002,
+                                bonusForce = Vector3.zero,
+                                attackerFiltering = AttackerFiltering.NeverHitSelf,
+                                crit = body.RollCrit(),
+                                damageColorIndex = DamageColorIndex.Default,
+                                damageType = DamageType.Generic,
+                                falloffModel = BlastAttack.FalloffModel.None,
+                                inflictor = body.gameObject,
+                                position = body.transform.position,
+                                procChainMask = default(ProcChainMask),
+                                procCoefficient = 3f,
+                                radius = 1000,
+                                losType = BlastAttack.LoSType.NearestHit,
+                                teamIndex = body.teamComponent.teamIndex,
+                                impactEffect = EffectCatalog.FindEffectIndexFromPrefab(EntityStates.VagrantMonster.FireMegaNova.novaImpactEffectPrefab)
+                            };
                             blastAttack.Fire();
                         }
                     }
@@ -80,6 +81,5 @@ namespace GOTCE.Items.Yellow
                 orig(self, report);
             }
         }
-
     }
 }

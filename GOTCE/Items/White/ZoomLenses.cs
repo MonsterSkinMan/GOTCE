@@ -42,17 +42,20 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             On.RoR2.CharacterBody.Start += Start;
-        } 
+        }
 
-        public void Start(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self) {
+        public void Start(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self)
+        {
             orig(self);
-            if (self.isPlayerControlled) {
+            if (self.isPlayerControlled)
+            {
                 self.gameObject.AddComponent<GOTCE_FovComponent>();
             }
         }
     }
 
-    public class GOTCE_FovComponent : MonoBehaviour {
+    public class GOTCE_FovComponent : MonoBehaviour
+    {
         public CharacterBody body;
         public Components.GOTCE_StatsComponent stats;
         private int baseFov;
@@ -60,39 +63,47 @@ namespace GOTCE.Items.White
         public float interval = 1f;
         public float stopwatch = 0f;
         private CameraTargetParams.CameraParamsOverrideHandle handle;
-        private void Start() {
+
+        private void Start()
+        {
             body = gameObject.GetComponent<CharacterBody>();
             stats = body.masterObject.GetComponent<Components.GOTCE_StatsComponent>();
         }
 
-        private void FixedUpdate() {
+        private void FixedUpdate()
+        {
             stopwatch += Time.fixedDeltaTime;
             // Debug.Log(stopwatch);
-            if (stopwatch >= interval) {
+            if (stopwatch >= interval)
+            {
                 stopwatch = 0f;
-                
-                if (critting) {
+
+                if (critting)
+                {
                     critting = false;
                     gameObject.GetComponent<CameraTargetParams>().RemoveParamsOverride(handle);
                     // Debug.Log("canceled crit");
                 }
-                if (Util.CheckRoll(stats.fovCritChance, body.master)) {
+                if (Util.CheckRoll(stats.fovCritChance, body.master))
+                {
                     critting = true;
-                    handle = gameObject.GetComponent<CameraTargetParams>().AddParamsOverride(new CameraTargetParams.CameraParamsOverrideRequest {
-                        cameraParamsData = new() {
-                            fov = new() {
+                    handle = gameObject.GetComponent<CameraTargetParams>().AddParamsOverride(new CameraTargetParams.CameraParamsOverrideRequest
+                    {
+                        cameraParamsData = new()
+                        {
+                            fov = new()
+                            {
                                 value = 5,
                                 alpha = 0.7f
                             }
                         }
                     });
-                    
+
                     EventHandler<FovCritEventArgs> raiseEvent = ZoomLenses.Instance.OnFovCrit;
 
                     // Event will be null if there are no subscribers
                     if (raiseEvent != null)
                     {
-                        
                         FovCritEventArgs args = new(body);
 
                         // Call to raise the event.
@@ -107,6 +118,7 @@ namespace GOTCE.Items.White
     public class FovCritEventArgs : EventArgs
     {
         public CharacterBody Body;
+
         public FovCritEventArgs(CharacterBody body)
         {
             Body = body;

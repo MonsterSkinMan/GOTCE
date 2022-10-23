@@ -23,6 +23,7 @@ using RoR2.ExpansionManagement;
 using Object = UnityEngine.Object;
 using GOTCE.Enemies.Standard;
 using MonoMod.RuntimeDetour;
+using GOTCE.Based;
 
 [assembly: SearchableAttribute.OptIn]
 
@@ -158,6 +159,7 @@ namespace GOTCE
             // LivingSuppressiveFire.Create();
             // IonSurger.Create(); // ION SURGER IS BROKEN
             Itsgup.SoMyMainGoalIsToBlowUp();
+            Zased.DoTheBased();
             
             var enemyTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EnemyBase)));
 

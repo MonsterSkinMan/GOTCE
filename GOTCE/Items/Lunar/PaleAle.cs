@@ -46,12 +46,9 @@ namespace GOTCE.Items.Lunar
         public static DepthOfField dof;
         public static Grain grain;
 
-        public static LensDistortion lensdist;
         public static MotionBlur mblur;
 
         private static bool shouldRun;
-
-        // public static Vignette vign;
 
         public override void Init(ConfigFile config)
         {
@@ -107,13 +104,6 @@ namespace GOTCE.Items.Lunar
             mblur.SetAllOverridesTo(true);
             mblur.shutterAngle.value = 270f;
             mblur.sampleCount.value = 10;
-
-            lensdist = ppProfile.AddSettings<LensDistortion>();
-            lensdist.SetAllOverridesTo(true);
-            lensdist.intensity.value = -1f;
-            lensdist.intensityX.value = 1f;
-            lensdist.intensityY.value = 0.9f;
-            lensdist.scale.value = 0.33f;
 
             pp.sharedProfile = ppProfile;
         }
