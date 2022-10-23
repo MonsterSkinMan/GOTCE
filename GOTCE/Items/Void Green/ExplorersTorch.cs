@@ -29,7 +29,7 @@ namespace GOTCE.Items.VoidGreen
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/ExplorersTorch.png");
 
         public override void Init(ConfigFile config)
         {
