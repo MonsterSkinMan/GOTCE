@@ -2,6 +2,7 @@ using R2API;
 using RoR2;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
 namespace GOTCE.Enemies.Bosses
 {
@@ -38,7 +39,7 @@ namespace GOTCE.Enemies.Bosses
         {
             base.AddSpawnCard();
             isc.directorCreditCost = 600;
-            isc.eliteRules = SpawnCard.EliteRules.ArtifactOnly;
+            isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
             isc.hullSize = HullClassification.BeetleQueen;

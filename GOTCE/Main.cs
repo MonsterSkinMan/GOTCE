@@ -22,6 +22,8 @@ using GOTCE.Enemies;
 using RoR2.ExpansionManagement;
 using Object = UnityEngine.Object;
 using GOTCE.Enemies.Standard;
+using GOTCE.Enemies.Minibosses;
+using GOTCE.Enemies.Bosses;
 using MonoMod.RuntimeDetour;
 using GOTCE.Based;
 
@@ -38,7 +40,7 @@ namespace GOTCE
     {
         public const string ModGuid = "com.TheBestAssociatedLargelyLudicrousSillyheadGroup.GOTCE";
         public const string ModName = "Gamers of the Cracked Emoji";
-        public const string ModVer = "1.1.0";
+        public const string ModVer = "1.1.1";
 
         public static AssetBundle MainAssets;
 
