@@ -9,7 +9,7 @@ using EntityStates;
 
 namespace GOTCE.Interactables
 {
-    public class DisposableFunder : InteractableBase<DisposableFunder>
+    public class ShrineDML : InteractableBase<ShrineDML>
     {
         public override DirectorAPI.Stage[] stages => new DirectorAPI.Stage[] {
             DirectorAPI.Stage.AbandonedAqueduct, DirectorAPI.Stage.AbandonedAqueductSimulacrum, DirectorAPI.Stage.AbyssalDepths,
@@ -22,19 +22,15 @@ namespace GOTCE.Interactables
             // default stage list, doesnt include hidden realms or commencement
         };
         public override DirectorAPI.InteractableCategory category => DirectorAPI.InteractableCategory.Chests;
-        public GameObject prefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Interactables/DisposableFunder/DisposableFunder.prefab");
+        public GameObject prefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Interactables/ShrineDML/ShrineDML.prefab");
 
         public override void Modify()
         {
             base.Modify();
-            ChestBehavior behavior = prefab.GetComponent<ChestBehavior>();
-            ExplicitPickupDropTable drops = (ExplicitPickupDropTable)behavior.dropTable;
-            drops.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[] {
-                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = RoR2Content.Equipment.GoldGat, pickupWeight = 1f},
-                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = RoR2Content.Equipment.CommandMissile, pickupWeight = 1f},
-            };
-            LanguageAPI.Add("GOTCE_DISPOSABLE_NAME", "The Disposable Funder");
-            LanguageAPI.Add("GOTCE_DISPOSABLE_CONTEXT", "Purchase");
+            prefab.AddComponent<DisposableBehavior>();
+
+            LanguageAPI.Add("GOTCE_DML_NAME", "Shrine of Disposability");
+            LanguageAPI.Add("GOTCE_DML_CONTEXT", "Purchase");
 
             PrefabAPI.RegisterNetworkPrefab(prefab);
         }
@@ -43,18 +39,18 @@ namespace GOTCE.Interactables
         {
             base.MakeSpawnCard();
             isc.directorCreditCost = 50;
-            isc.name = "iscFunder";
+            isc.name = "iscDml";
             isc.prefab = prefab;
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Ground;
             isc.hullSize = HullClassification.Human;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.None;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoChestSpawn;
             isc.occupyPosition = true;
-            isc.orientToFloor = true;
+            isc.orientToFloor = false;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.skipSpawnWhenSacrificeArtifactEnabled = false;
-            isc.slightlyRandomizeOrientation = true;
-            isc.maxSpawnsPerStage = 1;
+            isc.slightlyRandomizeOrientation = false;
+            isc.maxSpawnsPerStage = 3;
             isc.weightScalarWhenSacrificeArtifactEnabled = 1f;
             isc.sendOverNetwork = true;
         }
@@ -62,7 +58,31 @@ namespace GOTCE.Interactables
         public override void MakeDirectorCard()
         {
             base.MakeDirectorCard();
-            card.selectionWeight = 5;
+            card.selectionWeight = 2;
+        }
+    }
+
+    public class DisposableBehavior : MonoBehaviour {
+        public void Start() {
+            PurchaseInteraction interaction = GetComponent<PurchaseInteraction>();
+            interaction.onPurchase.AddListener(OnInteract);
+            transform.position -= new Vector3(0, 1.5f, 0);
+            interaction.setUnavailableOnTeleporterActivated = false;
+        }
+
+        public void OnInteract(Interactor interactor) {
+            if (NetworkServer.active) {
+                GameObject projectilePrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/Projectiles/MissileProjectile");
+                for (int i = 0; i < 12; i++ ) {
+                    MissileUtils.FireMissile(gameObject.transform.position, interactor.gameObject.GetComponent<CharacterBody>(), new ProcChainMask(), null, interactor.gameObject.GetComponent<CharacterBody>().damage*3f, false, projectilePrefab, DamageColorIndex.Item, false);
+                }
+                GetComponent<PurchaseInteraction>().SetAvailable(true);
+            }
+        }
+
+        public void Update() {
+            transform.rotation = Quaternion.Euler(-90, 0, 0);
+            transform.localRotation = Quaternion.Euler(-90, 0, 0);
         }
     }
 }

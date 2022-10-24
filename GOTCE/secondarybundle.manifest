@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2260038002
+CRC: 2165943893
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6b4f481760fee9dc4a2937be338726fe
+    Hash: b2cd781c283035c9b36bbb9f791a5f8d
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 71175de00449ae24f7f855833c2a283c
+    Hash: 5cc0f1462a3b62d9a27a017bb3c6e20d
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -55,6 +55,8 @@ ClassTypes:
   Script: {fileID: 1918207524, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 370243918, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -1018496710, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 208
@@ -62,4 +64,5 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Prefabs/Interactables/DisposableFunder/DisposableFunder.prefab
+- Assets/Prefabs/Interactables/ShrineDML/ShrineDML.prefab
 Dependencies: []
