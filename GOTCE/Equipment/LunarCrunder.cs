@@ -21,7 +21,7 @@ namespace GOTCE.Equipment
 
         public override string EquipmentFullDescription => "Fire a rapid stream of lunar shards for <style=cIsDamage>5000% damage</style> per bullet. Consumes <style=cIsUtility>1 Lunar Coin</style> per second of firing.";
 
-        public override string EquipmentLore => "This- this- this stupid fuck is COMPLETELY wrong about everything. I don't understand how wrong one can be at one time, over one thing. Brother- brother, you seeing this shit? You seeing it? You have a phone, right, brother? He thinks it's bad. I have no clue why. Sure, the bullets are weak, but they fire at an extraordinary speed, and speed is war. Sure, it may cost gold to fire, but it also has no cooldown, and the economy is fucked anyways.\nYou know what? Fine. Fuck him. I�ll make one myself. They can use my coins instead of gold; everyone cheats them in anyway. He can�t possibly think it's weak after this. I'll show him.";
+        public override string EquipmentLore => "This- this- this stupid fuck is COMPLETELY wrong about everything. I don't understand how wrong one can be at one time, over one thing. Brother- brother, you seeing this shit? You seeing it? You have a phone, right, brother? He thinks it's bad. I have no clue why. Sure, the bullets are weak, but they fire at an extraordinary speed, and speed is war. Sure, it may cost gold to fire, but it also has no cooldown, and the economy is fucked anyways.\nYou know what? Fine. Fuck him. I'll make one myself. They can use my coins instead of gold; everyone cheats them in anyway. He can't possibly think it's weak after this. I'll show him.";
         public override bool IsLunar => true;
         public override bool CanBeRandomlyTriggered => false;
         public override ColorCatalog.ColorIndex ColorIndex => ColorCatalog.ColorIndex.LunarItem;
@@ -111,15 +111,15 @@ namespace GOTCE.Equipment
 
         private void FixedUpdate()
         {
-            if (Util.CheckRoll(1f))
-            {
-                shouldCrash = true;
-            }
         }
 
         private IEnumerator Crash(float dur)
         {
             yield return new WaitForSeconds(dur);
+            if (Util.CheckRoll(1f))
+            {
+                shouldCrash = true;
+            }
             if (shouldCrash)
             {
                 Main.ModLogger.LogError("The Crowdfunder 2: Sending Clients message to crash, this is intentional");

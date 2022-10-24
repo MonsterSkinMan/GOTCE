@@ -1,4 +1,4 @@
-﻿using EntityStates;
+﻿/*using EntityStates;
 using RoR2;
 using RoR2.VoidRaidCrab;
 using UnityEngine;
@@ -107,4 +107,4 @@ namespace GOTCE.Enemies.EntityStatesCustom
             return InterruptPriority.Death;
         }
     }
-}
+}*/

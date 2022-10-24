@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1416770152
+CRC: 2590214900
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b82ab494294eb7eaf82c216118d8b1cd
+    Hash: c6c2e279ce11152713bfdd4a325991da
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1572d93b9eefe5749d515c98c4fb318b
@@ -101,6 +101,7 @@ Assets:
 - Assets/Textures/Icons/Item/tubofbart.png
 - Assets/Textures/Icons/Item/backuphammer.png
 - Assets/Textures/Icons/Item/Bottled_Enigma.png
+- Assets/Textures/Icons/Enemies/Voidlingling.png
 - Assets/Textures/Icons/Item/GrandfatherClock.png
 - Assets/Models/Prefabs/Item/Drill/Cube.prefab
 - Assets/Materials/Item/MoldySteak/MoldySteakmaterial.mat
@@ -121,6 +122,7 @@ Assets:
 - Assets/Textures/Icons/Item/amalgamspoon.png
 - Assets/Textures/Icons/Equipment/BloodGamble.png
 - Assets/Textures/Icons/Item/FortifiedFlask.png
+- Assets/Textures/Icons/Item/GabesShank.png
 - Assets/Textures/Icons/Item/Lunch.png
 - Assets/Textures/Icons/Item/HuntressHarpoon.png
 - Assets/Materials/Enemies/tongueMaterial.mat

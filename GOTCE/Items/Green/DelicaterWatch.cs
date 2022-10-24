@@ -17,7 +17,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemFullDescription => "Gain <style=cIsDamage>+100%</style> <style=cStack>(+100% per stack)</style> <style=cIsDamage>damage</style>. Activating the teleporter <style=cIsUtility>breaks</style> this item.";
 
-        public override string ItemLore => "Now, it is time for us to discuss the Delicater Watch, a marvelous piece of machinery that- oh shit it’s already broken. Guess I shouldn’t have even mentioned its existence.";
+        public override string ItemLore => "Now, it is time for us to discuss the Delicater Watch, a marvelous piece of machinery that- oh shit it's already broken. Guess I shouldn't have even mentioned its existence.";
 
         public override ItemTier Tier => ItemTier.Tier2;
 

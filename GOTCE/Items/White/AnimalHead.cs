@@ -19,7 +19,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "Gain <style=cIsDamage>5% critical strike chance</style>. <style=cIsUtility>Reduce skill cooldowns</style> on <style=cIsDamage>critical strike</style> by <style=cIsUtility>3%</style> <style=cStack>(+3% per stack)</style>.";
 
-        public override string ItemLore => "I got this thing on my last hunt. Big guy must have taken four shots to go down, I damn near broke my trigger finger! My wall’s already covered with my past hunts, so I’m sending this to you. Think of it as a little good luck charm.";
+        public override string ItemLore => "I got this thing on my last hunt. Big guy must have taken four shots to go down, I damn near broke my trigger finger! My wall's already covered with my past hunts, so I'm sending this to you. Think of it as a little good luck charm.";
 
         public override ItemTier Tier => ItemTier.Tier1;
 

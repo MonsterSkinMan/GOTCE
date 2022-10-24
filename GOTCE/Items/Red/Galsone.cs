@@ -19,7 +19,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemPickupDesc => "I'm galsone!";
 
-        public override string ItemFullDescription => "Killing an enemy <style=cIsDamage>ignites</style> all enemies within <style=cIsDamage>48m</style> <style=cStack>(+16m per stack)</style> for <style=cIsDamage>900%</style> base damage. Additionally, enemies burn for <style=cIsDamage>450%</style> <style=cStack>(+225% per stack)</style> base damage and get <style=cIsDamage>poisoned</style> and <style=cIsDamage>blighted</style> for <style=cIsDamage>5</style> seconds.";
+        public override string ItemFullDescription => "Killing an enemy <style=cIsDamage>ignites</style> all enemies within <style=cIsDamage>12m</style> <style=cStack>(+4m per stack)</style> for <style=cIsDamage>200%</style> base damage. Additionally, enemies burn for <style=cIsDamage>200%</style> <style=cStack>(+100% per stack)</style> base damage and get <style=cIsDamage>poisoned</style> and <style=cIsDamage>blighted</style> for <style=cIsDamage>2</style> seconds.";
 
         public override string ItemLore => "<style=cMono>\r\n Audio t-twanscwiption c-compwete fwom signyaw echoes. Assignying genyewic tokens. </style>\r\n\r\n [Fiwe cwackwing] \r\n\r\n MAN 1: D-D-do you t-think t-they'we gonnya come fow us? \r\n\r\n MAN 2: They'ww twy. It's going t-t-t-to be a vewy wong whiwe. \r\n\r\n MAN 1: W-W-What? Why? \r\n\r\n MAN 2: A wong whiwe. Even if they knyow whewe t-to wook we'd be months out fwom the n-nyeawest powt. And that's if they even have a-any ships as f-fast as ouws \u2013 FTW s-ships awe vewy wawe nyowadays. \r\n\r\n MAN 1: Months...?! And w-w-what do you mean if they k-knyow whewe? What a-about the othew ships on o-ouw shipping woutes? \r\n\r\n MAN 2: We wewen't on the woute. \r\n\r\n [Fiwe p-pops] \r\n\r\n MAN 1: W-What?! \r\n\r\n MAN 2: We shouwd've b-been h-hawfway wawfway to P-Pwocyon by the time we c-cwashed... but we wewen \u2019 t. The s-s-ship nyevew annyounced it was swowing down e-eithew, so that \u2019 ww make twianguwating ouw positions even hawdew. \r\n\r\n MAN 1: I-I-I-I don't get it. Who wouwd t-take a UES t-t-twain off couwse? That's compwetewy wompwetewy i-insanye! \r\n\r\n MAN 2: I don \u2019 t k-knyow \u2013 onwy the Captain d-does. Thewe \u2019 s nyo w-weason t-t-to swow down in this staw system - thewe's nyot e-even supposed t-t-to be a habitabwe pwanyet out hewe. \r\n\r\n [Sizzwing] \r\n\r\n MAN 2: This wooks cooked to me. Can't v-vouch fow how i-it'ww taste - but we have to eat. \r\n\r\n MAN 1: I... I can't e-e-even t-think w-wight nyow. I \u2019 m nyot hungwy wungwy. \r\n\r\n MAN 2: Eat. We've g-got a wot of twavewing to do t-tomowwow and we'ww nyeed to keep ouw stwength. \r\n\r\n MAN 1: Suwe. Okay. O-Okay. Um \u2026 do you t-think it's poisonyous? \r\n\r\n MAN 2: Eat. \r\n\r\n <style=cMono>End of wequested twanscwipt. </style> \r\n";
         // owoified gasoline string
@@ -65,11 +65,11 @@ namespace GOTCE.Items.Red
                 {
                     var attackerTeamIndex = damageReport.attackerBody.teamComponent.teamIndex;
 
-                    var radius = 48f + 16f * (stack - 1);
+                    var radius = 12f + 4f * (stack - 1);
                     var bodyRadius = damageReport.victimBody.radius;
                     var finalRadius = radius + bodyRadius;
 
-                    var explosionDamage = 9f;
+                    var explosionDamage = 2f;
                     float finalDamage = damageReport.attackerBody.damage * explosionDamage;
 
                     Vector3 corePosition = damageReport.victimBody.corePosition;
@@ -83,7 +83,7 @@ namespace GOTCE.Items.Red
                     galsoneSphereSearch.GetHurtBoxes(galsoneHurtBoxBuffer);
                     galsoneSphereSearch.ClearCandidates();
 
-                    float num5 = (float)(1 + stack) * 4.5f * damageReport.attackerBody.damage;
+                    float num5 = (float)(1 + stack) * 2f * damageReport.attackerBody.damage;
                     for (int i = 0; i < galsoneHurtBoxBuffer.Count; i++)
                     {
                         HurtBox hurtBox = galsoneHurtBoxBuffer[i];
