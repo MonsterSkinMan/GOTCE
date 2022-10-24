@@ -26,6 +26,7 @@ namespace GOTCE.Enemies.Minibosses
             body.levelDamage = 4f;
             body.baseMaxHealth = 500f;
             body.levelMaxHealth = 150f;
+            body.baseMoveSpeed = 30f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_CRACKEDPEST_NAME";
             body.subtitleNameToken = "GOTCE_CRACKEDPEST_SUBTITLE";

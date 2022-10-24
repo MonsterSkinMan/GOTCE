@@ -25,10 +25,13 @@ namespace GOTCE.Enemies.Bosses
             body.levelDamage = 4.2f;
             body.baseMaxHealth = 2400f;
             body.levelMaxHealth = 720f;
+            body.baseMoveSpeed = 45f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLING_NAME";
+            body.baseNameToken = "GOTCE_VOIDLINGLING_SUBTITLE";
             body.baseRegen = 0f;
             body.levelRegen = 0f;
+            body.portraitIcon = Main.MainAssets.LoadAsset<Texture2D>("Assets/Textures/Icons/Enemies/Voidlingling.png");
         }
 
         public override void AddSpawnCard()
