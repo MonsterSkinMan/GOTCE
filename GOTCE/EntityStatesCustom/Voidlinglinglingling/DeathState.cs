@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using EntityStates;
 using RoR2;
 using UnityEngine;
@@ -112,4 +112,4 @@ namespace GOTCE.Enemies.EntityStatesCustom
             }
         }
     }
-}
+}*/

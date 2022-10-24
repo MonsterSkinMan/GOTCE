@@ -13,11 +13,11 @@ namespace GOTCE.Items.VoidLunar
 
         public override string ItemLangTokenName => "GOTCE_ExpressionOfTheImmolated";
 
-        public override string ItemPickupDesc => "Dramatically reduce Skill cooldown... <color=#FF7F7F>BUT they automatically activate for all players.</color> <style=cIsVoid>Corrupts all Gestures of the Drowned</style>.";
+        public override string ItemPickupDesc => "Dramatically reduce Skill cooldown... <color=#FF7F7F>BUT they automatically activate.</color> <style=cIsVoid>Corrupts all Gestures of the Drowned</style>.";
 
         public override string ItemFullDescription => "<style=cIsUtility>Reduce Skill cooldown</style> by <style=cIsUtility>50%</style> <style=cStack>(+15% per stack)</style>. Forces all players' Skills to <style=cIsUtility>activate</style> whenever they are off <style=cIsUtility>cooldown</style>. <style=cIsVoid>Corrupts all Gestures of the Drowned</style>.";
 
-        public override string ItemLore => "This is a stupid item. At least it’s more interesting than gesture.";
+        public override string ItemLore => "This is a stupid item. At least it's more interesting than gesture.";
 
         public override ItemTier Tier => ItemTier.VoidTier1;
 

@@ -1,4 +1,4 @@
-using EntityStates;
+/*using EntityStates;
 using R2API;
 using RoR2;
 using System.Linq;
@@ -92,4 +92,4 @@ namespace GOTCE.Enemies.Standard
     // remove spawn vfx (probably in an entitystate)
     // remove footstep vfx
     // make the spawn entitystate much faster
-}
+}*/

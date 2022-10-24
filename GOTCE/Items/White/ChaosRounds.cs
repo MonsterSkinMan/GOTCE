@@ -16,7 +16,7 @@ namespace GOTCE.Items.White
 
         public override string ItemLangTokenName => "GOTCE_ChaosRounds";
 
-        public override string ItemPickupDesc => "Chance to fire a <style=cIsUtility>random projectile</style> when attacking.";
+        public override string ItemPickupDesc => "Chance to fire a random projectile when attacking.";
 
         public override string ItemFullDescription => "Gain a <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style> chance to fire a <style=cIsUtility>random projectile</style> for <style=cIsDamage>120% base damage</style> on skill use.";
 

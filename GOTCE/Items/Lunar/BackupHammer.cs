@@ -19,7 +19,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemFullDescription => "Gain <style=cIsUtility>10</style> <style=cStack>(+10 per stack)</style> <style=cIsUtility>secondary charges</style>. You can only use your <style=cIsUtility>secondary skill</style>. Increase <style=cIsUtility>secondary skill cooldown</style> by <style=cIsUtility>0%</style> <style=cStack>(+50% per stack)</style>.";
 
-        public override string ItemLore => "Okay I don’t feel like writing a backup hammer log so it doesn’t get one. It’s a dogshit item anyways I don’t think there are going to be any backup hammer fans out there who are disappointed over a lack of a backup hammer log.";
+        public override string ItemLore => "Okay I don't feel like writing a backup hammer log so it doesn't get one. It's a dogshit item anyways I don't think there are going to be any backup hammer fans out there who are disappointed over a lack of a backup hammer log.";
 
         public override ItemTier Tier => ItemTier.Lunar;
 

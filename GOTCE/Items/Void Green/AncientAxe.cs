@@ -21,7 +21,7 @@ namespace GOTCE.Items.VoidGreen
 
         public override string ItemFullDescription => "Attacks against enemies below <style=cIsHealing>9% max health</style> <style=cStack>(+9% per stack)</style> are always <style=cIsDamage>critical</style>. <style=cIsVoid>Corrupts all Old Guillotines</style>.";
 
-        public override string ItemLore => "Y’know, I think it’s funny how the ol’ lopper, one of the shittiest items in RoR1, is still better than old guillotine when brought back as a void counterpart to it. Just goes to show how much guillotine sucks, I guess.";
+        public override string ItemLore => "Y'know, I think it's funny how the ol' lopper, one of the shittiest items in RoR1, is still better than old guillotine when brought back as a void counterpart to it. Just goes to show how much guillotine sucks, I guess.";
 
         public override ItemTier Tier => ItemTier.VoidTier2;
 
