@@ -48,13 +48,13 @@ namespace GOTCE.Items.White
 
         private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
         {
-            if (self.gameObject.GetComponent<CharacterBody>())
+            if (self.gameObject.GetComponent<CharacterMaster>())
             {
-                var body = self.gameObject.GetComponent<CharacterBody>();
+                var master = self.gameObject.GetComponent<CharacterMaster>();
                 if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
                 {
                     self.GiveItem(NoTier.HealingScrapConsumed.Instance.ItemDef, count);
-                    CharacterMasterNotificationQueue.SendTransformNotification(body.master, Instance.ItemDef.itemIndex, NoTier.HealingScrapConsumed.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.RegeneratingScrapRegen);
+                    CharacterMasterNotificationQueue.SendTransformNotification(master, Instance.ItemDef.itemIndex, NoTier.HealingScrapConsumed.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.RegeneratingScrapRegen);
                 }
             }
             orig(self, itemIndex, count);
