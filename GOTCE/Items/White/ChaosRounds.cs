@@ -71,12 +71,11 @@ namespace GOTCE.Items.White
                         FireProjectileInfo info = default(FireProjectileInfo);
                         info.crit = Util.CheckRoll(self.crit, self.master);
                         info.damage = self.damage * 1.2f;
-                        info.damage = self.damage * 1.2f;
                         info.projectilePrefab = prefab;
                         info.procChainMask = default(ProcChainMask);
                         info.damageColorIndex = DamageColorIndex.Item;
                         info.position = self.corePosition;
-                        info.rotation = Util.QuaternionSafeLookRotation(self.equipmentSlot.GetAimRay().direction);
+                        info.rotation = Util.QuaternionSafeLookRotation(self.inputBank.aimDirection);
                         info.owner = self.gameObject;
                         ProjectileManager.instance.FireProjectile(info);
                     }

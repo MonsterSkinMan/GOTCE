@@ -55,6 +55,7 @@ namespace GOTCE.Equipment
         public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.GOTCEExpansionDef;
 
         public static GameObject emptyModel;
+        public static GameObject prefab;
 
         public abstract ItemDisplayRuleDict CreateItemDisplayRules();
 
@@ -93,9 +94,23 @@ namespace GOTCE.Equipment
             EquipmentDef.pickupToken = "EQUIPMENT_" + EquipmentLangTokenName + "_PICKUP";
             EquipmentDef.descriptionToken = "EQUIPMENT_" + EquipmentLangTokenName + "_DESCRIPTION";
             EquipmentDef.loreToken = "EQUIPMENT_" + EquipmentLangTokenName + "_LORE";
+            
             if (EquipmentModel == null)
             {
-                EquipmentDef.pickupModelPrefab = emptyModel;
+                // GameObject prefab = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                // doesnt work or too small
+                // ItemDef.pickupModelPrefab = emptyModel;
+                if (EquipmentIcon != null) {
+                    // prefab = PrefabAPI.InstantiateClone(GameObject.CreatePrimitive(PrimitiveType.Cube), $"{ItemName}-model");
+                    prefab = PrefabAPI.InstantiateClone(Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Item/Drill/Cube.prefab"), $"{EquipmentName}-model");
+                    prefab.GetComponentInChildren<MeshRenderer>().transform.localScale = new(1.5f, 1.5f, 1.5f);
+                    prefab.GetComponentInChildren<MeshRenderer>().material.mainTexture = EquipmentIcon.texture;
+                    GameObject.DontDestroyOnLoad(prefab);
+                    EquipmentDef.pickupModelPrefab = prefab;
+                }
+                else {
+                    EquipmentDef.pickupModelPrefab = emptyModel;
+                }
             }
             else
             {

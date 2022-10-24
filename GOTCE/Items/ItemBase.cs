@@ -114,8 +114,9 @@ namespace GOTCE.Items
                 // doesnt work or too small
                 // ItemDef.pickupModelPrefab = emptyModel;
                 if (ItemIcon != null) {
-                    prefab = PrefabAPI.InstantiateClone(GameObject.CreatePrimitive(PrimitiveType.Cube), $"{ItemName}-model");
-                    prefab.GetComponentInChildren<MeshRenderer>().transform.localScale = new(5, 5, 5);
+                    // prefab = PrefabAPI.InstantiateClone(GameObject.CreatePrimitive(PrimitiveType.Cube), $"{ItemName}-model");
+                    prefab = PrefabAPI.InstantiateClone(Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Item/Drill/Cube.prefab"), $"{ItemName}-model");
+                    prefab.GetComponentInChildren<MeshRenderer>().transform.localScale = new(1.5f, 1.5f, 1.5f);
                     prefab.GetComponentInChildren<MeshRenderer>().material.mainTexture = ItemIcon.texture;
                     GameObject.DontDestroyOnLoad(prefab);
                     ItemDef.pickupModelPrefab = prefab;

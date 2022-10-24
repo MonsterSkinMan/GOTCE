@@ -172,12 +172,15 @@ namespace GOTCE
                 typeof(InputBankTest).GetProperty("aimOrigin", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).GetGetMethod(),
                 typeof(LivingSuppressiveFire).GetMethod("InputBankTest_aimOrigin_Get", System.Reflection.BindingFlags.Public | BindingFlags.Static)
             );
+
             //CreateExpansion();
             /* On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
             local multiplayer hook
             run modded ror2 twice, create a multiplayer lobby in one, then do connect localhost:7777 in the other instance
             */
         }
+        
+       
 
         /// <summary>
         /// A helper to easily set up and initialize an artifact from your artifact classes if the user has it enabled in their configuration files.
