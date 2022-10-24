@@ -13,7 +13,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemLangTokenName => "GOTCE_AnalyticalAegis";
 
-        public override string ItemPickupDesc => "Gain a miniscule temporary barrier on FOV Crit";
+        public override string ItemPickupDesc => "Gain a miniscule temporary barrier on 'FOV Crit'.";
 
         public override string ItemFullDescription => "On '<style=cIsUtility>FOV Crit</style>', gain <style=cIsHealing>2</style> <style=cStack>(+5 per stack)</style> <style=cIsHealing>barrier</style>.";
 

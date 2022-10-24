@@ -13,7 +13,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemLangTokenName => "GOTCE_SpafnarsFries";
 
-        public override string ItemPickupDesc => "Gain +50% max health. #JusticeForSpafnar";
+        public override string ItemPickupDesc => "Gain +50% max health. #JusticeForSpafnar.";
 
         public override string ItemFullDescription => "Increases <style=cIsHealing>maximum health</style> by <style=cIsHealing>50%</style> <style=cStack>(+50% per stack)</style>.";
 

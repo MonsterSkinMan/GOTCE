@@ -14,7 +14,7 @@ namespace GOTCE.Artifact
 
         public override string ArtifactLangTokenName => "GOTCE_ArtifactOfBlindness";
 
-        public override string ArtifactDescription => "The fog is coming";
+        public override string ArtifactDescription => "The fog is coming.";
 
         public override Sprite ArtifactEnabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Artifact/artifactofblindnesson.png");
 
