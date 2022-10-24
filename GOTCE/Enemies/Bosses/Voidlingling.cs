@@ -29,7 +29,7 @@ namespace GOTCE.Enemies.Bosses
             body.baseMoveSpeed = 45f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLING_NAME";
-            body.baseNameToken = "GOTCE_VOIDLINGLING_SUBTITLE";
+            body.subtitleNameToken = "GOTCE_VOIDLINGLING_SUBTITLE";
             body.baseRegen = 0f;
             body.levelRegen = 0f;
             body.portraitIcon = Main.MainAssets.LoadAsset<Texture2D>("Assets/Textures/Icons/Enemies/Voidlingling.png");
@@ -74,6 +74,8 @@ namespace GOTCE.Enemies.Bosses
             {
                 deathRewards = prefab.AddComponent<DeathRewards>();
                 deathRewards.characterBody = body;
+                deathRewards.logUnlockableDef = ScriptableObject.CreateInstance<UnlockableDef>();
+                deathRewards.logUnlockableDef.nameToken = "Voidlingling";
             }
             ExplicitPickupDropTable dt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();
             dt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]
