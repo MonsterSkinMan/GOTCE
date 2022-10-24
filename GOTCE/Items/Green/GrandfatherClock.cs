@@ -16,7 +16,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemLangTokenName => "GOTCE_GrandfatherClock";
 
-        public override string ItemPickupDesc => "On Stage Transition Crit, die.";
+        public override string ItemPickupDesc => "On 'Stage Transition Crit', die.";
 
         public override string ItemFullDescription => "On '<style=cIsUtility>Stage Transition Crit</style>', literally fucking <style=cIsHealth>die</style>. ";
 

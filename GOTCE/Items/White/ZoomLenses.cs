@@ -14,7 +14,7 @@ namespace GOTCE.Items.White
 
         public override string ItemLangTokenName => "GOTCE_ZoomLenses";
 
-        public override string ItemPickupDesc => "Gain a chance to periodically 'FOV Crit', zooming in your vision";
+        public override string ItemPickupDesc => "Gain a chance to periodically 'FOV Crit', zooming in your vision.";
 
         public override string ItemFullDescription => "Every second, you have a <style=cIsUtility>10%</style> <style=cStack>(+10% chance per stack)</style> to <style=cIsUtility>'FOV Crit'</style>, zooming in your vision for <style=cIsUtility>1</style> second.";
 
