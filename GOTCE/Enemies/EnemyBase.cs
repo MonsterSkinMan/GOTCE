@@ -31,13 +31,17 @@ namespace GOTCE.Enemies
         public virtual string PathToCloneMaster { get; } = null;
         public GameObject prefab;
         public GameObject prefabMaster;
-        public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.GOTCEExpansionDef;
+        public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.SOTVExpansionDef;
 
         public virtual void Create()
         {
             if (PathToClone != null && CloneName != null && PathToCloneMaster != null)
             {
                 CreatePrefab();
+                var req = prefab.AddComponent<ExpansionRequirementComponent>();
+                var req2 = prefabMaster.AddComponent<ExpansionRequirementComponent>();
+                req.requiredExpansion = RequiredExpansionHolder;
+                req2.requiredExpansion = RequiredExpansionHolder;
             }
             Modify();
             AddSpawnCard();
@@ -49,8 +53,8 @@ namespace GOTCE.Enemies
         {
         }
 
-        public virtual void PostCreation() {
-            
+        public virtual void PostCreation()
+        {
         }
 
         public virtual void AddSpawnCard()
@@ -65,7 +69,7 @@ namespace GOTCE.Enemies
         }
 
         public void RegisterEnemy(GameObject bodyPrefab, GameObject masterPrefab, List<DirectorAPI.Stage> stages = null, DirectorAPI.MonsterCategory category = DirectorAPI.MonsterCategory.BasicMonsters, bool all = false)
-        {   
+        {
             // bodyPrefab.GetComponent<CharacterBody>()._masterObject = masterPrefab;
             PrefabAPI.RegisterNetworkPrefab(bodyPrefab);
             PrefabAPI.RegisterNetworkPrefab(masterPrefab);

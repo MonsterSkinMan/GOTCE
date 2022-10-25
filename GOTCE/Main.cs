@@ -53,6 +53,7 @@ namespace GOTCE
         public static Dictionary<EliteEquipmentBase, bool> EliteEquipmentStatusDictionary = new();
 
         public static ExpansionDef GOTCEExpansionDef;
+        public static ExpansionDef SOTVExpansionDef;
         public static GameObject GOTCERunBehavior;
 
         //Provides a direct access to this plugin's logger for use in any of your other classes.
@@ -62,6 +63,20 @@ namespace GOTCE
         {
             MainAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "macterabrundle"));
             ModLogger = Logger;
+            SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
+
+            // please just fucking use hopoo shaders AAAAAA
+            // https://drive.google.com/drive/folders/1ndCC4TiN06nVC4X_3HaZjFa5sN07Y14S
+            /*
+            var materials = MainAssets.LoadAllAssets<Material>();
+            foreach (Material material in materials)
+            {
+                if (material.shader.name.StartsWith("StubbedShader"))
+                {
+                    material.shader = Resources.Load<Shader>("shaders" + material.shader.name.Substring(13));
+                }
+            }
+            */
 
             /* if (Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI")) {
                 ItemSorting.tierMap.Add(LunarVoid.Instance.TierEnum, 3);
@@ -179,8 +194,6 @@ namespace GOTCE
             run modded ror2 twice, create a multiplayer lobby in one, then do connect localhost:7777 in the other instance
             */
         }
-        
-       
 
         /// <summary>
         /// A helper to easily set up and initialize an artifact from your artifact classes if the user has it enabled in their configuration files.

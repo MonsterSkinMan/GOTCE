@@ -52,7 +52,7 @@ namespace GOTCE.Equipment
         public virtual Texture BgIconTexture { get; } = null;
 
         public EquipmentDef EquipmentDef;
-        public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.GOTCEExpansionDef;
+        public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.SOTVExpansionDef;
 
         public static GameObject emptyModel;
         public static GameObject prefab;
@@ -94,13 +94,14 @@ namespace GOTCE.Equipment
             EquipmentDef.pickupToken = "EQUIPMENT_" + EquipmentLangTokenName + "_PICKUP";
             EquipmentDef.descriptionToken = "EQUIPMENT_" + EquipmentLangTokenName + "_DESCRIPTION";
             EquipmentDef.loreToken = "EQUIPMENT_" + EquipmentLangTokenName + "_LORE";
-            
+
             if (EquipmentModel == null)
             {
                 // GameObject prefab = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 // doesnt work or too small
                 // ItemDef.pickupModelPrefab = emptyModel;
-                if (EquipmentIcon != null) {
+                if (EquipmentIcon != null)
+                {
                     // prefab = PrefabAPI.InstantiateClone(GameObject.CreatePrimitive(PrimitiveType.Cube), $"{ItemName}-model");
                     prefab = PrefabAPI.InstantiateClone(Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Item/Drill/Cube.prefab"), $"{EquipmentName}-model");
                     prefab.GetComponentInChildren<MeshRenderer>().transform.localScale = new(1.5f, 1.5f, 1.5f);
@@ -108,7 +109,8 @@ namespace GOTCE.Equipment
                     GameObject.DontDestroyOnLoad(prefab);
                     EquipmentDef.pickupModelPrefab = prefab;
                 }
-                else {
+                else
+                {
                     EquipmentDef.pickupModelPrefab = emptyModel;
                 }
             }
@@ -126,7 +128,11 @@ namespace GOTCE.Equipment
             EquipmentDef.isLunar = IsLunar;
             EquipmentDef.canBeRandomlyTriggered = CanBeRandomlyTriggered;
             EquipmentDef.colorIndex = ColorIndex;
-            if (BgIconTexture != null) {
+
+            EquipmentDef.requiredExpansion = RequiredExpansionHolder;
+
+            if (BgIconTexture != null)
+            {
                 Type type = EquipmentDef.GetType();
                 PropertyInfo prop = type.GetProperty("bgIconTexture");
                 prop.SetValue(EquipmentDef, BgIconTexture);
