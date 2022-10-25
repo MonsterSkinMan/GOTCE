@@ -53,7 +53,7 @@ namespace GOTCE.Items.VoidLunar
                 var stack = body.inventory.GetItemCount(Instance.ItemDef);
                 if (stack > 0)
                 {
-                    args.damageMultAdd -= (Mathf.Pow(2f, stack) - 1) / Mathf.Pow(2f, stack);
+                    args.damageMultAdd -= (Mathf.Pow(2f, stack) - 1f) / Mathf.Pow(2f, stack);
                     args.healthMultAdd += Mathf.Pow(2f, stack) - 1f;
                 }
             }
