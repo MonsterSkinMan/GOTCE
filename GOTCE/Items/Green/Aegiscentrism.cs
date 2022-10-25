@@ -45,7 +45,7 @@ namespace GOTCE.Items.Green
         }
 
         public void Aegis(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (body && NetworkServer.active) {
+            if (body && NetworkServer.active && body.inventory) {
                 bool flag = body.inventory.GetItemCount(ItemDef) > 0;
                 OrbitalAegisBehavior controller = body.gameObject.GetComponent<OrbitalAegisBehavior>();
                 if (flag != controller) {

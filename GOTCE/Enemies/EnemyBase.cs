@@ -31,6 +31,8 @@ namespace GOTCE.Enemies
         public virtual string PathToCloneMaster { get; } = null;
         public GameObject prefab;
         public GameObject prefabMaster;
+        public virtual bool isLocal { get; } = false;
+        public virtual AssetBundle bundle { get; } = Main.MainAssets;
         public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.GOTCEExpansionDef;
 
         public virtual void Create()
@@ -92,9 +94,15 @@ namespace GOTCE.Enemies
 
         public virtual void CreatePrefab()
         {
-            prefab = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToClone).WaitForCompletion(), CloneName + "Body");
-            // prefab.GetComponent<NetworkIdentity>().localPlayerAuthority = false;
-            prefabMaster = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToCloneMaster).WaitForCompletion(), CloneName + "Master");
+            if (isLocal) {
+                prefab = PrefabAPI.InstantiateClone(bundle.LoadAsset<GameObject>(PathToClone), CloneName + "Body");
+                prefabMaster = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToCloneMaster).WaitForCompletion(), CloneName + "Master");
+            }
+            else {
+                prefab = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToClone).WaitForCompletion(), CloneName + "Body");
+                // prefab.GetComponent<NetworkIdentity>().localPlayerAuthority = false;
+                prefabMaster = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToCloneMaster).WaitForCompletion(), CloneName + "Master");
+            }
         }
 
         public void ReplaceSkill(GenericSkill slot, SkillDef replaceWith, string familyName = "temp")
@@ -252,7 +260,7 @@ namespace GOTCE.Enemies
             model.AddComponent<HurtBoxGroup>();
         }
 
-        public void SetupHurtbox(GameObject prefab, GameObject model, CapsuleCollider collidier, short index, bool weakPoint = false, HurtBox.DamageModifier damageModifier = HurtBox.DamageModifier.Normal)
+        public void SetupHurtbox(GameObject prefab, GameObject model, Collider collidier, short index, bool weakPoint = false, HurtBox.DamageModifier damageModifier = HurtBox.DamageModifier.Normal)
         {
             HurtBoxGroup hurtBoxGroup = model.GetComponent<HurtBoxGroup>();
 
