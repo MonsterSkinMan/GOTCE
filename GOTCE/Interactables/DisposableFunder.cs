@@ -42,7 +42,7 @@ namespace GOTCE.Interactables
         public override void MakeSpawnCard()
         {
             base.MakeSpawnCard();
-            isc.directorCreditCost = 50;
+            isc.directorCreditCost = 10;
             isc.name = "iscFunder";
             isc.prefab = prefab;
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Ground;
@@ -52,7 +52,7 @@ namespace GOTCE.Interactables
             isc.occupyPosition = true;
             isc.orientToFloor = true;
             isc.eliteRules = SpawnCard.EliteRules.Default;
-            isc.skipSpawnWhenSacrificeArtifactEnabled = false;
+            isc.skipSpawnWhenSacrificeArtifactEnabled = true;
             isc.slightlyRandomizeOrientation = true;
             isc.maxSpawnsPerStage = 1;
             isc.weightScalarWhenSacrificeArtifactEnabled = 1f;
