@@ -2,6 +2,7 @@ using R2API;
 using RoR2;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
 namespace GOTCE.Enemies.Bosses
 {
@@ -28,7 +29,7 @@ namespace GOTCE.Enemies.Bosses
             body.baseMoveSpeed = 45f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLING_NAME";
-            body.baseNameToken = "GOTCE_VOIDLINGLING_SUBTITLE";
+            body.subtitleNameToken = "GOTCE_VOIDLINGLING_SUBTITLE";
             body.baseRegen = 0f;
             body.levelRegen = 0f;
             body.portraitIcon = Main.MainAssets.LoadAsset<Texture2D>("Assets/Textures/Icons/Enemies/Voidlingling.png");
@@ -38,7 +39,7 @@ namespace GOTCE.Enemies.Bosses
         {
             base.AddSpawnCard();
             isc.directorCreditCost = 600;
-            isc.eliteRules = SpawnCard.EliteRules.ArtifactOnly;
+            isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
             isc.hullSize = HullClassification.BeetleQueen;
@@ -73,6 +74,8 @@ namespace GOTCE.Enemies.Bosses
             {
                 deathRewards = prefab.AddComponent<DeathRewards>();
                 deathRewards.characterBody = body;
+                deathRewards.logUnlockableDef = ScriptableObject.CreateInstance<UnlockableDef>();
+                deathRewards.logUnlockableDef.nameToken = "Voidlingling";
             }
             ExplicitPickupDropTable dt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();
             dt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]

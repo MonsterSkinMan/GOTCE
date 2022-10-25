@@ -22,6 +22,8 @@ using GOTCE.Enemies;
 using RoR2.ExpansionManagement;
 using Object = UnityEngine.Object;
 using GOTCE.Enemies.Standard;
+using GOTCE.Enemies.Minibosses;
+using GOTCE.Enemies.Bosses;
 using MonoMod.RuntimeDetour;
 using GOTCE.Based;
 
@@ -38,9 +40,10 @@ namespace GOTCE
     {
         public const string ModGuid = "com.TheBestAssociatedLargelyLudicrousSillyheadGroup.GOTCE";
         public const string ModName = "Gamers of the Cracked Emoji";
-        public const string ModVer = "1.1.0";
+        public const string ModVer = "1.1.1";
 
         public static AssetBundle MainAssets;
+        public static AssetBundle SecondaryAssets;
 
         public List<ArtifactBase> Artifacts = new();
         public List<ItemBase> Items = new();
@@ -62,6 +65,7 @@ namespace GOTCE
         private void Awake()
         {
             MainAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "macterabrundle"));
+            SecondaryAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "secondarybundle"));
             ModLogger = Logger;
             SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
@@ -106,7 +110,9 @@ namespace GOTCE
 
             // add spacetime clock before other items since others might depend on it's event
             ItemBase faulty = (ItemBase)System.Activator.CreateInstance(typeof(GOTCE.Items.White.FaultySpacetimeClock));
-            faulty.Init(Config);
+            if (ValidateItem(faulty, Items)) {
+                faulty.Init(Config);
+            }
 
             //This section automatically scans the project for all items
             var ItemTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(ItemBase)));
@@ -217,9 +223,14 @@ namespace GOTCE
         /// </summary>
         /// <param name="item">A new instance of an ItemBase class."</param>
         /// <param name="itemList">The list you would like to add this to if it passes the config check.</param>
-        public bool ValidateItem(ItemBase item, List<ItemBase> itemList)
+        public bool ValidateItem(ItemBase item, List<ItemBase> itemList, bool faulty = false)
         {
-            var enabled = Config.Bind<bool>("Item: " + item.ConfigName, "Enable Item?", true, "Should this item appear in runs?").Value;
+            if (faulty) {
+                var enabled = Config.Bind<bool>("Item: " + item.ConfigName, "Enable Item?", true, "Should this item appear in runs? Disable other stage transition crit items when disabling this item.").Value;
+            }
+            else {
+                var enabled = Config.Bind<bool>("Item: " + item.ConfigName, "Enable Item?", true, "Should this item appear in runs?").Value;
+            }
             var aiBlacklist = Config.Bind<bool>("Item: " + item.ConfigName, "Blacklist Item from AI Use?", false, "Should the AI not be able to obtain this item?").Value;
             if (enabled)
             {
