@@ -51,7 +51,8 @@ namespace GOTCE.Items
         public virtual bool AIBlacklisted { get; set; } = false;
 
         public virtual ItemTierDef OverrideTierDef { get; } = null;
-        public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.GOTCEExpansionDef;
+        public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.SOTVExpansionDef;
+        public static GameObject CubeModel;
 
         /// <summary>
         /// This method structures your code execution of this class. An example implementation inside of it would be:
@@ -70,6 +71,7 @@ namespace GOTCE.Items
         public virtual void Init(ConfigFile config)
         {
             emptyModel = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mystery/PickupMystery.prefab").WaitForCompletion();
+            CubeModel = Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Item/Drill/Cube.prefab");
             CreateItem();
             CreateLang();
             CreateConfig(config);
@@ -107,21 +109,23 @@ namespace GOTCE.Items
                 GameObject prefab = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 Material mat = new(new Shader());
             }*/
-
+            ItemDef.requiredExpansion = RequiredExpansionHolder;
             if (ItemModel == null)
             {
                 // GameObject prefab = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 // doesnt work or too small
                 // ItemDef.pickupModelPrefab = emptyModel;
-                if (ItemIcon != null) {
+                if (ItemIcon != null)
+                {
                     // prefab = PrefabAPI.InstantiateClone(GameObject.CreatePrimitive(PrimitiveType.Cube), $"{ItemName}-model");
-                    prefab = PrefabAPI.InstantiateClone(Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Item/Drill/Cube.prefab"), $"{ItemName}-model");
+                    prefab = PrefabAPI.InstantiateClone(CubeModel, $"{ItemName}-model");
                     prefab.GetComponentInChildren<MeshRenderer>().transform.localScale = new(1.5f, 1.5f, 1.5f);
                     prefab.GetComponentInChildren<MeshRenderer>().material.mainTexture = ItemIcon.texture;
                     GameObject.DontDestroyOnLoad(prefab);
                     ItemDef.pickupModelPrefab = prefab;
                 }
-                else {
+                else
+                {
                     ItemDef.pickupModelPrefab = emptyModel;
                 }
             }

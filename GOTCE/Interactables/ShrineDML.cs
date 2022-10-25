@@ -21,7 +21,7 @@ namespace GOTCE.Interactables
             DirectorAPI.Stage.WetlandAspect
             // default stage list, doesnt include hidden realms or commencement
         };
-        public override DirectorAPI.InteractableCategory category => DirectorAPI.InteractableCategory.Chests;
+        public override DirectorAPI.InteractableCategory category => DirectorAPI.InteractableCategory.Shrines;
         public GameObject prefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Interactables/ShrineDML/ShrineDML.prefab");
 
         public override void Modify()
@@ -38,13 +38,13 @@ namespace GOTCE.Interactables
         public override void MakeSpawnCard()
         {
             base.MakeSpawnCard();
-            isc.directorCreditCost = 50;
+            isc.directorCreditCost = 15;
             isc.name = "iscDml";
             isc.prefab = prefab;
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Ground;
             isc.hullSize = HullClassification.Human;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.None;
-            isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoChestSpawn;
+            isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoChestSpawn | RoR2.Navigation.NodeFlags.NoShrineSpawn;
             isc.occupyPosition = true;
             isc.orientToFloor = false;
             isc.eliteRules = SpawnCard.EliteRules.Default;
@@ -58,11 +58,15 @@ namespace GOTCE.Interactables
         public override void MakeDirectorCard()
         {
             base.MakeDirectorCard();
-            card.selectionWeight = 2;
+            card.selectionWeight = 4;
         }
     }
 
     public class DisposableBehavior : MonoBehaviour {
+        private float delay = 0.15f;
+        private float stopwatch = 0f;
+        private int remainingMissiles = 0;
+        private GameObject projectilePrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/Projectiles/MissileProjectile");
         public void Start() {
             PurchaseInteraction interaction = GetComponent<PurchaseInteraction>();
             interaction.onPurchase.AddListener(OnInteract);
@@ -72,17 +76,23 @@ namespace GOTCE.Interactables
 
         public void OnInteract(Interactor interactor) {
             if (NetworkServer.active) {
-                GameObject projectilePrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/Projectiles/MissileProjectile");
-                for (int i = 0; i < 12; i++ ) {
-                    MissileUtils.FireMissile(gameObject.transform.position, interactor.gameObject.GetComponent<CharacterBody>(), new ProcChainMask(), null, interactor.gameObject.GetComponent<CharacterBody>().damage*3f, false, projectilePrefab, DamageColorIndex.Item, false);
-                }
+                remainingMissiles += 12;
                 GetComponent<PurchaseInteraction>().SetAvailable(true);
             }
         }
 
-        public void Update() {
+        public void FixedUpdate() {
             transform.rotation = Quaternion.Euler(-90, 0, 0);
             transform.localRotation = Quaternion.Euler(-90, 0, 0);
+
+            stopwatch += Time.fixedDeltaTime;
+            if (stopwatch >= delay) {
+                stopwatch = 0f;
+                if (remainingMissiles > 0) {
+                    MissileUtils.FireMissile(gameObject.transform.position, gameObject.GetComponent<PurchaseInteraction>().lastActivator.gameObject.GetComponent<CharacterBody>(), new ProcChainMask(), null, gameObject.GetComponent<PurchaseInteraction>().lastActivator.gameObject.GetComponent<CharacterBody>().damage*3f, false, projectilePrefab, DamageColorIndex.Item, false);
+                    remainingMissiles--;
+                }
+            }
         }
     }
 }

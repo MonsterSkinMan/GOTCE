@@ -4,7 +4,7 @@ namespace GOTCE.Utils
 {
     public class ConfigOption<T>
     {
-        readonly ConfigEntry<T> Bind;
+        private readonly ConfigEntry<T> Bind;
 
         public ConfigOption(ConfigFile config, string categoryName, string configOptionName, T defaultValue, string fullDescription)
         {

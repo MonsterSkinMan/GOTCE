@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2165943893
+CRC: 3758574249
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b2cd781c283035c9b36bbb9f791a5f8d
+    Hash: 95cf7c8b329500e143ea07261e3bade2
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 5cc0f1462a3b62d9a27a017bb3c6e20d
+    Hash: 1945e01474b59de0031118b2835c32f0
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,8 +25,12 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
 - Class: 64
   Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 1790887305, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 952828898, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
@@ -54,9 +58,19 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 1918207524, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: -1848696948, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: 678291247, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -270136354, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -941154584, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: 370243918, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -1018496710, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -1895344032, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 208
@@ -64,5 +78,7 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Prefabs/Interactables/DisposableFunder/DisposableFunder.prefab
+- Assets/Prefabs/Projectiles/Aegiscentrism/AegisGhost.prefab
 - Assets/Prefabs/Interactables/ShrineDML/ShrineDML.prefab
+- Assets/Prefabs/Projectiles/Aegiscentrism/OrbitalAegis.prefab
 Dependencies: []
