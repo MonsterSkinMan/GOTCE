@@ -17,7 +17,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemPickupDesc => "Gain multiple orbital aegises. Every minute, assimilate another item into Aegicentrism.";
 
-        public override string ItemFullDescription => "Every second, gain an orbiting aegis that gives you 5% barrier after 5 (-50% per stack) seconds. Every 60 seconds, a random item is converted into this item.";
+        public override string ItemFullDescription => "Every second, gain an orbiting aegis that gives you 5% barrier after 10 (-25% per stack) seconds. Every 60 seconds, a random item is converted into this item.";
 
         public override string ItemLore => "i love aegis";
 
@@ -63,9 +63,9 @@ namespace GOTCE.Items.Green
     }
 
     public class OrbitalAegisBehavior : MonoBehaviour {
-        private int max = 2;
+        private int max = 6;
         public int current = 0;
-        private float delay = 1f;
+        private float delay = 3f;
         private float stopwatch = 0f;
         private float transformTimer = 0f;
         private float transformDelay = 60f;
@@ -130,7 +130,7 @@ namespace GOTCE.Items.Green
 
         public void InitializeOrbiter(ProjectileOwnerOrbiter orbiter, OrbitalAegisController controller)
         {
-            float num = body.radius + 2f + UnityEngine.Random.Range(0.25f, 0.25f * 3f);
+            float num = body.radius + 2f + UnityEngine.Random.Range(0.25f, 0.25f * 5f);
             float num2 = num / 2f;
             num2 *= num2;
             float degreesPerSecond = 180f * Mathf.Pow(0.9f, num2);
@@ -158,7 +158,7 @@ namespace GOTCE.Items.Green
 
     public class OrbitalAegisController : MonoBehaviour {
         private float stopwatch = 0f;
-        private float delay = 5f;
+        private float delay = 10f;
         private CharacterBody body;
 
         public void OnEnable() {

@@ -33,7 +33,7 @@ namespace GOTCE
 {
     [BepInPlugin(ModGuid, ModName, ModVer)]
     [BepInDependency(R2API.R2API.PluginGUID, R2API.R2API.PluginVersion)]
-    // [BepInDependency("com.xoxfaby.BetterUI", BepInDependency.DependencyFlags.SoftDependency)] // soft dependency so betterui doesnt go insane when it sees a custom tier
+    [BepInDependency("com.xoxfaby.BetterUI", BepInDependency.DependencyFlags.SoftDependency)] // soft dependency for compat
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     [R2APISubmoduleDependency(nameof(ItemAPI), nameof(LanguageAPI), nameof(EliteAPI), nameof(RecalculateStatsAPI), nameof(DirectorAPI), nameof(NetworkingAPI), nameof(PrefabAPI))]
     public class Main : BaseUnityPlugin
@@ -73,9 +73,7 @@ namespace GOTCE
 
             // Don't know how to create/use an asset bundle, or don't have a unity project set up?
             // Look here for info on how to set these up: https://github.com/KomradeSpectre/AetheriumMod/blob/rewrite-master/Tutorials/Item%20Mod%20Creation.md#unity-project
-            // (This is a bit old now, but the information on setting the unity asset bundle should be the same.)
-
-            //using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("GOTCE.macterabrundle"))
+            // (This is a bit old now, but the information on setting the unity asset bFream("GOTCE.macterabrundle"))
             //{
             //MainAssets = AssetBundle.LoadFromStream(stream);
             //}

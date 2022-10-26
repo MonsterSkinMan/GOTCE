@@ -127,7 +127,7 @@ namespace GOTCE.Enemies.Minibosses
             orig(self, info, target);
             if (NetworkServer.active)
             {
-                if (info.procChainMask.HasProc(ProcType.AACannon))
+                if (info.procChainMask.HasProc(ProcType.AACannon) && !info.procChainMask.HasProc(ProcType.PlasmaCore))
                 {
                     float damage = info.damage * 0.15f;
                     float num = 8f;
