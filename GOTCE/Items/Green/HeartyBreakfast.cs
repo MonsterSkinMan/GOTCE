@@ -62,6 +62,5 @@ namespace GOTCE.Items.Green
                 }
             }
         }
-        
     }
 }

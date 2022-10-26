@@ -42,7 +42,7 @@ namespace GOTCE.Interactables
 
         public abstract DirectorAPI.InteractableCategory category { get; }
         public virtual DirectorAPI.Stage[] stages { get; } = staegis;
-        public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.GOTCEExpansionDef;
+        public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.SOTVExpansionDef;
 
         public void Create()
         {
