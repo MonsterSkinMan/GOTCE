@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using RoR2;
 using UnityEngine.SceneManagement;
+using RoR2.Skills;
+using R2API;
+using System;
 
 namespace GOTCE.Based
 {
@@ -9,6 +12,8 @@ namespace GOTCE.Based
         public static void DoTheBased()
         {
             On.RoR2.SceneDirector.Start += SceneDirector_Start;
+
+            
         }
 
         private static void SceneDirector_Start(On.RoR2.SceneDirector.orig_Start orig, SceneDirector self)

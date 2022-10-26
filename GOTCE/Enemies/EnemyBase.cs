@@ -101,7 +101,6 @@ namespace GOTCE.Enemies
             prefab = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToClone).WaitForCompletion(), CloneName + "Body");
             // prefab.GetComponent<NetworkIdentity>().localPlayerAuthority = false;
             prefabMaster = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToCloneMaster).WaitForCompletion(), CloneName + "Master");
-            
         }
 
         public void ReplaceSkill(GenericSkill slot, SkillDef replaceWith, string familyName = "temp")

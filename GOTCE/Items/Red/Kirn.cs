@@ -49,6 +49,7 @@ namespace GOTCE.Items.Red
                 if (count > 0)
                 {
                     var consistency = Addressables.LoadAssetAsync<RoR2.Skills.SkillDef>("RoR2/Base/Commando/CommandoBodyBarrage.asset").WaitForCompletion();
+                    // var consistency = Skills.SuppressiveNader.Instance.SkillDef;
                     self.skillLocator.primary.SetSkillOverride(self.masterObject, consistency, GenericSkill.SkillOverridePriority.Upgrade);
                     self.skillLocator.secondary.SetSkillOverride(self.masterObject, consistency, GenericSkill.SkillOverridePriority.Upgrade);
                     self.skillLocator.utility.SetSkillOverride(self.masterObject, consistency, GenericSkill.SkillOverridePriority.Upgrade);

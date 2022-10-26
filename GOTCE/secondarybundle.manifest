@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2861774704
+CRC: 1744479931
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e208d5566ade3b313feb4a45af3bb5ae
+    Hash: e1cceb940b103e63eec9413fec4f97d1
   TypeTreeHash:
     serializedVersion: 2
-    Hash: acd340048f49e7b30f7ce31367635514
+    Hash: 4eb7deedae4d1773a36f6e73ab9cd86e
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -37,8 +37,6 @@ ClassTypes:
   Script: {fileID: 952828898, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 372142912, guid: d382a022563c7517aadbc92ca1060016, type: 3}
-- Class: 114
-  Script: {fileID: -132178706, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -186546639, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
@@ -94,5 +92,6 @@ Assets:
 - Assets/Prefabs/Enemies/Vermin/mdlVermin.prefab
 - Assets/Prefabs/Interactables/ShrineDML/ShrineDML.prefab
 - Assets/Prefabs/Projectiles/Aegiscentrism/OrbitalAegis.prefab
+- Assets/Icons/nader.png
 - Assets/Prefabs/Projectiles/AegisFunder/AegisProjectile.prefab
 Dependencies: []
