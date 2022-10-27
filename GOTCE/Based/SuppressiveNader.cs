@@ -9,16 +9,37 @@ using RoR2.Items;
 using System.Collections.Generic;
 using HG;
 using RoR2.Skills;
+using RoR2.Orbs;
 
 namespace GOTCE.Based {
     public class SuppressiveNader {
         public static void Hook() {
             On.RoR2.GlobalEventManager.OnHitEnemy += Nader;
 
-            GameObject commandoBodyPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Commando/CommandoBody.prefab").WaitForCompletion();
+            /* GameObject commandoBodyPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Commando/CommandoBody.prefab").WaitForCompletion();
 
             SkillLocator skillLocator = commandoBodyPrefab.GetComponent<SkillLocator>();
-            SkillFamily skillFamily = skillLocator.special.skillFamily;
+            SkillFamily skillFamily = skillLocator.primary.skillFamily;
+
+            Array.Resize(ref skillFamily.variants, skillFamily.variants.Length + 1);
+            skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
+            {
+                skillDef = Skills.DoubleDoubleTap.Instance.SkillDef,
+                unlockableName = "",
+                viewableNode = new ViewablesCatalog.Node(Skills.DoubleDoubleTap.Instance.SkillDef.skillNameToken, false, null)
+            };
+
+            skillFamily = skillLocator.secondary.skillFamily;
+
+            Array.Resize(ref skillFamily.variants, skillFamily.variants.Length + 1);
+            skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
+            {
+                skillDef = Skills.PhaseRounder.Instance.SkillDef,
+                unlockableName = "",
+                viewableNode = new ViewablesCatalog.Node(Skills.PhaseRounder.Instance.SkillDef.skillNameToken, false, null)
+            };
+
+            skillFamily = skillLocator.special.skillFamily;
 
             Array.Resize(ref skillFamily.variants, skillFamily.variants.Length + 1);
             skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
@@ -26,10 +47,18 @@ namespace GOTCE.Based {
                 skillDef = Skills.SuppressiveNader.Instance.SkillDef,
                 unlockableName = "",
                 viewableNode = new ViewablesCatalog.Node(Skills.SuppressiveNader.Instance.SkillDef.skillNameToken, false, null)
-            };
+            }; */
 
+
+
+            LanguageAPI.Add(Skills.VeryTactical.Instance.SkillDef.skillNameToken, "Very Tactical Diving Slide");
+            LanguageAPI.Add(Skills.VeryTactical.Instance.SkillDef.skillDescriptionToken, "Literally just gives you 5 seconds of complete flight.");
+            LanguageAPI.Add(Skills.DoubleDoubleTap.Instance.SkillDef.skillNameToken, "Double Double Double Double Double Tap");
+            LanguageAPI.Add(Skills.DoubleDoubleTap.Instance.SkillDef.skillDescriptionToken, "Fire bullets all around you for 96x100% with a 1.0 proc coeff. Cannot miss.");
             LanguageAPI.Add(Skills.SuppressiveNader.Instance.SkillDef.skillNameToken, "Suppressive Nader");
-            LanguageAPI.Add(Skills.SuppressiveNader.Instance.SkillDef.skillDescriptionToken, "Fires 6 stunning nades (scales with attack speed) (stacks ruin) (applies exposed) (they're impact too) (weakens) (refunds cooldown on kill) (shoots phase round lightning) (summons a beetle guard) (spawns a squid turret) (spawns a blue orb) (spawns a gold orb) (applies bleed) (applies malachite) (freezes) (immobilizes) (roots) (spawns a celestial orb) (applies hemorrhage) (applies poison) (applies blight) (applies burn) (cripples) (applies fruiting) (has +2 aoe effect) (applies stronger burn) (applies permanent armor reduction) (spawns a purple orb) (applies void fog) (applies collapse) (spawns a mending bomb) (spawns a friendly void infestor) (spawns a friendly void reaver) (spawns a friendly void jailer) (spawns a friendly void devastator) (spawns a friendly void barnacle) (eradicates crowdfunder from the universe) (slayer) (gives you a desperado token on kill) (heavy) (corrupts all corruptible items) (agile) (cleanses all debuffs) (gives you the hunter's harpoon buff) (regenerative) (Enters you into a frenzy)");
+            LanguageAPI.Add(Skills.SuppressiveNader.Instance.SkillDef.skillDescriptionToken, "Fires 8 stunning nades that stick to enemies, spawn multiple allies on hit, apply almost every debuff, spawn every portal, eradicate crowdfunder from the universe, give the regenerative buff, cleanses debuffs and corrupts all items on hit.");
+            LanguageAPI.Add(Skills.PhaseRounder.Instance.SkillDef.skillNameToken, "Phase Blaster Round");
+            LanguageAPI.Add(Skills.PhaseRounder.Instance.SkillDef.skillDescriptionToken, "Fire a spread of Phase Rounds for 8x360% that split into chain lightning on hit");
         }
 
         public static void Nader(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo info, GameObject victim) {
@@ -79,53 +108,63 @@ namespace GOTCE.Based {
 
                     Run.instance.availableEquipment.Remove(RoR2Content.Equipment.GoldGat.equipmentIndex);
 
-                    CharacterSpawnCard vrailer = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/DLC1/VoidJailer/cscVoidJailerAlly.asset").WaitForCompletion();
-                    CharacterSpawnCard vreaver = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/Base/Nullifier/cscNullifierAlly.asset").WaitForCompletion();
-                    CharacterSpawnCard vrevastator = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/DLC1/VoidMegaCrab/cscVoidMegaCrabAlly.asset").WaitForCompletion();
-                    CharacterSpawnCard beeble = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/Base/BeetleGland/cscBeetleGuardAlly.asset").WaitForCompletion();
-                    CharacterSpawnCard vranacle = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/DLC1/VoidBarnacle/cscVoidBarnacleAlly.asset").WaitForCompletion();
-                    CharacterSpawnCard squrret = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/Base/Squid/cscSquidTurret.asset").WaitForCompletion();
-                    CharacterSpawnCard[] cards = {
-                        vrailer,
-                        vreaver,
-                        vrevastator,
-                        vranacle,
-                        beeble,
-                        squrret
-                    };
+                    try {
+                        CharacterSpawnCard vrailer = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/DLC1/VoidJailer/cscVoidJailerAlly.asset").WaitForCompletion();
+                        CharacterSpawnCard vreaver = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/Base/Nullifier/cscNullifierAlly.asset").WaitForCompletion();
+                        CharacterSpawnCard vrevastator = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/DLC1/VoidMegaCrab/cscVoidMegaCrabAlly.asset").WaitForCompletion();
+                        CharacterSpawnCard beeble = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/Base/BeetleGland/cscBeetleGuardAlly.asset").WaitForCompletion();
+                        CharacterSpawnCard vranacle = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/DLC1/VoidBarnacle/cscVoidBarnacleAlly.asset").WaitForCompletion();
+                        CharacterSpawnCard squrret = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/Base/Squid/cscSquidTurret.asset").WaitForCompletion();
+                        CharacterSpawnCard[] cards = {
+                            vrailer,
+                            vreaver,
+                            vrevastator,
+                            vranacle,
+                            beeble,
+                            squrret
+                        };
 
-                    DirectorPlacementRule placementRule = new DirectorPlacementRule
-                    {
-                        placementMode = DirectorPlacementRule.PlacementMode.Approximate,
-                        minDistance = 3f,
-                        maxDistance = 40f,
-                        spawnOnTarget = info.attacker.transform
-                    };
-                    foreach (CharacterSpawnCard card in cards) {
-                        DirectorSpawnRequest directorSpawnRequest = new DirectorSpawnRequest(card, placementRule, Run.instance.stageRng);
-                        directorSpawnRequest.summonerBodyObject = info.attacker;
-                        DirectorCore.instance.TrySpawnObject(directorSpawnRequest);
+                        DirectorPlacementRule placementRule = new DirectorPlacementRule
+                        {
+                            placementMode = DirectorPlacementRule.PlacementMode.Approximate,
+                            minDistance = 3f,
+                            maxDistance = 40f,
+                            spawnOnTarget = info.attacker.transform
+                        };
+                        foreach (CharacterSpawnCard card in cards) {
+                            DirectorSpawnRequest directorSpawnRequest = new DirectorSpawnRequest(card, placementRule, Run.instance.stageRng);
+                            directorSpawnRequest.summonerBodyObject = info.attacker;
+                            DirectorCore.instance.TrySpawnObject(directorSpawnRequest);
+                        }
+                    } catch (NullReferenceException err) {
+                        Main.ModLogger.LogError("Suppressive Nader could not spawn an ally");
+                        Main.ModLogger.LogError("Error: " + err);
                     }
 
                     TeleporterInteraction.instance.shouldAttemptToSpawnGoldshoresPortal = true;
                     TeleporterInteraction.instance.shouldAttemptToSpawnShopPortal = true;
                     TeleporterInteraction.instance.shouldAttemptToSpawnMSPortal = true;
 
-                    MasterSummon masterSummon2 = new MasterSummon();
-                    masterSummon2.position = info.attacker.transform.position;
-                    masterSummon2.ignoreTeamMemberLimit = true;
-                    masterSummon2.masterPrefab = GlobalEventManager.CommonAssets.eliteEarthHealerMaster;
-                    masterSummon2.summonerBodyObject = info.attacker;
-                    masterSummon2.rotation = Quaternion.LookRotation(info.attacker.transform.forward);
-                    masterSummon2.Perform();
-                    
-                    masterSummon2 = new MasterSummon();
-                    masterSummon2.position = info.attacker.transform.position;
-                    masterSummon2.ignoreTeamMemberLimit = true;
-                    masterSummon2.masterPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/EliteVoid/VoidInfestorMaster.prefab").WaitForCompletion();
-                    masterSummon2.summonerBodyObject = info.attacker;
-                    masterSummon2.rotation = Quaternion.LookRotation(info.attacker.transform.forward);
-                    masterSummon2.Perform();
+                    try {
+                        MasterSummon masterSummon2 = new MasterSummon();
+                        masterSummon2.position = info.attacker.transform.position;
+                        masterSummon2.ignoreTeamMemberLimit = true;
+                        masterSummon2.masterPrefab = GlobalEventManager.CommonAssets.eliteEarthHealerMaster;
+                        masterSummon2.summonerBodyObject = info.attacker;
+                        masterSummon2.rotation = Quaternion.LookRotation(info.attacker.transform.forward);
+                        masterSummon2.Perform();
+                        
+                        masterSummon2 = new MasterSummon();
+                        masterSummon2.position = info.attacker.transform.position;
+                        masterSummon2.ignoreTeamMemberLimit = true;
+                        masterSummon2.masterPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/EliteVoid/VoidInfestorMaster.prefab").WaitForCompletion();
+                        masterSummon2.summonerBodyObject = info.attacker;
+                        masterSummon2.rotation = Quaternion.LookRotation(info.attacker.transform.forward);
+                        masterSummon2.Perform();
+                    } catch (NullReferenceException err) {
+                        Main.ModLogger.LogError("Suppressive Nader could not perform a master summon");
+                        Main.ModLogger.LogError("Error: " + err);
+                    }
                     
                     Util.CleanseBody(body2, true, false, true, true, true, false);
 
@@ -136,6 +175,32 @@ namespace GOTCE.Based {
                     }
                 }
             }
+
+            if (info.HasModdedDamageType(Main.rounder) && info.attacker) {
+                CharacterBody body = info.attacker.GetComponent<CharacterBody>();
+                LightningOrb lightningOrb = new LightningOrb
+                {
+                    origin = body.corePosition,
+                    damageValue = body.damage * 2f,
+                    isCrit = true,
+                    bouncesRemaining = 3,
+                    teamIndex = body.teamComponent.teamIndex,
+                    attacker = info.attacker,
+                    procCoefficient = 1f,
+                    lightningType = LightningOrb.LightningType.Tesla,
+                    damageColorIndex = DamageColorIndex.Item,
+                    range = 35f,
+                    damageCoefficientPerBounce = 1f,
+                    bouncedObjects = new List<HealthComponent> { victim.GetComponent<HealthComponent>() },
+                };
+                lightningOrb.damageValue = body.damage;
+                HurtBox hurtbox = lightningOrb.PickNextTarget(body.corePosition);
+                if (hurtbox) {
+                    lightningOrb.target = hurtbox;
+                    OrbManager.instance.AddOrb(lightningOrb);
+                }
+            }
+            orig(self, info, victim);
         }
     }
 }

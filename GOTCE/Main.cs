@@ -26,6 +26,7 @@ using GOTCE.Enemies.Minibosses;
 using GOTCE.Enemies.Bosses;
 using MonoMod.RuntimeDetour;
 using GOTCE.Based;
+using GOTCE.Survivors;
 
 [assembly: SearchableAttribute.OptIn]
 
@@ -62,6 +63,7 @@ namespace GOTCE
         //Provides a direct access to this plugin's logger for use in any of your other classes.
         public static BepInEx.Logging.ManualLogSource ModLogger;
         public static R2API.DamageAPI.ModdedDamageType nader = R2API.DamageAPI.ReserveDamageType();
+        public static R2API.DamageAPI.ModdedDamageType rounder = R2API.DamageAPI.ReserveDamageType();
 
         private void Awake()
         {
@@ -188,6 +190,16 @@ namespace GOTCE
                 EnemyBase enemy = (EnemyBase)System.Activator.CreateInstance(enemyType);
                 // Debug.Log(item.ConfigName);
                 enemy.Create();
+            }
+
+            var survivorTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(SurvivorBase)));
+
+            foreach (var survivorType in survivorTypes)
+            {
+                Debug.Log("Woolie");
+                SurvivorBase survivor = (SurvivorBase)System.Activator.CreateInstance(survivorType);
+                // Debug.Log(item.ConfigName);
+                survivor.Create();
             }
 
             Hook aimHook = new Hook(

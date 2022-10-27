@@ -61,11 +61,11 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
 
             FireProjectileInfo info2 = new()
                 {
-                    damage = base.damageStat *= 2.5f,
+                    damage = base.damageStat *= 3.6f,
                     projectilePrefab = pRound,
                     crit = Util.CheckRoll(base.critStat, base.characterBody.master),
                     damageColorIndex = DamageColorIndex.WeakPoint,
-                    position = base.characterBody.corePosition,
+                    position = base.characterBody.aimOriginTransform.position,
                     rotation = Util.QuaternionSafeLookRotation(aimRay.direction),
                     owner = base.gameObject,
                 };
@@ -90,7 +90,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                     projectilePrefab = prefab,
                     crit = Util.CheckRoll(base.critStat, base.characterBody.master),
                     damageColorIndex = DamageColorIndex.WeakPoint,
-                    position = base.characterBody.corePosition,
+                    position = base.characterBody.aimOriginTransform.position,
                     rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(aimRay.direction, -2f, 2f, -2f, 2f)),
                     owner = base.gameObject,
                 };

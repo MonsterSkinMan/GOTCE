@@ -46,17 +46,17 @@ namespace GOTCE.Equipment
         public override void Hooks()
         {
             On.RoR2.EquipmentSlot.UpdateGoldGat += UpdateAegisGat;
-            On.RoR2.GlobalEventManager.OnHitEnemy += Barrier;
+            // On.RoR2.GlobalEventManager.OnHitEnemy += Barrier;
         }
 
-        public void Barrier(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo info, GameObject victim) {
+        /*public void Barrier(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo info, GameObject victim) {
             orig(self, info, victim);
             if (info.procChainMask.HasProc(ProcType.AACannon) && info.procChainMask.HasProc(ProcType.PlasmaCore)) {
                 if (info.attacker && info.attacker.GetComponent<CharacterBody>()) {
                     info.attacker.GetComponent<CharacterBody>().healthComponent.AddBarrier(info.attacker.GetComponent<CharacterBody>().maxHealth * 0.05f);
                 }
             }
-        }
+        } */
 
         protected override bool ActivateEquipment(EquipmentSlot slot)
         {
