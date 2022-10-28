@@ -27,6 +27,7 @@ namespace GOTCE.Components
         private Inventory inventory;
         private CharacterBody body;
         public int game_count;
+        public int total_sprint_crits = 0;
 
         // add more of these for every respawn chance item
         public int deathCount;
@@ -50,7 +51,12 @@ namespace GOTCE.Components
                 float fovCritChanceTmp = 0f;
                 fovCritChanceTmp += 10f*(inventory.GetItemCount(Items.White.ZoomLenses.Instance.ItemDef));
                 fovCritChance = fovCritChanceTmp;
-                // sprint crit (unimplemented)
+                // sprint crit 
+
+                float sprCritChanceTmp = 0f;
+                sprCritChanceTmp += 8f*(inventory.GetItemCount(Items.White.GummyVitamins.Instance.ItemDef));
+                if (body.inventory.GetItemCount(Items.White.gd2.Instance.ItemDef) > 0) { sprCritChanceTmp += 5f; }
+                sprintCritChance = sprCritChanceTmp;
 
                 respawnChance = defibrillatorRespawnChance;
                 // crownPrinceTrueKillChance = body.inventory.GetItemCount();

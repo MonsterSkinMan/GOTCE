@@ -50,8 +50,8 @@ namespace GOTCE.Items.Red
 
         public void Timer(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo info) {
             orig(self, info);
-            if (NetworkServer.active) {
-                if (info.damage >= (self.body.maxHealth * 0.05f)) {
+            if (NetworkServer.active && self.body && self.body.inventory && self.body.inventory.GetItemCount(ItemDef) > 0) {
+                if (info.damage >= (self.body.maxHealth * 0.85f)) {
                     self.body.AddTimedBuff(TimerBuff.buff, 3f);
                 }
             }

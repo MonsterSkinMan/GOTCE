@@ -1,4 +1,4 @@
-using RoR2;
+/* using RoR2;
 using R2API;
 using UnityEngine;
 using BepInEx.Configuration;
@@ -48,15 +48,6 @@ namespace GOTCE.Equipment
             On.RoR2.EquipmentSlot.UpdateGoldGat += UpdateAegisGat;
             // On.RoR2.GlobalEventManager.OnHitEnemy += Barrier;
         }
-
-        /*public void Barrier(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo info, GameObject victim) {
-            orig(self, info, victim);
-            if (info.procChainMask.HasProc(ProcType.AACannon) && info.procChainMask.HasProc(ProcType.PlasmaCore)) {
-                if (info.attacker && info.attacker.GetComponent<CharacterBody>()) {
-                    info.attacker.GetComponent<CharacterBody>().healthComponent.AddBarrier(info.attacker.GetComponent<CharacterBody>().maxHealth * 0.05f);
-                }
-            }
-        } */
 
         protected override bool ActivateEquipment(EquipmentSlot slot)
         {
@@ -124,6 +115,7 @@ namespace GOTCE.Equipment
                 mask.AddProc(ProcType.AACannon);
                 mask.AddProc(ProcType.PlasmaCore);
                 GameObject proj = prefab.InstantiateClone("guh");
+                proj.layer = LayerIndex.projectile.intVal;
                 FireProjectileInfo info = new()
                 {
                     damage = body.damage * 2.5f,
@@ -152,4 +144,4 @@ namespace GOTCE.Equipment
         }
 
     }
-}
+} */

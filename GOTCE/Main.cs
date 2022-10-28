@@ -116,12 +116,22 @@ namespace GOTCE
                 faulty.Init(Config);
             }
 
+            ItemBase zoom = (ItemBase)System.Activator.CreateInstance(typeof(GOTCE.Items.White.ZoomLenses));
+            if (ValidateItem(zoom, Items)) {
+                zoom.Init(Config);
+            }
+
+            ItemBase gummy = (ItemBase)System.Activator.CreateInstance(typeof(GOTCE.Items.White.GummyVitamins));
+            if (ValidateItem(gummy, Items)) {
+                gummy.Init(Config);
+            }
+
             //This section automatically scans the project for all items
             var ItemTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(ItemBase)));
 
             foreach (var itemType in ItemTypes)
             {
-                if (itemType != typeof(GOTCE.Items.White.FaultySpacetimeClock))
+                if (itemType != typeof(GOTCE.Items.White.FaultySpacetimeClock) && itemType != typeof(GOTCE.Items.White.GummyVitamins) && itemType != typeof(GOTCE.Items.White.ZoomLenses))
                 {
                     ItemBase item = (ItemBase)System.Activator.CreateInstance(itemType);
                     // Debug.Log(item.ConfigName);
