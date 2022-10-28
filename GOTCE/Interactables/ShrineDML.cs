@@ -89,7 +89,7 @@ namespace GOTCE.Interactables
             if (stopwatch >= delay) {
                 stopwatch = 0f;
                 if (remainingMissiles > 0) {
-                    MissileUtils.FireMissile(gameObject.transform.position, gameObject.GetComponent<PurchaseInteraction>().lastActivator.gameObject.GetComponent<CharacterBody>(), new ProcChainMask(), null, gameObject.GetComponent<PurchaseInteraction>().lastActivator.gameObject.GetComponent<CharacterBody>().damage*3f, false, projectilePrefab, DamageColorIndex.Item, false);
+                    MissileUtils.FireMissile(gameObject.transform.position + new Vector3(0, 2f, 0), gameObject.GetComponent<PurchaseInteraction>().lastActivator.gameObject.GetComponent<CharacterBody>(), new ProcChainMask(), null, gameObject.GetComponent<PurchaseInteraction>().lastActivator.gameObject.GetComponent<CharacterBody>().damage*3f, false, projectilePrefab, DamageColorIndex.Item, false);
                     remainingMissiles--;
                 }
             }
