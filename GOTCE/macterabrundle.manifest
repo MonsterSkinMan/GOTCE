@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2590214900
+CRC: 597713098
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c6c2e279ce11152713bfdd4a325991da
+    Hash: 220b0805b60a356d42bfbd9cb9ca1657
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 1572d93b9eefe5749d515c98c4fb318b
+    Hash: 8008b2b46f07412a84f63a8d4423d6d0
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -41,6 +41,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 137
   Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
@@ -48,6 +50,7 @@ Assets:
 - Assets/Models/Raw Models/LivingSuppMesh.fbx
 - Assets/Materials/Enemies/kirnMaterial.mat
 - Assets/Textures/Icons/Item/FreeWiFi.png
+- Assets/Models/Prefabs/Item/KirnTheItem/KirnTheItemNoOutline.prefab
 - Assets/Textures/Icons/Item/heartybreakfast.png
 - Assets/Textures/Icons/Enemies/LivingSuppressiveFire.png
 - Assets/Materials/Item/MonstersVisage/MonstersVisageMaterial.mat
@@ -110,6 +113,7 @@ Assets:
 - Assets/Textures/Icons/Artifact/artifactofblindnesson.png
 - Assets/Textures/Icons/Item/DelicaterWatch.png
 - Assets/Textures/Icons/Item/ViscousBlast.png
+- Assets/Models/Prefabs/Item/KirnTheItem/KirnTheItemNoOutline.png
 - Assets/Textures/Icons/Item/DelicaterWatchConsumed.png
 - Assets/Textures/Icons/Item/skullkey.png
 - Assets/Textures/Icons/Item/pogo.png

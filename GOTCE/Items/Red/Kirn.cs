@@ -26,7 +26,7 @@ namespace GOTCE.Items.Red
 
         public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
 
-        public override GameObject ItemModel => null;
+        public override GameObject ItemModel => Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Item/KirnTheItem/KirnTheItemNoOutline.prefab");
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/kirn.png");
 
