@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using EntityStates;
 using RoR2.ExpansionManagement;
+using Unity;
 
 // WIP
 
@@ -87,6 +88,28 @@ namespace GOTCE.Enemies
             {
                 DirectorAPI.Helpers.AddNewMonster(card, category);
             }
+        }
+
+        public void ClearESM(GameObject prefab, GameObject master = null) {
+            foreach(EntityStateMachine esm in prefab.GetComponents<EntityStateMachine>()) {
+                GameObject.DestroyImmediate(esm);
+            }
+
+            if (master) {
+                foreach(EntityStateMachine esm in master.GetComponents<EntityStateMachine>()) {
+                    GameObject.DestroyImmediate(esm);
+                }
+            }
+        }
+
+        public EntityStateMachine AddESM(GameObject prefab, string name, SerializableEntityStateType initial) {
+            EntityStateMachine esm = prefab.AddComponent<EntityStateMachine>();
+            esm.customName = name;
+            esm.name = name;
+            esm.initialStateType = initial;
+            esm.mainStateType = initial;
+
+            return esm;
         }
 
         public void DestroyModelLeftovers(GameObject prefab)

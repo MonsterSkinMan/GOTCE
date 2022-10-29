@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 955601012
+CRC: 549492673
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1a20884da6d93567d341cc452af27e42
+    Hash: 6c776896b44bfed777eed2082d4b4aa2
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 561dad628ca254b785534796586d5dcc
+    Hash: 13ff93545bf1bedf6926d2c818599fdc
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -130,6 +130,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 370243918, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: -794597441, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: -789927658, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -1018496710, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
@@ -166,6 +168,7 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Prefabs/Interactables/DisposableFunder/DisposableFunder.prefab
+- Assets/Prefabs/Stages/test/TestDef.asset
 - Assets/Prefabs/Projectiles/Aegiscentrism/AegisGhost.prefab
 - Assets/Prefabs/Survivors/Crackmando/CrackedDef.asset
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/slide.png

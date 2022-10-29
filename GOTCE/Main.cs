@@ -64,13 +64,15 @@ namespace GOTCE
         public static BepInEx.Logging.ManualLogSource ModLogger;
         public static R2API.DamageAPI.ModdedDamageType nader = R2API.DamageAPI.ReserveDamageType();
         public static R2API.DamageAPI.ModdedDamageType rounder = R2API.DamageAPI.ReserveDamageType();
-
+        public static R2API.DamageAPI.ModdedDamageType truekill = R2API.DamageAPI.ReserveDamageType();
+        public static R2API.DamageAPI.ModdedDamageType root = R2API.DamageAPI.ReserveDamageType();
         private void Awake()
         {
             MainAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "macterabrundle"));
             SecondaryAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "secondarybundle"));
             ModLogger = Logger;
             SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
+
 
 
             // please just fucking use hopoo shaders AAAAAA
