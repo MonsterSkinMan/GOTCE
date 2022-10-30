@@ -11,6 +11,7 @@ using RoR2.ExpansionManagement;
 namespace GOTCE.Survivors {
     public class CrackedMando : SurvivorBase<CrackedMando> {
         public override string bodypath => "Assets/Prefabs/Survivors/Crackmando/CrackmandoBody.prefab";
+        public override string name => "CrackedCommando";
         public override void Modify()
         {
             base.Modify();

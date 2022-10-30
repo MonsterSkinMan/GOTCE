@@ -24,10 +24,11 @@ namespace GOTCE.Survivors
 
     public abstract class SurvivorBase
     {
-        public virtual string bodypath{ get; } = null;
+        public abstract string bodypath { get; }
         public GameObject prefab;
         public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.SOTVExpansionDef;
         public virtual SurvivorDef def {get; } = null;
+        public abstract string name { get; }
 
         public virtual void Create()
         {
@@ -62,7 +63,7 @@ namespace GOTCE.Survivors
         {
             
             
-            prefab = PrefabAPI.InstantiateClone(Main.SecondaryAssets.LoadAsset<GameObject>(bodypath), "survivorbody");
+            prefab = PrefabAPI.InstantiateClone(Main.SecondaryAssets.LoadAsset<GameObject>(bodypath), name);
         }
 
         public void ReplaceSkill(GenericSkill slot, SkillDef replaceWith, string familyName = "temp")

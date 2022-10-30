@@ -68,7 +68,12 @@ namespace GOTCE.Enemies.Bosses {
             }
 
             AISkillDriver spec = (from x in prefabMaster.GetComponents<AISkillDriver>() where x.skillSlot == SkillSlot.Special select x).First();
-            spec.minDistance = 30f;
+            spec.minDistance = 15f;
+            spec.movementType = AISkillDriver.MovementType.FleeMoveTarget;
+
+            AISkillDriver secondary = (from x in prefabMaster.GetComponents<AISkillDriver>() where x.skillSlot == SkillSlot.Secondary select x).First();
+            secondary.moveTargetType = AISkillDriver.TargetType.NearestFriendlyInSkillRange;
+            secondary.movementType = AISkillDriver.MovementType.ChaseMoveTarget;
 
             // ai.skillDrivers = drivers.ToArray(); 
 

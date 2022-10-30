@@ -11,41 +11,20 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
     public class PhaseRounder : BaseSkillState
     {
 
-        
-        public static float baseDurationBetweenShots = 7 / 60f;
-
-        public static float totalDuration = 2f;
-
-        public static float bulletRadius = 1.5f;
-
-        public static int baseBulletCount = 8;
-
-        
-
-        private int totalBulletsFired;
-
-        private int bulletCount;
-
-        public float stopwatchBetweenShots;
-
+        public static float totalDuration = 0.5f;
         private Animator modelAnimator;
-
-        private Transform modelTransform;
-
         private float duration;
-
-        private float durationBetweenShots;
-
         public override void OnEnter()
         {
             base.OnEnter();
             base.characterBody.SetSpreadBloom(0.2f, canOnlyIncreaseBloom: false);
             duration = totalDuration;
-            durationBetweenShots = baseDurationBetweenShots / attackSpeedStat;
-            bulletCount = (int)((float)baseBulletCount * attackSpeedStat);
             modelAnimator = GetModelAnimator();
             // modelTransform = base.characterBody.modelLocator.modelTransform.GetChild(1).transform;
-            FireBullet(); 
+            
+            for (int i = 0; i < 8; i++) {
+                FireBullet();
+            }
         }
 
         private void FireBullet()
@@ -72,7 +51,6 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                 ProjectileManager.instance.FireProjectile(info);
                 
             }
-            totalBulletsFired++;
         }
 
         public override void OnExit()
@@ -83,13 +61,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            stopwatchBetweenShots += Time.fixedDeltaTime;
-            if (stopwatchBetweenShots >= durationBetweenShots && totalBulletsFired < bulletCount)
-            {
-                stopwatchBetweenShots -= durationBetweenShots;
-                FireBullet();
-            }
-            if (base.fixedAge >= duration && totalBulletsFired == bulletCount && base.isAuthority)
+            if (base.fixedAge >= duration && base.isAuthority)
             {
                 outer.SetNextStateToMain();
             }
