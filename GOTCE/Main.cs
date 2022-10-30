@@ -45,6 +45,7 @@ namespace GOTCE
 
         public static AssetBundle MainAssets;
         public static AssetBundle SecondaryAssets;
+        public static AssetBundle GOTCEModels;
 
         public List<ArtifactBase> Artifacts = new();
         public List<ItemBase> Items = new();
@@ -62,31 +63,49 @@ namespace GOTCE
 
         //Provides a direct access to this plugin's logger for use in any of your other classes.
         public static BepInEx.Logging.ManualLogSource ModLogger;
+
         public static R2API.DamageAPI.ModdedDamageType nader = R2API.DamageAPI.ReserveDamageType();
         public static R2API.DamageAPI.ModdedDamageType rounder = R2API.DamageAPI.ReserveDamageType();
         public static R2API.DamageAPI.ModdedDamageType truekill = R2API.DamageAPI.ReserveDamageType();
         public static R2API.DamageAPI.ModdedDamageType root = R2API.DamageAPI.ReserveDamageType();
+
         private void Awake()
         {
             MainAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "macterabrundle"));
             SecondaryAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "secondarybundle"));
+            GOTCEModels = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "gotcemodels"));
             ModLogger = Logger;
             SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
-
-
             // please just fucking use hopoo shaders AAAAAA
             // https://drive.google.com/drive/folders/1ndCC4TiN06nVC4X_3HaZjFa5sN07Y14S
-            /*
-            var materials = MainAssets.LoadAllAssets<Material>();
-            foreach (Material material in materials)
+
+            var mat1 = MainAssets.LoadAllAssets<Material>();
+            foreach (Material material in mat1)
             {
                 if (material.shader.name.StartsWith("StubbedShader"))
                 {
                     material.shader = Resources.Load<Shader>("shaders" + material.shader.name.Substring(13));
                 }
             }
-            */
+
+            var mat2 = SecondaryAssets.LoadAllAssets<Material>();
+            foreach (Material material in mat2)
+            {
+                if (material.shader.name.StartsWith("StubbedShader"))
+                {
+                    material.shader = Resources.Load<Shader>("shaders" + material.shader.name.Substring(13));
+                }
+            }
+
+            var mat3 = GOTCEModels.LoadAllAssets<Material>();
+            foreach (Material material in mat3)
+            {
+                if (material.shader.name.StartsWith("StubbedShader"))
+                {
+                    material.shader = Resources.Load<Shader>("shaders" + material.shader.name.Substring(13));
+                }
+            }
 
             /* if (Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI")) {
                 ItemSorting.tierMap.Add(LunarVoid.Instance.TierEnum, 3);
@@ -114,17 +133,20 @@ namespace GOTCE
 
             // add spacetime clock before other items since others might depend on it's event
             ItemBase faulty = (ItemBase)System.Activator.CreateInstance(typeof(GOTCE.Items.White.FaultySpacetimeClock));
-            if (ValidateItem(faulty, Items)) {
+            if (ValidateItem(faulty, Items))
+            {
                 faulty.Init(Config);
             }
 
             ItemBase zoom = (ItemBase)System.Activator.CreateInstance(typeof(GOTCE.Items.White.ZoomLenses));
-            if (ValidateItem(zoom, Items)) {
+            if (ValidateItem(zoom, Items))
+            {
                 zoom.Init(Config);
             }
 
             ItemBase gummy = (ItemBase)System.Activator.CreateInstance(typeof(GOTCE.Items.White.GummyVitamins));
-            if (ValidateItem(gummy, Items)) {
+            if (ValidateItem(gummy, Items))
+            {
                 gummy.Init(Config);
             }
 
@@ -226,13 +248,13 @@ namespace GOTCE
             */
 
             var materials = MainAssets.LoadAllAssets<Material>();
-            foreach (Material material in materials) 
-            if(material.shader.name.StartsWith("StubbedShader"))
-            material.shader = Resources.Load<Shader>("shaders" + material.shader.name.Substring(13));
+            foreach (Material material in materials)
+                if (material.shader.name.StartsWith("StubbedShader"))
+                    material.shader = Resources.Load<Shader>("shaders" + material.shader.name.Substring(13));
             var materials2 = SecondaryAssets.LoadAllAssets<Material>();
-            foreach (Material material in materials) 
-            if(material.shader.name.StartsWith("StubbedShader"))
-            material.shader = Resources.Load<Shader>("shaders" + material.shader.name.Substring(13));
+            foreach (Material material in materials)
+                if (material.shader.name.StartsWith("StubbedShader"))
+                    material.shader = Resources.Load<Shader>("shaders" + material.shader.name.Substring(13));
         }
 
         /// <summary>
@@ -259,10 +281,12 @@ namespace GOTCE
         /// <param name="itemList">The list you would like to add this to if it passes the config check.</param>
         public bool ValidateItem(ItemBase item, List<ItemBase> itemList, bool faulty = false)
         {
-            if (faulty) {
+            if (faulty)
+            {
                 var enabled = Config.Bind<bool>("Item: " + item.ConfigName, "Enable Item?", true, "Should this item appear in runs? Disable other stage transition crit items when disabling this item.").Value;
             }
-            else {
+            else
+            {
                 var enabled = Config.Bind<bool>("Item: " + item.ConfigName, "Enable Item?", true, "Should this item appear in runs?").Value;
             }
             var aiBlacklist = Config.Bind<bool>("Item: " + item.ConfigName, "Blacklist Item from AI Use?", false, "Should the AI not be able to obtain this item?").Value;
