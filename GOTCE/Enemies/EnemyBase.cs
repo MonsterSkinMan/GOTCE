@@ -288,10 +288,10 @@ namespace GOTCE.Enemies
             HurtBox componentInChildren = collidier.gameObject.AddComponent<HurtBox>();
             componentInChildren.gameObject.layer = LayerIndex.entityPrecise.intVal;
             componentInChildren.healthComponent = prefab.GetComponent<HealthComponent>();
-            componentInChildren.isBullseye = weakPoint;
             componentInChildren.damageModifier = damageModifier;
             componentInChildren.hurtBoxGroup = hurtBoxGroup;
             componentInChildren.indexInGroup = index;
+            componentInChildren.isSniperTarget = weakPoint;
         }
     }
 }
