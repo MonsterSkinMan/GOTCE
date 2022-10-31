@@ -36,7 +36,7 @@ namespace GOTCE.Items
         public abstract string ItemLore { get; }
 
         public abstract ItemTier Tier { get; }
-        public virtual ItemTag[] ItemTags { get; set; } = new ItemTag[] { };
+        public virtual Enum[] ItemTags { get; set; } = new Enum[] { };
 
         public abstract GameObject ItemModel { get; }
         public abstract Sprite ItemIcon { get; }
@@ -95,7 +95,9 @@ namespace GOTCE.Items
         {
             if (AIBlacklisted)
             {
-                ItemTags = new List<ItemTag>(ItemTags) { ItemTag.AIBlacklist }.ToArray();
+                List<Enum> tmp = ItemTags.ToList<Enum>();
+                tmp.Add(ItemTag.AIBlacklist);
+                ItemTags = tmp.ToArray<Enum>();
             }
 
             ItemDef = ScriptableObject.CreateInstance<ItemDef>();
@@ -145,7 +147,7 @@ namespace GOTCE.Items
                 ItemDef.deprecatedTier = Tier;
             }
 
-            if (ItemTags.Length > 0) { ItemDef.tags = ItemTags; }
+            if (ItemTags.Length > 0) { ItemDef.tags = ItemTags.Cast<ItemTag>().ToArray(); }
 
             ItemAPI.Add(new CustomItem(ItemDef, CreateItemDisplayRules()));
         }

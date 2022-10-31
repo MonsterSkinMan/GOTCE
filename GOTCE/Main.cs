@@ -77,6 +77,9 @@ namespace GOTCE
             ModLogger = Logger;
             SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
+            // create custom itemtags and flags and things idk
+            Misc.Flags.Initialize();
+
             // please just fucking use hopoo shaders AAAAAA
             // https://drive.google.com/drive/folders/1ndCC4TiN06nVC4X_3HaZjFa5sN07Y14S
 
