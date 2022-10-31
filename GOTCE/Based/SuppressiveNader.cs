@@ -62,7 +62,7 @@ namespace GOTCE.Based {
         }
 
         public static void Nader(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo info, GameObject victim) {
-            if (info.HasModdedDamageType(Main.nader)) {
+            if (info.HasModdedDamageType(DamageTypes.NaderEffect)) {
                 info.damageType |= DamageType.Stun1s | DamageType.FruitOnHit | DamageType.BypassArmor | DamageType.SlowOnHit | DamageType.WeakPointHit | DamageType.IgniteOnHit | DamageType.Freeze2s | DamageType.BleedOnHit | DamageType.ClayGoo | DamageType.PoisonOnHit | DamageType.PercentIgniteOnHit | DamageType.Nullify | DamageType.Shock5s | DamageType.ResetCooldownsOnKill | DamageType.ApplyMercExpose | DamageType.SuperBleedOnCrit;
                 if (victim && victim.GetComponent<CharacterBody>()) {
                     CharacterBody body = victim.GetComponent<CharacterBody>();
@@ -176,7 +176,7 @@ namespace GOTCE.Based {
                 }
             }
 
-            if (info.HasModdedDamageType(Main.rounder) && info.attacker) {
+            if (info.HasModdedDamageType(DamageTypes.FullChainLightning) && info.attacker) {
                 CharacterBody body = info.attacker.GetComponent<CharacterBody>();
                 LightningOrb lightningOrb = new LightningOrb
                 {

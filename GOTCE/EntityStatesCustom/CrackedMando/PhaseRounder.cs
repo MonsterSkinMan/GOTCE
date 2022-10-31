@@ -32,7 +32,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             Ray aimRay = GetAimRay();
             GameObject prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Junk/Commando/FMJ.prefab").WaitForCompletion().InstantiateClone("rounder");
             prefab.AddComponent<R2API.DamageAPI.ModdedDamageTypeHolderComponent>();
-            prefab.GetComponent<R2API.DamageAPI.ModdedDamageTypeHolderComponent>().Add(Main.rounder);
+            prefab.GetComponent<R2API.DamageAPI.ModdedDamageTypeHolderComponent>().Add(DamageTypes.FullChainLightning);
             
             // string muzzleName = "MuzzleRight";
             // Ray aimRay = GetAim();

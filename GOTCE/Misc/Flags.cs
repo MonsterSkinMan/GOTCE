@@ -40,4 +40,12 @@ namespace GOTCE.Misc {
             };
         }
     }
+
+    // reserve custom damage types
+    public static class DamageTypes {
+        public static DamageAPI.ModdedDamageType NaderEffect = DamageAPI.ReserveDamageType();
+        public static DamageAPI.ModdedDamageType FullChainLightning = DamageAPI.ReserveDamageType();
+        public static DamageAPI.ModdedDamageType Truekill = DamageAPI.ReserveDamageType();
+        public static DamageAPI.ModdedDamageType Root = DamageAPI.ReserveDamageType();
+    }
 }

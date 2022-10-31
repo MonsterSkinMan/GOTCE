@@ -48,13 +48,13 @@ namespace GOTCE.EntityStatesCustom.NaeNaeLord {
                 whip.origin = base.transform.position;
                 whip.weapon = base.gameObject;
                 whip.aimVector = ray.direction;
-                whip.AddModdedDamageType(Main.truekill);
+                whip.AddModdedDamageType(DamageTypes.Truekill);
 
                 whip.Fire();
 
                 GameObject proj = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Base/ArtifactShell/ArtifactShellSeekingSolarFlare.prefab").WaitForCompletion(), "whipproj");
                 DamageAPI.ModdedDamageTypeHolderComponent holder = proj.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
-                holder.Add(Main.truekill);
+                holder.Add(DamageTypes.Truekill);
 
                 for (int i = 0; i < 12; i++) {
                     ray = base.GetAimRay();

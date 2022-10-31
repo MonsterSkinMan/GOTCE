@@ -64,11 +64,6 @@ namespace GOTCE
         //Provides a direct access to this plugin's logger for use in any of your other classes.
         public static BepInEx.Logging.ManualLogSource ModLogger;
 
-        public static R2API.DamageAPI.ModdedDamageType nader = R2API.DamageAPI.ReserveDamageType();
-        public static R2API.DamageAPI.ModdedDamageType rounder = R2API.DamageAPI.ReserveDamageType();
-        public static R2API.DamageAPI.ModdedDamageType truekill = R2API.DamageAPI.ReserveDamageType();
-        public static R2API.DamageAPI.ModdedDamageType root = R2API.DamageAPI.ReserveDamageType();
-
         private void Awake()
         {
             MainAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "macterabrundle"));
