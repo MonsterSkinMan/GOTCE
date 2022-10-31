@@ -24,7 +24,7 @@ namespace GOTCE.Items.VoidBoss
 
         public override ItemTier Tier => ItemTier.VoidBoss;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage };
 
         public override GameObject ItemModel => null;
 

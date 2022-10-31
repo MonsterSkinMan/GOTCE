@@ -24,7 +24,7 @@ namespace GOTCE.Items.White
 
         public override ItemTier Tier => ItemTier.Tier1;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage, (ItemTag)GOTCETags.Unstable };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.Unstable };
 
         public override GameObject ItemModel => null;
 
@@ -79,13 +79,6 @@ namespace GOTCE.Items.White
                         info.owner = self.gameObject;
                         ProjectileManager.instance.FireProjectile(info);
 
-                        // e
-                        if (ItemDef.ContainsTag((ItemTag)GOTCETags.Unstable)) {
-                            Debug.Log("Chaos Rounds is unstable");
-                        }
-                        if (ItemDef.ContainsTag((ItemTag)GOTCETags.Shield)) {
-                            Debug.Log("Chaos Rounds is not shield related");
-                        }
                     }
                 }
             }

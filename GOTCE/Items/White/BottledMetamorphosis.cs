@@ -26,7 +26,7 @@ namespace GOTCE.Items.White
         public override ItemTier Tier => ItemTier.Tier1;
 
         public override GameObject ItemModel => null;
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility, ItemTag.AIBlacklist };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, ItemTag.AIBlacklist };
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BottledMetamorphosis.png");
 
@@ -99,7 +99,7 @@ namespace GOTCE.Items.White
                     }
                     else
                     {
-                        Object.Destroy(controller);
+                        UnityEngine.Object.Destroy(controller);
                     }
                 }
             }

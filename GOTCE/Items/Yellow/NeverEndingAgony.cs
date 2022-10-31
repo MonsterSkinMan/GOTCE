@@ -23,7 +23,7 @@ namespace GOTCE.Items.Yellow
 
         public override ItemTier Tier => ItemTier.Boss;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage, ItemTag.Utility, ItemTag.Healing, ItemTag.AIBlacklist };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, ItemTag.Utility, ItemTag.Healing, ItemTag.AIBlacklist };
 
         public override GameObject ItemModel => null;
 

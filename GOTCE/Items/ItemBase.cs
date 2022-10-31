@@ -170,6 +170,10 @@ namespace GOTCE.Items
             return master.inventory.GetItemCount(ItemDef);
         }
 
+        public bool ContainsTag(ItemDef def, Enum tag) {
+            return def.ContainsTag((ItemTag)tag);
+        }
+
         public int GetCountSpecific(CharacterBody body, ItemDef itemDef)
         {
             if (!body || !body.inventory) { return 0; }

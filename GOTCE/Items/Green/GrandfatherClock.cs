@@ -24,7 +24,7 @@ namespace GOTCE.Items.Green
 
         public override ItemTier Tier => ItemTier.Tier2;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Healing, ItemTag.OnStageBeginEffect, ItemTag.AIBlacklist };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Healing, ItemTag.OnStageBeginEffect, ItemTag.AIBlacklist };
 
         public override GameObject ItemModel => null;
 

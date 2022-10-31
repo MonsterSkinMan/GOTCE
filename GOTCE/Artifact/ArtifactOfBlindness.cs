@@ -27,16 +27,16 @@ namespace GOTCE.Artifact
         public override void Init(ConfigFile config)
         {
             ppHolder = new("GOTCE_ArtifactOfBlindnessPP");
-            Object.DontDestroyOnLoad(ppHolder);
+            UnityEngine.Object.DontDestroyOnLoad(ppHolder);
             ppHolder.layer = LayerIndex.postProcess.intVal;
             ppHolder.AddComponent<GOTCE_ArtifactOfBlindnessPostProcessingController>();
             PostProcessVolume pp = ppHolder.AddComponent<PostProcessVolume>();
-            Object.DontDestroyOnLoad(pp);
+            UnityEngine.Object.DontDestroyOnLoad(pp);
             pp.isGlobal = true;
             pp.weight = 0f;
             pp.priority = float.MaxValue - 1;
             PostProcessProfile ppProfile = ScriptableObject.CreateInstance<PostProcessProfile>();
-            Object.DontDestroyOnLoad(ppProfile);
+            UnityEngine.Object.DontDestroyOnLoad(ppProfile);
             ppProfile.name = "GOTCE_ArtifactOfBlindness";
             fog = ppProfile.AddSettings<RampFog>();
             fog.SetAllOverridesTo(true);

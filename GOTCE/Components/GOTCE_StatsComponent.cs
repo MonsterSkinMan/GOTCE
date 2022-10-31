@@ -115,7 +115,7 @@ namespace GOTCE.Components
             {
                 vector = TeleportHelper.FindSafeTeleportDestination(master.deathFootPosition, body, RoR2Application.rng) ?? master.deathFootPosition;
             }
-            master.Respawn(vector, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
+            master.Respawn(vector, Quaternion.Euler(0f, UnityEngine.Random.Range(0f, 360f), 0f));
             master.GetBody().AddTimedBuff(RoR2Content.Buffs.Immune, 3f);
             GameObject gameObject = LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/HippoRezEffect");
             if (master.bodyInstanceObject)

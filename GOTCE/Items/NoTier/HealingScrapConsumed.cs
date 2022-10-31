@@ -23,7 +23,7 @@ namespace GOTCE.Items.NoTier
 
         public override ItemTier Tier => ItemTier.NoTier;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility, ItemTag.OnStageBeginEffect, ItemTag.AIBlacklist };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, ItemTag.OnStageBeginEffect, ItemTag.AIBlacklist };
 
         public override GameObject ItemModel => null;
 

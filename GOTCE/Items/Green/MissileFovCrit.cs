@@ -21,7 +21,7 @@ namespace GOTCE.Items.Green
 
         public override ItemTier Tier => ItemTier.Tier2;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage, ItemTag.Utility };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, ItemTag.Utility };
 
         public override GameObject ItemModel => null;
 

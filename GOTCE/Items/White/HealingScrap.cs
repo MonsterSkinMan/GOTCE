@@ -25,7 +25,7 @@ namespace GOTCE.Items.White
 
         public override ItemTier Tier => ItemTier.Tier1;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility, ItemTag.PriorityScrap, ItemTag.CannotDuplicate, ItemTag.OnStageBeginEffect, ItemTag.AIBlacklist };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, ItemTag.PriorityScrap, ItemTag.CannotDuplicate, ItemTag.OnStageBeginEffect, ItemTag.AIBlacklist };
 
         public override GameObject ItemModel => null;
 

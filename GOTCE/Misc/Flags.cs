@@ -30,6 +30,7 @@ namespace GOTCE.Misc {
     }
     public static class Flags {
         public static void Initialize() {
+            // max index of itemtag is hardcoded to 21 because the hopoo james
             IL.RoR2.ItemCatalog.SetItemDefs += (il) => {
                 ILCursor c = new ILCursor(il);
                 if(c.TryGotoNext(MoveType.After,x => x.MatchLdcI4((int)ItemTag.Count))){

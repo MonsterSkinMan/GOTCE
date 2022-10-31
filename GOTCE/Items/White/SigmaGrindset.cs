@@ -21,7 +21,7 @@ namespace GOTCE.Items.White
         public override GameObject ItemModel => null;
         public override string ItemName => "Sigma Grindset";
         public override string ItemPickupDesc => "On sprint crit, permanently gain +30% (+20% per stack) regen. Gain 2% sprint crit chance. ";
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Healing };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Healing };
         public override ItemTier Tier => ItemTier.Tier1;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
