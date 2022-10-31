@@ -12,28 +12,38 @@ namespace GOTCE.Components
         // this monobehavior is attached to every charactermaster when they spawn
         // store per-master variables here (like sprint crit chance etc)
 
-        public float stageCritChance;
-        public float sprintCritChance;
-        public float fovCritChance;
-        public float respawnChance;
-        public int crownPrinceUses;
-        public float crownPrinceTrueKillChance;
-        [HideInInspector] public float defibrillatorRespawnChance;
-        public int clockDeathCount = 0;
-
-        private float deathTimer = 0f;
-        private GameObject voidVFX;
+        // generic player stuff
         private CharacterMaster master;
         private Inventory inventory;
         private CharacterBody body;
-        public int game_count;
-        public int total_sprint_crits = 0;
 
-        // add more of these for every respawn chance item
+        // critical chances
+        public float stageCritChance;
+        public float sprintCritChance;
+        public float fovCritChance;
+
+        // item: crown prince
+        public int crownPrinceUses;
+        public float crownPrinceTrueKillChance;
+
+        // item: defibrillator
+        [HideInInspector] public float defibrillatorRespawnChance;
+
+        // item: grandfather clock
+        public int clockDeathCount = 0;
+        private float deathTimer = 0f;
+        private GameObject voidVFX;
+        // item: gabe's shank
+        public int game_count;
+        // item: sigma grindset
+        public int total_sprint_crits = 0;
+        
+        // run stats
         public int deathCount;
 
         private void Start()
-        {
+        {   
+            // assign on-start vars and load void death vfx
             if (gameObject.GetComponent<CharacterMaster>()) {
                 master = gameObject.GetComponent<CharacterMaster>();
                 body = master.GetBody();
@@ -45,6 +55,7 @@ namespace GOTCE.Components
 
         private void UpdateChances(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
         {
+            // critical chances
             if (body && body.inventory && body.masterObject.GetComponent<GOTCE_StatsComponent>())
             {
                 // fov crit 
@@ -58,9 +69,9 @@ namespace GOTCE.Components
                 if (body.inventory.GetItemCount(Items.White.gd2.Instance.ItemDef) > 0) { sprCritChanceTmp += 5f; }
                 sprintCritChance = sprCritChanceTmp;
 
-                respawnChance = defibrillatorRespawnChance;
-                // crownPrinceTrueKillChance = body.inventory.GetItemCount();
             }
+            
+            // grandfather clock stage crit stuff
 
             if (clockDeathCount > 0)
             {
@@ -79,12 +90,14 @@ namespace GOTCE.Components
             
         }
 
+        // this function exists solely so suicide can be used as a courotine
         public void Die() {
             body.healthComponent.Suicide();
         }
 
+        // returns the player's stage crit value after taking all items into consideration, should be used before attempting a stage crit
         public void DetermineStageCrit()
-        { // stage crit goes here so i can make sure it's been determined BEFORE the characterbody tries to get it
+        { 
             Inventory inv = gameObject.GetComponent<Inventory>();
             float stageCritChanceInc = 0;
             stageCritChanceInc += 10f * inv.GetItemCount(GOTCE.Items.White.FaultySpacetimeClock.Instance.ItemDef);
@@ -95,9 +108,8 @@ namespace GOTCE.Components
             stageCritChance = stageCritChanceInc;
         }
         
+        // dio revive but doesnt give an extra dio and requires no arguments
         public void RespawnExtraLife() {
-            // inventory.GiveItem(RoR2Content.Items.ExtraLifeConsumed);
-            // CharacterMasterNotificationQueue.SendTransformNotification(this, RoR2Content.Items.ExtraLife.itemIndex, RoR2Content.Items.ExtraLifeConsumed.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
             Vector3 vector = master.deathFootPosition;
             if (master.killedByUnsafeArea)
             {
