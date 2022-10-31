@@ -20,12 +20,12 @@ namespace GOTCE.Misc {
         Consumable = 97,
         Masochist = 98,
         OnDeathEffect = 99,
-        OnStageBeginEffect = 100,
-        WhipAndNaeNae = 101,
-        Galsone = 102,
-        BackupMagSynergy = 103,
-        Cracked = 104,
-        Bullshit = 105,
+        WhipAndNaeNae = 100,
+        Galsone = 101,
+        BackupMagSynergy = 102,
+        Cracked = 103,
+        Bullshit = 104,
+        NonLunarLunar = 105,
 
     }
     public static class Flags {

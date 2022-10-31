@@ -33,7 +33,7 @@ namespace GOTCE.Items.White
         private bool lastStageWasCrit = true;
         public override GameObject ItemModel => null;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.OnStageBeginEffect, ItemTag.AIBlacklist };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.OnStageBeginEffect, ItemTag.AIBlacklist, GOTCETags.Crit };
 
         public override ItemTier Tier => ItemTier.Tier1;
 

@@ -24,7 +24,7 @@ namespace GOTCE.Items.Red
 
         public override ItemTier Tier => ItemTier.Tier3;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.NonLunarLunar };
 
         public override GameObject ItemModel => null;
 

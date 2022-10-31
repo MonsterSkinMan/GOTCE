@@ -25,7 +25,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemPickupDesc => "Gain extra utility charges and movement speed, but greatly reduce your damage.";
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, GOTCETags.Masochist };
 
         public override ItemTier Tier => ItemTier.Lunar;
 

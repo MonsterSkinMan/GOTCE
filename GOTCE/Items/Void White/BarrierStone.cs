@@ -24,7 +24,7 @@ namespace GOTCE.Items.VoidWhite
 
         public override ItemTier Tier => ItemTier.VoidTier1;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Healing, ItemTag.Utility };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Healing, ItemTag.Utility, GOTCETags.BarrierRelated };
 
         public override void Init(ConfigFile config)
         {

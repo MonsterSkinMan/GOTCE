@@ -23,7 +23,7 @@ namespace GOTCE.Items.Lunar
 
         public override ItemTier Tier => ItemTier.Lunar;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.BackupMagSynergy, GOTCETags.Masochist };
 
         public override GameObject ItemModel => null;
 

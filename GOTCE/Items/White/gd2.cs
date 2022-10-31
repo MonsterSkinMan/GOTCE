@@ -21,7 +21,7 @@ namespace GOTCE.Items.White
         public override GameObject ItemModel => null;
         public override string ItemName => "#ror2-discussion";
         public override string ItemPickupDesc => "On 'critcal sprint', your attacks inflict blight for a short duration.";
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.Crit };
         public override ItemTier Tier => ItemTier.Tier1;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()

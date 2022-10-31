@@ -24,7 +24,7 @@ namespace GOTCE.Items.White
 
         public override ItemTier Tier => ItemTier.VoidTier1;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, GOTCETags.Unstable, GOTCETags.NonLunarLunar };
 
         public override GameObject ItemModel => null;
 

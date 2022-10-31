@@ -21,7 +21,7 @@ namespace GOTCE.Items.Yellow
         public override string ItemName => "Viscous Blast";
         public override string ItemPickupDesc => "Emit a devastating explosion on death.";
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, ItemTag.AIBlacklist };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, ItemTag.AIBlacklist, GOTCETags.OnDeathEffect };
 
         public override ItemTier Tier => ItemTier.Boss;
 

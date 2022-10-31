@@ -21,7 +21,7 @@ namespace GOTCE.Items.White
         public override GameObject ItemModel => null;
         public override string ItemName => "Gummy Vitamins";
         public override string ItemPickupDesc => "Gain a chance to 'critcally sprint', doubling your speed.";
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.Crit };
         public override ItemTier Tier => ItemTier.Tier1;
         public EventHandler<SprintCritEventArgs> OnSprintCrit;
 
