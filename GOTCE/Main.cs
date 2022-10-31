@@ -131,7 +131,7 @@ namespace GOTCE
                 }
             }
 
-            // add spacetime clock before other items since others might depend on it's event
+            // add crit type items before other items as the other items rely on the events of crit types
             ItemBase faulty = (ItemBase)System.Activator.CreateInstance(typeof(GOTCE.Items.White.FaultySpacetimeClock));
             if (ValidateItem(faulty, Items))
             {
@@ -359,7 +359,6 @@ namespace GOTCE
             GOTCEExpansionDef.disabledIconSprite = sotv.disabledIconSprite;
             GOTCEExpansionDef.requiredEntitlement = sotv.requiredEntitlement;
             GOTCEExpansionDef.runBehaviorPrefab = GOTCERunBehavior;
-            //SpikestripContentBase.expansionDefContent.Add(GOTCEExpansionDef);
             LanguageAPI.Add(GOTCEExpansionDef.nameToken, "Gamers of The Cracked Emoji");
             LanguageAPI.Add(GOTCEExpansionDef.descriptionToken, "Adds content from the 'GOTCE' mod to the game.");
         }

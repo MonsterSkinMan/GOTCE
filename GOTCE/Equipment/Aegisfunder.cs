@@ -1,4 +1,4 @@
-/* using RoR2;
+using RoR2;
 using R2API;
 using UnityEngine;
 using BepInEx.Configuration;
@@ -82,6 +82,7 @@ namespace GOTCE.Equipment
         private float interval = 0.1f;
         private float intervalAegis = 1f;
         private GameObject prefab;
+        private GameObject aegis;
         private CharacterMaster master;
         private InputBankTest input;
         private bool shouldFire = false;
@@ -112,10 +113,7 @@ namespace GOTCE.Equipment
             {
                 timer = 0f;
                 ProcChainMask mask = new ProcChainMask();
-                mask.AddProc(ProcType.AACannon);
-                mask.AddProc(ProcType.PlasmaCore);
                 GameObject proj = prefab.InstantiateClone("guh");
-                proj.layer = LayerIndex.projectile.intVal;
                 FireProjectileInfo info = new()
                 {
                     damage = body.damage * 2.5f,
@@ -144,4 +142,4 @@ namespace GOTCE.Equipment
         }
 
     }
-} */
+} 
