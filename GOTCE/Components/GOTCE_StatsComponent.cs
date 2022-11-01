@@ -37,6 +37,9 @@ namespace GOTCE.Components
         public int game_count;
         // item: sigma grindset
         public int total_sprint_crits = 0;
+        // item: unseasoned patty
+        public List<GameObject> bubbles = new();
+        public bool withinBubble = false;
         
         // run stats
         public int deathCount;
@@ -69,6 +72,11 @@ namespace GOTCE.Components
                 if (body.inventory.GetItemCount(Items.White.gd2.Instance.ItemDef) > 0) { sprCritChanceTmp += 5f; }
                 sprintCritChance = sprCritChanceTmp;
 
+            }
+
+            if (withinBubble) {
+                args.attackSpeedMultAdd += 0.03f;
+                withinBubble = false;
             }
             
             // grandfather clock stage crit stuff
