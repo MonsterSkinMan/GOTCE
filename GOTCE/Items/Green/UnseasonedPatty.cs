@@ -42,6 +42,22 @@ namespace GOTCE.Items.Green
         public override void Hooks()
         {
             On.RoR2.GlobalEventManager.OnCharacterDeath += Kill;
+            On.RoR2.CharacterBody.AddTimedBuff_BuffDef_float += BlockFruiting;
+            RecalculateStatsAPI.GetStatCoefficients += (body, args) => {
+                if (NetworkServer.active && GetCount(body) > 0) {
+                    bool cantScale = body.equipmentSlot.equipmentIndex == RoR2Content.Equipment.AffixRed.equipmentIndex || body.equipmentSlot.equipmentIndex == DLC1Content.Equipment.VendingMachine.equipmentIndex;
+                    float increase = 5 + (2 * (GetCount(body) - 1));
+                    if (!cantScale) {
+                        increase *= body.master.luck;
+                    }
+                    args.baseHealthAdd += increase;
+                }
+            };
+            // On.RoR2.Interactor.PerformInteraction += scaleswithattackspeed;
+        }
+
+        public void scaleswithattackspeed(On.RoR2.Interactor.orig_PerformInteraction orig, Interactor self, UnityEngine.GameObject interactableObject) {
+            // todo: write this
         }
 
         // TOOD: network this it probably doesnt work in multiplayer
@@ -62,18 +78,15 @@ namespace GOTCE.Items.Green
                 }
 
                 // total ghors tomes
-                int totalTomes = 0;
-                foreach(ItemIndex item in report.attackerBody.inventory.itemAcquisitionOrder) {
-                    if (item == RoR2Content.Items.BonusGoldPackOnKill.itemIndex) {
-                        totalTomes += GetCountSpecific(report.attackerBody, ItemCatalog.GetItemDef(item));
-                    }
-                }
+                int totalTomes = GetCountSpecific(report.attackerBody, RoR2Content.Items.BonusGoldPackOnKill);
+                
                 // bools
                 bool wasOnFire = report.victimBody.HasBuff(RoR2Content.Buffs.OnFire) && !report.victimBody.HasBuff(RoR2Content.Buffs.AffixRed);
                 bool glacialWithDebuffs = report.victimBody.HasBuff(RoR2Content.Buffs.AffixBlue) && report.victimBody.buffs.Length >= 2;
                 bool moreHealth = report.victimBody.maxHealth > (report.attackerBody.maxHealth * (4 / GetCount(report.attackerBody)));
                 bool closeToTele = Vector3.Distance(report.victimBody.transform.position, TeleporterInteraction.instance.transform.position) <= (20 + (4 * (GetCount(report.victimBody) - 1)));
                 bool noSeasoning = !report.attackerBody.HasBuff(Seasoning.buff);
+                bool withinBoss = false;
 
                 /* Debug.Log("wasOnFire: " + wasOnFire);
                 Debug.Log("glacialWithDebuffs: " + glacialWithDebuffs);
@@ -83,28 +96,50 @@ namespace GOTCE.Items.Green
                 Debug.Log("totalGreens: " + total);
                 Debug.Log("totalTomes: " + totalTomes); */
 
-                // TODO: within boss conditions
+                SphereSearch search = new();
+                List<HurtBox> hurtboxBuffer = new();
+                search.radius = 2;
+                search.origin = report.victimBody.corePosition;
+                search.mask = LayerIndex.entityPrecise.mask;
+                search.RefreshCandidates();
+                search.FilterCandidatesByDistinctHurtBoxEntities();
+                search.OrderCandidatesByDistance();
+                search.GetHurtBoxes(hurtboxBuffer);
+                search.ClearCandidates();
+
+                foreach (HurtBox box in hurtboxBuffer) {
+                    if (box && box.healthComponent && box.healthComponent.body && box.healthComponent.body.isChampion) {
+                        if (box.healthComponent.health >= (0.5 * box.healthComponent.body.maxHealth)) {
+                            withinBoss = true;
+                        }
+                    }
+                }
 
                 // ints
                 int reqGreens = 5 - (1 * (GetCount(report.attackerBody) - 1));
                 int reqTomes = 5;
 
                 if (total >= reqGreens && totalTomes >= reqTomes) {
-                    if (wasOnFire || glacialWithDebuffs || (moreHealth && closeToTele) && noSeasoning) {
+                    if (wasOnFire || glacialWithDebuffs || moreHealth || (withinBoss && closeToTele) && noSeasoning) {
                         int stacks = Mathf.CeilToInt(Utils.MathHelpers.InverseHyperbolicScaling(10, 1, 1, GetCount(report.attackerBody)));
-                        float radius = 14.137f + (6.442f * (GetCount(report.attackerBody) - 1));
+                        float radius = (14.137f + (6.442f * (GetCount(report.attackerBody) - 1))) * 0.5f;
                         // float radius = 5;
+
+                        // guh why doesnt addbuff have a stacks param why do i have to do this
+                        for (int i = 0; i < stacks; i++) {
+                            report.attackerBody.AddBuff(Seasoning.buff);
+                        }
                     
                         // do the bubble thing
                         GameObject bubble = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                        bubble.GetComponent<SphereCollider>().isTrigger = true;
+                        bubble.GetComponent<SphereCollider>().isTrigger = true; // trigger so it doesnt have actual collision
                         bubble.AddComponent<BubbleController>();
                         bubble.GetComponent<BubbleController>().component = report.attackerBody.masterObject.GetComponent<Components.GOTCE_StatsComponent>();
                         bubble.transform.position = report.victimBody.corePosition;
-                        bubble.GetComponentInChildren<MeshRenderer>().material = Addressables.LoadAssetAsync<Material>("RoR2/Base/Teleporters/matTeleporterRangeIndicator.mat").WaitForCompletion();
+                        bubble.GetComponentInChildren<MeshRenderer>().material = Main.SecondaryAssets.LoadAsset<Material>("Assets/Materials/matBubble.mat");
                         // bubble.transform.localScale = new Vector3(radius, radius, radius); // .normalized
                         bubble.layer = LayerIndex.projectile.intVal;
-                        bubble.GetComponent<BubbleController>().radius = radius;
+                        bubble.GetComponent<BubbleController>().radiusBase = radius;
                         Debug.Log(bubble.transform.position);
                         report.attackerBody.masterObject.GetComponent<Components.GOTCE_StatsComponent>().bubbles.Add(bubble);
                     }
@@ -124,6 +159,18 @@ namespace GOTCE.Items.Green
                 
             }
             orig(self, report);
+        }
+
+        public void BlockFruiting(On.RoR2.CharacterBody.orig_AddTimedBuff_BuffDef_float orig, CharacterBody self, BuffDef buff, float duration) {
+            if (self.inventory) {
+                if (buff == RoR2Content.Buffs.Fruiting && GetCountSpecific(self, ItemDef) > 0) {
+                    float chance = self.attackSpeed * 0.1f;
+                    if (Util.CheckRoll(chance, self.master)) {
+                        duration = 0f;
+                    }
+                } 
+            }
+            orig(self, buff, duration);
         }
     }
 
@@ -153,8 +200,9 @@ namespace GOTCE.Items.Green
 
         float stopwatchEnemies = 0f;
         float stopwatchClenase = 0f;
+        public float radiusBase;
+        public float radiusInc;
         public float radius;
-        float prevRadius = 28.58312f; // obscure number so this is basically just a bool at first
 
         List<HurtBox> hurtboxBuffer;
         SphereSearch search;
@@ -164,11 +212,13 @@ namespace GOTCE.Items.Green
             search = new();
             hurtboxBuffer = new();
         }
-        public void FixedUpdate() { // TODO: this doesnt work
+        public void FixedUpdate() { // TODO: this partially works
             if (radius != null) {
-                float vel = 6f;
-                float num = Mathf.SmoothDamp(gameObject.transform.localScale.x, radius, ref vel, 0.6f);
-                gameObject.transform.localScale = new Vector3(num, num, num);
+                radius = radiusBase + radiusInc;
+                // float vel = 6;
+                // float num = Mathf.SmoothDamp(gameObject.transform.localScale.x, radius * 2, ref vel, 0.6f);
+                gameObject.transform.localScale = new Vector3(radius * 2, radius * 2, radius * 2);
+                // gameObject.transform.localScale = new Vector3(num, num, num);
             }
             stopwatch += Time.fixedDeltaTime;
             if (stopwatch >= lifetime) {
@@ -179,7 +229,7 @@ namespace GOTCE.Items.Green
             if (stopwatchSearch >= stopwatchDelay) {
                 hurtboxBuffer.Clear();
                 stopwatchSearch = 0;
-                search.radius = radius;
+                search.radius = radiusBase + radiusInc;
                 search.origin = gameObject.transform.position;
                 search.mask = LayerIndex.entityPrecise.mask;
                 search.RefreshCandidates();
@@ -187,6 +237,24 @@ namespace GOTCE.Items.Green
                 search.OrderCandidatesByDistance();
                 search.GetHurtBoxes(hurtboxBuffer);
                 search.ClearCandidates();
+
+                radiusInc = 0;
+                // TODO: this doesn't work
+                /* foreach (TeamComponent com in TeamComponent.GetTeamMembers(TeamIndex.Monster)) {
+                    if (com.body) {
+                        radiusInc += 0.2f * com.body.GetBuffCount(Seasoning.buff);
+                    }
+                }
+                foreach (TeamComponent com in TeamComponent.GetTeamMembers(TeamIndex.Player)) {
+                    if (com.body) {
+                        radiusInc += 0.2f * com.body.GetBuffCount(Seasoning.buff);
+                    }
+                }
+                foreach (TeamComponent com in TeamComponent.GetTeamMembers(TeamIndex.Void)) {
+                    if (com.body) {
+                        radiusInc += 0.2f * com.body.GetBuffCount(Seasoning.buff);
+                    }
+                } */
             }
 
             stopwatchClenase += Time.fixedDeltaTime;
@@ -214,7 +282,10 @@ namespace GOTCE.Items.Green
             }
         }
         public void OnDestroy() {
-            component.bubbles.Remove(gameObject);
+            // check for component here in the case that the player dies before a bubble expires
+            if (component) {
+                component.bubbles.Remove(gameObject);
+            }
         }
     }
 }

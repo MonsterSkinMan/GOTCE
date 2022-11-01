@@ -40,6 +40,7 @@ namespace GOTCE.Components
         // item: unseasoned patty
         public List<GameObject> bubbles = new();
         public bool withinBubble = false;
+        public bool lastWasCombatShrine = false;
         
         // run stats
         public int deathCount;

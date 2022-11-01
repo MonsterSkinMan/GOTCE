@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2094324999
+CRC: 1001473637
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 132fb010e2c7abd0aa8b0da7bedd0570
+    Hash: dcfedc9fc61179983bf57efe49fe5508
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 107e4efb0793468f31b5ec7b0df8f295
+    Hash: 79d4ba6fa3fe576c52cf763f3ce8dcb6
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -46,11 +46,11 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 1790887305, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: 372142912, guid: d382a022563c7517aadbc92ca1060016, type: 3}
+- Class: 114
   Script: {fileID: 952828898, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 161585894, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: 372142912, guid: d382a022563c7517aadbc92ca1060016, type: 3}
 - Class: 114
   Script: {fileID: 1392865457, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
@@ -176,6 +176,7 @@ Assets:
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/double.png
 - Assets/Prefabs/Survivors/Crackmando/CrackmandoBody.prefab
 - Assets/Prefabs/Enemies/Vermin/mdlVermin.prefab
+- Assets/Materials/matBubble.mat
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/rounder.png
 - Assets/Prefabs/Interactables/ShrineDML/ShrineDML.prefab
 - Assets/Prefabs/Projectiles/Aegiscentrism/OrbitalAegis.prefab
