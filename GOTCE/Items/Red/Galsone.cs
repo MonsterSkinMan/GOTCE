@@ -29,7 +29,7 @@ namespace GOTCE.Items.Red
         // white gasoline string
         public override ItemTier Tier => ItemTier.Tier3;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, ItemTag.AIBlacklist, ItemTag.OnKillEffect };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, ItemTag.AIBlacklist, ItemTag.OnKillEffect, GOTCETags.Galsone };
 
         public override GameObject ItemModel => null;
 

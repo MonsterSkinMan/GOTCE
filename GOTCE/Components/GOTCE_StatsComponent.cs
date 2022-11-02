@@ -41,6 +41,8 @@ namespace GOTCE.Components
         public List<GameObject> bubbles = new();
         public bool withinBubble = false;
         public bool lastWasCombatShrine = false;
+        //item: peer reviewed source
+        public int identifiedkillCount = 0;
         
         // run stats
         public int deathCount;
@@ -66,8 +68,8 @@ namespace GOTCE.Components
                 float fovCritChanceTmp = 0f;
                 fovCritChanceTmp += 10f*(inventory.GetItemCount(Items.White.ZoomLenses.Instance.ItemDef));
                 fovCritChance = fovCritChanceTmp;
+                
                 // sprint crit 
-
                 float sprCritChanceTmp = 0f;
                 sprCritChanceTmp += 8f*(inventory.GetItemCount(Items.White.GummyVitamins.Instance.ItemDef));
                 if (body.inventory.GetItemCount(Items.White.gd2.Instance.ItemDef) > 0) { sprCritChanceTmp += 5f; }
@@ -75,6 +77,7 @@ namespace GOTCE.Components
 
             }
 
+            // grant attack speed if the player is within an ethereal bubble from seasoned patty
             if (withinBubble) {
                 args.attackSpeedMultAdd += 0.03f;
                 withinBubble = false;
@@ -91,6 +94,7 @@ namespace GOTCE.Components
                     origin = body.transform.position,
                     scale = 1f
                 }, true);
+                
             }
         }
 
