@@ -244,15 +244,6 @@ namespace GOTCE
             local multiplayer hook
             run modded ror2 twice, create a multiplayer lobby in one, then do connect localhost:7777 in the other instance
             */
-
-            var materials = MainAssets.LoadAllAssets<Material>();
-            foreach (Material material in materials)
-                if (material.shader.name.StartsWith("StubbedShader"))
-                    material.shader = Resources.Load<Shader>("shaders" + material.shader.name.Substring(13));
-            var materials2 = SecondaryAssets.LoadAllAssets<Material>();
-            foreach (Material material in materials)
-                if (material.shader.name.StartsWith("StubbedShader"))
-                    material.shader = Resources.Load<Shader>("shaders" + material.shader.name.Substring(13));
         }
 
         /// <summary>
