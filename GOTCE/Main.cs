@@ -6,6 +6,7 @@ using GOTCE.Enemies.Changes;
 using GOTCE.Equipment;
 using GOTCE.Equipment.EliteEquipment;
 using GOTCE.Items;
+using GOTCE.Tiers;
 using R2API;
 using R2API.Networking;
 using R2API.Utils;
@@ -147,6 +148,13 @@ namespace GOTCE
             {
                 gummy.Init(Config);
             }
+            // grab tiers and add them
+            var Tiers = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(TierBase)));
+            foreach (var tier in Tiers) {
+                TierBase Tier = (TierBase)Activator.CreateInstance(tier);
+                Tier.Awake();
+            }
+
 
             //This section automatically scans the project for all items
             var ItemTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(ItemBase)));
