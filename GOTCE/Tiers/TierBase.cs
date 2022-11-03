@@ -36,6 +36,7 @@ namespace GOTCE.Tiers {
 
         public virtual void Awake() {
             CreateTier();
+            PostCreation();
         }
 
         protected void CreateTier() {
@@ -52,6 +53,10 @@ namespace GOTCE.Tiers {
             tier._tier = TierEnum;
 
             R2API.ContentAddition.AddItemTierDef(tier);
+        }
+
+        public virtual void PostCreation() {
+
         }
     }
 }

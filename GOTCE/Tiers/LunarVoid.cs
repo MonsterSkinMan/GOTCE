@@ -22,5 +22,18 @@ namespace GOTCE.Tiers {
         public override ItemTierDef.PickupRules PickupRules => ItemTierDef.PickupRules.ConfirmAll;
         public override ItemTier TierEnum => (ItemTier)42;
         public override GameObject HighlightPrefab => Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Common/VoidOrb.prefab").WaitForCompletion();
+
+        public override void PostCreation()
+        {
+            base.PostCreation();
+            On.RoR2.Run.BuildDropTable += (orig, self) => {
+                orig(self);
+                foreach (ItemDef item in ItemCatalog.allItemDefs) {
+                    if (item._itemTierDef == tier) {
+                        self.availableVoidTier2DropList.Add(item.CreatePickupDef().pickupIndex);
+                    }
+                }
+            };
+        }
     }
 }
