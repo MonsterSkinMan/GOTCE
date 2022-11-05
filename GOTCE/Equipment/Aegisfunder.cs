@@ -114,6 +114,9 @@ namespace GOTCE.Equipment
                 timer = 0f;
                 ProcChainMask mask = new ProcChainMask();
                 GameObject proj = prefab.InstantiateClone("guh");
+                Vector3 forward = body.transform.forward;
+                float distance = 3;
+                Vector3 pos = body.transform.position + forward*distance;
                 FireProjectileInfo info = new()
                 {
                     damage = body.damage * 2.5f,
@@ -121,7 +124,7 @@ namespace GOTCE.Equipment
                     speedOverride = 350f,
                     crit = Util.CheckRoll(body.crit, body.master),
                     damageColorIndex = DamageColorIndex.WeakPoint,
-                    position = body.corePosition,
+                    position = pos,
                     rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(body.equipmentSlot.GetAimRay().direction, -1.5f, 1.5f, -1.5f, 1.5f)),
                     owner = body.gameObject,
                     procChainMask = mask

@@ -12,8 +12,6 @@ namespace GOTCE.Based
         public static void DoTheBased()
         {
             On.RoR2.SceneDirector.Start += SceneDirector_Start;
-
-            
         }
 
         private static void SceneDirector_Start(On.RoR2.SceneDirector.orig_Start orig, SceneDirector self)

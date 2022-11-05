@@ -126,6 +126,9 @@ namespace GOTCE.Enemies
             prefabMaster = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToCloneMaster).WaitForCompletion(), CloneName + "Master");
         }
 
+        /// <summary>
+        /// A method to destroy the previous skill family of a slot and replace it with a new one
+        /// </summary>
         public void ReplaceSkill(GenericSkill slot, SkillDef replaceWith, string familyName = "temp")
         {
             SkillFamily family = ScriptableObject.CreateInstance<SkillFamily>();
@@ -159,7 +162,10 @@ namespace GOTCE.Enemies
                 model.transform.SetParent(transform);
             }
         }
-
+        
+        /// <summary>
+        /// A method to replace the meshes (either all or via a list of renderers) of a prefab
+        /// </summary>
         public void SwapMeshes(GameObject prefab, Mesh mesh, bool all = false, List<int> renders = null)
         {
             CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();
@@ -208,6 +214,9 @@ namespace GOTCE.Enemies
             }
         }
 
+        /// <summary>
+        /// A method to disable the meshes from a list of renderers
+        /// </summary>
         public void DisableMeshes(GameObject prefab, List<int> renders)
         {
             CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();
@@ -217,6 +226,9 @@ namespace GOTCE.Enemies
             }
         }
 
+        /// <summary>
+        /// A method to replace the materials on the meshes of a prefab
+        /// </summary>
         public void SwapMaterials(GameObject prefab, Material mat, bool all = false, List<int> renders = null)
         {
             CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();
@@ -235,8 +247,15 @@ namespace GOTCE.Enemies
                     model.baseRendererInfos[i].defaultMaterial = mat;
                 }
             }
-        }
+        }  
 
+        /// <summary>
+        /// A method to replace the model of a prefab.
+        /// <para> Destroys the previous model and sets a new one, also adds a HurtBoxGroup </para>
+        /// </summary>
+        /// <param name="prefab">the prefab to replace</param>
+        /// <param name="model">the model to replace with</param>
+        /// <param name="turnSpeed">the turnspeed to assign to the CharacterDirection</param>
         public void SetupModel(GameObject prefab, GameObject model, float turnSpeed = 1200f)
         {
             DestroyModelLeftovers(prefab);
@@ -281,11 +300,20 @@ namespace GOTCE.Enemies
             model.AddComponent<HurtBoxGroup>();
         }
 
-        public void SetupHurtbox(GameObject prefab, GameObject model, Collider collidier, short index, bool weakPoint = false, HurtBox.DamageModifier damageModifier = HurtBox.DamageModifier.Normal)
+        /// <summary>
+        /// A method to create a hurtbox on a model.
+        /// </summary>
+        /// <param name="prefab">the prefab</param>
+        /// <param name="model">the model of the prefab</param>
+        /// <param name="collider">the object to apply the hurtbox to</param>
+        /// <param name="index">the index of the new hurtbox, starting from 0</param>
+        /// <param name="weakPoint">whether this hurtbox is a railgunner weakpoint</param>
+        /// <param name="damageModifier">the damage modifier of this hurtbox</param>
+        public void SetupHurtbox(GameObject prefab, GameObject model, Collider collider, short index, bool weakPoint = false, HurtBox.DamageModifier damageModifier = HurtBox.DamageModifier.Normal)
         {
             HurtBoxGroup hurtBoxGroup = model.GetComponent<HurtBoxGroup>();
 
-            HurtBox componentInChildren = collidier.gameObject.AddComponent<HurtBox>();
+            HurtBox componentInChildren = collider.gameObject.AddComponent<HurtBox>();
             componentInChildren.gameObject.layer = LayerIndex.entityPrecise.intVal;
             componentInChildren.healthComponent = prefab.GetComponent<HealthComponent>();
             componentInChildren.damageModifier = damageModifier;

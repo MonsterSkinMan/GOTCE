@@ -222,6 +222,9 @@ namespace GOTCE
             Zased.DoTheBased();
             Based.SuppressiveNader.Hook();
 
+            // alts
+            AltSkills.AddAlts();
+
             var enemyTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EnemyBase)));
 
             foreach (var enemyType in enemyTypes)
