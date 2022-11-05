@@ -223,7 +223,10 @@ namespace GOTCE
             Based.SuppressiveNader.Hook();
 
             // alts
-            AltSkills.AddAlts();
+            [SystemInitializer(dependencies: typeof(ItemCatalog))]
+            void guh() {
+                AltSkills.AddAlts();
+            }
 
             var enemyTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EnemyBase)));
 
