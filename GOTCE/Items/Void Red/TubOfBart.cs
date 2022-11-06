@@ -25,7 +25,7 @@ namespace GOTCE.Items.VoidRed
 
         public override ItemTier Tier => ItemTier.VoidTier3;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility };
 
         public override GameObject ItemModel => null;
 

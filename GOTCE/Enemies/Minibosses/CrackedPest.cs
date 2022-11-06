@@ -62,7 +62,7 @@ namespace GOTCE.Enemies.Minibosses
             SetupHurtbox(prefab, model, box2, 1);
             SetupHurtbox(prefab, model, glasses1, 3);
             SetupHurtbox(prefab, model, glasses2, 4);
-            SetupHurtbox(prefab, model, boxweak, 2, true, HurtBox.DamageModifier.SniperTarget);
+            SetupHurtbox(prefab, model, boxweak, 2, true);
 
             model.GetComponent<HurtBoxGroup>().hurtBoxes = new HurtBox[] {
                 box1.gameObject.GetComponent<HurtBox>(),

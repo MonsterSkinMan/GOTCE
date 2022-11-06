@@ -1,4 +1,4 @@
-/* using BepInEx.Configuration;
+using BepInEx.Configuration;
 using R2API;
 using RoR2;
 using System.Data;
@@ -24,7 +24,7 @@ namespace GOTCE.Items.White
 
         public override ItemTier Tier => ItemTier.VoidTier1;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, GOTCETags.Unstable, GOTCETags.NonLunarLunar };
 
         public override GameObject ItemModel => null;
 
@@ -55,16 +55,18 @@ namespace GOTCE.Items.White
                     if (count > 0) {
                         int total = 0;
                         foreach (ItemIndex item in inv.itemAcquisitionOrder) {
-                            total += inv.GetItemCount(item);
+                            if (ItemCatalog.GetItemDef(item).tier != ItemTier.NoTier && ItemCatalog.GetItemDef(item).deprecatedTier != ItemTier.NoTier) {
+                                total += inv.GetItemCount(item);
+                            }
                         }
                         for (int i = 0; i < inv.itemAcquisitionOrder.Count; i++) {
                             ItemIndex index = inv.itemAcquisitionOrder[i];
-                            if (index != ItemDef.itemIndex) inv.RemoveItem(index, inv.GetItemCount(index));
+                            if (index != ItemDef.itemIndex && ItemCatalog.GetItemDef(index).tier != ItemTier.NoTier && ItemCatalog.GetItemDef(index).deprecatedTier != ItemTier.NoTier) {
+                                inv.RemoveItem(index, inv.GetItemCount(index));
+                            }
                         }
                         inv.GiveRandomItems(total, true, true);
                     }
-
-                    // TODO: items arent getting cleared before randomization
                 }
             }
             orig(self, info);
@@ -77,4 +79,4 @@ namespace GOTCE.Items.White
             }
         }
     }
-} */
+}

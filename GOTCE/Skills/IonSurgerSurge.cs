@@ -11,7 +11,7 @@ using GOTCE;
 
 namespace GOTCE.Skills
 {
-    public class IonSurgerSurge : SkillBase<IonSurgerSurge>
+    public class IonSurgerSurge : SkillBase<IonSurgerSurge>, IOnSurgeActivated
     {
         // private EntityStateConfiguration state = Addressables.LoadAssetAsync<EntityStateConfiguration>("RoR2/Base/Mage/EntityStates.Mage.FlyUpState.asset").WaitForCompletion();
 

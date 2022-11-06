@@ -20,9 +20,11 @@ namespace GOTCE.Items.VoidLunar
 
         public override string ItemLore => "Gaze upon it. Does order need to permeate all things in order to keep it in this world? Feel it in your hand, flowing like water in an ocean. Grasp it firmly, and it hardens to fit, feeling like a solid stone. Do you think chaos is innately evil? Disorder leads only to ruin? No. Order and law do not guarantee peace and good, just as the sun shining does not guarantee a warm day. You have much to learn from this world.";
 
-        public override ItemTier Tier => ItemTier.VoidTier1;
+        public override ItemTier Tier => Tiers.LunarVoid.Instance.TierEnum;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility };
+        public override ItemTierDef OverrideTierDef => Tiers.LunarVoid.Instance.tier;
+
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility };
 
         public override GameObject ItemModel => null;
 

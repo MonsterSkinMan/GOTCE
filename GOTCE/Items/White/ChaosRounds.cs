@@ -24,7 +24,7 @@ namespace GOTCE.Items.White
 
         public override ItemTier Tier => ItemTier.Tier1;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.Unstable };
 
         public override GameObject ItemModel => null;
 
@@ -78,6 +78,7 @@ namespace GOTCE.Items.White
                         info.rotation = Util.QuaternionSafeLookRotation(self.inputBank.aimDirection);
                         info.owner = self.gameObject;
                         ProjectileManager.instance.FireProjectile(info);
+
                     }
                 }
             }

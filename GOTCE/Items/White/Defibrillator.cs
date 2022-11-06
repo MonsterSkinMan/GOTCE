@@ -23,7 +23,7 @@ namespace GOTCE.Items.White
 
         public override ItemTier Tier => ItemTier.Tier1;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility, ItemTag.Damage, ItemTag.AIBlacklist };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, ItemTag.Damage, ItemTag.AIBlacklist };
         // ai blacklist cause too much effort to make it work for mobs for now lol
         // hook CharacterMaster.IsDeadAndOutOfLivesServer for that
 

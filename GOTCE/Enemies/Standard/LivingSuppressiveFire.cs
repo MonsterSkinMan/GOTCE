@@ -78,7 +78,7 @@ namespace GOTCE.Enemies.Standard
             SetupModel(prefab, model);
             SetupHurtbox(prefab, model, box1, 0);
             SetupHurtbox(prefab, model, box2, 1);
-            SetupHurtbox(prefab, model, boxweak, 2, true, HurtBox.DamageModifier.SniperTarget);
+            SetupHurtbox(prefab, model, boxweak, 2, true);
 
             model.GetComponent<HurtBoxGroup>().hurtBoxes = new HurtBox[] {
                 box1.gameObject.GetComponent<HurtBox>(),

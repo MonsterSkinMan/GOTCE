@@ -20,6 +20,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando {
             motor = base.characterMotor;
             motor.useGravity = false;
             motor.isFlying = true;
+            PlayAnimation("Body", "SlideForward", "SlideForward.playbackRate", duration);
             //Debug.Log("starting flight");
         }
 

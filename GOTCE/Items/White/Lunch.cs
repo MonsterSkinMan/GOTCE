@@ -22,9 +22,9 @@ namespace GOTCE.Items.White
 
         public override ItemTier Tier => ItemTier.Tier1;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Healing, ItemTag.Utility };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Healing, ItemTag.Utility, GOTCETags.TimeDependant };
 
-        public override GameObject ItemModel => null;
+        public override GameObject ItemModel => Main.GOTCEModels.LoadAsset<GameObject>("Assets/GOTCE/Lunch.prefab");
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/Lunch.png");
 

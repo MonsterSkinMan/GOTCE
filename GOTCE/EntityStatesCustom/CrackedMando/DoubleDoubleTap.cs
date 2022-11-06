@@ -20,6 +20,8 @@ namespace GOTCE.EntityStatesCustom.CrackedMando {
         public float procCoeff = 1f;
         public override void OnEnter() {
             base.OnEnter();
+            PlayAnimation("Gesture Additive, Left", "FirePistol, Left");
+            PlayAnimation("Gesture Additive, Right", "FirePistol, Right");
         }
         public override void OnExit()
         {

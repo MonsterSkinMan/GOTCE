@@ -20,7 +20,7 @@ namespace GOTCE.Items.White
         public override GameObject ItemModel => null;
         public override string ItemName => "Luckiest Mask";
         public override string ItemPickupDesc => "Gain a larger proc coeff. Breaks at low health.";
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.Consumable };
         public override ItemTier Tier => ItemTier.Tier1;
 
         public void Break(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo info)

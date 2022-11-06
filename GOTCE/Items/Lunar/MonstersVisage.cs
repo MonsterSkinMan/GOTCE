@@ -24,7 +24,7 @@ namespace GOTCE.Items.Lunar
 
         public override ItemTier Tier => ItemTier.Lunar;
 
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage };
 
         public override GameObject ItemModel => null;
 
@@ -51,6 +51,19 @@ namespace GOTCE.Items.Lunar
         public override void Hooks()
         {
             On.RoR2.HealthComponent.TakeDamage += On_HCTakeDamage;
+            On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) => {
+                orig(self);
+                VisageIndicatorBehavior com = self.gameObject.GetComponent<VisageIndicatorBehavior>();
+                bool flag = GetCount(self) > 0;
+                if (flag != com) {
+                    if (flag) {
+                        self.gameObject.AddComponent<VisageIndicatorBehavior>(); // this doesnt work guh
+                    }
+                    else {
+                        GameObject.Destroy(com);
+                    }
+                }
+            };
         }
 
         private void On_HCTakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)
@@ -94,6 +107,42 @@ namespace GOTCE.Items.Lunar
                 float num = damageInfo.damage;
             }
             orig(self, damageInfo);
+        }
+    }
+
+    public class VisageIndicatorBehavior : MonoBehaviour {
+        public GameObject indicator;
+
+        private bool indicatorEnabled
+        {
+            get
+            {
+                return indicator;
+            }
+            set
+            {
+                if (indicatorEnabled != value)
+                {
+                    if (value)
+                    {
+                        indicator = GameObject.Instantiate(MonstersVisage.HideAndShriek, gameObject.GetComponent<CharacterBody>().corePosition, Quaternion.identity);
+                        indicator.GetComponent<NetworkedBodyAttachment>().AttachToGameObjectAndSpawn(gameObject);
+                    }
+                    else
+                    {
+                        GameObject.Destroy(indicator);
+                        indicator = null;
+                    }
+                }
+            }
+        }
+
+        private void OnEnabled() {
+            indicatorEnabled = true;
+        }
+
+        private void OnDisabled() {
+            indicatorEnabled = false;
         }
     }
 }
