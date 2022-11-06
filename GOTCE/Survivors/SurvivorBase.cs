@@ -29,6 +29,7 @@ namespace GOTCE.Survivors
         public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.SOTVExpansionDef;
         public virtual SurvivorDef def {get; } = null;
         public abstract string name { get; }
+        public virtual bool clone { get; } = false;
 
         public virtual void Create()
         {
@@ -61,9 +62,12 @@ namespace GOTCE.Survivors
 
         public virtual void CreatePrefab()
         {
-            
-            
-            prefab = PrefabAPI.InstantiateClone(Main.SecondaryAssets.LoadAsset<GameObject>(bodypath), name);
+            if (!clone) {
+                prefab = PrefabAPI.InstantiateClone(Main.SecondaryAssets.LoadAsset<GameObject>(bodypath), name);
+            }
+            if (clone) {
+                prefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>(bodypath).WaitForCompletion(), name);
+            }
         }
 
         public void ReplaceSkill(GenericSkill slot, SkillDef replaceWith, string familyName = "temp")
@@ -90,6 +94,27 @@ namespace GOTCE.Survivors
             }
         }
 
+        public void ClearESM(GameObject prefab, GameObject master = null) {
+            foreach(EntityStateMachine esm in prefab.GetComponents<EntityStateMachine>()) {
+                GameObject.DestroyImmediate(esm);
+            }
+
+            if (master) {
+                foreach(EntityStateMachine esm in master.GetComponents<EntityStateMachine>()) {
+                    GameObject.DestroyImmediate(esm);
+                }
+            }
+        }
+
+        public EntityStateMachine AddESM(GameObject prefab, string name, SerializableEntityStateType initial) {
+            EntityStateMachine esm = prefab.AddComponent<EntityStateMachine>();
+            esm.customName = name;
+            esm.name = name;
+            esm.initialStateType = initial;
+            esm.mainStateType = initial;
+
+            return esm;
+        }
         public void RelocateMeshTransform(GameObject prefab, Transform transform, bool parent = false)
         {
             CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();

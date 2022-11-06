@@ -10,6 +10,7 @@ namespace GOTCE.Based {
         public static void AddAlts() {
             RexAlts();
             RGAlts();
+            HuntressAlts();
         }
 
         private static void RexAlts() {
@@ -29,7 +30,7 @@ namespace GOTCE.Based {
             };
 
             LanguageAPI.Add(Skills.SigmaShotgun.Instance.SkillDef.skillNameToken, "Stigmata Shotgun");
-            LanguageAPI.Add(Skills.SigmaShotgun.Instance.SkillDef.skillDescriptionToken, "Weakens. Fires 9 pollen pellets for 9x50% darg. 5% HP");
+            LanguageAPI.Add(Skills.SigmaShotgun.Instance.SkillDef.skillDescriptionToken, "Weakens. Fires 9 pollen pellets for 9x50% damage. 5% HP");
         }
 
         private static void RGAlts() {
@@ -98,6 +99,38 @@ namespace GOTCE.Based {
             secondary._skillFamily = rgSecondary;
             utility._skillFamily = rgUtility;
             special._skillFamily = rgSpecial; */
+        }
+
+        private static void HuntressAlts() {
+            GameObject huntressPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Huntress/HuntressBody.prefab").WaitForCompletion();
+
+            SkillLocator sl = huntressPrefab.GetComponent<SkillLocator>();
+
+            SkillFamily skillFamily;
+            // shark saw
+            skillFamily = sl.secondary.skillFamily;
+            Array.Resize(ref skillFamily.variants, skillFamily.variants.Length + 1);
+            skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
+            {
+                skillDef = Skills.Sawblade.Instance.SkillDef,
+                unlockableName = "",
+                viewableNode = new ViewablesCatalog.Node(Skills.SigmaShotgun.Instance.SkillDef.skillNameToken, false, null)
+            };
+
+            LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillNameToken, "Shark Saw");
+            LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillDescriptionToken, "Throw a fast piercing sawblade that moves along surfaces and repeatedly strikes enemies for 150%. Bleeds.");
+
+            /* On.RoR2.Projectile.ProjectileStickOnImpact.UpdateSticking += (orig, self) => {
+                if (self.stuckTransform == null && !self.gameObject.GetComponent<EntityStatesCustom.AltSkills.Huntress.MoveForward>()) {
+                    orig(self);
+                }
+                else if (self.stuckTransform && self.gameObject.GetComponent<EntityStatesCustom.AltSkills.Huntress.MoveForward>()) {
+                    self.gameObject.GetComponent<EntityStatesCustom.AltSkills.Huntress.MoveForward>().Move();
+                }
+                else {
+                    orig(self);
+                }
+            }; */
         }
     }
 
