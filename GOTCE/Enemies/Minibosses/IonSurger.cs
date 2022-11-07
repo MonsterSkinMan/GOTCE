@@ -1,4 +1,4 @@
-/* using R2API;
+using R2API;
 using RoR2;
 using UnityEngine;
 using RoR2.Skills;
@@ -13,7 +13,7 @@ namespace GOTCE.Enemies.Minibosses
     {
         public override string CloneName => "IonSurger";
         public override string PathToClone => "RoR2/Base/Mage/MageBody.prefab";
-        public override string PathToCloneMaster => "RoR2/Base/Wisp/WispMaster.prefab";
+        public override string PathToCloneMaster => "RoR2/Base/Merc/MercMonsterMaster.prefab";
         public CharacterBody body;
         public CharacterMaster master;
 
@@ -46,7 +46,7 @@ namespace GOTCE.Enemies.Minibosses
             isc.occupyPosition = true;
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Ground;
             isc.sendOverNetwork = true;
-            isc.prefab = prefab;
+            isc.prefab = prefabMaster;
             isc.name = "cscIonSurger";
         }
 
@@ -86,26 +86,6 @@ namespace GOTCE.Enemies.Minibosses
             SkillDef ion = IonSurgerSurge.Instance.SkillDef;
             SkillLocator sl = prefab.GetComponent<SkillLocator>();
 
-            AISkillDriver FleeAndAttack = (from x in master.GetComponents<AISkillDriver>()
-                                           where x.maxDistance == 20
-                                           select x).First();
-            FleeAndAttack.movementType = AISkillDriver.MovementType.ChaseMoveTarget;
-            FleeAndAttack.maxDistance = 9f;
-
-            AISkillDriver StrafeAndAttack = (from x in master.GetComponents<AISkillDriver>()
-                                             where x.maxDistance == 30
-                                             select x).First();
-            StrafeAndAttack.skillSlot = SkillSlot.None;
-            StrafeAndAttack.minDistance = Mathf.Infinity;
-            StrafeAndAttack.maxDistance = Mathf.Infinity;
-
-            AISkillDriver What = (from x in master.GetComponents<AISkillDriver>()
-                                  where x.maxDistance == 40
-                                  select x).First();
-            What.minDistance = 30f;
-            What.maxDistance = 65f;
-            What.skillSlot = SkillSlot.Secondary;
-
             BaseAI baseAI = prefabMaster.GetComponent<BaseAI>();
             baseAI.enemyAttentionDuration = 5f;
             baseAI.fullVision = true;
@@ -119,14 +99,18 @@ namespace GOTCE.Enemies.Minibosses
             LanguageAPI.Add("GOTCE_IONSURGER_LORE", "Melee range isn't viable.");
             LanguageAPI.Add("GOTCE_IONSURGER_SUBTITLE", "Horde of Many");
 
+        }
+
+        public override void PostCreation()
+        {
+            base.PostCreation();
             List<DirectorAPI.Stage> stages = new()
             {
                 DirectorAPI.Stage.TitanicPlains, DirectorAPI.Stage.TitanicPlainsSimulacrum,
                 DirectorAPI.Stage.RallypointDelta, DirectorAPI.Stage.RallypointDeltaSimulacrum,
                 DirectorAPI.Stage.WetlandAspect, DirectorAPI.Stage.SirensCall
             };
-
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Minibosses, true);
         }
     }
-} */
+} 

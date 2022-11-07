@@ -73,7 +73,7 @@ namespace GOTCE.Items.White
         }
 
         public void Hp(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (body.inventory) {
+            if (body.inventory && GetCount(body) > 0) {
                 float bonus = 1.25f + (body.inventory.GetItemCount(ItemDef)-1)*0.30f;
                 args.healthMultAdd += bonus;
             }
