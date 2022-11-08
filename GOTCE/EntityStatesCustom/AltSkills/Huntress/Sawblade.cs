@@ -23,6 +23,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Huntress {
 
             PlayAnimation("Gesture", "FireGlaive", "FireGlaive.playbackRate", duration);
 
+            prefab.AddComponent<SlowVelocty>();
+
             FireProjectileInfo info = default;
             info.owner = base.gameObject;
             info.crit = base.RollCrit();
@@ -58,20 +60,11 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Huntress {
         }
     }
 
-    /* public class MoveForward : MonoBehaviour {
-
-        public Vector3 forward = new Vector3(0, 0, 0);
-
-        public void OnEnable() {
-            forward = gameObject.transform.forward;
-        }
-        public void FixedUpdate() {
-            if (NetworkServer.active) {
-                gameObject.GetComponent<Rigidbody>().useGravity = true;
-                gameObject.GetComponent<Rigidbody>().velocity = forward * 15;
-                // gameObject.GetComponent<Rigidbody>().velocity -= new Vector3(0, , 0);
+    public class SlowVelocty : MonoBehaviour {
+        private void FixedUpdate() {
+            if (NetworkServer.active && gameObject.name == "huntresssawhashit") {
+                gameObject.GetComponent<ProjectileCharacterController>().velocity = 2;
             }
-            
         }
-    } */
+    }
 }

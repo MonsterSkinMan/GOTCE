@@ -226,6 +226,7 @@ namespace GOTCE
             [SystemInitializer(dependencies: typeof(ItemCatalog))]
             void guh() {
                 AltSkills.AddAlts();
+                Misc.Woolie.Initialize();
             }
 
             var enemyTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EnemyBase)));

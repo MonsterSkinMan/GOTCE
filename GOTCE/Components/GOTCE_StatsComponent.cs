@@ -41,8 +41,11 @@ namespace GOTCE.Components
         public List<GameObject> bubbles = new();
         public bool withinBubble = false;
         public bool lastWasCombatShrine = false;
-        //item: peer reviewed source
+        // item: peer reviewed source
         public int identifiedkillCount = 0;
+        // item: gamepad
+        public int inputs = 0;
+        public float increase = 0f;
         
         // run stats
         public int deathCount;
@@ -57,6 +60,8 @@ namespace GOTCE.Components
             }
             RecalculateStatsAPI.GetStatCoefficients += UpdateChances;
             voidVFX = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
+
+            InvokeRepeating(nameof(RollInputs), 1f, 1f);
         }
 
         private void UpdateChances(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
@@ -68,6 +73,7 @@ namespace GOTCE.Components
                 float fovCritChanceTmp = 0f;
                 fovCritChanceTmp += 10f*(inventory.GetItemCount(Items.White.ZoomLenses.Instance.ItemDef));
                 fovCritChance = fovCritChanceTmp;
+                fovCritChance += increase;
                 
                 // sprint crit 
                 float sprCritChanceTmp = 0f;
@@ -94,7 +100,17 @@ namespace GOTCE.Components
                     origin = body.transform.position,
                     scale = 1f
                 }, true);
-                
+            }
+
+
+        }
+
+        private void RollInputs() {
+            float amount = 2f*body.inventory.GetItemCount(Items.Red.Gamepad.Instance.ItemDef);
+            increase = amount*inputs;
+            inputs = 0;
+            if (increase > 0 && NetworkServer.active) {
+                body.RecalculateStats();
             }
         }
 

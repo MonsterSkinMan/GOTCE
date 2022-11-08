@@ -30,6 +30,7 @@ namespace GOTCE.Enemies
         public virtual string PathToClone { get; } = null;
         public virtual string CloneName { get; } = null;
         public virtual string PathToCloneMaster { get; } = null;
+        public virtual bool local { get; } = false;
         public GameObject prefab;
         public GameObject prefabMaster;
         public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.SOTVExpansionDef;
@@ -121,7 +122,12 @@ namespace GOTCE.Enemies
         {
             
             
-            prefab = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToClone).WaitForCompletion(), CloneName + "Body");
+            if (!local) {
+                prefab = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToClone).WaitForCompletion(), CloneName + "Body");
+            }
+            else {
+                prefab = Main.SecondaryAssets.LoadAsset<GameObject>(PathToClone);
+            }
             // prefab.GetComponent<NetworkIdentity>().localPlayerAuthority = false;
             prefabMaster = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToCloneMaster).WaitForCompletion(), CloneName + "Master");
         }
@@ -296,6 +302,8 @@ namespace GOTCE.Enemies
             characterDeathBehavior.deathState = new SerializableEntityStateType(typeof(GenericCharacterDeath));
 
             GameObject.Destroy(prefab.GetComponentInChildren<Animator>());
+
+            model.AddComponent<CharacterModel>();
 
             model.AddComponent<HurtBoxGroup>();
         }

@@ -114,11 +114,11 @@ namespace GOTCE.Based {
             {
                 skillDef = Skills.Sawblade.Instance.SkillDef,
                 unlockableName = "",
-                viewableNode = new ViewablesCatalog.Node(Skills.SigmaShotgun.Instance.SkillDef.skillNameToken, false, null)
+                viewableNode = new ViewablesCatalog.Node(Skills.Sawblade.Instance.SkillDef.skillNameToken, false, null)
             };
 
             LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillNameToken, "Shark Saw");
-            LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillDescriptionToken, "Throw a fast piercing sawblade that moves along surfaces and repeatedly strikes enemies for 150%. Bleeds.");
+            LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillDescriptionToken, "Throw a fast piercing sawblade that moves along surfaces and rapidly strikes enemies for 30% per tick. Bleeds.");
 
             /* On.RoR2.Projectile.ProjectileStickOnImpact.UpdateSticking += (orig, self) => {
                 if (self.stuckTransform == null && !self.gameObject.GetComponent<EntityStatesCustom.AltSkills.Huntress.MoveForward>()) {
