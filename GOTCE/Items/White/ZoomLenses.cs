@@ -19,7 +19,6 @@ namespace GOTCE.Items.White
         public override string ItemFullDescription => "Every second, you have a <style=cIsUtility>10%</style> <style=cStack>(+10% chance per stack)</style> to <style=cIsUtility>'FOV Crit'</style>, zooming in your vision for <style=cIsUtility>1</style> second.";
 
         public override string ItemLore => "Jesus fucking christ what drugs were we on when we came up with FOV crits god this is such a dogshit mechanic I hate this.";
-        public EventHandler<FovCritEventArgs> OnFovCrit;
 
         public override ItemTier Tier => ItemTier.Tier1;
 
@@ -99,7 +98,7 @@ namespace GOTCE.Items.White
                         }
                     });
 
-                    EventHandler<FovCritEventArgs> raiseEvent = ZoomLenses.Instance.OnFovCrit;
+                    EventHandler<FovCritEventArgs> raiseEvent = CriticalTypes.OnFovCrit;
 
                     // Event will be null if there are no subscribers
                     if (raiseEvent != null)
@@ -112,16 +111,6 @@ namespace GOTCE.Items.White
                     // Debug.Log("starting crit");
                 }
             }
-        }
-    }
-
-    public class FovCritEventArgs : EventArgs
-    {
-        public CharacterBody Body;
-
-        public FovCritEventArgs(CharacterBody body)
-        {
-            Body = body;
         }
     }
 }

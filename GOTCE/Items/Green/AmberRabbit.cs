@@ -37,7 +37,7 @@ namespace GOTCE.Items.Green
 
         public override void Hooks()
         {
-            FaultySpacetimeClock.Instance.OnStageCrit += the;
+            CriticalTypes.OnStageCrit += the;
         }
 
         public override void Init(ConfigFile config)

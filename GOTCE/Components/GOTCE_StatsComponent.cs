@@ -64,6 +64,10 @@ namespace GOTCE.Components
             InvokeRepeating(nameof(RollInputs), 1f, 1f);
         }
 
+        private void OnDestroy() {
+            RecalculateStatsAPI.GetStatCoefficients -= UpdateChances;
+        }
+
         private void UpdateChances(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
         {
             // critical chances
@@ -80,6 +84,9 @@ namespace GOTCE.Components
                 sprCritChanceTmp += 8f*(inventory.GetItemCount(Items.White.GummyVitamins.Instance.ItemDef));
                 if (body.inventory.GetItemCount(Items.White.gd2.Instance.ItemDef) > 0) { sprCritChanceTmp += 5f; }
                 sprintCritChance = sprCritChanceTmp;
+
+                // stage crit
+                DetermineStageCrit();
 
             }
 
@@ -127,14 +134,16 @@ namespace GOTCE.Components
         // returns the player's stage crit value after taking all items into consideration, should be used before attempting a stage crit
         public void DetermineStageCrit()
         { 
-            Inventory inv = gameObject.GetComponent<Inventory>();
-            float stageCritChanceInc = 0;
-            stageCritChanceInc += 10f * inv.GetItemCount(GOTCE.Items.White.FaultySpacetimeClock.Instance.ItemDef);
-            if (inv.GetItemCount(Items.Green.HeartyBreakfast.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
-            if (inv.GetItemCount(Items.White.SkullKey.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
-            if (inv.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
-            if (inv.GetItemCount(Items.Green.AmberRabbit.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
-            stageCritChance = stageCritChanceInc;
+            if (master) {
+                Inventory inv = master.inventory;
+                float stageCritChanceInc = 0;
+                stageCritChanceInc += 10f * inv.GetItemCount(GOTCE.Items.White.FaultySpacetimeClock.Instance.ItemDef);
+                if (inv.GetItemCount(Items.Green.HeartyBreakfast.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
+                if (inv.GetItemCount(Items.White.SkullKey.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
+                if (inv.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
+                if (inv.GetItemCount(Items.Green.AmberRabbit.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
+                stageCritChance = stageCritChanceInc;
+            }
         }
         
         // dio revive but doesnt give an extra dio and requires no arguments

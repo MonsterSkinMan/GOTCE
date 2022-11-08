@@ -109,6 +109,9 @@
       <HintPath>libs\Zio.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="BetterUI">
+      <HintPath>libs\BetterUI.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

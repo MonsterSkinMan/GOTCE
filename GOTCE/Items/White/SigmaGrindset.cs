@@ -31,7 +31,7 @@ namespace GOTCE.Items.White
 
         public override void Hooks()
         {
-            GummyVitamins.Instance.OnSprintCrit += Critted;
+            CriticalTypes.OnSprintCrit += Critted;
             RecalculateStatsAPI.GetStatCoefficients += Sigma;
         }
 

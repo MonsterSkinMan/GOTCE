@@ -42,7 +42,7 @@ namespace GOTCE.Items.Green
 
         public override void Hooks()
         {
-            FaultySpacetimeClock.Instance.OnStageCrit += Kill;
+            CriticalTypes.OnStageCrit += Kill;
         }
 
         public void Kill(object sender, StageCritEventArgs args)

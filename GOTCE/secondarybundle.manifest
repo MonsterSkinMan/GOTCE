@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1828455952
+CRC: 1107319360
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1ccdf96c2401a84647cf86c531fa7b8b
+    Hash: 2fcecc93f9cd1702696c0205b58e5fdd
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 05643f2bdb333497ba8c5b2c847a0508
+    Hash: e706482cf9b7b6157e270e1d57fd937d
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -24,6 +24,8 @@ ClassTypes:
 - Class: 43
   Script: {instanceID: 0}
 - Class: 48
+  Script: {instanceID: 0}
+- Class: 49
   Script: {instanceID: 0}
 - Class: 54
   Script: {instanceID: 0}
@@ -218,6 +220,7 @@ Assets:
 - Assets/Prefabs/Interactables/ShrineDML/ShrineDML.prefab
 - Assets/Prefabs/Projectiles/Aegiscentrism/OrbitalAegis.prefab
 - Assets/Prefabs/Survivors/Crackmando/Materials/body.mat
+- Assets/Prefabs/WoolerLore.txt
 - Assets/Icons/nader.png
 - Assets/Prefabs/Projectiles/AegisFunder/AegisProjectile.prefab
 Dependencies: []

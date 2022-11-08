@@ -4,6 +4,7 @@ using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using GOTCE.Misc;
+using System.IO;
 
 namespace GOTCE.Items.Lunar
 {
@@ -19,7 +20,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemFullDescription => "<style=cIsUtility>Gain</style> a <style=cIsUtility>+5%</style> <style=cStack>(+5% per stack)</style> <style=cIsDamage>damage increase</style> for each item <style=cLunarObjective>above B tier</style> you have... but <style=cDeath>lose -5%</style> <style=cStack>(-5% per stack)</style> <style=cDeath>damage</style> for each item <style=cLunarObjective>below B tier</style> you have. <style=cHumanObjective>Based off Woolie's all item tier list.</style>";
 
-        public override string ItemLore => "";
+        public override string ItemLore => Main.SecondaryAssets.LoadAsset<TextAsset>("Assets/Prefabs/WoolerLore.txt").text;
 
         public override ItemTier Tier => ItemTier.Lunar;
 
@@ -57,7 +58,7 @@ namespace GOTCE.Items.Lunar
                                 else {
                                     totalDec += increase*GetCountSpecific(body, ItemCatalog.GetItemDef(index));
                                 }
-                                // Debug.Log($"Item {ItemCatalog.GetItemDef(index).nameToken} is {(int)tier} tier");
+                                Debug.Log($"Item {ItemCatalog.GetItemDef(index).nameToken} is {(int)tier} tier");
                             }
                         }
 

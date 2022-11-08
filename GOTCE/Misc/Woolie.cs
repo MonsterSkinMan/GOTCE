@@ -1,6 +1,6 @@
 using System;
 using RoR2;
-using Unity;
+using UnityEngine;
 
 namespace GOTCE.Misc {
     public enum Tier : int
@@ -145,8 +145,18 @@ namespace GOTCE.Misc {
                     {DLC1Content.Items.SlowOnHitVoid, Tier.B},
                     {DLC1Content.Items.TreasureCacheVoid, Tier.A},
                     {DLC1Content.Items.StrengthenBurn, Tier.C},
-                    {DLC1Content.Items.VoidMegaCrabItem, Tier.A}
+                    {DLC1Content.Items.VoidMegaCrabItem, Tier.A}, // scrap
+                    {RoR2Content.Items.ScrapGreen, Tier.F},
+                    {RoR2Content.Items.ScrapRed, Tier.S},
+                    {RoR2Content.Items.ScrapWhite, Tier.F},
+                    {RoR2Content.Items.ScrapYellow, Tier.F}
                 };
+        }
+
+        public static unvoid Everything() {
+            unvoid val = new unvoid();
+            val.value = new System.Object[] { "the", 1, RoR2Content.Items.BarrierOnOverHeal };
+            return val;
         }
     }
 }
