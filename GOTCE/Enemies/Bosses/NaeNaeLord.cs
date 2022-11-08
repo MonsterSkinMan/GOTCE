@@ -68,19 +68,24 @@ namespace GOTCE.Enemies.Bosses {
             }
 
             AISkillDriver spec = (from x in prefabMaster.GetComponents<AISkillDriver>() where x.skillSlot == SkillSlot.Special select x).First();
-            spec.minDistance = 30f;
+            spec.minDistance = 15f;
+            spec.movementType = AISkillDriver.MovementType.FleeMoveTarget;
+
+            AISkillDriver secondary = (from x in prefabMaster.GetComponents<AISkillDriver>() where x.skillSlot == SkillSlot.Secondary select x).First();
+            secondary.moveTargetType = AISkillDriver.TargetType.NearestFriendlyInSkillRange;
+            secondary.movementType = AISkillDriver.MovementType.ChaseMoveTarget;
 
             // ai.skillDrivers = drivers.ToArray(); 
 
             On.RoR2.HealthComponent.TakeDamage += (orig, self, info) => {
                 if (NetworkServer.active) {
-                    if (info.HasModdedDamageType(Main.truekill)) {
+                    if (info.HasModdedDamageType(DamageTypes.Truekill)) {
                         if (self && self.body && self.body.master) {
                             self.body.master.TrueKill();
                         }
                     }
 
-                    if (info.HasModdedDamageType(Main.root)) {
+                    if (info.HasModdedDamageType(DamageTypes.Root)) {
                         if (self.body) {
                             self.body.AddTimedBuff(RoR2Content.Buffs.Nullified, 2.5f);
                         }

@@ -30,7 +30,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Huntress {
             info.position = base.characterBody.corePosition;
             info.damage = base.damageStat * 1.5f;
             info.damageColorIndex = DamageColorIndex.Bleed;
-            info.damageTypeOverride = DamageType.BleedOnHit;
+            info.damageTypeOverride = DamageType.BleedOnHit | DamageType.Stun1s;
             info.speedOverride = 250f;
             info.projectilePrefab = prefab;
 

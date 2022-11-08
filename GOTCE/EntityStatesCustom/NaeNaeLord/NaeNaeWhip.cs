@@ -48,7 +48,7 @@ namespace GOTCE.EntityStatesCustom.NaeNaeLord {
             whip.origin = base.transform.position;
             whip.weapon = base.gameObject;
             whip.aimVector = ray.direction;
-            whip.AddModdedDamageType(Main.root);
+            whip.AddModdedDamageType(DamageTypes.Root);
             whip.Fire();
         }
 
