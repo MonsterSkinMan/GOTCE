@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 597713098
+CRC: 1648689801
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 220b0805b60a356d42bfbd9cb9ca1657
+    Hash: 53741cb8418b0366083d64cc58985edb
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 8008b2b46f07412a84f63a8d4423d6d0
+    Hash: a5fce307c298c3ba6cc939ce40c7fbe9
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -45,6 +45,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+- Class: 329
+  Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Models/Raw Models/LivingSuppMesh.fbx
@@ -78,6 +80,7 @@ Assets:
 - Assets/Textures/Icons/Item/barrierworks.png
 - Assets/Textures/Icons/Item/HeartlessBreakfast.png
 - Assets/Textures/Icons/Item/PaleAle.png
+- Assets/Import/8mb.video-yzD-Rpct5RSV.mp4
 - Assets/Models/Prefabs/Enemies/IonSurger/mdlIonSurger.prefab
 - Assets/Textures/Icons/Item/CrownPrince.png
 - Assets/Textures/Icons/Item/HealingScrapConsumed.png
