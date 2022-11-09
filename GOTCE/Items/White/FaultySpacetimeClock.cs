@@ -24,8 +24,6 @@ namespace GOTCE.Items.White
 
         public override string ItemLore => "Order: [ERR 04: DATABASE CORRUPTION]\nTracking Number: 95******\nEstimated Delivery: 15/02/2051\nShipping Method: Delicate\nShipping Address: **** Espl. des Particules, Switzerland, Earth\nShipping Details:\n\n...think I'm on the verge of a breakthrough. This broken clock I found seems to have incredibly anomalous properties, dramatically affecting the flow of local time and space. It's easily the weirdest thing I've ever found. I genuinely believe it could revolutionize everything, to the the point where I...";
 
-
-        public EventHandler<StageCritEventArgs> OnStageCrit;
         private System.Random rand = new();
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/faultyspacetimeclock.png");
@@ -54,7 +52,7 @@ namespace GOTCE.Items.White
 
                 if (lastStageWasCrit)
                 {
-                    EventHandler<StageCritEventArgs> raiseEvent = OnStageCrit;
+                    EventHandler<StageCritEventArgs> raiseEvent = CriticalTypes.OnStageCrit;
 
                     if (raiseEvent != null)
                     {
@@ -101,13 +99,6 @@ namespace GOTCE.Items.White
         public override void Init(ConfigFile config)
         {
             base.Init(config);
-        }
-    }
-
-    public class StageCritEventArgs : EventArgs
-    {
-        public StageCritEventArgs()
-        {
         }
     }
 }

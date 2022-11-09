@@ -39,10 +39,10 @@ namespace GOTCE.Items.Green
 
         public override void Hooks()
         {
-            White.ZoomLenses.Instance.OnFovCrit += Aegis;
+            CriticalTypes.OnFovCrit += Aegis;
         }
 
-        public void Aegis(object sender, White.FovCritEventArgs args)
+        public void Aegis(object sender, FovCritEventArgs args)
         {
             if (args.Body)
             {

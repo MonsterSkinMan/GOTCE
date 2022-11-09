@@ -12,13 +12,17 @@ namespace GOTCE.EntityStatesCustom.NaeNaeLord {
         public override void OnEnter()
         {
             base.OnEnter();
-            base.characterBody.inventory.GiveItem(RoR2Content.Items.Bear, 10);
+            if (NetworkServer.active) {
+                base.characterBody.inventory.GiveItem(RoR2Content.Items.Bear, 10);
+            }
         }
 
         public override void OnExit()
         {
             base.OnExit();
-            base.characterBody.inventory.RemoveItem(RoR2Content.Items.Bear, base.characterBody.inventory.GetItemCount(RoR2Content.Items.Bear));
+            if (NetworkServer.active) {
+                base.characterBody.inventory.RemoveItem(RoR2Content.Items.Bear, base.characterBody.inventory.GetItemCount(RoR2Content.Items.Bear));
+            }
         }
 
         public override void FixedUpdate()

@@ -10,7 +10,9 @@ using GOTCE.Tiers;
 using R2API;
 using R2API.Networking;
 using R2API.Utils;
+using System.Text.RegularExpressions;
 using RoR2;
+using System.Runtime.CompilerServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,7 @@ using GOTCE.Enemies.Bosses;
 using MonoMod.RuntimeDetour;
 using GOTCE.Based;
 using GOTCE.Survivors;
+using BetterUI;
 
 [assembly: SearchableAttribute.OptIn]
 
@@ -72,6 +75,10 @@ namespace GOTCE
             GOTCEModels = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "gotcemodels"));
             ModLogger = Logger;
             SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
+
+            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI")) {
+                UICompat.AddBetterUICompat();
+            }
 
             // create custom itemtags and flags and things idk
             Misc.Flags.Initialize();
@@ -130,24 +137,6 @@ namespace GOTCE
                 }
             }
 
-            // add crit type items before other items as the other items rely on the events of crit types
-            ItemBase faulty = (ItemBase)System.Activator.CreateInstance(typeof(GOTCE.Items.White.FaultySpacetimeClock));
-            if (ValidateItem(faulty, Items))
-            {
-                faulty.Init(Config);
-            }
-
-            ItemBase zoom = (ItemBase)System.Activator.CreateInstance(typeof(GOTCE.Items.White.ZoomLenses));
-            if (ValidateItem(zoom, Items))
-            {
-                zoom.Init(Config);
-            }
-
-            ItemBase gummy = (ItemBase)System.Activator.CreateInstance(typeof(GOTCE.Items.White.GummyVitamins));
-            if (ValidateItem(gummy, Items))
-            {
-                gummy.Init(Config);
-            }
             // grab tiers and add them
             var Tiers = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(TierBase)));
             foreach (var tier in Tiers) {
@@ -161,15 +150,13 @@ namespace GOTCE
 
             foreach (var itemType in ItemTypes)
             {
-                if (itemType != typeof(GOTCE.Items.White.FaultySpacetimeClock) && itemType != typeof(GOTCE.Items.White.GummyVitamins) && itemType != typeof(GOTCE.Items.White.ZoomLenses))
+                ItemBase item = (ItemBase)System.Activator.CreateInstance(itemType);
+                // Debug.Log(item.ConfigName);
+                if (ValidateItem(item, Items))
                 {
-                    ItemBase item = (ItemBase)System.Activator.CreateInstance(itemType);
-                    // Debug.Log(item.ConfigName);
-                    if (ValidateItem(item, Items))
-                    {
-                        item.Init(Config);
-                    }
+                    item.Init(Config);
                 }
+                
             }
             [SystemInitializer(dependencies: typeof(ItemCatalog))] // wait until after the catalog initializes to add interactables
             void the()
@@ -253,6 +240,7 @@ namespace GOTCE
                 typeof(InputBankTest).GetProperty("aimOrigin", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).GetGetMethod(),
                 typeof(LivingSuppressiveFire).GetMethod("InputBankTest_aimOrigin_Get", System.Reflection.BindingFlags.Public | BindingFlags.Static)
             );
+
 
             //CreateExpansion();
             /* On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
@@ -366,5 +354,138 @@ namespace GOTCE
             LanguageAPI.Add(GOTCEExpansionDef.nameToken, "Gamers of The Cracked Emoji");
             LanguageAPI.Add(GOTCEExpansionDef.descriptionToken, "Adds content from the 'GOTCE' mod to the game.");
         }
+
+    }
+
+    public class UICompat {
+
+        private static List<string> cachedNormalText = null;
+        private static List<string> cachedAltText = null;
+
+        public delegate void orig_onStart();
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+        public static void AddBetterUICompat() {
+            // custom stats in the display
+            Func<CharacterBody, string> stage = (CharacterBody body) => {
+                if (body.masterObject) {
+                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
+                        return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().stageCritChance.ToString();
+                    }
+                    else {
+                        return "N/A";
+                    }
+                }
+                else {
+                    return "N/A";
+                }
+            };
+
+            Func<CharacterBody, string> sprint = (CharacterBody body) => {
+                if (body.masterObject) {
+                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
+                        return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().sprintCritChance.ToString();
+                    }
+                    else {
+                        return "N/A";
+                    }
+                }
+                else {
+                    return "N/A";
+                }
+            };
+
+            Func<CharacterBody, string> fov = (CharacterBody body) => {
+                if (body.masterObject) {
+                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
+                        return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().fovCritChance.ToString();
+                    }
+                    else {
+                        return "N/A";
+                    }
+                }
+                else {
+                    return "N/A";
+                }
+            };
+
+            BetterUI.StatsDisplay.AddStatsDisplay("$stage", stage);
+            BetterUI.StatsDisplay.AddStatsDisplay("$sprint", sprint);
+            BetterUI.StatsDisplay.AddStatsDisplay("$fov", fov);
+
+            /* Hook statsHook = new Hook(
+                typeof(BetterUI.StatsDisplay).GetMethod("onStart", (BindingFlags)(-1)),
+                typeof(UICompat).GetMethod(nameof(onStart), (BindingFlags)(-1))
+            ); */
+
+            On.RoR2.UI.HUD.Awake += (orig, self) => {
+                orig(self);
+                List<string> normalText;
+                List<string> altText;
+                if (cachedNormalText == null) {
+                    normalText = typeof(BetterUI.StatsDisplay).GetFieldValue<string[]>("normalText").ToList();
+                    string[] tmp = new string[normalText.Count];;
+                    normalText.CopyTo(tmp);
+                    cachedNormalText = tmp.ToList();
+                }
+                else {
+                    string[] tmp = new string[cachedNormalText.Count];
+                    cachedNormalText.CopyTo(tmp);
+                    normalText = tmp.ToList();
+                }
+
+                if (cachedAltText == null) {
+                    altText = typeof(BetterUI.StatsDisplay).GetFieldValue<string[]>("altText").ToList();
+                    string[] tmp = new string[altText.Count];
+                    altText.CopyTo(tmp);
+                    cachedAltText = tmp.ToList();
+                }
+                else {
+                    string[] tmp = new string[cachedAltText.Count];;
+                    cachedAltText.CopyTo(tmp);
+                    altText = tmp.ToList();
+                }
+                normalText.RemoveAt(normalText.Count - 1);
+                normalText.Add("\nStage Crit: ");
+                normalText.Add("$stage");
+                // normalText.Add("%");
+                normalText.Add("%\nFOV Crit: ");
+                normalText.Add("$fov");
+                // normalText.Add("%");
+                normalText.Add("%\nSprint Crit: ");
+                normalText.Add("$sprint");
+                normalText.Add("%");
+
+                /* string[] guh = normalText.ToArray();
+                for (int i = 0; i < guh.Length; i++) {
+                    Debug.Log(normalText[i]);
+                    if (i % 2 == 0) {
+                        Debug.Log("% 2 is true");
+                    }
+                } */
+                altText.RemoveAt(altText.Count - 1);
+                altText.Add("\nStage Crit: ");
+                altText.Add("$stage");
+                // altText.Add("%");
+                altText.Add("%\nFOV Crit: ");
+                altText.Add("$fov");
+                // altText.Add("%");
+                altText.Add("%\nSprint Crit: ");
+                altText.Add("$sprint");
+                // altText.Add("%");
+                altText.Add("%");
+
+                typeof(BetterUI.StatsDisplay).SetFieldValue<string[]>("normalText", normalText.ToArray());
+                typeof(BetterUI.StatsDisplay).SetFieldValue<string[]>("altText", altText.ToArray());
+                
+            };
+        }
+
+        /* public static void onStart(orig_onStart orig) {
+            orig();
+            
+            Debug.Log(normalText);
+            Debug.Log("====== alt =====");
+            Debug.Log("");
+        } */
     }
 }

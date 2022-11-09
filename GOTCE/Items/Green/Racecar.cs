@@ -39,11 +39,11 @@ namespace GOTCE.Items.Green
 
         public override void Hooks()
         {
-            White.GummyVitamins.Instance.OnSprintCrit += Vroom;
+            CriticalTypes.OnSprintCrit += Vroom;
             RecalculateStatsAPI.GetStatCoefficients += CDR;
         }
 
-        public void Vroom(object sender, White.SprintCritEventArgs args) {
+        public void Vroom(object sender, SprintCritEventArgs args) {
             if (NetworkServer.active && args.Body) {
                 if (GetCount(args.Body) > 0) {
                     args.Body.skillLocator.secondary.stock = args.Body.skillLocator.secondary.maxStock;

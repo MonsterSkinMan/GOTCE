@@ -41,7 +41,7 @@ namespace GOTCE.Items.Green
 
         public override void Hooks()
         {
-            FaultySpacetimeClock.Instance.OnStageCrit += ILoveAegis;
+            CriticalTypes.OnStageCrit += ILoveAegis;
         }
 
         public void ILoveAegis(object sender, StageCritEventArgs args)

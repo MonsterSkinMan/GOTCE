@@ -32,12 +32,12 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             RoR2BlightBuff.Awake();
-            GummyVitamins.Instance.OnSprintCrit += Blight;
+            CriticalTypes.OnSprintCrit += Blight;
             On.RoR2.DamageInfo.ModifyDamageInfo += Inflict;
         }
 
         public void Blight(object sender, SprintCritEventArgs args) {
-            if (args.Body && NetworkServer.active) {
+            if (args.Body && NetworkServer.active && GetCount(args.Body) > 0) {
                 args.Body.AddTimedBuff(RoR2BlightBuff.buff, 4f + (2f * (GetCount(args.Body) - 1)));
             }
         }

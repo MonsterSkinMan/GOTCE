@@ -180,5 +180,9 @@ namespace GOTCE.Items
 
             return body.inventory.GetItemCount(itemDef);
         }
+
+        public bool HasItem(CharacterBody body) {
+            return GetCount(body) > 1;
+        }
     }
 }

@@ -23,7 +23,6 @@ namespace GOTCE.Items.White
         public override string ItemPickupDesc => "Gain a chance to 'critcally sprint', doubling your speed.";
         public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.Crit };
         public override ItemTier Tier => ItemTier.Tier1;
-        public EventHandler<SprintCritEventArgs> OnSprintCrit;
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
@@ -42,7 +41,7 @@ namespace GOTCE.Items.White
                     if (Util.CheckRoll(stats.sprintCritChance, body.master) && body.isSprinting) {
                         args.moveSpeedMultAdd += (body.sprintingSpeedMultiplier * 2);
 
-                        EventHandler<SprintCritEventArgs> raiseEvent = OnSprintCrit;
+                        EventHandler<SprintCritEventArgs> raiseEvent = CriticalTypes.OnSprintCrit;
 
                         // Event will be null if there are no subscribers
                         if (raiseEvent != null)
@@ -63,12 +62,5 @@ namespace GOTCE.Items.White
             base.Init(config);
         }
 
-    }
-
-    public class SprintCritEventArgs {
-        public CharacterBody Body;
-        public SprintCritEventArgs(CharacterBody body) {
-            Body = body;
-        }
     }
 }

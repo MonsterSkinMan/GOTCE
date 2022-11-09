@@ -44,7 +44,7 @@ namespace GOTCE.Items.White
 
         public override void Hooks()
         {
-            FaultySpacetimeClock.Instance.OnStageCrit += MeWhenWithor;
+            CriticalTypes.OnStageCrit += MeWhenWithor;
         }
 
         public void MeWhenWithor(object sender, StageCritEventArgs args)

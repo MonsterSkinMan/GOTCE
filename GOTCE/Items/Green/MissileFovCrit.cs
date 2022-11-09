@@ -39,10 +39,10 @@ namespace GOTCE.Items.Green
 
         public override void Hooks()
         {
-            Items.White.ZoomLenses.Instance.OnFovCrit += Missile;
+            CriticalTypes.OnFovCrit += Missile;
         }
 
-        public void Missile(object sender, Items.White.FovCritEventArgs args) {
+        public void Missile(object sender, FovCritEventArgs args) {
             // Debug.Log("fov crit happened");
             if (NetworkServer.active) {
                 // Debug.Log("network active");
