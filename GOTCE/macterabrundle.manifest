@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2590214900
+CRC: 1648689801
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c6c2e279ce11152713bfdd4a325991da
+    Hash: 53741cb8418b0366083d64cc58985edb
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 1572d93b9eefe5749d515c98c4fb318b
+    Hash: a5fce307c298c3ba6cc939ce40c7fbe9
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -41,13 +41,18 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 137
   Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
 - Class: 213
+  Script: {instanceID: 0}
+- Class: 329
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Models/Raw Models/LivingSuppMesh.fbx
 - Assets/Materials/Enemies/kirnMaterial.mat
 - Assets/Textures/Icons/Item/FreeWiFi.png
+- Assets/Models/Prefabs/Item/KirnTheItem/KirnTheItemNoOutline.prefab
 - Assets/Textures/Icons/Item/heartybreakfast.png
 - Assets/Textures/Icons/Enemies/LivingSuppressiveFire.png
 - Assets/Materials/Item/MonstersVisage/MonstersVisageMaterial.mat
@@ -75,6 +80,7 @@ Assets:
 - Assets/Textures/Icons/Item/barrierworks.png
 - Assets/Textures/Icons/Item/HeartlessBreakfast.png
 - Assets/Textures/Icons/Item/PaleAle.png
+- Assets/Import/8mb.video-yzD-Rpct5RSV.mp4
 - Assets/Models/Prefabs/Enemies/IonSurger/mdlIonSurger.prefab
 - Assets/Textures/Icons/Item/CrownPrince.png
 - Assets/Textures/Icons/Item/HealingScrapConsumed.png
@@ -110,6 +116,7 @@ Assets:
 - Assets/Textures/Icons/Artifact/artifactofblindnesson.png
 - Assets/Textures/Icons/Item/DelicaterWatch.png
 - Assets/Textures/Icons/Item/ViscousBlast.png
+- Assets/Models/Prefabs/Item/KirnTheItem/KirnTheItemNoOutline.png
 - Assets/Textures/Icons/Item/DelicaterWatchConsumed.png
 - Assets/Textures/Icons/Item/skullkey.png
 - Assets/Textures/Icons/Item/pogo.png

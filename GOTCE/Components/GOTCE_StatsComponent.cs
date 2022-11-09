@@ -82,7 +82,9 @@ namespace GOTCE.Components
                 // sprint crit 
                 float sprCritChanceTmp = 0f;
                 sprCritChanceTmp += 8f*(inventory.GetItemCount(Items.White.GummyVitamins.Instance.ItemDef));
-                if (body.inventory.GetItemCount(Items.White.gd2.Instance.ItemDef) > 0) { sprCritChanceTmp += 5f; }
+                if (body.inventory.GetItemCount(Items.White.gd2.Instance.ItemDef) > 0) { sprCritChanceTmp += 10f; }
+                if (body.inventory.GetItemCount(Items.White.SigmaGrindset.Instance.ItemDef) > 0) { sprCritChanceTmp += 2f; }
+                if (body.inventory.GetItemCount(Items.Green.MissileFovCrit.Instance.ItemDef) > 0) { sprCritChanceTmp += 5f; }
                 sprintCritChance = sprCritChanceTmp;
 
                 // stage crit
