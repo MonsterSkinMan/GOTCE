@@ -154,6 +154,7 @@ namespace GOTCE.Enemies.Minibosses
                         damageType = info.damageType
                     };
                     blast.Fire();
+                    info.procChainMask.RemoveProc(ProcType.AACannon);
                 }
             }
         }

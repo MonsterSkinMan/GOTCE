@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using GOTCE.Misc;
 using System.IO;
+using Unity;
+using Unity.Audio;
+using UnityEngine.Video;
 
 namespace GOTCE.Items.Lunar
 {
@@ -26,14 +29,14 @@ namespace GOTCE.Items.Lunar
 
         public override Enum[] ItemTags => new Enum[] { ItemTag.Damage };
 
-        public override GameObject ItemModel => null;
+        public override GameObject ItemModel => Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Item/Drill/Cube.prefab");
 
         public override Sprite ItemIcon => null;
         
         public override void Init(ConfigFile config)
         {
             base.Init(config);
-        }
+        } 
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
@@ -67,6 +70,12 @@ namespace GOTCE.Items.Lunar
                     }
                 }
             };
+            /* GameObject model = ItemDef.pickupModelPrefab;
+            VideoPlayer player = model.AddComponent<VideoPlayer>();
+            player.url = "https://cdn.discordapp.com/attachments/567832879879553037/1039699109113778176/8mb.video-yzD-Rpct5RSV.mp4";
+            player.renderMode = VideoRenderMode.RenderTexture;
+            player.targetTexture = (RenderTexture)model.GetComponent<MeshRenderer>().material.mainTexture;
+            ItemDef.pickupModelPrefab = model; */
         }
     }
 }
