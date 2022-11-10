@@ -65,12 +65,15 @@ namespace GOTCE.Items.Void_Red
 
         private void powerUncreep(On.RoR2.Items.ContagiousItemManager.orig_Init orig)
         {
-            ItemDef.Pair transformation = new ItemDef.Pair()
-            {
-                itemDef1 = RoR2Content.Items.ExecuteLowHealthElite, //PLACEHOLDER
-                itemDef2 = this.ItemDef
-            };
-            ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem] = ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem].AddToArray(transformation);
+            foreach (ItemDef def in ItemCatalog.allItemDefs) {
+                if (def.ContainsTag(ItemTag.Healing) && def != ItemDef) {
+                    ItemDef.Pair transformation = new ItemDef.Pair() {
+                        itemDef1 = def,
+                        itemDef2 = ItemDef
+                    };
+                    ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem] = ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem].AddToArray(transformation);
+                }
+            }
             orig();
         }
     }
