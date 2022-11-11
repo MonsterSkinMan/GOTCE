@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 367787761
+CRC: 4029954322
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 388c2a96a85f96e5f5b235dce123ff0c
+    Hash: 7268f9c9a3c709b1fa3c7eaccf52ef0b
   TypeTreeHash:
     serializedVersion: 2
-    Hash: e706482cf9b7b6157e270e1d57fd937d
+    Hash: 2c44f4ff628e39066b42bc2af9060216
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -48,19 +48,19 @@ ClassTypes:
 - Class: 108
   Script: {instanceID: 0}
 - Class: 114
-  Script: {fileID: 816898038, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
   Script: {fileID: 678291247, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: 816898038, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 1143142494, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
-  Script: {fileID: 1790887305, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
   Script: {fileID: 372142912, guid: d382a022563c7517aadbc92ca1060016, type: 3}
 - Class: 114
-  Script: {fileID: 952828898, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
   Script: {fileID: 1783796254, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: 1790887305, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: 952828898, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 161585894, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
@@ -154,6 +154,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: -1819008361, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: 664490745, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: 717380117, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 370243918, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
@@ -205,11 +207,13 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Prefabs/Projectiles/Saw/SawPrefab.prefab
+- Assets/Prefabs/Projectiles/AltSkills/Pearl/Pearl.prefab
+- Assets/Prefabs/Projectiles/AltSkills/Saw/SawPrefab.prefab
 - Assets/Prefabs/Interactables/DisposableFunder/DisposableFunder.prefab
 - Assets/Prefabs/Projectiles/Aegiscentrism/AegisGhost.prefab
 - Assets/Prefabs/Survivors/Crackmando/CrackedDef.asset
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/slide.png
+- Assets/Prefabs/Projectiles/AltSkills/Pearl/return.png
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/double.png
 - Assets/Prefabs/Enemies/The/TheBody.prefab
 - Assets/Prefabs/Survivors/Crackmando/CrackmandoBody.prefab
@@ -221,6 +225,7 @@ Assets:
 - Assets/Prefabs/Projectiles/Aegiscentrism/OrbitalAegis.prefab
 - Assets/Prefabs/Survivors/Crackmando/Materials/body.mat
 - Assets/Prefabs/WoolerLore.txt
+- Assets/Prefabs/Projectiles/AltSkills/Pearl/warp.png
 - Assets/Icons/nader.png
 - Assets/Prefabs/Projectiles/AegisFunder/AegisProjectile.prefab
 Dependencies: []
