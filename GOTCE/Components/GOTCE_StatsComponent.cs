@@ -50,6 +50,8 @@ namespace GOTCE.Components
         // run stats
         public int deathCount;
 
+        public WarCrime mostRecentlyCommitedWarCrime = WarCrime.None;
+
         private void Start()
         {   
             // assign on-start vars and load void death vfx

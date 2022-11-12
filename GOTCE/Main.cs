@@ -214,6 +214,7 @@ namespace GOTCE
             void guh() {
                 AltSkills.AddAlts();
                 Misc.Woolie.Initialize();
+                Mechanics.WarCrimes.Hooks();
             }
 
             var enemyTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EnemyBase)));
@@ -380,6 +381,23 @@ namespace GOTCE
                 }
             };
 
+            Func<CharacterBody, string> war = (CharacterBody body) => {
+                if (body.masterObject) {
+                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
+                        WarCrime crime = body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().mostRecentlyCommitedWarCrime;
+                        string name = "N/A";
+                        WarCrimes.CrimeToName.TryGetValue(crime, out name);
+                        return name;
+                    }
+                    else {
+                        return "N/A";
+                    }
+                }
+                else {
+                    return "N/A";
+                }
+            };
+
             Func<CharacterBody, string> sprint = (CharacterBody body) => {
                 if (body.masterObject) {
                     if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
@@ -411,6 +429,7 @@ namespace GOTCE
             BetterUI.StatsDisplay.AddStatsDisplay("$stage", stage);
             BetterUI.StatsDisplay.AddStatsDisplay("$sprint", sprint);
             BetterUI.StatsDisplay.AddStatsDisplay("$fov", fov);
+            BetterUI.StatsDisplay.AddStatsDisplay("$war", war);
 
             /* Hook statsHook = new Hook(
                 typeof(BetterUI.StatsDisplay).GetMethod("onStart", (BindingFlags)(-1)),
@@ -453,7 +472,8 @@ namespace GOTCE
                 // normalText.Add("%");
                 normalText.Add("%\nSprint Crit: ");
                 normalText.Add("$sprint");
-                normalText.Add("%");
+                normalText.Add("%\nRecent War Crime: ");
+                normalText.Add("$war");
 
                 /* string[] guh = normalText.ToArray();
                 for (int i = 0; i < guh.Length; i++) {
@@ -472,7 +492,8 @@ namespace GOTCE
                 altText.Add("%\nSprint Crit: ");
                 altText.Add("$sprint");
                 // altText.Add("%");
-                altText.Add("%");
+                altText.Add("%\nRecent War Crime: ");
+                altText.Add("$war");
 
                 typeof(BetterUI.StatsDisplay).SetFieldValue<string[]>("normalText", normalText.ToArray());
                 typeof(BetterUI.StatsDisplay).SetFieldValue<string[]>("altText", altText.ToArray());

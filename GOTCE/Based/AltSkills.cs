@@ -11,6 +11,7 @@ namespace GOTCE.Based {
             RexAlts();
             RGAlts();
             HuntressAlts();
+            ViendAlts();
         }
 
         private static void RexAlts() {
@@ -131,6 +132,29 @@ namespace GOTCE.Based {
                     orig(self);
                 }
             }; */
+        }
+
+        private static void ViendAlts() {
+            GameObject viendPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/VoidSurvivor/VoidSurvivorBody.prefab").WaitForCompletion();
+
+            SkillLocator sl = viendPrefab.GetComponent<SkillLocator>();
+
+            SkillFamily skillFamily;
+            // pearl
+            skillFamily = sl.secondary.skillFamily;
+            Array.Resize(ref skillFamily.variants, skillFamily.variants.Length + 1);
+            skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
+            {
+                skillDef = Skills.Pearl.Instance.SkillDef,
+                unlockableName = "",
+                viewableNode = new ViewablesCatalog.Node(Skills.Pearl.Instance.SkillDef.skillNameToken, false, null)
+            };
+
+            LanguageAPI.Add(Skills.Pearl.Instance.SkillDef.skillNameToken, "War??p");
+            LanguageAPI.Add(Skills.Pearl.Instance.SkillDef.skillDescriptionToken, "Launch a void orb that sticks to surfaces and repeatedly strikes for 60% damage. Nullifies. Use while a void orb is active to teleport to it, destroying the void orb.");
+
+            LanguageAPI.Add(Skills.PearlTeleport.Instance.SkillDef.skillNameToken, "Retur??n");
+            LanguageAPI.Add(Skills.PearlTeleport.Instance.SkillDef.skillDescriptionToken, "Teleport to your most recently deployed void orb.");
         }
     }
 

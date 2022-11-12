@@ -1,14 +1,7 @@
 ManifestFileVersion: 0
-<<<<<<< HEAD
-CRC: 1072772446
-=======
-CRC: 1530803028
->>>>>>> 98d3bda065c5482a976690bf091452540a7f82f9
+CRC: 4108802112
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: macterabrundle
-      Dependencies: {}
-    Info_1:
-      Name: exampleitemmod
+      Name: secondarybundle
       Dependencies: {}
