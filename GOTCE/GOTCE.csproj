@@ -112,6 +112,9 @@
     <Reference Include="BetterUI">
       <HintPath>libs\BetterUI.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Reflection">
+      <HintPath>libs\Mono.Reflection</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
