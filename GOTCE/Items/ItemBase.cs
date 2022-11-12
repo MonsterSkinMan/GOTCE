@@ -164,7 +164,7 @@ namespace GOTCE.Items
                 ItemDef.pickupModelPrefab = ItemModel;
             }
             ItemDef.pickupIconSprite = ItemIcon;
-            ItemDef.hidden = false;
+            ItemDef.hidden = Hidden;
             ItemDef.canRemove = CanRemove;
             if (OverrideTierDef)
             {

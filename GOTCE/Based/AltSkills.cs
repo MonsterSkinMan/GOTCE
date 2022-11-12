@@ -124,7 +124,7 @@ namespace GOTCE.Based {
             LanguageAPI.Add(Skills.PearlTeleport.Instance.SkillDef.skillNameToken, "Retur??n");
             LanguageAPI.Add(Skills.PearlTeleport.Instance.SkillDef.skillDescriptionToken, "<style=cIsVoid>Teleport</style> to your most recently deployed <style=cIsVoid>void orb</style>.");
 
-            LanguageAPI.Add("GOTCE_CORRUPTIONM2UPGRADE_KEYWORD", "[Corruption Upgrade]\nThe <style=cIsVoid>void orb</style> bounces off terrain. Deal 2600% damage and <style=cIsVoid>nullify</style> enemies near your teleport location.");
+            LanguageAPI.Add("GOTCE_CORRUPTIONM2UPGRADE_KEYWORD", "[Corruption Upgrade]\nTransform into a powerful void spear that teleports you on impact, releasing a devastating explosion for 2600% damage.");
 
             // drain
             skillFamily = sl.special.skillFamily;
@@ -154,6 +154,44 @@ namespace GOTCE.Based {
 
             LanguageAPI.Add("GOTCE_VIENDPASSIVE_NAME", "The Only Thing They Fear");
             LanguageAPI.Add("GOTCE_VIENDPASSIVE_DESC", "You are permanently corrupted. Your health drains alongside your corruption, and raises alongside it aswell. Your corruption cannot go below 1%. Healing is converted into armor, and your armor decays over time. Deal damage restores corruption.");
+
+            LanguageAPI.Add("GOTCE_PEARLUPGRADE_NAME", "War??p");
+            LanguageAPI.Add("GOTCE_PEARLUPGRADE_DESC", "Launch a powerful void spike, teleporting you to wherever it land and releasing a devastating void explosion for 2600% damage");
+
+            // alt skills hooks
+
+            On.EntityStates.VoidSurvivor.CorruptMode.CorruptMode.OnEnter += (orig, self) => {
+                bool hasSecondaryAlt = false;
+                bool hasPrimaryAlt = false;
+                bool hasUtilityAlt = false;
+                bool hasSpecialAlt = false;
+                if (NetworkServer.active) {
+                    hasSecondaryAlt = self.skillLocator.secondary.skillNameToken == Skills.Pearl.Instance.SkillDef.skillNameToken;
+                }
+                orig(self);
+                if (NetworkServer.active) {
+                    if (hasSecondaryAlt) {
+                        self.skillLocator.secondary.UnsetSkillOverride(self.gameObject, self.secondaryOverrideSkillDef, GenericSkill.SkillOverridePriority.Upgrade);
+                        self.skillLocator.secondary.SetSkillOverride(self.gameObject, Skills.PearlUpgrade.Instance.SkillDef, GenericSkill.SkillOverridePriority.Upgrade);
+                    }
+                }
+            };
+
+            On.EntityStates.VoidSurvivor.CorruptMode.CorruptMode.OnExit += (orig, self) => {
+                bool hasSecondaryAlt = false;
+                bool hasPrimaryAlt = false;
+                bool hasUtilityAlt = false;
+                bool hasSpecialAlt = false;
+                if (NetworkServer.active) {
+                    hasSecondaryAlt = self.skillLocator.secondary.skillNameToken == Skills.PearlUpgrade.Instance.SkillDef.skillNameToken;
+                }
+                orig(self);
+                if (NetworkServer.active) {
+                    if (hasSecondaryAlt) {
+                        self.skillLocator.secondary.UnsetSkillOverride(self.gameObject, Skills.PearlUpgrade.Instance.SkillDef, GenericSkill.SkillOverridePriority.Upgrade);
+                    }
+                }
+            };
         }
     }
 

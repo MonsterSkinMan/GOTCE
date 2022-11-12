@@ -62,4 +62,15 @@ namespace GOTCE.Components {
             }
         }
     }
+
+    public class ViendPearlUpgradeBehavior : MonoBehaviour {
+        public GameObject owner;
+        public void OnDestroy() {
+            if (owner) {
+                if (NetworkServer.active && owner.GetComponent<CharacterBody>() && gameObject.name == "pearlupgradeimpacted") {
+                    TeleportHelper.TeleportBody(owner.GetComponent<CharacterBody>(), gameObject.transform.position);
+                }
+            }
+        }
+    }
 }

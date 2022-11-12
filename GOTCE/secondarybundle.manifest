@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4029954322
+CRC: 2849529630
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 7268f9c9a3c709b1fa3c7eaccf52ef0b
+    Hash: 5ecac44d6d02f2a173f8740f03f97216
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 2c44f4ff628e39066b42bc2af9060216
+    Hash: 2da91b1941783c93e1a7d7f5154c31e8
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -144,6 +144,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: -1848696948, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: 353067543, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: -317677761, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -270136354, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
@@ -210,6 +212,7 @@ Assets:
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/Pearl.prefab
 - Assets/Prefabs/Projectiles/AltSkills/Saw/SawPrefab.prefab
 - Assets/Prefabs/Interactables/DisposableFunder/DisposableFunder.prefab
+- Assets/Prefabs/Projectiles/AltSkills/CorruptedPearl/PearlUpgrade.prefab
 - Assets/Prefabs/Projectiles/Aegiscentrism/AegisGhost.prefab
 - Assets/Prefabs/Survivors/Crackmando/CrackedDef.asset
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/slide.png
