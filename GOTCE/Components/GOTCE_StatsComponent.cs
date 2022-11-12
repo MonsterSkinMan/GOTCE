@@ -78,6 +78,7 @@ namespace GOTCE.Components
                 // fov crit 
                 float fovCritChanceTmp = 0f;
                 fovCritChanceTmp += 10f*(inventory.GetItemCount(Items.White.ZoomLenses.Instance.ItemDef));
+                if (body.inventory.GetItemCount(Items.Green.MissileFovCrit.Instance.ItemDef) > 0) { fovCritChanceTmp += 5f; }
                 fovCritChance = fovCritChanceTmp;
                 fovCritChance += increase;
                 
@@ -86,7 +87,6 @@ namespace GOTCE.Components
                 sprCritChanceTmp += 8f*(inventory.GetItemCount(Items.White.GummyVitamins.Instance.ItemDef));
                 if (body.inventory.GetItemCount(Items.White.gd2.Instance.ItemDef) > 0) { sprCritChanceTmp += 10f; }
                 if (body.inventory.GetItemCount(Items.White.SigmaGrindset.Instance.ItemDef) > 0) { sprCritChanceTmp += 2f; }
-                if (body.inventory.GetItemCount(Items.Green.MissileFovCrit.Instance.ItemDef) > 0) { sprCritChanceTmp += 5f; }
                 sprintCritChance = sprCritChanceTmp;
 
                 // stage crit

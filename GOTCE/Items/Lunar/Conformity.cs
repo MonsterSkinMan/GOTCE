@@ -42,10 +42,10 @@ namespace GOTCE.Items.Lunar
         {
             On.RoR2.GlobalEventManager.OnHitEnemy += (orig, self, info, victim) => {
                 orig(self, info, victim);
-                if (NetworkServer.active) {
+                if (NetworkServer.active && info.attacker) {
                     CharacterBody attacker = info.attacker.GetComponent<CharacterBody>();
                     CharacterBody vBody = victim.GetComponent<CharacterBody>();
-                    if (attacker && vBody && vBody.master) {
+                    if (attacker && vBody && vBody.master && attacker.masterObject) {
                         if (GetCount(attacker) > 0) {
                             if (attacker.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
                                 attacker.master.bodyPrefab = vBody.master.bodyPrefab;
@@ -59,7 +59,7 @@ namespace GOTCE.Items.Lunar
             RecalculateStatsAPI.GetStatCoefficients += (body, args) => {
                 if (NetworkServer.active && GetCount(body) > 0) {
                     float increase = 1*GetCount(body);
-                    float decrease = 0.5f*GetCount(body);
+                    float decrease = 0.5f*(GetCount(body) - 1);
 
                     args.attackSpeedMultAdd += increase;
                     args.regenMultAdd -= decrease;

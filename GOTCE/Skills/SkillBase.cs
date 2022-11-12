@@ -43,6 +43,7 @@ namespace GOTCE.Skills
         public virtual int RechargeStock { get; } = 1;
         public virtual Sprite Icon { get; } = null;
         public virtual int StockToConsume { get; } = 1;
+        public virtual string[] KeywordTokens { get; } = null;
 
         public SkillDef SkillDef;
 
@@ -65,6 +66,9 @@ namespace GOTCE.Skills
             SkillDef.skillNameToken = NameToken;
             SkillDef.skillDescriptionToken = DescToken;
             SkillDef.stockToConsume = StockToConsume;
+            if (KeywordTokens != null) {
+                SkillDef.keywordTokens = KeywordTokens;
+            }
 
             ContentAddition.AddSkillDef(SkillDef);
         }
