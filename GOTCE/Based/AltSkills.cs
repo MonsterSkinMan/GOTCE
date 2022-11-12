@@ -322,10 +322,10 @@ namespace GOTCE.Based {
                         }
                     }
 
-                    if (self.gameObject.GetComponent<CharacterMotor>()) {
+                    /* if (self.gameObject.GetComponent<CharacterMotor>()) {
                         CharacterMotor motor = self.gameObject.GetComponent<CharacterMotor>();
                         motor.airControl = Mathf.InverseLerp(self.corruption, self.maxCorruption, 5);
-                    }
+                    } */
                 }
                 orig(self);
             };
