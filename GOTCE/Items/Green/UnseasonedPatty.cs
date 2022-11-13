@@ -1,4 +1,4 @@
-using RoR2;
+/*using RoR2;
 using UnityEngine;
 using BepInEx.Configuration;
 using System;
@@ -96,7 +96,7 @@ namespace GOTCE.Items.Green
                 Debug.Log("totalGreens: " + total);
                 Debug.Log("totalTomes: " + totalTomes); */
 
-                SphereSearch search = new();
+            /*    SphereSearch search = new();
                 List<HurtBox> hurtboxBuffer = new();
                 search.radius = 2;
                 search.origin = report.victimBody.corePosition;
@@ -188,7 +188,7 @@ namespace GOTCE.Items.Green
         }
     }
 
-    public class BubbleController : MonoBehaviour {
+    /*public class BubbleController : MonoBehaviour {
         float stopwatch = 0f;
         float lifetime = 1000f;
 
@@ -255,9 +255,9 @@ namespace GOTCE.Items.Green
                         radiusInc += 0.2f * com.body.GetBuffCount(Seasoning.buff);
                     }
                 } */
-            }
+         /*   }
 
-            stopwatchClenase += Time.fixedDeltaTime;
+           /* stopwatchClenase += Time.fixedDeltaTime;
             if (stopwatchClenase >= seasoningCleanseDelay) {
                 stopwatchClenase = 0f;
                 foreach (HurtBox box in hurtboxBuffer) {
@@ -288,4 +288,4 @@ namespace GOTCE.Items.Green
             }
         }
     }
-}
+} */

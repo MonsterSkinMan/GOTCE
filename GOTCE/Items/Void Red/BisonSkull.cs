@@ -61,6 +61,7 @@ namespace GOTCE.Items.Void_Red
                     }
                 }
             }
+            orig(self, damageReport);
         }
 
         private void powerUncreep(On.RoR2.Items.ContagiousItemManager.orig_Init orig)
