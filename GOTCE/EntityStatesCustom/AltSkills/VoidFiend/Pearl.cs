@@ -14,6 +14,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend {
         {
             base.OnEnter();
             duration = duration / attackSpeedStat;
+            AkSoundEngine.PostEvent(4021527550, base.gameObject); // Play_voidman_m2_shoot_fullCharge
             Ray aim = GetAimRay();
 
             if (NetworkServer.active) {

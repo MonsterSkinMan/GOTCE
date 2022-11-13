@@ -75,6 +75,7 @@ namespace GOTCE
             GOTCEModels = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "gotcemodels"));
             ModLogger = Logger;
             SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
+            
 
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI")) {
                 UICompat.AddBetterUICompat();

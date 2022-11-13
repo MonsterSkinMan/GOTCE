@@ -12,6 +12,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Bandit {
         public override void OnEnter()
         {
             base.OnEnter();
+            AkSoundEngine.PostEvent(850833398, base.gameObject); // Play_bandit2_shift_exit
+            PlayAnimation("Gesture, Additive", "ThrowSmokebomb", "ThrowSmokebomb.playbackRate", duration);
             if (NetworkServer.active) {
                 try {
                     MasterSummon masterSummon2 = new MasterSummon();

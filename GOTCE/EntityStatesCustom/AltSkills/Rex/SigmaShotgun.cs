@@ -20,6 +20,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Rex {
             Ray ray = base.GetAimRay();
             CharacterBody body = base.characterBody;
             proj.GetComponent<ProjectileController>().procCoefficient = 0.6725f;
+
+            AkSoundEngine.PostEvent(1706423866, base.gameObject); // Play_treeBot_m1_shoot
             for (int i = 0; i < count; i++) {
                 FireProjectileInfo info = default;
                 info.damage = base.damageStat * 0.5f;

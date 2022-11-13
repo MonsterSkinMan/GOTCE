@@ -21,6 +21,7 @@ namespace GOTCE.Based {
             HuntressAlts();
             ViendAlts();
             BanditAlts();
+            CaptainAlts();
         }
 
         private static void RexAlts() {
@@ -121,6 +122,27 @@ namespace GOTCE.Based {
             LanguageAPI.Add(Skills.Decoy.Instance.SkillDef.skillDescriptionToken, "Deploy a decoy that draws enemy attention for 5 seconds before exploding in a damaging blast for 760%. The decoy will explode early if killed.");
 
             LanguageAPI.Add("GOTCE_EXPLOSIVEDECOY_NAME", "Explosive Decoy");
+        }
+
+        private static void CaptainAlts() {
+            GameObject captainPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Captain/CaptainBody.prefab").WaitForCompletion();
+
+            SkillLocator sl = captainPrefab.GetComponent<SkillLocator>();
+
+            SkillFamily skillFamily;
+            // hephastaeus shotgun
+            skillFamily = sl.primary.skillFamily;
+            Array.Resize(ref skillFamily.variants, skillFamily.variants.Length + 1);
+            skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
+            {
+                skillDef = Skills.Overheat.Instance.SkillDef,
+                unlockableName = "",
+                viewableNode = new ViewablesCatalog.Node(Skills.Overheat.Instance.SkillDef.skillNameToken, false, null)
+            };
+
+            LanguageAPI.Add(Skills.Overheat.Instance.SkillDef.skillNameToken, "Hephestaesus Shotgun");
+            LanguageAPI.Add(Skills.Overheat.Instance.SkillDef.skillDescriptionToken, "Charge up a blast of rapid fire incendiary rounds for 60% damage each, inflicting ignite on hit. Bullets fired increases with charge time, but so does spread.");
+
         }
 
         private static void ViendAlts() {
