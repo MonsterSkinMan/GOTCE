@@ -12,7 +12,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Railgunner {
     public class DumbRounds : BaseSkillState
     {
 
-        private float duration = 0.16f;
+        private float duration = 0.1f;
         private GameObject prefab;
 
         public override void FixedUpdate()
@@ -43,7 +43,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Railgunner {
             info.crit = base.RollCrit();
             info.damageTypeOverride = DamageType.Generic;
             info.speedOverride = 250f;
-            info.rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(base.GetAimRay().direction, -3.5f, 3.5f, -3.5f, 3.5f));
+            info.rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(base.GetAimRay().direction, -1.5f, 1.5f, -1.5f, 1.5f));
 
             if (base.isAuthority) {
                 ProjectileManager.instance.FireProjectile(info);
