@@ -35,6 +35,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Railgunner {
             prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Railgunner/RailgunnerPistolProjectile.prefab").WaitForCompletion().InstantiateClone("dumbrounds");
             GameObject.DestroyImmediate(prefab.GetComponent<ProjectileSteerTowardTarget>());
 
+            AkSoundEngine.PostEvent(3663213371, base.gameObject); // Play_railgunner_m1_fire
+
             FireProjectileInfo info = default;
             info.damage = base.damageStat;
             info.projectilePrefab = prefab;

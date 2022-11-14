@@ -20,6 +20,8 @@ namespace GOTCE.Based {
             RGAlts();
             HuntressAlts();
             ViendAlts();
+            BanditAlts();
+            CaptainAlts();
         }
 
         private static void RexAlts() {
@@ -98,6 +100,49 @@ namespace GOTCE.Based {
                     orig(self);
                 }
             }; */
+        }
+
+        private static void BanditAlts() {
+            GameObject banditPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Bandit2/Bandit2Body.prefab").WaitForCompletion();
+
+            SkillLocator sl = banditPrefab.GetComponent<SkillLocator>();
+
+            SkillFamily skillFamily;
+            // decoy
+            skillFamily = sl.utility.skillFamily;
+            Array.Resize(ref skillFamily.variants, skillFamily.variants.Length + 1);
+            skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
+            {
+                skillDef = Skills.Decoy.Instance.SkillDef,
+                unlockableName = "",
+                viewableNode = new ViewablesCatalog.Node(Skills.Decoy.Instance.SkillDef.skillNameToken, false, null)
+            };
+
+            LanguageAPI.Add(Skills.Decoy.Instance.SkillDef.skillNameToken, "Explosive Decoy");
+            LanguageAPI.Add(Skills.Decoy.Instance.SkillDef.skillDescriptionToken, "Deploy a decoy that draws enemy attention for 5 seconds before exploding in a damaging blast for 760%. The decoy will explode early if killed.");
+
+            LanguageAPI.Add("GOTCE_EXPLOSIVEDECOY_NAME", "Explosive Decoy");
+        }
+
+        private static void CaptainAlts() {
+            GameObject captainPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Captain/CaptainBody.prefab").WaitForCompletion();
+
+            SkillLocator sl = captainPrefab.GetComponent<SkillLocator>();
+
+            SkillFamily skillFamily;
+            // hephastaeus shotgun
+            skillFamily = sl.primary.skillFamily;
+            Array.Resize(ref skillFamily.variants, skillFamily.variants.Length + 1);
+            skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
+            {
+                skillDef = Skills.Overheat.Instance.SkillDef,
+                unlockableName = "",
+                viewableNode = new ViewablesCatalog.Node(Skills.Overheat.Instance.SkillDef.skillNameToken, false, null)
+            };
+
+            LanguageAPI.Add(Skills.Overheat.Instance.SkillDef.skillNameToken, "Hephaestus Shotgun");
+            LanguageAPI.Add(Skills.Overheat.Instance.SkillDef.skillDescriptionToken, "Charge up a blast of rapid fire incendiary rounds for 60% damage each, inflicting ignite on hit. Bullets fired increases with charge time, but so does spread.");
+
         }
 
         private static void ViendAlts() {
@@ -347,6 +392,11 @@ namespace GOTCE.Based {
 
                     float fraction = self.bodyHealthComponent.fullHealth * (self.corruption / 100);
                     self.bodyHealthComponent.health = fraction;
+
+                    float fractionShields = self.bodyHealthComponent.fullShield * (self.corruption / 100);
+                    if (self.bodyHealthComponent.fullShield > 0) {
+                        self.bodyHealthComponent.shield = fraction;
+                    }
 
                     self.corruptionFractionPerSecondWhileCorrupted = self.characterBody.outOfCombat ? -0.022f : -0.044f;
                     if (self.corruption >= 100) {

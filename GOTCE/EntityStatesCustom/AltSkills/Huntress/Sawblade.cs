@@ -25,6 +25,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Huntress {
 
             prefab.AddComponent<SlowVelocty>();
 
+            AkSoundEngine.PostEvent(2486049627, base.gameObject); // Play_huntress_m2_throw
+
             FireProjectileInfo info = default;
             info.owner = base.gameObject;
             info.crit = base.RollCrit();

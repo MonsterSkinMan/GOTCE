@@ -20,6 +20,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Rex {
             Ray ray = base.GetAimRay();
             CharacterBody body = base.characterBody;
             proj.GetComponent<ProjectileController>().procCoefficient = 0.6725f;
+
+            AkSoundEngine.PostEvent(1706423866, base.gameObject); // Play_treeBot_m1_shoot
             for (int i = 0; i < count; i++) {
                 FireProjectileInfo info = default;
                 info.damage = base.damageStat * 0.5f;
@@ -36,17 +38,25 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Rex {
                     ProjectileManager.instance.FireProjectile(info);
                 }
             }
+            if (NetworkServer.active && base.healthComponent && 0.05f >= Mathf.Epsilon)
+            {
+                DamageInfo selfdamage = new DamageInfo();
+                selfdamage.damage = base.healthComponent.combinedHealth * 0.05f;
+                selfdamage.damageType = DamageType.NonLethal;
+                selfdamage.position = base.characterBody.corePosition;
+                selfdamage.attacker = null;
+                selfdamage.inflictor = null;
+                selfdamage.crit = false;
+                selfdamage.force = Vector3.zero;
+                selfdamage.procChainMask = default(ProcChainMask);
+                selfdamage.procCoefficient = 0f;
 
-            DamageInfo selfdamage = default;
-            selfdamage.damage = base.healthComponent.combinedHealth * 0.05f; // why is 0.05f, a literal float, null??????
-            selfdamage.damageType = DamageType.NonLethal;
-            selfdamage.position = base.characterBody.corePosition;
-            selfdamage.attacker = base.gameObject;
-            selfdamage.procCoefficient = 0f;
-
-            if (base.isAuthority) {
-                base.healthComponent.TakeDamage(selfdamage);
+                if (base.isAuthority)
+                {
+                    base.healthComponent.TakeDamage(selfdamage);
+                }
             }
+            
         }
 
         public override void OnExit()

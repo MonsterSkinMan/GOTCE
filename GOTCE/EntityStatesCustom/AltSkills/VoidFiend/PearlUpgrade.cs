@@ -14,6 +14,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend {
         {
             base.OnEnter();
             Ray aim = GetAimRay();
+            AkSoundEngine.PostEvent(4021527550, base.gameObject); // Play_voidman_m2_shoot_fullCharge
             
             if (NetworkServer.active) {
                 GameObject projectile = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Projectiles/AltSkills/CorruptedPearl/PearlUpgrade.prefab").InstantiateClone("pearlupgradeprojectile");

@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using HarmonyLib;
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -19,9 +20,9 @@ namespace GOTCE.Items.VoidLunar
 
         public override string ItemLore => "This is a stupid item. At least it's more interesting than gesture.";
 
-        public override ItemTier Tier => ItemTier.VoidTier1;
+        public override ItemTier Tier => Tiers.LunarVoid.Instance.TierEnum;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, GOTCETags.Masochist };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility };
 
         public override GameObject ItemModel => null;
 
@@ -41,6 +42,7 @@ namespace GOTCE.Items.VoidLunar
         {
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
             On.RoR2.GenericSkill.IsReady += GenericSkill_IsReady;
+            On.RoR2.Items.ContagiousItemManager.Init += JesterOfTheClowned;
         }
 
         public static void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
@@ -64,6 +66,17 @@ namespace GOTCE.Items.VoidLunar
                 self.ExecuteIfReady();
             }
             return result;
+        }
+
+        private void JesterOfTheClowned(On.RoR2.Items.ContagiousItemManager.orig_Init orig)
+        {
+            ItemDef.Pair transformation = new ItemDef.Pair()
+            {
+                itemDef1 = RoR2Content.Items.AutoCastEquipment,
+                itemDef2 = this.ItemDef
+            };
+            ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem] = ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem].AddToArray(transformation);
+            orig();
         }
     }
 }
