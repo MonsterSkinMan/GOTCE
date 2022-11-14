@@ -59,6 +59,7 @@ namespace GOTCE.Items.VoidLunar
 
         private bool GenericSkill_IsReady(On.RoR2.GenericSkill.orig_IsReady orig, GenericSkill self)
         {
+            orig(self);
             var result = orig(self);
             CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
             if (body && body.inventory && body.inventory.GetItemCount(ItemDef) > 0)

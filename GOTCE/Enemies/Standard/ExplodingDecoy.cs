@@ -51,6 +51,11 @@ namespace GOTCE.Enemies.Standard
         {
             base.Modify();
             prefab.GetComponents<EntityStateMachine>();
+            if (!prefab.GetComponent<TeamComponent>())
+            {
+                TeamComponent team = prefab.AddComponent<TeamComponent>();
+                team.teamIndex = TeamIndex.Player;
+            }
             foreach (EntityStateMachine esm in prefab.GetComponents<EntityStateMachine>())
             {
                 esm.initialStateType = new SerializableEntityStateType(typeof(DecoyTimer));
