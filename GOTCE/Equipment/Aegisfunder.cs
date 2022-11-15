@@ -124,8 +124,8 @@ namespace GOTCE.Equipment
                     speedOverride = 350f,
                     crit = Util.CheckRoll(body.crit, body.master),
                     damageColorIndex = DamageColorIndex.WeakPoint,
-                    position = body.corePosition,
-                    rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(body.equipmentSlot.GetAimRay().direction, -1.5f, 1.5f, -1.5f, 1.5f)),
+                    position = body.corePosition + new Vector3(0, 0.5f, 0), 
+                    rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(body.equipmentSlot.GetAimRay().direction, -0.5f, 0.5f, -0.5f, 0.5f)),
                     owner = body.gameObject,
                     procChainMask = mask
                 };

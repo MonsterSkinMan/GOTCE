@@ -62,6 +62,7 @@ namespace GOTCE.Artifact {
                             info.damageType = DamageType.NonLethal;
                             info.damage = damage;
                             info.damageColorIndex = DamageColorIndex.Bleed;
+                            info.position = gameObject.transform.position;
 
                             body.healthComponent.TakeDamage(info);
 

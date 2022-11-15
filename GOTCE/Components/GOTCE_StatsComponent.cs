@@ -22,6 +22,9 @@ namespace GOTCE.Components
         public float sprintCritChance;
         public float fovCritChance;
 
+        // other stats
+        public int aoeEffect;
+
         // item: crown prince
         public int crownPrinceUses;
         public float crownPrinceTrueKillChance;
@@ -92,6 +95,9 @@ namespace GOTCE.Components
                 // stage crit
                 DetermineStageCrit();
 
+                int aoeEffectTmp = 0;
+                aoeEffectTmp += 2*(inventory.GetItemCount(Items.White.BangSnap.Instance.ItemDef));
+                aoeEffect = aoeEffectTmp;
             }
 
             // grant attack speed if the player is within an ethereal bubble from seasoned patty

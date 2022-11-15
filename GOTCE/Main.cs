@@ -75,7 +75,7 @@ namespace GOTCE
             GOTCEModels = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "gotcemodels"));
             ModLogger = Logger;
             SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
-            
+        
 
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI")) {
                 UICompat.AddBetterUICompat();
@@ -216,6 +216,7 @@ namespace GOTCE
                 AltSkills.AddAlts();
                 Misc.Woolie.Initialize();
                 Mechanics.WarCrimes.Hooks();
+                AOEffect.Hooks();
             }
 
             var enemyTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EnemyBase)));
@@ -427,10 +428,25 @@ namespace GOTCE
                 }
             };
 
+            Func<CharacterBody, string> aoe = (CharacterBody body) => {
+                if (body.masterObject) {
+                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
+                        return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().aoeEffect.ToString();
+                    }
+                    else {
+                        return "N/A";
+                    }
+                }
+                else {
+                    return "N/A";
+                }
+            };
+
             BetterUI.StatsDisplay.AddStatsDisplay("$stage", stage);
             BetterUI.StatsDisplay.AddStatsDisplay("$sprint", sprint);
             BetterUI.StatsDisplay.AddStatsDisplay("$fov", fov);
             BetterUI.StatsDisplay.AddStatsDisplay("$war", war);
+            BetterUI.StatsDisplay.AddStatsDisplay("$aoe", aoe);
 
             /* Hook statsHook = new Hook(
                 typeof(BetterUI.StatsDisplay).GetMethod("onStart", (BindingFlags)(-1)),
@@ -475,6 +491,8 @@ namespace GOTCE
                 normalText.Add("$sprint");
                 normalText.Add("%\nRecent War Crime: ");
                 normalText.Add("$war");
+                normalText.Add("\nAoE Effect: +");
+                normalText.Add("$aoe");
 
                 /* string[] guh = normalText.ToArray();
                 for (int i = 0; i < guh.Length; i++) {
@@ -495,6 +513,8 @@ namespace GOTCE
                 // altText.Add("%");
                 altText.Add("%\nRecent War Crime: ");
                 altText.Add("$war");
+                altText.Add("\nAoE Effect: +");
+                altText.Add("$aoe");
 
                 typeof(BetterUI.StatsDisplay).SetFieldValue<string[]>("normalText", normalText.ToArray());
                 typeof(BetterUI.StatsDisplay).SetFieldValue<string[]>("altText", altText.ToArray());

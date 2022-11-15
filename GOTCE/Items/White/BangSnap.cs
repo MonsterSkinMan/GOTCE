@@ -39,7 +39,7 @@ namespace GOTCE.Items.White
 
         public override void Hooks()
         {
-            On.RoR2.BlastAttack.Fire += BlastAttack_Fire;
+            // On.RoR2.BlastAttack.Fire += BlastAttack_Fire;
         }
 
         private BlastAttack.Result BlastAttack_Fire(On.RoR2.BlastAttack.orig_Fire orig, BlastAttack self)
