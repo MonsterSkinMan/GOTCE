@@ -82,10 +82,4 @@ namespace GOTCE.Enemies.Bosses
             RegisterEnemy(prefab, prefabMaster, null, DirectorAPI.MonsterCategory.Champions, true);
         }
     }
-
-    // TODO:
-
-    // remove spawn vfx (probably in an entitystate)
-    // remove footstep vfx
-    // make the spawn entitystate much faster
 }
