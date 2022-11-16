@@ -36,76 +36,11 @@ namespace GOTCE.Items.Lunar
         public override GameObject ItemModel => null;
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/PaleAle.png");
-        private static readonly string[] blacklistedScenes = { "artifactworld", "crystalworld", "eclipseworld", "infinitetowerworld", "intro", "loadingbasic", "lobby", "logbook", "mysteryspace", "outro", "PromoRailGunner", "PromoVoidSurvivor", "splash", "title", "voidoutro" };
-
-        public static GameObject ppHolder;
-        public static AmbientOcclusion ao;
-        public static Bloom bloom;
-        public static ChromaticAberration chromab;
-        public static ColorGrading grading;
-        public static DepthOfField dof;
-        public static Grain grain;
-
-        public static MotionBlur mblur;
-
-        private static bool shouldRun;
+        // private static readonly string[] blacklistedScenes = { "artifactworld", "crystalworld", "eclipseworld", "infinitetowerworld", "intro", "loadingbasic", "lobby", "logbook", "mysteryspace", "outro", "PromoRailGunner", "PromoVoidSurvivor", "splash", "title", "voidoutro" };
 
         public override void Init(ConfigFile config)
         {
             base.Init(config);
-            ppHolder = new("PPPaleAle");
-            Object.DontDestroyOnLoad(ppHolder);
-            ppHolder.layer = LayerIndex.postProcess.intVal;
-            ppHolder.AddComponent<PaleAlePostProcessingController>();
-            PostProcessVolume pp = ppHolder.AddComponent<PostProcessVolume>();
-            Object.DontDestroyOnLoad(pp);
-            pp.isGlobal = true;
-            pp.weight = 0f;
-            pp.priority = float.MaxValue;
-            PostProcessProfile ppProfile = ScriptableObject.CreateInstance<PostProcessProfile>();
-            Object.DontDestroyOnLoad(ppProfile);
-            ppProfile.name = "PaleAlePP";
-
-            ao = ppProfile.AddSettings<AmbientOcclusion>();
-            ao.SetAllOverridesTo(true);
-            ao.intensity.value = 0.71f;
-            ao.thicknessModifier.value = 3.07f;
-            ao.ambientOnly.value = false;
-
-            bloom = ppProfile.AddSettings<Bloom>();
-            bloom.SetAllOverridesTo(true);
-            bloom.intensity.value = 1.2f;
-            bloom.softKnee.value = 4.4f;
-            bloom.threshold.value = -0.2f;
-
-            chromab = ppProfile.AddSettings<ChromaticAberration>();
-            chromab.SetAllOverridesTo(true);
-            chromab.intensity.value = 20f;
-
-            grading = ppProfile.AddSettings<ColorGrading>();
-            grading.SetAllOverridesTo(true);
-            grading.hueShift.value = 147f;
-            grading.saturation.value = 45f;
-
-            dof = ppProfile.AddSettings<DepthOfField>();
-            dof.SetAllOverridesTo(true);
-            dof.aperture.value = 15f;
-            dof.focalLength.value = 124.56f;
-            dof.focusDistance.value = 5f;
-
-            grain = ppProfile.AddSettings<Grain>();
-            grain.SetAllOverridesTo(true);
-            grain.intensity.value = 0.02f;
-            grain.size.value = 11.18f;
-            grain.lumContrib.value = 7.17f;
-            grain.colored.value = true;
-
-            mblur = ppProfile.AddSettings<MotionBlur>();
-            mblur.SetAllOverridesTo(true);
-            mblur.shutterAngle.value = 270f;
-            mblur.sampleCount.value = 10;
-
-            pp.sharedProfile = ppProfile;
         }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
@@ -116,55 +51,8 @@ namespace GOTCE.Items.Lunar
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
-            Inventory.onInventoryChangedGlobal += Inventory_onInventoryChangedGlobal;
-            Run.onRunDestroyGlobal += Run_onRunDestroyGlobal;
-            //On.RoR2.SceneDirector.Start += SceneDirector_Start;
         }
 
-        private void Inventory_onInventoryChangedGlobal(Inventory i)
-        {
-            if (NetworkServer.active && i)
-            {
-                var ppVolume = ppHolder.GetComponent<PostProcessVolume>();
-                var stack = i.GetItemCount(Instance.ItemDef);
-                if (stack > 0)
-                {
-                    ppVolume.weight = 1f;
-                }
-                else
-                {
-                    ppVolume.weight = 0f;
-                }
-            }
-        }
-
-        private void Run_onRunDestroyGlobal(Run obj)
-        {
-            var ppVolume = ppHolder.GetComponent<PostProcessVolume>();
-            var sceneName = SceneManager.GetActiveScene().name;
-            if (!blacklistedScenes.Contains(sceneName))
-            {
-                ppVolume.weight = 0f;
-            }
-        }
-
-        private void SceneDirector_Start(On.RoR2.SceneDirector.orig_Start orig, SceneDirector self)
-        {
-            var ppVolume = ppHolder.GetComponent<PostProcessVolume>();
-
-            var sceneName = SceneManager.GetActiveScene().name;
-            if (shouldRun && !blacklistedScenes.Contains(sceneName))
-            {
-                //ppVolume.gameObject.SetActive(true);
-                ppVolume.weight = 1f;
-            }
-            else
-            {
-                //ppVolume.gameObject.SetActive(false);
-                ppVolume.weight = 0f;
-            }
-            orig(self);
-        }
 
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
@@ -176,18 +64,80 @@ namespace GOTCE.Items.Lunar
                     args.damageMultAdd += 0.6f + 0.4f * (stack - 1);
                     args.cooldownMultAdd += 0f + 0.5f * (stack - 1);
                 }
+
+                sender.AddItemBehavior<PaleAleBehavior>(stack);
             }
         }
     }
 
-    public class PaleAlePostProcessingController : MonoBehaviour
-    {
-        public PostProcessVolume volume;
+    public class PaleAleBehavior : CharacterBody.ItemBehavior {
+        public PostProcessVolume vol;
+        public PostProcessProfile ppProfile;
+        public GameObject ppHolder;
+        public void Start() {
+            if (body.hasAuthority) {
+                ppHolder = new GameObject("ppHolder");
+                ppHolder.transform.SetParent(gameObject.transform);
+                ppHolder.layer = LayerIndex.postProcess.intVal;
+                vol = ppHolder.AddComponent<PostProcessVolume>();
+                vol.priority = int.MaxValue;
+                vol.weight = int.MaxValue;
 
-        public void Start()
-        {
-            volume = GetComponent<PostProcessVolume>();
-            // volume.gameObject.SetActive(false);
+                vol.isGlobal = true;
+                // vol.gameObject.layer = LayerIndex.postProcess.intVal;
+
+                ppProfile = ScriptableObject.CreateInstance<PostProcessProfile>();
+                ppProfile.name = "PaleAlePP";
+
+                AmbientOcclusion ao = ppProfile.AddSettings<AmbientOcclusion>();
+                ao.SetAllOverridesTo(true);
+                ao.intensity.value = 0.71f;
+                ao.thicknessModifier.value = 3.07f;
+                ao.ambientOnly.value = false;
+
+                Bloom bloom = ppProfile.AddSettings<Bloom>();
+                bloom.SetAllOverridesTo(true);
+                bloom.intensity.value = 1.2f;
+                bloom.softKnee.value = 4.4f;
+                bloom.threshold.value = -0.2f;
+
+                ChromaticAberration chromab = ppProfile.AddSettings<ChromaticAberration>();
+                chromab.SetAllOverridesTo(true);
+                chromab.intensity.value = 20f;
+
+                ColorGrading grading = ppProfile.AddSettings<ColorGrading>();
+                grading.SetAllOverridesTo(true);
+                grading.hueShift.value = 147f;
+                grading.saturation.value = 45f;
+
+                DepthOfField dof = ppProfile.AddSettings<DepthOfField>();
+                dof.SetAllOverridesTo(true);
+                dof.aperture.value = 15f;
+                dof.focalLength.value = 124.56f;
+                dof.focusDistance.value = 5f;
+
+                Grain grain = ppProfile.AddSettings<Grain>();
+                grain.SetAllOverridesTo(true);
+                grain.intensity.value = 0.02f;
+                grain.size.value = 11.18f;
+                grain.lumContrib.value = 7.17f;
+                grain.colored.value = true;
+
+                MotionBlur mblur = ppProfile.AddSettings<MotionBlur>();
+                mblur.SetAllOverridesTo(true);
+                mblur.shutterAngle.value = 270f;
+                mblur.sampleCount.value = 10;
+
+                vol.sharedProfile = ppProfile;
+            }
+        }
+
+        public void OnDestroy() {
+            if (body.hasAuthority) {
+                DestroyImmediate(vol);
+                DestroyImmediate(ppProfile);
+                DestroyImmediate(ppHolder);
+            }
         }
     }
 }

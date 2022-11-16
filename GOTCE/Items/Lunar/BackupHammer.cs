@@ -86,6 +86,22 @@ namespace GOTCE.Items.Lunar
                         sl.secondary.SetBonusStockFromBody(sl.secondary.bonusStockFromBody + 10 * stack);
                     }
                 }
+
+                if (stack <= 0 && self.skillLocator) {
+                    var sl = self.skillLocator;
+                    if (sl.primary)
+                    {
+                        sl.primary.UnsetSkillOverride(self.masterObject, lockedDef, GenericSkill.SkillOverridePriority.Replacement);
+                    }
+                    if (sl.utility)
+                    {
+                        sl.utility.UnsetSkillOverride(self.masterObject, lockedDef, GenericSkill.SkillOverridePriority.Replacement);
+                    }
+                    if (sl.special)
+                    {
+                        sl.special.UnsetSkillOverride(self.masterObject, lockedDef, GenericSkill.SkillOverridePriority.Replacement);
+                    }
+                }
             }
         }
     }

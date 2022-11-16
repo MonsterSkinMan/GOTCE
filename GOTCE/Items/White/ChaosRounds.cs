@@ -27,6 +27,9 @@ namespace GOTCE.Items.White
         public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.Unstable };
 
         public override GameObject ItemModel => null;
+        private static string DevastatorDeathName = "VoidMegaCrabDeathBombProjectile";
+        private static string DevastatorBombName = "VoidMegaCrabDeathBombletsExplosion";
+        private static string DevastatorExpName = "VoidMegaCrabDeathBombExplosion";
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/ChaosRounds.png");
         private string EngiMineName = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Engi/EngiMine.prefab").WaitForCompletion().name;
@@ -63,6 +66,9 @@ namespace GOTCE.Items.White
                         {
                             if (prefabs[i].name == EngiMineName || prefabs[i].name == SpiderMineName || prefabs[i].GetComponent<ProjectileSimple>() == null || prefabs[i].GetComponent<ProjectileCharacterController>() == null || prefabs[i].GetComponent<ProjectileController>() == null || prefabs[i].GetComponent<ProjectileDamage>() == null || prefabs[i].GetComponent<ProjectileDotZone>() == null || prefabs[i].GetComponent<ProjectileExplosion>() == null || prefabs[i].GetComponent<ProjectileImpactExplosion>() == null)
                             {
+                                prefabs.RemoveAt(i);
+                            }
+                            else if (prefabs[i].name.Contains(DevastatorBombName) || prefabs[i].name.Contains(DevastatorDeathName) || prefabs[i].name.Contains(DevastatorExpName)) {
                                 prefabs.RemoveAt(i);
                             }
                         }

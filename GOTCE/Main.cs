@@ -6,6 +6,8 @@ using GOTCE.Enemies.Changes;
 using GOTCE.Equipment;
 using GOTCE.Equipment.EliteEquipment;
 using GOTCE.Items;
+using Mono.Cecil;
+using MonoMod.Cil;
 using GOTCE.Tiers;
 using R2API;
 using R2API.Networking;
@@ -75,7 +77,7 @@ namespace GOTCE
             GOTCEModels = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "gotcemodels"));
             ModLogger = Logger;
             SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
-        
+    
 
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI")) {
                 UICompat.AddBetterUICompat();
@@ -246,10 +248,10 @@ namespace GOTCE
 
 
             //CreateExpansion();
-            /* On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
-            local multiplayer hook
-            run modded ror2 twice, create a multiplayer lobby in one, then do connect localhost:7777 in the other instance
-            */
+            On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
+            // local multiplayer hook
+            // run modded ror2 twice, create a multiplayer lobby in one, then do connect localhost:7777 in the other instance
+            
         }
 
         /// <summary>

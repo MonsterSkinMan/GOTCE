@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1288581538
+CRC: 214746807
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 92d6cc2969b5ff2d5327e64878b4de27
+    Hash: 618c3564dc8fdbb621562fea632c9d6d
   TypeTreeHash:
     serializedVersion: 2
     Hash: bd1d91bbb061d0ca9c0805129b71d456
@@ -225,6 +225,7 @@ Assets:
 - Assets/Prefabs/Survivors/Crackmando/CrackmandoBody.prefab
 - Assets/Prefabs/Enemies/Vermin/mdlVermin.prefab
 - Assets/Materials/matBubble.mat
+- Assets/Prefabs/Enemies/Woolie/Woolie.prefab
 - Assets/Prefabs/game.prefab
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/rounder.png
 - Assets/Prefabs/Interactables/ShrineDML/ShrineDML.prefab

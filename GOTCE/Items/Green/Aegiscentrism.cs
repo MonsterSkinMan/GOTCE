@@ -17,7 +17,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemPickupDesc => "Gain multiple orbital aegises. Every minute, assimilate another item into Aegicentrism.";
 
-        public override string ItemFullDescription => "Every second, gain an orbiting aegis that gives you 5% barrier after 10 (-25% per stack) seconds. Every 60 seconds, a random item is converted into this item.";
+        public override string ItemFullDescription => "Every second, gain up yo 6 (+2 per stack) orbiting aegises that give you 5% barrier after 10 seconds. Every 60 seconds, a random item is converted into this item.";
 
         public override string ItemLore => "i love aegis";
 
@@ -69,6 +69,7 @@ namespace GOTCE.Items.Green
         private float stopwatch = 0f;
         private float transformTimer = 0f;
         private float transformDelay = 60f;
+        private int maxTmp;
         private CharacterBody body;
 
         public event Action<OrbitalAegisBehavior> onDisabled;
@@ -78,6 +79,7 @@ namespace GOTCE.Items.Green
         }
         public void FixedUpdate() {
             stopwatch += Time.fixedDeltaTime;
+            max = 6 + 2*(body.inventory.GetItemCount(Aegiscentrism.Instance.ItemDef) - 1);
             transformTimer += Time.fixedDeltaTime;
             if (stopwatch >= delay) {
                 stopwatch = 0f;
@@ -185,7 +187,7 @@ namespace GOTCE.Items.Green
                 ProjectileOwnerOrbiter component2 = GetComponent<ProjectileOwnerOrbiter>();
                 component.GetComponent<OrbitalAegisBehavior>().InitializeOrbiter(component2, this);
                 body = component;
-                delay = delay / Mathf.Pow(2f, (body.inventory.GetItemCount(Aegiscentrism.Instance.ItemDef)));
+                // delay = delay / Mathf.Pow(2f, (body.inventory.GetItemCount(Aegiscentrism.Instance.ItemDef)));
             }
         }
 

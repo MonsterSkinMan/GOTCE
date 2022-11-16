@@ -41,6 +41,7 @@ namespace GOTCE.Enemies.Standard
             isc.sendOverNetwork = true;
             isc.prefab = prefabMaster;
             isc.name = "cscThe";
+            isc.forbiddenAsBoss = true;
         }
 
         public override void AddDirectorCard()
