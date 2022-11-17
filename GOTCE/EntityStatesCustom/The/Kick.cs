@@ -23,6 +23,7 @@ namespace GOTCE.EntityStatesCustom.The {
                 attack.hitBoxGroup = base.modelLocator.modelBaseTransform.GetComponent<HitBoxGroup>();
                 attack.Fire();
             }
+            PlayAnimation("Body", "Kick");
         }
 
         public override void FixedUpdate()

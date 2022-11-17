@@ -70,7 +70,7 @@ namespace GOTCE.Enemies.Bosses
             On.RoR2.CharacterBody.Start += (orig, self) => {
                 orig(self);
                 if (NetworkServer.active && self.baseNameToken == "GOTCE_WOOLIE_NAME" && self.equipmentSlot) {
-                    self.equipmentSlot.equipmentIndex = RoR2Content.Equipment.AffixRed.equipmentIndex;
+                    self.inventory.SetEquipmentIndex(RoR2Content.Equipment.AffixRed.equipmentIndex);
                 }
             };
 

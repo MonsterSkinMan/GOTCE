@@ -14,7 +14,7 @@ namespace GOTCE.Skills
         public override string DescToken => "GOTCE_DECOY_DESC";
         public override string ActivationStateMachineName => "Weapon";
         public override int BaseMaxStock => 1;
-        public override float BaseRechargeInterval => 7f;
+        public override float BaseRechargeInterval => 14f;
         public override bool BeginSkillCooldownOnSkillEnd => true;
         public override bool CancledFromSprinting => false;
         public override bool CancelSprintingOnActivation => false;

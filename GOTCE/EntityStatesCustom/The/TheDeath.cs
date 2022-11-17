@@ -5,32 +5,26 @@ using UnityEngine;
 using Unity;
 
 namespace GOTCE.EntityStatesCustom.The {
-    public class TheDeath : GenericCharacterDeath {
+    public class TheDeath : BaseState {
+        public float duration = 2f;
         public override void FixedUpdate()
         {
-            base.FixedUpdate();
+            if (base.fixedAge >= duration) {
+                outer.SetNextStateToMain();
+            }
         }
 
         public override void OnEnter()
         {
-            base.OnEnter();
             if (NetworkServer.active) {
-                if (base.modelLocator) {
-                    if (base.modelLocator.modelBaseTransform) {
-                        GameObject.Destroy(base.modelLocator.modelTransform.gameObject);
-                        GameObject.Destroy(base.modelLocator.modelBaseTransform.gameObject);
-                    }
-                    /* if (base.characterBody.masterObject) {
-                        GameObject.Destroy(base.characterBody.masterObject);
-                    }
-                    GameObject.Destroy(base.gameObject); */
-                }
+                healthComponent.health = healthComponent.fullHealth;
+                PlayAnimation("Body", "Death");
             }
         }
 
         public override void OnExit()
         {
-            base.OnExit();
+            
         }
     }
 }

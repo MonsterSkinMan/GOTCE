@@ -14,16 +14,16 @@ namespace GOTCE.Skills
         public override string DescToken => "GOTCE_KICK_DESC";
         public override string ActivationStateMachineName => "Weapon";
         public override int BaseMaxStock => 1;
-        public override float BaseRechargeInterval => 0f;
+        public override float BaseRechargeInterval => 1f;
         public override bool BeginSkillCooldownOnSkillEnd => true;
         public override bool CancledFromSprinting => false;
         public override bool CancelSprintingOnActivation => false;
         public override bool FullRestockOnAssign => true;
         public override InterruptPriority SkillInterruptPriority => InterruptPriority.Any;
         public override bool IsCombatSkill => true;
-        public override bool MustKeyPress => false;
+        public override bool MustKeyPress => true;
         public override int RechargeStock => 1;
-        public override int StockToConsume => 0;
+        public override int StockToConsume => 1;
         public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
     }
 }

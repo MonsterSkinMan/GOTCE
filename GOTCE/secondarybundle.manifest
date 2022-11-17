@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 214746807
+CRC: 1392508207
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 618c3564dc8fdbb621562fea632c9d6d
+    Hash: 8c3372869fef4efdba431b24a8d481b2
   TypeTreeHash:
     serializedVersion: 2
-    Hash: bd1d91bbb061d0ca9c0805129b71d456
+    Hash: 08936a28f277886021769c390b93e74c
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -50,6 +50,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 678291247, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: 161585894, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: 816898038, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 1790887305, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
@@ -61,8 +63,6 @@ ClassTypes:
   Script: {fileID: 952828898, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 1783796254, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
-  Script: {fileID: 161585894, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 1392865457, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
@@ -218,6 +218,7 @@ Assets:
 - Assets/Prefabs/Projectiles/AltSkills/Core/Core.prefab
 - Assets/Prefabs/Projectiles/Aegiscentrism/AegisGhost.prefab
 - Assets/Prefabs/Survivors/Crackmando/CrackedDef.asset
+- Assets/Prefabs/Enemies/The/the.mat
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/slide.png
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/return.png
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/double.png
