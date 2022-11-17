@@ -25,8 +25,7 @@ namespace GOTCE.Enemies.Minibosses
             body.attackSpeed = 1f;
             body.damage = 1f;
             body.levelDamage = 0.2f;
-            body.baseMaxHealth = 600f;
-            body.levelMaxHealth = 180f;
+            body.baseMaxHealth = 200f;
             body.moveSpeed = 14f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_IONSURGER_NAME";

@@ -24,7 +24,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
 
         public static float bulletRadius = 1.5f;
 
-        public static int baseBulletCount = 8;
+        public static int baseBulletCount = 6;
 
         public static string fireBarrageSoundString;
 
