@@ -191,6 +191,7 @@ namespace GOTCE.Based {
             LanguageAPI.Add(Skills.PearlTeleport.Instance.SkillDef.skillDescriptionToken, "<style=cIsVoid>Teleport</style> to your most recently deployed <style=cIsVoid>void orb</style>.");
 
             LanguageAPI.Add("GOTCE_CORRUPTIONM2UPGRADE_KEYWORD", "[Corruption Upgrade]\nTransform into a powerful void spear that teleports you on impact, releasing a devastating explosion for 2600% damage.");
+            LanguageAPI.Add("GOTCE_CORRUPTIONSPECIALUPGRADE_KEYWORD", "[Corruption Upgrade]\nRoot yourself, gaining corruption while rooted... Release a devastating <style=cIsVoid>void implosion</style> upon unrooting");
 
             // drain
             skillFamily = sl.special.skillFamily;
@@ -218,6 +219,11 @@ namespace GOTCE.Based {
                 }
             }
 
+            // drain corrupt
+
+            LanguageAPI.Add(Skills.DrainUpgrade.Instance.SkillDef.skillNameToken, "Dr??ain");
+            LanguageAPI.Add(Skills.DrainUpgrade.Instance.SkillDef.skillDescriptionToken, "Root yourself temporarily, gaining a large amount of corruption while doing so... Release a devastating <style=cIsVoid>void implosion</style> upon unrooting...");
+
             LanguageAPI.Add("GOTCE_VIENDPASSIVE_NAME", "The Only Thing They Fear");
             LanguageAPI.Add("GOTCE_VIENDPASSIVE_DESC", "You are permanently corrupted. Your health drains alongside your corruption, and raises alongside it aswell. Your corruption cannot go below 1%. Healing is converted into armor, and your armor decays over time. Deal damage restores corruption.");
 
@@ -233,12 +239,18 @@ namespace GOTCE.Based {
                 bool hasSpecialAlt = false;
                 if (NetworkServer.active) {
                     hasSecondaryAlt = self.skillLocator.secondary.skillNameToken == Skills.Pearl.Instance.SkillDef.skillNameToken;
+                    hasSpecialAlt = self.skillLocator.special.skillNameToken == Skills.Drain.Instance.SkillDef.skillNameToken;
                 }
                 orig(self);
                 if (NetworkServer.active) {
                     if (hasSecondaryAlt) {
                         self.skillLocator.secondary.UnsetSkillOverride(self.gameObject, self.secondaryOverrideSkillDef, GenericSkill.SkillOverridePriority.Upgrade);
                         self.skillLocator.secondary.SetSkillOverride(self.gameObject, Skills.PearlUpgrade.Instance.SkillDef, GenericSkill.SkillOverridePriority.Upgrade);
+                    }
+
+                    if (hasSpecialAlt) {
+                        self.skillLocator.special.UnsetSkillOverride(self.gameObject, self.specialOverrideSkillDef, GenericSkill.SkillOverridePriority.Upgrade);
+                        self.skillLocator.special.SetSkillOverride(self.gameObject, Skills.DrainUpgrade.Instance.SkillDef, GenericSkill.SkillOverridePriority.Upgrade);
                     }
                 }
             };
@@ -250,11 +262,16 @@ namespace GOTCE.Based {
                 bool hasSpecialAlt = false;
                 if (NetworkServer.active) {
                     hasSecondaryAlt = self.skillLocator.secondary.skillNameToken == Skills.PearlUpgrade.Instance.SkillDef.skillNameToken;
+                    hasSpecialAlt = self.skillLocator.special.skillNameToken == Skills.DrainUpgrade.Instance.SkillDef.skillNameToken;
                 }
                 orig(self);
                 if (NetworkServer.active) {
                     if (hasSecondaryAlt) {
                         self.skillLocator.secondary.UnsetSkillOverride(self.gameObject, Skills.PearlUpgrade.Instance.SkillDef, GenericSkill.SkillOverridePriority.Upgrade);
+                    }
+
+                    if (hasSpecialAlt) {
+                        self.skillLocator.special.UnsetSkillOverride(self.gameObject, Skills.DrainUpgrade.Instance.SkillDef, GenericSkill.SkillOverridePriority.Upgrade);
                     }
                 }
             };
