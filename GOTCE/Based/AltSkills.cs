@@ -16,12 +16,33 @@ namespace GOTCE.Based {
     public class AltSkills {
         public static void AddAlts() {
             // PassiveReplacement.RunHooks();
+            CommandoAlts();
             RexAlts();
             RGAlts();
             HuntressAlts();
             ViendAlts();
             BanditAlts();
             CaptainAlts();
+        }
+
+        private static void CommandoAlts()
+        {
+            GameObject commandoPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Commando/CommandoBody.prefab").WaitForCompletion();
+
+            SkillLocator s1 = commandoPrefab.GetComponent<SkillLocator>();
+
+            SkillFamily skillFamily;
+            skillFamily = s1.primary.skillFamily;
+            Array.Resize(ref skillFamily.variants, skillFamily.variants.Length + 1);
+            skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
+            {
+                skillDef = Skills.SuperShotgun.Instance.SkillDef,
+                unlockableName = "",
+                viewableNode = new ViewablesCatalog.Node(Skills.SuperShotgun.Instance.SkillDef.skillNameToken, false, null)
+            };
+
+            LanguageAPI.Add(Skills.SuperShotgun.Instance.SkillDef.skillNameToken, "Doom Blast");
+            LanguageAPI.Add(Skills.SuperShotgun.Instance.SkillDef.skillDescriptionToken, "Fire a devastating blast of 20 bullets for 20x100% damage. Has a long time between firing, as well as a large spread.");
         }
 
         private static void RexAlts() {
