@@ -190,7 +190,7 @@ namespace GOTCE.Based {
             LanguageAPI.Add(Skills.PearlTeleport.Instance.SkillDef.skillNameToken, "Retur??n");
             LanguageAPI.Add(Skills.PearlTeleport.Instance.SkillDef.skillDescriptionToken, "<style=cIsVoid>Teleport</style> to your most recently deployed <style=cIsVoid>void orb</style>.");
 
-            LanguageAPI.Add("GOTCE_CORRUPTIONM2UPGRADE_KEYWORD", "[Corruption Upgrade]\nTransform into a powerful void spear that teleports you on impact, releasing a devastating explosion for 2600% damage.");
+            LanguageAPI.Add("GOTCE_CORRUPTIONM2UPGRADE_KEYWORD", "[Corruption Upgrade]\nLaunch a powerful void spear that teleports you on impact, releasing a devastating explosion for 2600% damage.");
             LanguageAPI.Add("GOTCE_CORRUPTIONSPECIALUPGRADE_KEYWORD", "[Corruption Upgrade]\nRoot yourself, gaining corruption while rooted... Release a devastating <style=cIsVoid>void implosion</style> upon unrooting");
 
             // drain
@@ -225,7 +225,7 @@ namespace GOTCE.Based {
             LanguageAPI.Add(Skills.DrainUpgrade.Instance.SkillDef.skillDescriptionToken, "Root yourself temporarily, gaining a large amount of corruption while doing so... Release a devastating <style=cIsVoid>void implosion</style> upon unrooting...");
 
             LanguageAPI.Add("GOTCE_VIENDPASSIVE_NAME", "The Only Thing They Fear");
-            LanguageAPI.Add("GOTCE_VIENDPASSIVE_DESC", "You are permanently corrupted. Your health drains alongside your corruption, and raises alongside it aswell. Your corruption cannot go below 1%. Healing is converted into armor, and your armor decays over time. Deal damage restores corruption.");
+            LanguageAPI.Add("GOTCE_VIENDPASSIVE_DESC", "You are permanently corrupted. Your health drains alongside your corruption, and raises alongside it aswell. Your corruption cannot go below 1%. Healing is converted into armor, and your armor decays over time. Deal damage restores corruption. Difficulty scales faster over time.");
 
             LanguageAPI.Add("GOTCE_PEARLUPGRADE_NAME", "War??p");
             LanguageAPI.Add("GOTCE_PEARLUPGRADE_DESC", "Launch a powerful void spike, teleporting you to wherever it land and releasing a devastating void explosion for 2600% damage");

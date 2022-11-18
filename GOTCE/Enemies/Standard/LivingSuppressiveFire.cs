@@ -49,7 +49,7 @@ namespace GOTCE.Enemies.Standard
         {
             base.AddDirectorCard();
             card.minimumStageCompletions = 1;
-            card.selectionWeight = 1;
+            card.selectionWeight = 3;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
 
