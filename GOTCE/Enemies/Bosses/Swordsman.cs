@@ -13,7 +13,7 @@ namespace GOTCE.Enemies.Bosses
         public override string PathToClone => "Assets/Prefabs/Enemies/Provi/ProviBody.prefab";
         public override bool local => true;
         public override string CloneName => "Provi";
-        public override string PathToCloneMaster => "RoR2/Base/ClayBruiser/ClayBruiserMaster.prefab";
+        public override string PathToCloneMaster => "RoR2/Base/Merc/MercMonsterMaster.prefab";
         public CharacterBody body;
         public CharacterMaster master;
 
@@ -21,7 +21,7 @@ namespace GOTCE.Enemies.Bosses
         {
             base.CreatePrefab();
             body = prefab.GetComponent<CharacterBody>();
-        }
+        } 
 
         public override void AddSpawnCard()
         {
@@ -52,8 +52,22 @@ namespace GOTCE.Enemies.Bosses
             master = prefabMaster.GetComponent<CharacterMaster>();
             master.bodyPrefab = prefab;
 
+            prefab.GetComponent<CharacterDeathBehavior>().deathState = new EntityStates.SerializableEntityStateType(typeof(EntityStatesCustom.Providence.ProviDeath));
+
+            foreach (AISkillDriver driver in prefabMaster.GetComponents<AISkillDriver>()) {
+                if (driver.skillSlot == SkillSlot.Primary) {
+                    driver.minDistance = 0f;
+                    driver.maxDistance = 5f;
+                }
+
+                driver.movementType = AISkillDriver.MovementType.ChaseMoveTarget;
+            }
+
             SkillLocator sl = prefab.GetComponent<SkillLocator>();
-            ReplaceSkill(sl.primary, Skills.DumbRounds.Instance.SkillDef);
+            ReplaceSkill(sl.primary, Skills.Slash.Instance.SkillDef);
+            ReplaceSkill(sl.secondary, Skills.Downslash.Instance.SkillDef);
+            ReplaceSkill(sl.utility, Skills.Shockwave.Instance.SkillDef);
+            ReplaceSkill(sl.special, Skills.TrackingOrb.Instance.SkillDef);
 
             LanguageAPI.Add("GOTCE_PROVI_NAME", "Providence");
             LanguageAPI.Add("GOTCE_PROVI_LORE", "lol, lmao");
