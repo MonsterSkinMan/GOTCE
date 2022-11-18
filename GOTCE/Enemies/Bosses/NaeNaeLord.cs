@@ -1,4 +1,4 @@
-using R2API;
+/*using R2API;
 using RoR2;
 using UnityEngine;
 using System.Collections.Generic;
@@ -36,7 +36,7 @@ namespace GOTCE.Enemies.Bosses {
             SkillLocator sl = prefab.GetComponent<SkillLocator>();
 
             /* ClearESM(prefab, prefabMaster);
-            SerializableEntityStateType generic = new(typeof(EntityStates.GenericCharacterMain)); */
+            SerializableEntityStateType generic = new(typeof(EntityStates.GenericCharacterMain)); 
             SerializableEntityStateType idle = new(typeof(EntityStates.Idle)); 
 
             EntityStateMachine naenae = AddESM(prefab, "NaeNae", idle); 
@@ -56,7 +56,7 @@ namespace GOTCE.Enemies.Bosses {
             ReplaceSkill(sl.special, ult);
 
             /* BaseAI ai = prefabMaster.GetComponent<BaseAI>();
-            ai.stateMachine = bodymachine; */
+            ai.stateMachine = bodymachine; 
             
             // List<AISkillDriver> drivers = new();
         
@@ -115,4 +115,4 @@ namespace GOTCE.Enemies.Bosses {
             RegisterEnemy(prefab, prefabMaster, null, DirectorAPI.MonsterCategory.Champions, true);
         }
     }
-}
+} */
