@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1392508207
+CRC: 1696675449
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8c3372869fef4efdba431b24a8d481b2
+    Hash: 26a587138b8f319f7795ba33fad23468
   TypeTreeHash:
     serializedVersion: 2
     Hash: 08936a28f277886021769c390b93e74c
@@ -236,4 +236,5 @@ Assets:
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/warp.png
 - Assets/Icons/nader.png
 - Assets/Prefabs/Projectiles/AegisFunder/AegisProjectile.prefab
+- Assets/Prefabs/Enemies/Provi/ProviBody.prefab
 Dependencies: []
