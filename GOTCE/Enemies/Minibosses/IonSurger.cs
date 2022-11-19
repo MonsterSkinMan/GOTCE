@@ -72,7 +72,7 @@ namespace GOTCE.Enemies.Minibosses
             CapsuleCollider boxweak = model.transform.Find("LeftHitbox").gameObject.GetComponent<CapsuleCollider>();
 
             SetupModel(prefab, model);
-            SetupHurtbox(prefab, model, box1, 0);
+            SetupHurtbox(prefab, model, box1, 0, false, HurtBox.DamageModifier.Normal, true);
             SetupHurtbox(prefab, model, boxweak, 1, true, HurtBox.DamageModifier.SniperTarget);
 
             model.GetComponent<HurtBoxGroup>().hurtBoxes = new HurtBox[] {

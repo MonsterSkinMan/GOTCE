@@ -58,7 +58,7 @@ namespace GOTCE.Enemies.Minibosses
             .transform.Find("MouthTop").transform.Find("cracked").transform.Find("Cone.001").GetComponentInChildren<CapsuleCollider>();
 
             SetupModel(prefab, model);
-            SetupHurtbox(prefab, model, box1, 0);
+            SetupHurtbox(prefab, model, box1, 0, false, HurtBox.DamageModifier.Normal, true);
             SetupHurtbox(prefab, model, box2, 1);
             SetupHurtbox(prefab, model, glasses1, 3);
             SetupHurtbox(prefab, model, glasses2, 4);
@@ -102,10 +102,10 @@ namespace GOTCE.Enemies.Minibosses
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 50;
+            isc.directorCreditCost = 75;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
-            isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
+            isc.requiredFlags = RoR2.Navigation.NodeFlags.None;
             isc.hullSize = HullClassification.Human;
             isc.occupyPosition = true;
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Air;
@@ -118,7 +118,7 @@ namespace GOTCE.Enemies.Minibosses
         {
             base.AddDirectorCard();
             card.minimumStageCompletions = 0;
-            card.selectionWeight = 3;
+            card.selectionWeight = 2;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
 

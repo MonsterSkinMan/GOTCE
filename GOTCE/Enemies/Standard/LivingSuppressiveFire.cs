@@ -33,7 +33,7 @@ namespace GOTCE.Enemies.Standard
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 40;
+            isc.directorCreditCost = 65;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.None;
@@ -49,7 +49,7 @@ namespace GOTCE.Enemies.Standard
         {
             base.AddDirectorCard();
             card.minimumStageCompletions = 1;
-            card.selectionWeight = 3;
+            card.selectionWeight = 2;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
 
@@ -77,7 +77,7 @@ namespace GOTCE.Enemies.Standard
 
             SetupModel(prefab, model);
             SetupHurtbox(prefab, model, box1, 0);
-            SetupHurtbox(prefab, model, box2, 1);
+            SetupHurtbox(prefab, model, box2, 1, false, HurtBox.DamageModifier.Normal, true);
             SetupHurtbox(prefab, model, boxweak, 2, true);
 
             model.GetComponent<HurtBoxGroup>().hurtBoxes = new HurtBox[] {
@@ -128,6 +128,8 @@ namespace GOTCE.Enemies.Standard
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_NAME", "Living Suppressive Fire");
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_LORE", "\"I-is that a fucking floating gun?\"\n\"What are you talking abou- wait what the fuck how is this happening?\"\n\"I genuinely have no idea? Wh-what is it even doing there?\"\n\"It seems to be searching for something? Is it alive?\"\n\"I guess so? This planet is fucking crazy ma- oh shit I think it heard us.\"\n\"Oh fuck you're right it's coming this way.\"\n<i>I value survivability and consistency...</i>\n\"What the fuck? It can talk? And what's it saying about survivability and consist-\"\n<i>Too inconsistent!</i>\nThe two were then promplty shredded to bits as the gun unleashed a suppressing flood of bullets upon them.");
             LanguageAPI.Add("GOTCE_LIVINGSUPPRESSIVEFIRE_SUBTITLE", "Horde of Many");
+
+            master.bodyPrefab = prefab;
         }
 
         public override void PostCreation()

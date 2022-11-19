@@ -317,7 +317,8 @@ namespace GOTCE.Enemies
         /// <param name="index">the index of the new hurtbox, starting from 0</param>
         /// <param name="weakPoint">whether this hurtbox is a railgunner weakpoint</param>
         /// <param name="damageModifier">the damage modifier of this hurtbox</param>
-        public void SetupHurtbox(GameObject prefab, GameObject model, Collider collider, short index, bool weakPoint = false, HurtBox.DamageModifier damageModifier = HurtBox.DamageModifier.Normal)
+        /// <param name="targetable">whether this hurtbox should be targetable by the AI or homing attacks</param>
+        public void SetupHurtbox(GameObject prefab, GameObject model, Collider collider, short index, bool weakPoint = false, HurtBox.DamageModifier damageModifier = HurtBox.DamageModifier.Normal, bool targetable = false)
         {
             HurtBoxGroup hurtBoxGroup = model.GetComponent<HurtBoxGroup>();
 
@@ -328,6 +329,7 @@ namespace GOTCE.Enemies
             componentInChildren.hurtBoxGroup = hurtBoxGroup;
             componentInChildren.indexInGroup = index;
             componentInChildren.isSniperTarget = weakPoint;
+            componentInChildren.isBullseye = targetable;
         }
     }
 }

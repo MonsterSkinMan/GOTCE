@@ -10,7 +10,7 @@ namespace GOTCE.Enemies.Standard
     {
         public override string PathToClone => "Assets/Prefabs/Enemies/The/TheBody.prefab";
         public override string CloneName => "The";
-        public override string PathToCloneMaster => "RoR2/Base/Merc/MercMonsterMaster.prefab";
+        public override string PathToCloneMaster => "RoR2/DLC1/Vermin/VerminMaster.prefab";
 
         public override bool local => true;
         public CharacterBody body;
