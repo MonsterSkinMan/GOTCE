@@ -9,7 +9,7 @@ using Unity;
 using Unity.Audio;
 using UnityEngine.Video;
 
-namespace GOTCE.Items.Lunar
+namespace GOTCE.Items.Yellow
 {
     public class Wooler : ItemBase<Wooler>
     {
@@ -25,7 +25,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLore => Main.SecondaryAssets.LoadAsset<TextAsset>("Assets/Prefabs/WoolerLore.txt").text;
 
-        public override ItemTier Tier => ItemTier.Lunar;
+        public override ItemTier Tier => ItemTier.Boss;
 
         public override Enum[] ItemTags => new Enum[] { ItemTag.Damage };
 

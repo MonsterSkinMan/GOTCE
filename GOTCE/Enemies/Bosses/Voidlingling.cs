@@ -23,9 +23,7 @@ namespace GOTCE.Enemies.Bosses
             body.attackSpeed = 1f;
             body.levelAttackSpeed = 0f;
             body.damage = 21f;
-            body.levelDamage = 4.2f;
             body.baseMaxHealth = 2400f;
-            body.levelMaxHealth = 720f;
             body.baseMoveSpeed = 45f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLING_NAME";
@@ -100,8 +98,14 @@ namespace GOTCE.Enemies.Bosses
                 DirectorAPI.Stage.RallypointDelta,
                 DirectorAPI.Stage.SirensCall,
                 DirectorAPI.Stage.TitanicPlains,
-                DirectorAPI.Stage.AbyssalDepths
-                
+                DirectorAPI.Stage.AbyssalDepths,
+                DirectorAPI.Stage.AbandonedAqueductSimulacrum,
+                DirectorAPI.Stage.AbyssalDepthsSimulacrum,
+                DirectorAPI.Stage.AphelianSanctuarySimulacrum,
+                DirectorAPI.Stage.CommencementSimulacrum,
+                DirectorAPI.Stage.RallypointDeltaSimulacrum,
+                DirectorAPI.Stage.SkyMeadowSimulacrum,
+                DirectorAPI.Stage.TitanicPlainsSimulacrum
             };
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Champions);
         }

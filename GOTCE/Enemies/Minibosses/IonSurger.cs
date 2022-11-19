@@ -95,6 +95,18 @@ namespace GOTCE.Enemies.Minibosses
             ReplaceSkill(sl.utility, ion);
             ReplaceSkill(sl.special, ion);
 
+            DeathRewards deathRewards = prefab.GetComponent<DeathRewards>();
+            if (deathRewards)
+            {
+            }
+            else
+            {
+                deathRewards = prefab.AddComponent<DeathRewards>();
+                deathRewards.characterBody = body;
+                deathRewards.logUnlockableDef = ScriptableObject.CreateInstance<UnlockableDef>();
+                deathRewards.logUnlockableDef.nameToken = "Ion Surger";
+            }
+
             LanguageAPI.Add("GOTCE_IONSURGER_NAME", "Ion Surger");
             LanguageAPI.Add("GOTCE_IONSURGER_LORE", "Melee range isn't viable.");
             LanguageAPI.Add("GOTCE_IONSURGER_SUBTITLE", "Horde of Many");

@@ -26,7 +26,7 @@ namespace GOTCE.Enemies.Bosses
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 1200;
+            isc.directorCreditCost = 2000;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
@@ -42,7 +42,7 @@ namespace GOTCE.Enemies.Bosses
         public override void AddDirectorCard()
         {
             base.AddDirectorCard();
-            card.minimumStageCompletions = 5;
+            card.minimumStageCompletions = 4;
             card.selectionWeight = 1;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
@@ -73,7 +73,13 @@ namespace GOTCE.Enemies.Bosses
                     self.inventory.SetEquipmentIndex(RoR2Content.Equipment.AffixRed.equipmentIndex);
                 }
             };
-
+            DeathRewards deathRewards = prefab.GetComponent<DeathRewards>();
+            ExplicitPickupDropTable dt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();
+            dt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]
+            {
+                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = Items.Yellow.Wooler.Instance.ItemDef, pickupWeight = 1f},
+            };
+            deathRewards.bossDropTable = dt;
         }
 
         public override void PostCreation()
