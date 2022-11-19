@@ -13,7 +13,7 @@ namespace GOTCE.Enemies.Bosses
         public override string PathToClone => "Assets/Prefabs/Enemies/Provi/ProviBody.prefab";
         public override bool local => true;
         public override string CloneName => "Provi";
-        public override string PathToCloneMaster => "RoR2/Base/Merc/MercMonsterMaster.prefab";
+        public override string PathToCloneMaster => "RoR2/Base/Brother/BrotherMaster.prefab";
         public CharacterBody body;
         public CharacterMaster master;
 
@@ -26,7 +26,7 @@ namespace GOTCE.Enemies.Bosses
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 1200;
+            isc.directorCreditCost = 800;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
@@ -42,7 +42,7 @@ namespace GOTCE.Enemies.Bosses
         {
             base.AddDirectorCard();
             card.minimumStageCompletions = 2;
-            card.selectionWeight = 1;
+            card.selectionWeight = 10;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
 

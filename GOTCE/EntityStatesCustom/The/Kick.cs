@@ -15,12 +15,13 @@ namespace GOTCE.EntityStatesCustom.The {
             base.OnEnter();
             duration = duration / attackSpeedStat;
             if (NetworkServer.active) {
+                base.characterBody.transform.forward = base.GetAimRay().direction;
                 OverlapAttack attack = new OverlapAttack();
                 attack.damage = damageCoefficient * damageStat;
                 attack.procCoefficient = procCoefficient;
                 attack.damageType = DamageType.Generic;
                 attack.attacker = gameObject;
-                attack.hitBoxGroup = base.modelLocator.modelBaseTransform.GetComponent<HitBoxGroup>();
+                attack.hitBoxGroup = FindHitBoxGroup("melee");
                 attack.Fire();
             }
             PlayAnimation("Body", "Kick");
