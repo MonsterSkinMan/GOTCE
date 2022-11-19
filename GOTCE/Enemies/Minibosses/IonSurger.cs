@@ -13,7 +13,7 @@ namespace GOTCE.Enemies.Minibosses
     {
         public override string CloneName => "IonSurger";
         public override string PathToClone => "RoR2/Base/Mage/MageBody.prefab";
-        public override string PathToCloneMaster => "RoR2/Base/Merc/MercMonsterMaster.prefab";
+        public override string PathToCloneMaster => "RoR2/Base/Brother/BrotherMaster.prefab";
         public CharacterBody body;
         public CharacterMaster master;
 
@@ -32,6 +32,7 @@ namespace GOTCE.Enemies.Minibosses
             body.subtitleNameToken = "GOTCE_IONSURGER_SUBTITLE";
             body.baseRegen = 0f;
             body.bodyFlags |= CharacterBody.BodyFlags.IgnoreFallDamage;
+            body.portraitIcon = Main.MainAssets.LoadAsset<Texture2D>("Assets/Textures/Icons/Enemies/LivingSuppressiveFire.png");
         }
 
         public override void AddSpawnCard()

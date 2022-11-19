@@ -42,7 +42,7 @@ namespace GOTCE.Enemies.Bosses
         public override void AddDirectorCard()
         {
             base.AddDirectorCard();
-            card.minimumStageCompletions = 0;
+            card.minimumStageCompletions = 5;
             card.selectionWeight = 1;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
