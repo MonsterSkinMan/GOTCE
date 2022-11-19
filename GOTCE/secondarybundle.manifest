@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1392508207
+CRC: 2061835703
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8c3372869fef4efdba431b24a8d481b2
+    Hash: 86441ff2b4a768cbcdd93f8878ce0826
   TypeTreeHash:
     serializedVersion: 2
     Hash: 08936a28f277886021769c390b93e74c
@@ -235,5 +235,7 @@ Assets:
 - Assets/Prefabs/WoolerLore.txt
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/warp.png
 - Assets/Icons/nader.png
+- Assets/Prefabs/Enemies/Provi/Projectile/ProviOrb.prefab
 - Assets/Prefabs/Projectiles/AegisFunder/AegisProjectile.prefab
+- Assets/Prefabs/Enemies/Provi/ProviBody.prefab
 Dependencies: []
