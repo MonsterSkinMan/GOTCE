@@ -17,10 +17,10 @@ namespace GOTCE.Based
         private static void SceneDirector_Start(On.RoR2.SceneDirector.orig_Start orig, SceneDirector self)
         {
             orig(self);
-            if (SceneManager.GetActiveScene().name == "bazaar")
+            if (SceneManager.GetActiveScene().name == "bazaar" && NetworkServer.active)
             {
-                GameObject.Find("HOLDER: Store").transform.GetChild(0).GetChild(3).gameObject.SetActive(false);
-                // disables lunar slab
+                GameObject.DestroyImmediate(GameObject.Find("HOLDER: Store").transform.GetChild(0).GetChild(3).gameObject);
+                // nemesis slab has no power against gameobject.destroyimmediate
             }
         }
     }
