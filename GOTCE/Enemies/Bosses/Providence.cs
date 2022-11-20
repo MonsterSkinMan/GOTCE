@@ -73,6 +73,14 @@ namespace GOTCE.Enemies.Bosses
             LanguageAPI.Add("GOTCE_PROVI_LORE", "lol, lmao");
             LanguageAPI.Add("GOTCE_PROVI_SUBTITLE", "Bulwark of the Weak");
 
+            DeathRewards deathRewards = prefab.GetComponent<DeathRewards>();
+            ExplicitPickupDropTable dt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();
+            dt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]
+            {
+                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = Items.Yellow.RightRingFingerOfProvidence.Instance.ItemDef, pickupWeight = 1f},
+            };
+            deathRewards.bossDropTable = dt;
+
         }
 
         public override void PostCreation()
