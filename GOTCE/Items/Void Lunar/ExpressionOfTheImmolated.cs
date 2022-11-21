@@ -21,6 +21,7 @@ namespace GOTCE.Items.VoidLunar
         public override string ItemLore => "This is a stupid item. At least it's more interesting than gesture.";
 
         public override ItemTier Tier => Tiers.LunarVoid.Instance.TierEnum;
+        public override ItemTierDef OverrideTierDef => Tiers.LunarVoid.Instance.tier;
 
         public override Enum[] ItemTags => new Enum[] { ItemTag.Utility };
 
@@ -59,14 +60,11 @@ namespace GOTCE.Items.VoidLunar
 
         private bool GenericSkill_IsReady(On.RoR2.GenericSkill.orig_IsReady orig, GenericSkill self)
         {
-            orig(self);
-            var result = orig(self);
-            CharacterBody body = PlayerCharacterMasterController.instances[0].master.GetBody();
-            if (body && body.inventory && body.inventory.GetItemCount(ItemDef) > 0)
-            {
+            bool res = orig(self);
+            if (self.characterBody && GetCount(self.characterBody) > 0) {
                 self.ExecuteIfReady();
             }
-            return result;
+            return res;
         }
 
         private void JesterOfTheClowned(On.RoR2.Items.ContagiousItemManager.orig_Init orig)

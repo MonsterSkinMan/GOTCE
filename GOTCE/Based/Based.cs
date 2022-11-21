@@ -19,8 +19,27 @@ namespace GOTCE.Based
             orig(self);
             if (SceneManager.GetActiveScene().name == "bazaar" && NetworkServer.active)
             {
-                GameObject.DestroyImmediate(GameObject.Find("HOLDER: Store").transform.GetChild(0).GetChild(3).gameObject);
-                // nemesis slab has no power against gameobject.destroyimmediate
+                GameObject.Find("HOLDER: Store").AddComponent<AntiSlab>();
+            }
+        }
+    }
+
+    internal class AntiSlab : MonoBehaviour {
+        private void FixedUpdate() {
+            if (NetworkServer.active) {
+                // first measure against nemesis slab, searching for the slab every frame in it's original position
+                GameObject slab = GameObject.Find("HOLDER: Store").transform.GetChild(0).GetChild(3).gameObject;
+                if (slab) {
+                    DestroyImmediate(slab);
+                }
+
+                // TODO: update this to fully counter nem slab when noop releases nem slab update
+            }
+        }
+
+        private void OnDestroy() {
+            if (NetworkServer.active) {
+                gameObject.AddComponent<AntiSlab>(); // nice try, but no
             }
         }
     }
