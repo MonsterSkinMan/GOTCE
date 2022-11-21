@@ -45,11 +45,11 @@ namespace GOTCE.Items.White
 
         public void Start(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self)
         {
-            orig(self);
             if (self.isPlayerControlled)
             {
                 self.gameObject.AddComponent<GOTCE_FovComponent>();
             }
+            orig(self);
         }
     }
 

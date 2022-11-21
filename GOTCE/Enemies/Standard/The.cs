@@ -21,10 +21,11 @@ namespace GOTCE.Enemies.Standard
             base.CreatePrefab();
 
             On.RoR2.CharacterBody.Start += (orig, self) => {
-                orig(self);
+                
                 if (self.baseNameToken == "GOTCE_THE_NAME") {
                     self.inventory.GiveItem(RoR2Content.Items.ExtraLife, 2);
                 }
+                orig(self);
             };
         }
 

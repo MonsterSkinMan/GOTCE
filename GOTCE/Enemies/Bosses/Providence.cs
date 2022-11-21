@@ -54,14 +54,14 @@ namespace GOTCE.Enemies.Bosses
 
             prefab.GetComponent<CharacterDeathBehavior>().deathState = new EntityStates.SerializableEntityStateType(typeof(EntityStatesCustom.Providence.ProviDeath));
 
-            foreach (AISkillDriver driver in prefabMaster.GetComponents<AISkillDriver>()) {
+            /*foreach (AISkillDriver driver in prefabMaster.GetComponents<AISkillDriver>()) {
                 if (driver.skillSlot == SkillSlot.Primary) {
                     driver.minDistance = 0f;
                     driver.maxDistance = 5f;
                 }
 
                 driver.movementType = AISkillDriver.MovementType.ChaseMoveTarget;
-            }
+            }*/
 
             SkillLocator sl = prefab.GetComponent<SkillLocator>();
             ReplaceSkill(sl.primary, Skills.Slash.Instance.SkillDef);

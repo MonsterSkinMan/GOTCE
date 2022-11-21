@@ -60,7 +60,7 @@ namespace GOTCE.Items.VoidGreen
                         else if (self.body.rigidbody) mass = self.body.rigidbody.mass;
                         else mass = 1f;
 
-                        var DahRoFus = -15f - (7.5f * (stack - 1));
+                        var DahRoFus = -10f - (5f * (stack - 1));
                         damageInfo.force += Vector3.Normalize(self.body.corePosition - ThePacIsBack.corePosition) * DahRoFus * mass;
                     }
                 }

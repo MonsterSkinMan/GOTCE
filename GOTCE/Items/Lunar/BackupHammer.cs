@@ -62,7 +62,6 @@ namespace GOTCE.Items.Lunar
 
         private void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
         {
-            orig(self);
             if (self && self.inventory)
             {
                 var stack = self.inventory.GetItemCount(Instance.ItemDef);
@@ -103,6 +102,7 @@ namespace GOTCE.Items.Lunar
                     }
                 }
             }
+            orig(self);
         }
     }
 }

@@ -50,7 +50,7 @@ namespace GOTCE.Items.Green
             if (attacker && victim && attacker.inventory)
             {
                 var stack = attacker.inventory.GetItemCount(Instance.ItemDef);
-                if (damageReport.victimIsElite && damageReport.damageInfo.procCoefficient > 0f && damageReport.damageInfo.crit)
+                if (damageReport.victimIsElite && damageReport.damageInfo.procCoefficient > 0f && damageReport.damageInfo.crit && stack > 0)
                 {
                     if (attacker.healthComponent && NetworkServer.active && attacker.skillLocator && attacker.skillLocator.secondary)
                     {
