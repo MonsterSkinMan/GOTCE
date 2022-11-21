@@ -68,10 +68,10 @@ namespace GOTCE.Enemies.Bosses
             LanguageAPI.Add("GOTCE_WOOLIE_SUBTITLE", "THE Mr. Streamer");
 
             On.RoR2.CharacterBody.Start += (orig, self) => {
-                orig(self);
                 if (NetworkServer.active && self.baseNameToken == "GOTCE_WOOLIE_NAME" && self.equipmentSlot) {
                     self.inventory.SetEquipmentIndex(RoR2Content.Equipment.AffixRed.equipmentIndex);
                 }
+                orig(self);
             };
             DeathRewards deathRewards = prefab.GetComponent<DeathRewards>();
             ExplicitPickupDropTable dt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();

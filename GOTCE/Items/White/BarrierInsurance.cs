@@ -40,7 +40,7 @@ namespace GOTCE.Items.White
         }
 
         public void Barrier(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self) {
-            orig(self);
+            
             if (NetworkServer.active) {
                 if (GetCount(self) > 0) {
                     if (self.inventory) {
@@ -50,11 +50,12 @@ namespace GOTCE.Items.White
                                 total += self.inventory.GetItemCount(index);
                             }
                         }
-                        float scale = 0.7f * GetCount(self);
+                        float scale = 70f * GetCount(self);
                         self.healthComponent.AddBarrier(total * scale);
                     }
                 }
             }
+            orig(self);
         }
 
     }

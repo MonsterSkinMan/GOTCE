@@ -60,7 +60,7 @@ namespace GOTCE.Items.Green
                         else if (self.body.rigidbody) mass = self.body.rigidbody.mass;
                         else mass = 1f;
 
-                        var FusRoDah = 30f + (15f * (stack - 1));
+                        var FusRoDah = 20f + (10f * (stack - 1));
                         damageInfo.force += Vector3.Normalize(self.body.corePosition - SpringManFromArms.corePosition) * FusRoDah * mass;
                     }
                 }

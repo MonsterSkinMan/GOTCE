@@ -55,7 +55,6 @@ namespace GOTCE.Items.Lunar
 
         public void Huntress(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody body)
         {
-            orig(body);
             if (body.inventory)
             {
                 int count = body.inventory.GetItemCount(ItemDef);
@@ -71,6 +70,7 @@ namespace GOTCE.Items.Lunar
                     body.skillLocator.utility.SetBonusStockFromBody(body.skillLocator.utility.bonusStockFromBody + 3);
                 }
             }
+            orig(body);
         }
 
         public override void Init(ConfigFile config)
