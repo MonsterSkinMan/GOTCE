@@ -15,7 +15,7 @@ namespace GOTCE.Misc {
 
         private static void UpdateLastHitServer(On.RoR2.HealthComponent.orig_UpdateLastHitTime orig, HealthComponent self, float damage, Vector3 damagePosition, bool silent, GameObject attacker) {
             orig(self, damage, damagePosition, silent, attacker);
-            if (NetworkServer.active && self.body.inventory) {
+            /* if (NetworkServer.active && self.body.inventory) {
                 foreach (ItemIndex index in self.body.inventory.itemAcquisitionOrder) {
                     ItemDef def = ItemCatalog.GetItemDef(index);
 
@@ -32,7 +32,8 @@ namespace GOTCE.Misc {
                         }
                     }
                 }
-            }
+            } */ 
+            // TODO: this doesnt work
         }
 
         /// <summary>

@@ -40,29 +40,12 @@ namespace GOTCE.Items.Lunar
             return new ItemDisplayRuleDict(null);
         }
 
-        public void MonsterSkinMan()
-        {
-            var MonstersPissage = Addressables.LoadAssetAsync<GameObject>("Prefabs/NetworkedObjects/NearbyDamageBonusIndicator").WaitForCompletion();
-            HideAndShriek = MonstersPissage.InstantiateClone("ADHDEffect", true);
-            Transform transform = HideAndShriek.transform.Find("Radius, Spherical");
-            transform.localScale = Vector3.one * 10f * 2f;
-        }
-
         public override void Hooks()
         {
             On.RoR2.HealthComponent.TakeDamage += On_HCTakeDamage;
             On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) => {
                 orig(self);
-                VisageIndicatorBehavior com = self.gameObject.GetComponent<VisageIndicatorBehavior>();
-                bool flag = GetCount(self) > 0;
-                if (flag != com) {
-                    if (flag) {
-                        self.gameObject.AddComponent<VisageIndicatorBehavior>(); // this doesnt work guh
-                    }
-                    else {
-                        GameObject.Destroy(com);
-                    }
-                }
+                self.AddItemBehavior<VisageIndicatorBehavior>(GetCount(self));
             };
         }
 
@@ -110,39 +93,23 @@ namespace GOTCE.Items.Lunar
         }
     }
 
-    public class VisageIndicatorBehavior : MonoBehaviour {
-        public GameObject indicator;
+    public class VisageIndicatorBehavior : CharacterBody.ItemBehavior {
+        private GameObject indicator;
 
-        private bool indicatorEnabled
-        {
-            get
-            {
-                return indicator;
-            }
-            set
-            {
-                if (indicatorEnabled != value)
-                {
-                    if (value)
-                    {
-                        indicator = GameObject.Instantiate(MonstersVisage.HideAndShriek, gameObject.GetComponent<CharacterBody>().corePosition, Quaternion.identity);
-                        indicator.GetComponent<NetworkedBodyAttachment>().AttachToGameObjectAndSpawn(gameObject);
-                    }
-                    else
-                    {
-                        GameObject.Destroy(indicator);
-                        indicator = null;
-                    }
-                }
-            }
+        private void Start() {
+            indicator = GameObject.CreatePrimitive(PrimitiveType.Sphere).InstantiateClone("EntropicIndicator");
+            indicator.transform.SetParent(gameObject.transform);
+            indicator.layer = LayerIndex.projectile.intVal;
+            indicator.GetComponent<MeshRenderer>().material = Addressables.LoadAssetAsync<Material>("RoR2/Base/Teleporters/matTeleporterRangeIndicator.mat").WaitForCompletion();
         }
 
-        private void OnEnabled() {
-            indicatorEnabled = true;
+        private void FixedUpdate() {
+            indicator.transform.position = body.corePosition;
+            indicator.transform.localScale = new Vector3(20, 20, 20);
         }
 
-        private void OnDisabled() {
-            indicatorEnabled = false;
+        private void OnDestroy() {
+            Destroy(indicator);
         }
     }
 }
