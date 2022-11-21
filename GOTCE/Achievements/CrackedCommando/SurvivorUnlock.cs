@@ -45,7 +45,6 @@ namespace GOTCE.Achievements.CrackedCommando {
                 }
             }
         }
-
     }
 
     public class SurvivorUnlock : AchievementBase<SurvivorUnlock> {

@@ -22,7 +22,7 @@ namespace GOTCE.Items.White
 
         public override ItemTier Tier => ItemTier.Tier1;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, ItemTag.AIBlacklist, GOTCETags.Crit };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, ItemTag.AIBlacklist, GOTCETags.Crit, GOTCETags.FovRelated };
 
         public override GameObject ItemModel => null;
 
@@ -77,15 +77,14 @@ namespace GOTCE.Items.White
             {
                 stopwatch = 0f;
 
-                if (critting)
-                {
+                if (!Util.CheckRoll(stats.fovCritChance, body.master) && critting) {
                     critting = false;
-                    gameObject.GetComponent<CameraTargetParams>().RemoveParamsOverride(handle);
-                    // Debug.Log("canceled crit");
+
+                    gameObject.GetComponent<CameraTargetParams>().RemoveParamsOverride(handle, 0.5f);
                 }
-                if (Util.CheckRoll(stats.fovCritChance, body.master))
-                {
+                else if (Util.CheckRoll(stats.fovCritChance, body.master) && !critting) {
                     critting = true;
+
                     handle = gameObject.GetComponent<CameraTargetParams>().AddParamsOverride(new CameraTargetParams.CameraParamsOverrideRequest
                     {
                         cameraParamsData = new()
@@ -96,7 +95,7 @@ namespace GOTCE.Items.White
                                 alpha = 0.7f
                             }
                         }
-                    });
+                    }, 0.5f);
 
                     EventHandler<FovCritEventArgs> raiseEvent = CriticalTypes.OnFovCrit;
 

@@ -66,15 +66,14 @@ namespace GOTCE.Items.Void_Red
 
         private void powerUncreep(On.RoR2.Items.ContagiousItemManager.orig_Init orig)
         {
+            List<ItemDef> healing = new();
             foreach (ItemDef def in ItemCatalog.allItemDefs) {
                 if (def.ContainsTag(ItemTag.Healing) && def != ItemDef) {
-                    ItemDef.Pair transformation = new ItemDef.Pair() {
-                        itemDef1 = def,
-                        itemDef2 = ItemDef
-                    };
-                    ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem] = ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem].AddToArray(transformation);
+                    healing.Add(def);
                 }
             }
+
+            ItemHelpers.RegisterCorruptions(ItemDef, healing);
             orig();
         }
     }

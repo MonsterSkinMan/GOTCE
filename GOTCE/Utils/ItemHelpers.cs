@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using GOTCE.Items;
+using R2API;
+using HarmonyLib;
 
 namespace GOTCE.Utils
 {
@@ -162,6 +165,21 @@ namespace GOTCE.Utils
             DotController.DotIndex index = (DotController.DotIndex)Array.FindIndex(DotController.dotDefs, (dotDef) => dotDef.associatedBuff == buff);
 
             return index;
+        }
+        
+        /// <summary>
+        /// Adds void transformations for an item.
+        /// </summary>
+        /// <param name="voidDef"> the void item </param>
+        /// <param name="defsToCorrupt"> items that should be corrupted </param>
+        public static void RegisterCorruptions(ItemDef voidDef, List<ItemDef> defsToCorrupt) {
+            foreach (ItemDef def in defsToCorrupt) {
+                ItemDef.Pair transformation = new ItemDef.Pair() {
+                        itemDef1 = def,
+                        itemDef2 = voidDef
+                    };
+                    ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem] = ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem].AddToArray(transformation);
+            }
         }
     }
 }
