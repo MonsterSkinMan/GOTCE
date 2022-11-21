@@ -58,11 +58,12 @@ namespace GOTCE.Enemies.Standard
             base.Modify();
             master = prefabMaster.GetComponent<CharacterMaster>();
 
-            if (!prefab.GetComponent<TeamComponent>())
+            /* if (!prefab.GetComponent<TeamComponent>())
             {
                 TeamComponent team = prefab.AddComponent<TeamComponent>();
                 team.teamIndex = TeamIndex.Monster;
-            }
+            } */
+            
             // prefab.GetComponent<TeamComponent>().teamIndex = TeamIndex.Monster;
             // SwapMaterials(prefab, Main.MainAssets.LoadAsset<Material>("Assets/Materials/Enemies/kirnMaterial.mat"), true, null);
             // DisableMeshes(prefab, new List<int> { 1 });

@@ -11,6 +11,7 @@ using MonoMod.Cil;
 using GOTCE.Tiers;
 using R2API;
 using R2API.Networking;
+using GOTCE.Achievements;
 using R2API.Utils;
 using System.Text.RegularExpressions;
 using RoR2;
@@ -138,6 +139,13 @@ namespace GOTCE
                 {
                     artifact.Init(Config);
                 }
+            }
+
+            // achievements
+            var Achievements = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(AchievementBase)));
+            foreach (var unlock in Achievements) {
+                AchievementBase achiev = (AchievementBase)Activator.CreateInstance(unlock);
+                achiev.Create(Config);
             }
 
             // grab tiers and add them

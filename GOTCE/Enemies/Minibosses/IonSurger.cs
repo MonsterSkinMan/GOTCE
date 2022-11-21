@@ -62,7 +62,8 @@ namespace GOTCE.Enemies.Minibosses
             base.Modify();
             master = prefabMaster.GetComponent<CharacterMaster>();
             master.bodyPrefab = prefab;
-            prefab.GetComponent<TeamComponent>().teamIndex = TeamIndex.Monster;
+
+            // prefab.GetComponent<TeamComponent>().teamIndex = TeamIndex.Monster;
             DisableSkins(prefab);
             // SwapMaterials(prefab, Addressables.LoadAssetAsync<Material>("RoR2/Base/Common/VFX/matLightningSphere.mat").WaitForCompletion(), true);
             // DestroyModelLeftovers(prefab);

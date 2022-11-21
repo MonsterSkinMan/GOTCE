@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using EntityStates;
 using GOTCE.Skills;
 using RoR2.ExpansionManagement;
+using GOTCE.Achievements.CrackedCommando;
 
 namespace GOTCE.Survivors {
     public class CrackedMando : SurvivorBase<CrackedMando> {
@@ -48,7 +49,7 @@ namespace GOTCE.Survivors {
             skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
             {
                 skillDef = Skills.SuppressiveBarrage.Instance.SkillDef,
-                unlockableName = "",
+                unlockableDef = SuppressiveBarrageUnlock.Instance.enabled ? SuppressiveBarrageUnlock.Instance.def : null,
                 viewableNode = new ViewablesCatalog.Node(Skills.SuppressiveBarrage.Instance.SkillDef.skillNameToken, false, null)
             };
         }
@@ -63,8 +64,8 @@ namespace GOTCE.Survivors {
                 displayPrefab = prefab.transform.Find("ModelBase").transform.Find("mdlCommandoDualies").gameObject,
                 primaryColor = Color.yellow,
                 cachedName = "GOTCE_CRACKMANDO_NAME",
-                unlockableName = "Logs.Stages.limbo",
-                desiredSortPosition = 14,
+                unlockableDef = SurvivorUnlock.Instance.enabled ? SurvivorUnlock.Instance.def : null,
+                desiredSortPosition = 16,
                 mainEndingEscapeFailureFlavorToken = "GOTCE_CRACKMANDO_FAIL",
                 outroFlavorToken = "GOTCE_CRACKMANDO_WIN"
             };
