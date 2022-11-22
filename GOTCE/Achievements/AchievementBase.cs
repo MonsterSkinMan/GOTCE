@@ -36,14 +36,16 @@ namespace GOTCE.Achievements {
             def.achievementIcon = Icon;
             def.hidden = Hidden;
 
-            ContentAddition.AddUnlockableDef(def);
-
             LanguageAPI.Add($"ACHIEVEMENT_{TokenName}_NAME", Name);
             LanguageAPI.Add($"ACHIEVEMENT_{TokenName}_DESCRIPTION", Description);
 
-            PostCreation();
-
             enabled = config.Bind<bool>($"Unlock: {Name}", "Enable?", true, "Should this achievement be enabled? A value of false makes it always unlocked.").Value;
+
+            if (enabled) {
+                ContentAddition.AddUnlockableDef(def);
+            }
+
+            PostCreation();
         }
 
         public virtual void PostCreation() {
