@@ -17,15 +17,16 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLangTokenName => "GOTCE_Voidflux";
 
-        public override string ItemPickupDesc => "Randomize EVERYTHING periodically.";
+        public override string ItemPickupDesc => "Randomize EVERYTHING periodically. <style=cIsVoid>Corrupts all other Pauldrons.</style>";
 
-        public override string ItemFullDescription => "Every 10 (-25% per stack) seconds, randomize EVERYTHING.";
+        public override string ItemFullDescription => "Every 10 (-25% per stack) seconds, randomize EVERYTHING. <style=cIsVoid>Corrupts all other Pauldrons.</style>";
 
         public override string ItemLore => "";
 
-        public override ItemTier Tier => ItemTier.Lunar;
+        public override ItemTier Tier => Tiers.LunarVoid.Instance.TierEnum;
+        public override ItemTierDef OverrideTierDef => Tiers.LunarVoid.Instance.tier;
 
-        public override Enum[] ItemTags => new Enum[] { GOTCETags.Bullshit, GOTCETags.Unstable };
+        public override Enum[] ItemTags => new Enum[] { GOTCETags.Bullshit, GOTCETags.Unstable, GOTCETags.Pauldron };
 
         public override GameObject ItemModel => null;
 
@@ -49,6 +50,14 @@ namespace GOTCE.Items.Lunar
                     self.AddItemBehavior<VoidfluxBehavior>(GetCount(self));
                 }
             };
+
+            ItemHelpers.RegisterCorruptions(ItemDef, new() { 
+                Items.Lunar.DarkFluxPauldron.Instance.ItemDef,
+                Items.Lunar.WindFluxPauldron.Instance.ItemDef,
+                DLC1Content.Items.HalfAttackSpeedHalfCooldowns,
+                DLC1Content.Items.HalfSpeedDoubleHealth,
+                RoR2Content.Items.WarCryOnMultiKill
+            });
         }
 
         private class VoidfluxBehavior : CharacterBody.ItemBehavior {
