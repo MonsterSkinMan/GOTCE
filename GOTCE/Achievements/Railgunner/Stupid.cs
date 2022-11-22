@@ -25,7 +25,7 @@ namespace GOTCE.Achievements.Railgunner {
         }
 
         private class Server : BaseServerAchievement {
-            public int required = 1000;
+            public int required = 678;
             public int current = 0;
             public override void OnInstall()
             {
@@ -59,7 +59,7 @@ namespace GOTCE.Achievements.Railgunner {
 
     public class StupidRoundsUnlock : AchievementBase<StupidRoundsUnlock> {
         public override string Name => "Railgunner: Balance";
-        public override string Description => "As Railgunner, fire $200,000 worth of XQR Smart Rounds ammo.";
+        public override string Description => "As Railgunner, fire $13,567.5 worth of XQR Smart Rounds ammo.";
         public override string UnlockName => "StupidRoundsUnlockable";
         public override string TokenName => "STUPID";
         public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
