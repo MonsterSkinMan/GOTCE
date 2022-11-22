@@ -78,7 +78,7 @@ namespace GOTCE.Based {
             skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
             {
                 skillDef = Skills.DumbRounds.Instance.SkillDef,
-                unlockableName = "",
+                unlockableDef = Achievements.Railgunner.StupidRoundsUnlock.Instance.enabled ? Achievements.Railgunner.StupidRoundsUnlock.Instance.def : null,
                 viewableNode = new ViewablesCatalog.Node(Skills.SigmaShotgun.Instance.SkillDef.skillNameToken, false, null)
             };
 
