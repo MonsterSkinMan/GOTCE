@@ -141,13 +141,6 @@ namespace GOTCE
                 }
             }
 
-            // achievements
-            var Achievements = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(AchievementBase)));
-            foreach (var unlock in Achievements) {
-                AchievementBase achiev = (AchievementBase)Activator.CreateInstance(unlock);
-                achiev.Create(Config);
-            }
-
             // grab tiers and add them
             var Tiers = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(TierBase)));
             foreach (var tier in Tiers) {
@@ -248,6 +241,13 @@ namespace GOTCE
                 SurvivorBase survivor = (SurvivorBase)System.Activator.CreateInstance(survivorType);
                 // Debug.Log(item.ConfigName);
                 survivor.Create();
+            }
+
+            // achievements
+            var Achievements = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(AchievementBase)));
+            foreach (var unlock in Achievements) {
+                AchievementBase achiev = (AchievementBase)Activator.CreateInstance(unlock);
+                achiev.Create(Config);
             }
 
             Hook aimHook = new Hook(
