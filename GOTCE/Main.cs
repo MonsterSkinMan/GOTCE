@@ -11,6 +11,7 @@ using MonoMod.Cil;
 using GOTCE.Tiers;
 using R2API;
 using R2API.Networking;
+using GOTCE.Achievements;
 using R2API.Utils;
 using System.Text.RegularExpressions;
 using RoR2;
@@ -140,6 +141,13 @@ namespace GOTCE
                 }
             }
 
+            // achievements
+            var Achievements = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(AchievementBase)));
+            foreach (var unlock in Achievements) {
+                AchievementBase achiev = (AchievementBase)Activator.CreateInstance(unlock);
+                achiev.Create(Config);
+            }
+
             // grab tiers and add them
             var Tiers = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(TierBase)));
             foreach (var tier in Tiers) {
@@ -211,6 +219,7 @@ namespace GOTCE
             Itsgup.SoMyMainGoalIsToBlowUp();
             Zased.DoTheBased();
             Based.SuppressiveNader.Hook();
+            Fragile.Hook();
 
             // alts
             [SystemInitializer(dependencies: typeof(ItemCatalog))]

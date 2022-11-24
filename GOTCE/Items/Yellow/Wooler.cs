@@ -27,9 +27,9 @@ namespace GOTCE.Items.Yellow
 
         public override ItemTier Tier => ItemTier.Boss;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.NonLunarLunar };
 
-        public override GameObject ItemModel => Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Item/Drill/Cube.prefab");
+        public override GameObject ItemModel => null;
 
         public override Sprite ItemIcon => null;
         
@@ -61,7 +61,7 @@ namespace GOTCE.Items.Yellow
                                 else {
                                     totalDec += increase*GetCountSpecific(body, ItemCatalog.GetItemDef(index));
                                 }
-                                Debug.Log($"Item {ItemCatalog.GetItemDef(index).nameToken} is {(int)tier} tier");
+                                // Debug.Log($"Item {ItemCatalog.GetItemDef(index).nameToken} is {(int)tier} tier");
                             }
                         }
 
