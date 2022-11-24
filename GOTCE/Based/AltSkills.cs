@@ -431,11 +431,6 @@ namespace GOTCE.Based {
                     float fraction = self.bodyHealthComponent.fullHealth * (self.corruption / 100);
                     self.bodyHealthComponent.health = fraction;
 
-                    float fractionShields = self.bodyHealthComponent.fullShield * (self.corruption / 100);
-                    if (self.bodyHealthComponent.fullShield > 0) {
-                        self.bodyHealthComponent.shield = fraction;
-                    }
-
                     self.corruptionFractionPerSecondWhileCorrupted = self.characterBody.outOfCombat ? -0.022f : -0.044f;
                     if (self.corruption >= 100) {
                         self.corruptionFractionPerSecondWhileCorrupted = -0.66f;

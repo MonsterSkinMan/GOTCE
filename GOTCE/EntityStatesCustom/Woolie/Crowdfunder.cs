@@ -48,7 +48,7 @@ namespace GOTCE.EntityStatesCustom.Woolie {
                 BulletAttack attack = new();
                 attack.owner = base.gameObject;
                 attack.origin = base.characterBody.corePosition;
-                attack.damage = base.damageStat;
+                attack.damage = base.damageStat * 0.5f;
                 attack.tracerEffectPrefab = tracer;
                 attack.maxDistance = int.MaxValue;
                 attack.falloffModel = BulletAttack.FalloffModel.DefaultBullet;
