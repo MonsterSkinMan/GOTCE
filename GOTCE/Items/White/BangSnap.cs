@@ -39,25 +39,13 @@ namespace GOTCE.Items.White
 
         public override void Hooks()
         {
-            // On.RoR2.BlastAttack.Fire += BlastAttack_Fire;
-        }
-
-        private BlastAttack.Result BlastAttack_Fire(On.RoR2.BlastAttack.orig_Fire orig, BlastAttack self)
-        {
-            if (self.attacker)
-            {
-                var body = self.attacker.GetComponent<CharacterBody>();
-                if (body && body.inventory)
-                {
-                    var stack = body.inventory.GetItemCount(Instance.ItemDef);
-                    if (stack > 0)
-                    {
-                        self.radius += 2 * stack;
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
+                if (args.Stats && NetworkServer.active) {
+                    if (args.Stats.inventory) {
+                        args.Stats.AOEAdd += GetCount(args.Stats.body) * 2;
                     }
                 }
-            }
-            orig(self);
-            return default(BlastAttack.Result);
+            };
         }
     }
 }

@@ -41,6 +41,13 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             On.RoR2.CharacterBody.Start += Start;
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
+                if (args.Stats && NetworkServer.active) {
+                    if (args.Stats.inventory) {
+                        args.Stats.FovCritChanceAdd += GetCount(args.Stats.body) * 10;
+                    }
+                }
+            };
         }
 
         public void Start(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self)

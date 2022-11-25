@@ -24,7 +24,7 @@ namespace GOTCE.Items.White
 
         public override ItemTier Tier => ItemTier.Tier1;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.Unstable };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage };
 
         public override GameObject ItemModel => null;
         private static string DevastatorDeathName = "VoidMegaCrabDeathBombProjectile";
@@ -34,6 +34,10 @@ namespace GOTCE.Items.White
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/ChaosRounds.png");
         private string EngiMineName = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Engi/EngiMine.prefab").WaitForCompletion().name;
         private string SpiderMineName = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Engi/SpiderMine.prefab").WaitForCompletion().name;
+
+        private static string[] blacklist = {
+            DevastatorExpName, DevastatorDeathName, DevastatorBombName
+        };
 
         public override void Init(ConfigFile config)
         {
@@ -68,7 +72,7 @@ namespace GOTCE.Items.White
                             {
                                 prefabs.RemoveAt(i);
                             }
-                            else if (prefabs[i].name.Contains(DevastatorBombName) || prefabs[i].name.Contains(DevastatorDeathName) || prefabs[i].name.Contains(DevastatorExpName)) {
+                            else if (blacklist.Contains(prefabs[i].name)) {
                                 prefabs.RemoveAt(i);
                             }
                         }

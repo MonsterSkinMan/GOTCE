@@ -26,7 +26,7 @@ namespace GOTCE.Items.White
         public override ItemTier Tier => ItemTier.Tier1;
 
         public override GameObject ItemModel => null;
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, ItemTag.AIBlacklist, GOTCETags.Unstable };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, ItemTag.AIBlacklist, GOTCETags.Bullshit };
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BottledMetamorphosis.png");
 

@@ -40,6 +40,13 @@ namespace GOTCE.Items.Green
         public override void Hooks()
         {
             CriticalTypes.OnFovCrit += Missile;
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
+                if (args.Stats && NetworkServer.active) {
+                    if (args.Stats.inventory) {
+                        args.Stats.FovCritChanceAdd += GetCount(args.Stats.body) > 0 ? 5 : 0;
+                    }
+                }
+            };
         }
 
         public void Missile(object sender, FovCritEventArgs args) {

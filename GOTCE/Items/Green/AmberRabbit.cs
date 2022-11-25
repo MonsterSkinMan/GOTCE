@@ -38,6 +38,13 @@ namespace GOTCE.Items.Green
         public override void Hooks()
         {
             CriticalTypes.OnStageCrit += the;
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
+                if (args.Stats && NetworkServer.active) {
+                    if (args.Stats.inventory) {
+                        args.Stats.StageCritChanceAdd += GetCount(args.Stats.body) > 0 ? 5 : 0;
+                    }
+                }
+            };
         }
 
         public override void Init(ConfigFile config)
