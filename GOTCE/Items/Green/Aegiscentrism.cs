@@ -17,7 +17,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemPickupDesc => "Gain multiple orbital aegises. Every minute, assimilate another item into Aegicentrism.";
 
-        public override string ItemFullDescription => "Every second, gain up yo 6 (+2 per stack) orbiting aegises that give you 5% barrier after 10 seconds. Every 60 seconds, a random item is converted into this item.";
+        public override string ItemFullDescription => "Every second, gain up to 6 (+2 per stack) orbiting aegises that give you 5% barrier after 10 seconds. Every 60 seconds, a random item is converted into this item.";
 
         public override string ItemLore => "i love aegis";
 

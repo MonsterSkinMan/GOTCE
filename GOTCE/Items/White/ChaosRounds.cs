@@ -30,6 +30,7 @@ namespace GOTCE.Items.White
         private static string DevastatorDeathName = "VoidMegaCrabDeathBombProjectile";
         private static string DevastatorBombName = "VoidMegaCrabDeathBombletsExplosion";
         private static string DevastatorExpName = "VoidMegaCrabDeathBombExplosion";
+        private static string DevastatorBombletName = "VoidMegaCrabDeathBombletsProjectile";
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/ChaosRounds.png");
         private string EngiMineName = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Engi/EngiMine.prefab").WaitForCompletion().name;
@@ -68,7 +69,7 @@ namespace GOTCE.Items.White
                             {
                                 prefabs.RemoveAt(i);
                             }
-                            else if (prefabs[i].name.Contains(DevastatorBombName) || prefabs[i].name.Contains(DevastatorDeathName) || prefabs[i].name.Contains(DevastatorExpName)) {
+                            else if (prefabs[i].name.Contains(DevastatorBombName) || prefabs[i].name.Contains(DevastatorDeathName) || prefabs[i].name.Contains(DevastatorExpName) || prefabs[i].name.Contains(DevastatorBombletName)) {
                                 prefabs.RemoveAt(i);
                             }
                         }
