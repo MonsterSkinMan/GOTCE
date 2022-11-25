@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3202158087
+CRC: 2856311443
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b86e0f03d3994eab2d0d78567cdd1229
+    Hash: 12543d00beeca6b7bb94ba3c02853f49
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 08936a28f277886021769c390b93e74c
+    Hash: 63a09f0201083a40ea2964c529312070
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -140,6 +140,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 1918207524, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: 877662855, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: -1781481484, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -1848696948, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
@@ -216,6 +218,7 @@ Assets:
 - Assets/Prefabs/Interactables/DisposableFunder/DisposableFunder.prefab
 - Assets/Prefabs/Projectiles/AltSkills/CorruptedPearl/PearlUpgrade.prefab
 - Assets/Prefabs/Projectiles/AltSkills/Core/Core.prefab
+- Assets/Prefabs/Interactables/Crucible/Crucible.prefab
 - Assets/Prefabs/Projectiles/Aegiscentrism/AegisGhost.prefab
 - Assets/Prefabs/Survivors/Crackmando/CrackedDef.asset
 - Assets/Prefabs/Enemies/The/the.mat

@@ -141,13 +141,6 @@ namespace GOTCE
                 }
             }
 
-            // achievements
-            var Achievements = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(AchievementBase)));
-            foreach (var unlock in Achievements) {
-                AchievementBase achiev = (AchievementBase)Activator.CreateInstance(unlock);
-                achiev.Create(Config);
-            }
-
             // grab tiers and add them
             var Tiers = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(TierBase)));
             foreach (var tier in Tiers) {
@@ -240,6 +233,13 @@ namespace GOTCE
                 enemy.Create();
             }
 
+            // achievements
+            var Achievements = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(AchievementBase)));
+            foreach (var unlock in Achievements) {
+                AchievementBase achiev = (AchievementBase)Activator.CreateInstance(unlock);
+                achiev.Create(Config);
+            }
+
             var survivorTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(SurvivorBase)));
 
             foreach (var survivorType in survivorTypes)
@@ -249,6 +249,7 @@ namespace GOTCE
                 // Debug.Log(item.ConfigName);
                 survivor.Create();
             }
+
 
             Hook aimHook = new Hook(
                 typeof(InputBankTest).GetProperty("aimOrigin", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).GetGetMethod(),
