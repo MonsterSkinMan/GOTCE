@@ -27,6 +27,14 @@ namespace GOTCE.Interactables
         public override void Modify()
         {
             base.Modify();
+            OptionChestBehavior behavior = prefab.GetComponent<OptionChestBehavior>();
+            ExplicitPickupDropTable drops = new ExplicitPickupDropTable();
+            drops.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[] {
+                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = RoR2Content.Equipment.GoldGat, pickupWeight = 1f},
+                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = RoR2Content.Equipment.CommandMissile, pickupWeight = 1f},
+            };
+            behavior.dropTable = drops;
+            behavior.pickupPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/OptionPickup/OptionPickup.prefab").WaitForCompletion();
             LanguageAPI.Add("GOTCE_CRUCIBLE_NAME", "Cracked Crucible");
             LanguageAPI.Add("GOTCE_CRUCIBLE_CONTEXT", "???");
 
@@ -47,7 +55,7 @@ namespace GOTCE.Interactables
             isc.orientToFloor = true;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.skipSpawnWhenSacrificeArtifactEnabled = false;
-            isc.slightlyRandomizeOrientation = true;
+            isc.slightlyRandomizeOrientation = false;
             isc.maxSpawnsPerStage = 1;
             isc.weightScalarWhenSacrificeArtifactEnabled = 1f;
             isc.sendOverNetwork = true;

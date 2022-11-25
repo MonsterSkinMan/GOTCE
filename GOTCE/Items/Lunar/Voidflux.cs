@@ -51,13 +51,16 @@ namespace GOTCE.Items.Lunar
                 }
             };
 
-            ItemHelpers.RegisterCorruptions(ItemDef, new() { 
-                Items.Lunar.DarkFluxPauldron.Instance.ItemDef,
-                Items.Lunar.WindFluxPauldron.Instance.ItemDef,
-                DLC1Content.Items.HalfAttackSpeedHalfCooldowns,
-                DLC1Content.Items.HalfSpeedDoubleHealth,
-                RoR2Content.Items.WarCryOnMultiKill
-            });
+            On.RoR2.Items.ContagiousItemManager.Init += (orig) => {
+                ItemHelpers.RegisterCorruptions(ItemDef, new() { 
+                    Items.Lunar.DarkFluxPauldron.Instance.ItemDef,
+                    Items.Lunar.WindFluxPauldron.Instance.ItemDef,
+                    DLC1Content.Items.HalfAttackSpeedHalfCooldowns,
+                    DLC1Content.Items.HalfSpeedDoubleHealth,
+                    RoR2Content.Items.WarCryOnMultiKill
+                });
+                orig();
+            };
         }
 
         private class VoidfluxBehavior : CharacterBody.ItemBehavior {
