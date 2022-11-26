@@ -10,10 +10,10 @@ namespace GOTCE.EntityStatesCustom.Providence {
     public class ProviDeath : GenericCharacterDeath {
         public override void OnEnter()
         {
-            base.OnEnter();
             if (NetworkServer.active) {
-                GameObject.DestroyImmediate(base.characterBody.masterObject);
-                GameObject.DestroyImmediate(base.gameObject);
+                GameObject.DestroyImmediate(modelLocator.modelBaseTransform.gameObject);
+                GameObject.DestroyImmediate(characterBody.masterObject);
+                GameObject.DestroyImmediate(gameObject);
             }
         }
     }

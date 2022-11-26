@@ -25,8 +25,9 @@ namespace GOTCE.Equipment
         public override bool CanBeRandomlyTriggered => false;
 
         public override GameObject EquipmentModel => null;
+        public static DamageAPI.ModdedDamageType AegisType = DamageAPI.ReserveDamageType();
 
-        public override Sprite EquipmentIcon => null;
+        public override Sprite EquipmentIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/TheAegisfunder.png");
 
         public override float Cooldown => 0f;
 
@@ -46,12 +47,22 @@ namespace GOTCE.Equipment
         public override void Hooks()
         {
             On.RoR2.EquipmentSlot.UpdateGoldGat += UpdateAegisGat;
-            // On.RoR2.GlobalEventManager.OnHitEnemy += Barrier;
+            On.RoR2.GlobalEventManager.OnHitEnemy += Barrier;
         }
 
         protected override bool ActivateEquipment(EquipmentSlot slot)
         {
             return false;
+        }
+
+        private void Barrier(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo info, GameObject victim) {
+            orig(self, info, victim);
+            if (NetworkServer.active && info.attacker && info.attacker.GetComponent<CharacterBody>()) {
+                if (info.HasModdedDamageType(AegisType)) {
+                    CharacterBody body = info.attacker.GetComponent<CharacterBody>();
+                    body.healthComponent.AddBarrier(body.healthComponent.fullHealth * 0.1f);
+                }
+            }
         }
 
         public void UpdateAegisGat(On.RoR2.EquipmentSlot.orig_UpdateGoldGat orig, EquipmentSlot self)
@@ -89,10 +100,12 @@ namespace GOTCE.Equipment
 
         public void Awake()
         {
-            prefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Projectiles/AegisFunder/AegisProjectile.prefab");
+            prefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Projectiles/AegisFunder/AegisProjectile.prefab").InstantiateClone("guh");
             body = gameObject.GetComponent<CharacterBody>();
             input = gameObject.GetComponent<InputBankTest>();
             master = body.master;
+            DamageAPI.ModdedDamageTypeHolderComponent holder = prefab.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
+            holder.Add(Aegisfunder.AegisType);
             PrefabAPI.RegisterNetworkPrefab(prefab);
         }
 
@@ -103,7 +116,7 @@ namespace GOTCE.Equipment
                 shouldFire = !shouldFire;
             }
 
-            if (master.inventory.GetItemCount(RoR2Content.Items.BarrierOnOverHeal) <= 0)
+            if (master.inventory.GetItemCount(RoR2Content.Items.BarrierOnOverHeal) <= 0 || body.healthComponent.health <= 0)
             {
                 shouldFire = false;
             }
@@ -114,9 +127,6 @@ namespace GOTCE.Equipment
                 timer = 0f;
                 ProcChainMask mask = new ProcChainMask();
                 GameObject proj = prefab.InstantiateClone("guh");
-                Vector3 forward = body.transform.forward;
-                float distance = 3;
-                Vector3 pos = body.transform.position + forward*distance;
                 FireProjectileInfo info = new()
                 {
                     damage = body.damage * 2.5f,
@@ -124,10 +134,10 @@ namespace GOTCE.Equipment
                     speedOverride = 350f,
                     crit = Util.CheckRoll(body.crit, body.master),
                     damageColorIndex = DamageColorIndex.WeakPoint,
-                    position = body.corePosition + new Vector3(0, 0.5f, 0), 
+                    position = body.corePosition + new Vector3(0f, 0.25f, 0f),
                     rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(body.equipmentSlot.GetAimRay().direction, -0.5f, 0.5f, -0.5f, 0.5f)),
                     owner = body.gameObject,
-                    procChainMask = mask
+                    procChainMask = mask,
                 };
 
                 ProjectileManager.instance.FireProjectile(info);

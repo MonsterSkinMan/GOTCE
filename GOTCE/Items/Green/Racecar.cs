@@ -41,6 +41,13 @@ namespace GOTCE.Items.Green
         {
             CriticalTypes.OnSprintCrit += Vroom;
             RecalculateStatsAPI.GetStatCoefficients += CDR;
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
+                if (args.Stats && NetworkServer.active) {
+                    if (args.Stats.inventory) {
+                        args.Stats.SprintCritChanceAdd += GetCount(args.Stats.body) > 0 ? 5 : 0;
+                    }
+                }
+            };
         }
 
         public void Vroom(object sender, SprintCritEventArgs args) {

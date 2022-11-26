@@ -13,7 +13,7 @@ namespace GOTCE.Enemies.Bosses
         public override string PathToClone => "Assets/Prefabs/Enemies/Provi/ProviBody.prefab";
         public override bool local => true;
         public override string CloneName => "Provi";
-        public override string PathToCloneMaster => "RoR2/Base/Brother/BrotherMaster.prefab";
+        public override string PathToCloneMaster => "RoR2/Base/Merc/MercMonsterMaster.prefab";
         public CharacterBody body;
         public CharacterMaster master;
 
@@ -52,7 +52,7 @@ namespace GOTCE.Enemies.Bosses
             master = prefabMaster.GetComponent<CharacterMaster>();
             master.bodyPrefab = prefab;
 
-            prefab.GetComponent<CharacterDeathBehavior>().deathState = new EntityStates.SerializableEntityStateType(typeof(EntityStatesCustom.Providence.ProviDeath));
+            prefab.GetComponent<CharacterDeathBehavior>().deathState = new EntityStates.SerializableEntityStateType(typeof(EntityStatesCustom.The.TheDeath));
 
             /*foreach (AISkillDriver driver in prefabMaster.GetComponents<AISkillDriver>()) {
                 if (driver.skillSlot == SkillSlot.Primary) {

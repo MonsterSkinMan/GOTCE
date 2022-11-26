@@ -15,7 +15,7 @@ namespace GOTCE.Items.White
         public override bool CanRemove => true;
         public override string ConfigName => ItemName;
         public override string ItemFullDescription => "Gain a 8% (+8% per stack) chance to 'critcally sprint', doubling your sprinting speed.";
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/GummyVitamins.png");
         public override string ItemLangTokenName => "GOTCE_GummyVitamins";
         public override string ItemLore => "";
         public override GameObject ItemModel => null;
