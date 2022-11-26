@@ -41,7 +41,7 @@ namespace GOTCE.Enemies.Bosses
         {
             base.AddDirectorCard();
             card.minimumStageCompletions = 0;
-            card.selectionWeight = 10;
+            card.selectionWeight = 1;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
 

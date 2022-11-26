@@ -52,7 +52,7 @@ namespace GOTCE.Enemies.Bosses
             master = prefabMaster.GetComponent<CharacterMaster>();
             master.bodyPrefab = prefab;
 
-            prefab.GetComponent<CharacterDeathBehavior>().deathState = new EntityStates.SerializableEntityStateType(typeof(EntityStatesCustom.The.TheDeath));
+            prefab.GetComponent<CharacterDeathBehavior>().deathState = new EntityStates.SerializableEntityStateType(typeof(EntityStatesCustom.Providence.ProviDeath));
 
             /*foreach (AISkillDriver driver in prefabMaster.GetComponents<AISkillDriver>()) {
                 if (driver.skillSlot == SkillSlot.Primary) {

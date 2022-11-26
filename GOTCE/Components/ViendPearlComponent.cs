@@ -55,6 +55,11 @@ namespace GOTCE.Components
                 origin = gameObject.transform.position,
                 scale = 1f
             }, true);
+
+            CharacterBody characterBody = owner.GetComponent<CharacterBody>();
+            if (characterBody) {
+                characterBody.skillLocator.secondary.UnsetSkillOverride(owner, Skills.PearlTeleport.Instance.SkillDef, GenericSkill.SkillOverridePriority.Replacement);
+            }
         }
 
         public void FixedUpdate()

@@ -26,10 +26,7 @@ namespace GOTCE.EntityStatesCustom.The
             if (NetworkServer.active)
             {
                 // healthComponent.health = healthComponent.fullHealth;
-                // PlayAnimation("Body", "Death");
-                GameObject.DestroyImmediate(modelLocator.modelBaseTransform.gameObject);
-                GameObject.DestroyImmediate(characterBody.masterObject);
-                GameObject.DestroyImmediate(gameObject);
+                PlayAnimation("Body", "Death");
             }
         }
 
