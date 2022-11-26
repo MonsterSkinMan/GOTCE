@@ -21,6 +21,7 @@ namespace GOTCE.Interactables
             DirectorAPI.Stage.WetlandAspect
             // default stage list, doesnt include hidden realms or commencement
         };
+
         public override DirectorAPI.InteractableCategory category => DirectorAPI.InteractableCategory.Chests;
         public GameObject prefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Interactables/DisposableFunder/DisposableFunder.prefab");
 

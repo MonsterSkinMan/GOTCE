@@ -6,19 +6,24 @@ using UnityEngine;
 using RoR2.CharacterAI;
 using RoR2.Projectile;
 
-namespace GOTCE.EntityStatesCustom.Providence {
-    public class Shockwave : BaseSkillState {
+namespace GOTCE.EntityStatesCustom.Providence
+{
+    public class Shockwave : BaseSkillState
+    {
         public float duration = 2f;
+
         public override void OnEnter()
         {
             base.OnEnter();
-            if (base.isAuthority) {
+            if (base.isAuthority)
+            {
                 FireRingAuthority();
                 base.characterBody.AddTimedBuff(RoR2Content.Buffs.LunarSecondaryRoot, 2f);
             }
 
             AkSoundEngine.PostEvent(1820467490, base.gameObject); // Play_moonBrother_blueWall_explode
         }
+
         private void FireRingAuthority()
         {
             float num = 360f / 8;
@@ -42,7 +47,8 @@ namespace GOTCE.EntityStatesCustom.Providence {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (base.fixedAge >= duration) {
+            if (base.fixedAge >= duration)
+            {
                 outer.SetNextStateToMain();
             }
         }

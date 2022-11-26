@@ -14,7 +14,7 @@ namespace GOTCE.Enemies.Bosses {
         public override string CloneName => "NaeNaeLord";
         public override string PathToClone => "RoR2/Base/Commando/CommandoBody.prefab";
         public override string PathToCloneMaster => "RoR2/Base/Commando/CommandoMonsterMaster.prefab";
-        
+
         public override void Modify()
         {
             base.Modify();
@@ -36,10 +36,10 @@ namespace GOTCE.Enemies.Bosses {
             SkillLocator sl = prefab.GetComponent<SkillLocator>();
 
             /* ClearESM(prefab, prefabMaster);
-            SerializableEntityStateType generic = new(typeof(EntityStates.GenericCharacterMain)); 
-            SerializableEntityStateType idle = new(typeof(EntityStates.Idle)); 
+            SerializableEntityStateType generic = new(typeof(EntityStates.GenericCharacterMain));
+            SerializableEntityStateType idle = new(typeof(EntityStates.Idle));
 
-            EntityStateMachine naenae = AddESM(prefab, "NaeNae", idle); 
+            EntityStateMachine naenae = AddESM(prefab, "NaeNae", idle);
 
             List<EntityStateMachine> machines = prefab.GetComponent<NetworkStateMachine>().stateMachines.Cast<EntityStateMachine>().ToList();
             machines.Add(naenae);
@@ -56,10 +56,10 @@ namespace GOTCE.Enemies.Bosses {
             ReplaceSkill(sl.special, ult);
 
             /* BaseAI ai = prefabMaster.GetComponent<BaseAI>();
-            ai.stateMachine = bodymachine; 
-            
+            ai.stateMachine = bodymachine;
+
             // List<AISkillDriver> drivers = new();
-        
+
             foreach (AISkillDriver driver in prefabMaster.GetComponents<AISkillDriver>()) {
                 driver.moveTargetType = AISkillDriver.TargetType.CurrentEnemy;
                 driver.movementType = AISkillDriver.MovementType.StrafeMovetarget;
@@ -75,7 +75,7 @@ namespace GOTCE.Enemies.Bosses {
             secondary.moveTargetType = AISkillDriver.TargetType.NearestFriendlyInSkillRange;
             secondary.movementType = AISkillDriver.MovementType.ChaseMoveTarget;
 
-            // ai.skillDrivers = drivers.ToArray(); 
+            // ai.skillDrivers = drivers.ToArray();
 
             On.RoR2.HealthComponent.TakeDamage += (orig, self, info) => {
                 if (NetworkServer.active) {

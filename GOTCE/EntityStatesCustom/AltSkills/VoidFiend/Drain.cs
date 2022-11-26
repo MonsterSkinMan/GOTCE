@@ -4,8 +4,10 @@ using Unity;
 using UnityEngine;
 using System;
 
-namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend {
-    public class Drain : BaseSkillState {
+namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
+{
+    public class Drain : BaseSkillState
+    {
         public float drained = 0f;
 
         public override void OnEnter()
@@ -16,10 +18,12 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (NetworkServer.active) {
+            if (NetworkServer.active)
+            {
                 VoidSurvivorController controller = gameObject.GetComponent<VoidSurvivorController>();
                 InputBankTest bank = gameObject.GetComponent<InputBankTest>();
-                if (!bank.skill4.down || controller.corruption == controller.minimumCorruption) {
+                if (!bank.skill4.down || controller.corruption == controller.minimumCorruption)
+                {
                     outer.SetNextStateToMain();
                 }
 
@@ -32,21 +36,24 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend {
         public override void OnExit()
         {
             base.OnExit();
-            BlastAttack blast = new();
-            blast.attacker = gameObject;
-            blast.radius = 2f * (1 + (drained * 0.1f));
-            blast.baseDamage = base.damageStat * (1 + (drained * 0.1f));
-            blast.baseForce = 2f * (drained / 4);
-            blast.position = characterBody.corePosition;
-            blast.attackerFiltering = AttackerFiltering.NeverHitSelf;
-            blast.teamIndex = teamComponent.teamIndex;
-            blast.damageType = DamageType.LunarSecondaryRootOnHit;
-            blast.damageColorIndex = DamageColorIndex.Void;
-            blast.falloffModel = BlastAttack.FalloffModel.None;
-            blast.crit = drained > 50 ? true : RollCrit();
-            blast.procCoefficient = 0.75f;
+            BlastAttack blast = new()
+            {
+                attacker = gameObject,
+                radius = 2f * (1 + (drained * 0.1f)),
+                baseDamage = base.damageStat * (1 + (drained * 0.1f)),
+                baseForce = 2f * (drained / 4),
+                position = characterBody.corePosition,
+                attackerFiltering = AttackerFiltering.NeverHitSelf,
+                teamIndex = teamComponent.teamIndex,
+                damageType = DamageType.LunarSecondaryRootOnHit,
+                damageColorIndex = DamageColorIndex.Void,
+                falloffModel = BlastAttack.FalloffModel.None,
+                crit = drained > 50 ? true : RollCrit(),
+                procCoefficient = 0.75f
+            };
 
-            if (NetworkServer.active) {
+            if (NetworkServer.active)
+            {
                 blast.Fire();
                 GameObject voidVFX = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
                 EffectManager.SpawnEffect(voidVFX, new EffectData

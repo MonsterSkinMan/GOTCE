@@ -16,9 +16,9 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLangTokenName => "GOTCE_DarkFluxPauldron";
 
-        public override string ItemPickupDesc => "Double your attack speed... BUT double your cooldowns.";
+        public override string ItemPickupDesc => "Double your attack speed... <color=#FF7F7F>BUT double your cooldowns.</color>";
 
-        public override string ItemFullDescription => "Increase attack speed by 100% (+100% per stack). Increase skill cooldowns by 100% (+100% per stack).";
+        public override string ItemFullDescription => "Increase <style=cIsDamage>attack speed</style> by <style=cIsDamage>100%</style> <style=cStack>(+100% per stack)</style>. Increase <style=cIsUtility>skill cooldowns</style> by <style=cIsUtility>100%</style> <style=cStack>(+100% per stack)</style>.";
 
         public override string ItemLore => "TBA";
 

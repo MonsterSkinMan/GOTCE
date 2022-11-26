@@ -26,31 +26,40 @@ namespace GOTCE.Artifact
 
         public override void Hooks()
         {
-            On.RoR2.CharacterMaster.Start += (orig, self) => {
+            On.RoR2.CharacterMaster.Start += (orig, self) =>
+            {
                 orig(self);
-                if (RunArtifactManager.instance.IsArtifactEnabled(ArtifactDef) && NetworkServer.active && self.playerCharacterMasterController) {
+                if (RunArtifactManager.instance.IsArtifactEnabled(ArtifactDef) && NetworkServer.active && self.playerCharacterMasterController)
+                {
                     ExtremelyLow com = self.gameObject.GetComponent<ExtremelyLow>();
-                    if (!com) {
+                    if (!com)
+                    {
                         self.gameObject.AddComponent<ExtremelyLow>();
                     }
                 }
             };
         }
-
     }
 
-    public class ExtremelyLow : MonoBehaviour {
-        float baseCost = 1;
-        float delay = 0.16f;
-        float stopwatch = 0f;
-        CharacterMaster master;
-        public void Start() {
+    public class ExtremelyLow : MonoBehaviour
+    {
+        private float baseCost = 1;
+        private float delay = 0.16f;
+        private float stopwatch = 0f;
+        private CharacterMaster master;
+
+        public void Start()
+        {
             master = gameObject.GetComponent<CharacterMaster>();
         }
-        public void FixedUpdate() {
-            if (NetworkServer.active) {
+
+        public void FixedUpdate()
+        {
+            if (NetworkServer.active)
+            {
                 stopwatch += Time.fixedDeltaTime;
-                if (stopwatch >= delay) {
+                if (stopwatch >= delay)
+                {
                     stopwatch = 0f;
                     float cost = baseCost * (TeamManager.instance.GetTeamLevel(TeamIndex.Player) * 0.25f);
                     master.money = (uint)Mathf.Max(0f, master.money - cost);

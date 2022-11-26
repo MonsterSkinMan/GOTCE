@@ -11,8 +11,10 @@ using HarmonyLib;
 using GOTCE.Utils;
 using UnityEngine.AddressableAssets;
 
-namespace GOTCE.Tiers {
-    public class LunarVoid : TierBase<LunarVoid> {
+namespace GOTCE.Tiers
+{
+    public class LunarVoid : TierBase<LunarVoid>
+    {
         public override string TierName => "LunarVoid";
         public override bool CanScrap => false;
         public override ColorCatalog.ColorIndex ColorIndex => ColorCatalog.ColorIndex.VoidItem;
@@ -26,10 +28,13 @@ namespace GOTCE.Tiers {
         public override void PostCreation()
         {
             base.PostCreation();
-            On.RoR2.Run.BuildDropTable += (orig, self) => {
+            On.RoR2.Run.BuildDropTable += (orig, self) =>
+            {
                 orig(self);
-                foreach (ItemDef item in ItemCatalog.allItemDefs) {
-                    if (item._itemTierDef == tier) {
+                foreach (ItemDef item in ItemCatalog.allItemDefs)
+                {
+                    if (item._itemTierDef == tier)
+                    {
                         self.availableVoidTier2DropList.Add(item.CreatePickupDef().pickupIndex);
                     }
                 }

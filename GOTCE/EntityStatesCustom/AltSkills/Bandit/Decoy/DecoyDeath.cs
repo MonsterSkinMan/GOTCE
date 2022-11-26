@@ -5,16 +5,22 @@ using RoR2.Projectile;
 using Unity;
 using UnityEngine;
 
-namespace GOTCE.EntityStatesCustom.AltSkills.Bandit.Decoy {
-    public class DecoyDeath : GenericCharacterDeath {
+namespace GOTCE.EntityStatesCustom.AltSkills.Bandit.Decoy
+{
+    public class DecoyDeath : GenericCharacterDeath
+    {
         public override void OnEnter()
         {
-            if (NetworkServer.active) {
-                if (base.characterBody && base.characterBody.master) {
+            if (NetworkServer.active)
+            {
+                if (base.characterBody && base.characterBody.master)
+                {
                     CharacterMaster master = base.characterBody.master;
-                    if (master.minionOwnership && master.minionOwnership.ownerMaster) {
+                    if (master.minionOwnership && master.minionOwnership.ownerMaster)
+                    {
                         CharacterMaster ownerMaster = master.minionOwnership.ownerMaster;
-                        if (ownerMaster.GetBody()) {
+                        if (ownerMaster.GetBody())
+                        {
                             BlastAttack blast = new();
                             blast.radius = 7f;
                             blast.baseDamage = ownerMaster.GetBody().damage * 7.6f;
@@ -38,8 +44,10 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Bandit.Decoy {
                         }
                     }
 
-                    if (base.modelLocator) {
-                        if (base.modelLocator.modelBaseTransform) {
+                    if (base.modelLocator)
+                    {
+                        if (base.modelLocator.modelBaseTransform)
+                        {
                             GameObject.Destroy(base.modelLocator.modelTransform.gameObject);
                             GameObject.Destroy(base.modelLocator.modelBaseTransform.gameObject);
                         }

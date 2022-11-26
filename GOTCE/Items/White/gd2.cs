@@ -34,24 +34,32 @@ namespace GOTCE.Items.White
             RoR2BlightBuff.Awake();
             CriticalTypes.OnSprintCrit += Blight;
             On.RoR2.DamageInfo.ModifyDamageInfo += Inflict;
-            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
-                if (args.Stats && NetworkServer.active) {
-                    if (args.Stats.inventory) {
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
+            {
+                if (args.Stats && NetworkServer.active)
+                {
+                    if (args.Stats.inventory)
+                    {
                         args.Stats.SprintCritChanceAdd += GetCount(args.Stats.body) > 0 ? 5 : 0;
                     }
                 }
             };
         }
 
-        public void Blight(object sender, SprintCritEventArgs args) {
-            if (args.Body && NetworkServer.active && GetCount(args.Body) > 0) {
+        public void Blight(object sender, SprintCritEventArgs args)
+        {
+            if (args.Body && NetworkServer.active && GetCount(args.Body) > 0)
+            {
                 args.Body.AddTimedBuff(RoR2BlightBuff.buff, 4f + (2f * (GetCount(args.Body) - 1)));
             }
         }
 
-        public void Inflict(On.RoR2.DamageInfo.orig_ModifyDamageInfo orig, DamageInfo self, HurtBox.DamageModifier mod) {
-            if (self.attacker && self.attacker.GetComponent<CharacterBody>() && NetworkServer.active) {
-                if (self.attacker.GetComponent<CharacterBody>().HasBuff(RoR2BlightBuff.buff)) {
+        public void Inflict(On.RoR2.DamageInfo.orig_ModifyDamageInfo orig, DamageInfo self, HurtBox.DamageModifier mod)
+        {
+            if (self.attacker && self.attacker.GetComponent<CharacterBody>() && NetworkServer.active)
+            {
+                if (self.attacker.GetComponent<CharacterBody>().HasBuff(RoR2BlightBuff.buff))
+                {
                     self.damageType |= DamageType.BlightOnHit;
                 }
             }
@@ -62,13 +70,14 @@ namespace GOTCE.Items.White
         {
             base.Init(config);
         }
-
     }
 
-    public class RoR2BlightBuff {
+    public class RoR2BlightBuff
+    {
         public static BuffDef buff;
 
-        public static void Awake() {
+        public static void Awake()
+        {
             buff = ScriptableObject.CreateInstance<BuffDef>();
             buff.canStack = false;
             buff.isDebuff = false;
@@ -78,5 +87,4 @@ namespace GOTCE.Items.White
             R2API.ContentAddition.AddBuffDef(buff);
         }
     }
-
 }

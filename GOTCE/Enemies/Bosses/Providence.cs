@@ -21,7 +21,7 @@ namespace GOTCE.Enemies.Bosses
         {
             base.CreatePrefab();
             body = prefab.GetComponent<CharacterBody>();
-        } 
+        }
 
         public override void AddSpawnCard()
         {
@@ -80,7 +80,6 @@ namespace GOTCE.Enemies.Bosses
                 new ExplicitPickupDropTable.PickupDefEntry {pickupDef = Items.Yellow.RightRingFingerOfProvidence.Instance.ItemDef, pickupWeight = 1f},
             };
             deathRewards.bossDropTable = dt;
-
         }
 
         public override void PostCreation()

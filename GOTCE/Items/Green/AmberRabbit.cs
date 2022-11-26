@@ -12,7 +12,7 @@ namespace GOTCE.Items.Green
     {
         public override string ConfigName => "Amber Rabbit";
 
-        public override string ItemFullDescription => "On 'Stage Transition Crit', double your item count exponentially.";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>5% stage transition crit chance</style>. On '<style=cIsUtility>Stage Transition Crit</style>', <style=cIsUtility>double your item count</style>.";
 
         public override string ItemLore => "The old clock was just the beginning. Now that I've seen this little blip, this little tear in the fabric of reality, everything looks like a tool to widen it. My newest discovery is a small figurine of a rabbit that appears to be covered in some odd form of amber. On a subatomic scale, something incredibly odd appears to be happening. When I shine a light on it, not only is some absorbed, but an equal amount is emitted by the amber itself. Perfectly equal. So far, it's just light, but I believe this can go further. Much further.";
 
@@ -38,9 +38,12 @@ namespace GOTCE.Items.Green
         public override void Hooks()
         {
             CriticalTypes.OnStageCrit += the;
-            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
-                if (args.Stats && NetworkServer.active) {
-                    if (args.Stats.inventory) {
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
+            {
+                if (args.Stats && NetworkServer.active)
+                {
+                    if (args.Stats.inventory)
+                    {
                         args.Stats.StageCritChanceAdd += GetCount(args.Stats.body) > 0 ? 5 : 0;
                     }
                 }

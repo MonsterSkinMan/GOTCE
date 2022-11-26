@@ -43,26 +43,36 @@ namespace GOTCE.Items.Red
 
         public override void Hooks()
         {
-            On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) => {
+            On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) =>
+            {
                 orig(self);
                 self.AddItemBehavior<InputStacking>(GetCount(self));
             };
         }
     }
 
-    public class InputStacking : CharacterBody.ItemBehavior {
-        Components.GOTCE_StatsComponent stats;
-        public void Start() {
-            if (!body.masterObject.GetComponent<Components.GOTCE_StatsComponent>() && NetworkServer.active) {
+    public class InputStacking : CharacterBody.ItemBehavior
+    {
+        private Components.GOTCE_StatsComponent stats;
+
+        public void Start()
+        {
+            if (!body.masterObject.GetComponent<Components.GOTCE_StatsComponent>() && NetworkServer.active)
+            {
                 GameObject.DestroyImmediate(gameObject.GetComponent<InputStacking>());
             }
-            else {
+            else
+            {
                 stats = body.masterObject.GetComponent<Components.GOTCE_StatsComponent>();
             }
         }
-        public void FixedUpdate() {
-            if (body.hasAuthority) {
-                if (Input.anyKey) {
+
+        public void FixedUpdate()
+        {
+            if (body.hasAuthority)
+            {
+                if (Input.anyKey)
+                {
                     stats.inputs++;
                 }
             }

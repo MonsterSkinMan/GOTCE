@@ -46,22 +46,30 @@ namespace GOTCE.Items.White
             RecalculateStatsAPI.GetStatCoefficients += Hp;
         }
 
-        public void Bison(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo info) {
-            if (NetworkServer.active) {
-                if (self.body && self.body.inventory) {
+        public void Bison(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo info)
+        {
+            if (NetworkServer.active)
+            {
+                if (self.body && self.body.inventory)
+                {
                     CharacterBody body = self.body;
                     Inventory inv = self.body.inventory;
                     int count = inv.GetItemCount(ItemDef);
-                    if (count > 0) {
+                    if (count > 0)
+                    {
                         int total = 0;
-                        foreach (ItemIndex item in inv.itemAcquisitionOrder) {
-                            if (ItemCatalog.GetItemDef(item).tier != ItemTier.NoTier && ItemCatalog.GetItemDef(item).deprecatedTier != ItemTier.NoTier) {
+                        foreach (ItemIndex item in inv.itemAcquisitionOrder)
+                        {
+                            if (ItemCatalog.GetItemDef(item).tier != ItemTier.NoTier && ItemCatalog.GetItemDef(item).deprecatedTier != ItemTier.NoTier)
+                            {
                                 total += inv.GetItemCount(item);
                             }
                         }
-                        for (int i = 0; i < inv.itemAcquisitionOrder.Count; i++) {
+                        for (int i = 0; i < inv.itemAcquisitionOrder.Count; i++)
+                        {
                             ItemIndex index = inv.itemAcquisitionOrder[i];
-                            if (index != ItemDef.itemIndex && ItemCatalog.GetItemDef(index).tier != ItemTier.NoTier && ItemCatalog.GetItemDef(index).deprecatedTier != ItemTier.NoTier) {
+                            if (index != ItemDef.itemIndex && ItemCatalog.GetItemDef(index).tier != ItemTier.NoTier && ItemCatalog.GetItemDef(index).deprecatedTier != ItemTier.NoTier)
+                            {
                                 inv.RemoveItem(index, inv.GetItemCount(index));
                             }
                         }
@@ -72,9 +80,11 @@ namespace GOTCE.Items.White
             orig(self, info);
         }
 
-        public void Hp(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (body.inventory && GetCount(body) > 0) {
-                float bonus = 1.25f + (body.inventory.GetItemCount(ItemDef)-1)*0.30f;
+        public void Hp(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (body.inventory && GetCount(body) > 0)
+            {
+                float bonus = 1.25f + (body.inventory.GetItemCount(ItemDef) - 1) * 0.30f;
                 args.healthMultAdd += bonus;
             }
         }

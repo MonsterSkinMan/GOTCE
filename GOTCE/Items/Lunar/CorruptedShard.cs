@@ -115,7 +115,7 @@ namespace GOTCE.Items.Lunar
 
         private void FixedUpdate()
         {
-            if (Util.CheckRoll(1f))
+            if (Util.CheckRoll(0.03f))
             {
                 shouldCrash = true;
             }

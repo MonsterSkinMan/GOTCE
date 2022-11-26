@@ -40,7 +40,6 @@ namespace GOTCE.Items.NoTier
 
         public static float onlineSyncDuration = 60f;
 
-
         public override void Init(ConfigFile config)
         {
             base.Init(config);
@@ -77,6 +76,7 @@ namespace GOTCE.Items.NoTier
         {
             return orig(self) + (calculatingDifficultyCoefficient ? extraDifficultyTime : 0);
         }
+
         private void Run_FixedUpdate(On.RoR2.Run.orig_FixedUpdate orig, Run self)
         {
             orig(self);
@@ -96,6 +96,7 @@ namespace GOTCE.Items.NoTier
                 }
             }
         }
+
         private void CharacterBody_OnInventoryChanged(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
             orig(self);
@@ -114,7 +115,7 @@ namespace GOTCE.Items.NoTier
 
         public class SyncTimer : INetMessage
         {
-            float time;
+            private float time;
 
             public SyncTimer()
             {

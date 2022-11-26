@@ -2,7 +2,8 @@ using System;
 using RoR2;
 using UnityEngine;
 
-namespace GOTCE.Misc {
+namespace GOTCE.Misc
+{
     public enum Tier : int
     {
         F = 0,
@@ -12,11 +13,14 @@ namespace GOTCE.Misc {
         A = 4,
         S = 5
     }
-    public class Woolie {
+
+    public class Woolie
+    {
         public static Dictionary<ItemDef, Tier> TierMap;
 
-        public static void Initialize() {
-                TierMap = new() {
+        public static void Initialize()
+        {
+            TierMap = new() {
                     {RoR2Content.Items.AlienHead, Tier.B},
                     {RoR2Content.Items.ArmorPlate, Tier.B},
                     {RoR2Content.Items.ArmorReductionOnHit, Tier.S},
@@ -153,7 +157,8 @@ namespace GOTCE.Misc {
                 };
         }
 
-        public static unvoid Everything() {
+        public static unvoid Everything()
+        {
             unvoid val = new unvoid();
             val.value = new System.Object[] { "the", 1, RoR2Content.Items.BarrierOnOverHeal };
             return val;

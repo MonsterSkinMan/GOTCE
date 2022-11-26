@@ -161,4 +161,4 @@ namespace GOTCE.Enemies.Minibosses
             }
         }
     }
-} 
+}

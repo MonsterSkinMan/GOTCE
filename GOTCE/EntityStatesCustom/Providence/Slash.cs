@@ -4,9 +4,10 @@ using System;
 using Unity;
 using UnityEngine;
 
-namespace GOTCE.EntityStatesCustom.Providence {
-    public class Slash : BasicMeleeAttack {
-
+namespace GOTCE.EntityStatesCustom.Providence
+{
+    public class Slash : BasicMeleeAttack
+    {
         public override void OnEnter()
         {
             swingEffectPrefab = EntityStates.Merc.Weapon.GroundLight2.comboFinisherSwingEffectPrefab;
@@ -28,7 +29,8 @@ namespace GOTCE.EntityStatesCustom.Providence {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (base.fixedAge >= duration) {
+            if (base.fixedAge >= duration)
+            {
                 outer.SetNextStateToMain();
             }
         }

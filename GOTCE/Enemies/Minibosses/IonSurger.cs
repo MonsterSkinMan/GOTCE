@@ -111,7 +111,6 @@ namespace GOTCE.Enemies.Minibosses
             LanguageAPI.Add("GOTCE_IONSURGER_NAME", "Ion Surger");
             LanguageAPI.Add("GOTCE_IONSURGER_LORE", "Melee range isn't viable.");
             LanguageAPI.Add("GOTCE_IONSURGER_SUBTITLE", "Horde of Many");
-
         }
 
         public override void PostCreation()
@@ -126,4 +125,4 @@ namespace GOTCE.Enemies.Minibosses
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Minibosses, true);
         }
     }
-} 
+}

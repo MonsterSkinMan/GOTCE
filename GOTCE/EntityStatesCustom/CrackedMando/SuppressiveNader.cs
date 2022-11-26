@@ -9,7 +9,6 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
 {
     public class SuppressiveNader : BaseSkillState
     {
-
         public static float damageCoefficient;
 
         public static float force;
@@ -55,22 +54,22 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             bulletCount = (int)((float)baseBulletCount * attackSpeedStat);
             modelAnimator = GetModelAnimator();
             PlayAnimation("Gesture, Additive", "ThrowGrenade", "FireFMJ.playbackRate", duration * 2f);
-			PlayAnimation("Gesture, Override", "ThrowGrenade", "FireFMJ.playbackRate", duration * 2f);
+            PlayAnimation("Gesture, Override", "ThrowGrenade", "FireFMJ.playbackRate", duration * 2f);
             // modelTransform = base.characterBody.modelLocator.modelTransform.GetChild(1).transform;
             FireBullet();
             Ray aimRay = GetAimRay();
             GameObject pRound = Addressables.LoadAssetAsync<GameObject>("RoR2/Junk/Commando/FMJ.prefab").WaitForCompletion();
 
             FireProjectileInfo info2 = new()
-                {
-                    damage = base.damageStat *= 3.6f,
-                    projectilePrefab = pRound,
-                    crit = Util.CheckRoll(base.critStat, base.characterBody.master),
-                    damageColorIndex = DamageColorIndex.WeakPoint,
-                    position = base.characterBody.aimOriginTransform.position,
-                    rotation = Util.QuaternionSafeLookRotation(aimRay.direction),
-                    owner = base.gameObject,
-                };
+            {
+                damage = base.damageStat *= 3.6f,
+                projectilePrefab = pRound,
+                crit = Util.CheckRoll(base.critStat, base.characterBody.master),
+                damageColorIndex = DamageColorIndex.WeakPoint,
+                position = base.characterBody.aimOriginTransform.position,
+                rotation = Util.QuaternionSafeLookRotation(aimRay.direction),
+                owner = base.gameObject,
+            };
 
             ProjectileManager.instance.FireProjectile(info2);
         }
@@ -81,7 +80,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             GameObject prefab = R2API.PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Junk/Commando/CommandoStickyGrenadeProjectile.prefab").WaitForCompletion(), "nader");
             prefab.AddComponent<R2API.DamageAPI.ModdedDamageTypeHolderComponent>();
             prefab.GetComponent<R2API.DamageAPI.ModdedDamageTypeHolderComponent>().Add(DamageTypes.NaderEffect);
-            
+
             // string muzzleName = "MuzzleRight";
             // Ray aimRay = GetAim();
             if (base.isAuthority)
@@ -97,7 +96,6 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                     owner = base.gameObject,
                 };
                 ProjectileManager.instance.FireProjectile(info);
-                
             }
             totalBulletsFired++;
             Util.PlaySound(fireBarrageSoundString, base.gameObject);

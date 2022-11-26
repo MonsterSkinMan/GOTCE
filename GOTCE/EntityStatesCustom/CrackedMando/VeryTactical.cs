@@ -7,8 +7,10 @@ using UnityEngine;
 using Unity;
 using EntityStates.Commando.CommandoWeapon;
 
-namespace GOTCE.EntityStatesCustom.CrackedMando {
-    public class VeryTactical : BaseState {
+namespace GOTCE.EntityStatesCustom.CrackedMando
+{
+    public class VeryTactical : BaseState
+    {
         public float duration = 5f;
         public CharacterMotor motor;
         public ICharacterFlightParameterProvider flightprov;
@@ -37,7 +39,8 @@ namespace GOTCE.EntityStatesCustom.CrackedMando {
             base.FixedUpdate();
             motor.useGravity = false;
             motor.isFlying = true;
-            if (base.fixedAge >= duration) {
+            if (base.fixedAge >= duration)
+            {
                 motor.useGravity = true;
                 motor.isFlying = false;
                 outer.SetNextStateToMain();

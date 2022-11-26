@@ -11,9 +11,12 @@ using HG;
 using RoR2.Skills;
 using RoR2.Orbs;
 
-namespace GOTCE.Based {
-    public class SuppressiveNader {
-        public static void Hook() {
+namespace GOTCE.Based
+{
+    public class SuppressiveNader
+    {
+        public static void Hook()
+        {
             On.RoR2.GlobalEventManager.OnHitEnemy += Nader;
 
             /* GameObject commandoBodyPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Commando/CommandoBody.prefab").WaitForCompletion();
@@ -49,8 +52,6 @@ namespace GOTCE.Based {
                 viewableNode = new ViewablesCatalog.Node(Skills.SuppressiveNader.Instance.SkillDef.skillNameToken, false, null)
             }; */
 
-
-
             LanguageAPI.Add(Skills.VeryTactical.Instance.SkillDef.skillNameToken, "Very Tactical Diving Slide");
             LanguageAPI.Add(Skills.VeryTactical.Instance.SkillDef.skillDescriptionToken, "Literally just gives you 5 seconds of complete flight.");
             LanguageAPI.Add(Skills.DoubleDoubleTap.Instance.SkillDef.skillNameToken, "Double Double Double Double Double Tap");
@@ -63,10 +64,13 @@ namespace GOTCE.Based {
             LanguageAPI.Add(Skills.SuppressiveBarrage.Instance.SkillDef.skillDescriptionToken, "Unleash a rapid-fire barrage of 128 stunning bullets for 100% damage.");
         }
 
-        public static void Nader(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo info, GameObject victim) {
-            if (info.HasModdedDamageType(DamageTypes.NaderEffect)) {
+        public static void Nader(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo info, GameObject victim)
+        {
+            if (info.HasModdedDamageType(DamageTypes.NaderEffect))
+            {
                 info.damageType |= DamageType.Stun1s | DamageType.FruitOnHit | DamageType.BypassArmor | DamageType.SlowOnHit | DamageType.WeakPointHit | DamageType.IgniteOnHit | DamageType.Freeze2s | DamageType.BleedOnHit | DamageType.ClayGoo | DamageType.PoisonOnHit | DamageType.PercentIgniteOnHit | DamageType.Nullify | DamageType.Shock5s | DamageType.ResetCooldownsOnKill | DamageType.ApplyMercExpose | DamageType.SuperBleedOnCrit;
-                if (victim && victim.GetComponent<CharacterBody>()) {
+                if (victim && victim.GetComponent<CharacterBody>())
+                {
                     CharacterBody body = victim.GetComponent<CharacterBody>();
                     CharacterBody body2 = info.attacker.GetComponent<CharacterBody>();
                     BuffDef[] buffs = {
@@ -87,7 +91,8 @@ namespace GOTCE.Based {
                         RoR2Content.Buffs.SuperBleed,
                         RoR2Content.Buffs.Cripple,
                     };
-                    for (int i = 0; i < buffs.Length; i++) {
+                    for (int i = 0; i < buffs.Length; i++)
+                    {
                         body.AddTimedBuff(buffs[i], 10f);
                     }
 
@@ -104,13 +109,15 @@ namespace GOTCE.Based {
                         DotController.DotIndex.SuperBleed,
                     };
 
-                    foreach (DotController.DotIndex index in indexes) {
+                    foreach (DotController.DotIndex index in indexes)
+                    {
                         DotController.InflictDot(victim, info.attacker, index, 10f);
                     }
 
                     Run.instance.availableEquipment.Remove(RoR2Content.Equipment.GoldGat.equipmentIndex);
 
-                    try {
+                    try
+                    {
                         CharacterSpawnCard vrailer = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/DLC1/VoidJailer/cscVoidJailerAlly.asset").WaitForCompletion();
                         CharacterSpawnCard vreaver = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/Base/Nullifier/cscNullifierAlly.asset").WaitForCompletion();
                         CharacterSpawnCard vrevastator = Addressables.LoadAssetAsync<CharacterSpawnCard>("RoR2/DLC1/VoidMegaCrab/cscVoidMegaCrabAlly.asset").WaitForCompletion();
@@ -133,12 +140,15 @@ namespace GOTCE.Based {
                             maxDistance = 40f,
                             spawnOnTarget = info.attacker.transform
                         };
-                        foreach (CharacterSpawnCard card in cards) {
+                        foreach (CharacterSpawnCard card in cards)
+                        {
                             DirectorSpawnRequest directorSpawnRequest = new DirectorSpawnRequest(card, placementRule, Run.instance.stageRng);
                             directorSpawnRequest.summonerBodyObject = info.attacker;
                             DirectorCore.instance.TrySpawnObject(directorSpawnRequest);
                         }
-                    } catch (NullReferenceException err) {
+                    }
+                    catch (NullReferenceException err)
+                    {
                         Main.ModLogger.LogError("Suppressive Nader could not spawn an ally");
                         Main.ModLogger.LogError("Error: " + err);
                     }
@@ -147,7 +157,8 @@ namespace GOTCE.Based {
                     TeleporterInteraction.instance.shouldAttemptToSpawnShopPortal = true;
                     TeleporterInteraction.instance.shouldAttemptToSpawnMSPortal = true;
 
-                    try {
+                    try
+                    {
                         MasterSummon masterSummon2 = new MasterSummon();
                         masterSummon2.position = info.attacker.transform.position;
                         masterSummon2.ignoreTeamMemberLimit = true;
@@ -155,7 +166,7 @@ namespace GOTCE.Based {
                         masterSummon2.summonerBodyObject = info.attacker;
                         masterSummon2.rotation = Quaternion.LookRotation(info.attacker.transform.forward);
                         masterSummon2.Perform();
-                        
+
                         masterSummon2 = new MasterSummon();
                         masterSummon2.position = info.attacker.transform.position;
                         masterSummon2.ignoreTeamMemberLimit = true;
@@ -163,11 +174,13 @@ namespace GOTCE.Based {
                         masterSummon2.summonerBodyObject = info.attacker;
                         masterSummon2.rotation = Quaternion.LookRotation(info.attacker.transform.forward);
                         masterSummon2.Perform();
-                    } catch (NullReferenceException err) {
+                    }
+                    catch (NullReferenceException err)
+                    {
                         Main.ModLogger.LogError("Suppressive Nader could not perform a master summon");
                         Main.ModLogger.LogError("Error: " + err);
                     }
-                    
+
                     Util.CleanseBody(body2, true, false, true, true, true, false);
 
                     using ReadOnlyArray<ContagiousItemManager.TransformationInfo>.Enumerator enumerator = ContagiousItemManager.transformationInfos.GetEnumerator();
@@ -178,9 +191,10 @@ namespace GOTCE.Based {
                 }
             }
 
-            if (info.HasModdedDamageType(DamageTypes.FullChainLightning) && info.attacker) {
+            if (info.HasModdedDamageType(DamageTypes.FullChainLightning) && info.attacker)
+            {
                 CharacterBody body = info.attacker.GetComponent<CharacterBody>();
-                LightningOrb lightningOrb = new LightningOrb
+                LightningOrb lightningOrb = new()
                 {
                     origin = body.corePosition,
                     damageValue = body.damage * 2f,
@@ -197,7 +211,8 @@ namespace GOTCE.Based {
                 };
                 lightningOrb.damageValue = body.damage;
                 HurtBox hurtbox = lightningOrb.PickNextTarget(body.corePosition);
-                if (hurtbox) {
+                if (hurtbox)
+                {
                     lightningOrb.target = hurtbox;
                     OrbManager.instance.AddOrb(lightningOrb);
                 }

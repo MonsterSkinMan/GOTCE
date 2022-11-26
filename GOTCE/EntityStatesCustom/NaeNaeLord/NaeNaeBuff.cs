@@ -7,14 +7,17 @@ using UnityEngine;
 using Unity;
 using RoR2.Projectile;
 
-namespace GOTCE.EntityStatesCustom.NaeNaeLord {
-    public class NaeNaeBuff : BaseState {
-
+namespace GOTCE.EntityStatesCustom.NaeNaeLord
+{
+    public class NaeNaeBuff : BaseState
+    {
         public float duration = 3f;
+
         public override void OnEnter()
         {
             base.OnEnter();
-            if (NetworkServer.active) {
+            if (NetworkServer.active)
+            {
                 List<HurtBox> naenaebuffer = new();
                 SphereSearch naenaesearch = new();
                 naenaesearch.radius = 50f;
@@ -27,8 +30,10 @@ namespace GOTCE.EntityStatesCustom.NaeNaeLord {
                 naenaesearch.GetHurtBoxes(naenaebuffer);
                 naenaesearch.ClearCandidates();
 
-                foreach(HurtBox box in naenaebuffer) {
-                    if (box && box.healthComponent && box.healthComponent.body) {
+                foreach (HurtBox box in naenaebuffer)
+                {
+                    if (box && box.healthComponent && box.healthComponent.body)
+                    {
                         box.healthComponent.body.AddTimedBuff(RoR2Content.Buffs.CloakSpeed, 5f);
                     }
                 }
@@ -43,7 +48,8 @@ namespace GOTCE.EntityStatesCustom.NaeNaeLord {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (base.fixedAge >= duration) {
+            if (base.fixedAge >= duration)
+            {
                 outer.SetNextStateToMain();
             }
         }

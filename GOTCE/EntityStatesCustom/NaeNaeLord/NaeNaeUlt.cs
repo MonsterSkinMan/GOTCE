@@ -7,18 +7,21 @@ using UnityEngine;
 using Unity;
 using RoR2.Projectile;
 
-namespace GOTCE.EntityStatesCustom.NaeNaeLord {
-    public class NaeNaeUlt : BaseSkillState {
-        float duration = 2f;
-        float delay = 0.5f;
-        bool hasFired = false;
+namespace GOTCE.EntityStatesCustom.NaeNaeLord
+{
+    public class NaeNaeUlt : BaseSkillState
+    {
+        private float duration = 2f;
+        private float delay = 0.5f;
+        private bool hasFired = false;
 
         public Ray ray;
 
         public override void OnEnter()
         {
             base.OnEnter();
-            if (NetworkServer.active) {
+            if (NetworkServer.active)
+            {
                 ray = base.GetAimRay();
             }
         }
@@ -31,7 +34,8 @@ namespace GOTCE.EntityStatesCustom.NaeNaeLord {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (base.fixedAge >= delay && !hasFired && NetworkServer.active) {
+            if (base.fixedAge >= delay && !hasFired && NetworkServer.active)
+            {
                 BulletAttack whip = new();
                 whip.damage = base.damageStat * 2f;
                 whip.radius = 2.5f;
@@ -56,7 +60,8 @@ namespace GOTCE.EntityStatesCustom.NaeNaeLord {
                 DamageAPI.ModdedDamageTypeHolderComponent holder = proj.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
                 holder.Add(DamageTypes.Truekill);
 
-                for (int i = 0; i < 12; i++) {
+                for (int i = 0; i < 12; i++)
+                {
                     ray = base.GetAimRay();
                     FireProjectileInfo info = new()
                     {
@@ -74,8 +79,9 @@ namespace GOTCE.EntityStatesCustom.NaeNaeLord {
                     ProjectileManager.instance.FireProjectile(info);
                 }
                 hasFired = true;
-            } 
-            if (base.fixedAge >= duration) {
+            }
+            if (base.fixedAge >= duration)
+            {
                 outer.SetNextStateToMain();
             }
         }

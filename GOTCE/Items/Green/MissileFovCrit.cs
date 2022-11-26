@@ -13,9 +13,9 @@ namespace GOTCE.Items.Green
 
         public override string ItemLangTokenName => "GOTCE_MissileFovCrit";
 
-        public override string ItemPickupDesc => "On 'Critcal FOV Strike' fire a homing missile.";
+        public override string ItemPickupDesc => "On 'Critical FOV Strike' fire a homing missile.";
 
-        public override string ItemFullDescription => "On 'Critical FOV Strike', fire 1 (+1 per stack) missiles for 300% damage. Gain 5% 'FOV Crit' chance";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>5% FOV crit chance</style>. On '<style=cIsUtility>Critical FOV Strike</style>', fire 1 (+1 per stack) missiles for <style=cIsDamage>300%</style> damage.";
 
         public override string ItemLore => "";
 
@@ -40,25 +40,32 @@ namespace GOTCE.Items.Green
         public override void Hooks()
         {
             CriticalTypes.OnFovCrit += Missile;
-            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
-                if (args.Stats && NetworkServer.active) {
-                    if (args.Stats.inventory) {
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
+            {
+                if (args.Stats && NetworkServer.active)
+                {
+                    if (args.Stats.inventory)
+                    {
                         args.Stats.FovCritChanceAdd += GetCount(args.Stats.body) > 0 ? 5 : 0;
                     }
                 }
             };
         }
 
-        public void Missile(object sender, FovCritEventArgs args) {
+        public void Missile(object sender, FovCritEventArgs args)
+        {
             // Debug.Log("fov crit happened");
-            if (NetworkServer.active) {
+            if (NetworkServer.active)
+            {
                 // Debug.Log("network active");
-                if (args.Body) {
+                if (args.Body)
+                {
                     // Debug.Log("body check passed");
                     GameObject projectilePrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/Projectiles/MissileProjectile");
                     int stack = args.Body.inventory.GetItemCount(ItemDef);
                     // Debug.Log(stack);
-                    for (int i = 0; i < stack; i++) {
+                    for (int i = 0; i < stack; i++)
+                    {
                         MissileUtils.FireMissile(args.Body.transform.position, args.Body, new ProcChainMask(), null, args.Body.damage * 3f, Util.CheckRoll(args.Body.crit, args.Body.master), projectilePrefab, DamageColorIndex.Item, false);
                     }
                 }

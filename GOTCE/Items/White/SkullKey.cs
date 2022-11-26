@@ -45,9 +45,12 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             CriticalTypes.OnStageCrit += MeWhenWithor;
-            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
-                if (args.Stats && NetworkServer.active) {
-                    if (args.Stats.inventory) {
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
+            {
+                if (args.Stats && NetworkServer.active)
+                {
+                    if (args.Stats.inventory)
+                    {
                         args.Stats.StageCritChanceAdd += GetCount(args.Stats.body) > 0 ? 5 : 0;
                     }
                 }

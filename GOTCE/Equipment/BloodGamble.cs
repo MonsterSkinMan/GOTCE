@@ -68,7 +68,7 @@ namespace GOTCE.Equipment
                     damage = slot.characterBody.healthComponent.fullCombinedHealth * 0.25f
                 };
                 int[] damageTypes = (int[])Enum.GetValues(typeof(DamageType));
-                
+
                 info.damageType = (DamageType)damageTypes[rand.Next(0, damageTypes.Length - 1)] | (DamageType)damageTypes[rand.Next(0, damageTypes.Length - 1)] | (DamageType)damageTypes[rand.Next(0, damageTypes.Length - 1)] | DamageType.NonLethal;
                 info.procCoefficient = 10f;
                 info.attacker = slot.characterBody.gameObject;

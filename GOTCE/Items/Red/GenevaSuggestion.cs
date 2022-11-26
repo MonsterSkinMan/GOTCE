@@ -43,9 +43,12 @@ namespace GOTCE.Items.Red
 
         public override void Hooks()
         {
-            RecalculateStatsAPI.GetStatCoefficients += (body, args) => {
-                if (NetworkServer.active && body.inventory && HasItem(body) && body.masterObject && body.masterObject.GetComponent<GOTCE_StatsComponent>()) {
-                    if (body.masterObject.GetComponent<GOTCE_StatsComponent>().mostRecentlyCommitedWarCrime == WarCrime.Homemade) {
+            RecalculateStatsAPI.GetStatCoefficients += (body, args) =>
+            {
+                if (NetworkServer.active && body.inventory && HasItem(body) && body.masterObject && body.masterObject.GetComponent<GOTCE_StatsComponent>())
+                {
+                    if (body.masterObject.GetComponent<GOTCE_StatsComponent>().mostRecentlyCommitedWarCrime == WarCrime.Homemade)
+                    {
                         args.baseAttackSpeedAdd += 0.15f;
                     }
                 }

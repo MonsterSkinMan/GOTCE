@@ -23,7 +23,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemName => "Huntress Harpoon";
 
-        public override string ItemPickupDesc => "Gain extra utility charges and movement speed, but greatly reduce your damage.";
+        public override string ItemPickupDesc => "Gain extra utility charges and movement speed... <color=#FF7F7F>BUT greatly reduce your damage.</color>";
 
         public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, GOTCETags.Masochist };
 

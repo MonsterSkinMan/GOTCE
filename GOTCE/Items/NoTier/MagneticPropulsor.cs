@@ -43,9 +43,11 @@ namespace GOTCE.Items.NoTier
             RecalculateStatsAPI.GetStatCoefficients += Guh;
         }
 
-        public void Guh(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (NetworkServer.active && GetCount(body) > 0) {
-                args.jumpPowerMultAdd += (3f*body.crit);
+        public void Guh(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (NetworkServer.active && GetCount(body) > 0)
+            {
+                args.jumpPowerMultAdd += (3f * body.crit);
                 args.critAdd -= body.crit;
             }
         }

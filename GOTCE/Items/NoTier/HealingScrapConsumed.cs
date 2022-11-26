@@ -33,6 +33,7 @@ namespace GOTCE.Items.NoTier
         {
             return new ItemDisplayRuleDict(null);
         }
+
         public override void Hooks()
         {
             On.RoR2.CharacterMaster.OnServerStageBegin += CharacterMaster_OnServerStageBegin;

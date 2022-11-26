@@ -18,7 +18,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemPickupDesc => "Knock enemies back on hit.";
 
-        public override string ItemFullDescription => "100% chance on hit to knock enemies back, increasing in force per stack.";
+        public override string ItemFullDescription => "On hit, <style=cIsUtility>knock enemies back</style>. <style=cStack>Knockback increases per stack</style>.";
 
         public override string ItemLore => "TBA";
 

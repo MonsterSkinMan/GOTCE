@@ -7,7 +7,7 @@ using System.Text;
 using UnityEngine;
 using RoR2.Skills;
 
-namespace GOTCE.Items.Lunar
+namespace GOTCE.Items.VoidLunar
 {
     public class Voidflux : ItemBase<Voidflux>
     {
@@ -17,9 +17,9 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLangTokenName => "GOTCE_Voidflux";
 
-        public override string ItemPickupDesc => "Randomize EVERYTHING periodically. <style=cIsVoid>Corrupts all other Pauldrons.</style>";
+        public override string ItemPickupDesc => "Randomize stats, team and skills periodically. <style=cIsVoid>Corrupts all other Pauldrons.</style>";
 
-        public override string ItemFullDescription => "Every 10 (-25% per stack) seconds, randomize EVERYTHING. <style=cIsVoid>Corrupts all other Pauldrons.</style>";
+        public override string ItemFullDescription => "Every 10 (-25% per stack) seconds, randomize EVERYTHING. <style=cIsVoid>Corrupts all Pauldrons.</style>";
 
         public override string ItemLore => "";
 
@@ -44,15 +44,18 @@ namespace GOTCE.Items.Lunar
 
         public override void Hooks()
         {
-            On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) => {
+            On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) =>
+            {
                 orig(self);
-                if (NetworkServer.active) {
+                if (NetworkServer.active)
+                {
                     self.AddItemBehavior<VoidfluxBehavior>(GetCount(self));
                 }
             };
 
-            On.RoR2.Items.ContagiousItemManager.Init += (orig) => {
-                ItemHelpers.RegisterCorruptions(ItemDef, new() { 
+            On.RoR2.Items.ContagiousItemManager.Init += (orig) =>
+            {
+                ItemHelpers.RegisterCorruptions(ItemDef, new() {
                     Items.Lunar.DarkFluxPauldron.Instance.ItemDef,
                     Items.Lunar.WindFluxPauldron.Instance.ItemDef,
                     DLC1Content.Items.HalfAttackSpeedHalfCooldowns,
@@ -63,9 +66,10 @@ namespace GOTCE.Items.Lunar
             };
         }
 
-        private class VoidfluxBehavior : CharacterBody.ItemBehavior {
-            float stopwatch = 0f;
-            float delay = 10f;
+        private class VoidfluxBehavior : CharacterBody.ItemBehavior
+        {
+            private float stopwatch = 0f;
+            private float delay = 10f;
             public float damage;
             public float shield;
             public float attackSpeed;
@@ -75,7 +79,9 @@ namespace GOTCE.Items.Lunar
             public float armor;
             private Xoroshiro128Plus rng => Run.instance.treasureRng;
             private List<SkillDef> defs;
-            private TeamIndex[] teamIndexes = {
+
+            private TeamIndex[] teamIndexes =
+            {
                 TeamIndex.Neutral,
                 TeamIndex.Player,
                 TeamIndex.Monster,
@@ -83,9 +89,11 @@ namespace GOTCE.Items.Lunar
                 TeamIndex.Void
             };
 
-            private void Start() {
+            private void Start()
+            {
                 defs = new();
-                foreach (SkillDef def in SkillCatalog.allSkillDefs) {
+                foreach (SkillDef def in SkillCatalog.allSkillDefs)
+                {
                     defs.Add(def);
                 }
 
@@ -93,18 +101,23 @@ namespace GOTCE.Items.Lunar
                 delay = 10 * Mathf.Pow(0.75f, stack - 1);
             }
 
-            private void FixedUpdate() {
-                if (NetworkServer.active) {
+            private void FixedUpdate()
+            {
+                if (NetworkServer.active)
+                {
                     stopwatch += Time.fixedDeltaTime;
-                    if (stopwatch >= delay) {
+                    if (stopwatch >= delay)
+                    {
                         stopwatch = 0f;
                         Randomize();
                     }
                 }
             }
 
-            private void Randomize() {
-                if (NetworkServer.active) {
+            private void Randomize()
+            {
+                if (NetworkServer.active)
+                {
                     damage = rng.RangeFloat(1, 25 * body.level);
                     shield = rng.RangeFloat(1, 250 * body.level);
                     attackSpeed = rng.RangeFloat(1, 3 * body.level);
@@ -121,8 +134,10 @@ namespace GOTCE.Items.Lunar
                 }
             }
 
-            private void Stats(CharacterBody cb, RecalculateStatsAPI.StatHookEventArgs args) {
-                if (NetworkServer.active && cb == body) {
+            private void Stats(CharacterBody cb, RecalculateStatsAPI.StatHookEventArgs args)
+            {
+                if (NetworkServer.active && cb == body)
+                {
                     args.baseDamageAdd += damage;
                     args.baseShieldAdd += shield;
                     args.baseJumpPowerAdd += jumpHeight;
@@ -134,7 +149,8 @@ namespace GOTCE.Items.Lunar
                 }
             }
 
-            private void OnDestroy() {
+            private void OnDestroy()
+            {
                 RecalculateStatsAPI.GetStatCoefficients -= Stats;
             }
         }

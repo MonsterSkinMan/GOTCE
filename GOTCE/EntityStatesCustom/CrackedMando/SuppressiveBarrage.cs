@@ -7,8 +7,10 @@ using UnityEngine;
 using Unity;
 using EntityStates.Commando.CommandoWeapon;
 
-namespace GOTCE.EntityStatesCustom.CrackedMando {
-    public class SuppressiveBarrage : BaseSkillState {
+namespace GOTCE.EntityStatesCustom.CrackedMando
+{
+    public class SuppressiveBarrage : BaseSkillState
+    {
         public float duration = 2f;
         public float totalBullets = 128f;
         public int bulletsFired = 0;
@@ -21,14 +23,15 @@ namespace GOTCE.EntityStatesCustom.CrackedMando {
             totalBullets = totalBullets * attackSpeedStat;
             delay = duration / totalBullets;
             PlayCrossfade("Gesture, Additive", "FireBarrage", "FireBarrage.playbackRate", duration, 0.2f);
-		    PlayCrossfade("Gesture, Override", "FireBarrage", "FireBarrage.playbackRate", duration, 0.2f);
+            PlayCrossfade("Gesture, Override", "FireBarrage", "FireBarrage.playbackRate", duration, 0.2f);
         }
 
         public override void FixedUpdate()
         {
             base.FixedUpdate();
             stopwatch += Time.fixedDeltaTime;
-            if (stopwatch >= delay) {
+            if (stopwatch >= delay)
+            {
                 stopwatch = 0f;
                 BulletAttack bulletAttack = new()
                 {
@@ -52,13 +55,15 @@ namespace GOTCE.EntityStatesCustom.CrackedMando {
                     maxDistance = 100000f
                 };
 
-                if (base.isAuthority) {
+                if (base.isAuthority)
+                {
                     bulletAttack.Fire();
                 }
                 bulletsFired += 1;
             }
 
-            if (fixedAge >= duration && bulletsFired >= totalBullets) {
+            if (fixedAge >= duration && bulletsFired >= totalBullets)
+            {
                 outer.SetNextStateToMain();
             }
         }

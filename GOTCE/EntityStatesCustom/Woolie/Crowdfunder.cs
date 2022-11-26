@@ -4,8 +4,10 @@ using RoR2;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace GOTCE.EntityStatesCustom.Woolie {
-    public class Crowdfunder : BaseState {
+namespace GOTCE.EntityStatesCustom.Woolie
+{
+    public class Crowdfunder : BaseState
+    {
         public float stopwatch = 0f;
         public float delay = 0.07f;
 
@@ -14,9 +16,11 @@ namespace GOTCE.EntityStatesCustom.Woolie {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (NetworkServer.active) {
+            if (NetworkServer.active)
+            {
                 stopwatch += Time.fixedDeltaTime;
-                if (stopwatch >= delay) {
+                if (stopwatch >= delay)
+                {
                     stopwatch = 0f;
                     FireCrunder("muzzle1");
                     FireCrunder("muzzle2");
@@ -43,24 +47,28 @@ namespace GOTCE.EntityStatesCustom.Woolie {
             return InterruptPriority.Death;
         }
 
-        public void FireCrunder(string muzzle) {
-            if (NetworkServer.active) {
-                BulletAttack attack = new();
-                attack.owner = base.gameObject;
-                attack.origin = base.characterBody.corePosition;
-                attack.damage = base.damageStat * 0.5f;
-                attack.tracerEffectPrefab = tracer;
-                attack.maxDistance = int.MaxValue;
-                attack.falloffModel = BulletAttack.FalloffModel.DefaultBullet;
-                attack.minSpread = 0f;
-                attack.maxSpread = 3f;
-                attack.muzzleName = muzzle;
-                attack.force = 3;
-                attack.isCrit = base.RollCrit();
-                attack.radius = 0.01f;
-                attack.smartCollision = false;
-                attack.aimVector = base.GetAimRay().direction;
-                
+        public void FireCrunder(string muzzle)
+        {
+            if (NetworkServer.active)
+            {
+                BulletAttack attack = new()
+                {
+                    owner = base.gameObject,
+                    origin = base.characterBody.corePosition,
+                    damage = base.damageStat * 0.08f,
+                    tracerEffectPrefab = tracer,
+                    maxDistance = int.MaxValue,
+                    falloffModel = BulletAttack.FalloffModel.DefaultBullet,
+                    minSpread = 0f,
+                    maxSpread = 3f,
+                    muzzleName = muzzle,
+                    force = 3,
+                    isCrit = base.RollCrit(),
+                    radius = 0.01f,
+                    smartCollision = false,
+                    aimVector = base.GetAimRay().direction
+                };
+
                 attack.Fire();
             }
             AkSoundEngine.PostEvent(981107519, base.gameObject); // Play_item_goldgat_fire

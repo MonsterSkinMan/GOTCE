@@ -42,8 +42,10 @@ namespace GOTCE.Items.White
             RecalculateStatsAPI.GetStatCoefficients += Synergy;
         }
 
-        public void Synergy(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (body.inventory) {
+        public void Synergy(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (body.inventory)
+            {
                 float increase = 0.02f * GetCount(body);
 
                 args.armorAdd += body.armor * (increase - 1);

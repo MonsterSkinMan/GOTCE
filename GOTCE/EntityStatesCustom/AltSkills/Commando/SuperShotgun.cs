@@ -22,21 +22,23 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Commando
                 bulletsTotal = 20;
                 for (int i = 0; i < bulletsTotal; i++)
                 {
-                    BulletAttack bullet = new();
-                    bullet.smartCollision = false;
-                    bullet.radius = 0.5f;
-                    bullet.damage = base.damageStat;
-                    bullet.falloffModel = BulletAttack.FalloffModel.None;
-                    bullet.damageType = DamageType.Generic;
-                    bullet.aimVector = base.GetAimRay().direction;
-                    bullet.minSpread = 0f;
-                    bullet.maxSpread = 11f;
-                    bullet.isCrit = base.RollCrit();
-                    bullet.procCoefficient = 1f;
-                    bullet.hitEffectPrefab = hitEffectPrefab;
-                    bullet.tracerEffectPrefab = EntityStates.Commando.CommandoWeapon.FirePistol2.tracerEffectPrefab;
-                    bullet.origin = base.characterBody.corePosition;
-                    bullet.owner = base.gameObject;
+                    BulletAttack bullet = new()
+                    {
+                        smartCollision = false,
+                        radius = 0.5f,
+                        damage = base.damageStat,
+                        falloffModel = BulletAttack.FalloffModel.None,
+                        damageType = DamageType.Generic,
+                        aimVector = base.GetAimRay().direction,
+                        minSpread = 0f,
+                        maxSpread = 11f,
+                        isCrit = base.RollCrit(),
+                        procCoefficient = 1f,
+                        hitEffectPrefab = hitEffectPrefab,
+                        tracerEffectPrefab = EntityStates.Commando.CommandoWeapon.FirePistol2.tracerEffectPrefab,
+                        origin = base.characterBody.corePosition,
+                        owner = base.gameObject
+                    };
 
                     bullet.Fire();
                 }

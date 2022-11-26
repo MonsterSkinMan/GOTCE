@@ -39,14 +39,19 @@ namespace GOTCE.Items.White
             base.Init(config);
         }
 
-        public void Barrier(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self) {
-            
-            if (NetworkServer.active) {
-                if (GetCount(self) > 0) {
-                    if (self.inventory) {
+        public void Barrier(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self)
+        {
+            if (NetworkServer.active)
+            {
+                if (GetCount(self) > 0)
+                {
+                    if (self.inventory)
+                    {
                         int total = 0;
-                        foreach (ItemIndex index in self.inventory.itemAcquisitionOrder) {
-                            if (ContainsTag(ItemCatalog.GetItemDef(index), GOTCETags.BarrierRelated)) {
+                        foreach (ItemIndex index in self.inventory.itemAcquisitionOrder)
+                        {
+                            if (ContainsTag(ItemCatalog.GetItemDef(index), GOTCETags.BarrierRelated))
+                            {
                                 total += self.inventory.GetItemCount(index);
                             }
                         }
@@ -57,7 +62,5 @@ namespace GOTCE.Items.White
             }
             orig(self);
         }
-
     }
-
 }

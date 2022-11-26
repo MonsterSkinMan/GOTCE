@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BepInEx.Configuration;
+using GOTCE.Items.NoTier;
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -31,6 +32,8 @@ namespace GOTCE.Items.White
                 if (self.isHealthLow)
                 {
                     self.body.inventory.RemoveItem(ItemDef, self.body.inventory.GetItemCount(ItemDef));
+                    self.body.inventory.GiveItem(DreamPDF.Instance.ItemDef);
+                    CharacterMasterNotificationQueue.SendTransformNotification(self.body.master, Instance.ItemDef.itemIndex, DreamPDF.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
                 }
             }
         }

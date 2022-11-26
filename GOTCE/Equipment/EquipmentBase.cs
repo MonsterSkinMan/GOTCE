@@ -103,7 +103,7 @@ namespace GOTCE.Equipment
                 if (EquipmentIcon != null)
                 {
                     // prefab = PrefabAPI.InstantiateClone(GameObject.CreatePrimitive(PrimitiveType.Cube), $"{ItemName}-model");
-                    prefab = PrefabAPI.InstantiateClone(Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Item/Drill/Cube.prefab"), $"{EquipmentName}-model");
+                    prefab = PrefabAPI.InstantiateClone(Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Item/Drill/Cube.prefab"), $"{EquipmentName}-model", false);
                     prefab.GetComponentInChildren<MeshRenderer>().transform.localScale = new(1.5f, 1.5f, 1.5f);
                     prefab.GetComponentInChildren<MeshRenderer>().material.mainTexture = EquipmentIcon.texture;
                     GameObject.DontDestroyOnLoad(prefab);

@@ -9,11 +9,14 @@ using GOTCE.Skills;
 using RoR2.ExpansionManagement;
 using GOTCE.Achievements.CrackedCommando;
 
-namespace GOTCE.Survivors {
-    public class CrackedMando : SurvivorBase<CrackedMando> {
+namespace GOTCE.Survivors
+{
+    public class CrackedMando : SurvivorBase<CrackedMando>
+    {
         public override string bodypath => "RoR2/Base/Commando/CommandoBody.prefab";
         public override string name => "CrackedCommando";
         public override bool clone => true;
+
         public override void Modify()
         {
             base.Modify();

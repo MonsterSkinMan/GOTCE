@@ -43,7 +43,8 @@ namespace GOTCE.Items.Lunar
         public override void Hooks()
         {
             On.RoR2.HealthComponent.TakeDamage += On_HCTakeDamage;
-            On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) => {
+            On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) =>
+            {
                 orig(self);
                 self.AddItemBehavior<VisageIndicatorBehavior>(GetCount(self));
             };
@@ -93,22 +94,28 @@ namespace GOTCE.Items.Lunar
         }
     }
 
-    public class VisageIndicatorBehavior : CharacterBody.ItemBehavior {
+    public class VisageIndicatorBehavior : CharacterBody.ItemBehavior
+    {
         private GameObject indicator;
 
-        private void Start() {
+        private void Start()
+        {
             indicator = GameObject.CreatePrimitive(PrimitiveType.Sphere).InstantiateClone("EntropicIndicator");
             indicator.transform.SetParent(gameObject.transform);
             indicator.layer = LayerIndex.projectile.intVal;
-            indicator.GetComponent<MeshRenderer>().material = Addressables.LoadAssetAsync<Material>("RoR2/Base/Teleporters/matTeleporterRangeIndicator.mat").WaitForCompletion();
+            var mat = indicator.GetComponent<MeshRenderer>().material;
+            mat = Addressables.LoadAssetAsync<Material>("RoR2/Base/Teleporters/matTeleporterRangeIndicator.mat").WaitForCompletion();
+            mat.color = new Color32(191, 64, 191, 255);
         }
 
-        private void FixedUpdate() {
+        private void FixedUpdate()
+        {
             indicator.transform.position = body.corePosition;
             indicator.transform.localScale = new Vector3(20, 20, 20);
         }
 
-        private void OnDestroy() {
+        private void OnDestroy()
+        {
             Destroy(indicator);
         }
     }

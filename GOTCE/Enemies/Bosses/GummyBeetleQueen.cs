@@ -25,7 +25,7 @@ namespace GOTCE.Enemies.Bosses
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 250;
+            isc.directorCreditCost = 350;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
@@ -49,8 +49,8 @@ namespace GOTCE.Enemies.Bosses
         {
             base.Modify();
             master = prefabMaster.GetComponent<CharacterMaster>();
-            
-             prefab.transform.Find("ModelBase").transform.Find("mdlBeetleQueen").GetComponent<ModelSkinController>().enabled = false;
+
+            prefab.transform.Find("ModelBase").transform.Find("mdlBeetleQueen").GetComponent<ModelSkinController>().enabled = false;
             prefab.transform.Find("ModelBase").transform.Find("mdlBeetleQueen").GetComponent<CharacterModel>().baseRendererInfos[0].defaultMaterial = Addressables.LoadAssetAsync<Material>("RoR2/DLC1/GummyClone/matGummyClone.mat").WaitForCompletion();
 
             LanguageAPI.Add("GOTCE_GUMMYQUEEN_NAME", "Gummy Beetle Queen");
@@ -65,9 +65,11 @@ namespace GOTCE.Enemies.Bosses
             base.PostCreation();
             RegisterEnemy(prefab, prefabMaster, null, DirectorAPI.MonsterCategory.Champions, true);
 
-            On.RoR2.CharacterBody.Start += (orig, self) => {
+            On.RoR2.CharacterBody.Start += (orig, self) =>
+            {
                 orig(self);
-                if (NetworkServer.active && self.baseNameToken == "GOTCE_GUMMYQUEEN_NAME") {
+                if (NetworkServer.active && self.baseNameToken == "GOTCE_GUMMYQUEEN_NAME")
+                {
                     self.inventory.GiveItem(RoR2Content.Items.BoostHp, 10);
                     self.inventory.GiveItem(RoR2Content.Items.BoostDamage, 10);
                 }

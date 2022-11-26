@@ -32,11 +32,11 @@ namespace GOTCE.Items.Yellow
         public override GameObject ItemModel => null;
 
         public override Sprite ItemIcon => null;
-        
+
         public override void Init(ConfigFile config)
         {
             base.Init(config);
-        } 
+        }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
@@ -45,27 +45,34 @@ namespace GOTCE.Items.Yellow
 
         public override void Hooks()
         {
-            RecalculateStatsAPI.GetStatCoefficients += (body, args) => {
-                if (NetworkServer.active) {
-                    if (GetCount(body) > 0) {
-                        float increase = GetCount(body)*0.05f;
+            RecalculateStatsAPI.GetStatCoefficients += (body, args) =>
+            {
+                if (NetworkServer.active)
+                {
+                    if (GetCount(body) > 0)
+                    {
+                        float increase = GetCount(body) * 0.05f;
 
                         float totalInc = 0f;
                         float totalDec = 0f;
 
-                        foreach (ItemIndex index in body.inventory.itemAcquisitionOrder) {
-                            if (Woolie.TierMap.TryGetValue(ItemCatalog.GetItemDef(index), out Tier tier)) {
-                                if ((int)tier >= (int)Misc.Tier.B) {
-                                    totalInc += increase*GetCountSpecific(body, ItemCatalog.GetItemDef(index));
+                        foreach (ItemIndex index in body.inventory.itemAcquisitionOrder)
+                        {
+                            if (Woolie.TierMap.TryGetValue(ItemCatalog.GetItemDef(index), out Tier tier))
+                            {
+                                if ((int)tier >= (int)Misc.Tier.B)
+                                {
+                                    totalInc += increase * GetCountSpecific(body, ItemCatalog.GetItemDef(index));
                                 }
-                                else {
-                                    totalDec += increase*GetCountSpecific(body, ItemCatalog.GetItemDef(index));
+                                else
+                                {
+                                    totalDec += increase * GetCountSpecific(body, ItemCatalog.GetItemDef(index));
                                 }
                                 // Debug.Log($"Item {ItemCatalog.GetItemDef(index).nameToken} is {(int)tier} tier");
                             }
                         }
 
-                        args.damageMultAdd += totalDec*(-1);
+                        args.damageMultAdd += totalDec * (-1);
                         args.damageMultAdd += totalInc;
                     }
                 }

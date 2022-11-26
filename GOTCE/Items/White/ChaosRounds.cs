@@ -72,7 +72,8 @@ namespace GOTCE.Items.White
                             {
                                 prefabs.RemoveAt(i);
                             }
-                            else if (blacklist.Contains(prefabs[i].name)) {
+                            else if (blacklist.Contains(prefabs[i].name))
+                            {
                                 prefabs.RemoveAt(i);
                             }
                         }
@@ -88,7 +89,6 @@ namespace GOTCE.Items.White
                         info.rotation = Util.QuaternionSafeLookRotation(self.inputBank.aimDirection);
                         info.owner = self.gameObject;
                         ProjectileManager.instance.FireProjectile(info);
-
                     }
                 }
             }

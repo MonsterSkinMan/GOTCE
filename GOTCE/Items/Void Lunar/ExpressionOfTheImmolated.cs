@@ -61,7 +61,8 @@ namespace GOTCE.Items.VoidLunar
         private bool GenericSkill_IsReady(On.RoR2.GenericSkill.orig_IsReady orig, GenericSkill self)
         {
             bool res = orig(self);
-            if (self.characterBody && GetCount(self.characterBody) > 0) {
+            if (self.characterBody && GetCount(self.characterBody) > 0)
+            {
                 self.ExecuteIfReady();
             }
             return res;

@@ -33,13 +33,14 @@ namespace GOTCE.Artifact
         public class RushOrDie : MonoBehaviour
         {
             public static int prevTime;
+
             public static void Hook_OnServerStageBegin(On.RoR2.CharacterMaster.orig_OnServerStageBegin orig, CharacterMaster self, Stage stage)
             {
                 prevTime = (int)stage.entryTime.t;
                 // GOTCE.Main.ModLogger.LogDebug(stage.name);
                 orig(self, stage);
-
             }
+
             public static void Hook_FixedUpdate(On.RoR2.Run.orig_FixedUpdate orig, Run self)
             {
                 orig(self);
@@ -53,13 +54,13 @@ namespace GOTCE.Artifact
                         {
                             CharacterMaster.readOnlyInstancesList[i].TrueKill();
                             prevTime = 0;
-                            RoR2Application.onNextUpdate += () => {
+                            RoR2Application.onNextUpdate += () =>
+                            {
                                 Chat.SendBroadcastChat(new Chat.SimpleChatMessage { baseToken = "<color=#e5eefc>{0}</color>", paramTokens = new[] { "You got outscaled, idiot." } });
                             };
                         }
                     }
                 }
-
             }
         }
     }

@@ -67,8 +67,10 @@ namespace GOTCE.Items.Void_Red
         private void powerUncreep(On.RoR2.Items.ContagiousItemManager.orig_Init orig)
         {
             List<ItemDef> healing = new();
-            foreach (ItemDef def in ItemCatalog.allItemDefs) {
-                if (def.ContainsTag(ItemTag.Healing) && def != ItemDef) {
+            foreach (ItemDef def in ItemCatalog.allItemDefs)
+            {
+                if (def.ContainsTag(ItemTag.Healing) && def != ItemDef)
+                {
                     healing.Add(def);
                 }
             }

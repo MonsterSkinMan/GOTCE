@@ -42,18 +42,23 @@ namespace GOTCE.Items.White
             RecalculateStatsAPI.GetStatCoefficients += Synergy;
         }
 
-        public void Synergy(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
+        public void Synergy(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
             int total = 0;
-            if (!body.inventory) {
+            if (!body.inventory)
+            {
                 return;
             }
-            foreach (ItemIndex index in body.inventory.itemAcquisitionOrder) {
-                if (ContainsTag(ItemCatalog.GetItemDef(index), GOTCETags.FovRelated)) {
+            foreach (ItemIndex index in body.inventory.itemAcquisitionOrder)
+            {
+                if (ContainsTag(ItemCatalog.GetItemDef(index), GOTCETags.FovRelated))
+                {
                     total += body.inventory.GetItemCount(index);
                 }
             }
 
-            if (GetCount(body) > 0) {
+            if (GetCount(body) > 0)
+            {
                 float stackMult = 0.08f + (0.04f * (GetCount(body) - 1));
                 float shields = (body.healthComponent.fullHealth * stackMult) * total;
 

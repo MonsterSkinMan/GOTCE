@@ -6,8 +6,10 @@ using R2API;
 using EntityStates;
 using RoR2.Projectile;
 
-namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend {
-    public class PearlTeleport : BaseSkillState {
+namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
+{
+    public class PearlTeleport : BaseSkillState
+    {
         public float duration = 0.5f;
 
         public override void OnEnter()
@@ -15,10 +17,12 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend {
             base.OnEnter();
             ViendPearlManager manager = characterBody.gameObject.GetComponent<ViendPearlManager>();
             AkSoundEngine.PostEvent(4021527550, base.gameObject); // Play_voidman_m2_shoot_fullCharge
-            if (manager && NetworkServer.active) {
+            if (manager && NetworkServer.active)
+            {
                 manager.Swap();
             }
-            else {
+            else
+            {
                 Main.ModLogger.LogFatal("PearlTeleport was run when the player does not have a ViendPearlManager component!");
             }
         }
@@ -36,9 +40,11 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (base.fixedAge >= duration) {
+            if (base.fixedAge >= duration)
+            {
                 outer.SetNextStateToMain();
-                if (NetworkServer.active) {
+                if (NetworkServer.active)
+                {
                     characterBody.skillLocator.secondary.UnsetSkillOverride(gameObject, Skills.PearlTeleport.Instance.SkillDef, GenericSkill.SkillOverridePriority.Replacement);
                 }
             }

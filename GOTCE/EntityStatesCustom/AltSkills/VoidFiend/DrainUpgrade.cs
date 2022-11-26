@@ -5,8 +5,10 @@ using UnityEngine;
 using System;
 using RoR2.Projectile;
 
-namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend {
-    public class DrainUpgrade : BaseSkillState {
+namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
+{
+    public class DrainUpgrade : BaseSkillState
+    {
         public float gained = 0f;
 
         public override void OnEnter()
@@ -17,10 +19,12 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (!inputBank.skill4.down || gained > 75f) {
+            if (!inputBank.skill4.down || gained > 75f)
+            {
                 outer.SetNextStateToMain();
-            } 
-            if (NetworkServer.active && base.gameObject.GetComponent<VoidSurvivorController>()) {
+            }
+            if (NetworkServer.active && base.gameObject.GetComponent<VoidSurvivorController>())
+            {
                 VoidSurvivorController con = base.gameObject.GetComponent<VoidSurvivorController>();
                 con.AddCorruption(Time.fixedDeltaTime * 25);
                 gained += Time.fixedDeltaTime * 25;
@@ -32,7 +36,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend {
         public override void OnExit()
         {
             base.OnExit();
-            if (NetworkServer.active) {
+            if (NetworkServer.active)
+            {
                 FireProjectileInfo fireProjectileInfo = default(FireProjectileInfo);
                 fireProjectileInfo.projectilePrefab = EntityStates.NullifierMonster.DeathState.deathBombProjectile;
                 fireProjectileInfo.position = base.characterBody.corePosition;

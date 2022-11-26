@@ -24,12 +24,16 @@ namespace GOTCE.Based
         }
     }
 
-    internal class AntiSlab : MonoBehaviour {
-        private void FixedUpdate() {
-            if (NetworkServer.active) {
+    internal class AntiSlab : MonoBehaviour
+    {
+        private void FixedUpdate()
+        {
+            if (NetworkServer.active)
+            {
                 // first measure against nemesis slab, searching for the slab every frame in it's original position
                 GameObject slab = GameObject.Find("HOLDER: Store").transform.GetChild(0).GetChild(3).gameObject;
-                if (slab) {
+                if (slab)
+                {
                     DestroyImmediate(slab);
                 }
 
@@ -37,8 +41,10 @@ namespace GOTCE.Based
             }
         }
 
-        private void OnDestroy() {
-            if (NetworkServer.active) {
+        private void OnDestroy()
+        {
+            if (NetworkServer.active)
+            {
                 gameObject.AddComponent<AntiSlab>(); // nice try, but no
             }
         }

@@ -10,8 +10,10 @@ using System.Linq;
 using HarmonyLib;
 using GOTCE.Utils;
 
-namespace GOTCE.Tiers {
-    public abstract class TierBase<T> : TierBase where T : TierBase<T> {
+namespace GOTCE.Tiers
+{
+    public abstract class TierBase<T> : TierBase where T : TierBase<T>
+    {
         public static T Instance { get; private set; }
 
         public TierBase()
@@ -21,25 +23,28 @@ namespace GOTCE.Tiers {
         }
     }
 
-    public abstract class TierBase {
-        public abstract string TierName { get;}
-        public abstract bool CanScrap { get;}
-        public abstract bool IsDroppable { get;}
-        public virtual ItemTier TierEnum { get;} // cast to itemtier before passing enum to this
-        public virtual ItemTierDef.PickupRules PickupRules { get;}
-        public abstract GameObject DropletDisplayPrefab { get;}
-        public virtual ColorCatalog.ColorIndex ColorIndex { get;}
-        public virtual ColorCatalog.ColorIndex DarkColorIndex { get;}
-        public abstract GameObject HighlightPrefab {get; }
+    public abstract class TierBase
+    {
+        public abstract string TierName { get; }
+        public abstract bool CanScrap { get; }
+        public abstract bool IsDroppable { get; }
+        public virtual ItemTier TierEnum { get; } // cast to itemtier before passing enum to this
+        public virtual ItemTierDef.PickupRules PickupRules { get; }
+        public abstract GameObject DropletDisplayPrefab { get; }
+        public virtual ColorCatalog.ColorIndex ColorIndex { get; }
+        public virtual ColorCatalog.ColorIndex DarkColorIndex { get; }
+        public abstract GameObject HighlightPrefab { get; }
 
         public ItemTierDef tier;
 
-        public virtual void Awake() {
+        public virtual void Awake()
+        {
             CreateTier();
             PostCreation();
         }
 
-        protected void CreateTier() {
+        protected void CreateTier()
+        {
             tier = ScriptableObject.CreateInstance<ItemTierDef>();
 
             tier.name = TierName;
@@ -55,8 +60,8 @@ namespace GOTCE.Tiers {
             R2API.ContentAddition.AddItemTierDef(tier);
         }
 
-        public virtual void PostCreation() {
-
+        public virtual void PostCreation()
+        {
         }
     }
 }

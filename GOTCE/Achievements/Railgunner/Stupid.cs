@@ -4,9 +4,11 @@ using System;
 using Unity;
 using UnityEngine;
 
-namespace GOTCE.Achievements.Railgunner {
+namespace GOTCE.Achievements.Railgunner
+{
     [RegisterAchievement("STUPID", "StupidRoundsUnlockable", null, typeof(Server))]
-    public class StupidRounds : BaseAchievement {
+    public class StupidRounds : BaseAchievement
+    {
         public override void OnBodyRequirementMet()
         {
             base.OnBodyRequirementMet();
@@ -24,9 +26,11 @@ namespace GOTCE.Achievements.Railgunner {
             return BodyCatalog.FindBodyIndex("RailgunnerBody");
         }
 
-        private class Server : BaseServerAchievement {
+        private class Server : BaseServerAchievement
+        {
             public int required = 678;
             public int current = 0;
+
             public override void OnInstall()
             {
                 base.OnInstall();
@@ -41,23 +45,27 @@ namespace GOTCE.Achievements.Railgunner {
                 current = 0;
             }
 
-            public void Check(On.RoR2.CharacterBody.orig_OnSkillActivated orig, CharacterBody self, GenericSkill skill) {   
+            public void Check(On.RoR2.CharacterBody.orig_OnSkillActivated orig, CharacterBody self, GenericSkill skill)
+            {
                 orig(self, skill);
-                if ((skill.skillFamily as ScriptableObject).name.ToLower().Contains("primary")) {
-                    if (NetworkServer.active && self == serverAchievementTracker.networkUser.GetCurrentBody()) {
+                if ((skill.skillFamily as ScriptableObject).name.ToLower().Contains("primary"))
+                {
+                    if (NetworkServer.active && self == serverAchievementTracker.networkUser.GetCurrentBody())
+                    {
                         current += 1;
 
-                        if (current >= required) {
+                        if (current >= required)
+                        {
                             Grant();
                         }
                     }
                 }
             }
         }
-
     }
 
-    public class StupidRoundsUnlock : AchievementBase<StupidRoundsUnlock> {
+    public class StupidRoundsUnlock : AchievementBase<StupidRoundsUnlock>
+    {
         public override string Name => "Railgunner: Balance";
         public override string Description => "As Railgunner, fire $13,567.5 worth of XQR Smart Rounds ammo.";
         public override string UnlockName => "StupidRoundsUnlockable";

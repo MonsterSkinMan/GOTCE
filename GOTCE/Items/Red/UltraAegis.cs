@@ -48,31 +48,38 @@ namespace GOTCE.Items.Red
             On.RoR2.GlobalEventManager.OnCrit += Crit;
         }
 
-        public void Timer(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo info) {
+        public void Timer(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo info)
+        {
             orig(self, info);
-            if (NetworkServer.active && self.body && self.body.inventory && self.body.inventory.GetItemCount(ItemDef) > 0) {
-                if (info.damage >= (self.body.maxHealth * 0.85f)) {
+            if (NetworkServer.active && self.body && self.body.inventory && self.body.inventory.GetItemCount(ItemDef) > 0)
+            {
+                if (info.damage >= (self.body.maxHealth * 0.85f))
+                {
                     self.body.AddTimedBuff(TimerBuff.buff, 3f);
                 }
             }
         }
 
-        public void Crit(On.RoR2.GlobalEventManager.orig_OnCrit orig, GlobalEventManager self, CharacterBody body, DamageInfo info, CharacterMaster master, float procCoefficient, ProcChainMask mask) {
+        public void Crit(On.RoR2.GlobalEventManager.orig_OnCrit orig, GlobalEventManager self, CharacterBody body, DamageInfo info, CharacterMaster master, float procCoefficient, ProcChainMask mask)
+        {
             orig(self, body, info, master, procCoefficient, mask);
-            if (NetworkServer.active) {
-                if (body.HasBuff(TimerBuff.buff)) {
+            if (NetworkServer.active)
+            {
+                if (body.HasBuff(TimerBuff.buff))
+                {
                     body.RemoveBuff(TimerBuff.buff);
                     body.gameObject.AddComponent<Aegis>();
                 }
             }
         }
-
     }
 
-    public class TimerBuff {
+    public class TimerBuff
+    {
         public static BuffDef buff;
 
-        public static void Awake() {
+        public static void Awake()
+        {
             buff = ScriptableObject.CreateInstance<BuffDef>();
             buff.canStack = false;
             buff.isDebuff = false;
@@ -83,19 +90,23 @@ namespace GOTCE.Items.Red
         }
     }
 
-    public class Aegis : MonoBehaviour {
+    public class Aegis : MonoBehaviour
+    {
         private float stopwatch = 0f;
         private float delay = 1f;
         private int times = 0;
 
-        public void FixedUpdate() {
+        public void FixedUpdate()
+        {
             stopwatch += Time.fixedDeltaTime;
-            if (stopwatch >= delay) {
+            if (stopwatch >= delay)
+            {
                 gameObject.GetComponent<CharacterBody>().healthComponent.AddBarrier(gameObject.GetComponent<CharacterBody>().maxHealth * 0.5f);
                 stopwatch = 0f;
                 times++;
             }
-            if (times >= 5) {
+            if (times >= 5)
+            {
                 DestroyImmediate(this);
             }
         }

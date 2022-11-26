@@ -53,6 +53,7 @@ namespace GOTCE.Items.VoidYellow
                 args.critAdd += 5f;
             }
         }
+
         public void NEEDLETICK(On.RoR2.GlobalEventManager.orig_ServerDamageDealt orig, DamageReport report)
         {
             orig(report);
@@ -68,7 +69,8 @@ namespace GOTCE.Items.VoidYellow
                         {
                             float duration = DotController.GetDotDef(DotController.DotIndex.Fracture).interval;
                             report.victimBody.AddTimedBuff(DLC1Content.Buffs.Fracture, duration, stacks);
-                            for (int i = 0; i < stacks; i++) {
+                            for (int i = 0; i < stacks; i++)
+                            {
                                 DotController.InflictDot(report.victim.gameObject, report.attacker, DotController.DotIndex.Fracture, duration, 1);
                             }
                         }

@@ -46,9 +46,12 @@ namespace GOTCE.Items.Red
             RecalculateStatsAPI.GetStatCoefficients += Barrier;
         }
 
-        public void Barrier(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (NetworkServer.active) {
-                if (GetCount(body) > 0) {
+        public void Barrier(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (NetworkServer.active)
+            {
+                if (GetCount(body) > 0)
+                {
                     float decrease = Mathf.Pow(0.5f, GetCount(body));
                     body.barrierDecayRate *= 0.5f;
                 }

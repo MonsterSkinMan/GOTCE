@@ -5,8 +5,9 @@ using Unity;
 using UnityEngine;
 
 // this does literally nothing but it's funny
-namespace GOTCE.Misc { 
-    interface IOnSurgeActivated {
-        
+namespace GOTCE.Misc
+{
+    internal interface IOnSurgeActivated
+    {
     }
 }

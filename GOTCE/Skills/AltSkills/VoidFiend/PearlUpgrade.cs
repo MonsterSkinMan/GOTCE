@@ -12,9 +12,9 @@ namespace GOTCE.Skills
         public override string NameToken => "GOTCE_PEARLUPGRADE_NAME";
 
         public override string DescToken => "GOTCE_PEARLUPGRADE_DESC";
-        public override string ActivationStateMachineName => "Weapon";
+        public override string ActivationStateMachineName => "Body";
         public override int BaseMaxStock => 1;
-        public override float BaseRechargeInterval => 5f;
+        public override float BaseRechargeInterval => 9f;
         public override bool BeginSkillCooldownOnSkillEnd => true;
         public override bool CancledFromSprinting => false;
         public override bool CancelSprintingOnActivation => false;
@@ -24,6 +24,7 @@ namespace GOTCE.Skills
         public override bool MustKeyPress => true;
         public override int RechargeStock => 1;
         public override int StockToConsume => 1;
+
         // public override string[] KeywordTokens => new string[] {"GOTCE_CORRUPTIONSPECIALUPGRADE_KEYWORD"};
         public override Sprite Icon => null;
     }

@@ -21,6 +21,7 @@ namespace GOTCE.Interactables
             DirectorAPI.Stage.WetlandAspect
             // default stage list, doesnt include hidden realms or commencement
         };
+
         public override DirectorAPI.InteractableCategory category => DirectorAPI.InteractableCategory.Shrines;
         public GameObject prefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Interactables/ShrineDML/ShrineDML.prefab");
 
@@ -62,34 +63,42 @@ namespace GOTCE.Interactables
         }
     }
 
-    public class DisposableBehavior : MonoBehaviour {
+    public class DisposableBehavior : MonoBehaviour
+    {
         private float delay = 0.15f;
         private float stopwatch = 0f;
         private int remainingMissiles = 0;
         private GameObject projectilePrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/Projectiles/MissileProjectile");
-        public void Start() {
+
+        public void Start()
+        {
             PurchaseInteraction interaction = GetComponent<PurchaseInteraction>();
             interaction.onPurchase.AddListener(OnInteract);
             transform.position -= new Vector3(0, 1.5f, 0);
             interaction.setUnavailableOnTeleporterActivated = false;
         }
 
-        public void OnInteract(Interactor interactor) {
-            if (NetworkServer.active) {
+        public void OnInteract(Interactor interactor)
+        {
+            if (NetworkServer.active)
+            {
                 remainingMissiles += 12;
                 GetComponent<PurchaseInteraction>().SetAvailable(true);
             }
         }
 
-        public void FixedUpdate() {
+        public void FixedUpdate()
+        {
             transform.rotation = Quaternion.Euler(-90, 0, 0);
             transform.localRotation = Quaternion.Euler(-90, 0, 0);
 
             stopwatch += Time.fixedDeltaTime;
-            if (stopwatch >= delay) {
+            if (stopwatch >= delay)
+            {
                 stopwatch = 0f;
-                if (remainingMissiles > 0) {
-                    MissileUtils.FireMissile(gameObject.transform.position + new Vector3(0, 2f, 0), gameObject.GetComponent<PurchaseInteraction>().lastActivator.gameObject.GetComponent<CharacterBody>(), new ProcChainMask(), null, gameObject.GetComponent<PurchaseInteraction>().lastActivator.gameObject.GetComponent<CharacterBody>().damage*3f, false, projectilePrefab, DamageColorIndex.Item, false);
+                if (remainingMissiles > 0)
+                {
+                    MissileUtils.FireMissile(gameObject.transform.position + new Vector3(0, 2f, 0), gameObject.GetComponent<PurchaseInteraction>().lastActivator.gameObject.GetComponent<CharacterBody>(), new ProcChainMask(), null, gameObject.GetComponent<PurchaseInteraction>().lastActivator.gameObject.GetComponent<CharacterBody>().damage * 3f, false, projectilePrefab, DamageColorIndex.Item, false);
                     remainingMissiles--;
                 }
             }

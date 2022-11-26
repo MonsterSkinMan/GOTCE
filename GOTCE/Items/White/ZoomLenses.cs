@@ -41,9 +41,12 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             On.RoR2.CharacterBody.Start += Start;
-            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
-                if (args.Stats && NetworkServer.active) {
-                    if (args.Stats.inventory) {
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
+            {
+                if (args.Stats && NetworkServer.active)
+                {
+                    if (args.Stats.inventory)
+                    {
                         args.Stats.FovCritChanceAdd += GetCount(args.Stats.body) * 10;
                     }
                 }
@@ -84,12 +87,14 @@ namespace GOTCE.Items.White
             {
                 stopwatch = 0f;
 
-                if (!Util.CheckRoll(stats.fovCritChance, body.master) && critting) {
+                if (!Util.CheckRoll(stats.fovCritChance, body.master) && critting)
+                {
                     critting = false;
 
                     gameObject.GetComponent<CameraTargetParams>().RemoveParamsOverride(handle, 0.5f);
                 }
-                else if (Util.CheckRoll(stats.fovCritChance, body.master) && !critting) {
+                else if (Util.CheckRoll(stats.fovCritChance, body.master) && !critting)
+                {
                     critting = true;
 
                     handle = gameObject.GetComponent<CameraTargetParams>().AddParamsOverride(new CameraTargetParams.CameraParamsOverrideRequest

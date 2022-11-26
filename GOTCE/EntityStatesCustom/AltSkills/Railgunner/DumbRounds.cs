@@ -8,21 +8,21 @@ using RoR2.Projectile;
 using R2API;
 using System.Reflection;
 
-namespace GOTCE.EntityStatesCustom.AltSkills.Railgunner {
+namespace GOTCE.EntityStatesCustom.AltSkills.Railgunner
+{
     public class DumbRounds : BaseSkillState
     {
-
         private float duration = 0.1f;
         private GameObject prefab;
 
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (base.fixedAge >= duration) {
+            if (base.fixedAge >= duration)
+            {
                 outer.SetNextStateToMain();
             }
         }
-
 
         public override InterruptPriority GetMinimumInterruptPriority()
         {
@@ -47,7 +47,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Railgunner {
             info.speedOverride = 250f;
             info.rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(base.GetAimRay().direction, -1.5f, 1.5f, -1.5f, 1.5f));
 
-            if (base.isAuthority) {
+            if (base.isAuthority)
+            {
                 ProjectileManager.instance.FireProjectile(info);
             }
         }

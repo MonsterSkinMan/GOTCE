@@ -7,7 +7,8 @@ using System.Text.RegularExpressions;
 using R2API;
 using BepInEx;
 
-namespace GOTCE.Achievements {
+namespace GOTCE.Achievements
+{
     public abstract class AchievementBase<T> : AchievementBase where T : AchievementBase<T>
     {
         public static T Instance { get; private set; }
@@ -18,7 +19,9 @@ namespace GOTCE.Achievements {
             Instance = this as T;
         }
     }
-    public abstract class AchievementBase {
+
+    public abstract class AchievementBase
+    {
         public bool enabled;
         public UnlockableDef def;
         public abstract Sprite Icon { get; }
@@ -27,9 +30,10 @@ namespace GOTCE.Achievements {
         public abstract string UnlockName { get; }
         public abstract string TokenName { get; }
         public virtual bool Hidden { get; } = false;
-        public void Create(BepInEx.Configuration.ConfigFile config) {
-            def = ScriptableObject.CreateInstance<UnlockableDef>();
 
+        public void Create(BepInEx.Configuration.ConfigFile config)
+        {
+            def = ScriptableObject.CreateInstance<UnlockableDef>();
 
             def.nameToken = $"ACHIEVEMENT_{TokenName}_NAME";
             def.cachedName = UnlockName;
@@ -41,15 +45,16 @@ namespace GOTCE.Achievements {
 
             enabled = config.Bind<bool>($"Unlock: {Name}", "Enable?", true, "Should this achievement be enabled? A value of false makes it always unlocked.").Value;
 
-            if (enabled) {
+            if (enabled)
+            {
                 ContentAddition.AddUnlockableDef(def);
             }
 
             PostCreation();
         }
 
-        public virtual void PostCreation() {
-
+        public virtual void PostCreation()
+        {
         }
     }
 }

@@ -6,8 +6,10 @@ using UnityEngine;
 using RoR2.CharacterAI;
 using RoR2.Projectile;
 
-namespace GOTCE.EntityStatesCustom.Providence {
-    public class TrackingOrb : BaseSkillState {
+namespace GOTCE.EntityStatesCustom.Providence
+{
+    public class TrackingOrb : BaseSkillState
+    {
         public float delay = 0.3f;
         public float duration = 2f;
         public float stopwatch = 0f;
@@ -16,13 +18,16 @@ namespace GOTCE.EntityStatesCustom.Providence {
         public bool shouldFire = false;
         public Vector3 pos;
         public GameObject prefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Enemies/Provi/Projectile/ProviOrb.prefab");
+
         public override void OnEnter()
         {
             base.OnEnter();
-            if (base.characterBody.isPlayerControlled) {
+            if (base.characterBody.isPlayerControlled)
+            {
                 return;
             }
-            if (NetworkServer.active) {
+            if (NetworkServer.active)
+            {
                 base.characterBody.AddTimedBuff(RoR2Content.Buffs.LunarSecondaryRoot, 2f);
             }
         }
@@ -35,35 +40,44 @@ namespace GOTCE.EntityStatesCustom.Providence {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (base.isAuthority && !base.characterBody.isPlayerControlled) {
+            if (base.isAuthority && !base.characterBody.isPlayerControlled)
+            {
                 stopwatch += Time.fixedDeltaTime;
 
-                if (stopwatch >= delay) {
+                if (stopwatch >= delay)
+                {
                     stopwatch = 0f;
                     shouldFire = true;
                     BaseAI ai = base.characterBody.masterObject.GetComponent<BaseAI>();
-                    if (ai) {
+                    if (ai)
+                    {
                         CharacterBody target = ai.currentEnemy.characterBody;
-                        if (target) {
+                        if (target)
+                        {
                             SetPos(target.previousPosition);
                         }
                     }
                 }
             }
 
-            if (base.isAuthority && shouldFire) {
+            if (base.isAuthority && shouldFire)
+            {
                 stopwatchFire += Time.fixedDeltaTime;
-                if (stopwatchFire >= delay) {
+                if (stopwatchFire >= delay)
+                {
                     stopwatchFire = 0f;
                     BaseAI ai = base.characterBody.masterObject.GetComponent<BaseAI>();
-                    if (ai) {
-                        if (pos != null) {
+                    if (ai)
+                    {
+                        if (pos != null)
+                        {
                             Fire();
                         }
                     }
                 }
             }
-            if (base.fixedAge >= duration) {
+            if (base.fixedAge >= duration)
+            {
                 outer.SetNextStateToMain();
             }
         }
@@ -73,16 +87,20 @@ namespace GOTCE.EntityStatesCustom.Providence {
             return InterruptPriority.Skill;
         }
 
-        private void Fire() {
-            if (base.isAuthority) {
-                FireProjectileInfo info = new();
-                info.speedOverride = 0f;
-                info.position = pos;
-                info.damage = base.damageStat;
-                info.crit = base.RollCrit();
-                info.rotation = Quaternion.identity;
-                info.owner = base.gameObject;
-                info.projectilePrefab = prefab;
+        private void Fire()
+        {
+            if (base.isAuthority)
+            {
+                FireProjectileInfo info = new()
+                {
+                    speedOverride = 0f,
+                    position = pos,
+                    damage = base.damageStat,
+                    crit = base.RollCrit(),
+                    rotation = Quaternion.identity,
+                    owner = base.gameObject,
+                    projectilePrefab = prefab
+                };
 
                 ProjectileManager.instance.FireProjectile(info);
             }
@@ -90,7 +108,8 @@ namespace GOTCE.EntityStatesCustom.Providence {
             shouldFire = false;
         }
 
-        private void SetPos(Vector3 newPos) {
+        private void SetPos(Vector3 newPos)
+        {
             pos = newPos;
         }
     }

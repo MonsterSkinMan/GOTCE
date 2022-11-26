@@ -33,38 +33,45 @@ namespace GOTCE.Items.White
         {
             CriticalTypes.OnSprintCrit += Critted;
             RecalculateStatsAPI.GetStatCoefficients += Sigma;
-            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
-                if (args.Stats && NetworkServer.active) {
-                    if (args.Stats.inventory) {
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
+            {
+                if (args.Stats && NetworkServer.active)
+                {
+                    if (args.Stats.inventory)
+                    {
                         args.Stats.SprintCritChanceAdd += GetCount(args.Stats.body) > 0 ? 5 : 0;
                     }
                 }
             };
         }
 
-        public void Critted(object sender, SprintCritEventArgs args) {
-            if (args.Body && NetworkServer.active) {
-                if (args.Body.masterObject && args.Body.masterObject.GetComponent<GOTCE_StatsComponent>()) {
+        public void Critted(object sender, SprintCritEventArgs args)
+        {
+            if (args.Body && NetworkServer.active)
+            {
+                if (args.Body.masterObject && args.Body.masterObject.GetComponent<GOTCE_StatsComponent>())
+                {
                     args.Body.masterObject.GetComponent<GOTCE_StatsComponent>().total_sprint_crits++;
                 }
             }
         }
 
-        public void Sigma(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (NetworkServer.active && body.masterObject && body.masterObject.GetComponent<GOTCE_StatsComponent>()) {
+        public void Sigma(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (NetworkServer.active && body.masterObject && body.masterObject.GetComponent<GOTCE_StatsComponent>())
+            {
                 GOTCE_StatsComponent stats = body.masterObject.GetComponent<GOTCE_StatsComponent>();
-                if (body.inventory && body.inventory.GetItemCount(ItemDef) > 0) {
+                if (body.inventory && body.inventory.GetItemCount(ItemDef) > 0)
+                {
                     float increase = (0.3f + (0.2f * GetCount(body))) * stats.total_sprint_crits;
                     args.regenMultAdd += increase;
                 }
-            } 
+            }
         }
 
         public override void Init(ConfigFile config)
         {
             base.Init(config);
         }
-
     }
-
 }

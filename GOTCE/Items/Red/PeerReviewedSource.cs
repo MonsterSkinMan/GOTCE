@@ -49,13 +49,18 @@ namespace GOTCE.Items.Red
             On.RoR2.CharacterBody.OnInventoryChanged += UpdateBehavior;
         }
 
-        public void Barrier(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (NetworkServer.active) {
-                if (body.isPlayerControlled && body.masterObject) {
-                    if (GetCount(body) > 0) {
+        public void Barrier(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (NetworkServer.active)
+            {
+                if (body.isPlayerControlled && body.masterObject)
+                {
+                    if (GetCount(body) > 0)
+                    {
                         float inc = (0.01f + (0.02f * (GetCount(body) - 1)));
                         GOTCE_StatsComponent stats = body.masterObject.GetComponent<GOTCE_StatsComponent>();
-                        if (stats) {
+                        if (stats)
+                        {
                             args.damageMultAdd += stats.identifiedkillCount * inc;
                         }
                     }
@@ -63,17 +68,23 @@ namespace GOTCE.Items.Red
             }
         }
 
-        public void UpdateBehavior(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self) {
+        public void UpdateBehavior(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
+        {
             orig(self);
             self.AddItemBehavior<SourceBehavior>(self.inventory.GetItemCount(Instance.ItemDef));
         }
 
-        public void OnKill(On.RoR2.GlobalEventManager.orig_OnCharacterDeath orig, GlobalEventManager self, DamageReport report) {
-            if (NetworkServer.active && report.victimBody && report.attackerBody) {
-                if (GetCount(report.attackerBody) > 0) {
+        public void OnKill(On.RoR2.GlobalEventManager.orig_OnCharacterDeath orig, GlobalEventManager self, DamageReport report)
+        {
+            if (NetworkServer.active && report.victimBody && report.attackerBody)
+            {
+                if (GetCount(report.attackerBody) > 0)
+                {
                     GOTCE_StatsComponent stats = report.attackerBody.masterObject.GetComponent<GOTCE_StatsComponent>();
-                    if (stats) {
-                        if (report.victimBody.HasBuff(Identified.buff)) {
+                    if (stats)
+                    {
+                        if (report.victimBody.HasBuff(Identified.buff))
+                        {
                             stats.identifiedkillCount += 1;
                         }
                     }
@@ -83,10 +94,12 @@ namespace GOTCE.Items.Red
         }
     }
 
-    public class Identified {
+    public class Identified
+    {
         public static BuffDef buff;
 
-        public static void Awake() {
+        public static void Awake()
+        {
             buff = ScriptableObject.CreateInstance<BuffDef>();
             buff.canStack = false;
             buff.isDebuff = true;
@@ -103,9 +116,12 @@ namespace GOTCE.Items.Red
                     }
                 }
             }; */
-            RecalculateStatsAPI.GetStatCoefficients += (self, args) => {
-                if (self.HasBuff(buff) && NetworkServer.active) {
-                    if (self.gameObject.GetComponentInChildren<SetStateOnHurt>()) {
+            RecalculateStatsAPI.GetStatCoefficients += (self, args) =>
+            {
+                if (self.HasBuff(buff) && NetworkServer.active)
+                {
+                    if (self.gameObject.GetComponentInChildren<SetStateOnHurt>())
+                    {
                         self.gameObject.GetComponentInChildren<SetStateOnHurt>().SetStun(10000f);
                     }
                 }
@@ -113,20 +129,26 @@ namespace GOTCE.Items.Red
         }
     }
 
-    public class SourceBehavior : CharacterBody.ItemBehavior {
-        float stopwatch = 0f;
-        float delay = 15f;
+    public class SourceBehavior : CharacterBody.ItemBehavior
+    {
+        private float stopwatch = 0f;
+        private float delay = 15f;
 
-        public void FixedUpdate() {
+        public void FixedUpdate()
+        {
             stopwatch += Time.fixedDeltaTime;
-            if (stopwatch >= delay) {
+            if (stopwatch >= delay)
+            {
                 stopwatch = 0;
-                
+
                 List<TeamComponent> enemies = TeamComponent.GetTeamMembers(TeamIndex.Monster).ToList();
-                for (int i = 0; i < stack; i++) {
+                for (int i = 0; i < stack; i++)
+                {
                     TeamComponent com = enemies[UnityEngine.Random.Range(0, enemies.Count - 1)];
-                    if (com && NetworkServer.active) {
-                        if (com.body && !com.body.HasBuff(Identified.buff)) {
+                    if (com && NetworkServer.active)
+                    {
+                        if (com.body && !com.body.HasBuff(Identified.buff))
+                        {
                             com.body.AddBuff(Identified.buff);
                             Light l = com.body.gameObject.AddComponent<Light>();
                             l.color = Color.red;

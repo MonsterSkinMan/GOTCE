@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using MonoMod.Cil;
 using R2API;
 using RoR2;
 using RoR2.Skills;
@@ -46,6 +47,39 @@ namespace GOTCE.Items.Lunar
         {
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+            IL.RoR2.GenericSkill.CalculateFinalRechargeInterval += GenericSkill_CalculateFinalRechargeInterval;
+        }
+
+        private void GenericSkill_CalculateFinalRechargeInterval(ILContext il)
+        {
+            ILCursor c = new(il);
+            if (c.TryGotoNext(
+                x => x.MatchLdarg(0),
+                x => x.MatchCallOrCallvirt<RoR2.GenericSkill>("get_baseRechargeInterval")
+                ))
+            {
+                c.Remove();
+                c.Remove();
+            }
+            else
+            {
+                Main.ModLogger.LogError("Failed to apply Cooldown Increase IL Hook #1");
+            }
+
+            if (c.TryGotoNext(
+                x => x.MatchCallOrCallvirt<UnityEngine.Mathf>("Min")
+                ))
+            {
+                c.Remove();
+                //c.EmitDelegate<Func<float, float, float>>((v1, v2) => v2);
+                //c.Emit(OpCodes.Ret);
+            }
+            else
+            {
+                Main.ModLogger.LogError("Failed to apply Cooldown Increase IL Hook #2");
+            }
+
+            // asked from Zenithrium, I know it's not great cause of c.Remove(), ye
         }
 
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
@@ -86,7 +120,8 @@ namespace GOTCE.Items.Lunar
                     }
                 }
 
-                if (stack <= 0 && self.skillLocator) {
+                if (stack <= 0 && self.skillLocator)
+                {
                     var sl = self.skillLocator;
                     if (sl.primary)
                     {

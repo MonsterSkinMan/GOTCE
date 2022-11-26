@@ -55,10 +55,13 @@ namespace GOTCE.Equipment
             return false;
         }
 
-        private void Barrier(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo info, GameObject victim) {
+        private void Barrier(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo info, GameObject victim)
+        {
             orig(self, info, victim);
-            if (NetworkServer.active && info.attacker && info.attacker.GetComponent<CharacterBody>()) {
-                if (info.HasModdedDamageType(AegisType)) {
+            if (NetworkServer.active && info.attacker && info.attacker.GetComponent<CharacterBody>())
+            {
+                if (info.HasModdedDamageType(AegisType))
+                {
                     CharacterBody body = info.attacker.GetComponent<CharacterBody>();
                     body.healthComponent.AddBarrier(body.healthComponent.fullHealth * 0.1f);
                 }
@@ -153,6 +156,5 @@ namespace GOTCE.Equipment
                 timerAegis = 0f;
             }
         }
-
     }
-} 
+}
