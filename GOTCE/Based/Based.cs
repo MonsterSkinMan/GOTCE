@@ -11,7 +11,7 @@ namespace GOTCE.Based
     {
         public static void DoTheBased()
         {
-            On.RoR2.SceneDirector.Start += SceneDirector_Start;
+            // On.RoR2.SceneDirector.Start += SceneDirector_Start;
             On.RoR2.PurchaseInteraction.SetAvailable += SetAvailable;
             On.RoR2.PurchaseInteraction.OnInteractionBegin += NoMorePod;
         }
@@ -35,7 +35,9 @@ namespace GOTCE.Based
         }
 
         private static void NoMorePod(On.RoR2.PurchaseInteraction.orig_OnInteractionBegin orig, PurchaseInteraction self, Interactor interactor) {
-            orig(self, interactor);
+            if (self.displayNameToken != "LUNAR_REROLL_NAME") {
+                orig(self, interactor);
+            }
             if (NetworkServer.active) {
                 if (self.costType == CostTypeIndex.LunarCoin && SceneManager.GetActiveScene().name == "bazaar") {
                     GameObject.DestroyImmediate(self.gameObject);
