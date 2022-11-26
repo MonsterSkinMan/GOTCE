@@ -19,7 +19,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemPickupDesc => "War Crimes make you stronger.";
 
-        public override string ItemFullDescription => "Gain varying boosts based on your most recently committed War Crime";
+        public override string ItemFullDescription => "Gain <style=cIsDamage>varying boosts</style> BASED on your <style=cIsUtility>most recently committed War Crime</style>.";
 
         public override string ItemLore => "";
 

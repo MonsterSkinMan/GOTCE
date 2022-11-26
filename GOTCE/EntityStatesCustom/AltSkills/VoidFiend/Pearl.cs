@@ -10,7 +10,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
 {
     public class Pearl : BaseSkillState
     {
-        public float duration = 1f;
+        public float duration = 0.25f;
 
         public override void OnEnter()
         {

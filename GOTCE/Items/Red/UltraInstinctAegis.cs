@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace GOTCE.Items.Red
 {
-    public class UltraAegis : ItemBase<UltraAegis>
+    public class UltraInstinctAegis : ItemBase<UltraInstinctAegis>
     {
         public override string ConfigName => "Ultra Instinct Aegis";
 
@@ -17,9 +17,9 @@ namespace GOTCE.Items.Red
 
         public override string ItemLangTokenName => "GOTCE_UltraAegis";
 
-        public override string ItemPickupDesc => "Landing a ‘Critical Strike’ shortly after taking heavy damage grants a buff that grants 50% barrier a second for 5 seconds.";
+        public override string ItemPickupDesc => "Landing a ‘Critical Strike’ shortly after taking heavy damage grants temporary barrier";
 
-        public override string ItemFullDescription => "On crit less than 3 seconds after taking damage greater than or equal to 85% max health, gain a buff that gives you 50% barrier a second for 5 (+2 per stack) seconds.";
+        public override string ItemFullDescription => "On '<style=cIsDamage>critical strike</style>', less than <style=cIsUtility>3</style> seconds after taking damage greater than or equal to <style=cIsHealing>85% maximum health</style>, gain a <style=cIsUtility>buff</style> that gives you <style=cIsHealing>50% barrier</style> a second for <style=cIsUtility>5</style> <style=cStack>(+2 per stack)</style> seconds.";
 
         public override string ItemLore => "";
 
@@ -55,7 +55,7 @@ namespace GOTCE.Items.Red
             {
                 if (info.damage >= (self.body.maxHealth * 0.85f))
                 {
-                    self.body.AddTimedBuff(TimerBuff.buff, 3f);
+                    self.body.AddTimedBuff(TimerBuff.buff, 3f + 2f * self.body.inventory.GetItemCount(ItemDef));
                 }
             }
         }

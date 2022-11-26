@@ -22,9 +22,9 @@ namespace GOTCE.Items.Red
 
         public override string ItemLangTokenName => "GOTCE_GabesShank";
 
-        public override string ItemPickupDesc => "Gain bonus damage for every game you have installed on Steam.";
+        public override string ItemPickupDesc => "Gain bonus damage for every game you have on Steam.";
 
-        public override string ItemFullDescription => "Gain <style=cIsDamage>+2%</style> <style=cStack>(+1% per stack)</style> <style=cIsDamage>damage</style> for <style=cIsUtility>every game you have installed on Steam</style>. <style=cUserSetting>This item only functions if your Steam profile visibility is set to public</style>";
+        public override string ItemFullDescription => "Gain <style=cIsDamage>+2%</style> <style=cStack>(+1% per stack)</style> <style=cIsDamage>damage</style> for <style=cIsUtility>every game you have on Steam</style>. <style=cUserSetting>This item only functions if your Steam profile visibility is set to public</style>";
 
         public override string ItemLore => "\"I've always wanted to be a giant space crab.\"\n-Gabe Newell";
 

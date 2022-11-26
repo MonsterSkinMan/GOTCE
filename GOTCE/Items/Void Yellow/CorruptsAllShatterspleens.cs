@@ -18,7 +18,7 @@ namespace GOTCE.Items.VoidYellow
 
         public override string ItemPickupDesc => "<style=cIsVoid>Corrupts all Shatterspleens.</style>";
 
-        public override string ItemFullDescription => "Gain <style=cIsDamage>5% critical chance</style>. Critical strikes <style=cIsDamage>collapse</style> enemies 1 <style=cStack>(+1 per stack)</style> times for 400% base damage. <style=cIsVoid>Corrupts all Shatterspleens.</style>";
+        public override string ItemFullDescription => "Gain <style=cIsDamage>5% critical chance</style>. Critical strikes <style=cIsDamage>collapse</style> enemies 1 <style=cStack>(+1 per stack)</style> times for <style=cIsDamage>400%</style> base damage. <style=cIsVoid>Corrupts all Shatterspleens.</style>";
 
         public override string ItemLore => "<style=cIsVoid>Corrupts all Shatterspleens.</style>";
 

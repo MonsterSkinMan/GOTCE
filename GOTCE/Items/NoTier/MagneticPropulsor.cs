@@ -14,9 +14,9 @@ namespace GOTCE.Items.NoTier
 
         public override string ItemLangTokenName => "GOTCE_MagneticPropulsor";
 
-        public override string ItemPickupDesc => "";
+        public override string ItemPickupDesc => "THIS is a tasty burger.";
 
-        public override string ItemFullDescription => "";
+        public override string ItemFullDescription => "Motherfucker you're not supposed to read this.";
         public override bool Hidden => true;
         public override string ItemLore => "";
 

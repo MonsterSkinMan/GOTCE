@@ -15,9 +15,9 @@ namespace GOTCE.Items.NoTier
 
         public override string ItemLangTokenName => "GOTCE_HealingScrapConsumed";
 
-        public override string ItemPickupDesc => "At the start of each stage, it transforms into Healing Scrap.";
+        public override string ItemPickupDesc => "At the start of each stage, transforms into Healing Scrap.";
 
-        public override string ItemFullDescription => "At the start of each stage, it transforms into Healing Scrap.";
+        public override string ItemFullDescription => "At the start of each stage, transforms into Healing Scrap.";
 
         public override string ItemLore => "";
 

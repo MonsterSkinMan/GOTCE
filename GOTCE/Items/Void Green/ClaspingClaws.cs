@@ -16,9 +16,9 @@ namespace GOTCE.Items.VoidGreen
 
         public override string ItemLangTokenName => "GOTCE_ClaspingClaws";
 
-        public override string ItemPickupDesc => "Pull enemies towards you on hit";
+        public override string ItemPickupDesc => "Pull enemies towards you on hit. <style=cIsVoid>Corrupts all Boxing Gloves</style>.";
 
-        public override string ItemFullDescription => "100% chance on hit to pull enemies towards you, increasing in force per stack. Corrupts all Boxing Gloves.";
+        public override string ItemFullDescription => "On hit, <style=cIsUtility>pull enemies</style> towards you. <style=cStack>Pull strength increases per stack</style>. <style=cIsVoid>Corrupts all Boxing Gloves</style>.";
 
         public override string ItemLore => "TBA";
 

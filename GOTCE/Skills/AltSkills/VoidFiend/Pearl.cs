@@ -12,7 +12,7 @@ namespace GOTCE.Skills
         public override string NameToken => "GOTCE_PEARL_NAME";
 
         public override string DescToken => "GOTCE_PEARL_DESC";
-        public override string ActivationStateMachineName => "Body";
+        public override string ActivationStateMachineName => "Weapon";
         public override int BaseMaxStock => 1;
         public override float BaseRechargeInterval => 9f;
         public override bool BeginSkillCooldownOnSkillEnd => true;

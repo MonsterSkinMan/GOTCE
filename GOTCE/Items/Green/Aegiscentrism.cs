@@ -15,7 +15,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemLangTokenName => "GOTCE_Aegiscentrism";
 
-        public override string ItemPickupDesc => "Gain multiple orbital Aegises. <style=cIsHealth>Every minute, assimilate another item into Aegicentrism.</style>";
+        public override string ItemPickupDesc => "Gain multiple orbital Aegises. <style=cIsHealth>Every minute, assimilate another item into Aegiscentrism.</style>";
 
         public override string ItemFullDescription => "Every <style=cIsUtility>second</style>, gain up to <style=cIsHealing>6</style> <style=cStack>(+2 per stack)</style> orbiting Aegises that each give you <style=cIsHealing>5% barrier</style> after <style=cIsUtility>10</style> seconds. Every <style=cIsUtility>60</style> seconds, a random item is <style=cIsUtility>converted</style> into this item.";
 

@@ -20,7 +20,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemPickupDesc => "I don't fucking think so.";
 
-        public override string ItemFullDescription => "Identify 1 (+1 per stack) enemy every 15 seconds. Identified enemies are permanently stunned and you gain 1 + 2% base damage after killing them.";
+        public override string ItemFullDescription => "Identify <style=cIsUtility>1</style> <style=cStack>(+1 per stack)</style> enemy every <style=cIsUtility>15</style> seconds. Identified enemies are <style=cIsUtility>permanently stunned</style> and increase your <style=cIsDamage>base damage</style> by <style=cIsDamage>1</style> + <style=cIsDamage>2%</style> on kill.";
 
         public override string ItemLore => "";
 

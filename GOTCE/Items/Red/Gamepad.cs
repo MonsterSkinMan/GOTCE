@@ -17,9 +17,9 @@ namespace GOTCE.Items.Red
 
         public override string ItemLangTokenName => "GOTCE_Gamepad";
 
-        public override string ItemPickupDesc => "Gain an increase to FOV crit chance based on your inputs per second";
+        public override string ItemPickupDesc => "Increase 'FOV crit' chance based on your inputs per second.";
 
-        public override string ItemFullDescription => "Gain a 2% (+2% per stack) increase to FOV crit chance multiplied by your inputs per second.";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>2%</style> <style=cStack>(+2% per stack)</style> '<style=cIsUtility>FOV crit chance</style>' multiplied by your <style=cIsUtility>inputs per second</style>.";
 
         public override string ItemLore => "";
 
