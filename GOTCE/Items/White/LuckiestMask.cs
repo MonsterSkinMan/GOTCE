@@ -29,7 +29,7 @@ namespace GOTCE.Items.White
             orig(self, info);
             if (self.body && self.body.inventory)
             {
-                if (self.isHealthLow)
+                if (self.isHealthLow && GetCount(self.body) > 0)
                 {
                     self.body.inventory.RemoveItem(ItemDef, self.body.inventory.GetItemCount(ItemDef));
                     self.body.inventory.GiveItem(DreamPDF.Instance.ItemDef);

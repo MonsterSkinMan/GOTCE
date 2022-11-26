@@ -63,7 +63,7 @@ namespace GOTCE.Interactables
         public override void MakeDirectorCard()
         {
             base.MakeDirectorCard();
-            card.selectionWeight = 5;
+            card.selectionWeight = 3;
         }
     }
 }

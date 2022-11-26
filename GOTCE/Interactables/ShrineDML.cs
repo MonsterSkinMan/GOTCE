@@ -51,7 +51,7 @@ namespace GOTCE.Interactables
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.skipSpawnWhenSacrificeArtifactEnabled = false;
             isc.slightlyRandomizeOrientation = false;
-            isc.maxSpawnsPerStage = 3;
+            isc.maxSpawnsPerStage = 2;
             isc.weightScalarWhenSacrificeArtifactEnabled = 1f;
             isc.sendOverNetwork = true;
         }
@@ -59,7 +59,7 @@ namespace GOTCE.Interactables
         public override void MakeDirectorCard()
         {
             base.MakeDirectorCard();
-            card.selectionWeight = 4;
+            card.selectionWeight = 3;
         }
     }
 
@@ -82,7 +82,7 @@ namespace GOTCE.Interactables
         {
             if (NetworkServer.active)
             {
-                remainingMissiles += 12;
+                remainingMissiles += 16;
                 GetComponent<PurchaseInteraction>().SetAvailable(true);
             }
         }
