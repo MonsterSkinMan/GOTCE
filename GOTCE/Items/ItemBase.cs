@@ -196,6 +196,8 @@ namespace GOTCE.Items
             }
 
             if (ItemTags.Length > 0) { ItemDef.tags = ItemTags.Cast<ItemTag>().ToArray(); }
+
+            ItemAPI.Add(new CustomItem(ItemDef, CreateItemDisplayRules()));
         }
 
         public virtual void Hooks()

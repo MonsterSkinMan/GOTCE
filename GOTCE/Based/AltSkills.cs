@@ -324,7 +324,7 @@ namespace GOTCE.Based {
         public static void Hooks() {
             // IL hooks
 
-            IL.RoR2.CharacterBody.RecalculateStats += (il) => {
+            /* IL.RoR2.CharacterBody.RecalculateStats += (il) => {
                 ILCursor c = new ILCursor(il);
 
                 bool found = c.TryGotoNext(MoveType.After,
@@ -355,7 +355,7 @@ namespace GOTCE.Based {
                 else {
                     Main.ModLogger.LogFatal("IL Hook for viend alt passive failed");
                 }
-            };
+            }; */
 
 
             // runtime detour hooks
@@ -392,7 +392,7 @@ namespace GOTCE.Based {
             On.RoR2.VoidSurvivorController.OnCharacterHealServer += (orig, self, com, amount, mask) => {
                 if (self.characterBody.inventory.GetItemCount(def) > 0) {
                     if (NetworkServer.active) {
-                        self.characterBody.armor += 10f;
+                        // self.characterBody.armor += 10f;
                     }
                 }
                 else {
@@ -420,7 +420,7 @@ namespace GOTCE.Based {
             On.RoR2.VoidSurvivorController.FixedUpdate += (orig, self) => {
                 if (NetworkServer.active && self.characterBody && self.characterBody.inventory && self.characterBody.inventory.GetItemCount(def) > 0 && self.bodyHealthComponent) {
                     self.corruptionForFullHeal = 0;
-                    self.characterBody.armor -= 0.1f * Time.fixedDeltaTime;
+                    // self.characterBody.armor -= 0.1f * Time.fixedDeltaTime;
                     // self.corruptionFractionPerSecondWhileCorrupted = -0.001f;
                     self.maxCorruption = 100f + ((10f * (self.characterBody.level - 1)));
 

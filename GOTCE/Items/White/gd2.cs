@@ -34,6 +34,13 @@ namespace GOTCE.Items.White
             RoR2BlightBuff.Awake();
             CriticalTypes.OnSprintCrit += Blight;
             On.RoR2.DamageInfo.ModifyDamageInfo += Inflict;
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
+                if (args.Stats && NetworkServer.active) {
+                    if (args.Stats.inventory) {
+                        args.Stats.SprintCritChanceAdd += GetCount(args.Stats.body) > 0 ? 5 : 0;
+                    }
+                }
+            };
         }
 
         public void Blight(object sender, SprintCritEventArgs args) {

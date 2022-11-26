@@ -32,6 +32,13 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += SprintCrit;
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
+                if (args.Stats && NetworkServer.active) {
+                    if (args.Stats.inventory) {
+                        args.Stats.SprintCritChanceAdd += GetCount(args.Stats.body) * 8;
+                    }
+                }
+            };
         }
 
         public void SprintCrit(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
@@ -39,7 +46,7 @@ namespace GOTCE.Items.White
                 if (body.masterObject && body.masterObject.GetComponent<GOTCE_StatsComponent>()) {
                     GOTCE_StatsComponent stats = body.masterObject.GetComponent<GOTCE_StatsComponent>();
                     if (Util.CheckRoll(stats.sprintCritChance, body.master) && body.isSprinting) {
-                        args.moveSpeedMultAdd += (body.sprintingSpeedMultiplier * 2);
+                        args.moveSpeedMultAdd += (body.sprintingSpeedMultiplier);
 
                         EventHandler<SprintCritEventArgs> raiseEvent = CriticalTypes.OnSprintCrit;
 

@@ -94,6 +94,14 @@ namespace GOTCE.Items.White
             {
                 lastStageWasCrit = false;
             };
+
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
+                if (args.Stats && NetworkServer.active) {
+                    if (args.Stats.inventory) {
+                        args.Stats.StageCritChanceAdd += GetCount(args.Stats.body) * 10;
+                    }
+                }
+            };
         }
 
         public override void Init(ConfigFile config)

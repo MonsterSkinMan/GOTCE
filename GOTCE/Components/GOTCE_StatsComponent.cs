@@ -13,9 +13,9 @@ namespace GOTCE.Components
         // store per-master variables here (like sprint crit chance etc)
 
         // generic player stuff
-        private CharacterMaster master;
-        private Inventory inventory;
-        private CharacterBody body;
+        public CharacterMaster master;
+        public Inventory inventory;
+        public CharacterBody body;
 
         // critical chances
         public float stageCritChance;
@@ -53,6 +53,12 @@ namespace GOTCE.Components
         // run stats
         public int deathCount;
 
+        // recalc
+        public float StageCritChanceAdd;
+        public float SprintCritChanceAdd;
+        public float FovCritChanceAdd;
+        public int AOEAdd;
+
         public WarCrime mostRecentlyCommitedWarCrime = WarCrime.None;
 
         private void Start()
@@ -73,13 +79,30 @@ namespace GOTCE.Components
             RecalculateStatsAPI.GetStatCoefficients -= UpdateChances;
         }
 
-        private void UpdateChances(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        private void UpdateChances(CharacterBody cbody, RecalculateStatsAPI.StatHookEventArgs args)
         {
             // critical chances
-            if (body && body.inventory && body.masterObject.GetComponent<GOTCE_StatsComponent>())
+            if (cbody && cbody.inventory && cbody.masterObject.GetComponent<GOTCE_StatsComponent>())
             {
+                inventory = cbody.inventory;
+                body = cbody;
+                AOEAdd = 0;
+                SprintCritChanceAdd = 0;
+                StageCritChanceAdd = 0;
+                FovCritChanceAdd = 0;
+                EventHandler<StatsCompRecalcArgs> raiseEvent = StatsCompEvent.StatsCompRecalc;
+                if (raiseEvent != null)
+                {
+                    raiseEvent(this, new StatsCompRecalcArgs(gameObject.GetComponent<GOTCE_StatsComponent>()));
+                }
+
+                fovCritChance = FovCritChanceAdd + increase;
+                sprintCritChance = SprintCritChanceAdd;
+                stageCritChance = StageCritChanceAdd;
+                aoeEffect = AOEAdd;
+
                 // fov crit 
-                float fovCritChanceTmp = 0f;
+                /* float fovCritChanceTmp = 0f;
                 fovCritChanceTmp += 10f*(inventory.GetItemCount(Items.White.ZoomLenses.Instance.ItemDef));
                 if (body.inventory.GetItemCount(Items.Green.MissileFovCrit.Instance.ItemDef) > 0) { fovCritChanceTmp += 5f; }
                 if (body.inventory.GetItemCount(Items.Green.AnalyticalAegis.Instance.ItemDef) > 0) { fovCritChanceTmp += 5f; }
@@ -102,7 +125,7 @@ namespace GOTCE.Components
                 int aoeEffectTmp = 0;
                 aoeEffectTmp += 2*(inventory.GetItemCount(Items.White.BangSnap.Instance.ItemDef));
                 aoeEffectTmp += 2*(inventory.GetItemCount(Items.White.EmpathyC4.Instance.ItemDef));
-                aoeEffect = aoeEffectTmp;
+                aoeEffect = aoeEffectTmp; */
             }
 
             // grant attack speed if the player is within an ethereal bubble from seasoned patty
@@ -150,7 +173,15 @@ namespace GOTCE.Components
         public void DetermineStageCrit()
         { 
             if (master) {
-                Inventory inv = master.inventory;
+                StageCritChanceAdd = 0;
+                EventHandler<StatsCompRecalcArgs> raiseEvent = StatsCompEvent.StatsCompRecalc;
+                if (raiseEvent != null)
+                {
+                    raiseEvent(this, new StatsCompRecalcArgs(gameObject.GetComponent<GOTCE_StatsComponent>()));
+                }
+                stageCritChance = StageCritChanceAdd;
+                
+                /* Inventory inv = master.inventory;
                 float stageCritChanceInc = 0;
                 stageCritChanceInc += 10f * inv.GetItemCount(GOTCE.Items.White.FaultySpacetimeClock.Instance.ItemDef);
                 if (inv.GetItemCount(Items.Green.HeartyBreakfast.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
@@ -158,7 +189,7 @@ namespace GOTCE.Components
                 if (inv.GetItemCount(Items.Green.GrandfatherClock.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
                 if (inv.GetItemCount(Items.Green.AmberRabbit.Instance.ItemDef) > 0) { stageCritChanceInc += 5f; };
                 stageCritChanceInc += 2f*(inventory.GetItemCount(Items.White.EmpathyC4.Instance.ItemDef));
-                stageCritChance = stageCritChanceInc;
+                stageCritChance = stageCritChanceInc; */
             }
         }
         

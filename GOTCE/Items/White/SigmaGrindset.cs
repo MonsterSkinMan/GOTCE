@@ -33,6 +33,13 @@ namespace GOTCE.Items.White
         {
             CriticalTypes.OnSprintCrit += Critted;
             RecalculateStatsAPI.GetStatCoefficients += Sigma;
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
+                if (args.Stats && NetworkServer.active) {
+                    if (args.Stats.inventory) {
+                        args.Stats.SprintCritChanceAdd += GetCount(args.Stats.body) > 0 ? 5 : 0;
+                    }
+                }
+            };
         }
 
         public void Critted(object sender, SprintCritEventArgs args) {
