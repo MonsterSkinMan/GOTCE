@@ -14,13 +14,13 @@ namespace GOTCE.Items.White
     {
         public override bool CanRemove => true;
         public override string ConfigName => ItemName;
-        public override string ItemFullDescription => "Raises the proc coeff of all attacks by 1.0 (+1.0 per stack). Breaks at low health.";
+        public override string ItemFullDescription => "Increase the <style=cIsDamage>proc coefficient</style> of all of your attacks by <style=cIsDamage>1</style> <style=cStack>(+1 per stack)</style>. Breaks at low health.";
         public override Sprite ItemIcon => null;
         public override string ItemLangTokenName => "GOTCE_LuckiestMask";
         public override string ItemLore => "";
         public override GameObject ItemModel => null;
         public override string ItemName => "Luckiest Mask";
-        public override string ItemPickupDesc => "Gain a larger proc coeff. Breaks at low health.";
+        public override string ItemPickupDesc => "Increase proc coefficient. Breaks at low health.";
         public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.Consumable };
         public override ItemTier Tier => ItemTier.Tier1;
 

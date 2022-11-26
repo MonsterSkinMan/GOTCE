@@ -21,7 +21,7 @@ namespace GOTCE.Items.Yellow
 
         public override string ItemPickupDesc => "Your damage scales off the quality of your items...";
 
-        public override string ItemFullDescription => "<style=cIsUtility>Gain</style> a <style=cIsUtility>+5%</style> <style=cStack>(+5% per stack)</style> <style=cIsDamage>damage increase</style> for each item <style=cLunarObjective>above B tier</style> you have... but <style=cDeath>lose -5%</style> <style=cStack>(-5% per stack)</style> <style=cDeath>damage</style> for each item <style=cLunarObjective>below B tier</style> you have. <style=cHumanObjective>Based off Woolie's all item tier list.</style>";
+        public override string ItemFullDescription => "Gain a <style=cIsUtility>+5%</style> <style=cStack>(+5% per stack)</style> <style=cIsDamage>damage increase</style> for each item <style=cLunarObjective>above B tier</style> you have... BUT <style=cDeath>lose -5%</style> <style=cStack>(-5% per stack)</style> <style=cDeath>damage</style> for each item <style=cLunarObjective>below B tier</style> you have. <style=cHumanObjective>Based off Woolie's all item tier list.</style>";
 
         public override string ItemLore => Main.SecondaryAssets.LoadAsset<TextAsset>("Assets/Prefabs/WoolerLore.txt").text;
 

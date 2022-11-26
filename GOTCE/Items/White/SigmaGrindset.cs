@@ -14,13 +14,13 @@ namespace GOTCE.Items.White
     {
         public override bool CanRemove => true;
         public override string ConfigName => ItemName;
-        public override string ItemFullDescription => "'Critical Sprints' permanently boost your regeneration.";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>5% sprint crit chance</style>. On '<style=cIsUtility>Critical Sprint</style>', permanently boost your <style=cIsHealing>regeneration</style> by <style=cIsHealing>30%</style> <style=cStack>(+30% per stack)</style>.";
         public override Sprite ItemIcon => null;
         public override string ItemLangTokenName => "GOTCE_SigmaGrindset";
         public override string ItemLore => "";
         public override GameObject ItemModel => null;
         public override string ItemName => "Sigma Grindset";
-        public override string ItemPickupDesc => "On sprint crit, permanently gain +30% (+20% per stack) regen. Gain 2% sprint crit chance. ";
+        public override string ItemPickupDesc => "On sprint crit, increase regeneration permanently.";
         public override Enum[] ItemTags => new Enum[] { ItemTag.Healing, GOTCETags.Crit };
         public override ItemTier Tier => ItemTier.Tier1;
 

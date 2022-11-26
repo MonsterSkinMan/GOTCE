@@ -14,13 +14,13 @@ namespace GOTCE.Items.White
     {
         public override bool CanRemove => true;
         public override string ConfigName => ItemName;
-        public override string ItemFullDescription => "After a 'critical sprint', all of your attacks inflict blight for the next 4 (+2 per stack) seconds. Gain 10% sprint crit chance.";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>5% sprint crit chance</style>. On '<style=cIsUtility>critical sprint</style>', your attacks inflict <style=cIsDamage>blight</style> for the next <style=cIsUtility>4</style> <style=cStack>(+2 per stack)</style> seconds.";
         public override Sprite ItemIcon => null;
         public override string ItemLangTokenName => "GOTCE_gd2";
         public override string ItemLore => "";
         public override GameObject ItemModel => null;
         public override string ItemName => "#ror2-discussion";
-        public override string ItemPickupDesc => "On 'critcal sprint', your attacks inflict blight for a short duration.";
+        public override string ItemPickupDesc => "On 'critical sprint', your attacks inflict blight for a short duration.";
         public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.Crit };
         public override ItemTier Tier => ItemTier.Tier1;
 
