@@ -71,6 +71,9 @@ namespace GOTCE
         //Provides a direct access to this plugin's logger for use in any of your other classes.
         public static BepInEx.Logging.ManualLogSource ModLogger;
 
+        private static Shader cloudRemap;
+        private static Shader standard;
+
         private void Awake()
         {
             MainAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "macterabrundle"));
@@ -78,14 +81,17 @@ namespace GOTCE
             GOTCEModels = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "gotcemodels"));
             ModLogger = Logger;
             SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
-    
 
-            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI")) {
+            cloudRemap = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGCloudRemap.shader").WaitForCompletion();
+            standard = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGStandard.shader").WaitForCompletion();
+
+            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI"))
+            {
                 UICompat.AddBetterUICompat();
             }
 
             // create custom itemtags and flags and things idk
-            Misc.Flags.Initialize();
+            Flags.Initialize();
 
             // please just fucking use hopoo shaders AAAAAA
             // https://drive.google.com/drive/folders/1ndCC4TiN06nVC4X_3HaZjFa5sN07Y14S
@@ -93,27 +99,45 @@ namespace GOTCE
             var mat1 = MainAssets.LoadAllAssets<Material>();
             foreach (Material material in mat1)
             {
-                if (material.shader.name.StartsWith("StubbedShader"))
+                switch (material.shader.name)
                 {
-                    material.shader = Resources.Load<Shader>("shaders" + material.shader.name.Substring(13));
+                    case "StubbedShader/fx/hgcloudremap":
+                        material.shader = cloudRemap;
+                        break;
+
+                    case "StubbedShader/deferred/hgstandard":
+                        material.shader = standard;
+                        break;
                 }
             }
 
             var mat2 = SecondaryAssets.LoadAllAssets<Material>();
             foreach (Material material in mat2)
             {
-                if (material.shader.name.StartsWith("StubbedShader"))
+                switch (material.shader.name)
                 {
-                    material.shader = Resources.Load<Shader>("shaders" + material.shader.name.Substring(13));
+                    case "StubbedShader/fx/hgcloudremap":
+                        material.shader = cloudRemap;
+                        break;
+
+                    case "StubbedShader/deferred/hgstandard":
+                        material.shader = standard;
+                        break;
                 }
             }
 
             var mat3 = GOTCEModels.LoadAllAssets<Material>();
             foreach (Material material in mat3)
             {
-                if (material.shader.name.StartsWith("StubbedShader"))
+                switch (material.shader.name)
                 {
-                    material.shader = Resources.Load<Shader>("shaders" + material.shader.name.Substring(13));
+                    case "StubbedShader/fx/hgcloudremap":
+                        material.shader = cloudRemap;
+                        break;
+
+                    case "StubbedShader/deferred/hgstandard":
+                        material.shader = standard;
+                        break;
                 }
             }
 
@@ -143,11 +167,12 @@ namespace GOTCE
 
             // grab tiers and add them
             var Tiers = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(TierBase)));
-            foreach (var tier in Tiers) {
+
+            foreach (var tier in Tiers)
+            {
                 TierBase Tier = (TierBase)Activator.CreateInstance(tier);
                 Tier.Awake();
             }
-
 
             //This section automatically scans the project for all items
             var ItemTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(ItemBase)));
@@ -160,7 +185,6 @@ namespace GOTCE
                 {
                     item.Init(Config);
                 }
-                
             }
             [SystemInitializer(dependencies: typeof(ItemCatalog))] // wait until after the catalog initializes to add interactables
             void the()
@@ -216,10 +240,11 @@ namespace GOTCE
 
             // alts
             [SystemInitializer(dependencies: typeof(ItemCatalog))]
-            void guh() {
+            void guh()
+            {
                 AltSkills.AddAlts();
-                Misc.Woolie.Initialize();
-                Mechanics.WarCrimes.Hooks();
+                Woolie.Initialize();
+                WarCrimes.Hooks();
                 AOEffect.Hooks();
             }
 
@@ -235,7 +260,8 @@ namespace GOTCE
 
             // achievements
             var Achievements = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(AchievementBase)));
-            foreach (var unlock in Achievements) {
+            foreach (var unlock in Achievements)
+            {
                 AchievementBase achiev = (AchievementBase)Activator.CreateInstance(unlock);
                 achiev.Create(Config);
             }
@@ -250,18 +276,15 @@ namespace GOTCE
                 survivor.Create();
             }
 
-
             Hook aimHook = new Hook(
                 typeof(InputBankTest).GetProperty("aimOrigin", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).GetGetMethod(),
                 typeof(LivingSuppressiveFire).GetMethod("InputBankTest_aimOrigin_Get", System.Reflection.BindingFlags.Public | BindingFlags.Static)
             );
 
-
             //CreateExpansion();
             // On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
             // local multiplayer hook
             // run modded ror2 twice, create a multiplayer lobby in one, then do connect localhost:7777 in the other instance
-            
         }
 
         /// <summary>
@@ -369,126 +392,157 @@ namespace GOTCE
             LanguageAPI.Add(GOTCEExpansionDef.nameToken, "Gamers of The Cracked Emoji");
             LanguageAPI.Add(GOTCEExpansionDef.descriptionToken, "Adds content from the 'GOTCE' mod to the game.");
         }
-
     }
 
-    public class UICompat {
-
+    public class UICompat
+    {
         private static List<string> cachedNormalText = null;
         private static List<string> cachedAltText = null;
 
         public delegate void orig_onStart();
+
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
-        public static void AddBetterUICompat() {
+        public static void AddBetterUICompat()
+        {
             // custom stats in the display
-            Func<CharacterBody, string> stage = (CharacterBody body) => {
-                if (body.masterObject) {
-                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
+            Func<CharacterBody, string> stage = (CharacterBody body) =>
+            {
+                if (body.masterObject)
+                {
+                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
+                    {
                         return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().stageCritChance.ToString();
                     }
-                    else {
+                    else
+                    {
                         return "N/A";
                     }
                 }
-                else {
+                else
+                {
                     return "N/A";
                 }
             };
 
-            Func<CharacterBody, string> war = (CharacterBody body) => {
-                if (body.masterObject) {
-                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
+            Func<CharacterBody, string> war = (CharacterBody body) =>
+            {
+                if (body.masterObject)
+                {
+                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
+                    {
                         WarCrime crime = body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().mostRecentlyCommitedWarCrime;
                         string name = "N/A";
                         WarCrimes.CrimeToName.TryGetValue(crime, out name);
                         return name;
                     }
-                    else {
+                    else
+                    {
                         return "N/A";
                     }
                 }
-                else {
+                else
+                {
                     return "N/A";
                 }
             };
 
-            Func<CharacterBody, string> sprint = (CharacterBody body) => {
-                if (body.masterObject) {
-                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
+            Func<CharacterBody, string> sprint = (CharacterBody body) =>
+            {
+                if (body.masterObject)
+                {
+                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
+                    {
                         return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().sprintCritChance.ToString();
                     }
-                    else {
+                    else
+                    {
                         return "N/A";
                     }
                 }
-                else {
+                else
+                {
                     return "N/A";
                 }
             };
 
-            Func<CharacterBody, string> fov = (CharacterBody body) => {
-                if (body.masterObject) {
-                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
+            Func<CharacterBody, string> fov = (CharacterBody body) =>
+            {
+                if (body.masterObject)
+                {
+                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
+                    {
                         return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().fovCritChance.ToString();
                     }
-                    else {
+                    else
+                    {
                         return "N/A";
                     }
                 }
-                else {
+                else
+                {
                     return "N/A";
                 }
             };
 
-            Func<CharacterBody, string> aoe = (CharacterBody body) => {
-                if (body.masterObject) {
-                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
+            Func<CharacterBody, string> aoe = (CharacterBody body) =>
+            {
+                if (body.masterObject)
+                {
+                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
+                    {
                         return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().aoeEffect.ToString();
                     }
-                    else {
+                    else
+                    {
                         return "N/A";
                     }
                 }
-                else {
+                else
+                {
                     return "N/A";
                 }
             };
 
-            BetterUI.StatsDisplay.AddStatsDisplay("$stage", stage);
-            BetterUI.StatsDisplay.AddStatsDisplay("$sprint", sprint);
-            BetterUI.StatsDisplay.AddStatsDisplay("$fov", fov);
-            BetterUI.StatsDisplay.AddStatsDisplay("$war", war);
-            BetterUI.StatsDisplay.AddStatsDisplay("$aoe", aoe);
+            StatsDisplay.AddStatsDisplay("$stage", stage);
+            StatsDisplay.AddStatsDisplay("$sprint", sprint);
+            StatsDisplay.AddStatsDisplay("$fov", fov);
+            StatsDisplay.AddStatsDisplay("$war", war);
+            StatsDisplay.AddStatsDisplay("$aoe", aoe);
 
             /* Hook statsHook = new Hook(
                 typeof(BetterUI.StatsDisplay).GetMethod("onStart", (BindingFlags)(-1)),
                 typeof(UICompat).GetMethod(nameof(onStart), (BindingFlags)(-1))
             ); */
 
-            On.RoR2.UI.HUD.Awake += (orig, self) => {
+            On.RoR2.UI.HUD.Awake += (orig, self) =>
+            {
                 orig(self);
                 List<string> normalText;
                 List<string> altText;
-                if (cachedNormalText == null) {
-                    normalText = typeof(BetterUI.StatsDisplay).GetFieldValue<string[]>("normalText").ToList();
-                    string[] tmp = new string[normalText.Count];;
+                if (cachedNormalText == null)
+                {
+                    normalText = typeof(StatsDisplay).GetFieldValue<string[]>("normalText").ToList();
+                    string[] tmp = new string[normalText.Count]; ;
                     normalText.CopyTo(tmp);
                     cachedNormalText = tmp.ToList();
                 }
-                else {
+                else
+                {
                     string[] tmp = new string[cachedNormalText.Count];
                     cachedNormalText.CopyTo(tmp);
                     normalText = tmp.ToList();
                 }
 
-                if (cachedAltText == null) {
-                    altText = typeof(BetterUI.StatsDisplay).GetFieldValue<string[]>("altText").ToList();
+                if (cachedAltText == null)
+                {
+                    altText = typeof(StatsDisplay).GetFieldValue<string[]>("altText").ToList();
                     string[] tmp = new string[altText.Count];
                     altText.CopyTo(tmp);
                     cachedAltText = tmp.ToList();
                 }
-                else {
-                    string[] tmp = new string[cachedAltText.Count];;
+                else
+                {
+                    string[] tmp = new string[cachedAltText.Count]; ;
                     cachedAltText.CopyTo(tmp);
                     altText = tmp.ToList();
                 }
@@ -528,15 +582,14 @@ namespace GOTCE
                 altText.Add("\nAoE Effect: +");
                 altText.Add("$aoe");
 
-                typeof(BetterUI.StatsDisplay).SetFieldValue<string[]>("normalText", normalText.ToArray());
-                typeof(BetterUI.StatsDisplay).SetFieldValue<string[]>("altText", altText.ToArray());
-                
+                typeof(StatsDisplay).SetFieldValue<string[]>("normalText", normalText.ToArray());
+                typeof(StatsDisplay).SetFieldValue<string[]>("altText", altText.ToArray());
             };
         }
 
         /* public static void onStart(orig_onStart orig) {
             orig();
-            
+
             Debug.Log(normalText);
             Debug.Log("====== alt =====");
             Debug.Log("");

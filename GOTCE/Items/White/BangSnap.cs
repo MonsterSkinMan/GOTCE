@@ -39,9 +39,12 @@ namespace GOTCE.Items.White
 
         public override void Hooks()
         {
-            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
-                if (args.Stats && NetworkServer.active) {
-                    if (args.Stats.inventory) {
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
+            {
+                if (args.Stats && NetworkServer.active)
+                {
+                    if (args.Stats.inventory)
+                    {
                         args.Stats.AOEAdd += GetCount(args.Stats.body) * 2;
                     }
                 }

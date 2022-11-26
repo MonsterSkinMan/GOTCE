@@ -78,19 +78,24 @@ namespace GOTCE.Items
             bool preset3 = config.Bind<bool>("Presets:", "Unstable", false, "Disable all items under the Unstable (lagging and crashing) category.").Value;
             bool preset4 = config.Bind<bool>("Presets:", "Bullshit", false, "Disable all items under the Bullshit (really stupid) category.").Value;
 
-            if (preset1 && ItemTags.Contains(GOTCETags.NonLunarLunar)) {
+            if (preset1 && ItemTags.Contains(GOTCETags.NonLunarLunar))
+            {
                 // pass
             }
-            else if (preset2 && ItemTags.Contains(GOTCETags.Masochist)) {
+            else if (preset2 && ItemTags.Contains(GOTCETags.Masochist))
+            {
                 // pass
             }
-            else if (preset3 && ItemTags.Contains(GOTCETags.Unstable)) {
+            else if (preset3 && ItemTags.Contains(GOTCETags.Unstable))
+            {
                 // pass
             }
-            else if (preset4 && ItemTags.Contains(GOTCETags.Bullshit)) {
+            else if (preset4 && ItemTags.Contains(GOTCETags.Bullshit))
+            {
                 // pass
             }
-            else {
+            else
+            {
                 CreateItem();
                 CreateLang();
                 CreateConfig(config);
@@ -140,11 +145,11 @@ namespace GOTCE.Items
                 if (ItemIcon != null)
                 {
                     // prefab = PrefabAPI.InstantiateClone(GameObject.CreatePrimitive(PrimitiveType.Cube), $"{ItemName}-model");
-                    prefab = PrefabAPI.InstantiateClone(CubeModel, $"{ItemName}-model");
+                    prefab = PrefabAPI.InstantiateClone(CubeModel, $"{ItemName}-model", false);
                     prefab.GetComponentInChildren<MeshRenderer>().transform.localScale = new(1.5f, 1.5f, 1.5f);
                     prefab.GetComponentInChildren<MeshRenderer>().material.mainTexture = ItemIcon.texture;
                     GameObject.DontDestroyOnLoad(prefab);
-                    ItemDef.pickupModelPrefab = prefab; 
+                    ItemDef.pickupModelPrefab = prefab;
                     /*System.Random rand = new();
                     int objects = rand.Next(3, 9);
                     PrimitiveType[] prims = {
@@ -218,7 +223,8 @@ namespace GOTCE.Items
             return master.inventory.GetItemCount(ItemDef);
         }
 
-        public bool ContainsTag(ItemDef def, Enum tag) {
+        public bool ContainsTag(ItemDef def, Enum tag)
+        {
             return def.ContainsTag((ItemTag)tag);
         }
 
@@ -229,7 +235,8 @@ namespace GOTCE.Items
             return body.inventory.GetItemCount(itemDef);
         }
 
-        public bool HasItem(CharacterBody body) {
+        public bool HasItem(CharacterBody body)
+        {
             return GetCount(body) > 1;
         }
     }

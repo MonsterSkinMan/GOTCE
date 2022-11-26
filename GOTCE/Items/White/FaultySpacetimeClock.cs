@@ -70,9 +70,11 @@ namespace GOTCE.Items.White
                     Debug.Log("Chance: " + vars.stageCritChance);
                 }; */
 
-                foreach (PlayerCharacterMasterController masterController in PlayerCharacterMasterController.instances) {
+                foreach (PlayerCharacterMasterController masterController in PlayerCharacterMasterController.instances)
+                {
                     CharacterMaster master = masterController.master;
-                    if (master.gameObject.GetComponent<GOTCE_StatsComponent>()) {
+                    if (master.gameObject.GetComponent<GOTCE_StatsComponent>())
+                    {
                         GOTCE_StatsComponent vars = master.gameObject.GetComponent<GOTCE_StatsComponent>();
                         vars.DetermineStageCrit();
                         totalChance += vars.stageCritChance;
@@ -95,9 +97,12 @@ namespace GOTCE.Items.White
                 lastStageWasCrit = false;
             };
 
-            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
-                if (args.Stats && NetworkServer.active) {
-                    if (args.Stats.inventory) {
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
+            {
+                if (args.Stats && NetworkServer.active)
+                {
+                    if (args.Stats.inventory)
+                    {
                         args.Stats.StageCritChanceAdd += GetCount(args.Stats.body) * 10;
                     }
                 }

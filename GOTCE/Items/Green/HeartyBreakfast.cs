@@ -17,7 +17,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemPickupDesc => "On 'Stage Transition Crit', gain a temporary barrier. Consumed on use.";
 
-        public override string ItemFullDescription => "On '<style=cIsUtility>Stage Transition Crit</style>', gain <style=cIsHealing>50%</style> of your <style=cIsHealing>maximum health</style> as <style=cIsHealing>temporary barrier</style>, <style=cIsUtility>consuming</style> this item.";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>5% stage transition crit chance</style>. On '<style=cIsUtility>Stage Transition Crit</style>', gain <style=cIsHealing>50%</style> of your <style=cIsHealing>maximum health</style> as <style=cIsHealing>temporary barrier</style>, <style=cIsUtility>consuming</style> this item.";
 
         public override string ItemLore => "\"It's breakfast time!\"\n\"Oh boy! I'm so hungry, I could eat an Octorok! What's for breakfast?\"\n\"A can of beans.\"\n\"Wh-what the fuck? Who the fuck eats a can of beans for breakfast?!\"\n\"Me.\"\n\"The fuck is wrong with you?\"\n\"Everything.\"\n\"Yeah, that checks out.\"";
 
@@ -42,9 +42,12 @@ namespace GOTCE.Items.Green
         public override void Hooks()
         {
             CriticalTypes.OnStageCrit += ILoveAegis;
-            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
-                if (args.Stats && NetworkServer.active) {
-                    if (args.Stats.inventory) {
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
+            {
+                if (args.Stats && NetworkServer.active)
+                {
+                    if (args.Stats.inventory)
+                    {
                         args.Stats.StageCritChanceAdd += GetCount(args.Stats.body) > 0 ? 5 : 0;
                     }
                 }

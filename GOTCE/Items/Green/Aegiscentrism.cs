@@ -15,15 +15,15 @@ namespace GOTCE.Items.Green
 
         public override string ItemLangTokenName => "GOTCE_Aegiscentrism";
 
-        public override string ItemPickupDesc => "Gain multiple orbital aegises. Every minute, assimilate another item into Aegicentrism.";
+        public override string ItemPickupDesc => "Gain multiple orbital Aegises. <style=cIsHealth>Every minute, assimilate another item into Aegiscentrism.</style>";
 
-        public override string ItemFullDescription => "Every second, gain up to 6 (+2 per stack) orbiting aegises that give you 5% barrier after 10 seconds. Every 60 seconds, a random item is converted into this item.";
+        public override string ItemFullDescription => "Every <style=cIsUtility>second</style>, gain up to <style=cIsHealing>6</style> <style=cStack>(+2 per stack)</style> orbiting Aegises that each give you <style=cIsHealing>5% barrier</style> after <style=cIsUtility>10</style> seconds. Every <style=cIsUtility>60</style> seconds, a random item is <style=cIsUtility>converted</style> into this item.";
 
         public override string ItemLore => "i love aegis";
 
         public override ItemTier Tier => ItemTier.Tier2;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Healing, ItemTag.Utility, ItemTag.AIBlacklist, GOTCETags.BarrierRelated};
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Healing, ItemTag.Utility, ItemTag.AIBlacklist, GOTCETags.BarrierRelated };
 
         public override GameObject ItemModel => null;
 
@@ -41,28 +41,32 @@ namespace GOTCE.Items.Green
 
         public override void Hooks()
         {
-           RecalculateStatsAPI.GetStatCoefficients += Aegis;
+            RecalculateStatsAPI.GetStatCoefficients += Aegis;
         }
 
-        public void Aegis(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (body && NetworkServer.active && body.inventory) {
+        public void Aegis(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (body && NetworkServer.active && body.inventory)
+            {
                 bool flag = body.inventory.GetItemCount(ItemDef) > 0;
                 OrbitalAegisBehavior controller = body.gameObject.GetComponent<OrbitalAegisBehavior>();
-                if (flag != controller) {
-                    if (flag) {
+                if (flag != controller)
+                {
+                    if (flag)
+                    {
                         body.gameObject.AddComponent<OrbitalAegisBehavior>();
                     }
-                    if (!flag) {
+                    if (!flag)
+                    {
                         GameObject.DestroyImmediate(controller);
                     }
                 }
             }
         }
-
-        
     }
 
-    public class OrbitalAegisBehavior : MonoBehaviour {
+    public class OrbitalAegisBehavior : MonoBehaviour
+    {
         private int max = 6;
         public int current = 0;
         private float delay = 3f;
@@ -74,16 +78,21 @@ namespace GOTCE.Items.Green
 
         public event Action<OrbitalAegisBehavior> onDisabled;
 
-        public void Start() {
+        public void Start()
+        {
             body = gameObject.GetComponent<CharacterBody>();
         }
-        public void FixedUpdate() {
+
+        public void FixedUpdate()
+        {
             stopwatch += Time.fixedDeltaTime;
-            max = 6 + 2*(body.inventory.GetItemCount(Aegiscentrism.Instance.ItemDef) - 1);
+            max = 6 + 2 * (body.inventory.GetItemCount(Aegiscentrism.Instance.ItemDef) - 1);
             transformTimer += Time.fixedDeltaTime;
-            if (stopwatch >= delay) {
+            if (stopwatch >= delay)
+            {
                 stopwatch = 0f;
-                if (current <= max) {
+                if (current <= max)
+                {
                     GameObject prefab = PrefabAPI.InstantiateClone(Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Projectiles/Aegiscentrism/OrbitalAegis.prefab"), "AegisClone");
                     prefab.AddComponent<OrbitalAegisController>();
                     // prefab.AddComponent<ProjectileGhostCluster>();
@@ -102,9 +111,11 @@ namespace GOTCE.Items.Green
                 }
             }
 
-            if (transformTimer >= transformDelay) {
+            if (transformTimer >= transformDelay)
+            {
                 transformTimer = 0f;
-                if (NetworkServer.active) {
+                if (NetworkServer.active)
+                {
                     List<ItemIndex> list = new List<ItemIndex>(body.inventory.itemAcquisitionOrder);
                     ItemIndex itemIndex = ItemIndex.None;
                     Util.ShuffleList(list, Run.instance.treasureRng);
@@ -158,12 +169,14 @@ namespace GOTCE.Items.Green
         }
     }
 
-    public class OrbitalAegisController : MonoBehaviour {
+    public class OrbitalAegisController : MonoBehaviour
+    {
         private float stopwatch = 0f;
         private float delay = 10f;
         private CharacterBody body;
 
-        public void OnEnable() {
+        public void OnEnable()
+        {
             if (NetworkServer.active)
             {
                 ProjectileController component = GetComponent<ProjectileController>();
@@ -191,21 +204,26 @@ namespace GOTCE.Items.Green
             }
         }
 
-        public void FixedUpdate() {
+        public void FixedUpdate()
+        {
             stopwatch += Time.fixedDeltaTime;
-            if (stopwatch >= delay) {
+            if (stopwatch >= delay)
+            {
                 stopwatch = 0f;
                 Aegis();
             }
         }
 
-        public void Aegis() {
-            if (body) {
+        public void Aegis()
+        {
+            if (body)
+            {
                 body.healthComponent.AddBarrier(body.maxHealth * 0.05f);
             }
         }
 
-        public void Kill() {
+        public void Kill()
+        {
             DestroyImmediate(gameObject);
         }
     }

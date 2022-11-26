@@ -14,13 +14,13 @@ namespace GOTCE.Items.White
     {
         public override bool CanRemove => true;
         public override string ConfigName => ItemName;
-        public override string ItemFullDescription => "Gain a 8% (+8% per stack) chance to 'critcally sprint', doubling your sprinting speed.";
-        public override Sprite ItemIcon => null;
+        public override string ItemFullDescription => "Gain a <style=cIsUtility>10%</style> <style=cStack>(+10% per stack)</style> chance to '<style=cIsUtility>critically sprint</style>', <style=cIsUtility>doubling your sprinting speed</style>.";
+        public override Sprite ItemIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/GummyVitamins.png");
         public override string ItemLangTokenName => "GOTCE_GummyVitamins";
         public override string ItemLore => "";
         public override GameObject ItemModel => null;
         public override string ItemName => "Gummy Vitamins";
-        public override string ItemPickupDesc => "Gain a chance to 'critcally sprint', doubling your speed.";
+        public override string ItemPickupDesc => "Gain a chance to 'critically sprint', doubling your sprinting speed.";
         public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.Crit };
         public override ItemTier Tier => ItemTier.Tier1;
 
@@ -32,20 +32,27 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += SprintCrit;
-            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
-                if (args.Stats && NetworkServer.active) {
-                    if (args.Stats.inventory) {
-                        args.Stats.SprintCritChanceAdd += GetCount(args.Stats.body) * 8;
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
+            {
+                if (args.Stats && NetworkServer.active)
+                {
+                    if (args.Stats.inventory)
+                    {
+                        args.Stats.SprintCritChanceAdd += GetCount(args.Stats.body) * 10;
                     }
                 }
             };
         }
 
-        public void SprintCrit(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (NetworkServer.active && body.inventory) {
-                if (body.masterObject && body.masterObject.GetComponent<GOTCE_StatsComponent>()) {
+        public void SprintCrit(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (NetworkServer.active && body.inventory)
+            {
+                if (body.masterObject && body.masterObject.GetComponent<GOTCE_StatsComponent>())
+                {
                     GOTCE_StatsComponent stats = body.masterObject.GetComponent<GOTCE_StatsComponent>();
-                    if (Util.CheckRoll(stats.sprintCritChance, body.master) && body.isSprinting) {
+                    if (Util.CheckRoll(stats.sprintCritChance, body.master) && body.isSprinting)
+                    {
                         args.moveSpeedMultAdd += (body.sprintingSpeedMultiplier);
 
                         EventHandler<SprintCritEventArgs> raiseEvent = CriticalTypes.OnSprintCrit;
@@ -68,6 +75,5 @@ namespace GOTCE.Items.White
         {
             base.Init(config);
         }
-
     }
 }

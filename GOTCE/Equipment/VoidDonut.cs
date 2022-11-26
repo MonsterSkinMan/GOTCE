@@ -32,7 +32,6 @@ namespace GOTCE.Equipment
         public override float Cooldown => 900f;
 
         public override bool IsBoss => true;
-        
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {

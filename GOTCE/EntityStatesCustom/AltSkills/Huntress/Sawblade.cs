@@ -8,9 +8,12 @@ using RoR2.Projectile;
 using R2API;
 using System.Reflection;
 
-namespace GOTCE.EntityStatesCustom.AltSkills.Huntress {
-    public class Sawblade : BaseState {
+namespace GOTCE.EntityStatesCustom.AltSkills.Huntress
+{
+    public class Sawblade : BaseState
+    {
         private float duration = 0.5f;
+
         // private GameObject prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/ClayBoss/TarSeeker.prefab").WaitForCompletion().InstantiateClone("huntresssaw");
         // private GameObject prefabGhost = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Saw/SawmerangGhost.prefab").WaitForCompletion().InstantiateClone("huntresssawghost");
         private GameObject prefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Projectiles/AltSkills/Saw/SawPrefab.prefab");
@@ -38,7 +41,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Huntress {
             info.speedOverride = 250f;
             info.projectilePrefab = prefab;
 
-            if (base.isAuthority) {
+            if (base.isAuthority)
+            {
                 ProjectileManager.instance.FireProjectile(info);
             }
         }
@@ -51,7 +55,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Huntress {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (base.fixedAge >= duration) {
+            if (base.fixedAge >= duration)
+            {
                 outer.SetNextStateToMain();
             }
         }
@@ -62,9 +67,12 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Huntress {
         }
     }
 
-    public class SlowVelocty : MonoBehaviour {
-        private void FixedUpdate() {
-            if (NetworkServer.active && gameObject.name == "huntresssawhashit") {
+    public class SlowVelocty : MonoBehaviour
+    {
+        private void FixedUpdate()
+        {
+            if (NetworkServer.active && gameObject.name == "huntresssawhashit")
+            {
                 gameObject.GetComponent<ProjectileCharacterController>().velocity = 2;
             }
         }

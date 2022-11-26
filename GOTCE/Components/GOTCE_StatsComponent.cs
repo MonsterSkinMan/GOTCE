@@ -14,11 +14,13 @@ namespace GOTCE.Components
 
         // generic player stuff
         public CharacterMaster master;
+
         public Inventory inventory;
         public CharacterBody body;
 
         // critical chances
         public float stageCritChance;
+
         public float sprintCritChance;
         public float fovCritChance;
 
@@ -27,6 +29,7 @@ namespace GOTCE.Components
 
         // item: crown prince
         public int crownPrinceUses;
+
         public float crownPrinceTrueKillChance;
 
         // item: defibrillator
@@ -34,27 +37,36 @@ namespace GOTCE.Components
 
         // item: grandfather clock
         public int clockDeathCount = 0;
+
         private float deathTimer = 0f;
         private GameObject voidVFX;
+
         // item: gabe's shank
         public int game_count;
+
         // item: sigma grindset
         public int total_sprint_crits = 0;
+
         // item: unseasoned patty
         public List<GameObject> bubbles = new();
+
         public bool withinBubble = false;
         public bool lastWasCombatShrine = false;
+
         // item: peer reviewed source
         public int identifiedkillCount = 0;
+
         // item: gamepad
         public int inputs = 0;
+
         public float increase = 0f;
-        
+
         // run stats
         public int deathCount;
 
         // recalc
         public float StageCritChanceAdd;
+
         public float SprintCritChanceAdd;
         public float FovCritChanceAdd;
         public int AOEAdd;
@@ -62,9 +74,10 @@ namespace GOTCE.Components
         public WarCrime mostRecentlyCommitedWarCrime = WarCrime.None;
 
         private void Start()
-        {   
+        {
             // assign on-start vars and load void death vfx
-            if (gameObject.GetComponent<CharacterMaster>()) {
+            if (gameObject.GetComponent<CharacterMaster>())
+            {
                 master = gameObject.GetComponent<CharacterMaster>();
                 body = master.GetBody();
                 inventory = master.inventory;
@@ -75,7 +88,8 @@ namespace GOTCE.Components
             InvokeRepeating(nameof(RollInputs), 1f, 1f);
         }
 
-        private void OnDestroy() {
+        private void OnDestroy()
+        {
             RecalculateStatsAPI.GetStatCoefficients -= UpdateChances;
         }
 
@@ -101,7 +115,7 @@ namespace GOTCE.Components
                 stageCritChance = StageCritChanceAdd;
                 aoeEffect = AOEAdd;
 
-                // fov crit 
+                // fov crit
                 /* float fovCritChanceTmp = 0f;
                 fovCritChanceTmp += 10f*(inventory.GetItemCount(Items.White.ZoomLenses.Instance.ItemDef));
                 if (body.inventory.GetItemCount(Items.Green.MissileFovCrit.Instance.ItemDef) > 0) { fovCritChanceTmp += 5f; }
@@ -110,8 +124,8 @@ namespace GOTCE.Components
                 fovCritChanceTmp += 2f*(inventory.GetItemCount(Items.White.EmpathyC4.Instance.ItemDef));
                 fovCritChance = fovCritChanceTmp;
                 fovCritChance += increase;
-                
-                // sprint crit 
+
+                // sprint crit
                 float sprCritChanceTmp = 0f;
                 sprCritChanceTmp += 8f*(inventory.GetItemCount(Items.White.GummyVitamins.Instance.ItemDef));
                 sprCritChanceTmp += 2f*(inventory.GetItemCount(Items.White.EmpathyC4.Instance.ItemDef));
@@ -129,11 +143,12 @@ namespace GOTCE.Components
             }
 
             // grant attack speed if the player is within an ethereal bubble from seasoned patty
-            if (withinBubble) {
+            if (withinBubble)
+            {
                 args.attackSpeedMultAdd += 0.03f;
                 withinBubble = false;
             }
-            
+
             // grandfather clock stage crit stuff
 
             if (clockDeathCount > 0)
@@ -146,33 +161,34 @@ namespace GOTCE.Components
                     scale = 1f
                 }, true);
             }
-
-
         }
 
-        private void RollInputs() {
-            float amount = 2f*body.inventory.GetItemCount(Items.Red.Gamepad.Instance.ItemDef);
-            increase = amount*inputs;
+        private void RollInputs()
+        {
+            float amount = 2f * body.inventory.GetItemCount(Items.Red.Gamepad.Instance.ItemDef);
+            increase = amount * inputs;
             inputs = 0;
-            if (increase > 0 && NetworkServer.active && body.inventory.GetItemCount(Items.Red.Gamepad.Instance.ItemDef) > 0) {
+            if (increase > 0 && NetworkServer.active && body.inventory.GetItemCount(Items.Red.Gamepad.Instance.ItemDef) > 0)
+            {
                 body.RecalculateStats();
             }
         }
 
         public void FixedUpdate()
         {
-            
         }
 
         // this function exists solely so suicide can be used as a courotine
-        public void Die() {
+        public void Die()
+        {
             body.healthComponent.Suicide();
         }
 
         // returns the player's stage crit value after taking all items into consideration, should be used before attempting a stage crit
         public void DetermineStageCrit()
-        { 
-            if (master) {
+        {
+            if (master)
+            {
                 StageCritChanceAdd = 0;
                 EventHandler<StatsCompRecalcArgs> raiseEvent = StatsCompEvent.StatsCompRecalc;
                 if (raiseEvent != null)
@@ -180,7 +196,7 @@ namespace GOTCE.Components
                     raiseEvent(this, new StatsCompRecalcArgs(gameObject.GetComponent<GOTCE_StatsComponent>()));
                 }
                 stageCritChance = StageCritChanceAdd;
-                
+
                 /* Inventory inv = master.inventory;
                 float stageCritChanceInc = 0;
                 stageCritChanceInc += 10f * inv.GetItemCount(GOTCE.Items.White.FaultySpacetimeClock.Instance.ItemDef);
@@ -192,9 +208,10 @@ namespace GOTCE.Components
                 stageCritChance = stageCritChanceInc; */
             }
         }
-        
+
         // dio revive but doesnt give an extra dio and requires no arguments
-        public void RespawnExtraLife() {
+        public void RespawnExtraLife()
+        {
             Vector3 vector = master.deathFootPosition;
             if (master.killedByUnsafeArea)
             {

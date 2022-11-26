@@ -16,15 +16,15 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLangTokenName => "GOTCE_EntropicEmblem";
 
-        public override string ItemPickupDesc => "Nearby enemies and projectiles are instantly deleted, but interactables and allies are aswell...";
+        public override string ItemPickupDesc => "Delete nearby enemies and projectiles... <color=#FF7F7F>BUT interactables and allies as well.</color>";
 
-        public override string ItemFullDescription => "Instantly delete all enemies, allies, projectiles, and interactables within 30m of you (+30m per stack)";
+        public override string ItemFullDescription => "Instantly delete all enemies, allies, projectiles, and interactables within <style=cIsUtility>30m</style> <style=cStack>(+30m per stack)</style> of you.";
 
         public override string ItemLore => "";
 
         public override ItemTier Tier => ItemTier.Lunar;
 
-        public override Enum[] ItemTags => new Enum[] { GOTCETags.Bullshit};
+        public override Enum[] ItemTags => new Enum[] { GOTCETags.Bullshit };
 
         public override GameObject ItemModel => null;
 
@@ -42,47 +42,59 @@ namespace GOTCE.Items.Lunar
 
         public override void Hooks()
         {
-            On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) => {
+            On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) =>
+            {
                 orig(self);
-                if (NetworkServer.active) {
+                if (NetworkServer.active)
+                {
                     self.AddItemBehavior<Emblem>(GetCount(self));
                 }
             };
         }
 
-        private class Emblem : CharacterBody.ItemBehavior {
+        private class Emblem : CharacterBody.ItemBehavior
+        {
             private float stopwatch = 0f;
             private float delay = 0.05f;
             private float radius = 30f;
             private GameObject voidVfx = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
             private GameObject indicator;
 
-            private void Start() {
+            private void Start()
+            {
                 indicator = GameObject.CreatePrimitive(PrimitiveType.Sphere).InstantiateClone("EntropicIndicator");
                 indicator.transform.SetParent(gameObject.transform);
                 indicator.layer = LayerIndex.projectile.intVal;
                 indicator.GetComponent<MeshRenderer>().material = Addressables.LoadAssetAsync<Material>("RoR2/Base/Teleporters/matTeleporterRangeIndicator.mat").WaitForCompletion();
             }
-        
-            private void FixedUpdate() {
+
+            private void FixedUpdate()
+            {
                 indicator.transform.position = body.corePosition;
                 indicator.transform.localScale = new Vector3(radius * 2, radius * 2, radius * 2);
-                if (NetworkServer.active) {
+                if (NetworkServer.active)
+                {
                     stopwatch += Time.fixedDeltaTime;
 
                     radius = 30f * stack;
-                    
-                    if (stopwatch >= delay) {
-                        stopwatch = 0f;
-                        Collider[] colliders = Physics.OverlapSphere(body.corePosition, radius, ~0 , QueryTriggerInteraction.Collide);
 
-                        foreach (Collider col in colliders) {
-                            if (col.gameObject == gameObject) {
+                    if (stopwatch >= delay)
+                    {
+                        stopwatch = 0f;
+                        Collider[] colliders = Physics.OverlapSphere(body.corePosition, radius, ~0, QueryTriggerInteraction.Collide);
+
+                        foreach (Collider col in colliders)
+                        {
+                            if (col.gameObject == gameObject)
+                            {
                                 // this is the player holding the item, pass
                             }
-                            else {
-                                if (col.GetComponent<EntityLocator>()) {
-                                    if (col.GetComponent<EntityLocator>().entity.GetComponent<PurchaseInteraction>() || col.GetComponent<EntityLocator>().entity.GetComponent<BarrelInteraction>() || col.GetComponent<EntityLocator>().entity.GetComponent<ScrapperController>()) {
+                            else
+                            {
+                                if (col.GetComponent<EntityLocator>())
+                                {
+                                    if (col.GetComponent<EntityLocator>().entity.GetComponent<PurchaseInteraction>() || col.GetComponent<EntityLocator>().entity.GetComponent<BarrelInteraction>() || col.GetComponent<EntityLocator>().entity.GetComponent<ScrapperController>())
+                                    {
                                         EffectManager.SpawnEffect(voidVfx, new EffectData
                                         {
                                             origin = col.transform.position,
@@ -92,8 +104,8 @@ namespace GOTCE.Items.Lunar
                                         Destroy(col.gameObject);
                                     }
                                 }
-
-                                else if (col.GetComponent<CharacterBody>()) { // dont check parent for body since a body will always have it's own collider
+                                else if (col.GetComponent<CharacterBody>())
+                                { // dont check parent for body since a body will always have it's own collider
                                     EffectManager.SpawnEffect(voidVfx, new EffectData
                                     {
                                         origin = col.transform.position,
@@ -101,22 +113,24 @@ namespace GOTCE.Items.Lunar
                                     }, true);
                                     Destroy(col.gameObject);
                                 }
-
-                                else if (col.GetComponent<ProjectileController>() || col.GetComponentInParent<ProjectileController>()) {
+                                else if (col.GetComponent<ProjectileController>() || col.GetComponentInParent<ProjectileController>())
+                                {
                                     EffectManager.SpawnEffect(voidVfx, new EffectData
                                     {
                                         origin = col.transform.position,
                                         scale = 0.5f
                                     }, true);
-                                    if (col.transform.parent) {
+                                    if (col.transform.parent)
+                                    {
                                         Destroy(col.transform.parent.gameObject);
                                     }
-                                    else {
+                                    else
+                                    {
                                         Destroy(col.gameObject);
                                     }
                                 }
-
-                                else if (col.GetComponent<GenericPickupController>()) {
+                                else if (col.GetComponent<GenericPickupController>())
+                                {
                                     EffectManager.SpawnEffect(voidVfx, new EffectData
                                     {
                                         origin = col.transform.position,
@@ -124,8 +138,8 @@ namespace GOTCE.Items.Lunar
                                     }, true);
                                     Destroy(col.gameObject);
                                 }
-
-                                else if (col.GetComponent<TeleporterInteraction>()) {
+                                else if (col.GetComponent<TeleporterInteraction>())
+                                {
                                     EffectManager.SpawnEffect(voidVfx, new EffectData
                                     {
                                         origin = col.transform.position,
@@ -133,8 +147,8 @@ namespace GOTCE.Items.Lunar
                                     }, true);
                                     Destroy(col.gameObject);
                                 }
-
-                                else if (col.gameObject.name == "TeleporterBaseMesh") {
+                                else if (col.gameObject.name == "TeleporterBaseMesh")
+                                {
                                     Destroy(GameObject.Find("Teleporter1(Clone)"));
                                     EffectManager.SpawnEffect(voidVfx, new EffectData
                                     {
@@ -149,10 +163,10 @@ namespace GOTCE.Items.Lunar
                 }
             }
 
-            private void OnDestroy() {
+            private void OnDestroy()
+            {
                 Destroy(indicator);
             }
         }
-
     }
 }

@@ -12,7 +12,7 @@ namespace GOTCE.Items.Lunar
     {
         public override string ConfigName => "Crown Prince";
 
-        public override string ItemFullDescription => "<style=cIsUtility>Cheat death</style>, but taking ANY damage instantly kills you. <style=cIsUtility>Breaks</style> after <style=cIsUtility>50</style> <style=cStack>(+50 per stack)</style> uses. <style=cIsUtility>0%</style> <style=cStack>(+5% per stack)</style> chance for a death to be a true kill.";
+        public override string ItemFullDescription => "<style=cIsUtility>Cheat death</style>. Taking ANY damage instantly kills you. <style=cIsUtility>Breaks</style> after <style=cIsUtility>50</style> <style=cStack>(+50 per stack)</style> deaths. <style=cIsUtility>0%</style> <style=cStack>(+5% per stack)</style> chance for a death to be a true kill.";
 
         public override string ItemLore => "Hell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.\nHell is not bad.";
 
@@ -28,7 +28,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemName => "Crown Prince";
 
-        public override string ItemPickupDesc => "Cheat death, but you die in a single hit... Breaks after 50 uses";
+        public override string ItemPickupDesc => "Cheat death... <color=#FF7F7F>BUT you die in a single hit.</color> Breaks after 50 deaths.";
 
         public void AddUses(On.RoR2.Inventory.orig_GiveItem_ItemIndex_int orig, Inventory self, ItemIndex def, int count)
         {

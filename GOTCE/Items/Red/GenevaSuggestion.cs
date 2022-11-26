@@ -19,7 +19,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemPickupDesc => "War Crimes make you stronger.";
 
-        public override string ItemFullDescription => "Gain varying boosts based on your most recently committed War Crime";
+        public override string ItemFullDescription => "Gain <style=cIsDamage>varying boosts</style> BASED on your <style=cIsUtility>most recently committed War Crime</style>.";
 
         public override string ItemLore => "";
 
@@ -43,9 +43,12 @@ namespace GOTCE.Items.Red
 
         public override void Hooks()
         {
-            RecalculateStatsAPI.GetStatCoefficients += (body, args) => {
-                if (NetworkServer.active && body.inventory && HasItem(body) && body.masterObject && body.masterObject.GetComponent<GOTCE_StatsComponent>()) {
-                    if (body.masterObject.GetComponent<GOTCE_StatsComponent>().mostRecentlyCommitedWarCrime == WarCrime.Homemade) {
+            RecalculateStatsAPI.GetStatCoefficients += (body, args) =>
+            {
+                if (NetworkServer.active && body.inventory && HasItem(body) && body.masterObject && body.masterObject.GetComponent<GOTCE_StatsComponent>())
+                {
+                    if (body.masterObject.GetComponent<GOTCE_StatsComponent>().mostRecentlyCommitedWarCrime == WarCrime.Homemade)
+                    {
                         args.baseAttackSpeedAdd += 0.15f;
                     }
                 }

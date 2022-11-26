@@ -4,9 +4,11 @@ using System;
 using Unity;
 using UnityEngine;
 
-namespace GOTCE.Achievements.CrackedCommando {
+namespace GOTCE.Achievements.CrackedCommando
+{
     [RegisterAchievement("CONSISTENCY", "SuppressiveBarrageUnlockable", null, typeof(Server))]
-    public class SuppressiveBarrage : BaseAchievement {
+    public class SuppressiveBarrage : BaseAchievement
+    {
         public override void OnBodyRequirementMet()
         {
             base.OnBodyRequirementMet();
@@ -24,8 +26,10 @@ namespace GOTCE.Achievements.CrackedCommando {
             return BodyCatalog.FindBodyIndex(Survivors.CrackedMando.Instance.prefab);
         }
 
-        private class Server : BaseServerAchievement {
+        private class Server : BaseServerAchievement
+        {
             public int required = 25; // 55.6% chance
+
             public override void OnInstall()
             {
                 base.OnInstall();
@@ -38,21 +42,23 @@ namespace GOTCE.Achievements.CrackedCommando {
                 CharacterBody.onBodyInventoryChangedGlobal -= Check;
             }
 
-            public void Check(CharacterBody body) {
+            public void Check(CharacterBody body)
+            {
                 CharacterBody current = serverAchievementTracker.networkUser.GetCurrentBody();
-                if (current && current.inventory && current.inventory.GetItemCount(RoR2Content.Items.StunChanceOnHit) >= required) {
+                if (current && current.inventory && current.inventory.GetItemCount(RoR2Content.Items.StunChanceOnHit) >= required)
+                {
                     Grant();
                 }
             }
         }
-
     }
 
-    public class SuppressiveBarrageUnlock : AchievementBase<SuppressiveBarrageUnlock> {
+    public class SuppressiveBarrageUnlock : AchievementBase<SuppressiveBarrageUnlock>
+    {
         public override string Name => "Cracked Commando: Consistency";
         public override string Description => "As Cracked Commando, reach 55.6% stun chance";
         public override string UnlockName => "SuppressiveBarrageUnlockable";
         public override string TokenName => "CONSISTENCY";
         public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
     }
-}
+} 

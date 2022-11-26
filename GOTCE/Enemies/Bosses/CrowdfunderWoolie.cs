@@ -26,7 +26,7 @@ namespace GOTCE.Enemies.Bosses
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 2000;
+            isc.directorCreditCost = 900;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
@@ -56,8 +56,10 @@ namespace GOTCE.Enemies.Bosses
             SkillLocator sl = prefab.GetComponent<SkillLocator>();
             ReplaceSkill(sl.primary, Addressables.LoadAssetAsync<SkillDef>("RoR2/Base/Captain/CaptainSkillDisconnected.asset").WaitForCompletion());
 
-            foreach (EntityStateMachine esm in prefab.GetComponents<EntityStateMachine>()) {
-                if (esm.customName == "Weapon") {
+            foreach (EntityStateMachine esm in prefab.GetComponents<EntityStateMachine>())
+            {
+                if (esm.customName == "Weapon")
+                {
                     esm.initialStateType = new EntityStates.SerializableEntityStateType(typeof(EntityStatesCustom.Woolie.Crowdfunder));
                     esm.mainStateType = new EntityStates.SerializableEntityStateType(typeof(EntityStatesCustom.Woolie.Crowdfunder));
                 }
@@ -67,8 +69,10 @@ namespace GOTCE.Enemies.Bosses
             LanguageAPI.Add("GOTCE_WOOLIE_LORE", "100% damage per shot is EXTREMELY low, even if you do have a crazy amount of on-hit items to scale it with. Yes, the bleed changes makes this a more lucrative option on paper, but, in reality, if you're already at the point of applying a stupid amount of bleed, you probably don't need the Crowdfunder to help you with that. TAKE SOMETHING ELSE.");
             LanguageAPI.Add("GOTCE_WOOLIE_SUBTITLE", "THE Mr. Streamer");
 
-            On.RoR2.CharacterBody.Start += (orig, self) => {
-                if (NetworkServer.active && self.baseNameToken == "GOTCE_WOOLIE_NAME" && self.equipmentSlot) {
+            On.RoR2.CharacterBody.Start += (orig, self) =>
+            {
+                if (NetworkServer.active && self.baseNameToken == "GOTCE_WOOLIE_NAME" && self.equipmentSlot)
+                {
                     self.inventory.SetEquipmentIndex(RoR2Content.Equipment.AffixRed.equipmentIndex);
                 }
                 orig(self);

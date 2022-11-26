@@ -6,10 +6,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity;
 
-namespace GOTCE.EntityStatesCustom.NaeNaeLord {
-    public class NaeNaeWhip : BaseSkillState {
-        float delay = 0.2f;
+namespace GOTCE.EntityStatesCustom.NaeNaeLord
+{
+    public class NaeNaeWhip : BaseSkillState
+    {
+        private float delay = 0.2f;
         public Ray ray;
+
         public override void OnEnter()
         {
             base.OnEnter();
@@ -24,15 +27,18 @@ namespace GOTCE.EntityStatesCustom.NaeNaeLord {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (base.fixedAge >= delay) {
-                if (NetworkServer.active) {
+            if (base.fixedAge >= delay)
+            {
+                if (NetworkServer.active)
+                {
                     FireWhip();
                 }
                 outer.SetNextStateToMain();
             }
         }
 
-        public void FireWhip() {
+        public void FireWhip()
+        {
             BulletAttack whip = new();
             whip.damage = base.damageStat * 2f;
             whip.radius = 2.5f;

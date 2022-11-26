@@ -5,23 +5,31 @@ using Unity;
 using UnityEngine;
 using RoR2.CharacterAI;
 
-namespace GOTCE.EntityStatesCustom.Providence {
-    public class Downslash : BaseSkillState {
+namespace GOTCE.EntityStatesCustom.Providence
+{
+    public class Downslash : BaseSkillState
+    {
         public float delay = 0.3f;
         public float duration = 1.6f;
         public bool hasSwung = false;
+
         public override void OnEnter()
         {
             base.OnEnter();
-            if (base.characterBody.isPlayerControlled) {
+            if (base.characterBody.isPlayerControlled)
+            {
                 return;
             }
-            else {
-                if (base.characterBody.master) {
+            else
+            {
+                if (base.characterBody.master)
+                {
                     BaseAI ai = base.characterBody.masterObject.GetComponent<BaseAI>();
-                    if (ai) {
+                    if (ai)
+                    {
                         GameObject target = ai.currentEnemy.gameObject;
-                        if (target) {
+                        if (target)
+                        {
                             TeleportHelper.TeleportBody(base.characterBody, target.transform.position + new Vector3(0, 2, 0));
                         }
                     }
@@ -39,21 +47,26 @@ namespace GOTCE.EntityStatesCustom.Providence {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (base.fixedAge >= delay && !hasSwung) {
-                if (NetworkServer.active) {
-                    OverlapAttack attack = new();
-                    attack.damage = 9.2f * base.damageStat;
-                    attack.procCoefficient = 1f;
-                    attack.damageType = DamageType.Generic;
-                    attack.attacker = base.gameObject;
-                    attack.hitBoxGroup = base.FindHitBoxGroup("downslash");
+            if (base.fixedAge >= delay && !hasSwung)
+            {
+                if (NetworkServer.active)
+                {
+                    OverlapAttack attack = new()
+                    {
+                        damage = 9.2f * base.damageStat,
+                        procCoefficient = 1f,
+                        damageType = DamageType.Generic,
+                        attacker = base.gameObject,
+                        hitBoxGroup = base.FindHitBoxGroup("downslash")
+                    };
                     attack.Fire();
                 }
                 hasSwung = true;
                 AkSoundEngine.PostEvent(4028970009, base.gameObject); // Play_merc_m1_hard_swing
             }
 
-            if (base.fixedAge >= duration) {
+            if (base.fixedAge >= duration)
+            {
                 outer.SetNextStateToMain();
             }
         }

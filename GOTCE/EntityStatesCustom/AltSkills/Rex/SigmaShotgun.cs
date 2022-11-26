@@ -7,8 +7,10 @@ using System;
 using RoR2.Projectile;
 using R2API;
 
-namespace GOTCE.EntityStatesCustom.AltSkills.Rex {
-    public class SigmaShotgun : BaseState {
+namespace GOTCE.EntityStatesCustom.AltSkills.Rex
+{
+    public class SigmaShotgun : BaseState
+    {
         private float duration = 0.75f;
         private int count = 9;
         private GameObject proj = FireSyringe.projectilePrefab.InstantiateClone("sigmaneedle");
@@ -22,7 +24,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Rex {
             proj.GetComponent<ProjectileController>().procCoefficient = 0.6725f;
 
             AkSoundEngine.PostEvent(1706423866, base.gameObject); // Play_treeBot_m1_shoot
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < count; i++)
+            {
                 FireProjectileInfo info = default;
                 info.damage = base.damageStat * 0.5f;
                 info.projectilePrefab = proj;
@@ -34,29 +37,30 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Rex {
                 info.damageTypeOverride = DamageType.WeakOnHit;
                 info.rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(ray.direction, -2.5f, 2.5f, -2.5f, 2.5f));
 
-                if (base.isAuthority) {
+                if (base.isAuthority)
+                {
                     ProjectileManager.instance.FireProjectile(info);
                 }
             }
             if (NetworkServer.active && base.healthComponent && 0.05f >= Mathf.Epsilon)
             {
-                DamageInfo selfdamage = new DamageInfo();
-                selfdamage.damage = base.healthComponent.combinedHealth * 0.05f;
-                selfdamage.damageType = DamageType.NonLethal;
-                selfdamage.position = base.characterBody.corePosition;
-                selfdamage.attacker = null;
-                selfdamage.inflictor = null;
-                selfdamage.crit = false;
-                selfdamage.force = Vector3.zero;
-                selfdamage.procChainMask = default(ProcChainMask);
-                selfdamage.procCoefficient = 0f;
-
+                DamageInfo selfdamage = new()
+                {
+                    damage = base.healthComponent.combinedHealth * 0.05f,
+                    damageType = DamageType.NonLethal,
+                    position = base.characterBody.corePosition,
+                    attacker = null,
+                    inflictor = null,
+                    crit = false,
+                    force = Vector3.zero,
+                    procChainMask = default(ProcChainMask),
+                    procCoefficient = 0f
+                };
                 if (base.isAuthority)
                 {
                     base.healthComponent.TakeDamage(selfdamage);
                 }
             }
-            
         }
 
         public override void OnExit()
@@ -67,7 +71,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Rex {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (base.fixedAge >= duration) {
+            if (base.fixedAge >= duration)
+            {
                 outer.SetNextStateToMain();
             }
         }

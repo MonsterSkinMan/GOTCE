@@ -53,7 +53,6 @@ namespace GOTCE.Items.Lunar
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
         }
 
-
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
             if (sender && sender.inventory)
@@ -70,12 +69,16 @@ namespace GOTCE.Items.Lunar
         }
     }
 
-    public class PaleAleBehavior : CharacterBody.ItemBehavior {
+    public class PaleAleBehavior : CharacterBody.ItemBehavior
+    {
         public PostProcessVolume vol;
         public PostProcessProfile ppProfile;
         public GameObject ppHolder;
-        public void Start() {
-            if (body.hasAuthority) {
+
+        public void Start()
+        {
+            if (body.hasAuthority)
+            {
                 ppHolder = new GameObject("ppHolder");
                 ppHolder.transform.SetParent(gameObject.transform);
                 ppHolder.layer = LayerIndex.postProcess.intVal;
@@ -132,8 +135,10 @@ namespace GOTCE.Items.Lunar
             }
         }
 
-        public void OnDestroy() {
-            if (body.hasAuthority) {
+        public void OnDestroy()
+        {
+            if (body.hasAuthority)
+            {
                 DestroyImmediate(vol);
                 DestroyImmediate(ppProfile);
                 DestroyImmediate(ppHolder);

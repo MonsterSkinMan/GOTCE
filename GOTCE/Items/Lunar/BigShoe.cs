@@ -14,7 +14,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLangTokenName => "GOTCE_BigShoe";
 
-        public override string ItemPickupDesc => "\"Reduce\" the proc coefficient of all your attacks to 3.0... <color=#FF7F7F>EVEN if they are normally higher.</color> Yes, this affects the proc coefficient of EVERYTHING.\n";
+        public override string ItemPickupDesc => "\"Reduce\" the proc coefficient of all your attacks to 3.0... <color=#FF7F7F>EVEN if they are normally higher.</color>.\n";
 
         public override string ItemFullDescription => "Reduce the <style=cIsDamage>proc coefficient</style> of all your attacks to <style=cIsDamage>3.0</style>.";
 
@@ -27,7 +27,7 @@ namespace GOTCE.Items.Lunar
         public override GameObject ItemModel => null;
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/bigshoe.png");
-        
+
         public override void Init(ConfigFile config)
         {
             base.Init(config);

@@ -52,7 +52,6 @@ namespace GOTCE.Utils.Components
 
                     if (Material)
                     {
-
                         switch (Material.shader.name)
                         {
                             case "Hopoo Games/Deferred/Standard":
@@ -60,11 +59,13 @@ namespace GOTCE.Utils.Components
                                 standardController.Material = Material;
                                 standardController.Renderer = Renderer;
                                 break;
+
                             case "Hopoo Games/FX/Cloud Remap":
                                 var cloudController = gameObject.AddComponent<HGCloudRemapController>();
                                 cloudController.Material = Material;
                                 cloudController.Renderer = Renderer;
                                 break;
+
                             case "Hopoo Games/FX/Cloud Intersection Remap":
                                 var intersectionController = gameObject.AddComponent<HGIntersectionController>();
                                 intersectionController.Material = Material;
@@ -114,6 +115,7 @@ namespace GOTCE.Utils.Components
                 Subsurface = 4,
                 Grass = 5
             }
+
             public _RampInfoEnum _RampChoice;
 
             public enum _DecalLayerEnum
@@ -123,6 +125,7 @@ namespace GOTCE.Utils.Components
                 Character = 2,
                 Misc = 3
             }
+
             public _DecalLayerEnum _DecalLayer;
 
             [Range(0f, 1f)]
@@ -137,6 +140,7 @@ namespace GOTCE.Utils.Components
                 Front = 1,
                 Back = 2
             }
+
             public _CullEnum _Cull_Mode;
 
             public bool _EnableDither;
@@ -186,6 +190,7 @@ namespace GOTCE.Utils.Components
                 TopDown = 1,
                 BackToFront = 3
             }
+
             public _PrintDirectionEnum _PrintDirection;
 
             public Texture _PrintRamp;
@@ -263,6 +268,7 @@ namespace GOTCE.Utils.Components
             {
                 GrabMaterialValues();
             }
+
             public void GrabMaterialValues()
             {
                 if (Material)
@@ -568,7 +574,6 @@ namespace GOTCE.Utils.Components
                     SetShaderKeywordBasedOnBool(_EnableLimbRemoval, Material, "LIMBREMOVAL");
                 }
             }
-
         }
 
         /// <summary>
@@ -595,6 +600,7 @@ namespace GOTCE.Utils.Components
                 SrcAlphaSaturate = 9,
                 OneMinusSrcAlpha = 10
             }
+
             public enum _DstBlendFloatEnum
             {
                 Zero = 0,
@@ -609,6 +615,7 @@ namespace GOTCE.Utils.Components
                 SrcAlphaSaturate = 9,
                 OneMinusSrcAlpha = 10
             }
+
             public _SrcBlendFloatEnum _Source_Blend_Mode;
             public _DstBlendFloatEnum _Destination_Blend_Mode;
 
@@ -647,6 +654,7 @@ namespace GOTCE.Utils.Components
                 Front = 1,
                 Back = 2
             }
+
             public _CullEnum _Cull_Mode;
 
             public enum _ZTestEnum
@@ -661,6 +669,7 @@ namespace GOTCE.Utils.Components
                 GreaterEqual = 7,
                 Always = 8
             }
+
             public _ZTestEnum _ZTest_Mode;
 
             [Range(-10f, 10f)]
@@ -744,11 +753,8 @@ namespace GOTCE.Utils.Components
                 }
             }
 
-
-
             public void Update()
             {
-
                 if (Material)
                 {
                     if (Material.name != MaterialName && Renderer)
@@ -867,6 +873,7 @@ namespace GOTCE.Utils.Components
                 SrcAlphaSaturate = 9,
                 OneMinusSrcAlpha = 10
             }
+
             public enum _DstBlendFloatEnum
             {
                 Zero = 0,
@@ -881,6 +888,7 @@ namespace GOTCE.Utils.Components
                 SrcAlphaSaturate = 9,
                 OneMinusSrcAlpha = 10
             }
+
             public _SrcBlendFloatEnum _Source_Blend_Mode;
             public _DstBlendFloatEnum _Destination_Blend_Mode;
 
@@ -926,6 +934,7 @@ namespace GOTCE.Utils.Components
                 Front = 1,
                 Back = 2
             }
+
             public _CullEnum _Cull_Mode;
 
             public bool _FadeFromVertexColorsOn;
@@ -972,7 +981,6 @@ namespace GOTCE.Utils.Components
 
             public void Update()
             {
-
                 if (Material)
                 {
                     if (Material.name != MaterialName && Renderer)
@@ -1044,4 +1052,3 @@ namespace GOTCE.Utils.Components
         }
     }
 }
-

@@ -14,7 +14,7 @@ namespace GOTCE.Items.White
     {
         public override bool CanRemove => true;
         public override string ConfigName => ItemName;
-        public override string ItemFullDescription => "On stage entry, gain Barrier equal to the amount (+70% of the amount per stack) of BarrierRelated category items you have. ";
+        public override string ItemFullDescription => "At the start of each stage, gain <style=cIsHealing>barrier</style> equal to the amount <style=cStack>(+70% of the amount per stack)</style> of <style=cIsHealing>barrier</style> items you have.";
         public override Sprite ItemIcon => null;
         public override string ItemLangTokenName => "GOTCE_BarrierInsurance";
         public override string ItemLore => "";
@@ -39,14 +39,19 @@ namespace GOTCE.Items.White
             base.Init(config);
         }
 
-        public void Barrier(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self) {
-            
-            if (NetworkServer.active) {
-                if (GetCount(self) > 0) {
-                    if (self.inventory) {
+        public void Barrier(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self)
+        {
+            if (NetworkServer.active)
+            {
+                if (GetCount(self) > 0)
+                {
+                    if (self.inventory)
+                    {
                         int total = 0;
-                        foreach (ItemIndex index in self.inventory.itemAcquisitionOrder) {
-                            if (ContainsTag(ItemCatalog.GetItemDef(index), GOTCETags.BarrierRelated)) {
+                        foreach (ItemIndex index in self.inventory.itemAcquisitionOrder)
+                        {
+                            if (ContainsTag(ItemCatalog.GetItemDef(index), GOTCETags.BarrierRelated))
+                            {
                                 total += self.inventory.GetItemCount(index);
                             }
                         }
@@ -57,7 +62,5 @@ namespace GOTCE.Items.White
             }
             orig(self);
         }
-
     }
-
 }

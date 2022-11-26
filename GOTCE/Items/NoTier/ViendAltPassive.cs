@@ -16,9 +16,9 @@ namespace GOTCE.Items.NoTier
 
         public override string ItemLangTokenName => "GOTCE_ViendAltPassive";
 
-        public override string ItemPickupDesc => "";
+        public override string ItemPickupDesc => "bruh";
 
-        public override string ItemFullDescription => "";
+        public override string ItemFullDescription => "Wake up\r\nGet out\r\nCan you feel the fire rush\r\nWeakened foundation\r\nLosing sensation\r\nOur homes destroyed\r\nThere's nowhere left to go\r\nWe took our love and we made it all destructive\r\nSo the flame burns on\r\nSwallowing all of our shrines and doubts\r\nDeath knows it won't be long\r\nI lived in fear until I found\r\nLove and pride\r\nMove aside\r\nI'm burning too many bridges to prove that I'm alive\r\nPick a side to defy\r\nI'm burning too many bridges to prove that I'm alive\r\nSo we stand alone in the darkness\r\nWith the doubt buried deep inside of us\r\nPray tell this is not enough\r\nMy mind's in the deepest rut\r\nWake up get out\r\nCan you feel it rush\r\nI pray for only bliss\r\nWeakened foundation losing sensation\r\nCan you feel the rush\r\nI no longer feel the light\r\nFinds me when I close my eyes\r\nSo alone in dire times\r\nI need you here to look inside\r\nLove and pride\r\nMove aside\r\nI'm burning too many bridges to prove that I'm alive\r\nPick a side to defy\r\nI'm burning too many bridges to prove that I'm alive\r\nLet me drown\r\nLet me suffer on my terms\r\nTake me alive\r\nStuck in my head\r\nStuck in my head\r\nStuck in my head\r\nHelp me find my way\r\nI want my questions answered\r\nI want to thrive\r\nI want to thrive\r\nI want to use my anger\r\nI want to know what this is worth\r\nI want my questions answered\r\nI want to thrive\r\nI want to thrive\r\nI want to use my anger\r\nI want to know what this is worth\r\nLove and pride\r\nMove aside\r\nI'm burning too many bridges to prove that I'm alive\r\nPick a side to defy\r\nI'm burning too many bridges to prove that I'm alive\r\nLove and pride\r\nMove aside\r\nI'm burning too many bridges to prove that I'm alive\r\nPick a side to defy\r\nI'm burning too many bridges to prove that I'm alive\r\nSo we come to the roundabout\r\nRunning in circles\r\nI will break";
         public override bool Hidden => true;
         public override string ItemLore => "";
 
@@ -39,7 +39,6 @@ namespace GOTCE.Items.NoTier
         public static float onlineSyncTimer = 0f;
 
         public static float onlineSyncDuration = 60f;
-
 
         public override void Init(ConfigFile config)
         {
@@ -77,6 +76,7 @@ namespace GOTCE.Items.NoTier
         {
             return orig(self) + (calculatingDifficultyCoefficient ? extraDifficultyTime : 0);
         }
+
         private void Run_FixedUpdate(On.RoR2.Run.orig_FixedUpdate orig, Run self)
         {
             orig(self);
@@ -96,6 +96,7 @@ namespace GOTCE.Items.NoTier
                 }
             }
         }
+
         private void CharacterBody_OnInventoryChanged(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
             orig(self);
@@ -114,7 +115,7 @@ namespace GOTCE.Items.NoTier
 
         public class SyncTimer : INetMessage
         {
-            float time;
+            private float time;
 
             public SyncTimer()
             {

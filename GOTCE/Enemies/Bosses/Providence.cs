@@ -13,7 +13,7 @@ namespace GOTCE.Enemies.Bosses
         public override string PathToClone => "Assets/Prefabs/Enemies/Provi/ProviBody.prefab";
         public override bool local => true;
         public override string CloneName => "Provi";
-        public override string PathToCloneMaster => "RoR2/Base/Brother/BrotherMaster.prefab";
+        public override string PathToCloneMaster => "RoR2/Base/Merc/MercMonsterMaster.prefab";
         public CharacterBody body;
         public CharacterMaster master;
 
@@ -21,7 +21,7 @@ namespace GOTCE.Enemies.Bosses
         {
             base.CreatePrefab();
             body = prefab.GetComponent<CharacterBody>();
-        } 
+        }
 
         public override void AddSpawnCard()
         {
@@ -80,7 +80,6 @@ namespace GOTCE.Enemies.Bosses
                 new ExplicitPickupDropTable.PickupDefEntry {pickupDef = Items.Yellow.RightRingFingerOfProvidence.Instance.ItemDef, pickupWeight = 1f},
             };
             deathRewards.bossDropTable = dt;
-
         }
 
         public override void PostCreation()

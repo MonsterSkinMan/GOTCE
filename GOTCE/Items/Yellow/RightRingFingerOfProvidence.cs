@@ -18,7 +18,7 @@ namespace GOTCE.Items.Yellow
 
         public override string ItemPickupDesc => "Double ALL of your stats.";
 
-        public override string ItemFullDescription => "Increase your damage, attack speed, jump height, movement speed, health, luck, crit chances, AOE effect, cooldowns, shield, regen, and size by 100% (+100% per stack).";
+        public override string ItemFullDescription => "Increase your <style=cIsDamage>base damage</style>, <style=cIsDamage>attack speed</style>, <style=cIsUtility>jump height</style>, <style=cIsUtility>movement speed</style>, <style=cIsHealing>maximum health</style>, <style=cIsUtility>luck</style>, <style=cIsDamage>crit chances</style>, <style=cIsDamage>AOE effect</style>, <style=cIsUtility>cooldowns</style>, <style=cIsHealing>maximum shield</style>, <style=cIsHealing>regen</style>, and size by <style=cIsDamage>100%</style> <style=cStack>(+100% per stack)</style>.";
 
         public override string ItemLore => "Fortnite sussy balls idk";
 

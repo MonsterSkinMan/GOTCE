@@ -27,7 +27,7 @@ namespace GOTCE.Survivors
         public abstract string bodypath { get; }
         public GameObject prefab;
         public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.SOTVExpansionDef;
-        public virtual SurvivorDef def {get; } = null;
+        public virtual SurvivorDef def { get; } = null;
         public abstract string name { get; }
         public virtual bool clone { get; } = false;
 
@@ -49,7 +49,8 @@ namespace GOTCE.Survivors
 
         public virtual void PostCreation()
         {
-            if (def) {
+            if (def)
+            {
                 ContentAddition.AddBody(prefab);
                 ContentAddition.AddSurvivorDef(def);
             }
@@ -62,10 +63,12 @@ namespace GOTCE.Survivors
 
         public virtual void CreatePrefab()
         {
-            if (!clone) {
+            if (!clone)
+            {
                 prefab = PrefabAPI.InstantiateClone(Main.SecondaryAssets.LoadAsset<GameObject>(bodypath), name);
             }
-            if (clone) {
+            if (clone)
+            {
                 prefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>(bodypath).WaitForCompletion(), name);
             }
         }
@@ -94,19 +97,24 @@ namespace GOTCE.Survivors
             }
         }
 
-        public void ClearESM(GameObject prefab, GameObject master = null) {
-            foreach(EntityStateMachine esm in prefab.GetComponents<EntityStateMachine>()) {
+        public void ClearESM(GameObject prefab, GameObject master = null)
+        {
+            foreach (EntityStateMachine esm in prefab.GetComponents<EntityStateMachine>())
+            {
                 GameObject.DestroyImmediate(esm);
             }
 
-            if (master) {
-                foreach(EntityStateMachine esm in master.GetComponents<EntityStateMachine>()) {
+            if (master)
+            {
+                foreach (EntityStateMachine esm in master.GetComponents<EntityStateMachine>())
+                {
                     GameObject.DestroyImmediate(esm);
                 }
             }
         }
 
-        public EntityStateMachine AddESM(GameObject prefab, string name, SerializableEntityStateType initial) {
+        public EntityStateMachine AddESM(GameObject prefab, string name, SerializableEntityStateType initial)
+        {
             EntityStateMachine esm = prefab.AddComponent<EntityStateMachine>();
             esm.customName = name;
             esm.name = name;
@@ -115,6 +123,7 @@ namespace GOTCE.Survivors
 
             return esm;
         }
+
         public void RelocateMeshTransform(GameObject prefab, Transform transform, bool parent = false)
         {
             CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();

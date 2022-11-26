@@ -66,7 +66,8 @@ namespace GOTCE.Skills
             SkillDef.skillNameToken = NameToken;
             SkillDef.skillDescriptionToken = DescToken;
             SkillDef.stockToConsume = StockToConsume;
-            if (KeywordTokens != null) {
+            if (KeywordTokens != null)
+            {
                 SkillDef.keywordTokens = KeywordTokens;
             }
 

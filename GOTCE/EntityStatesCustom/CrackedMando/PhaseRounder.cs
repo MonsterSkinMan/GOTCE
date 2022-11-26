@@ -10,10 +10,10 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
 {
     public class PhaseRounder : BaseSkillState
     {
-
         public static float totalDuration = 0.5f;
         private Animator modelAnimator;
         private float duration;
+
         public override void OnEnter()
         {
             base.OnEnter();
@@ -21,10 +21,11 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             duration = totalDuration;
             modelAnimator = GetModelAnimator();
             PlayAnimation("Gesture, Additive", "FireFMJ", "FireFMJ.playbackRate", duration);
-			PlayAnimation("Gesture, Override", "FireFMJ", "FireFMJ.playbackRate", duration);
+            PlayAnimation("Gesture, Override", "FireFMJ", "FireFMJ.playbackRate", duration);
             // modelTransform = base.characterBody.modelLocator.modelTransform.GetChild(1).transform;
-            
-            for (int i = 0; i < 8; i++) {
+
+            for (int i = 0; i < 8; i++)
+            {
                 FireBullet();
             }
         }
@@ -35,7 +36,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             GameObject prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Junk/Commando/FMJ.prefab").WaitForCompletion().InstantiateClone("rounder");
             prefab.AddComponent<R2API.DamageAPI.ModdedDamageTypeHolderComponent>();
             prefab.GetComponent<R2API.DamageAPI.ModdedDamageTypeHolderComponent>().Add(DamageTypes.FullChainLightning);
-            
+
             // string muzzleName = "MuzzleRight";
             // Ray aimRay = GetAim();
             if (base.isAuthority)
@@ -51,7 +52,6 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                     owner = base.gameObject,
                 };
                 ProjectileManager.instance.FireProjectile(info);
-                
             }
         }
 

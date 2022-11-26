@@ -6,13 +6,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity;
 
-namespace GOTCE.EntityStatesCustom.NaeNaeLord {
-    public class NaeNaeUtil : BaseState {
-        float duration = 5f;
+namespace GOTCE.EntityStatesCustom.NaeNaeLord
+{
+    public class NaeNaeUtil : BaseState
+    {
+        private float duration = 5f;
+
         public override void OnEnter()
         {
             base.OnEnter();
-            if (NetworkServer.active) {
+            if (NetworkServer.active)
+            {
                 base.characterBody.inventory.GiveItem(RoR2Content.Items.Bear, 10);
             }
         }
@@ -20,7 +24,8 @@ namespace GOTCE.EntityStatesCustom.NaeNaeLord {
         public override void OnExit()
         {
             base.OnExit();
-            if (NetworkServer.active) {
+            if (NetworkServer.active)
+            {
                 base.characterBody.inventory.RemoveItem(RoR2Content.Items.Bear, base.characterBody.inventory.GetItemCount(RoR2Content.Items.Bear));
             }
         }
@@ -28,7 +33,8 @@ namespace GOTCE.EntityStatesCustom.NaeNaeLord {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (base.fixedAge >= duration) {
+            if (base.fixedAge >= duration)
+            {
                 outer.SetNextStateToMain();
             }
         }

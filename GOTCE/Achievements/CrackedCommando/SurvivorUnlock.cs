@@ -4,9 +4,11 @@ using System;
 using Unity;
 using UnityEngine;
 
-namespace GOTCE.Achievements.CrackedCommando {
+namespace GOTCE.Achievements.CrackedCommando
+{
     [RegisterAchievement("OVERDOSE", "CrackedCommandoSurvivorUnlockable", null, typeof(Server))]
-    public class SurvivorUnlockAchievement : BaseAchievement {
+    public class SurvivorUnlockAchievement : BaseAchievement
+    {
         public override void OnBodyRequirementMet()
         {
             base.OnBodyRequirementMet();
@@ -24,8 +26,10 @@ namespace GOTCE.Achievements.CrackedCommando {
             return BodyCatalog.FindBodyIndex("CommandoBody");
         }
 
-        private class Server : BaseServerAchievement {
+        private class Server : BaseServerAchievement
+        {
             public float required = 16f; // 1600%
+
             public override void OnInstall()
             {
                 base.OnInstall();
@@ -38,16 +42,19 @@ namespace GOTCE.Achievements.CrackedCommando {
                 RoR2Application.onUpdate -= Check;
             }
 
-            public void Check() {
+            public void Check()
+            {
                 CharacterBody current = serverAchievementTracker.networkUser.GetCurrentBody();
-                if (current && current.attackSpeed >= required) {
-                    base.Grant();
+                if (current && current.attackSpeed >= required)
+                {
+                    Grant();
                 }
             }
         }
     }
 
-    public class SurvivorUnlock : AchievementBase<SurvivorUnlock> {
+    public class SurvivorUnlock : AchievementBase<SurvivorUnlock>
+    {
         public override string Name => "Commando: The Delirious";
         public override string Description => "As Commando, reach 1600% attack speed.";
         public override string UnlockName => "CrackedCommandoSurvivorUnlockable";

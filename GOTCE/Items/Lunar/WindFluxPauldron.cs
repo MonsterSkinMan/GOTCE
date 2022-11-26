@@ -16,9 +16,9 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLangTokenName => "GOTCE_WindFluxPauldron";
 
-        public override string ItemPickupDesc => "Double your speed... BUT halve your health";
+        public override string ItemPickupDesc => "Double your speed... <color=#FF7F7F>BUT halve your health.</color>";
 
-        public override string ItemFullDescription => "Increase movement speed by 100% (+100% per stack). Reduce max health by 50% (+50% per stack)";
+        public override string ItemFullDescription => "Increase <style=cIsUtility>movement speed</style> by <style=cIsUtility>100%</style> <style=cStack>(+100% per stack)</style>. Reduce <style=cIsHealing>maximum health</style> by <style=cIsHealing>50%</style> <style=cStack>(+50% per stack)</style>.";
 
         public override string ItemLore => "TBA";
 

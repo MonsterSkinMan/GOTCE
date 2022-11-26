@@ -19,7 +19,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemPickupDesc => "Barrier decay rate is halved.";
 
-        public override string ItemFullDescription => "Barrier decay rate is reduced by 50% (+50% per stack).";
+        public override string ItemFullDescription => "Decrease <style=cIsHealing>barrier</style> decay rate by <style=cIsHealing>50%</style> <style=cStack>(+50% per stack)</style>.";
 
         public override string ItemLore => "";
 
@@ -46,11 +46,14 @@ namespace GOTCE.Items.Red
             RecalculateStatsAPI.GetStatCoefficients += Barrier;
         }
 
-        public void Barrier(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (NetworkServer.active) {
-                if (GetCount(body) > 0) {
+        public void Barrier(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (NetworkServer.active)
+            {
+                if (GetCount(body) > 0)
+                {
                     float decrease = Mathf.Pow(0.5f, GetCount(body));
-                    body.barrierDecayRate *= 0.5f;
+                    body.barrierDecayRate *= decrease;
                 }
             }
         }

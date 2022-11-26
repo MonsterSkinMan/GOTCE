@@ -14,9 +14,9 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLangTokenName => "GOTCE_Conformity";
 
-        public override string ItemPickupDesc => "<style=cIsUtility>Gain</style> increased <style=cIsDamage>attack speed</style>... <style=cDeath>but</style> you <style=cDeath>transform into the struck enemy</style> on hit.";
+        public override string ItemPickupDesc => "Gain increased attack speed... <color=#FF7F7F>BUT you transform into the struck enemy on hit</color>.";
 
-        public override string ItemFullDescription => "<style=cIsUtility>Gain</style> <style=cIsDamage>+100%</style> <style=cStack>(+100% per stack)</style> <style=cIsDamage>attack speed</style>... <style=cDeath>but</style> you <style=cIsVoid>transform</style> into the <style=cDeath>struck enemy</style> on hit. <style=cDeath>-0%</style> <style=cStack>(-50% per stack)</style> <style=cIsHealth>regeneration</style>";
+        public override string ItemFullDescription => "Gain <style=cIsDamage>+100%</style> <style=cStack>(+100% per stack)</style> <style=cIsDamage>attack speed</style>. Transform into the struck enemy on hit. Decrease <style=cIsHealing>regeneration</style> by <style=cIsHealing>0%</style> <style=cStack>(-50% per stack)</style>.";
 
         public override string ItemLore => "";
 
@@ -27,7 +27,7 @@ namespace GOTCE.Items.Lunar
         public override GameObject ItemModel => null;
 
         public override Sprite ItemIcon => null;
-        
+
         public override void Init(ConfigFile config)
         {
             base.Init(config);
@@ -40,14 +40,19 @@ namespace GOTCE.Items.Lunar
 
         public override void Hooks()
         {
-            On.RoR2.GlobalEventManager.OnHitEnemy += (orig, self, info, victim) => {
+            On.RoR2.GlobalEventManager.OnHitEnemy += (orig, self, info, victim) =>
+            {
                 orig(self, info, victim);
-                if (NetworkServer.active && info.attacker) {
+                if (NetworkServer.active && info.attacker)
+                {
                     CharacterBody attacker = info.attacker.GetComponent<CharacterBody>();
                     CharacterBody vBody = victim.GetComponent<CharacterBody>();
-                    if (attacker && vBody && vBody.master && attacker.masterObject) {
-                        if (GetCount(attacker) > 0) {
-                            if (attacker.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
+                    if (attacker && vBody && vBody.master && attacker.masterObject)
+                    {
+                        if (GetCount(attacker) > 0)
+                        {
+                            if (attacker.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
+                            {
                                 attacker.master.bodyPrefab = vBody.master.bodyPrefab;
                                 attacker.masterObject.GetComponent<Components.GOTCE_StatsComponent>().RespawnExtraLife();
                             }
@@ -56,16 +61,17 @@ namespace GOTCE.Items.Lunar
                 }
             };
 
-            RecalculateStatsAPI.GetStatCoefficients += (body, args) => {
-                if (NetworkServer.active && GetCount(body) > 0) {
-                    float increase = 1*GetCount(body);
-                    float decrease = 0.5f*(GetCount(body) - 1);
+            RecalculateStatsAPI.GetStatCoefficients += (body, args) =>
+            {
+                if (NetworkServer.active && GetCount(body) > 0)
+                {
+                    float increase = 1 * GetCount(body);
+                    float decrease = 0.5f * (GetCount(body) - 1);
 
                     args.attackSpeedMultAdd += increase;
                     args.regenMultAdd -= decrease;
                 }
             };
         }
-
     }
 }

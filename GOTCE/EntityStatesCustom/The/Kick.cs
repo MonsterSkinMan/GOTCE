@@ -4,8 +4,10 @@ using System;
 using UnityEngine;
 using Unity;
 
-namespace GOTCE.EntityStatesCustom.The {
-    public class Kick : BaseSkillState {
+namespace GOTCE.EntityStatesCustom.The
+{
+    public class Kick : BaseSkillState
+    {
         public float duration = 0.2f;
         public float damageCoefficient = 0.3f;
         public float procCoefficient = 0.05f;
@@ -14,7 +16,8 @@ namespace GOTCE.EntityStatesCustom.The {
         {
             base.OnEnter();
             duration = duration / attackSpeedStat;
-            if (NetworkServer.active) {
+            if (NetworkServer.active)
+            {
                 base.characterBody.transform.forward = base.GetAimRay().direction;
                 OverlapAttack attack = new OverlapAttack();
                 attack.damage = damageCoefficient * damageStat;
@@ -30,7 +33,8 @@ namespace GOTCE.EntityStatesCustom.The {
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (base.fixedAge >= duration) {
+            if (base.fixedAge >= duration)
+            {
                 outer.SetNextStateToMain();
             }
         }

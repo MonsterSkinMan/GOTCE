@@ -17,9 +17,9 @@ namespace GOTCE.Items.Red
 
         public override string ItemLangTokenName => "GOTCE_Gamepad";
 
-        public override string ItemPickupDesc => "Gain an increase to FOV crit chance based on your inputs per second";
+        public override string ItemPickupDesc => "Increase 'FOV crit' chance based on your inputs per second.";
 
-        public override string ItemFullDescription => "Gain a 2% (+2% per stack) increase to FOV crit chance multiplied by your inputs per second.";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>2%</style> <style=cStack>(+2% per stack)</style> '<style=cIsUtility>FOV crit chance</style>' multiplied by your <style=cIsUtility>inputs per second</style>.";
 
         public override string ItemLore => "";
 
@@ -43,26 +43,36 @@ namespace GOTCE.Items.Red
 
         public override void Hooks()
         {
-            On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) => {
+            On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) =>
+            {
                 orig(self);
                 self.AddItemBehavior<InputStacking>(GetCount(self));
             };
         }
     }
 
-    public class InputStacking : CharacterBody.ItemBehavior {
-        Components.GOTCE_StatsComponent stats;
-        public void Start() {
-            if (!body.masterObject.GetComponent<Components.GOTCE_StatsComponent>() && NetworkServer.active) {
+    public class InputStacking : CharacterBody.ItemBehavior
+    {
+        private Components.GOTCE_StatsComponent stats;
+
+        public void Start()
+        {
+            if (!body.masterObject.GetComponent<Components.GOTCE_StatsComponent>() && NetworkServer.active)
+            {
                 GameObject.DestroyImmediate(gameObject.GetComponent<InputStacking>());
             }
-            else {
+            else
+            {
                 stats = body.masterObject.GetComponent<Components.GOTCE_StatsComponent>();
             }
         }
-        public void FixedUpdate() {
-            if (body.hasAuthority) {
-                if (Input.anyKey) {
+
+        public void FixedUpdate()
+        {
+            if (body.hasAuthority)
+            {
+                if (Input.anyKey)
+                {
                     stats.inputs++;
                 }
             }

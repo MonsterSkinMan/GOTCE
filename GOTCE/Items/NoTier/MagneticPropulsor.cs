@@ -14,9 +14,9 @@ namespace GOTCE.Items.NoTier
 
         public override string ItemLangTokenName => "GOTCE_MagneticPropulsor";
 
-        public override string ItemPickupDesc => "";
+        public override string ItemPickupDesc => "THIS is a tasty burger.";
 
-        public override string ItemFullDescription => "";
+        public override string ItemFullDescription => "Motherfucker you're not supposed to read this.";
         public override bool Hidden => true;
         public override string ItemLore => "";
 
@@ -43,9 +43,11 @@ namespace GOTCE.Items.NoTier
             RecalculateStatsAPI.GetStatCoefficients += Guh;
         }
 
-        public void Guh(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (NetworkServer.active && GetCount(body) > 0) {
-                args.jumpPowerMultAdd += (3f*body.crit);
+        public void Guh(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (NetworkServer.active && GetCount(body) > 0)
+            {
+                args.jumpPowerMultAdd += (3f * body.crit);
                 args.critAdd -= body.crit;
             }
         }

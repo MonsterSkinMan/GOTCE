@@ -10,11 +10,16 @@ using GOTCE.Utils;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Mono.Cecil;
+using EntityStates;
+
 // using Mono.Reflection;
 
-namespace GOTCE.Based {
-    public class AltSkills {
-        public static void AddAlts() {
+namespace GOTCE.Based
+{
+    public class AltSkills
+    {
+        public static void AddAlts()
+        {
             // PassiveReplacement.RunHooks();
             CommandoAlts();
             RexAlts();
@@ -23,6 +28,18 @@ namespace GOTCE.Based {
             ViendAlts();
             BanditAlts();
             CaptainAlts();
+
+            // for whatever reason this is being set to 1 and causing mando to fire one shot and then reload the pistols, setting to 0 fixes this
+            On.RoR2.CharacterBody.Start += (orig, self) => {
+                orig(self);
+                foreach (GenericSkill genericSkill in self.gameObject.GetComponents<GenericSkill>()) {
+                    if (self.gameObject.name == "CommandoBody(Clone)" && genericSkill.skillDef) {
+                        if (genericSkill.skillName == "FirePistol") {
+                            genericSkill.skillDef.stockToConsume = 0;
+                        }
+                    }
+                }
+            };
         }
 
         private static void CommandoAlts()
@@ -45,7 +62,8 @@ namespace GOTCE.Based {
             LanguageAPI.Add(Skills.SuperShotgun.Instance.SkillDef.skillDescriptionToken, "Fire a devastating blast of 20 bullets for 20x100% damage. Has a long time between firing, as well as a large spread.");
         }
 
-        private static void RexAlts() {
+        private static void RexAlts()
+        {
             GameObject treebotPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Treebot/TreebotBody.prefab").WaitForCompletion();
 
             SkillLocator sl = treebotPrefab.GetComponent<SkillLocator>();
@@ -65,7 +83,8 @@ namespace GOTCE.Based {
             LanguageAPI.Add(Skills.SigmaShotgun.Instance.SkillDef.skillDescriptionToken, "Weakens. Fires 9 pollen pellets for 9x50% damage. 5% HP");
         }
 
-        private static void RGAlts() {
+        private static void RGAlts()
+        {
             MagneticPropulsor.Create();
             GameObject rgPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Railgunner/RailgunnerBody.prefab").WaitForCompletion();
 
@@ -91,7 +110,8 @@ namespace GOTCE.Based {
             LanguageAPI.Add(MagneticPropulsor.defAlt.skillDescriptionToken, "Critical Strike chance is converted into Jump Height.");
         }
 
-        private static void HuntressAlts() {
+        private static void HuntressAlts()
+        {
             GameObject huntressPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Huntress/HuntressBody.prefab").WaitForCompletion();
 
             SkillLocator sl = huntressPrefab.GetComponent<SkillLocator>();
@@ -123,7 +143,8 @@ namespace GOTCE.Based {
             }; */
         }
 
-        private static void BanditAlts() {
+        private static void BanditAlts()
+        {
             GameObject banditPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Bandit2/Bandit2Body.prefab").WaitForCompletion();
 
             SkillLocator sl = banditPrefab.GetComponent<SkillLocator>();
@@ -145,7 +166,8 @@ namespace GOTCE.Based {
             LanguageAPI.Add("GOTCE_EXPLOSIVEDECOY_NAME", "Explosive Decoy");
         }
 
-        private static void CaptainAlts() {
+        private static void CaptainAlts()
+        {
             GameObject captainPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Captain/CaptainBody.prefab").WaitForCompletion();
 
             SkillLocator sl = captainPrefab.GetComponent<SkillLocator>();
@@ -163,10 +185,10 @@ namespace GOTCE.Based {
 
             LanguageAPI.Add(Skills.Overheat.Instance.SkillDef.skillNameToken, "Hephaestus Shotgun");
             LanguageAPI.Add(Skills.Overheat.Instance.SkillDef.skillDescriptionToken, "Charge up a blast of rapid fire incendiary rounds for 60% damage each, inflicting ignite on hit. Bullets fired increases with charge time, but so does spread.");
-
         }
 
-        private static void ViendAlts() {
+        private static void ViendAlts()
+        {
             GameObject viendPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/VoidSurvivor/VoidSurvivorBody.prefab").WaitForCompletion();
 
             SkillLocator sl = viendPrefab.GetComponent<SkillLocator>();
@@ -206,8 +228,10 @@ namespace GOTCE.Based {
             LanguageAPI.Add(Skills.Drain.Instance.SkillDef.skillNameToken, "Dr??ain");
             LanguageAPI.Add(Skills.Drain.Instance.SkillDef.skillDescriptionToken, "Rapidly drain your corruption, and fire a devastating blast for 100% damage with +10% for each 1% of corruption drained. Range increases with corruption drained. Guaranteed critical strike after draining more than 50% corruption.@");
 
-            foreach (GenericSkill skill in viendPrefab.GetComponentsInChildren<GenericSkill>()) {
-                if ((skill._skillFamily as ScriptableObject).name.Contains("Passive")) {
+            foreach (GenericSkill skill in viendPrefab.GetComponentsInChildren<GenericSkill>())
+            {
+                if ((skill._skillFamily as ScriptableObject).name.Contains("Passive"))
+                {
                     SkillFamily family = skill._skillFamily;
                     Array.Resize(ref family.variants, family.variants.Length + 1);
                     family.variants[family.variants.Length - 1] = new SkillFamily.Variant
@@ -232,45 +256,56 @@ namespace GOTCE.Based {
 
             // alt skills hooks
 
-            On.EntityStates.VoidSurvivor.CorruptMode.CorruptMode.OnEnter += (orig, self) => {
+            On.EntityStates.VoidSurvivor.CorruptMode.CorruptMode.OnEnter += (orig, self) =>
+            {
                 bool hasSecondaryAlt = false;
                 bool hasPrimaryAlt = false;
                 bool hasUtilityAlt = false;
                 bool hasSpecialAlt = false;
-                if (NetworkServer.active) {
-                    hasSecondaryAlt = self.skillLocator.secondary.skillNameToken == Skills.Pearl.Instance.SkillDef.skillNameToken;
+                bool exists = self.skillLocator && self.skillLocator.secondary && self.skillLocator.primary && self.skillLocator.utility && self.skillLocator.special;
+                if (NetworkServer.active && exists)
+                {
+                    hasSecondaryAlt = self.skillLocator.secondary.skillNameToken == Skills.Pearl.Instance.SkillDef.skillNameToken || self.skillLocator.secondary.skillNameToken == Skills.PearlTeleport.Instance.SkillDef.skillNameToken;
                     hasSpecialAlt = self.skillLocator.special.skillNameToken == Skills.Drain.Instance.SkillDef.skillNameToken;
                 }
                 orig(self);
-                if (NetworkServer.active) {
-                    if (hasSecondaryAlt) {
+                if (NetworkServer.active && exists)
+                {
+                    if (hasSecondaryAlt)
+                    {
                         self.skillLocator.secondary.UnsetSkillOverride(self.gameObject, self.secondaryOverrideSkillDef, GenericSkill.SkillOverridePriority.Upgrade);
                         self.skillLocator.secondary.SetSkillOverride(self.gameObject, Skills.PearlUpgrade.Instance.SkillDef, GenericSkill.SkillOverridePriority.Upgrade);
                     }
 
-                    if (hasSpecialAlt) {
+                    if (hasSpecialAlt)
+                    {
                         self.skillLocator.special.UnsetSkillOverride(self.gameObject, self.specialOverrideSkillDef, GenericSkill.SkillOverridePriority.Upgrade);
                         self.skillLocator.special.SetSkillOverride(self.gameObject, Skills.DrainUpgrade.Instance.SkillDef, GenericSkill.SkillOverridePriority.Upgrade);
                     }
                 }
             };
 
-            On.EntityStates.VoidSurvivor.CorruptMode.CorruptMode.OnExit += (orig, self) => {
+            On.EntityStates.VoidSurvivor.CorruptMode.CorruptMode.OnExit += (orig, self) =>
+            {
                 bool hasSecondaryAlt = false;
                 bool hasPrimaryAlt = false;
                 bool hasUtilityAlt = false;
                 bool hasSpecialAlt = false;
-                if (NetworkServer.active) {
+                if (NetworkServer.active)
+                {
                     hasSecondaryAlt = self.skillLocator.secondary.skillNameToken == Skills.PearlUpgrade.Instance.SkillDef.skillNameToken;
                     hasSpecialAlt = self.skillLocator.special.skillNameToken == Skills.DrainUpgrade.Instance.SkillDef.skillNameToken;
                 }
                 orig(self);
-                if (NetworkServer.active) {
-                    if (hasSecondaryAlt) {
+                if (NetworkServer.active)
+                {
+                    if (hasSecondaryAlt)
+                    {
                         self.skillLocator.secondary.UnsetSkillOverride(self.gameObject, Skills.PearlUpgrade.Instance.SkillDef, GenericSkill.SkillOverridePriority.Upgrade);
                     }
 
-                    if (hasSpecialAlt) {
+                    if (hasSpecialAlt)
+                    {
                         self.skillLocator.special.UnsetSkillOverride(self.gameObject, Skills.DrainUpgrade.Instance.SkillDef, GenericSkill.SkillOverridePriority.Upgrade);
                     }
                 }
@@ -278,10 +313,13 @@ namespace GOTCE.Based {
         }
     }
 
-    public class MagneticPropulsor {
+    public class MagneticPropulsor
+    {
         public static PassiveItemSkillDef defAlt;
         public static PassiveItemSkillDef def;
-        public static void Create() {
+
+        public static void Create()
+        {
             GameObject rgPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Railgunner/RailgunnerBody.prefab").WaitForCompletion();
 
             SkillLocator sl = rgPrefab.GetComponent<SkillLocator>();
@@ -304,15 +342,20 @@ namespace GOTCE.Based {
         }
     }
 
-    public class ViendAltPassive {
+    public class ViendAltPassive
+    {
         private static ItemDef def;
+
         public delegate float orig_minimumCorruption(VoidSurvivorController self);
+
         public delegate bool orig_isPermanentlyCorrupted(VoidSurvivorController self);
 
         public static PassiveItemSkillDef skillDef;
-        private static BindingFlags propFlags = (BindingFlags)16 | (BindingFlags)4;
-        private static BindingFlags methFlags = (BindingFlags)16 | (BindingFlags)8;
-        public static void Create() {
+        private static readonly BindingFlags propFlags = (BindingFlags)16 | (BindingFlags)4;
+        private static readonly BindingFlags methFlags = (BindingFlags)16 | (BindingFlags)8;
+
+        public static void Create()
+        {
             skillDef = ScriptableObject.CreateInstance<PassiveItemSkillDef>();
             skillDef.skillNameToken = "GOTCE_VIENDPASSIVE_NAME";
             skillDef.skillDescriptionToken = "GOTCE_VIENDPASSIVE_DESC";
@@ -321,7 +364,9 @@ namespace GOTCE.Based {
             skillDef.activationState = new EntityStates.SerializableEntityStateType(typeof(EntityStates.Idle));
             skillDef.activationStateMachineName = "Weapon";
         }
-        public static void Hooks() {
+
+        public static void Hooks()
+        {
             // IL hooks
 
             /* IL.RoR2.CharacterBody.RecalculateStats += (il) => {
@@ -357,24 +402,24 @@ namespace GOTCE.Based {
                 }
             }; */
 
-
             // runtime detour hooks
-            Hook minCorruptionHook = new Hook(
+            Hook minCorruptionHook = new(
                 typeof(VoidSurvivorController).GetProperty(nameof(VoidSurvivorController.minimumCorruption), propFlags).GetGetMethod(),
                 typeof(ViendAltPassive).GetMethod(nameof(ViendAltPassive.VoidSurvivorController_minimumCorruption_get), methFlags)
             );
 
-            Hook permaCorruptionHook = new Hook(
+            Hook permaCorruptionHook = new(
                 typeof(VoidSurvivorController).GetProperty(nameof(VoidSurvivorController.isPermanentlyCorrupted), propFlags).GetGetMethod(),
                 typeof(ViendAltPassive).GetMethod(nameof(ViendAltPassive.VoidSurvivorContoller_isPermanentlyCorrupted_get), methFlags)
             );
 
-
             def = Items.NoTier.ViendAltPassive.Instance.ItemDef;
 
             // no more corruption gain on hit
-            On.RoR2.VoidSurvivorController.OnTakeDamageServer += (orig, self, report) => {
-                if (self.characterBody.inventory.GetItemCount(def) > 0 && NetworkServer.active) {
+            On.RoR2.VoidSurvivorController.OnTakeDamageServer += (orig, self, report) =>
+            {
+                if (self.characterBody.inventory.GetItemCount(def) > 0 && NetworkServer.active)
+                {
                     report.damageDealt *= -1;
                 }
                 orig(self, report);
@@ -389,42 +434,54 @@ namespace GOTCE.Based {
             }; */
 
             // armor on heal
-            On.RoR2.VoidSurvivorController.OnCharacterHealServer += (orig, self, com, amount, mask) => {
-                if (self.characterBody.inventory.GetItemCount(def) > 0) {
-                    if (NetworkServer.active) {
+            On.RoR2.VoidSurvivorController.OnCharacterHealServer += (orig, self, com, amount, mask) =>
+            {
+                if (self.characterBody.inventory.GetItemCount(def) > 0)
+                {
+                    if (NetworkServer.active)
+                    {
                         // self.characterBody.armor += 10f;
                     }
                 }
-                else {
+                else
+                {
                     orig(self, com, amount, mask);
                 }
             };
 
             // no healing
-            On.RoR2.HealthComponent.Heal += (orig, self, amount, mask, regen) => {
-                if (NetworkServer.active && self.body.inventory && self.body.inventory.GetItemCount(def) > 0) {
+            On.RoR2.HealthComponent.Heal += (orig, self, amount, mask, regen) =>
+            {
+                if (NetworkServer.active && self.body.inventory && self.body.inventory.GetItemCount(def) > 0)
+                {
                     amount = 0;
                 }
                 return orig(self, amount, mask, regen);
             };
 
             // "lifesteal"
-            On.RoR2.VoidSurvivorController.OnDamageDealtServer += (orig, self, info) => {
+            On.RoR2.VoidSurvivorController.OnDamageDealtServer += (orig, self, info) =>
+            {
                 orig(self, info);
-                if (NetworkServer.active && self.characterBody.inventory.GetItemCount(def) > 0) {
-                    self.AddCorruption(info.damageDealt * 0.15f);
+                if (NetworkServer.active && self.characterBody.inventory.GetItemCount(def) > 0)
+                {
+                    self.AddCorruption(info.damageDealt * 0.1f);
+                    // 0.15f => 0.1f
                 }
             };
-            
+
             // reworked corruption mechanics
-            On.RoR2.VoidSurvivorController.FixedUpdate += (orig, self) => {
-                if (NetworkServer.active && self.characterBody && self.characterBody.inventory && self.characterBody.inventory.GetItemCount(def) > 0 && self.bodyHealthComponent) {
+            On.RoR2.VoidSurvivorController.FixedUpdate += (orig, self) =>
+            {
+                if (NetworkServer.active && self.characterBody && self.characterBody.inventory && self.characterBody.inventory.GetItemCount(def) > 0 && self.bodyHealthComponent)
+                {
                     self.corruptionForFullHeal = 0;
                     // self.characterBody.armor -= 0.1f * Time.fixedDeltaTime;
                     // self.corruptionFractionPerSecondWhileCorrupted = -0.001f;
                     self.maxCorruption = 100f + ((10f * (self.characterBody.level - 1)));
 
-                    if (self.corruption < 1) {
+                    if (self.corruption < 1)
+                    {
                         self.AddCorruption(float.MaxValue);
                     }
 
@@ -432,13 +489,16 @@ namespace GOTCE.Based {
                     self.bodyHealthComponent.health = fraction;
 
                     self.corruptionFractionPerSecondWhileCorrupted = self.characterBody.outOfCombat ? -0.022f : -0.044f;
-                    if (self.corruption >= 100) {
-                        self.corruptionFractionPerSecondWhileCorrupted = -0.66f;
+                    if (self.corruption >= 100)
+                    {
+                        self.corruptionFractionPerSecondWhileCorrupted = -0.066f;
                     }
 
-                    if (self.characterBody.skillLocator) {
+                    if (self.characterBody.skillLocator)
+                    {
                         GenericSkill utility = self.characterBody.skillLocator.utility;
-                        if (utility.skillDef) {
+                        if (utility.skillDef)
+                        {
                             utility.skillDef.isCombatSkill = false;
                         }
                     }
@@ -452,20 +512,26 @@ namespace GOTCE.Based {
             };
         }
 
-        public static bool VoidSurvivorContoller_isPermanentlyCorrupted_get(orig_isPermanentlyCorrupted orig, VoidSurvivorController self) {
-            if (self.characterBody && self.characterBody.inventory && self.characterBody.inventory.GetItemCount(Items.NoTier.ViendAltPassive.Instance.ItemDef) > 0) {
+        public static bool VoidSurvivorContoller_isPermanentlyCorrupted_get(orig_isPermanentlyCorrupted orig, VoidSurvivorController self)
+        {
+            if (self.characterBody && self.characterBody.inventory && self.characterBody.inventory.GetItemCount(Items.NoTier.ViendAltPassive.Instance.ItemDef) > 0)
+            {
                 return true;
             }
-            else {
+            else
+            {
                 return self.minimumCorruption >= self.maxCorruption;
             }
         }
 
-        public static float VoidSurvivorController_minimumCorruption_get(orig_minimumCorruption orig, VoidSurvivorController self) {
-            if (self.characterBody && self.characterBody.inventory && self.characterBody.inventory.GetItemCount(Items.NoTier.ViendAltPassive.Instance.ItemDef) > 0) {
+        public static float VoidSurvivorController_minimumCorruption_get(orig_minimumCorruption orig, VoidSurvivorController self)
+        {
+            if (self.characterBody && self.characterBody.inventory && self.characterBody.inventory.GetItemCount(Items.NoTier.ViendAltPassive.Instance.ItemDef) > 0)
+            {
                 return 1f;
             }
-            else {
+            else
+            {
                 return self.minimumCorruptionPerVoidItem * self.voidItemCount;
             }
         }

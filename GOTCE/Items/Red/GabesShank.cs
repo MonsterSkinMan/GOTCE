@@ -22,9 +22,9 @@ namespace GOTCE.Items.Red
 
         public override string ItemLangTokenName => "GOTCE_GabesShank";
 
-        public override string ItemPickupDesc => "Gain bonus damage for every game you have installed on Steam.";
+        public override string ItemPickupDesc => "Gain bonus damage for every game you have on Steam.";
 
-        public override string ItemFullDescription => "Gain <style=cIsDamage>+2%</style> <style=cStack>(+1% per stack)</style> <style=cIsDamage>damage</style> for <style=cIsUtility>every game you have installed on Steam</style>. <style=cUserSetting>This item only functions if your Steam profile visibility is set to public</style>";
+        public override string ItemFullDescription => "Gain <style=cIsDamage>+2%</style> <style=cStack>(+1% per stack)</style> <style=cIsDamage>damage</style> for <style=cIsUtility>every game you have on Steam</style>. <style=cUserSetting>This item only functions if your Steam profile visibility is set to public</style>";
 
         public override string ItemLore => "\"I've always wanted to be a giant space crab.\"\n-Gabe Newell";
 
@@ -52,21 +52,27 @@ namespace GOTCE.Items.Red
             CharacterBody.onBodyStartGlobal += Steam;
         }
 
-        public void Increase(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (NetworkServer.active && body.isPlayerControlled && body.inventory.GetItemCount(ItemDef) > 0) {
-                if (body.masterObject && body.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
+        public void Increase(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (NetworkServer.active && body.isPlayerControlled && body.inventory.GetItemCount(ItemDef) > 0)
+            {
+                if (body.masterObject && body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
+                {
                     Components.GOTCE_StatsComponent stats = body.masterObject.GetComponent<Components.GOTCE_StatsComponent>();
-                    args.damageMultAdd += (0.02f + (0.01f*(body.inventory.GetItemCount(ItemDef) - 1)))*stats.game_count;
+                    args.damageMultAdd += (0.02f + (0.01f * (body.inventory.GetItemCount(ItemDef) - 1))) * stats.game_count;
                 }
             }
         }
 
-        public async void Steam(CharacterBody body) {
-            if (body.isPlayerControlled) {
+        public async void Steam(CharacterBody body)
+        {
+            if (body.isPlayerControlled)
+            {
                 HttpClient http = new();
                 string id = TranslateSteamID(Util.LookUpBodyNetworkUser(body).id.steamId.ToSteamID()).ToString();
                 string url = $"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=C937967136919706C42E0DCBC8C1DDF6&steamid={id}&format=json&include_played_free_games=true";
-                try {
+                try
+                {
                     using HttpResponseMessage response = await http.GetAsync(url);
                     response.EnsureSuccessStatusCode();
                     string res = await response.Content.ReadAsStringAsync();
@@ -74,10 +80,13 @@ namespace GOTCE.Items.Red
                     string game2 = JsonConvert.SerializeObject(game);
                     int game_count = JsonConvert.DeserializeObject<GabeJson2>(game2).game_count;
 
-                    if (body.masterObject && body.masterObject.GetComponent<Components.GOTCE_StatsComponent>()) {
+                    if (body.masterObject && body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
+                    {
                         body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().game_count = game_count;
                     }
-                } catch {
+                }
+                catch
+                {
                     Main.ModLogger.LogError("Could not get the game count of the player for Gabe's Shank. Maybe your Steam profile isn't on public visibility?");
                 }
             }
@@ -97,18 +106,18 @@ namespace GOTCE.Items.Red
             Int64 y = Int64.Parse(parts[2].Value);
             Int64 z = Int64.Parse(parts[3].Value) << 1;
 
-            result =  ((1 + (1 << 20) + x) << 32) | (y + z);        
+            result = ((1 + (1 << 20) + x) << 32) | (y + z);
             return result;
         }
-
-        
     }
 
-    public class GabeJson {
-        public System.Object response {get; set;}
+    public class GabeJson
+    {
+        public System.Object response { get; set; }
     }
 
-    public class GabeJson2 {
-        public int game_count {get; set;}
+    public class GabeJson2
+    {
+        public int game_count { get; set; }
     }
 }

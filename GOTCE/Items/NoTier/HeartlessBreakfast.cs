@@ -14,9 +14,9 @@ namespace GOTCE.Items.NoTier
 
         public override string ItemLangTokenName => "GOTCE_HeartlessBreakfast";
 
-        public override string ItemPickupDesc => "Does nothing.";
+        public override string ItemPickupDesc => "An empty can.";
 
-        public override string ItemFullDescription => "Does nothing.";
+        public override string ItemFullDescription => "An empty can.";
 
         public override string ItemLore => "";
 

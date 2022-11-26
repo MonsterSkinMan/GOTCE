@@ -1,4 +1,4 @@
-/* using R2API;
+using R2API;
 using RoR2;
 using UnityEngine;
 using RoR2.Skills;
@@ -15,9 +15,7 @@ namespace GOTCE.Enemies.Minibosses
     {
         public override string CloneName => "CrackedVermin";
         public override string PathToClone => "RoR2/DLC1/Vermin/VerminBody.prefab";
-        public override AssetBundle bundle => Main.SecondaryAssets;
-        public override bool isLocal => false;
-        public override string PathToCloneMaster => "RoR2/DLC1/FlyingVermin/FlyingVerminMaster.prefab";
+        public override string PathToCloneMaster => "RoR2/DLC1/Vermin/VerminMaster.prefab";
         public CharacterBody body;
         public CharacterMaster master;
 
@@ -91,6 +89,8 @@ namespace GOTCE.Enemies.Minibosses
             SkillDef thunderslam = Skills.CrackedSlam.Instance.SkillDef;
             SkillLocator sl = prefab.GetComponent<SkillLocator>();
 
+            prefab.GetComponent<CharacterDeathBehavior>().deathState = new EntityStates.SerializableEntityStateType(typeof(EntityStatesCustom.Providence.ProviDeath));
+
             ReplaceSkill(sl.primary, thunderslam);
 
             LanguageAPI.Add("GOTCE_CRACKEDVERMIN_NAME", "Cracked Vermin");
@@ -99,8 +99,8 @@ namespace GOTCE.Enemies.Minibosses
             
             On.RoR2.Chat.AddMessage_string += (orig, str) => {
                 orig(str);
-                Debug.Log(str);
-                if (str.Contains("your jordans are fake")) {
+                // Debug.Log(str);
+                if (str.ToLower().Contains("your jordans are fake")) {
                     ReadOnlyCollection<TeamComponent> team = TeamComponent.GetTeamMembers(TeamIndex.Monster);
                     foreach (TeamComponent com in team) {
                         if (com.body && com.body.healthComponent) {
@@ -149,4 +149,4 @@ namespace GOTCE.Enemies.Minibosses
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
     }
-} */
+}
