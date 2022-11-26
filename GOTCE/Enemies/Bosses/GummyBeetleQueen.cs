@@ -25,7 +25,7 @@ namespace GOTCE.Enemies.Bosses
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 350;
+            isc.directorCreditCost = 1500;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
@@ -41,7 +41,7 @@ namespace GOTCE.Enemies.Bosses
         {
             base.AddDirectorCard();
             card.minimumStageCompletions = 0;
-            card.selectionWeight = 10;
+            card.selectionWeight = 2;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
 
