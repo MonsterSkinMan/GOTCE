@@ -61,4 +61,4 @@ namespace GOTCE.Achievements.CrackedCommando
         public override string TokenName => "CONSISTENCY";
         public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
     }
-}
+} 

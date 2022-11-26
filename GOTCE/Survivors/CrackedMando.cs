@@ -27,10 +27,6 @@ namespace GOTCE.Survivors
             ReplaceSkill(sl.secondary, PhaseRounder.Instance.SkillDef);
             ReplaceSkill(sl.utility, VeryTactical.Instance.SkillDef);
 
-            /* GameObject model = prefab.transform.Find("ModelBase").transform.Find("mdlCommandoDualies").gameObject;
-            SwapMaterials(model, Main.SecondaryAssets.LoadAsset<Material>("Assets/Prefabs/Survivors/Crackmando/Materials/body.mat"), true);
-            GameObject.DestroyImmediate(model.GetComponentInChildren<ModelSkinController>()); */
-
             LanguageAPI.Add("GOTCE_CRACKMANDO_NAME", "Cracked Commando");
             LanguageAPI.Add("GOTCE_CRACKMANDO_DESC", "Cracked Commando is a jack of all trades survivor who can do a bit of everything, whether that be destroying multiplayer lobbies with Suppressive Nader or outdamaging railgunner with his Double Double Double Double Tap.");
             LanguageAPI.Add("GOTCE_CRACKMANDO_SUBTITLE", "Harbinger of the Cracked Emoji");
@@ -68,4 +64,4 @@ namespace GOTCE.Survivors
             ContentAddition.AddSurvivorDef(surv);
         }
     }
-}
+} 
