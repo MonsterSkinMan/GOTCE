@@ -32,7 +32,7 @@ namespace GOTCE.Enemies.Minibosses
             body.subtitleNameToken = "GOTCE_IONSURGER_SUBTITLE";
             body.baseRegen = 0f;
             body.bodyFlags |= CharacterBody.BodyFlags.IgnoreFallDamage;
-            body.portraitIcon = Main.MainAssets.LoadAsset<Texture2D>("Assets/Textures/Icons/Enemies/LivingSuppressiveFire.png");
+            body.portraitIcon = Main.SecondaryAssets.LoadAsset<Texture2D>("Assets/Icons/IonSurger.png");
         }
 
         public override void AddSpawnCard()

@@ -12,6 +12,8 @@ namespace GOTCE.Based
         public static void DoTheBased()
         {
             On.RoR2.SceneDirector.Start += SceneDirector_Start;
+            On.RoR2.PurchaseInteraction.SetAvailable += SetAvailable;
+            On.RoR2.PurchaseInteraction.OnInteractionBegin += NoMorePod;
         }
 
         private static void SceneDirector_Start(On.RoR2.SceneDirector.orig_Start orig, SceneDirector self)
@@ -22,7 +24,25 @@ namespace GOTCE.Based
                 GameObject.Find("HOLDER: Store").AddComponent<AntiSlab>();
             }
         }
-    }
+
+        private static void SetAvailable(On.RoR2.PurchaseInteraction.orig_SetAvailable orig, PurchaseInteraction self, bool value) {
+            if (self.displayNameToken == "LUNAR_REROLL_NAME") {
+                orig(self, false);
+            }
+            else {
+                orig(self, value);
+            }
+        }
+
+        private static void NoMorePod(On.RoR2.PurchaseInteraction.orig_OnInteractionBegin orig, PurchaseInteraction self, Interactor interactor) {
+            orig(self, interactor);
+            if (NetworkServer.active) {
+                if (self.costType == CostTypeIndex.LunarCoin && SceneManager.GetActiveScene().name == "bazaar") {
+                    GameObject.DestroyImmediate(self.gameObject);
+                }
+            }
+        }
+     }
 
     internal class AntiSlab : MonoBehaviour
     {
@@ -48,5 +68,5 @@ namespace GOTCE.Based
                 gameObject.AddComponent<AntiSlab>(); // nice try, but no
             }
         }
-    }
+     }
 }

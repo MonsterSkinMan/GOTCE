@@ -1,6 +1,7 @@
 using UnityEngine;
 using EntityStates;
 using GOTCE.EntityStatesCustom;
+using RoR2.Skills;
 
 namespace GOTCE.Skills
 {

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3603471120
+CRC: 1046730067
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 573cfa0b6a64c997d93ee1038e176835
+    Hash: ed475031d7a9dbf1c154791fe40ab850
   TypeTreeHash:
     serializedVersion: 2
     Hash: 5c51cf14ecb5cc882dede7dbfb6d0d18
@@ -219,6 +219,7 @@ Assets:
 - Assets/Prefabs/Projectiles/AltSkills/CorruptedPearl/PearlUpgrade.prefab
 - Assets/Prefabs/Projectiles/AltSkills/Core/Core.prefab
 - Assets/Prefabs/Interactables/Crucible/Crucible.prefab
+- Assets/Icons/IonSurger.png
 - Assets/Prefabs/Projectiles/Aegiscentrism/AegisGhost.prefab
 - Assets/Prefabs/Survivors/Crackmando/CrackedDef.asset
 - Assets/Prefabs/Enemies/The/the.mat
@@ -241,6 +242,8 @@ Assets:
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/warp.png
 - Assets/Icons/nader.png
 - Assets/Prefabs/Enemies/Provi/Projectile/ProviOrb.prefab
+- Assets/Icons/GummyBeetleQueen.png
 - Assets/Prefabs/Projectiles/AegisFunder/AegisProjectile.prefab
+- Assets/Icons/CrackedCommando.png
 - Assets/Prefabs/Enemies/Provi/ProviBody.prefab
 Dependencies: []
