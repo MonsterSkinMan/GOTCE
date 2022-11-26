@@ -18,9 +18,9 @@ namespace GOTCE.Items.Void_Red
 
         public override string ItemLangTokenName => "GOTCE_BisonSkull";
 
-        public override string ItemPickupDesc => "Gain barrier on kill. Corrupts all healing items.";
+        public override string ItemPickupDesc => "Gain barrier on kill. <style=cIsVoid>Corrupts all healing items</style>.";
 
-        public override string ItemFullDescription => "On killing an enemy, gain a temporary barrier for 1 (+1 per stack) health. Corrupts all healing items.";
+        public override string ItemFullDescription => "On kill, gain a <style=cIsHealing>temporary barrier</style> for <style=cIsHealing>1</style> <style=cStack>(+1 per stack)</style> health. <style=cIsVoid>Corrupts all healing items</style>.";
 
         public override string ItemLore => "TBA";
 

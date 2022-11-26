@@ -14,7 +14,7 @@ namespace GOTCE.Items.White
     {
         public override bool CanRemove => true;
         public override string ConfigName => ItemName;
-        public override string ItemFullDescription => "Increase the <style=cIsDamage>proc coefficient</style> of all of your attacks by <style=cIsDamage>1</style> <style=cStack>(+1 per stack)</style>. Breaks at low health.";
+        public override string ItemFullDescription => "Increase the <style=cIsDamage>proc coefficient</style> of all of your attacks by <style=cIsDamage>1</style> <style=cStack>(+1 per stack)</style>. Taking damage to below <style=cIsHealth>25% health</style> <style=cIsUtility>breaks</style> this item.";
         public override Sprite ItemIcon => null;
         public override string ItemLangTokenName => "GOTCE_LuckiestMask";
         public override string ItemLore => "";

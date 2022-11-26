@@ -5,20 +5,21 @@ using System.Data;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections.Generic;
+using HarmonyLib;
 
 namespace GOTCE.Items.White
 {
-    public class PluripotentSteak : ItemBase<PluripotentSteak>
+    public class PluripotentBisonSteak : ItemBase<PluripotentBisonSteak>
     {
         public override string ConfigName => "Pluripotent Bison Steak";
 
         public override string ItemName => "Pluripotent Bison Steak";
 
-        public override string ItemLangTokenName => "GOTCE_PluripotentSteak";
+        public override string ItemLangTokenName => "GOTCE_PluripotentBisonSteak";
 
-        public override string ItemPickupDesc => "Gain increased health, taking damage randomizes your inventory.";
+        public override string ItemPickupDesc => "Gain increased health, taking damage randomizes your inventory. <style=cIsVoid>Corrupts all Bison Steaks</style>.";
 
-        public override string ItemFullDescription => "Gain +25% (+30% per stack) max health. Upon taking damage, randomize your inventory.";
+        public override string ItemFullDescription => "Gain <style=cIsHealing>+25%</style> <style=cStack>(+30% per stack)</style> <style=cIsHealing>max health</style>. Upon taking damage, <style=cIsUtility>randomize</style> your inventory. <style=cIsVoid>Corrupts all Bison Steaks</style>.";
 
         public override string ItemLore => "";
 
@@ -44,6 +45,7 @@ namespace GOTCE.Items.White
         {
             On.RoR2.HealthComponent.TakeDamage += Bison;
             RecalculateStatsAPI.GetStatCoefficients += Hp;
+            On.RoR2.Items.ContagiousItemManager.Init += WoolieDimension;
         }
 
         public void Bison(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo info)
@@ -87,6 +89,17 @@ namespace GOTCE.Items.White
                 float bonus = 1.25f + (body.inventory.GetItemCount(ItemDef) - 1) * 0.30f;
                 args.healthMultAdd += bonus;
             }
+        }
+
+        private void WoolieDimension(On.RoR2.Items.ContagiousItemManager.orig_Init orig)
+        {
+            ItemDef.Pair transformation = new()
+            {
+                itemDef1 = RoR2Content.Items.FlatHealth,
+                itemDef2 = this.ItemDef
+            };
+            ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem] = ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem].AddToArray(transformation);
+            orig();
         }
     }
 }

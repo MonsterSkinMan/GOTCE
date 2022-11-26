@@ -5,7 +5,7 @@ using BepInEx.Configuration;
 
 namespace GOTCE.Items.Green
 {
-    public class MissileFovCrit : ItemBase<MissileFovCrit>
+    public class MissileGuidanceSystem : ItemBase<MissileGuidanceSystem>
     {
         public override string ConfigName => "Missile Guidance System";
 
@@ -15,7 +15,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemPickupDesc => "On 'Critical FOV Strike' fire a homing missile.";
 
-        public override string ItemFullDescription => "Gain <style=cIsUtility>5% FOV crit chance</style>. On '<style=cIsUtility>Critical FOV Strike</style>', fire 1 (+1 per stack) missiles for <style=cIsDamage>300%</style> damage.";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>5% FOV crit chance</style>. On '<style=cIsUtility>Critical FOV Strike</style>', fire <style=cIsDamage>1</style> <style=cStack>(+1 per stack)</style> missiles for <style=cIsDamage>300%</style> damage.";
 
         public override string ItemLore => "";
 
