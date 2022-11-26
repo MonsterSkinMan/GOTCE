@@ -11,7 +11,7 @@ namespace GOTCE.Based
     {
         public static void DoTheBased()
         {
-            // On.RoR2.SceneDirector.Start += SceneDirector_Start;
+            On.RoR2.SceneDirector.Start += SceneDirector_Start;
             On.RoR2.PurchaseInteraction.SetAvailable += SetAvailable;
             On.RoR2.PurchaseInteraction.OnInteractionBegin += NoMorePod;
         }
