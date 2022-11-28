@@ -50,6 +50,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                     position = base.characterBody.corePosition,
                     rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(aimRay.direction, -1f, 3f, -1f, 3f)),
                     owner = base.gameObject,
+                    force = 30000f
                 };
                 ProjectileManager.instance.FireProjectile(info);
             }
