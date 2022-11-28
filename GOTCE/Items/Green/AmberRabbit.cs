@@ -70,7 +70,7 @@ namespace GOTCE.Items.Green
                             List<ItemIndex> items = inv.itemAcquisitionOrder;
                             foreach (ItemIndex itemIndex in items)
                             {
-                                int toIncrease = inv.GetItemCount(itemIndex) ^ inv.GetItemCount(ItemDef);
+                                int toIncrease = (int)Mathf.Pow(inv.GetItemCount(itemIndex), inv.GetItemCount(ItemDef));
                                 inv.GiveItem(itemIndex, toIncrease);
                             }
                         }
