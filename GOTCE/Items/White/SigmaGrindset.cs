@@ -15,7 +15,7 @@ namespace GOTCE.Items.White
         public override bool CanRemove => true;
         public override string ConfigName => ItemName;
         public override string ItemFullDescription => "Gain <style=cIsUtility>5% sprint crit chance</style>. On '<style=cIsUtility>Critical Sprint</style>', permanently boost your <style=cIsHealing>regeneration</style> by <style=cIsHealing>30%</style> <style=cStack>(+30% per stack)</style>.";
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/SigmaGrindset.png");
         public override string ItemLangTokenName => "GOTCE_SigmaGrindset";
         public override string ItemLore => "";
         public override GameObject ItemModel => null;

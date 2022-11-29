@@ -25,7 +25,7 @@ namespace GOTCE.Items.NoTier
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/dream.pdf.png");
 
         public override void Init(ConfigFile config)
         {

@@ -6,10 +6,9 @@ using Unity;
 
 namespace GOTCE.EntityStatesCustom.The
 {
-    public class TheDeath : GenericCharacterDeath
+    public class TheHurtState : BaseState
     {
-        public float duration = 2f;
-        public override bool shouldAutoDestroy => false;
+        public float duration = 3f;
 
         public override void FixedUpdate()
         {
@@ -25,7 +24,7 @@ namespace GOTCE.EntityStatesCustom.The
             base.OnEnter();
             if (NetworkServer.active)
             {
-                // healthComponent.health = healthComponent.fullHealth;
+                healthComponent.health = healthComponent.fullHealth;
                 PlayAnimation("Body", "Death");
             }
         }

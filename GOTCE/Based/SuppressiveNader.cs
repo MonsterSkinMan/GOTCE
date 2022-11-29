@@ -53,7 +53,7 @@ namespace GOTCE.Based
             }; */
 
             LanguageAPI.Add(Skills.VeryTactical.Instance.SkillDef.skillNameToken, "Very Tactical Diving Slide");
-            LanguageAPI.Add(Skills.VeryTactical.Instance.SkillDef.skillDescriptionToken, "Literally just gives you 5 seconds of complete flight.");
+            LanguageAPI.Add(Skills.VeryTactical.Instance.SkillDef.skillDescriptionToken, "Literally just gives you 5 seconds of complete flight. Guarantees a critical sprint when activated.");
             LanguageAPI.Add(Skills.DoubleDoubleTap.Instance.SkillDef.skillNameToken, "Double Double Double Double Double Tap");
             LanguageAPI.Add(Skills.DoubleDoubleTap.Instance.SkillDef.skillDescriptionToken, "Fire bullets all around you for 96x100% with a 1.0 proc coeff. Cannot miss.");
             LanguageAPI.Add(Skills.SuppressiveNader.Instance.SkillDef.skillNameToken, "Suppressive Nader");

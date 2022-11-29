@@ -20,7 +20,12 @@ namespace GOTCE.Survivors
         public override void Modify()
         {
             base.Modify();
+            CharacterBody body = prefab.GetComponent<CharacterBody>();
+            body.preferredPodPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Toolbot/RoboCratePod.prefab").WaitForCompletion();
+            prefab.GetComponent<CameraTargetParams>().cameraParams = Addressables.LoadAssetAsync<CharacterCameraParams>("RoR2/Base/Common/ccpStandard.asset").WaitForCompletion();
+
             EntityStateMachine esm = AddESM(prefab, "Flight", new SerializableEntityStateType(typeof(Idle)));
+            
             SkillLocator sl = prefab.GetComponent<SkillLocator>();
             ReplaceSkill(sl.special, SuppressiveNader.Instance.SkillDef);
             ReplaceSkill(sl.primary, DoubleDoubleTap.Instance.SkillDef);
