@@ -179,7 +179,7 @@ namespace GOTCE.Based
             skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
             {
                 skillDef = Skills.Overheat.Instance.SkillDef,
-                unlockableName = "",
+                unlockableDef = Achievements.Captain.OverheatUnlock.Instance.enabled ? Achievements.Captain.OverheatUnlock.Instance.def : null,
                 viewableNode = new ViewablesCatalog.Node(Skills.Overheat.Instance.SkillDef.skillNameToken, false, null)
             };
 

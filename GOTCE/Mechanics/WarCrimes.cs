@@ -72,7 +72,6 @@ namespace GOTCE.Mechanics
                             case DamageType.BlightOnHit:
                                 stats.mostRecentlyCommitedWarCrime = WarCrime.Chemical;
                                 break;
-
                             default:
                                 break;
                         }
@@ -100,6 +99,10 @@ namespace GOTCE.Mechanics
                                 default:
                                     break;
                             }
+                        }
+
+                        if (report.attackerBody.HasBuff(RoR2Content.Buffs.AffixRed)) {
+                            stats.mostRecentlyCommitedWarCrime = WarCrime.Incendiary;
                         }
                     }
                 }
