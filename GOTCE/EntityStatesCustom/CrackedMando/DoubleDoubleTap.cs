@@ -22,8 +22,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
         public override void OnEnter()
         {
             base.OnEnter();
-            PlayAnimation("Gesture Additive, Left", "FirePistol, Left");
-            PlayAnimation("Gesture Additive, Right", "FirePistol, Right");
+            PlayAnimation("Weapon", "Fire", "FireRate", 1f);
         }
 
         public override void OnExit()
@@ -69,7 +68,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                     {
                         owner = base.gameObject,
                         weapon = base.gameObject,
-                        origin = base.gameObject.transform.position,
+                        origin = GetModelChildLocator().FindChild(GetRandomMuzzle()).position,
                         aimVector = guh.transform.forward,
                         minSpread = 0f,
                         maxSpread = 0f,
@@ -83,7 +82,8 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                         smartCollision = false,
                         falloffModel = BulletAttack.FalloffModel.None,
                         procCoefficient = 1f,
-                        maxDistance = 25f
+                        maxDistance = 25f,
+                        muzzleName = GetRandomMuzzle()
                     };
 
                     if (bulletsFired == 3 || bulletsFired == 6) { // fire an extra time every 3rd or 6th bullet to reach 96
@@ -96,7 +96,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                 {
                     owner = base.gameObject,
                     weapon = base.gameObject,
-                    origin = base.gameObject.transform.position,
+                    origin = GetModelChildLocator().FindChild(GetRandomMuzzle()).position,
                     aimVector = base.GetAimRay().direction,
                     minSpread = 0f,
                     maxSpread = 360f,
@@ -110,7 +110,8 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                     smartCollision = false,
                     falloffModel = BulletAttack.FalloffModel.None,
                     procCoefficient = 0f,
-                    maxDistance = 25f
+                    maxDistance = 25f,
+                    muzzleName = GetRandomMuzzle()
                 };
 
                 bulletAttack2.Fire();
@@ -118,5 +119,23 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                 bulletsFired += 1;
             }
         }
+
+        private string GetRandomMuzzle() {
+            List<string> muzzles = new() {
+                "Muzzle0",
+                "Muzzle1",
+                "Muzzle2",
+                "Muzzle3",
+                "Muzzle4",
+                "Muzzle5",
+                "Muzzle6",
+                "Muzzle7",
+                "Muzzle8",
+                "Muzzle9",
+                "Muzzle10"
+            };
+
+            return muzzles[Run.instance.runRNG.RangeInt(0, muzzles.Count - 1)];
+         }
     }
 }

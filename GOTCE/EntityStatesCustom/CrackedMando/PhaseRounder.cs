@@ -20,8 +20,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             base.characterBody.SetSpreadBloom(0.2f, canOnlyIncreaseBloom: false);
             duration = totalDuration;
             modelAnimator = GetModelAnimator();
-            PlayAnimation("Gesture, Additive", "FireFMJ", "FireFMJ.playbackRate", duration);
-            PlayAnimation("Gesture, Override", "FireFMJ", "FireFMJ.playbackRate", duration);
+            PlayAnimation("Weapon", "Fire", "FireRate", 1f);
             // modelTransform = base.characterBody.modelLocator.modelTransform.GetChild(1).transform;
 
             for (int i = 0; i < 8; i++)

@@ -53,8 +53,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             durationBetweenShots = baseDurationBetweenShots / attackSpeedStat;
             bulletCount = (int)((float)baseBulletCount * attackSpeedStat);
             modelAnimator = GetModelAnimator();
-            PlayAnimation("Gesture, Additive", "ThrowGrenade", "FireFMJ.playbackRate", duration * 2f);
-            PlayAnimation("Gesture, Override", "ThrowGrenade", "FireFMJ.playbackRate", duration * 2f);
+            PlayAnimation("Weapon", "Grenade", "GrenadeRate", duration);
             // modelTransform = base.characterBody.modelLocator.modelTransform.GetChild(1).transform;
             FireBullet();
             Ray aimRay = GetAimRay();
@@ -91,7 +90,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                     projectilePrefab = prefab,
                     crit = Util.CheckRoll(base.critStat, base.characterBody.master),
                     damageColorIndex = DamageColorIndex.WeakPoint,
-                    position = base.characterBody.aimOriginTransform.position,
+                    position = GetModelChildLocator().FindChild("Mouth").position,
                     rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(aimRay.direction, -2f, 2f, -2f, 2f)),
                     owner = base.gameObject,
                 };

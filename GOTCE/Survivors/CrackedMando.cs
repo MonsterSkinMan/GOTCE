@@ -56,7 +56,7 @@ namespace GOTCE.Survivors
             {
                 bodyPrefab = prefab,
                 descriptionToken = "GOTCE_CRACKMANDO_DESC",
-                displayPrefab = prefab.transform.Find("Model Base").transform.Find("CrackModel").gameObject,
+                displayPrefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Survivors/Crackmando/Model/CrackMandoDisplay.prefab"),
                 primaryColor = Color.yellow,
                 cachedName = "GOTCE_CRACKMANDO_NAME",
                 unlockableDef = SurvivorUnlock.Instance.enabled ? SurvivorUnlock.Instance.def : null,

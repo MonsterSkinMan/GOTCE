@@ -34,7 +34,15 @@ namespace GOTCE.EntityStatesCustom.Providence
                 Vector3 forward = Quaternion.AngleAxis(num * i, Vector3.up) * vector;
                 if (base.isAuthority)
                 {
-                    ProjectileManager.instance.FireProjectile(EntityStates.BrotherMonster.ExitSkyLeap.waveProjectilePrefab, footPosition, Util.QuaternionSafeLookRotation(forward), base.gameObject, base.characterBody.damage * 9.2f, 3.2f, base.RollCrit());
+                    FireProjectileInfo info = new();
+                    info.projectilePrefab = EntityStates.BrotherMonster.ExitSkyLeap.waveProjectilePrefab;
+                    info.position = footPosition;
+                    info.rotation = Util.QuaternionSafeLookRotation(forward);
+                    info.owner = base.gameObject;
+                    info.damage = base.characterBody.damage * 9.2f;
+                    info.force = 3.2f;
+                    info.crit = base.RollCrit();
+                    ProjectileManager.instance.FireProjectile(info);
                 }
             }
         }

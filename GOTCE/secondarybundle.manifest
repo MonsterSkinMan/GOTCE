@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3721814535
+CRC: 1912368618
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: eda9c5c50dca7533999f651c9dfada68
+    Hash: 293feaf6608a7074b64e75928579aafa
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 9f681c31edc7b9849ad572b2d1795792
+    Hash: bcbf7f8098a6cd93c16e102920d6f297
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -201,12 +201,6 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 143
   Script: {instanceID: 0}
-- Class: 144
-  Script: {instanceID: 0}
-- Class: 198
-  Script: {instanceID: 0}
-- Class: 199
-  Script: {instanceID: 0}
 - Class: 208
   Script: {instanceID: 0}
 - Class: 213
@@ -234,6 +228,7 @@ Assets:
 - Assets/Prefabs/Enemies/Vermin/mdlVermin.prefab
 - Assets/Icons/Items/BoxingGloves.png
 - Assets/Materials/matBubble.mat
+- Assets/Prefabs/Survivors/Crackmando/Model/CrackMandoDisplay.prefab
 - Assets/Prefabs/Enemies/Woolie/Woolie.prefab
 - Assets/Prefabs/game.prefab
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/rounder.png
