@@ -61,8 +61,17 @@ namespace GOTCE.Enemies.Standard
 
             SkillLocator sl = prefab.GetComponentInChildren<SkillLocator>();
 
-            prefab.GetComponent<CharacterDeathBehavior>().deathState = new(typeof(GOTCE.EntityStatesCustom.The.TheDeath));
+            prefab.GetComponent<CharacterDeathBehavior>().deathState = new(typeof(EntityStates.GenericCharacterDeath));
+            prefab.GetComponent<SetStateOnHurt>().hurtState = new(typeof(EntityStatesCustom.The.TheHurtState));
             ReplaceSkill(sl.primary, Skills.Kick.Instance.SkillDef);
+
+            foreach (AISkillDriver driver in prefabMaster.GetComponents<AISkillDriver>()) {
+                if (driver.skillSlot == SkillSlot.Primary) {
+                    driver.buttonPressType = AISkillDriver.ButtonPressType.Hold;
+                    driver.movementType = AISkillDriver.MovementType.ChaseMoveTarget;
+                    driver.moveTargetType = AISkillDriver.TargetType.CurrentEnemy;
+                }
+            }
 
             master.bodyPrefab = prefab;
 

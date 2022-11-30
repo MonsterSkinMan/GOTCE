@@ -11,10 +11,9 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
 {
     public class DoubleDoubleTap : BaseSkillState
     {
-        public float duration = 1f;
-        public float force = 5f;
-        public float stopwatch = 0f;
-        public int bulletsFired;
+        public float delay = 5;
+        public float bulletsFired;
+        public int timer = 0;
 
         public float damageCoeff = 1f;
         public int hits = 96;
@@ -23,8 +22,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
         public override void OnEnter()
         {
             base.OnEnter();
-            PlayAnimation("Gesture Additive, Left", "FirePistol, Left");
-            PlayAnimation("Gesture Additive, Right", "FirePistol, Right");
+            PlayAnimation("Weapon", "Fire", "FireRate", 1f);
         }
 
         public override void OnExit()
@@ -40,35 +38,13 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            stopwatch += Time.fixedDeltaTime;
-            if (bulletsFired >= 96 && base.fixedAge >= duration)
-            {
+            timer++;
+
+            if (timer >= delay && bulletsFired >= 8) {
                 outer.SetNextStateToMain();
             }
-            BulletAttack bulletAttack = new()
-            {
-                owner = base.gameObject,
-                weapon = base.gameObject,
-                origin = base.gameObject.transform.position,
-                aimVector = base.GetAimRay().direction,
-                minSpread = 20f,
-                maxSpread = 360f,
-                bulletCount = 1u,
-                damage = 0f,
-                force = 300,
-                tracerEffectPrefab = FireBarrage.tracerEffectPrefab,
-                hitEffectPrefab = FireBarrage.hitEffectPrefab,
-                isCrit = false,
-                radius = 5,
-                smartCollision = true,
-                damageType = DamageType.BypassArmor,
-                falloffModel = BulletAttack.FalloffModel.None,
-                procCoefficient = 0f,
-                maxDistance = 100000f
-            };
-
-            bulletAttack.Fire();
-            if (base.isAuthority && stopwatch >= 0.3f)
+            
+            if (base.isAuthority)
             {
                 List<HurtBox> mandobuffer = new();
                 SphereSearch mandosearch = new()
@@ -84,23 +60,82 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                 mandosearch.GetHurtBoxes(mandobuffer);
                 mandosearch.ClearCandidates();
 
+                GameObject guh = this.gameObject;
                 foreach (HurtBox box in mandobuffer)
                 {
-                    for (int i = 0; i < (96 / 3); i++)
+                    guh.transform.LookAt(box.healthComponent.gameObject.transform);
+                    BulletAttack bulletAttack = new()
                     {
-                        box.healthComponent.TakeDamage(new DamageInfo
-                        {
-                            attacker = base.gameObject,
-                            damage = base.damageStat * damageCoeff,
-                            procCoefficient = procCoeff,
-                            procChainMask = default,
-                            damageType = DamageType.Generic,
-                        });
+                        owner = base.gameObject,
+                        weapon = base.gameObject,
+                        origin = GetModelChildLocator().FindChild(GetRandomMuzzle()).position,
+                        aimVector = guh.transform.forward,
+                        minSpread = 0f,
+                        maxSpread = 0f,
+                        bulletCount = 1u,
+                        damage = base.damageStat,
+                        force = 0,
+                        tracerEffectPrefab = FireBarrage.tracerEffectPrefab,
+                        hitEffectPrefab = FireBarrage.hitEffectPrefab,
+                        isCrit = base.RollCrit(),
+                        radius = 0.001f,
+                        smartCollision = false,
+                        falloffModel = BulletAttack.FalloffModel.None,
+                        procCoefficient = 1f,
+                        maxDistance = 25f,
+                        muzzleName = GetRandomMuzzle()
+                    };
+
+                    if (bulletsFired == 3 || bulletsFired == 6) { // fire an extra time every 3rd or 6th bullet to reach 96
+                        bulletAttack.Fire();
                     }
+                    bulletAttack.Fire();
                 }
-                bulletsFired += (96 / 3);
-                stopwatch = 0f;
+
+                BulletAttack bulletAttack2 = new()
+                {
+                    owner = base.gameObject,
+                    weapon = base.gameObject,
+                    origin = GetModelChildLocator().FindChild(GetRandomMuzzle()).position,
+                    aimVector = base.GetAimRay().direction,
+                    minSpread = 0f,
+                    maxSpread = 360f,
+                    bulletCount = 1u,
+                    damage = 0,
+                    force = 0,
+                    tracerEffectPrefab = FireBarrage.tracerEffectPrefab,
+                    hitEffectPrefab = FireBarrage.hitEffectPrefab,
+                    isCrit = false,
+                    radius = 0.001f,
+                    smartCollision = false,
+                    falloffModel = BulletAttack.FalloffModel.None,
+                    procCoefficient = 0f,
+                    maxDistance = 25f,
+                    muzzleName = GetRandomMuzzle()
+                };
+
+                bulletAttack2.Fire();
+
+                bulletsFired += 1;
             }
         }
+
+        private string GetRandomMuzzle() {
+            List<string> muzzles = new() {
+                "Muzzle0",
+                "Muzzle1",
+                "Muzzle2",
+                "Muzzle3",
+                "Muzzle4",
+                "Muzzle5",
+                "Muzzle6",
+                "Muzzle7",
+                "Muzzle8",
+                "Muzzle9",
+                "Muzzle10"
+            };
+
+            return muzzles[Run.instance.runRNG.RangeInt(0, muzzles.Count - 1)];
+         }
     }
 }

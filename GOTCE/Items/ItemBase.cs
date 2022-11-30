@@ -150,34 +150,6 @@ namespace GOTCE.Items
                     prefab.GetComponentInChildren<MeshRenderer>().material.mainTexture = ItemIcon.texture;
                     GameObject.DontDestroyOnLoad(prefab);
                     ItemDef.pickupModelPrefab = prefab;
-                    /*System.Random rand = new();
-                    int objects = rand.Next(3, 9);
-                    PrimitiveType[] prims = {
-                        PrimitiveType.Sphere,
-                        PrimitiveType.Capsule,
-                        PrimitiveType.Cylinder,
-                        PrimitiveType.Cube,
-                    };
-                    Color[] colors = {
-                        Color.cyan,
-                        Color.red,
-                        Color.magenta,
-                        Color.grey
-                    };
-
-                    GameObject first = GameObject.CreatePrimitive(prims[rand.Next(0, prims.Length)]);
-                    first.GetComponent<MeshRenderer>().material.color = colors[rand.Next(0, colors.Length)];
-                    for (int i = 0; i < objects; i++) {
-                        GameObject prim = GameObject.CreatePrimitive(prims[rand.Next(0, prims.Length)]);
-                        prim.GetComponent<MeshRenderer>().material.color = colors[rand.Next(0, colors.Length)];
-                        prim.transform.SetParent(first.transform);
-                        prim.transform.localPosition = new Vector3(rand.Next(-1, 1), rand.Next(-1, 1), rand.Next(-1, 1));
-                        prim.transform.localRotation = Quaternion.Euler(new Vector3(rand.Next(-360, 360), rand.Next(-360, 360), rand.Next(-360, 360)));
-                    }
-
-                    GameObject prefab = PrefabAPI.InstantiateClone(first, $"{ItemName}-model");
-                    GameObject.DontDestroyOnLoad(prefab);
-                    ItemDef.pickupModelPrefab = prefab; */
                 }
                 else
                 {

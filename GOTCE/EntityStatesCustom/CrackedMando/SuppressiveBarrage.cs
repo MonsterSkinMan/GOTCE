@@ -22,8 +22,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             base.OnEnter();
             totalBullets = totalBullets * attackSpeedStat;
             delay = duration / totalBullets;
-            PlayCrossfade("Gesture, Additive", "FireBarrage", "FireBarrage.playbackRate", duration, 0.2f);
-            PlayCrossfade("Gesture, Override", "FireBarrage", "FireBarrage.playbackRate", duration, 0.2f);
+            PlayAnimation("Weapon", "Fire", "FireRate", 2f);
         }
 
         public override void FixedUpdate()

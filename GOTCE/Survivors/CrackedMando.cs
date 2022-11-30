@@ -20,7 +20,12 @@ namespace GOTCE.Survivors
         public override void Modify()
         {
             base.Modify();
+            CharacterBody body = prefab.GetComponent<CharacterBody>();
+            body.preferredPodPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Toolbot/RoboCratePod.prefab").WaitForCompletion();
+            prefab.GetComponent<CameraTargetParams>().cameraParams = Addressables.LoadAssetAsync<CharacterCameraParams>("RoR2/Base/Common/ccpStandard.asset").WaitForCompletion();
+
             EntityStateMachine esm = AddESM(prefab, "Flight", new SerializableEntityStateType(typeof(Idle)));
+            
             SkillLocator sl = prefab.GetComponent<SkillLocator>();
             ReplaceSkill(sl.special, SuppressiveNader.Instance.SkillDef);
             ReplaceSkill(sl.primary, DoubleDoubleTap.Instance.SkillDef);
@@ -51,7 +56,7 @@ namespace GOTCE.Survivors
             {
                 bodyPrefab = prefab,
                 descriptionToken = "GOTCE_CRACKMANDO_DESC",
-                displayPrefab = prefab.transform.Find("Model Base").transform.Find("CrackModel").gameObject,
+                displayPrefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Survivors/Crackmando/Model/CrackMandoDisplay.prefab"),
                 primaryColor = Color.yellow,
                 cachedName = "GOTCE_CRACKMANDO_NAME",
                 unlockableDef = SurvivorUnlock.Instance.enabled ? SurvivorUnlock.Instance.def : null,

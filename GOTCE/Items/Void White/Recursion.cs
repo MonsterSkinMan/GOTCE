@@ -43,12 +43,23 @@ namespace GOTCE.Items.VoidWhite
         public override void Hooks()
         {
             On.RoR2.Items.ContagiousItemManager.Init += WoolieDimension;
+            On.RoR2.Items.ContagiousItemManager.StepInventoryInfection += Block;
         }
 
         private void WoolieDimension(On.RoR2.Items.ContagiousItemManager.orig_Init orig)
         {
             ItemHelpers.RegisterCorruptions(ItemDef, new() { ItemDef });
             orig();
+        }
+
+        // force this because recursion blocking corruptions was a very inconsistent
+        private bool Block(On.RoR2.Items.ContagiousItemManager.orig_StepInventoryInfection orig, Inventory inv, ItemIndex origIndex, int limit, bool forced) {
+            if (inv.GetItemCount(ItemDef) > 0 && origIndex != ItemDef.itemIndex) {
+                return false;
+            }
+            else {
+                return orig(inv, origIndex, limit, forced);
+            }
         }
     }
 }
