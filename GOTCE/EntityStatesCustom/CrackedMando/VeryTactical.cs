@@ -22,8 +22,9 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             base.OnEnter();
             motor = base.characterMotor;
             motor.useGravity = false;
+            base.characterDirection.forward = base.GetAimRay().direction;
             motor.isFlying = true;
-            PlayAnimation("Body", "Slide", "SlideRate", duration);
+            PlayAnimation("FullBody, Override", "Slide", "Slide.playbackRate", duration);
             //Debug.Log("starting flight");
             isFlying = true;
             RecalculateStatsAPI.GetStatCoefficients += recalc;
