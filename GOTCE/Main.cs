@@ -117,6 +117,8 @@ namespace GOTCE
                 }
             }
 
+            Gamemodes.Crackclipse.Crackclipse.Initialize();
+
             /* if (Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI")) {
                 ItemSorting.tierMap.Add(LunarVoid.Instance.TierEnum, 3);
             } */

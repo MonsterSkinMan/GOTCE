@@ -6,6 +6,9 @@
 # pseudo's build script ignore this
 build.sh
 
+# beta build
+BetaBuild/
+
 # User-specific files
 *.suo
 *.user
