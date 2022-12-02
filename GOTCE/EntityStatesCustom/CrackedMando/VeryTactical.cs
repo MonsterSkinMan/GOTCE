@@ -37,8 +37,8 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             base.OnExit();
             motor.useGravity = true;
             motor.isFlying = false;
-            base.characterBody.RecalculateStats();
             isFlying = false;
+            base.characterBody.RecalculateStats();
             //Debug.Log("stopping flight");
             RecalculateStatsAPI.GetStatCoefficients -= recalc;
         }

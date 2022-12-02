@@ -77,6 +77,7 @@ namespace GOTCE.Enemies.Bosses
                 }
                 orig(self);
             };
+            
             DeathRewards deathRewards = prefab.GetComponent<DeathRewards>();
             ExplicitPickupDropTable dt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();
             dt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1243380339
+CRC: 3477928171
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2ba6aa74b632822fccc6106f4f29ca93
+    Hash: b3db79913a65d0adcc061fa4ff581388
   TypeTreeHash:
     serializedVersion: 2
     Hash: ab96cb62c0204d0c0c32741e123fdfe8
@@ -208,9 +208,11 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/Pearl.prefab
+- Assets/Icons/Items/CorruptsAllShatterspleens.png
 - Assets/Prefabs/Projectiles/AltSkills/Saw/SawPrefab.prefab
 - Assets/Prefabs/Interactables/DisposableFunder/DisposableFunder.prefab
 - Assets/Prefabs/Projectiles/AltSkills/CorruptedPearl/PearlUpgrade.prefab
+- Assets/Icons/Items/RoR2Discussion.png
 - Assets/Prefabs/Projectiles/AltSkills/Core/Core.prefab
 - Assets/Prefabs/Interactables/Crucible/Crucible.prefab
 - Assets/Icons/IonSurger.png
