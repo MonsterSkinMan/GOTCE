@@ -117,7 +117,6 @@ namespace GOTCE.Survivors
         {
             EntityStateMachine esm = prefab.AddComponent<EntityStateMachine>();
             esm.customName = name;
-            esm.name = name;
             esm.initialStateType = initial;
             esm.mainStateType = initial;
 

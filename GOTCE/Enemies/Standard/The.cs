@@ -3,6 +3,7 @@ using RoR2;
 using UnityEngine;
 using RoR2.CharacterAI;
 using System.Linq;
+using EntityStates;
 
 namespace GOTCE.Enemies.Standard
 {
@@ -27,6 +28,19 @@ namespace GOTCE.Enemies.Standard
                     self.inventory.GiveItem(RoR2Content.Items.ExtraLife, 2);
                 }
                 orig(self);
+            };
+
+            On.RoR2.HealthComponent.TakeDamage += (orig, self, info) => {
+                if (NetworkServer.active) {
+                    if (self.body.baseNameToken == "GOTCE_THE_NAME") {
+                        info.damage = 0;
+                        info.procCoefficient = 0;
+                        
+                        EntityStatesCustom.The.TheHurtState state = new();
+                        self.gameObject.GetComponent<SetStateOnHurt>().targetStateMachine.SetInterruptState(state, InterruptPriority.Death);
+                    }
+                }
+                orig(self, info);
             };
         }
 
@@ -61,8 +75,17 @@ namespace GOTCE.Enemies.Standard
 
             SkillLocator sl = prefab.GetComponentInChildren<SkillLocator>();
 
-            prefab.GetComponent<CharacterDeathBehavior>().deathState = new(typeof(GOTCE.EntityStatesCustom.The.TheDeath));
+            prefab.GetComponent<CharacterDeathBehavior>().deathState = new(typeof(EntityStates.GenericCharacterDeath));
+            prefab.GetComponent<SetStateOnHurt>().hurtState = new(typeof(EntityStatesCustom.The.TheHurtState));
             ReplaceSkill(sl.primary, Skills.Kick.Instance.SkillDef);
+
+            foreach (AISkillDriver driver in prefabMaster.GetComponents<AISkillDriver>()) {
+                if (driver.skillSlot == SkillSlot.Primary) {
+                    driver.buttonPressType = AISkillDriver.ButtonPressType.Hold;
+                    driver.movementType = AISkillDriver.MovementType.ChaseMoveTarget;
+                    driver.moveTargetType = AISkillDriver.TargetType.CurrentEnemy;
+                }
+            }
 
             master.bodyPrefab = prefab;
 

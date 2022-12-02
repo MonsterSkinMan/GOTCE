@@ -10,6 +10,7 @@ using GOTCE.Utils;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Mono.Cecil;
+using EntityStates;
 
 // using Mono.Reflection;
 
@@ -27,6 +28,18 @@ namespace GOTCE.Based
             ViendAlts();
             BanditAlts();
             CaptainAlts();
+
+            // for whatever reason this is being set to 1 and causing mando to fire one shot and then reload the pistols, setting to 0 fixes this
+            On.RoR2.CharacterBody.Start += (orig, self) => {
+                orig(self);
+                foreach (GenericSkill genericSkill in self.gameObject.GetComponents<GenericSkill>()) {
+                    if (self.gameObject.name == "CommandoBody(Clone)" && genericSkill.skillDef) {
+                        if (genericSkill.skillName == "FirePistol") {
+                            genericSkill.skillDef.stockToConsume = 0;
+                        }
+                    }
+                }
+            };
         }
 
         private static void CommandoAlts()
@@ -166,7 +179,7 @@ namespace GOTCE.Based
             skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
             {
                 skillDef = Skills.Overheat.Instance.SkillDef,
-                unlockableName = "",
+                unlockableDef = Achievements.Captain.OverheatUnlock.Instance.enabled ? Achievements.Captain.OverheatUnlock.Instance.def : null,
                 viewableNode = new ViewablesCatalog.Node(Skills.Overheat.Instance.SkillDef.skillNameToken, false, null)
             };
 

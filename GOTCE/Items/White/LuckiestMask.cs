@@ -15,7 +15,7 @@ namespace GOTCE.Items.White
         public override bool CanRemove => true;
         public override string ConfigName => ItemName;
         public override string ItemFullDescription => "Increase the <style=cIsDamage>proc coefficient</style> of all of your attacks by <style=cIsDamage>1</style> <style=cStack>(+1 per stack)</style>. Taking damage to below <style=cIsHealth>25% health</style> <style=cIsUtility>breaks</style> this item.";
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/LuckiestMask.png");
         public override string ItemLangTokenName => "GOTCE_LuckiestMask";
         public override string ItemLore => "";
         public override GameObject ItemModel => null;
@@ -27,7 +27,7 @@ namespace GOTCE.Items.White
         public void Break(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo info)
         {
             orig(self, info);
-            if (self.body && self.body.inventory)
+            /* if (self.body && self.body.inventory)
             {
                 if (self.isHealthLow && GetCount(self.body) > 0)
                 {
@@ -35,7 +35,7 @@ namespace GOTCE.Items.White
                     self.body.inventory.GiveItem(DreamPDF.Instance.ItemDef);
                     CharacterMasterNotificationQueue.SendTransformNotification(self.body.master, Instance.ItemDef.itemIndex, DreamPDF.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
                 }
-            }
+            } */
         }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
@@ -46,7 +46,16 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             On.RoR2.DamageInfo.ModifyDamageInfo += Proc;
-            On.RoR2.HealthComponent.TakeDamage += Break;
+            // On.RoR2.HealthComponent.TakeDamage += Break;
+
+            [SystemInitializer(dependencies: typeof(ItemCatalog))]
+            void RegisterFragile() {
+                Fragile.AddFragileItem(ItemDef, new Fragile.FragileInfo {
+                    broken = Items.NoTier.DreamPDF.Instance.ItemDef,
+                    shouldGiveBroken = true,
+                    fraction = 25f
+                });
+            }
         }
 
         public override void Init(ConfigFile config)

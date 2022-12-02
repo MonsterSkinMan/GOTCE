@@ -15,15 +15,21 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
         public CharacterMotor motor;
         public ICharacterFlightParameterProvider flightprov;
         public ICharacterGravityParameterProvider gravprov;
+        public bool isFlying = false;
 
         public override void OnEnter()
         {
             base.OnEnter();
             motor = base.characterMotor;
             motor.useGravity = false;
+            base.characterDirection.forward = base.GetAimRay().direction;
             motor.isFlying = true;
-            PlayAnimation("Body", "SlideForward", "SlideForward.playbackRate", duration);
+            PlayAnimation("FullBody, Override", "Slide", "Slide.playbackRate", duration);
             //Debug.Log("starting flight");
+            isFlying = true;
+            RecalculateStatsAPI.GetStatCoefficients += recalc;
+            CriticalTypes.OnSprintCrit?.Invoke(gameObject, new(base.characterBody));
+            base.characterBody.RecalculateStats();
         }
 
         public override void OnExit()
@@ -31,7 +37,10 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             base.OnExit();
             motor.useGravity = true;
             motor.isFlying = false;
+            isFlying = false;
+            base.characterBody.RecalculateStats();
             //Debug.Log("stopping flight");
+            RecalculateStatsAPI.GetStatCoefficients -= recalc;
         }
 
         public override void FixedUpdate()
@@ -51,6 +60,12 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
         public override InterruptPriority GetMinimumInterruptPriority()
         {
             return InterruptPriority.PrioritySkill;
+        }
+
+        private void recalc(CharacterBody cb, RecalculateStatsAPI.StatHookEventArgs args) {
+            if (NetworkServer.active && isFlying && cb == base.characterBody) {
+                args.moveSpeedMultAdd += 3f;
+            }
         }
     }
 }

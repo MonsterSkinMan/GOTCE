@@ -119,7 +119,7 @@ namespace GOTCE.Enemies.Minibosses
         public override void AddDirectorCard()
         {
             base.AddDirectorCard();
-            card.minimumStageCompletions = 0;
+            card.minimumStageCompletions = 1;
             card.selectionWeight = 2;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }

@@ -15,7 +15,7 @@ namespace GOTCE.Items.White
         public override bool CanRemove => true;
         public override string ConfigName => ItemName;
         public override string ItemFullDescription => "Gain <style=cIsUtility>5% sprint crit chance</style>. On '<style=cIsUtility>critical sprint</style>', your attacks inflict <style=cIsDamage>blight</style> for the next <style=cIsUtility>4</style> <style=cStack>(+2 per stack)</style> seconds.";
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/RoR2Discussion.png");
         public override string ItemLangTokenName => "GOTCE_gd2";
         public override string ItemLore => "";
         public override GameObject ItemModel => null;

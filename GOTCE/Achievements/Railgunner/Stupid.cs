@@ -67,7 +67,7 @@ namespace GOTCE.Achievements.Railgunner
     public class StupidRoundsUnlock : AchievementBase<StupidRoundsUnlock>
     {
         public override string Name => "Railgunner: Balance";
-        public override string Description => "As Railgunner, fire $13,567.5 worth of XQR Smart Rounds ammo.";
+        public override string Description => "As Railgunner, fire $13,567.5 worth of XQR Smart Rounds ammo in a single run.";
         public override string UnlockName => "StupidRoundsUnlockable";
         public override string TokenName => "STUPID";
         public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");

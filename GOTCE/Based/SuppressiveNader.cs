@@ -53,11 +53,11 @@ namespace GOTCE.Based
             }; */
 
             LanguageAPI.Add(Skills.VeryTactical.Instance.SkillDef.skillNameToken, "Very Tactical Diving Slide");
-            LanguageAPI.Add(Skills.VeryTactical.Instance.SkillDef.skillDescriptionToken, "Literally just gives you 5 seconds of complete flight.");
+            LanguageAPI.Add(Skills.VeryTactical.Instance.SkillDef.skillDescriptionToken, "Literally just gives you 5 seconds of complete flight. Guarantees a critical sprint when activated.");
             LanguageAPI.Add(Skills.DoubleDoubleTap.Instance.SkillDef.skillNameToken, "Double Double Double Double Double Tap");
             LanguageAPI.Add(Skills.DoubleDoubleTap.Instance.SkillDef.skillDescriptionToken, "Fire bullets all around you for 96x100% with a 1.0 proc coeff. Cannot miss.");
             LanguageAPI.Add(Skills.SuppressiveNader.Instance.SkillDef.skillNameToken, "Suppressive Nader");
-            LanguageAPI.Add(Skills.SuppressiveNader.Instance.SkillDef.skillDescriptionToken, "Fires 8 stunning nades that stick to enemies, spawn multiple allies on hit, apply almost every debuff, spawn every portal, eradicate crowdfunder from the universe, give the regenerative buff, cleanses debuffs and corrupts all items on hit.");
+            LanguageAPI.Add(Skills.SuppressiveNader.Instance.SkillDef.skillDescriptionToken, "Fires 6 stunning nades that stick to enemies, spawn multiple allies on hit, apply almost every debuff, spawn every portal, eradicate crowdfunder from the universe, give the regenerative buff, cleanses debuffs and corrupts all items on hit.");
             LanguageAPI.Add(Skills.PhaseRounder.Instance.SkillDef.skillNameToken, "Phase Blaster Round");
             LanguageAPI.Add(Skills.PhaseRounder.Instance.SkillDef.skillDescriptionToken, "Fire a spread of Phase Rounds for 8x360% that split into chain lightning on hit");
             LanguageAPI.Add(Skills.SuppressiveBarrage.Instance.SkillDef.skillNameToken, "Suppressive Barrage");

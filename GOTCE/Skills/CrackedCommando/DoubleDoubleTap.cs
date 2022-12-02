@@ -17,7 +17,7 @@ namespace GOTCE.Skills
         public override float BaseRechargeInterval => 0f;
         public override bool BeginSkillCooldownOnSkillEnd => true;
         public override bool CancledFromSprinting => false;
-        public override bool CancelSprintingOnActivation => true;
+        public override bool CancelSprintingOnActivation => false;
         public override bool FullRestockOnAssign => true;
         public override InterruptPriority SkillInterruptPriority => InterruptPriority.Any;
         public override bool IsCombatSkill => true;

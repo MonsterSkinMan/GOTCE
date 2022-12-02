@@ -20,6 +20,7 @@ namespace GOTCE.Enemies.Bosses
             body = prefab.GetComponent<CharacterBody>();
             body.baseNameToken = "GOTCE_GUMMYQUEEN_NAME";
             body.subtitleNameToken = "GOTCE_GUMMYQUEEN_SUBTITLE";
+            body.portraitIcon = Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/GummyBeetleQueen.png").texture;
         }
 
         public override void AddSpawnCard()

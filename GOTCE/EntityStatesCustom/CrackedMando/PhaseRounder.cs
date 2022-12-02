@@ -20,9 +20,9 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             base.characterBody.SetSpreadBloom(0.2f, canOnlyIncreaseBloom: false);
             duration = totalDuration;
             modelAnimator = GetModelAnimator();
-            PlayAnimation("Gesture, Additive", "FireFMJ", "FireFMJ.playbackRate", duration);
-            PlayAnimation("Gesture, Override", "FireFMJ", "FireFMJ.playbackRate", duration);
+            PlayAnimation("Gesture, Override", "Fire", "Fire.playbackRate", 1f);
             // modelTransform = base.characterBody.modelLocator.modelTransform.GetChild(1).transform;
+            base.characterDirection.forward = base.GetAimRay().direction;
 
             for (int i = 0; i < 8; i++)
             {
@@ -50,6 +50,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                     position = base.characterBody.corePosition,
                     rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(aimRay.direction, -1f, 3f, -1f, 3f)),
                     owner = base.gameObject,
+                    force = 30000f
                 };
                 ProjectileManager.instance.FireProjectile(info);
             }

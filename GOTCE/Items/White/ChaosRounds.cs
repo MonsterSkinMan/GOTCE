@@ -30,13 +30,14 @@ namespace GOTCE.Items.White
         private static string DevastatorDeathName = "VoidMegaCrabDeathBombProjectile";
         private static string DevastatorBombName = "VoidMegaCrabDeathBombletsExplosion";
         private static string DevastatorExpName = "VoidMegaCrabDeathBombExplosion";
+        private static string DevastatorBombletsName = "VoidMegaCrabDeathBombletsProjectile";
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/ChaosRounds.png");
         private string EngiMineName = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Engi/EngiMine.prefab").WaitForCompletion().name;
         private string SpiderMineName = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Engi/SpiderMine.prefab").WaitForCompletion().name;
 
         private static string[] blacklist = {
-            DevastatorExpName, DevastatorDeathName, DevastatorBombName
+            DevastatorExpName, DevastatorDeathName, DevastatorBombName, DevastatorBombletsName
         };
 
         public override void Init(ConfigFile config)

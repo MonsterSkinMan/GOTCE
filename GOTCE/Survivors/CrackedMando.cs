@@ -13,32 +13,24 @@ namespace GOTCE.Survivors
 {
     public class CrackedMando : SurvivorBase<CrackedMando>
     {
-        public override string bodypath => "RoR2/Base/Commando/CommandoBody.prefab";
+        public override string bodypath => "Assets/Prefabs/Survivors/Crackmando/CrackmandoBody.prefab";
         public override string name => "CrackedCommando";
-        public override bool clone => true;
+        public override bool clone => false;
 
         public override void Modify()
         {
             base.Modify();
             CharacterBody body = prefab.GetComponent<CharacterBody>();
-            body.baseDamage = 12;
-            body.baseMaxHealth = 150;
-            body.baseMoveSpeed = 7;
-            body.baseCrit = 1f;
-            body.baseNameToken = "GOTCE_CRACKMANDO_NAME";
-            body.bodyColor = Color.yellow;
-            body.portraitIcon = SuppressiveNader.Instance.Icon.texture;
+            body.preferredPodPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Toolbot/RoboCratePod.prefab").WaitForCompletion();
+            prefab.GetComponent<CameraTargetParams>().cameraParams = Addressables.LoadAssetAsync<CharacterCameraParams>("RoR2/Base/Common/ccpStandard.asset").WaitForCompletion();
 
             EntityStateMachine esm = AddESM(prefab, "Flight", new SerializableEntityStateType(typeof(Idle)));
+            
             SkillLocator sl = prefab.GetComponent<SkillLocator>();
             ReplaceSkill(sl.special, SuppressiveNader.Instance.SkillDef);
             ReplaceSkill(sl.primary, DoubleDoubleTap.Instance.SkillDef);
             ReplaceSkill(sl.secondary, PhaseRounder.Instance.SkillDef);
             ReplaceSkill(sl.utility, VeryTactical.Instance.SkillDef);
-
-            GameObject model = prefab.transform.Find("ModelBase").transform.Find("mdlCommandoDualies").gameObject;
-            SwapMaterials(model, Main.SecondaryAssets.LoadAsset<Material>("Assets/Prefabs/Survivors/Crackmando/Materials/body.mat"), true);
-            GameObject.DestroyImmediate(model.GetComponentInChildren<ModelSkinController>());
 
             LanguageAPI.Add("GOTCE_CRACKMANDO_NAME", "Cracked Commando");
             LanguageAPI.Add("GOTCE_CRACKMANDO_DESC", "Cracked Commando is a jack of all trades survivor who can do a bit of everything, whether that be destroying multiplayer lobbies with Suppressive Nader or outdamaging railgunner with his Double Double Double Double Tap.");
@@ -64,7 +56,7 @@ namespace GOTCE.Survivors
             {
                 bodyPrefab = prefab,
                 descriptionToken = "GOTCE_CRACKMANDO_DESC",
-                displayPrefab = prefab.transform.Find("ModelBase").transform.Find("mdlCommandoDualies").gameObject,
+                displayPrefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Survivors/Crackmando/Model/CrackMandoDisplay.prefab"),
                 primaryColor = Color.yellow,
                 cachedName = "GOTCE_CRACKMANDO_NAME",
                 unlockableDef = SurvivorUnlock.Instance.enabled ? SurvivorUnlock.Instance.def : null,
@@ -77,4 +69,4 @@ namespace GOTCE.Survivors
             ContentAddition.AddSurvivorDef(surv);
         }
     }
-}
+} 

@@ -6,6 +6,9 @@
 # pseudo's build script ignore this
 build.sh
 
+# manifest and things
+GOTCE/BetaBuild
+
 # User-specific files
 *.suo
 *.user
