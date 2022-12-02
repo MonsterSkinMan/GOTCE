@@ -165,6 +165,9 @@ namespace GOTCE.Components
 
         private void RollInputs()
         {
+            if (!body || !body.inventory) {
+                return;
+            }
             float amount = 2f * body.inventory.GetItemCount(Items.Red.Gamepad.Instance.ItemDef);
             increase = amount * inputs;
             inputs = 0;

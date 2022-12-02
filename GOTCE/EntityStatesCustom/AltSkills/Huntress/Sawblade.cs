@@ -30,19 +30,18 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Huntress
 
             AkSoundEngine.PostEvent(2486049627, base.gameObject); // Play_huntress_m2_throw
 
-            FireProjectileInfo info = default;
-            info.owner = base.gameObject;
-            info.crit = base.RollCrit();
-            info.rotation = Util.QuaternionSafeLookRotation(base.GetAimRay().direction);
-            info.position = base.characterBody.corePosition;
-            info.damage = base.damageStat * 1.5f;
-            info.damageColorIndex = DamageColorIndex.Bleed;
-            info.damageTypeOverride = DamageType.BleedOnHit | DamageType.Stun1s;
-            info.speedOverride = 250f;
-            info.projectilePrefab = prefab;
-
             if (base.isAuthority)
             {
+                FireProjectileInfo info = default;
+                info.owner = base.gameObject;
+                info.crit = base.RollCrit();
+                info.rotation = Util.QuaternionSafeLookRotation(base.GetAimRay().direction);
+                info.position = base.characterBody.corePosition;
+                info.damage = base.damageStat * 1.5f;
+                info.damageColorIndex = DamageColorIndex.Bleed;
+                info.damageTypeOverride = DamageType.BleedOnHit | DamageType.Stun1s;
+                info.speedOverride = 250f;
+                info.projectilePrefab = prefab;
                 ProjectileManager.instance.FireProjectile(info);
             }
         }

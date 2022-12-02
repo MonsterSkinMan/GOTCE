@@ -56,10 +56,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Rex
                     procChainMask = default(ProcChainMask),
                     procCoefficient = 0f
                 };
-                if (base.isAuthority)
-                {
-                    base.healthComponent.TakeDamage(selfdamage);
-                }
+                base.healthComponent.TakeDamage(selfdamage);
             }
         }
 

@@ -43,7 +43,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
             if (base.fixedAge >= duration)
             {
                 outer.SetNextStateToMain();
-                if (NetworkServer.active)
+                if (base.isAuthority)
                 {
                     characterBody.skillLocator.secondary.UnsetSkillOverride(gameObject, Skills.PearlTeleport.Instance.SkillDef, GenericSkill.SkillOverridePriority.Replacement);
                 }

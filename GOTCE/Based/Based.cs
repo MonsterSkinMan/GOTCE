@@ -38,6 +38,22 @@ namespace GOTCE.Based
             if (self.displayNameToken != "LUNAR_REROLL_NAME") {
                 orig(self, interactor);
             }
+            if (self.displayNameToken == "LUNAR_REROLL_NAME") {
+                CharacterBody body = interactor.GetComponent<CharacterBody>();
+                Chat.AddMessage($"<style=cIsDamage>{Util.LookUpBodyNetworkUser(body).userName}</style>, <style=cDeath>you thought you could get away with using the slab?</style>");
+                body.master.TrueKill();
+
+                GameObject[] objects = SceneManager.GetActiveScene().GetRootGameObjects();
+
+                foreach (GameObject gameObject in objects) {
+                    if (NetworkServer.active) {
+                        GameObject.Destroy(gameObject);
+                        Main.ModLogger.LogError("THE FOG IS COMING THE FOG IS COMING THE FOG IS COMING");
+                    }
+                }
+
+                Chat.AddMessage("lol, lmao.");
+            }
             if (NetworkServer.active) {
                 if (self.costType == CostTypeIndex.LunarCoin && SceneManager.GetActiveScene().name == "bazaar") {
                     GameObject.DestroyImmediate(self.gameObject);
