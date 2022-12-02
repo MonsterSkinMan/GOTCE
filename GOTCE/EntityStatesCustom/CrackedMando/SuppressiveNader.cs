@@ -53,7 +53,8 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             durationBetweenShots = baseDurationBetweenShots / attackSpeedStat;
             bulletCount = (int)((float)baseBulletCount * attackSpeedStat);
             modelAnimator = GetModelAnimator();
-            PlayAnimation("Weapon", "Grenade", "GrenadeRate", duration);
+            PlayAnimation("Gesture, Override", "Grenade", "Grenade.playbackRate", duration);
+            base.characterDirection.forward = base.GetAimRay().direction;
             // modelTransform = base.characterBody.modelLocator.modelTransform.GetChild(1).transform;
             FireBullet();
             Ray aimRay = GetAimRay();

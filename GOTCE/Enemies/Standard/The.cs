@@ -3,6 +3,7 @@ using RoR2;
 using UnityEngine;
 using RoR2.CharacterAI;
 using System.Linq;
+using EntityStates;
 
 namespace GOTCE.Enemies.Standard
 {
@@ -27,6 +28,19 @@ namespace GOTCE.Enemies.Standard
                     self.inventory.GiveItem(RoR2Content.Items.ExtraLife, 2);
                 }
                 orig(self);
+            };
+
+            On.RoR2.HealthComponent.TakeDamage += (orig, self, info) => {
+                if (NetworkServer.active) {
+                    if (self.body.baseNameToken == "GOTCE_THE_NAME") {
+                        info.damage = 0;
+                        info.procCoefficient = 0;
+                        
+                        EntityStatesCustom.The.TheHurtState state = new();
+                        self.gameObject.GetComponent<SetStateOnHurt>().targetStateMachine.SetInterruptState(state, InterruptPriority.Death);
+                    }
+                }
+                orig(self, info);
             };
         }
 

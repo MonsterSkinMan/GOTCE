@@ -1,3 +1,6 @@
+# GOTCE
+gamers of the cracked emoji
+
 # Beta Build Instructions
 ```
 git clone https://github.com/MonsterSkinMan/GOTCE/

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity;
+using Rewired.ComponentControls.Effects;
 using EntityStates.Commando.CommandoWeapon;
 
 namespace GOTCE.EntityStatesCustom.CrackedMando
@@ -18,11 +19,12 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
         public float damageCoeff = 1f;
         public int hits = 96;
         public float procCoeff = 1f;
+        private Transform rotateObject => base.characterBody.gameObject.transform.Find("RotateObject");
 
         public override void OnEnter()
         {
             base.OnEnter();
-            PlayAnimation("Weapon", "Fire", "FireRate", 1f);
+            PlayAnimation("Gesture, Override", "Fire", "Fire.playbackRate", 1f);
         }
 
         public override void OnExit()
@@ -117,7 +119,10 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                 bulletAttack2.Fire();
 
                 bulletsFired += 1;
+                rotateObject.Rotate(new Vector3(0, 12, 0));
+                base.characterDirection.forward = rotateObject.forward;
             }
+
         }
 
         private string GetRandomMuzzle() {

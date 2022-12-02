@@ -22,7 +22,8 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             base.OnEnter();
             totalBullets = totalBullets * attackSpeedStat;
             delay = duration / totalBullets;
-            PlayAnimation("Weapon", "Fire", "FireRate", 2f);
+            PlayAnimation("Gesture, Override", "Fire", "Fire.playbackRate", 1f);
+            base.characterDirection.forward = base.GetAimRay().direction;
         }
 
         public override void FixedUpdate()
@@ -46,7 +47,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                     tracerEffectPrefab = FireBarrage.tracerEffectPrefab,
                     isCrit = RollCrit(),
                     radius = 0.01f,
-                    muzzleName = "MuzzleRight",
+                    muzzleName = GetRandomMuzzle(),
                     smartCollision = false,
                     damageType = DamageType.Stun1s,
                     falloffModel = BulletAttack.FalloffModel.DefaultBullet,
@@ -76,5 +77,23 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
         {
             return InterruptPriority.Skill;
         }
+
+        private string GetRandomMuzzle() {
+            List<string> muzzles = new() {
+                "Muzzle0",
+                "Muzzle1",
+                "Muzzle2",
+                "Muzzle3",
+                "Muzzle4",
+                "Muzzle5",
+                "Muzzle6",
+                "Muzzle7",
+                "Muzzle8",
+                "Muzzle9",
+                "Muzzle10"
+            };
+
+            return muzzles[Run.instance.runRNG.RangeInt(0, muzzles.Count - 1)];
+         }
     }
 }
