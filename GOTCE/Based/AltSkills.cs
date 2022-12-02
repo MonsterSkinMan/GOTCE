@@ -249,13 +249,14 @@ namespace GOTCE.Based
                 bool hasPrimaryAlt = false;
                 bool hasUtilityAlt = false;
                 bool hasSpecialAlt = false;
-                if (NetworkServer.active)
+                bool exists = self.skillLocator && self.skillLocator.secondary && self.skillLocator.primary && self.skillLocator.utility && self.skillLocator.special;
+                if (NetworkServer.active && exists)
                 {
-                    hasSecondaryAlt = self.skillLocator.secondary.skillNameToken == Skills.Pearl.Instance.SkillDef.skillNameToken;
+                    hasSecondaryAlt = self.skillLocator.secondary.skillNameToken == Skills.Pearl.Instance.SkillDef.skillNameToken || self.skillLocator.secondary.skillNameToken == Skills.PearlTeleport.Instance.SkillDef.skillNameToken;
                     hasSpecialAlt = self.skillLocator.special.skillNameToken == Skills.Drain.Instance.SkillDef.skillNameToken;
                 }
                 orig(self);
-                if (NetworkServer.active)
+                if (NetworkServer.active && exists)
                 {
                     if (hasSecondaryAlt)
                     {
@@ -477,7 +478,7 @@ namespace GOTCE.Based
                     self.corruptionFractionPerSecondWhileCorrupted = self.characterBody.outOfCombat ? -0.022f : -0.044f;
                     if (self.corruption >= 100)
                     {
-                        self.corruptionFractionPerSecondWhileCorrupted = -0.66f;
+                        self.corruptionFractionPerSecondWhileCorrupted = -0.066f;
                     }
 
                     if (self.characterBody.skillLocator)
