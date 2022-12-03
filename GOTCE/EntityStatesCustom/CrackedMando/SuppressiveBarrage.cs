@@ -93,6 +93,10 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                 "Muzzle10"
             };
 
+            if (!Run.instance) {
+                return "Muzzle0";
+            }
+
             return muzzles[Run.instance.runRNG.RangeInt(0, muzzles.Count - 1)];
          }
     }

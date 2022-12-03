@@ -19,16 +19,16 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (!inputBank.skill4.down || gained > 75f)
+            if (!inputBank.skill4.down || gained > 75f && base.isAuthority)
             {
                 outer.SetNextStateToMain();
             }
-            if (NetworkServer.active && base.gameObject.GetComponent<VoidSurvivorController>())
+            if (base.isAuthority && base.gameObject.GetComponent<VoidSurvivorController>())
             {
                 VoidSurvivorController con = base.gameObject.GetComponent<VoidSurvivorController>();
                 con.AddCorruption(Time.fixedDeltaTime * 25);
                 gained += Time.fixedDeltaTime * 25;
-                AkSoundEngine.PostEvent(3778899369, gameObject);
+                AkSoundEngine.PostEvent(3778899369, gameObject); 
                 base.characterBody.AddTimedBuff(RoR2Content.Buffs.LunarSecondaryRoot, 0.2f, 1);
             }
         }
@@ -36,7 +36,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
         public override void OnExit()
         {
             base.OnExit();
-            if (NetworkServer.active)
+            if (base.isAuthority)
             {
                 FireProjectileInfo fireProjectileInfo = default(FireProjectileInfo);
                 fireProjectileInfo.projectilePrefab = EntityStates.NullifierMonster.DeathState.deathBombProjectile;

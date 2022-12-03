@@ -18,7 +18,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (NetworkServer.active)
+            if (base.isAuthority)
             {
                 VoidSurvivorController controller = gameObject.GetComponent<VoidSurvivorController>();
                 InputBankTest bank = gameObject.GetComponent<InputBankTest>();
@@ -36,32 +36,31 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
         public override void OnExit()
         {
             base.OnExit();
-            BlastAttack blast = new()
+            if (base.isAuthority)
             {
-                attacker = gameObject,
-                radius = 2f * (1 + (drained * 0.1f)),
-                baseDamage = base.damageStat * (1 + (drained * 0.1f)),
-                baseForce = 2f * (drained / 4),
-                position = characterBody.corePosition,
-                attackerFiltering = AttackerFiltering.NeverHitSelf,
-                teamIndex = teamComponent.teamIndex,
-                damageType = DamageType.LunarSecondaryRootOnHit,
-                damageColorIndex = DamageColorIndex.Void,
-                falloffModel = BlastAttack.FalloffModel.None,
-                crit = drained > 50 ? true : RollCrit(),
-                procCoefficient = 0.75f
-            };
-
-            if (NetworkServer.active)
-            {
-                blast.Fire();
-                GameObject voidVFX = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
-                EffectManager.SpawnEffect(voidVFX, new EffectData
+                BlastAttack blast = new()
                 {
-                    origin = gameObject.transform.position,
-                    scale = 2f * (1 + (drained * 0.1f)),
-                }, true);
+                    attacker = gameObject,
+                    radius = 2f * (1 + (drained * 0.1f)),
+                    baseDamage = base.damageStat * (1 + (drained * 0.1f)),
+                    baseForce = 2f * (drained / 4),
+                    position = characterBody.corePosition,
+                    attackerFiltering = AttackerFiltering.NeverHitSelf,
+                    teamIndex = teamComponent.teamIndex,
+                    damageType = DamageType.LunarSecondaryRootOnHit,
+                    damageColorIndex = DamageColorIndex.Void,
+                    falloffModel = BlastAttack.FalloffModel.None,
+                    crit = drained > 50 ? true : RollCrit(),
+                    procCoefficient = 0.75f
+                };
+                blast.Fire();
             }
+            GameObject voidVFX = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/CritGlassesVoid/CritGlassesVoidExecuteEffect.prefab").WaitForCompletion();
+            EffectManager.SpawnEffect(voidVFX, new EffectData
+            {
+                origin = gameObject.transform.position,
+                scale = 2f * (1 + (drained * 0.1f)),
+            }, true);
         }
 
         public override InterruptPriority GetMinimumInterruptPriority()
