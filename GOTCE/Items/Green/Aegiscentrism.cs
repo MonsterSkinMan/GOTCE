@@ -150,7 +150,17 @@ namespace GOTCE.Items.Green
             Quaternion quaternion = Quaternion.AngleAxis(UnityEngine.Random.Range(0f, 360f), Vector3.up);
             Quaternion quaternion2 = Quaternion.AngleAxis(UnityEngine.Random.Range(0f, 0f), Vector3.forward);
             Vector3 planeNormal = quaternion * quaternion2 * Vector3.up;
-            float initialDegreesFromOwnerForward = UnityEngine.Random.Range(0f, 360f);
+            float initialDegreesFromOwnerForward = UnityEngine.Random.Range(0f, 360f); 
+
+            /* float num = body.radius + 1.5f; 
+            float num2 = num / 2f;
+            num2 *= num2;
+            float degreesPerSecond = 180f * Mathf.Pow(1f, num2);
+            Quaternion quaternion = Quaternion.AngleAxis(360f, Vector3.up);
+            Quaternion quaternion2 = Quaternion.AngleAxis(0f, Vector3.forward);
+            Vector3 planeNormal = quaternion * quaternion2 * Vector3.up;
+            float initialDegreesFromOwnerForward = UnityEngine.Random.Range(0f, 60f); */
+
             orbiter.Initialize(planeNormal, num, degreesPerSecond, initialDegreesFromOwnerForward);
             onDisabled += DestroyOrbiter;
             void DestroyOrbiter(OrbitalAegisBehavior orbitalAegisBehavior)
