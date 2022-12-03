@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1648689801
+CRC: 2849265723
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 53741cb8418b0366083d64cc58985edb
+    Hash: 5801ddfa357a986bb755b1f43540233d
   TypeTreeHash:
     serializedVersion: 2
     Hash: a5fce307c298c3ba6cc939ce40c7fbe9
@@ -68,10 +68,12 @@ Assets:
 - Assets/Textures/Icons/Artifact/woolifact.png
 - Assets/Textures/Icons/Item/faultyspacetimeclock.png
 - Assets/Textures/Icons/Item/BottledMetamorphosis.png
+- Assets/Textures/Icons/Item/ChristmasGift.png
 - Assets/Textures/Icons/Item/kirn.png
 - Assets/Textures/Icons/Item/NEAplaceholder.png
 - Assets/Textures/Icons/Equipment/crunder2.png
 - Assets/Textures/Icons/Item/ZoomLenses.png
+- Assets/Textures/Icons/Survivors/CrackedCommando.png
 - Assets/Textures/Icons/Item/bigshoe.png
 - Assets/Textures/Icons/Item/FormlessSand.png
 - Assets/Textures/Icons/Item/corruptedshard.png
