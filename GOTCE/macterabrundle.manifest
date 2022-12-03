@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2849265723
+CRC: 1486161550
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5801ddfa357a986bb755b1f43540233d
+    Hash: cf69f6db52895792296a2e44d7f9e871
   TypeTreeHash:
     serializedVersion: 2
     Hash: a5fce307c298c3ba6cc939ce40c7fbe9
@@ -80,6 +80,7 @@ Assets:
 - Assets/Textures/Icons/Item/bottledcommand.png
 - Assets/Textures/Icons/Item/TuesdayMagazine.png
 - Assets/Textures/Icons/Item/barrierworks.png
+- Assets/Textures/Icons/Enemies/CrackedVermin.png
 - Assets/Textures/Icons/Item/HeartlessBreakfast.png
 - Assets/Textures/Icons/Item/PaleAle.png
 - Assets/Import/8mb.video-yzD-Rpct5RSV.mp4
@@ -98,6 +99,7 @@ Assets:
 - Assets/Textures/Icons/Item/tuboflard.png
 - Assets/Textures/Icons/Item/DopeDope.png
 - Assets/Textures/Icons/Item/GD1Nullified.png
+- Assets/Textures/Icons/Item/ClaspingClaws.png
 - Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png
 - Assets/Textures/Icons/Item/sscnft.png
 - Assets/Textures/Icons/Item/Yhjtumgrhtfyddc.png
