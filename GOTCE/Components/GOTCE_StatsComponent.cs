@@ -24,6 +24,9 @@ namespace GOTCE.Components
         public float sprintCritChance;
         public float fovCritChance;
 
+        // death chance
+        public float deathChance;
+
         // other stats
         public int aoeEffect;
 
@@ -69,6 +72,7 @@ namespace GOTCE.Components
 
         public float SprintCritChanceAdd;
         public float FovCritChanceAdd;
+        public float DeathChanceAdd;
         public int AOEAdd;
 
         public WarCrime mostRecentlyCommitedWarCrime = WarCrime.None;
@@ -104,6 +108,7 @@ namespace GOTCE.Components
                 SprintCritChanceAdd = 0;
                 StageCritChanceAdd = 0;
                 FovCritChanceAdd = 0;
+                DeathChanceAdd = 0;
                 EventHandler<StatsCompRecalcArgs> raiseEvent = StatsCompEvent.StatsCompRecalc;
                 if (raiseEvent != null)
                 {
@@ -114,6 +119,7 @@ namespace GOTCE.Components
                 sprintCritChance = SprintCritChanceAdd;
                 stageCritChance = StageCritChanceAdd;
                 aoeEffect = AOEAdd;
+                deathChance = DeathChanceAdd;
             }
 
             // grant attack speed if the player is within an ethereal bubble from seasoned patty
