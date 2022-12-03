@@ -42,7 +42,7 @@ namespace GOTCE.Enemies.Bosses
         public override void AddDirectorCard()
         {
             base.AddDirectorCard();
-            card.minimumStageCompletions = 4;
+            card.minimumStageCompletions = 3;
             card.selectionWeight = 1;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
@@ -77,7 +77,7 @@ namespace GOTCE.Enemies.Bosses
                 }
                 orig(self);
             };
-            
+
             DeathRewards deathRewards = prefab.GetComponent<DeathRewards>();
             ExplicitPickupDropTable dt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();
             dt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]

@@ -1,5 +1,6 @@
-/* using BepInEx.Configuration;
+using BepInEx.Configuration;
 using GOTCE.Components;
+using GOTCE.Items.Lunar;
 using R2API;
 using RoR2;
 using UnityEngine;
@@ -29,7 +30,7 @@ namespace GOTCE.Items.White
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null; Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BangSnap.png"); // replace with defibrillator icon
+        public override Sprite ItemIcon => null;
 
         public override void Init(ConfigFile config)
         {
@@ -51,51 +52,16 @@ namespace GOTCE.Items.White
 
         private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
         {
-            orig(self, itemIndex, count);
             if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
             {
-                if (self.gameObject.GetComponent<GOTCE_StatsComponent> != null)
+                if (self.GetComponent<GOTCE_StatsComponent>())
                 {
-                    var stack = self.GetItemCount(Instance.ItemDef);
-                    self.gameObject.GetComponent<CharacterMaster>().GetBody().GetComponent<GOTCE_StatsComponent>().defibrillatorRespawnChance = 8f * stack;
+                    // var stack = self.GetItemCount(Instance.ItemDef);
+                    var stats = self.GetComponent<GOTCE_StatsComponent>();
+                    stats.reviveChanceAdd -= 8f * count;
                 }
             }
-        }
-
-        private void CharacterMaster_OnBodyDeath(On.RoR2.CharacterMaster.orig_OnBodyDeath orig, CharacterMaster self, CharacterBody body)
-        {
-            var cachedDestroy = self.destroyOnBodyDeath;
-            var respawnChance = body.GetComponent<GOTCE_StatsComponent>().respawnChance;
-            var cachedCondition = Util.CheckRoll(respawnChance);
-            if (NetworkServer.active)
-            {
-                if (body.inventory)
-                {
-                    if (cachedCondition)
-                    {
-                        self.destroyOnBodyDeath = false;
-                        self.Invoke("RespawnExtraLife", 2f);
-                        self.Invoke("PlayExtraLifeSFX", 1f);
-                    }
-                }
-            }
-            orig(self, body);
-            self.destroyOnBodyDeath = cachedDestroy;
-            if (cachedCondition) self.preventGameOver = true;
-            // issues: respawn chance doesnt get lowered when scrapping/removing the item
-            // i can only respawn once for some reason
-        }
-
-        private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
-        {
-            if (sender && sender.inventory)
-            {
-                var stack = sender.inventory.GetItemCount(Instance.ItemDef);
-                if (stack > 0 && sender.gameObject.GetComponent<GOTCE_StatsComponent>())
-                {
-                    args.baseAttackSpeedAdd += (0.4f + 0.3f * (stack - 1)) * sender.gameObject.GetComponent<GOTCE_StatsComponent>().deathCount;
-                }
-            }
+            orig(self, itemIndex, count);
         }
 
         private void Inventory_GiveItem_ItemIndex_int(On.RoR2.Inventory.orig_GiveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
@@ -103,12 +69,45 @@ namespace GOTCE.Items.White
             orig(self, itemIndex, count);
             if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
             {
-                if (self.gameObject.GetComponent<GOTCE_StatsComponent> != null)
+                if (self.GetComponent<GOTCE_StatsComponent>())
                 {
                     var stack = self.GetItemCount(Instance.ItemDef);
-                    self.gameObject.GetComponent<CharacterMaster>().GetBody().GetComponent<GOTCE_StatsComponent>().defibrillatorRespawnChance = 8f * stack;
+                    var stats = self.GetComponent<GOTCE_StatsComponent>();
+                    stats.reviveChanceAdd += 8f * stack;
+                }
+            }
+        }
+
+        private void CharacterMaster_OnBodyDeath(On.RoR2.CharacterMaster.orig_OnBodyDeath orig, CharacterMaster self, CharacterBody body)
+        {
+            orig(self, body);
+            if (NetworkServer.active)
+            {
+                if (self.GetComponent<GOTCE_StatsComponent>())
+                {
+                    var stats = self.GetComponent<GOTCE_StatsComponent>();
+                    var stack = body.inventory.GetItemCount(Instance.ItemDef);
+                    if (stack > 0 && Util.CheckRoll(stats.reviveChance))
+                    {
+                        self.preventGameOver = true;
+                        stats.Invoke(nameof(stats.RespawnExtraLife), 1f);
+                        stats.deathCount++;
+                    }
+                }
+            }
+        }
+
+        private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (sender && sender.inventory)
+            {
+                var stack = sender.inventory.GetItemCount(Instance.ItemDef);
+                var stats = sender.gameObject.GetComponent<GOTCE_StatsComponent>();
+                if (stack > 0 && stats)
+                {
+                    args.baseAttackSpeedAdd += (0.4f + 0.3f * (stack - 1)) * stats.deathCount;
                 }
             }
         }
     }
-} */
+}

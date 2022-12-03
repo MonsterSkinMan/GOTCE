@@ -1,8 +1,6 @@
 using R2API;
 using RoR2;
 using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.Networking;
 
 namespace GOTCE.Enemies.Bosses
 {
@@ -26,7 +24,7 @@ namespace GOTCE.Enemies.Bosses
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 1500;
+            isc.directorCreditCost = 3000;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
@@ -41,7 +39,7 @@ namespace GOTCE.Enemies.Bosses
         public override void AddDirectorCard()
         {
             base.AddDirectorCard();
-            card.minimumStageCompletions = 0;
+            card.minimumStageCompletions = 5;
             card.selectionWeight = 1;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }

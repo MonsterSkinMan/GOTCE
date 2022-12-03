@@ -16,7 +16,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Bandit
             base.OnEnter();
             AkSoundEngine.PostEvent(850833398, base.gameObject); // Play_bandit2_shift_exit
             PlayAnimation("Gesture, Additive", "ThrowSmokebomb", "ThrowSmokebomb.playbackRate", duration);
-            if (NetworkServer.active)
+            if (NetworkServer.active && base.isAuthority)
             {
                 try
                 {

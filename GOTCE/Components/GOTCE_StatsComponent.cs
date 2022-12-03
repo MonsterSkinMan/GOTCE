@@ -33,7 +33,7 @@ namespace GOTCE.Components
         public float crownPrinceTrueKillChance;
 
         // item: defibrillator
-        [HideInInspector] public float defibrillatorRespawnChance;
+        public float reviveChance;
 
         // item: grandfather clock
         public int clockDeathCount = 0;
@@ -70,6 +70,7 @@ namespace GOTCE.Components
         public float SprintCritChanceAdd;
         public float FovCritChanceAdd;
         public int AOEAdd;
+        public float reviveChanceAdd;
 
         public WarCrime mostRecentlyCommitedWarCrime = WarCrime.None;
 
@@ -104,6 +105,7 @@ namespace GOTCE.Components
                 SprintCritChanceAdd = 0;
                 StageCritChanceAdd = 0;
                 FovCritChanceAdd = 0;
+                reviveChanceAdd = 0;
                 EventHandler<StatsCompRecalcArgs> raiseEvent = StatsCompEvent.StatsCompRecalc;
                 if (raiseEvent != null)
                 {
@@ -113,6 +115,7 @@ namespace GOTCE.Components
                 fovCritChance = FovCritChanceAdd + increase;
                 sprintCritChance = SprintCritChanceAdd;
                 stageCritChance = StageCritChanceAdd;
+                reviveChance = reviveChanceAdd;
                 aoeEffect = AOEAdd;
 
                 // fov crit

@@ -4,8 +4,6 @@ using UnityEngine;
 using RoR2.Skills;
 using RoR2.CharacterAI;
 using GOTCE.Skills;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace GOTCE.Enemies.Minibosses
 {
@@ -23,8 +21,8 @@ namespace GOTCE.Enemies.Minibosses
             body = prefab.GetComponent<CharacterBody>();
             body.baseArmor = 0;
             body.attackSpeed = 1f;
-            body.damage = 1f;
-            body.levelDamage = 0.2f;
+            body.damage = 0.6f;
+            body.levelDamage = 0.12f;
             body.baseMaxHealth = 200f;
             body.moveSpeed = 14f;
             body.autoCalculateLevelStats = true;
@@ -38,7 +36,7 @@ namespace GOTCE.Enemies.Minibosses
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 90;
+            isc.directorCreditCost = 100;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
@@ -55,6 +53,7 @@ namespace GOTCE.Enemies.Minibosses
             base.AddDirectorCard();
             card.selectionWeight = 1;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Close;
+            card.minimumStageCompletions = 1;
         }
 
         public override void Modify()

@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using RoR2;
 using UnityEngine.SceneManagement;
-using RoR2.Skills;
-using R2API;
-using System;
+using RoR2.EntityLogic;
 
 namespace GOTCE.Based
 {
     internal static class Zased
     {
+        public static Material slabMaterial;
+
         public static void DoTheBased()
         {
             On.RoR2.SceneDirector.Start += SceneDirector_Start;
@@ -19,32 +19,51 @@ namespace GOTCE.Based
         private static void SceneDirector_Start(On.RoR2.SceneDirector.orig_Start orig, SceneDirector self)
         {
             orig(self);
-            if (SceneManager.GetActiveScene().name == "bazaar" && NetworkServer.active)
+            slabMaterial = Addressables.LoadAssetAsync<Material>("RoR2/Base/LunarRecycler/matLunarRecycler.mat").WaitForCompletion();
+            var objectList = GameObject.FindObjectsOfType(typeof(GameObject)) as GameObject[];
+            if (NetworkServer.active)
             {
-                GameObject.Find("HOLDER: Store").AddComponent<AntiSlab>();
+                foreach (GameObject go in objectList)
+                {
+                    try
+                    {
+                        if (go.name.Contains("LunarRecycler") || go.GetComponent<Counter>() != null || go.GetComponent<MeshRenderer>().sharedMaterial == slabMaterial)
+                        {
+                            GameObject.DestroyImmediate(go);
+                        }
+                    }
+                    catch { }
+                }
             }
         }
 
-        private static void SetAvailable(On.RoR2.PurchaseInteraction.orig_SetAvailable orig, PurchaseInteraction self, bool value) {
-            if (self.displayNameToken == "LUNAR_REROLL_NAME") {
+        private static void SetAvailable(On.RoR2.PurchaseInteraction.orig_SetAvailable orig, PurchaseInteraction self, bool value)
+        {
+            if (self.displayNameToken == "LUNAR_REROLL_NAME")
+            {
                 orig(self, false);
             }
-            else {
+            else
+            {
                 orig(self, value);
             }
         }
 
-        private static void NoMorePod(On.RoR2.PurchaseInteraction.orig_OnInteractionBegin orig, PurchaseInteraction self, Interactor interactor) {
-            if (self.displayNameToken != "LUNAR_REROLL_NAME") {
+        private static void NoMorePod(On.RoR2.PurchaseInteraction.orig_OnInteractionBegin orig, PurchaseInteraction self, Interactor interactor)
+        {
+            if (self.displayNameToken != "LUNAR_REROLL_NAME")
+            {
                 orig(self, interactor);
             }
-            if (NetworkServer.active) {
-                if (self.costType == CostTypeIndex.LunarCoin && SceneManager.GetActiveScene().name == "bazaar") {
+            if (NetworkServer.active)
+            {
+                if (self.costType == CostTypeIndex.LunarCoin && SceneManager.GetActiveScene().name == "bazaar")
+                {
                     GameObject.DestroyImmediate(self.gameObject);
                 }
             }
         }
-     }
+    }
 
     internal class AntiSlab : MonoBehaviour
     {
@@ -70,5 +89,5 @@ namespace GOTCE.Based
                 gameObject.AddComponent<AntiSlab>(); // nice try, but no
             }
         }
-     }
+    }
 }
