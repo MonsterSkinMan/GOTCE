@@ -503,11 +503,31 @@ namespace GOTCE
                 }
             };
 
+            Func<CharacterBody, string> revive = (CharacterBody body) =>
+            {
+                if (body.masterObject)
+                {
+                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
+                    {
+                        return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().reviveChance.ToString();
+                    }
+                    else
+                    {
+                        return "N/A";
+                    }
+                }
+                else
+                {
+                    return "N/A";
+                }
+            };
+
             StatsDisplay.AddStatsDisplay("$stage", stage);
             StatsDisplay.AddStatsDisplay("$sprint", sprint);
             StatsDisplay.AddStatsDisplay("$fov", fov);
             StatsDisplay.AddStatsDisplay("$war", war);
             StatsDisplay.AddStatsDisplay("$aoe", aoe);
+            // StatsDisplay.AddStatsDisplay("$revive", revive);
 
             /* Hook statsHook = new Hook(
                 typeof(BetterUI.StatsDisplay).GetMethod("onStart", (BindingFlags)(-1)),
@@ -581,6 +601,9 @@ namespace GOTCE
                 altText.Add("$war");
                 altText.Add("\nAoE Effect: +");
                 altText.Add("$aoe");
+                // altText.Add("Revive Chance: ");
+                // altText.Add("$revive");
+                // altText.Add("%");
 
                 typeof(StatsDisplay).SetFieldValue<string[]>("normalText", normalText.ToArray());
                 typeof(StatsDisplay).SetFieldValue<string[]>("altText", altText.ToArray());

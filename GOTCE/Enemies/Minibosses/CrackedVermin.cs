@@ -25,17 +25,16 @@ namespace GOTCE.Enemies.Minibosses
             body = prefab.GetComponent<CharacterBody>();
             body.baseArmor = 0;
             body.attackSpeed = 1f;
-            body.damage = 20f;
-            body.levelDamage = 4f;
-            body.baseMaxHealth = 150f;
-            body.levelMaxHealth = 150f;
+            body.damage = 8f;
+            body.levelDamage = 1.6f;
+            body.baseMaxHealth = 180f;
+            body.levelMaxHealth = 54f;
             body.baseMoveSpeed = 30f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_CRACKEDVERMIN_NAME";
             body.subtitleNameToken = "GOTCE_CRACKEDVERMIN_SUBTITLE";
             body.baseRegen = 0f;
             body.portraitIcon = Main.MainAssets.LoadAsset<Texture2D>("Assets/Textures/Icons/Enemies/CrackedPest.png");
-            
         }
 
         public override void Modify()
@@ -65,7 +64,7 @@ namespace GOTCE.Enemies.Minibosses
             .transform.Find("Leg2.l")
             .transform.Find("Foot.l")
             .transform.Find("shoe").GetComponentInChildren<CapsuleCollider>();
-            
+
             DisableSkins(prefab);
             SetupModel(prefab, model);
             SetupHurtbox(prefab, model, box1, 0, true);
@@ -75,7 +74,8 @@ namespace GOTCE.Enemies.Minibosses
             SetupHurtbox(prefab, model, shoe1, 4);
             SetupHurtbox(prefab, model, shoe2, 5);
 
-            model.GetComponent<HurtBoxGroup>().hurtBoxes = new HurtBox[] {
+            model.GetComponent<HurtBoxGroup>().hurtBoxes = new HurtBox[]
+            {
                 box1.gameObject.GetComponent<HurtBox>(),
                 box2.gameObject.GetComponent<HurtBox>(),
                 box3.gameObject.GetComponent<HurtBox>(),
@@ -96,15 +96,20 @@ namespace GOTCE.Enemies.Minibosses
             LanguageAPI.Add("GOTCE_CRACKEDVERMIN_NAME", "Cracked Vermin");
             LanguageAPI.Add("GOTCE_CRACKEDVERMIN_LORE", "");
             LanguageAPI.Add("GOTCE_CRACKEDVERMIN_SUBTITLE", "Horde of Many");
-            
-            On.RoR2.Chat.AddMessage_string += (orig, str) => {
+
+            On.RoR2.Chat.AddMessage_string += (orig, str) =>
+            {
                 orig(str);
                 // Debug.Log(str);
-                if (str.ToLower().Contains("your jordans are fake")) {
+                if (str.ToLower().Contains("your jordans are fake"))
+                {
                     ReadOnlyCollection<TeamComponent> team = TeamComponent.GetTeamMembers(TeamIndex.Monster);
-                    foreach (TeamComponent com in team) {
-                        if (com.body && com.body.healthComponent) {
-                            if (com.body.baseNameToken == "GOTCE_CRACKEDVERMIN_NAME") {
+                    foreach (TeamComponent com in team)
+                    {
+                        if (com.body && com.body.healthComponent)
+                        {
+                            if (com.body.baseNameToken == "GOTCE_CRACKEDVERMIN_NAME")
+                            {
                                 com.body.healthComponent.Suicide();
                             }
                         }
@@ -129,7 +134,7 @@ namespace GOTCE.Enemies.Minibosses
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 50;
+            isc.directorCreditCost = 60;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
