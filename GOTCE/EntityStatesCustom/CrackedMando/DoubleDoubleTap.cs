@@ -119,7 +119,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                 bulletAttack2.Fire();
 
                 bulletsFired += 1;
-                rotateObject.Rotate(new Vector3(0, 12, 0));
+                rotateObject.Rotate(new Vector3(0, 36, 0));
                 base.characterDirection.forward = rotateObject.forward;
             }
 
@@ -139,6 +139,10 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                 "Muzzle9",
                 "Muzzle10"
             };
+
+            if (!Run.instance) {
+                return "Muzzle0";
+            }
 
             return muzzles[Run.instance.runRNG.RangeInt(0, muzzles.Count - 1)];
          }

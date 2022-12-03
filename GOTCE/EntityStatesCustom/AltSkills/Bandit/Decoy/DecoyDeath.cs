@@ -19,19 +19,21 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Bandit.Decoy
                     if (master.minionOwnership && master.minionOwnership.ownerMaster)
                     {
                         CharacterMaster ownerMaster = master.minionOwnership.ownerMaster;
-                        if (ownerMaster.GetBody())
+                        if (ownerMaster.GetBody() && base.isAuthority)
                         {
-                            BlastAttack blast = new();
-                            blast.radius = 7f;
-                            blast.baseDamage = ownerMaster.GetBody().damage * 7.6f;
-                            blast.attacker = ownerMaster.GetBodyObject();
-                            blast.position = base.characterBody.corePosition;
-                            blast.crit = Util.CheckRoll(ownerMaster.GetBody().crit, ownerMaster);
-                            blast.damageType = DamageType.Stun1s;
-                            blast.procChainMask = new();
-                            blast.procCoefficient = 1f;
-                            blast.teamIndex = ownerMaster.teamIndex;
-                            blast.falloffModel = BlastAttack.FalloffModel.None;
+                            BlastAttack blast = new()
+                            {
+                                radius = 7f,
+                                baseDamage = ownerMaster.GetBody().damage * 7.6f,
+                                attacker = ownerMaster.GetBodyObject(),
+                                position = base.characterBody.corePosition,
+                                crit = Util.CheckRoll(ownerMaster.GetBody().crit, ownerMaster),
+                                damageType = DamageType.Stun1s,
+                                procChainMask = new(),
+                                procCoefficient = 1f,
+                                teamIndex = ownerMaster.teamIndex,
+                                falloffModel = BlastAttack.FalloffModel.None
+                            };
 
                             EffectManager.SpawnEffect(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/OmniEffect/OmniExplosionVFXQuick"), new EffectData
                             {

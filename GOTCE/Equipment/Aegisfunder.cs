@@ -125,7 +125,7 @@ namespace GOTCE.Equipment
             }
 
             timer += Time.fixedDeltaTime;
-            if (timer >= interval && shouldFire)
+            if (timer >= interval && shouldFire & body.hasAuthority)
             {
                 timer = 0f;
                 ProcChainMask mask = new ProcChainMask();

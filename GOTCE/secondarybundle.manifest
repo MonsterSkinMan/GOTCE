@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3477928171
+CRC: 2634269411
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b3db79913a65d0adcc061fa4ff581388
+    Hash: 47de323a1dbf2ed25623351ad9ea4678
   TypeTreeHash:
     serializedVersion: 2
     Hash: ab96cb62c0204d0c0c32741e123fdfe8
@@ -245,6 +245,5 @@ Assets:
 - Assets/Prefabs/Enemies/Provi/Projectile/ProviOrb.prefab
 - Assets/Icons/GummyBeetleQueen.png
 - Assets/Prefabs/Projectiles/AegisFunder/AegisProjectile.prefab
-- Assets/Icons/CrackedCommando.png
 - Assets/Prefabs/Enemies/Provi/ProviBody.prefab
 Dependencies: []

@@ -73,10 +73,10 @@ namespace GOTCE.Items
             emptyModel = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Mystery/PickupMystery.prefab").WaitForCompletion();
             CubeModel = Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Item/Drill/Cube.prefab");
 
-            bool preset1 = config.Bind<bool>("Presets:", "NonLunarLunar", false, "Disable all items under the NonLunarLunar (non-lunar items with downsides) category.").Value;
-            bool preset2 = config.Bind<bool>("Presets:", "Masochist", false, "Disable all items under the Masochist (self-damage or self-killing) category.").Value;
-            bool preset3 = config.Bind<bool>("Presets:", "Unstable", false, "Disable all items under the Unstable (lagging and crashing) category.").Value;
-            bool preset4 = config.Bind<bool>("Presets:", "Bullshit", false, "Disable all items under the Bullshit (really stupid) category.").Value;
+            bool preset1 = config.Bind<bool>("_Presets:", "NonLunarLunar", false, "Disable all items under the NonLunarLunar (non-lunar items with downsides) category.").Value;
+            bool preset2 = config.Bind<bool>("_Presets:", "Masochist", false, "Disable all items under the Masochist (self-damage or self-killing) category.").Value;
+            bool preset3 = config.Bind<bool>("_Presets:", "Unstable", false, "Disable all items under the Unstable (lagging and crashing) category.").Value;
+            bool preset4 = config.Bind<bool>("_Presets:", "Bullshit", false, "Disable all items under the Bullshit (really stupid) category.").Value;
 
             if (preset1 && ItemTags.Contains(GOTCETags.NonLunarLunar))
             {

@@ -25,26 +25,52 @@ namespace GOTCE.Based
             }
         }
 
-        private static void SetAvailable(On.RoR2.PurchaseInteraction.orig_SetAvailable orig, PurchaseInteraction self, bool value) {
-            if (self.displayNameToken == "LUNAR_REROLL_NAME") {
+        private static void SetAvailable(On.RoR2.PurchaseInteraction.orig_SetAvailable orig, PurchaseInteraction self, bool value)
+        {
+            if (self.displayNameToken == "LUNAR_REROLL_NAME")
+            {
                 orig(self, false);
             }
-            else {
+            else
+            {
                 orig(self, value);
             }
         }
 
-        private static void NoMorePod(On.RoR2.PurchaseInteraction.orig_OnInteractionBegin orig, PurchaseInteraction self, Interactor interactor) {
-            if (self.displayNameToken != "LUNAR_REROLL_NAME") {
+        private static void NoMorePod(On.RoR2.PurchaseInteraction.orig_OnInteractionBegin orig, PurchaseInteraction self, Interactor interactor)
+        {
+            if (self.displayNameToken != "LUNAR_REROLL_NAME")
+            {
                 orig(self, interactor);
             }
-            if (NetworkServer.active) {
-                if (self.costType == CostTypeIndex.LunarCoin && SceneManager.GetActiveScene().name == "bazaar") {
+            if (self.displayNameToken == "LUNAR_REROLL_NAME")
+            {
+                CharacterBody body = interactor.GetComponent<CharacterBody>();
+                Chat.AddMessage($"<style=cIsDamage>{Util.LookUpBodyNetworkUser(body).userName}</style>, <style=cDeath>you thought you could get away with using the slab?</style>");
+                body.master.TrueKill();
+
+                GameObject[] objects = SceneManager.GetActiveScene().GetRootGameObjects();
+
+                foreach (GameObject gameObject in objects)
+                {
+                    if (NetworkServer.active)
+                    {
+                        GameObject.Destroy(gameObject);
+                        Main.ModLogger.LogError("THE FOG IS COMING THE FOG IS COMING THE FOG IS COMING");
+                    }
+                }
+
+                Chat.AddMessage("lol, lmao.");
+            }
+            if (NetworkServer.active)
+            {
+                if (self.costType == CostTypeIndex.LunarCoin && SceneManager.GetActiveScene().name == "bazaar")
+                {
                     GameObject.DestroyImmediate(self.gameObject);
                 }
             }
         }
-     }
+    }
 
     internal class AntiSlab : MonoBehaviour
     {
@@ -70,5 +96,5 @@ namespace GOTCE.Based
                 gameObject.AddComponent<AntiSlab>(); // nice try, but no
             }
         }
-     }
+    }
 }

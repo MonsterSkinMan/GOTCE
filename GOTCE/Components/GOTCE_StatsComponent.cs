@@ -24,6 +24,9 @@ namespace GOTCE.Components
         public float sprintCritChance;
         public float fovCritChance;
 
+        // death chance
+        public float deathChance;
+
         // other stats
         public int aoeEffect;
 
@@ -33,7 +36,7 @@ namespace GOTCE.Components
         public float crownPrinceTrueKillChance;
 
         // item: defibrillator
-        [HideInInspector] public float defibrillatorRespawnChance;
+        public float reviveChance;
 
         // item: grandfather clock
         public int clockDeathCount = 0;
@@ -69,7 +72,9 @@ namespace GOTCE.Components
 
         public float SprintCritChanceAdd;
         public float FovCritChanceAdd;
+        public float DeathChanceAdd;
         public int AOEAdd;
+        public float reviveChanceAdd;
 
         public WarCrime mostRecentlyCommitedWarCrime = WarCrime.None;
 
@@ -104,6 +109,8 @@ namespace GOTCE.Components
                 SprintCritChanceAdd = 0;
                 StageCritChanceAdd = 0;
                 FovCritChanceAdd = 0;
+                reviveChanceAdd = 0;
+                DeathChanceAdd = 0;
                 EventHandler<StatsCompRecalcArgs> raiseEvent = StatsCompEvent.StatsCompRecalc;
                 if (raiseEvent != null)
                 {
@@ -113,33 +120,9 @@ namespace GOTCE.Components
                 fovCritChance = FovCritChanceAdd + increase;
                 sprintCritChance = SprintCritChanceAdd;
                 stageCritChance = StageCritChanceAdd;
+                reviveChance = reviveChanceAdd;
                 aoeEffect = AOEAdd;
-
-                // fov crit
-                /* float fovCritChanceTmp = 0f;
-                fovCritChanceTmp += 10f*(inventory.GetItemCount(Items.White.ZoomLenses.Instance.ItemDef));
-                if (body.inventory.GetItemCount(Items.Green.MissileFovCrit.Instance.ItemDef) > 0) { fovCritChanceTmp += 5f; }
-                if (body.inventory.GetItemCount(Items.Green.AnalyticalAegis.Instance.ItemDef) > 0) { fovCritChanceTmp += 5f; }
-                if (body.inventory.GetItemCount(Items.White.Balls.Instance.ItemDef) > 0) { fovCritChanceTmp += 2f; }
-                fovCritChanceTmp += 2f*(inventory.GetItemCount(Items.White.EmpathyC4.Instance.ItemDef));
-                fovCritChance = fovCritChanceTmp;
-                fovCritChance += increase;
-
-                // sprint crit
-                float sprCritChanceTmp = 0f;
-                sprCritChanceTmp += 8f*(inventory.GetItemCount(Items.White.GummyVitamins.Instance.ItemDef));
-                sprCritChanceTmp += 2f*(inventory.GetItemCount(Items.White.EmpathyC4.Instance.ItemDef));
-                if (body.inventory.GetItemCount(Items.White.gd2.Instance.ItemDef) > 0) { sprCritChanceTmp += 10f; }
-                if (body.inventory.GetItemCount(Items.White.SigmaGrindset.Instance.ItemDef) > 0) { sprCritChanceTmp += 2f; }
-                sprintCritChance = sprCritChanceTmp;
-
-                // stage crit
-                DetermineStageCrit();
-
-                int aoeEffectTmp = 0;
-                aoeEffectTmp += 2*(inventory.GetItemCount(Items.White.BangSnap.Instance.ItemDef));
-                aoeEffectTmp += 2*(inventory.GetItemCount(Items.White.EmpathyC4.Instance.ItemDef));
-                aoeEffect = aoeEffectTmp; */
+                deathChance = DeathChanceAdd;
             }
 
             // grant attack speed if the player is within an ethereal bubble from seasoned patty
@@ -165,6 +148,10 @@ namespace GOTCE.Components
 
         private void RollInputs()
         {
+            if (!body || !body.inventory)
+            {
+                return;
+            }
             float amount = 2f * body.inventory.GetItemCount(Items.Red.Gamepad.Instance.ItemDef);
             increase = amount * inputs;
             inputs = 0;

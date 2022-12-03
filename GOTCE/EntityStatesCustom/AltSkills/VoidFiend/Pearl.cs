@@ -19,7 +19,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
             AkSoundEngine.PostEvent(4021527550, base.gameObject); // Play_voidman_m2_shoot_fullCharge
             Ray aim = GetAimRay();
 
-            if (NetworkServer.active)
+            if (base.isAuthority)
             {
                 if (!characterBody.gameObject.GetComponent<ViendPearlManager>())
                 {

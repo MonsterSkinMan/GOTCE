@@ -14,7 +14,7 @@ namespace GOTCE.Survivors
     public class CrackedMando : SurvivorBase<CrackedMando>
     {
         public override string bodypath => "Assets/Prefabs/Survivors/Crackmando/CrackmandoBody.prefab";
-        public override string name => "CrackedCommando";
+        public override string name => "CrackedCommandoBody";
         public override bool clone => false;
 
         public override void Modify()
@@ -22,7 +22,10 @@ namespace GOTCE.Survivors
             base.Modify();
             CharacterBody body = prefab.GetComponent<CharacterBody>();
             body.preferredPodPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Toolbot/RoboCratePod.prefab").WaitForCompletion();
+            body._defaultCrosshairPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/UI/SimpleDotCrosshair.prefab").WaitForCompletion();
             prefab.GetComponent<CameraTargetParams>().cameraParams = Addressables.LoadAssetAsync<CharacterCameraParams>("RoR2/Base/Common/ccpStandard.asset").WaitForCompletion();
+
+            // prefab.transform.Find("Model Base").Find("CrackModel").GetComponentInChildren<CharacterModel>().itemDisplayRuleSet = Addressables.LoadAssetAsync<ItemDisplayRuleSet>("RoR2/Base/Commando/idrsCommando.asset").WaitForCompletion();
 
             EntityStateMachine esm = AddESM(prefab, "Flight", new SerializableEntityStateType(typeof(Idle)));
             
@@ -47,6 +50,11 @@ namespace GOTCE.Survivors
                 unlockableDef = SuppressiveBarrageUnlock.Instance.enabled ? SuppressiveBarrageUnlock.Instance.def : null,
                 viewableNode = new ViewablesCatalog.Node(Skills.SuppressiveBarrage.Instance.SkillDef.skillNameToken, false, null)
             };
+
+            GameObject umbra = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Commando/CommandoMonsterMaster.prefab").WaitForCompletion().InstantiateClone("CrackmandoMonsterMaster");
+            umbra.GetComponent<CharacterMaster>().bodyPrefab = prefab;
+            ContentAddition.AddMaster(umbra);
+
         }
 
         public override void PostCreation()
@@ -62,7 +70,7 @@ namespace GOTCE.Survivors
                 unlockableDef = SurvivorUnlock.Instance.enabled ? SurvivorUnlock.Instance.def : null,
                 desiredSortPosition = 16,
                 mainEndingEscapeFailureFlavorToken = "GOTCE_CRACKMANDO_FAIL",
-                outroFlavorToken = "GOTCE_CRACKMANDO_WIN"
+                outroFlavorToken = "GOTCE_CRACKMANDO_WIN",
             };
 
             ContentAddition.AddBody(prefab);
