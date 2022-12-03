@@ -14,7 +14,7 @@ namespace GOTCE.Survivors
     public class CrackedMando : SurvivorBase<CrackedMando>
     {
         public override string bodypath => "Assets/Prefabs/Survivors/Crackmando/CrackmandoBody.prefab";
-        public override string name => "CrackedCommando";
+        public override string name => "CrackedCommandoBody";
         public override bool clone => false;
 
         public override void Modify()
@@ -50,6 +50,11 @@ namespace GOTCE.Survivors
                 unlockableDef = SuppressiveBarrageUnlock.Instance.enabled ? SuppressiveBarrageUnlock.Instance.def : null,
                 viewableNode = new ViewablesCatalog.Node(Skills.SuppressiveBarrage.Instance.SkillDef.skillNameToken, false, null)
             };
+
+            GameObject umbra = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Commando/CommandoMonsterMaster.prefab").WaitForCompletion().InstantiateClone("CrackmandoMonsterMaster");
+            umbra.GetComponent<CharacterMaster>().bodyPrefab = prefab;
+            ContentAddition.AddMaster(umbra);
+
         }
 
         public override void PostCreation()
@@ -65,7 +70,7 @@ namespace GOTCE.Survivors
                 unlockableDef = SurvivorUnlock.Instance.enabled ? SurvivorUnlock.Instance.def : null,
                 desiredSortPosition = 16,
                 mainEndingEscapeFailureFlavorToken = "GOTCE_CRACKMANDO_FAIL",
-                outroFlavorToken = "GOTCE_CRACKMANDO_WIN"
+                outroFlavorToken = "GOTCE_CRACKMANDO_WIN",
             };
 
             ContentAddition.AddBody(prefab);
