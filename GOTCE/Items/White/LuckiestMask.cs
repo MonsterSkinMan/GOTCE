@@ -71,7 +71,9 @@ namespace GOTCE.Items.White
                 if (body.inventory && body.inventory.GetItemCount(ItemDef) > 0)
                 {
                     float count = 1f * body.inventory.GetItemCount(ItemDef);
-                    self.procCoefficient += count;
+                    if (!self.procChainMask.HasProc(ProcType.Behemoth)) {
+                        self.procCoefficient += count;
+                    }
                 }
             }
             orig(self, mod);
