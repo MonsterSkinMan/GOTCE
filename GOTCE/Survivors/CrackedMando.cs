@@ -37,7 +37,7 @@ namespace GOTCE.Survivors
 
             LanguageAPI.Add("GOTCE_CRACKMANDO_NAME", "Cracked Commando");
             LanguageAPI.Add("GOTCE_CRACKMANDO_DESC", "Cracked Commando is a jack of all trades survivor who can do a bit of everything, whether that be destroying multiplayer lobbies with Suppressive Nader or outdamaging railgunner with his Double Double Double Double Tap.");
-            LanguageAPI.Add("GOTCE_CRACKMANDO_SUBTITLE", "Harbinger of the Cracked Emoji");
+            LanguageAPI.Add("GOTCE_CRACKMANDO_SUBTITLE", "Delirious Dragoon");
             LanguageAPI.Add("GOTCE_CRACKMANDO_WIN", "And so he left, securing his crackedness...");
             LanguageAPI.Add("GOTCE_CRACKMANDO_FAIL", "And so he vanished, going from cracked to shattered...");
 

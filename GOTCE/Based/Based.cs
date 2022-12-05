@@ -4,11 +4,13 @@ using UnityEngine.SceneManagement;
 using RoR2.Skills;
 using R2API;
 using System;
+using RoR2.EntityLogic;
 
 namespace GOTCE.Based
 {
     internal static class Zased
     {
+        public static Material slabMaterial;
         public static void DoTheBased()
         {
             On.RoR2.SceneDirector.Start += SceneDirector_Start;
@@ -19,10 +21,23 @@ namespace GOTCE.Based
         private static void SceneDirector_Start(On.RoR2.SceneDirector.orig_Start orig, SceneDirector self)
         {
             orig(self);
+            slabMaterial = Addressables.LoadAssetAsync<Material>("RoR2/Base/LunarRecycler/matLunarRecycler.mat").WaitForCompletion();
             if (SceneManager.GetActiveScene().name == "bazaar" && NetworkServer.active)
             {
                 // GameObject.Find("HOLDER: Store").AddComponent<AntiSlab>();
                 GameObject.Find("HOLDER: Store").transform.GetChild(0).GetChild(3).gameObject.SetActive(false);
+            }
+            var objectList = GameObject.FindObjectsOfType(typeof(GameObject)) as GameObject[];
+            foreach (GameObject go in objectList)
+            {
+                try
+                {
+                    if (go.name.Contains("LunarRecycler") || go.GetComponent<Counter>() != null || go.GetComponent<MeshRenderer>().sharedMaterial == slabMaterial)
+                    {
+                        GameObject.DestroyImmediate(go);
+                    }
+                }
+                catch { }
             }
         }
 

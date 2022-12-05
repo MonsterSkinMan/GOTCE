@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1648689801
+CRC: 1486161550
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 53741cb8418b0366083d64cc58985edb
+    Hash: cf69f6db52895792296a2e44d7f9e871
   TypeTreeHash:
     serializedVersion: 2
     Hash: a5fce307c298c3ba6cc939ce40c7fbe9
@@ -68,16 +68,19 @@ Assets:
 - Assets/Textures/Icons/Artifact/woolifact.png
 - Assets/Textures/Icons/Item/faultyspacetimeclock.png
 - Assets/Textures/Icons/Item/BottledMetamorphosis.png
+- Assets/Textures/Icons/Item/ChristmasGift.png
 - Assets/Textures/Icons/Item/kirn.png
 - Assets/Textures/Icons/Item/NEAplaceholder.png
 - Assets/Textures/Icons/Equipment/crunder2.png
 - Assets/Textures/Icons/Item/ZoomLenses.png
+- Assets/Textures/Icons/Survivors/CrackedCommando.png
 - Assets/Textures/Icons/Item/bigshoe.png
 - Assets/Textures/Icons/Item/FormlessSand.png
 - Assets/Textures/Icons/Item/corruptedshard.png
 - Assets/Textures/Icons/Item/bottledcommand.png
 - Assets/Textures/Icons/Item/TuesdayMagazine.png
 - Assets/Textures/Icons/Item/barrierworks.png
+- Assets/Textures/Icons/Enemies/CrackedVermin.png
 - Assets/Textures/Icons/Item/HeartlessBreakfast.png
 - Assets/Textures/Icons/Item/PaleAle.png
 - Assets/Import/8mb.video-yzD-Rpct5RSV.mp4
@@ -96,6 +99,7 @@ Assets:
 - Assets/Textures/Icons/Item/tuboflard.png
 - Assets/Textures/Icons/Item/DopeDope.png
 - Assets/Textures/Icons/Item/GD1Nullified.png
+- Assets/Textures/Icons/Item/ClaspingClaws.png
 - Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png
 - Assets/Textures/Icons/Item/sscnft.png
 - Assets/Textures/Icons/Item/Yhjtumgrhtfyddc.png

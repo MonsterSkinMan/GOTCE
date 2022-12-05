@@ -34,7 +34,7 @@ namespace GOTCE.Enemies.Minibosses
             body.baseNameToken = "GOTCE_CRACKEDVERMIN_NAME";
             body.subtitleNameToken = "GOTCE_CRACKEDVERMIN_SUBTITLE";
             body.baseRegen = 0f;
-            body.portraitIcon = Main.MainAssets.LoadAsset<Texture2D>("Assets/Textures/Icons/Enemies/CrackedPest.png");
+            body.portraitIcon = Main.MainAssets.LoadAsset<Texture2D>("Assets/Textures/Icons/Enemies/CrackedVermin.png");
         }
 
         public override void Modify()

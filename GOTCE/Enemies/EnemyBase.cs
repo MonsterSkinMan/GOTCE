@@ -301,8 +301,6 @@ namespace GOTCE.Enemies
             characterDeathBehavior.deathStateMachine = prefab.GetComponent<EntityStateMachine>();
             characterDeathBehavior.deathState = new SerializableEntityStateType(typeof(GenericCharacterDeath));
 
-            GameObject.Destroy(prefab.GetComponentInChildren<Animator>());
-
             model.AddComponent<CharacterModel>();
 
             model.AddComponent<HurtBoxGroup>();
