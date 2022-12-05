@@ -43,6 +43,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Commando
                     bullet.Fire();
                 }
             }
+
+            AkSoundEngine.PostEvent(4206201632, base.gameObject); // Play_bandit2_m1_shotgun
         }
 
         public override void OnExit()

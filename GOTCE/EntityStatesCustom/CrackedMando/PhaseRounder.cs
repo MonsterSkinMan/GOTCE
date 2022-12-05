@@ -54,6 +54,8 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                 };
                 ProjectileManager.instance.FireProjectile(info);
             }
+
+            AkSoundEngine.PostEvent(1069717260, base.gameObject); // Play_wFMJ
         }
 
         public override void OnExit()

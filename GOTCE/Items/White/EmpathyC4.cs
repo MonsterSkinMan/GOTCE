@@ -40,6 +40,8 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += Synergy;
+            StatsCompEvent.StatsCompRecalc += SynergyTwo;
+            
         }
 
         public void Synergy(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
@@ -48,7 +50,7 @@ namespace GOTCE.Items.White
             {
                 float increase = 0.02f * GetCount(body);
 
-                args.armorAdd += body.armor * (increase - 1);
+                args.armorAdd += body.armor * (increase);
                 args.attackSpeedMultAdd += increase;
                 args.moveSpeedMultAdd += increase;
                 args.damageMultAdd += increase;
@@ -60,6 +62,19 @@ namespace GOTCE.Items.White
                 args.baseRegenAdd += body.regen * (increase);
                 args.critDamageMultAdd += increase;
                 args.levelMultAdd += increase;
+            }
+        }
+
+        public void SynergyTwo(object sender, StatsCompRecalcArgs args) {
+            if (args.Stats && args.Stats.inventory) {
+                int count = args.Stats.inventory.GetItemCount(ItemDef);
+                if (count > 0) {
+                    args.Stats.AOEAdd += 2 * count;
+                    args.Stats.reviveChanceAdd += 2 * count;
+                    args.Stats.FovCritChanceAdd += 2 * count;
+                    args.Stats.StageCritChanceAdd += 2 * count;
+                    args.Stats.SprintCritChanceAdd += 2 * count;
+                }
             }
         }
     }

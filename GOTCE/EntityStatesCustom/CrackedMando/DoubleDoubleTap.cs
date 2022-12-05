@@ -25,6 +25,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
         {
             base.OnEnter();
             PlayAnimation("Gesture, Override", "Fire", "Fire.playbackRate", 1f);
+            AkSoundEngine.PostEvent(4060526873, base.gameObject); // Play_commando_M1
         }
 
         public override void OnExit()

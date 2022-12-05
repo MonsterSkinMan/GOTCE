@@ -30,6 +30,8 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             RecalculateStatsAPI.GetStatCoefficients += recalc;
             CriticalTypes.OnSprintCrit?.Invoke(gameObject, new(base.characterBody));
             base.characterBody.RecalculateStats();
+
+            AkSoundEngine.PostEvent(4030773325, base.gameObject); // Play_commando_shift
         }
 
         public override void OnExit()

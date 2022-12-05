@@ -6,7 +6,7 @@ namespace GOTCE.Skills
 {
     public class CrackedSlam : SkillBase<CrackedSlam>
     {
-        public override SerializableEntityStateType ActivationState => new SerializableEntityStateType(typeof(EntityStates.Loader.GroundSlam));
+        public override SerializableEntityStateType ActivationState => new SerializableEntityStateType(typeof(EntityStatesCustom.CrackedVermin.CrackedSlam));
 
         // public override SerializableEntityStateType ActivationState => new SerializableEntityStateType(typeof(EntityStates.Commando.CommandoWeapon.FireBarrage));
         public override string NameToken => "GOTCE_CRACKEDSLAM_NAME";

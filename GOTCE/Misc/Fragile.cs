@@ -27,7 +27,6 @@ namespace GOTCE.Misc
 
         private static void UpdateLastHitServer(On.RoR2.HealthComponent.orig_UpdateLastHitTime orig, HealthComponent self, float damage, Vector3 damagePosition, bool silent, GameObject attacker)
         {
-            orig(self, damage, damagePosition, silent, attacker);
             if (NetworkServer.active && self.body && self.body.inventory)
             {
                 foreach (ItemIndex index in self.body.inventory.itemAcquisitionOrder)
@@ -35,13 +34,13 @@ namespace GOTCE.Misc
                     ItemDef def = ItemCatalog.GetItemDef(index);
                     if (def && fragileDefs.Contains(def))
                     {
-                        FragileInfo info = new();
+                        Debug.Log("FragileDefs contained: " + def.nameToken);
 
-                        bool found = fragileMap.TryGetValue(def, out info);
-                        Debug.Log(found);
+                        bool found = fragileMap.TryGetValue(def, out FragileInfo info);
 
                         if (found)
                         {
+                            Debug.Log("Found FragileInfo for: " + def.nameToken);
                             if (self.fullCombinedHealth * (0.01f * info.fraction) >= self.health)
                             {
                                 int count = self.body.inventory.GetItemCount(def);
@@ -58,6 +57,7 @@ namespace GOTCE.Misc
                     }
                 }
             }
+            orig(self, damage, damagePosition, silent, attacker);
             // TODO: this doesnt work
         }
 

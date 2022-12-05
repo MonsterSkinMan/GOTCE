@@ -27,7 +27,7 @@ namespace GOTCE.Items.White
         public void Break(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo info)
         {
             orig(self, info);
-            /* if (self.body && self.body.inventory)
+            if (self.body && self.body.inventory)
             {
                 if (self.isHealthLow && GetCount(self.body) > 0)
                 {
@@ -35,7 +35,7 @@ namespace GOTCE.Items.White
                     self.body.inventory.GiveItem(DreamPDF.Instance.ItemDef);
                     CharacterMasterNotificationQueue.SendTransformNotification(self.body.master, Instance.ItemDef.itemIndex, DreamPDF.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
                 }
-            } */
+            } 
         }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
@@ -46,16 +46,16 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             On.RoR2.DamageInfo.ModifyDamageInfo += Proc;
-            // On.RoR2.HealthComponent.TakeDamage += Break;
+            On.RoR2.HealthComponent.TakeDamage += Break;
 
-            [SystemInitializer(dependencies: typeof(ItemCatalog))]
+            /* [SystemInitializer(dependencies: typeof(ItemCatalog))]
             void RegisterFragile() {
                 Fragile.AddFragileItem(ItemDef, new Fragile.FragileInfo {
                     broken = Items.NoTier.DreamPDF.Instance.ItemDef,
                     shouldGiveBroken = true,
                     fraction = 25f
                 });
-            }
+            } */
         }
 
         public override void Init(ConfigFile config)

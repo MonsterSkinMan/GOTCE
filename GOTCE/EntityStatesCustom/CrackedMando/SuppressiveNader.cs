@@ -98,7 +98,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                 ProjectileManager.instance.FireProjectile(info);
             }
             totalBulletsFired++;
-            Util.PlaySound(fireBarrageSoundString, base.gameObject);
+            AkSoundEngine.PostEvent(2891623396, base.gameObject); // Play_commando_M2_grenade_throw
         }
 
         public override void OnExit()

@@ -22,7 +22,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             base.OnEnter();
             totalBullets = totalBullets * attackSpeedStat;
             delay = duration / totalBullets;
-            PlayAnimation("Gesture, Override", "Fire", "Fire.playbackRate", 1f);
+            PlayAnimation("Gesture, Override", "Fire", "Fire.playbackRate", duration);
             base.characterDirection.forward = base.GetAimRay().direction;
         }
 
@@ -33,7 +33,32 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             if (stopwatch >= delay)
             {
                 stopwatch = 0f;
-                BulletAttack bulletAttack = new()
+
+                FireBullet();
+                FireBullet();
+
+                AkSoundEngine.PostEvent(4060526873, base.gameObject); // Play_commando_M1
+            }
+
+            if (fixedAge >= duration && bulletsFired >= totalBullets)
+            {
+                outer.SetNextStateToMain();
+            }
+
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+        }
+
+        public override InterruptPriority GetMinimumInterruptPriority()
+        {
+            return InterruptPriority.Skill;
+        }
+
+        private void FireBullet() {
+            BulletAttack bulletAttack = new()
                 {
                     owner = base.gameObject,
                     weapon = base.gameObject,
@@ -60,22 +85,6 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                     bulletAttack.Fire();
                 }
                 bulletsFired += 1;
-            }
-
-            if (fixedAge >= duration && bulletsFired >= totalBullets)
-            {
-                outer.SetNextStateToMain();
-            }
-        }
-
-        public override void OnExit()
-        {
-            base.OnExit();
-        }
-
-        public override InterruptPriority GetMinimumInterruptPriority()
-        {
-            return InterruptPriority.Skill;
         }
 
         private string GetRandomMuzzle() {
