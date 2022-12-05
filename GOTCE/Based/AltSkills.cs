@@ -28,6 +28,7 @@ namespace GOTCE.Based
             ViendAlts();
             BanditAlts();
             CaptainAlts();
+            EngineerAlts();
 
             // for whatever reason this is being set to 1 and causing mando to fire one shot and then reload the pistols, setting to 0 fixes this
             On.RoR2.CharacterBody.Start += (orig, self) => {
@@ -185,6 +186,29 @@ namespace GOTCE.Based
 
             LanguageAPI.Add(Skills.Overheat.Instance.SkillDef.skillNameToken, "Hephaestus Shotgun");
             LanguageAPI.Add(Skills.Overheat.Instance.SkillDef.skillDescriptionToken, "Charge up a blast of rapid fire incendiary rounds for 60% damage each, inflicting ignite on hit. Bullets fired increases with charge time, but so does spread.");
+        }
+
+        private static void EngineerAlts()
+        {
+            GameObject engiPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Engi/EngiBody.prefab").WaitForCompletion();
+
+            SkillLocator sl = engiPrefab.GetComponent<SkillLocator>();
+
+            SkillFamily skillFamily;
+
+            EntanglerHooks.Hook();
+            // entangler
+            skillFamily = sl.primary.skillFamily;
+            Array.Resize(ref skillFamily.variants, skillFamily.variants.Length + 1);
+            skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
+            {
+                skillDef = Skills.Entangler.Instance.SkillDef,
+                unlockableDef = null,
+                viewableNode = new ViewablesCatalog.Node(Skills.Overheat.Instance.SkillDef.skillNameToken, false, null)
+            };
+
+            LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillNameToken, "Entangler");
+            LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillDescriptionToken, "Take manual control of your mechanical allies, giving them 100% firing rate and 66% damage reduction. Entangled allies move towards pings. Entangled allies will be disabled for 3 seconds after canceling.");
         }
 
         private static void ViendAlts()

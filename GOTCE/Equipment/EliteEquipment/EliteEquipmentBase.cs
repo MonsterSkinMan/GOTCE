@@ -72,7 +72,7 @@ namespace GOTCE.Equipment.EliteEquipment
         /// <summary>
         /// If you want the elite to have an overlay with your custom material.
         /// </summary>
-        public virtual Material EliteMaterial { get; set; } = null;
+        public virtual Texture EliteRampTexture { get; set; } = null;
 
         public EliteDef EliteDef;
 
@@ -141,14 +141,10 @@ namespace GOTCE.Equipment.EliteEquipment
             {
                 On.RoR2.EquipmentSlot.Update += UpdateTargeting;
             }
-
-            if (EliteMaterial)
-            {
-                On.RoR2.CharacterBody.FixedUpdate += OverlayManager;
-            }
         }
 
-        private void OverlayManager(On.RoR2.CharacterBody.orig_FixedUpdate orig, CharacterBody self)
+
+        /* private void OverlayManager(On.RoR2.CharacterBody.orig_FixedUpdate orig, CharacterBody self)
         {
             if (self.modelLocator && self.modelLocator.modelTransform && self.HasBuff(EliteBuffDef) && !self.GetComponent<EliteOverlayManager>())
             {
@@ -163,6 +159,8 @@ namespace GOTCE.Equipment.EliteEquipment
                 eliteOverlayManager.Overlay = overlay;
                 eliteOverlayManager.Body = self;
                 eliteOverlayManager.EliteBuffDef = EliteBuffDef;
+
+                self.modelLocator.modelTransform.GetComponent<CharacterModel>().activeOverlayCount
             }
             orig(self);
         }
@@ -181,7 +179,7 @@ namespace GOTCE.Equipment.EliteEquipment
                     UnityEngine.Object.Destroy(this);
                 }
             }
-        }
+        } */
 
         protected void CreateElite()
         {
@@ -216,6 +214,15 @@ namespace GOTCE.Equipment.EliteEquipment
 
             EliteBuffDef.eliteDef = EliteDef;
             ContentAddition.AddBuffDef(EliteBuffDef);
+
+            /* if (EliteRampTexture)
+            {
+                Utils.OverlayManager.Overlay overlay = new();
+                overlay.def = EliteDef;
+                overlay.ramp = EliteRampTexture;
+
+                Utils.OverlayManager.AddOverlay(overlay);
+            } */
         }
 
         protected bool PerformEquipmentAction(On.RoR2.EquipmentSlot.orig_PerformEquipmentAction orig, RoR2.EquipmentSlot self, EquipmentDef equipmentDef)
@@ -300,10 +307,6 @@ namespace GOTCE.Equipment.EliteEquipment
             public void Awake()
             {
                 Indicator = new Indicator(gameObject, null);
-            }
-
-            public void OnDestroy()
-            {
                 Invalidate();
             }
 

@@ -21,7 +21,8 @@ namespace GOTCE.Based
             orig(self);
             if (SceneManager.GetActiveScene().name == "bazaar" && NetworkServer.active)
             {
-                GameObject.Find("HOLDER: Store").AddComponent<AntiSlab>();
+                // GameObject.Find("HOLDER: Store").AddComponent<AntiSlab>();
+                GameObject.Find("HOLDER: Store").transform.GetChild(0).GetChild(3).gameObject.SetActive(false);
             }
         }
 

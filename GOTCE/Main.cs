@@ -9,6 +9,8 @@ using GOTCE.Items;
 using Mono.Cecil;
 using MonoMod.Cil;
 using GOTCE.Tiers;
+using Mono.Cecil.Cil;
+using GOTCE.Buffs;
 using R2API;
 using R2API.Networking;
 using GOTCE.Achievements;
@@ -34,6 +36,7 @@ using MonoMod.RuntimeDetour;
 using GOTCE.Based;
 using GOTCE.Survivors;
 using BetterUI;
+using NemesisSlab;
 
 [assembly: SearchableAttribute.OptIn]
 
@@ -73,6 +76,7 @@ namespace GOTCE
 
         private static Shader cloudRemap;
         private static Shader standard;
+        public static bool HasPatched = false;
 
         private void Awake()
         {
@@ -89,6 +93,18 @@ namespace GOTCE
             {
                 UICompat.AddBetterUICompat();
             }
+
+            /* On.RoR2.UI.MainMenu.BaseMainMenuScreen.Awake += (orig, self) => {
+                orig(self);
+                if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.Heyimnoop.NemesisSlab")) {
+                    if (HasPatched) {
+                        return;
+                    }
+                    HasPatched = true;
+                    SlabAntiCompat.Eradicate();
+                    ModLogger.LogDebug("Eradicating the slab...");
+                };
+            }; */
 
             // create custom itemtags and flags and things idk
             Flags.Initialize();
@@ -221,6 +237,8 @@ namespace GOTCE
                 }
             }
 
+            Utils.OverlayManager.Hooks();
+
             //this section automatically scans the project for all equipment
             var SkillTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(SkillBase)));
 
@@ -274,6 +292,16 @@ namespace GOTCE
                 SurvivorBase survivor = (SurvivorBase)System.Activator.CreateInstance(survivorType);
                 // Debug.Log(item.ConfigName);
                 survivor.Create();
+            }
+
+            var buffTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(BuffBase)));
+
+            foreach (var buffType in buffTypes)
+            {
+                Debug.Log("Woolie");
+                BuffBase buff = (BuffBase)System.Activator.CreateInstance(buffType);
+                // Debug.Log(item.ConfigName);
+                buff.CreateBuff(Config);
             }
 
             Hook aimHook = new Hook(
@@ -618,4 +646,35 @@ namespace GOTCE
             Debug.Log("");
         } */
     }
+
+    /* public class SlabAntiCompat {
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+        public static void Eradicate() {
+            MethodInfo[] methods = typeof(NemesisSlab.NemesisMain).GetMethods();
+            List<string> methodNames = new();
+
+            foreach (MethodInfo method in methods) {
+                Debug.Log(method.Name);
+                if (method.ReturnType == typeof(void)) {
+                    methodNames.Add(method.Name);
+                }
+            }
+
+            foreach (string name in methodNames) {
+                if (!name.ToLower().Contains("get") && !name.ToLower().Contains("set")) {
+                    Main.ModLogger.LogDebug("Patching method: " + name);
+                    ILHook hook = new ILHook(
+                        typeof(NemesisMain).GetMethod(name, (BindingFlags)(-1)),
+                        new ILContext.Manipulator(Destroy)
+                    );
+                }
+            } 
+        }
+
+        public static void Destroy(ILContext il) {
+            ILCursor c = new ILCursor(il);
+            c.Index = 0;
+            c.Emit(OpCodes.Ret);
+        }
+    } */
 }

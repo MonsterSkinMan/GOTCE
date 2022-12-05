@@ -91,6 +91,7 @@ namespace GOTCE.Based
                         RoR2Content.Buffs.SuperBleed,
                         RoR2Content.Buffs.Cripple,
                     };
+
                     for (int i = 0; i < buffs.Length; i++)
                     {
                         body.AddTimedBuff(buffs[i], 10f);
@@ -216,6 +217,7 @@ namespace GOTCE.Based
                     lightningOrb.target = hurtbox;
                     OrbManager.instance.AddOrb(lightningOrb);
                 }
+
             }
             orig(self, info, victim);
         }

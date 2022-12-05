@@ -26,12 +26,15 @@ namespace GOTCE.Buffs
         public virtual bool CanStack { get; set; } = false;
         public virtual bool IsDebuff { get; set; } = false;
         public abstract Sprite BuffIcon { get; }
+        public virtual bool Hidden { get; set; } = false;
 
         public BuffDef BuffDef;
 
-        public abstract void Init(ConfigFile config);
+        public virtual void Init(ConfigFile config) {
 
-        public void CreateBuff()
+        }
+
+        public void CreateBuff(ConfigFile config)
         {
             BuffDef = ScriptableObject.CreateInstance<BuffDef>();
             BuffDef.name = BuffName;
@@ -39,10 +42,17 @@ namespace GOTCE.Buffs
             BuffDef.canStack = CanStack;
             BuffDef.isDebuff = IsDebuff;
             BuffDef.iconSprite = BuffIcon;
+            BuffDef.isHidden = Hidden;
+
+            Init(config);
 
             ContentAddition.AddBuffDef(BuffDef);
+
+            Hooks();
         }
 
-        public abstract void Hooks();
+        public virtual void Hooks() {
+
+        }
     }
 }

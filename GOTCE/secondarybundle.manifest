@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2634269411
+CRC: 4026724320
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 47de323a1dbf2ed25623351ad9ea4678
+    Hash: 886a146a556c9f49ef2adeb54601e9c8
   TypeTreeHash:
     serializedVersion: 2
     Hash: ab96cb62c0204d0c0c32741e123fdfe8
@@ -214,6 +214,7 @@ Assets:
 - Assets/Prefabs/Projectiles/AltSkills/CorruptedPearl/PearlUpgrade.prefab
 - Assets/Icons/Items/RoR2Discussion.png
 - Assets/Prefabs/Projectiles/AltSkills/Core/Core.prefab
+- Assets/Prefabs/EliteOverlays/Backup.mat
 - Assets/Prefabs/Interactables/Crucible/Crucible.prefab
 - Assets/Icons/IonSurger.png
 - Assets/Prefabs/Projectiles/Aegiscentrism/AegisGhost.prefab

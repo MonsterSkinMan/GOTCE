@@ -14,13 +14,14 @@ namespace GOTCE.Equipment.EliteEquipment
     {
         public override string EliteEquipmentName => "Secret Compartment";
 
-        public override string EliteAffixToken => "GOTCE_BackupElite";
+        public override string EliteAffixToken => "BACKUP";
 
         public override string EliteEquipmentPickupDesc => "Become an aspect of backup.";
 
         public override string EliteEquipmentFullDescription => "";
 
         public override string EliteEquipmentLore => "";
+        public override Texture EliteRampTexture => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/BoxingGloves.png").texture;
 
         public override string EliteModifier => "Compartmentalized";
 
@@ -29,6 +30,9 @@ namespace GOTCE.Equipment.EliteEquipment
         public override Sprite EliteEquipmentIcon => null;
 
         public override Sprite EliteBuffIcon => null;
+        public override float DamageMultiplier => 2f;
+        public override float HealthMultiplier => 6f;
+        public override CombatDirector.EliteTierDef[] CanAppearInEliteTiers => EliteAPI.GetCombatDirectorEliteTiers().Where(x => x.eliteTypes.Contains(Addressables.LoadAssetAsync<EliteDef>("RoR2/Base/EliteFire/edFire.asset").WaitForCompletion())).ToArray();
 
         public override void Init(ConfigFile config)
         {
@@ -73,7 +77,7 @@ namespace GOTCE.Equipment.EliteEquipment
                 if (report.attackerBody.equipmentSlot) {
                     CharacterBody body = report.attackerBody;
                     CharacterBody victim = report.victimBody;
-                    if (body.equipmentSlot.equipmentIndex == EliteEquipmentDef.equipmentIndex) {
+                    if (body.HasBuff(EliteBuffDef)) {
                         float duration = 5.0f * report.damageInfo.procCoefficient;
                         victim.AddTimedBuff(Backuped.buff, duration, 1);
                     }
@@ -85,15 +89,17 @@ namespace GOTCE.Equipment.EliteEquipment
             if (body.equipmentSlot) {
                 if (body.equipmentSlot.equipmentIndex == EliteEquipmentDef.equipmentIndex) {
                     args.secondaryCooldownMultAdd -= 0.5f;
-                    body.skillLocator.secondary.AddOneStock();
-                    body.skillLocator.secondary.AddOneStock();
-                    body.skillLocator.secondary.AddOneStock();
+                    body.skillLocator.secondary.maxStock = 3;
                 }
             }
 
-            if (body.HasBuff(Backuped.buff)) {
+            if (body.HasBuff(Backuped.buff) && body.skillLocator.secondary) {
                 SkillDef lockedDef = Addressables.LoadAssetAsync<SkillDef>("RoR2/Base/Captain/CaptainSkillDisconnected.asset").WaitForCompletion();
                 body.skillLocator.secondary.SetSkillOverride(body, lockedDef, GenericSkill.SkillOverridePriority.Replacement);
+            }
+            else {
+                SkillDef lockedDef = Addressables.LoadAssetAsync<SkillDef>("RoR2/Base/Captain/CaptainSkillDisconnected.asset").WaitForCompletion();
+                body.skillLocator.secondary.UnsetSkillOverride(body, lockedDef, GenericSkill.SkillOverridePriority.Replacement);
             }
         }
     }
