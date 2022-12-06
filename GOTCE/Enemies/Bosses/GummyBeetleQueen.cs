@@ -62,7 +62,19 @@ namespace GOTCE.Enemies.Bosses
         public override void PostCreation()
         {
             base.PostCreation();
-            RegisterEnemy(prefab, prefabMaster, null, DirectorAPI.MonsterCategory.Champions, true);
+            List<DirectorAPI.Stage> stages = new() {
+                DirectorAPI.Stage.TitanicPlains,
+                DirectorAPI.Stage.TitanicPlainsSimulacrum,
+                DirectorAPI.Stage.DistantRoost,
+                DirectorAPI.Stage.SiphonedForest,
+                DirectorAPI.Stage.AbandonedAqueduct,
+                DirectorAPI.Stage.AbandonedAqueductSimulacrum,
+                DirectorAPI.Stage.WetlandAspect,
+                DirectorAPI.Stage.AphelianSanctuary,
+                DirectorAPI.Stage.AphelianSanctuarySimulacrum,
+                DirectorAPI.Stage.SulfurPools
+            };
+            RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Champions, false);
 
             On.RoR2.CharacterBody.Start += (orig, self) =>
             {

@@ -136,7 +136,18 @@ namespace GOTCE.Enemies.Standard
         public override void PostCreation()
         {
             base.PostCreation();
-            RegisterEnemy(prefab, prefabMaster, null, DirectorAPI.MonsterCategory.BasicMonsters, true);
+            List<DirectorAPI.Stage> stages = new() {
+                DirectorAPI.Stage.AbandonedAqueduct,
+                DirectorAPI.Stage.RallypointDelta,
+                DirectorAPI.Stage.RallypointDeltaSimulacrum,
+                DirectorAPI.Stage.AbandonedAqueductSimulacrum,
+                DirectorAPI.Stage.AphelianSanctuary,
+                DirectorAPI.Stage.AphelianSanctuarySimulacrum,
+                DirectorAPI.Stage.ArtifactReliquary,
+                DirectorAPI.Stage.ScorchedAcres,
+                DirectorAPI.Stage.SunderedGrove
+            };
+            RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.BasicMonsters, false);
         }
 
         public static Vector3 InputBankTest_aimOrigin_Get(orig_aimOrigin orig, InputBankTest self)

@@ -125,7 +125,9 @@ namespace GOTCE.Enemies.Minibosses
                 DirectorAPI.Stage.RallypointDelta,
                 DirectorAPI.Stage.AphelianSanctuary,
                 DirectorAPI.Stage.SiphonedForest,
-                DirectorAPI.Stage.SulfurPools
+                DirectorAPI.Stage.SulfurPools,
+                DirectorAPI.Stage.RallypointDeltaSimulacrum,
+                DirectorAPI.Stage.AphelianSanctuarySimulacrum
             };
 
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Minibosses, false);

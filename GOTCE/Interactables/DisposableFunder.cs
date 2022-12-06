@@ -30,9 +30,13 @@ namespace GOTCE.Interactables
             base.Modify();
             ChestBehavior behavior = prefab.GetComponent<ChestBehavior>();
             ExplicitPickupDropTable drops = (ExplicitPickupDropTable)behavior.dropTable;
+            float weight = 1 / 5;
             drops.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[] {
-                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = RoR2Content.Equipment.GoldGat, pickupWeight = 1f},
-                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = RoR2Content.Equipment.CommandMissile, pickupWeight = 1f},
+                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = RoR2Content.Equipment.GoldGat, pickupWeight = weight},
+                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = RoR2Content.Equipment.CommandMissile, pickupWeight = weight},
+                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = Equipment.BloodGamble.Instance.EquipmentDef, pickupWeight = weight},
+                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = Equipment.Aegisfunder.Instance.EquipmentDef, pickupWeight = weight},
+                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = Equipment.LunarCrunder.Instance.EquipmentDef, pickupWeight = weight},
             };
             LanguageAPI.Add("GOTCE_DISPOSABLE_NAME", "The Disposable Funder");
             LanguageAPI.Add("GOTCE_DISPOSABLE_CONTEXT", "Purchase");
@@ -54,7 +58,7 @@ namespace GOTCE.Interactables
             isc.orientToFloor = true;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.skipSpawnWhenSacrificeArtifactEnabled = true;
-            isc.slightlyRandomizeOrientation = true;
+            isc.slightlyRandomizeOrientation = false;
             isc.maxSpawnsPerStage = 1;
             isc.weightScalarWhenSacrificeArtifactEnabled = 1f;
             isc.sendOverNetwork = true;

@@ -34,6 +34,21 @@ namespace GOTCE.Interactables
             LanguageAPI.Add("GOTCE_DML_CONTEXT", "Purchase");
 
             PrefabAPI.RegisterNetworkPrefab(prefab);
+
+            // prevent the teleporter from locking this interactable
+            On.RoR2.OutsideInteractableLocker.LockPurchasable += (orig, self, interactable) => {
+                if (self.lockInside) {
+                    orig(self, interactable); // this is a void seed, lock the shrine
+                }
+                else {
+                    if (interactable.displayNameToken == "GOTCE_DML_NAME") {
+                        // do nothing
+                    }
+                    else {
+                        orig(self, interactable);
+                    }
+                }
+            };
         }
 
         public override void MakeSpawnCard()
@@ -50,8 +65,8 @@ namespace GOTCE.Interactables
             isc.orientToFloor = false;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.skipSpawnWhenSacrificeArtifactEnabled = false;
-            isc.slightlyRandomizeOrientation = false;
-            isc.maxSpawnsPerStage = 2;
+            isc.slightlyRandomizeOrientation = true;
+            isc.maxSpawnsPerStage = 1;
             isc.weightScalarWhenSacrificeArtifactEnabled = 1f;
             isc.sendOverNetwork = true;
         }
@@ -74,7 +89,7 @@ namespace GOTCE.Interactables
         {
             PurchaseInteraction interaction = GetComponent<PurchaseInteraction>();
             interaction.onPurchase.AddListener(OnInteract);
-            transform.position -= new Vector3(0, 1.5f, 0);
+            transform.position -= new Vector3(0, 0.5f, 0);
             interaction.setUnavailableOnTeleporterActivated = false;
         }
 
@@ -89,9 +104,6 @@ namespace GOTCE.Interactables
 
         public void FixedUpdate()
         {
-            transform.rotation = Quaternion.Euler(-90, 0, 0);
-            transform.localRotation = Quaternion.Euler(-90, 0, 0);
-
             stopwatch += Time.fixedDeltaTime;
             if (stopwatch >= delay)
             {

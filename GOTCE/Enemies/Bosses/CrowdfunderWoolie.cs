@@ -90,7 +90,13 @@ namespace GOTCE.Enemies.Bosses
         public override void PostCreation()
         {
             base.PostCreation();
-            RegisterEnemy(prefab, prefabMaster, null, DirectorAPI.MonsterCategory.Champions, true);
+            List<DirectorAPI.Stage> stages = new() {
+                DirectorAPI.Stage.SulfurPools,
+                DirectorAPI.Stage.WetlandAspect,
+                DirectorAPI.Stage.DistantRoost,
+                DirectorAPI.Stage.SkyMeadow
+            };
+            RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Champions, false);
         }
     }
 }

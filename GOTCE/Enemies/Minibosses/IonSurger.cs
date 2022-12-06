@@ -121,7 +121,7 @@ namespace GOTCE.Enemies.Minibosses
                 DirectorAPI.Stage.RallypointDelta, DirectorAPI.Stage.RallypointDeltaSimulacrum,
                 DirectorAPI.Stage.WetlandAspect, DirectorAPI.Stage.SirensCall
             };
-            RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Minibosses, true);
+            RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Minibosses, false);
         }
     }
 }

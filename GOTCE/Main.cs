@@ -11,6 +11,7 @@ using MonoMod.Cil;
 using GOTCE.Tiers;
 using Mono.Cecil.Cil;
 using GOTCE.Buffs;
+using GOTCE.Stages;
 using R2API;
 using R2API.Networking;
 using GOTCE.Achievements;
@@ -56,6 +57,7 @@ namespace GOTCE
         public static AssetBundle MainAssets;
         public static AssetBundle SecondaryAssets;
         public static AssetBundle GOTCEModels;
+        public static AssetBundle SceneBundle;
 
         public List<ArtifactBase> Artifacts = new();
         public List<ItemBase> Items = new();
@@ -83,6 +85,7 @@ namespace GOTCE
             MainAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "macterabrundle"));
             SecondaryAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "secondarybundle"));
             GOTCEModels = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "gotcemodels"));
+            SceneBundle = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "scenebundle"));
             ModLogger = Logger;
             SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
@@ -223,6 +226,15 @@ namespace GOTCE
                 {
                     equipment.Init(Config);
                 }
+            }
+
+            //this section automatically scans the project for all stages
+            var StageTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(StageBase)));
+
+            foreach (var stageType in StageTypes)
+            {
+                StageBase stage = (StageBase)System.Activator.CreateInstance(stageType);
+                stage.Create(Config);
             }
 
             //this section automatically scans the project for all elite equipment
