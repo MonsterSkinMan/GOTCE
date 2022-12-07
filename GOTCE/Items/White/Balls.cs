@@ -40,6 +40,15 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += Synergy;
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
+                if (args.Stats && NetworkServer.active)
+                {
+                    if (args.Stats.inventory)
+                    {
+                        args.Stats.FovCritChanceAdd += GetCount(args.Stats.body) > 0 ? 2f : 0f;
+                    }
+                }
+            };
         }
 
         public void Synergy(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)

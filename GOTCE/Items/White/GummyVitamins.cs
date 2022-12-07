@@ -31,7 +31,6 @@ namespace GOTCE.Items.White
 
         public override void Hooks()
         {
-            RecalculateStatsAPI.GetStatCoefficients += SprintCrit;
             StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
             {
                 if (args.Stats && NetworkServer.active)
@@ -44,32 +43,6 @@ namespace GOTCE.Items.White
             };
         }
 
-        public void SprintCrit(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
-        {
-            if (NetworkServer.active && body.inventory)
-            {
-                if (body.masterObject && body.masterObject.GetComponent<GOTCE_StatsComponent>())
-                {
-                    GOTCE_StatsComponent stats = body.masterObject.GetComponent<GOTCE_StatsComponent>();
-                    if (Util.CheckRoll(stats.sprintCritChance, body.master) && body.isSprinting)
-                    {
-                        args.moveSpeedMultAdd += (body.sprintingSpeedMultiplier);
-
-                        EventHandler<SprintCritEventArgs> raiseEvent = CriticalTypes.OnSprintCrit;
-
-                        // Event will be null if there are no subscribers
-                        if (raiseEvent != null)
-                        {
-                            SprintCritEventArgs sprArgs = new(body);
-
-                            // Call to raise the event.
-                            raiseEvent(this, sprArgs);
-                        }
-                        // Debug.Log("starting crit");
-                    }
-                }
-            }
-        }
 
         public override void Init(ConfigFile config)
         {

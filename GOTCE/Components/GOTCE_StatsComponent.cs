@@ -76,6 +76,9 @@ namespace GOTCE.Components
         public int AOEAdd;
         public float reviveChanceAdd;
 
+        // sprint crit
+        public bool isCriticallySprinting = false;
+
         public WarCrime mostRecentlyCommitedWarCrime = WarCrime.None;
 
         private void Start()
@@ -101,7 +104,7 @@ namespace GOTCE.Components
         private void UpdateChances(CharacterBody cbody, RecalculateStatsAPI.StatHookEventArgs args)
         {
             // critical chances
-            if (cbody && cbody.inventory && cbody.masterObject.GetComponent<GOTCE_StatsComponent>())
+            if (cbody && cbody.inventory && cbody.masterObject.GetComponent<GOTCE_StatsComponent>() && cbody.master == master)
             {
                 inventory = cbody.inventory;
                 body = cbody;
@@ -111,11 +114,10 @@ namespace GOTCE.Components
                 FovCritChanceAdd = 0;
                 reviveChanceAdd = 0;
                 DeathChanceAdd = 0;
-                EventHandler<StatsCompRecalcArgs> raiseEvent = StatsCompEvent.StatsCompRecalc;
-                if (raiseEvent != null)
-                {
-                    raiseEvent(this, new StatsCompRecalcArgs(gameObject.GetComponent<GOTCE_StatsComponent>()));
-                }
+                
+
+                StatsCompEvent.StatsCompRecalc?.Invoke(this, new(cbody.masterObject.GetComponent<GOTCE_StatsComponent>()));
+                
 
                 fovCritChance = FovCritChanceAdd + increase;
                 sprintCritChance = SprintCritChanceAdd;

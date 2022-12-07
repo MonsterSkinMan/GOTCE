@@ -139,7 +139,7 @@ namespace GOTCE.Components {
                 if (self.body && self.leader != null) {
                     if (self.master && self.master.GetComponent<EntanglerController>()) {
                         EntanglerController controller = self.master.GetComponent<EntanglerController>();
-                        if (self.leader.characterBody.GetComponent<EntanglerControllerLeader>()) {
+                        if (self.leader != null && self.leader.characterBody != null && self.leader.characterBody.GetComponent<EntanglerControllerLeader>()) {
                             EntanglerControllerLeader leader = self.leader.characterBody.GetComponent<EntanglerControllerLeader>();
 
                             if (leader.isControlling) {

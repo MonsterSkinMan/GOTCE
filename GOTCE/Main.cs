@@ -195,6 +195,8 @@ namespace GOTCE
                 }
             }
 
+            CriticalTypes.Hooks();
+
             // grab tiers and add them
             var Tiers = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(TierBase)));
 

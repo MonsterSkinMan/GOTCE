@@ -40,7 +40,6 @@ namespace GOTCE.Items.White
 
         public override void Hooks()
         {
-            On.RoR2.CharacterBody.Start += Start;
             StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
             {
                 if (args.Stats && NetworkServer.active)
@@ -51,77 +50,6 @@ namespace GOTCE.Items.White
                     }
                 }
             };
-        }
-
-        public void Start(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self)
-        {
-            if (self.isPlayerControlled)
-            {
-                self.gameObject.AddComponent<GOTCE_FovComponent>();
-            }
-            orig(self);
-        }
-    }
-
-    public class GOTCE_FovComponent : MonoBehaviour
-    {
-        public CharacterBody body;
-        public Components.GOTCE_StatsComponent stats;
-        private int baseFov;
-        public bool critting = false;
-        public float interval = 1f;
-        public float stopwatch = 0f;
-        private CameraTargetParams.CameraParamsOverrideHandle handle;
-
-        private void Start()
-        {
-            body = gameObject.GetComponent<CharacterBody>();
-            stats = body.masterObject.GetComponent<Components.GOTCE_StatsComponent>();
-        }
-
-        private void FixedUpdate()
-        {
-            stopwatch += Time.fixedDeltaTime;
-            // Debug.Log(stopwatch);
-            if (stopwatch >= interval)
-            {
-                stopwatch = 0f;
-
-                if (!Util.CheckRoll(stats.fovCritChance, body.master) && critting)
-                {
-                    critting = false;
-
-                    gameObject.GetComponent<CameraTargetParams>().RemoveParamsOverride(handle, 0.5f);
-                }
-                else if (Util.CheckRoll(stats.fovCritChance, body.master) && !critting)
-                {
-                    critting = true;
-
-                    handle = gameObject.GetComponent<CameraTargetParams>().AddParamsOverride(new CameraTargetParams.CameraParamsOverrideRequest
-                    {
-                        cameraParamsData = new()
-                        {
-                            fov = new()
-                            {
-                                value = 5,
-                                alpha = 0.7f
-                            }
-                        }
-                    }, 0.5f);
-
-                    EventHandler<FovCritEventArgs> raiseEvent = CriticalTypes.OnFovCrit;
-
-                    // Event will be null if there are no subscribers
-                    if (raiseEvent != null)
-                    {
-                        FovCritEventArgs args = new(body);
-
-                        // Call to raise the event.
-                        raiseEvent(this, args);
-                    }
-                    // Debug.Log("starting crit");
-                }
-            }
         }
     }
 }
