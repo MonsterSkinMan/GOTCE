@@ -37,7 +37,7 @@ using MonoMod.RuntimeDetour;
 using GOTCE.Based;
 using GOTCE.Survivors;
 using BetterUI;
-using NemesisSlab;
+//using NemesisSlab;
 
 [assembly: SearchableAttribute.OptIn]
 
