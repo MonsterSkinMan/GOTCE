@@ -12,16 +12,16 @@ namespace GOTCE.Stages {
     public class FeedbackDiscussion : StageBase<FeedbackDiscussion> {
         public override string LangTokenName => "FeedbackDiscussion";
         public override string SceneName => "feedbackdiscussion";
-        public override string SceneSubtitle => "100% is EXTREMELY LOW.";
-        public override string SceneDisplayName => "Woolie Dimension";
+        public override string SceneSubtitle => "Brainrot.";
+        public override string SceneDisplayName => "Feedback Discussion";
         public override string SceneLore => "Directive: Inject does more dps than mando m1 at range";
         public override SceneType SceneType => SceneType.Stage;
         public override SceneCollection DestinationGroup => Addressables.LoadAssetAsync<SceneCollection>("RoR2/Base/SceneGroups/sgStage1.asset").WaitForCompletion();
-        public override MusicTrackDef BossTrack => Addressables.LoadAssetAsync<MusicTrackDef>("RoR2/Base/Common/muSong04.asset").WaitForCompletion();
-        public override MusicTrackDef MainTrack => Addressables.LoadAssetAsync<MusicTrackDef>("RoR2/Base/Common/muSong04.asset").WaitForCompletion();
+        public override MusicTrackDef BossTrack => Addressables.LoadAssetAsync<MusicTrackDef>("RoR2/Base/Common/muMainEndingOutroA.asset").WaitForCompletion();
+        public override MusicTrackDef MainTrack => Addressables.LoadAssetAsync<MusicTrackDef>("RoR2/Base/Common/muMainEndingOutroA.asset").WaitForCompletion();
         public override GameObject DioramaPrefab => Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Item/Drill/Cube.prefab");
-        public override string dccsInteractableClone => "RoR2/Base/arena/dpArenaInteractables.asset";
-        // public override string dccsMonsterClone => "RoR2/Base/arena/dpArenaMonsters.asset";
+        public override string dccsInteractableClone => "RoR2/Base/artifactworld/dpArtifactWorldInteractables.asset";
+        public override string dccsMonsterClone => "RoR2/Base/artifactworld/dpArtifactWorldMonsters.asset";
         public override bool ShouldIncludeInLogbook => false;
 
         public override void Hooks()
@@ -29,7 +29,7 @@ namespace GOTCE.Stages {
             base.Hooks();
             On.RoR2.Chat.AddMessage_string += (orig, str) => {
                 orig(str);
-                if (str.ToLower().Contains("100% is extremely low")) {
+                if (str.ToLower().Contains("feedback")) {
                     if (Stage.instance) {
                         Stage.instance.BeginAdvanceStage(sceneDef);
                     }
@@ -39,12 +39,41 @@ namespace GOTCE.Stages {
 
         public override void ModifySceneInfo(ClassicStageInfo info)
         {
-            DirectorCard card = new DirectorCard();
-            card.minimumStageCompletions = 0;
-            card.spawnCard = Enemies.Bosses.CrowdfunderWoolie.Instance.isc;
-            card.selectionWeight = 1;
-            info.monsterDccsPool.poolCategories[0].alwaysIncluded[0].dccs.AddCard(0, Enemies.Bosses.CrowdfunderWoolie.Instance.card);
-            info.monsterDccsPool.poolCategories[0].alwaysIncluded[0].dccs.AddCard(0, Enemies.Standard.LivingSuppressiveFire.Instance.card);
+            GameObject.Find("HOLDER: MapZones").transform.Find("Lava").gameObject.AddComponent<LavaController>();
+        } 
+    }
+
+    public class LavaController : MonoBehaviour {
+        private List<HealthComponent> healthComponents;
+        public void Start() {
+
+        }
+
+        public void OnTriggerEnter(Collider col) {
+            if (col.gameObject.GetComponent<HealthComponent>()) {
+                healthComponents.Add(col.gameObject.GetComponent<HealthComponent>());
+            }
+        }
+
+        public void OnTriggerExit(Collider col) {
+            if (col.gameObject.GetComponent<HealthComponent>()) {
+                healthComponents.Remove(col.gameObject.GetComponent<HealthComponent>());
+            }
+        }
+
+        public void FixedUpdate() {
+            if (NetworkServer.active) {
+                foreach (HealthComponent hc in healthComponents) {
+                    DamageInfo info = new();
+                    info.damage = hc.body.maxHealth * 0.0002f;
+                    info.damageType = DamageType.IgniteOnHit;
+                    info.damageColorIndex = DamageColorIndex.Item;
+                    info.position = hc.body.transform.position;
+
+                    hc.body.healthComponent.TakeDamage(info);
+                    hc.body.jumpPower *= 3f;
+                }
+            }
         }
     }
 }
