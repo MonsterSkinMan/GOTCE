@@ -167,14 +167,6 @@ namespace GOTCE.Based
                         masterSummon2.summonerBodyObject = info.attacker;
                         masterSummon2.rotation = Quaternion.LookRotation(info.attacker.transform.forward);
                         masterSummon2.Perform();
-
-                        masterSummon2 = new MasterSummon();
-                        masterSummon2.position = info.attacker.transform.position;
-                        masterSummon2.ignoreTeamMemberLimit = true;
-                        masterSummon2.masterPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/EliteVoid/VoidInfestorMaster.prefab").WaitForCompletion();
-                        masterSummon2.summonerBodyObject = info.attacker;
-                        masterSummon2.rotation = Quaternion.LookRotation(info.attacker.transform.forward);
-                        masterSummon2.Perform();
                     }
                     catch (NullReferenceException err)
                     {
@@ -184,11 +176,6 @@ namespace GOTCE.Based
 
                     Util.CleanseBody(body2, true, false, true, true, true, false);
 
-                    using ReadOnlyArray<ContagiousItemManager.TransformationInfo>.Enumerator enumerator = ContagiousItemManager.transformationInfos.GetEnumerator();
-                    while (enumerator.MoveNext())
-                    {
-                        ContagiousItemManager.TryForceReplacement(originalItemIndex: enumerator.Current.originalItem, inventory: body2.inventory);
-                    }
                 }
             }
 
