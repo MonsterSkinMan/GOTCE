@@ -1,8 +1,8 @@
-/*
 using R2API;
 using RoR2;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
 namespace GOTCE.Enemies.Minibosses
 {
@@ -19,35 +19,40 @@ namespace GOTCE.Enemies.Minibosses
             base.CreatePrefab();
             body = prefab.GetComponent<CharacterBody>();
             body.baseArmor = 0;
+            body.levelArmor = 0;
             body.attackSpeed = 1f;
-            body.damage = 14.5f;
-            body.levelDamage = 2.9f;
-            body.baseMaxHealth = 650f;
-            body.levelMaxHealth = 195f;
+            body.levelAttackSpeed = 0f;
+            body.damage = 17f;
+            body.baseMaxHealth = 1200f;
+            body.baseMoveSpeed = 65f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_VOIDLINGLINGLING_NAME";
+            body.subtitleNameToken = "GOTCE_VOIDLINGLINGLING_SUBTITLE";
             body.baseRegen = 0f;
+            body.levelRegen = 0f;
+            body.portraitIcon = Main.MainAssets.LoadAsset<Texture2D>("Assets/Textures/Icons/Enemies/Voidlingling.png");
+            body.preferredInitialStateType = new EntityStates.SerializableEntityStateType(typeof(EntityStates.Uninitialized));
         }
 
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 110;
-            isc.eliteRules = SpawnCard.EliteRules.ArtifactOnly;
+            isc.directorCreditCost = 430;
+            isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
-            isc.hullSize = HullClassification.Golem;
+            isc.hullSize = HullClassification.BeetleQueen;
             isc.occupyPosition = true;
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Air;
             isc.sendOverNetwork = true;
-            isc.prefab = prefab;
+            isc.prefab = prefabMaster;
             isc.name = "cscVoidlinglingling";
         }
 
         public override void AddDirectorCard()
         {
             base.AddDirectorCard();
-            card.minimumStageCompletions = 1;
+            card.minimumStageCompletions = 5;
             card.selectionWeight = 1;
             card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
         }
@@ -58,8 +63,30 @@ namespace GOTCE.Enemies.Minibosses
             master = prefabMaster.GetComponent<CharacterMaster>();
             master.bodyPrefab = prefab;
 
-            prefab.transform.Find("Model Base").gameObject.transform.localScale = new Vector3(0.125f, 0.125f, 0.125f);
+            prefab.GetComponent<CharacterDeathBehavior>().deathState = new EntityStates.SerializableEntityStateType(typeof(EntityStates.GenericCharacterDeath));
 
+            prefab.transform.Find("Model Base").gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+
+            DeathRewards deathRewards = prefab.GetComponent<DeathRewards>();
+            if (deathRewards)
+            {
+            }
+            else
+            {
+                deathRewards = prefab.AddComponent<DeathRewards>();
+                deathRewards.characterBody = body;
+                deathRewards.logUnlockableDef = ScriptableObject.CreateInstance<UnlockableDef>();
+                deathRewards.logUnlockableDef.nameToken = "Voidlinglingling";
+            }
+
+            LanguageAPI.Add("GOTCE_VOIDLINGLINGLING_NAME", "Voidlinglingling");
+            LanguageAPI.Add("GOTCE_VOIDLINGLINGLING_LORE", "the");
+            LanguageAPI.Add("GOTCE_VOIDLINGLINGLING_SUBTITLE", "A Fun and Engaging Boss");
+        }
+
+        public override void PostCreation()
+        {
+            base.PostCreation();
             List<DirectorAPI.Stage> stages = new() {
                 DirectorAPI.Stage.DistantRoost,
                 DirectorAPI.Stage.AphelianSanctuary,
@@ -68,19 +95,16 @@ namespace GOTCE.Enemies.Minibosses
                 DirectorAPI.Stage.RallypointDelta,
                 DirectorAPI.Stage.SirensCall,
                 DirectorAPI.Stage.TitanicPlains,
-                DirectorAPI.Stage.AbyssalDepths
+                DirectorAPI.Stage.AbyssalDepths,
+                DirectorAPI.Stage.AbandonedAqueductSimulacrum,
+                DirectorAPI.Stage.AbyssalDepthsSimulacrum,
+                DirectorAPI.Stage.AphelianSanctuarySimulacrum,
+                DirectorAPI.Stage.CommencementSimulacrum,
+                DirectorAPI.Stage.RallypointDeltaSimulacrum,
+                DirectorAPI.Stage.SkyMeadowSimulacrum,
+                DirectorAPI.Stage.TitanicPlainsSimulacrum
             };
-            LanguageAPI.Add("GOTCE_VOIDLINGLINGLING_NAME", "Voidlinglingling");
-            LanguageAPI.Add("GOTCE_VOIDLINGLINGLING_LORE", "Literally just Voidling as a miniboss.");
-            LanguageAPI.Add("GOTCE_VOIDLINGLINGLING_SUBTITLE", "Horde of Many");
-            RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Minibosses);
+            RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Champions);
         }
     }
-
-    // TODO:
-
-    // remove spawn vfx (probably in an entitystate)
-    // remove footstep vfx
-    // make the spawn entitystate much faster
 }
-*/
