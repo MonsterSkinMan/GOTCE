@@ -40,62 +40,9 @@ namespace GOTCE.Items.White
             return new ItemDisplayRuleDict(null);
         }
 
-        public void Crit(CharacterBody body)
-        { // there is a 99% chance this code is horrible
-            if (body.masterObject && !body.masterObject.GetComponent<GOTCE_StatsComponent>())
-            {
-                body.masterObject.AddComponent<GOTCE_StatsComponent>();
-            }
-            if (NetworkServer.active && body.isPlayerControlled && Stage.instance.entryTime.timeSince <= 3f && body.masterObject.GetComponent<GOTCE_StatsComponent>())
-            {
-                bool lastStageWasCritPrev = lastStageWasCrit;
-
-                if (lastStageWasCrit)
-                {
-                    EventHandler<StageCritEventArgs> raiseEvent = CriticalTypes.OnStageCrit;
-
-                    if (raiseEvent != null)
-                    {
-                        raiseEvent(this, new StageCritEventArgs());
-                    }
-                    lastStageWasCrit = false;
-                    // Debug.Log("Laststagewascrit");
-                }
-                float totalChance = 0f;
-                /* if (body.masterObject.GetComponent<GOTCE_StatsComponent>())
-                {
-                    GOTCE_StatsComponent vars = body.masterObject.GetComponent<GOTCE_StatsComponent>();
-                    vars.DetermineStageCrit();
-                    totalChance += vars.stageCritChance;
-                    Debug.Log("Chance: " + vars.stageCritChance);
-                }; */
-
-                foreach (PlayerCharacterMasterController masterController in PlayerCharacterMasterController.instances)
-                {
-                    CharacterMaster master = masterController.master;
-                    if (master.gameObject.GetComponent<GOTCE_StatsComponent>())
-                    {
-                        GOTCE_StatsComponent vars = master.gameObject.GetComponent<GOTCE_StatsComponent>();
-                        vars.DetermineStageCrit();
-                        totalChance += vars.stageCritChance;
-                    }
-                }
-
-                if (Util.CheckRoll(totalChance) && !lastStageWasCritPrev)
-                {
-                    lastStageWasCrit = true;
-                    Run.instance.AdvanceStage(Run.instance.nextStageScene);
-                }
-            }
-        }
 
         public override void Hooks()
         {
-            CharacterBody.onBodyStartGlobal += Crit;
-            RoR2.Run.onRunStartGlobal += (run) =>
-            {
-                lastStageWasCrit = false;
-            };
 
             StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
             {

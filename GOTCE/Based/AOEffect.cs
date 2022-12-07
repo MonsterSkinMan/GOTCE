@@ -25,7 +25,7 @@ namespace GOTCE.Based
                 if (self.attacker)
                 {
                     CharacterBody body = self.attacker.GetComponent<CharacterBody>();
-                    if (body && body.master)
+                    if (body && body.master && body.isPlayerControlled)
                     {
                         GOTCE_StatsComponent stats = body.masterObject.GetComponent<GOTCE_StatsComponent>();
                         if (stats)
@@ -45,7 +45,7 @@ namespace GOTCE.Based
                 if (self.attacker)
                 {
                     CharacterBody body = self.attacker.GetComponent<CharacterBody>();
-                    if (body && body.master)
+                    if (body && body.master && body.isPlayerControlled)
                     {
                         GOTCE_StatsComponent stats = body.masterObject.GetComponent<GOTCE_StatsComponent>();
                         if (stats)
@@ -67,7 +67,7 @@ namespace GOTCE.Based
                 if (self.attacker)
                 {
                     CharacterBody body = self.attacker.GetComponent<CharacterBody>();
-                    if (body && body.master)
+                    if (body && body.master && body.isPlayerControlled)
                     {
                         GOTCE_StatsComponent stats = body.masterObject.GetComponent<GOTCE_StatsComponent>();
                         if (stats.aoeEffect > 0)
