@@ -78,6 +78,7 @@ namespace GOTCE
 
         private static Shader cloudRemap;
         private static Shader standard;
+        private static Shader terrain;
         public static bool HasPatched = false;
 
         private void Awake()
@@ -91,6 +92,7 @@ namespace GOTCE
 
             cloudRemap = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGCloudRemap.shader").WaitForCompletion();
             standard = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGStandard.shader").WaitForCompletion();
+            terrain = Addressables.LoadAssetAsync<Shader>(" RoR2/Base/Shaders/HGTriplanarTerrainBlend.shader").WaitForCompletion();
 
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI"))
             {
@@ -127,6 +129,9 @@ namespace GOTCE
                     case "StubbedShader/deferred/hgstandard":
                         material.shader = standard;
                         break;
+                    case "StubbedShader/deferred/hgtriplanarterrainblend":
+                        material.shader = terrain;
+                        break;
                 }
             }
 
@@ -142,6 +147,9 @@ namespace GOTCE
                     case "StubbedShader/deferred/hgstandard":
                         material.shader = standard;
                         break;
+                    case "StubbedShader/deferred/hgtriplanarterrainblend":
+                        material.shader = terrain;
+                        break;
                 }
             }
 
@@ -156,6 +164,9 @@ namespace GOTCE
 
                     case "StubbedShader/deferred/hgstandard":
                         material.shader = standard;
+                        break;
+                    case "StubbedShader/deferred/hgtriplanarterrainblend":
+                        material.shader = terrain;
                         break;
                 }
             }

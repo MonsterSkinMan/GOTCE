@@ -83,46 +83,19 @@ namespace GOTCE.Stages {
         }
 
         public virtual void Modify() {
-
+            
         }
 
         public virtual void Hooks() {
             On.RoR2.ClassicStageInfo.RebuildCards += (orig, self) => {
-                if (SceneManager.GetActiveScene().name != SceneName) {
-                    orig(self);
-                    return;
-                }
-                ModifySceneInfo(self);
-                if (dccsInteractableClone != null) {
-                    self.interactableDccsPool = Addressables.LoadAssetAsync<DccsPool>(dccsInteractableClone).WaitForCompletion();
-                }
-                if (dccsMonsterClone != null) {
-                    self.monsterDccsPool = Addressables.LoadAssetAsync<DccsPool>(dccsMonsterClone).WaitForCompletion();
-                }
-                if (monsterCardStrings != null || interactableCardStrings != null) {
-                    DccsPool interactables = self.interactableDccsPool;
-                    DirectorCardCategorySelection dccsIsc = interactables.poolCategories[0].alwaysIncluded[0].dccs;
-                    DccsPool monsters = self.monsterDccsPool;
-                    DirectorCardCategorySelection dccsCsc = monsters.poolCategories[0].alwaysIncluded[0].dccs;
-
-                    foreach (string mCard in monsterCardStrings) {
-                        DirectorCard card = new();
-                        card.selectionWeight = 1;
-                        card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
-                        
-                        CharacterSpawnCard csc = Addressables.LoadAssetAsync<CharacterSpawnCard>(mCard).WaitForCompletion();
-                        card.spawnCard = csc;
-                        dccsCsc.AddCard(0, card);
+                Debug.Log(SceneManager.GetActiveScene().name);
+                if (SceneManager.GetActiveScene().name == SceneName) {
+                    ModifySceneInfo(self);
+                    if (dccsInteractableClone != null) {
+                        self.interactableDccsPool = Addressables.LoadAssetAsync<DccsPool>(dccsInteractableClone).WaitForCompletion();
                     }
-
-                    foreach (string iCard in interactableCardStrings) {
-                        DirectorCard card = new();
-                        card.selectionWeight = 1;
-                        card.spawnDistance = DirectorCore.MonsterSpawnDistance.Standard;
-                        
-                        InteractableSpawnCard isc = Addressables.LoadAssetAsync<InteractableSpawnCard>(iCard).WaitForCompletion();
-                        card.spawnCard = isc;
-                        dccsIsc.AddCard(0, card);
+                    if (dccsMonsterClone != null) {
+                        self.monsterDccsPool = Addressables.LoadAssetAsync<DccsPool>(dccsMonsterClone).WaitForCompletion();
                     }
                 }
                 orig(self);
