@@ -15,7 +15,7 @@ namespace GOTCE.Items.White
         public override bool CanRemove => true;
         public override string ConfigName => ItemName;
         public override string ItemFullDescription => "At the start of each stage, gain <style=cIsHealing>barrier</style> equal to the amount <style=cStack>(+70% of the amount per stack)</style> of <style=cIsHealing>barrier</style> items you have.";
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BarrierInsurance.png");
         public override string ItemLangTokenName => "GOTCE_BarrierInsurance";
         public override string ItemLore => "";
         public override GameObject ItemModel => null;

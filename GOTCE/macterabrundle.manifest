@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1486161550
+CRC: 2605729716
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: cf69f6db52895792296a2e44d7f9e871
+    Hash: c4d1597a76459708c9eddc7ead67da4e
   TypeTreeHash:
     serializedVersion: 2
     Hash: a5fce307c298c3ba6cc939ce40c7fbe9
@@ -69,6 +69,7 @@ Assets:
 - Assets/Textures/Icons/Item/faultyspacetimeclock.png
 - Assets/Textures/Icons/Item/BottledMetamorphosis.png
 - Assets/Textures/Icons/Item/ChristmasGift.png
+- Assets/Textures/Icons/Item/BarrierInsurance.png
 - Assets/Textures/Icons/Item/kirn.png
 - Assets/Textures/Icons/Item/NEAplaceholder.png
 - Assets/Textures/Icons/Equipment/crunder2.png
@@ -85,9 +86,11 @@ Assets:
 - Assets/Textures/Icons/Item/PaleAle.png
 - Assets/Import/8mb.video-yzD-Rpct5RSV.mp4
 - Assets/Models/Prefabs/Enemies/IonSurger/mdlIonSurger.prefab
+- Assets/Textures/Icons/Item/WhiteFragment.png
 - Assets/Textures/Icons/Item/CrownPrince.png
 - Assets/Textures/Icons/Item/HealingScrapConsumed.png
 - Assets/Textures/Icons/Item/drill.png
+- Assets/Textures/Icons/Item/Balls.png
 - Assets/Textures/Icons/Item/ExplorersTorch.png
 - Assets/Textures/Icons/Item/spafnarsfries.png
 - Assets/Textures/Icons/Item/ExpressionOfTheImmolated.png
@@ -99,6 +102,7 @@ Assets:
 - Assets/Textures/Icons/Item/tuboflard.png
 - Assets/Textures/Icons/Item/DopeDope.png
 - Assets/Textures/Icons/Item/GD1Nullified.png
+- Assets/Textures/Icons/Item/EmpathyC4.png
 - Assets/Textures/Icons/Item/ClaspingClaws.png
 - Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png
 - Assets/Textures/Icons/Item/sscnft.png
@@ -111,6 +115,7 @@ Assets:
 - Assets/Textures/Icons/Item/tubofbart.png
 - Assets/Textures/Icons/Item/backuphammer.png
 - Assets/Textures/Icons/Item/Bottled_Enigma.png
+- Assets/Textures/Icons/Item/MissileGuidanceSystem.png
 - Assets/Textures/Icons/Enemies/Voidlingling.png
 - Assets/Textures/Icons/Item/GrandfatherClock.png
 - Assets/Models/Prefabs/Item/Drill/Cube.prefab
@@ -127,6 +132,7 @@ Assets:
 - Assets/Textures/Icons/Item/BangSnap.png
 - Assets/Textures/Icons/Item/animalhead.png
 - Assets/Models/Prefabs/Enemies/CrackedPest/mdlCrackedPest.prefab
+- Assets/Textures/Icons/Item/TurbulentDefibrillator.png
 - Assets/Textures/Icons/Enemies/CrackedPest.png
 - Assets/Textures/Icons/Artifact/artifactofartifact.png
 - Assets/Textures/Icons/Item/AmberRabbit.png
@@ -134,6 +140,7 @@ Assets:
 - Assets/Textures/Icons/Equipment/BloodGamble.png
 - Assets/Textures/Icons/Item/FortifiedFlask.png
 - Assets/Textures/Icons/Item/GabesShank.png
+- Assets/Textures/Icons/Item/HIFUsRacecar.png
 - Assets/Textures/Icons/Item/Lunch.png
 - Assets/Textures/Icons/Item/HuntressHarpoon.png
 - Assets/Materials/Enemies/tongueMaterial.mat

@@ -1,11 +1,10 @@
 ManifestFileVersion: 0
-CRC: 3349338084
+CRC: 4957273
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: secondarybundle
+      Name: macterabrundle
       Dependencies: {}
     Info_1:
-      Name: scenebundle
-      Dependencies:
-        Dependency_0: secondarybundle
+      Name: exampleitemmod
+      Dependencies: {}
