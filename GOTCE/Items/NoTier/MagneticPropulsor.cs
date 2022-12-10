@@ -47,7 +47,7 @@ namespace GOTCE.Items.NoTier
         {
             if (NetworkServer.active && GetCount(body) > 0)
             {
-                args.jumpPowerMultAdd += (3f * body.crit);
+                args.jumpPowerMultAdd += (0.03f * body.crit);
                 args.critAdd -= body.crit;
             }
         }

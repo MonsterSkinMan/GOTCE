@@ -24,7 +24,7 @@ namespace GOTCE.Items.White
 
         public override ItemTier Tier => ItemTier.Tier1;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, ItemTag.CannotDuplicate, GOTCETags.TimeDependant };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, ItemTag.CannotDuplicate, GOTCETags.TimeDependant, ItemTag.AIBlacklist };
 
         public override GameObject ItemModel => null;
 
@@ -51,7 +51,22 @@ namespace GOTCE.Items.White
             bool december = DateTime.Now.Month == 12;
             if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex && december)
             {
-                self.GiveRandomItems(3, false, false);
+                self.RemoveItem(ItemDef, 1);
+                WeightedSelection<List<PickupIndex>> weightedSelection = new WeightedSelection<List<PickupIndex>>();
+                weightedSelection.AddChoice(Run.instance.availableTier1DropList, 100f);
+                weightedSelection.AddChoice(Run.instance.availableTier2DropList, 60f);
+                weightedSelection.AddChoice(Run.instance.availableTier3DropList, 4f);
+                weightedSelection.AddChoice(Run.instance.availableVoidTier1DropList, 4f);
+                weightedSelection.AddChoice(Run.instance.availableVoidTier1DropList, 2.3999999f);
+                weightedSelection.AddChoice(Run.instance.availableVoidTier1DropList, 0.16f);
+
+                for (int i = 0; i < 3; i++) {
+                    List<PickupIndex> list = weightedSelection.Evaluate(UnityEngine.Random.value);
+                    ItemIndex index = PickupCatalog.GetPickupDef(list[UnityEngine.Random.Range(0, list.Count)])?.itemIndex ?? ItemIndex.None;
+                    self.GiveItem(index);
+
+                    CharacterMasterNotificationQueue.SendTransformNotification(self.gameObject.GetComponent<CharacterMaster>(), ItemDef.itemIndex, index, CharacterMasterNotificationQueue.TransformationType.Default);
+                }
             }
         }
     }

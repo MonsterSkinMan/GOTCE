@@ -12,6 +12,7 @@ using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
+using System.Collections.ObjectModel;
 
 namespace GOTCE.Items.Lunar
 {
@@ -23,9 +24,9 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLangTokenName => "GOTCE_PaleAle";
 
-        public override string ItemPickupDesc => "Increase your damage... <color=#FF7F7F>BUT majorly fuck up everyone's vision.</color> Currently host only :(\n";
+        public override string ItemPickupDesc => "Increase everyone's damage... <color=#FF7F7F>BUT majorly fuck up everyone's vision.</color>\n";
 
-        public override string ItemFullDescription => "Increase your <style=cIsDamage>damage</style> by <style=cIsDamage>60%</style> <style=cStack>(+40% per stack)</style>. Majorly fuck up everyone's vision. Increase <style=cIsUtility>cooldowns</style> by <style=cIsUtility>0%</style> <style=cStack>(+50% per stack)</style>. Currently host only :(";
+        public override string ItemFullDescription => "Increase everyone's <style=cIsDamage>damage</style> by <style=cIsDamage>60%</style> <style=cStack>(+40% per stack)</style>. Majorly fuck up everyone's vision. Increase <style=cIsUtility>cooldowns</style> by <style=cIsUtility>0%</style> <style=cStack>(+50% per stack)</style>. Currently host only :(";
 
         public override string ItemLore => "Holy shit brother! I figured out how to turn these worthless moon rocks into booze! Hot damn!\r\nSo basically I [REDACTED] and then I [REDACTED] and then after a little [REDACTED] I [REDACTED] Commando’s mother. Hot damn indeed! Anyways, it's time to get wasted. Glug glug glug…\r\nHoooly shit this stuff is strong, brother. I feel so much more powerful, but I also feel like there's a really horrible screen filter on my vision. Ohhhhh god…\r\nFuck you, brother. I hate you so fucking much, and I hate you even more because I’m drunk as shit. That gift should've been for ME! Not... YOU! It reminds me of a little ditty I once heard on my smartphone. It went a little something like this: There once was a man named Joe, and my tooth fell out on his head, and he put it under his pillow. And then, the Tooth Fairy took it and gave him a one dollar bill! That money should have been mine, not his! And so, I punched his guts in and poured acid all over his butt! And then I threw bananas at him like a wild monkey! After that, Joe ran away to the bottom of the Atlantic Ocean, with his glasses and moustache. But when he was running away, he dropped the one dollar bill, and it was finally mine!!!!!!!!!!!!!!!!!!!!!!!!!!!\r\nSo what did you think of the song, brother? W-what? You thought it was shit? Well, fuck you, you insignificant WHORE!!!\r\n";
 
@@ -34,6 +35,8 @@ namespace GOTCE.Items.Lunar
         public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, ItemTag.AIBlacklist };
 
         public override GameObject ItemModel => null;
+
+        private static GameObject GlobalPaleAlePP;
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/PaleAle.png");
         // private static readonly string[] blacklistedScenes = { "artifactworld", "crystalworld", "eclipseworld", "infinitetowerworld", "intro", "loadingbasic", "lobby", "logbook", "mysteryspace", "outro", "PromoRailGunner", "PromoVoidSurvivor", "splash", "title", "voidoutro" };
@@ -51,25 +54,44 @@ namespace GOTCE.Items.Lunar
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+            On.RoR2.Run.OnDestroy += (orig, self) => {
+                orig(self);
+                if (GlobalPaleAlePP) {
+                    GameObject.Destroy(GlobalPaleAlePP);
+                }
+            };
         }
 
         private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
         {
             if (sender && sender.inventory)
             {
-                var stack = sender.inventory.GetItemCount(Instance.ItemDef);
+                int stack = 0;
+                ReadOnlyCollection<TeamComponent> members = TeamComponent.GetTeamMembers(sender.teamComponent.teamIndex);
+                foreach (TeamComponent com in members) {
+                    if (com.body && com.body.inventory) {
+                        stack += GetCount(com.body);
+                    }
+                }
+                if (stack <= 0) {
+                    if (GlobalPaleAlePP) {
+                        GameObject.Destroy(GlobalPaleAlePP);
+                    }
+                }
                 if (stack > 0)
                 {
+                    if (!GlobalPaleAlePP) {
+                        GlobalPaleAlePP = new("Pale Ale PostProcessing Holder");
+                        GlobalPaleAlePP.AddComponent<PaleAleBehavior>();
+                    }
                     args.damageMultAdd += 0.6f + 0.4f * (stack - 1);
                     args.cooldownMultAdd += 0f + 0.5f * (stack - 1);
                 }
-
-                sender.AddItemBehavior<PaleAleBehavior>(stack);
             }
         }
     }
 
-    public class PaleAleBehavior : CharacterBody.ItemBehavior
+    public class PaleAleBehavior : MonoBehaviour
     {
         public PostProcessVolume vol;
         public PostProcessProfile ppProfile;
@@ -77,7 +99,7 @@ namespace GOTCE.Items.Lunar
 
         public void Start()
         {
-            if (body.hasAuthority)
+            if (NetworkServer.active)
             {
                 ppHolder = new GameObject("ppHolder");
                 ppHolder.transform.SetParent(gameObject.transform);
@@ -137,7 +159,7 @@ namespace GOTCE.Items.Lunar
 
         public void OnDestroy()
         {
-            if (body.hasAuthority)
+            if (NetworkServer.active)
             {
                 DestroyImmediate(vol);
                 DestroyImmediate(ppProfile);

@@ -60,7 +60,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.SuperShotgun.Instance.SkillDef.skillNameToken, "Doom Blast");
-            LanguageAPI.Add(Skills.SuperShotgun.Instance.SkillDef.skillDescriptionToken, "Fire a devastating blast of 20 bullets for 20x100% damage. Has a long time between firing, as well as a large spread.");
+            LanguageAPI.Add(Skills.SuperShotgun.Instance.SkillDef.skillDescriptionToken, "Fire a devastating blast of <style=cIsDamage>20 bullets</style> for <style=cIsDamage>20x100% damage</style>. Has a long time between firing, as well as a large spread.");
         }
 
         private static void RexAlts()
@@ -81,7 +81,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.SigmaShotgun.Instance.SkillDef.skillNameToken, "Stigmata Shotgun");
-            LanguageAPI.Add(Skills.SigmaShotgun.Instance.SkillDef.skillDescriptionToken, "Weakens. Fires 9 pollen pellets for 9x50% damage. 5% HP");
+            LanguageAPI.Add(Skills.SigmaShotgun.Instance.SkillDef.skillDescriptionToken, "<style=cDeath>5% HP</style>. Fires 9 pollen pellets for <style=cIsDamage>9x50%</style> damage that <style=cIsDamage>weaken</style> on hit.");
         }
 
         private static void RGAlts()
@@ -103,12 +103,27 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.DumbRounds.Instance.SkillDef.skillNameToken, "CJI Stupid Rounds");
-            LanguageAPI.Add(Skills.DumbRounds.Instance.SkillDef.skillDescriptionToken, "Fire a highly inaccurate spread of 6 rounds per second for 100% each.");
+            LanguageAPI.Add(Skills.DumbRounds.Instance.SkillDef.skillDescriptionToken, "Fire a highly inaccurate spread of 30 rounds per second for 100% each. Spread scales with field of view.");
 
             // PassiveReplacement.ReplacePassiveSlot(rgPrefab, MagneticPropulsor.defAlt, MagneticPropulsor.def);
 
             LanguageAPI.Add(MagneticPropulsor.defAlt.skillNameToken, "Magnetic Propulsors");
             LanguageAPI.Add(MagneticPropulsor.defAlt.skillDescriptionToken, "Critical Strike chance is converted into Jump Height.");
+
+            foreach (GenericSkill skill in rgPrefab.GetComponentsInChildren<GenericSkill>())
+            {
+                if ((skill._skillFamily as ScriptableObject).name.Contains("Passive"))
+                {
+                    SkillFamily family = skill._skillFamily;
+                    Array.Resize(ref family.variants, family.variants.Length + 1);
+                    family.variants[family.variants.Length - 1] = new SkillFamily.Variant
+                    {
+                        skillDef = MagneticPropulsor.defAlt,
+                        unlockableName = "",
+                        viewableNode = new ViewablesCatalog.Node(MagneticPropulsor.defAlt.skillNameToken, false, null)
+                    };
+                }
+            }
         }
 
         private static void HuntressAlts()
@@ -129,7 +144,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillNameToken, "Shark Saw");
-            LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillDescriptionToken, "Throw a fast piercing sawblade that moves along surfaces and rapidly strikes enemies for 30% per tick. Bleeds.");
+            LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillDescriptionToken, "Throw a fast <style=cIsUtility>piercing</style> sawblade that moves along surfaces and rapidly strikes enemies for <style=cIsDamage>30%</style> per tick. <style=cDeath>Bleeds.</style>");
 
             /* On.RoR2.Projectile.ProjectileStickOnImpact.UpdateSticking += (orig, self) => {
                 if (self.stuckTransform == null && !self.gameObject.GetComponent<EntityStatesCustom.AltSkills.Huntress.MoveForward>()) {
@@ -162,7 +177,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.Decoy.Instance.SkillDef.skillNameToken, "Explosive Decoy");
-            LanguageAPI.Add(Skills.Decoy.Instance.SkillDef.skillDescriptionToken, "Deploy a decoy that draws enemy attention for 5 seconds before exploding in a damaging blast for 760%. The decoy will explode early if killed.");
+            LanguageAPI.Add(Skills.Decoy.Instance.SkillDef.skillDescriptionToken, "Deploy a <style=cIsUtility>decoy</style> that draws <style=cIsDamage>enemy attention</style> for 5 seconds before exploding in a damaging blast for <style=cIsDamage>760%</style>. The decoy will explode early if killed.");
 
             LanguageAPI.Add("GOTCE_EXPLOSIVEDECOY_NAME", "Explosive Decoy");
         }
@@ -208,7 +223,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillNameToken, "Entangler");
-            LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillDescriptionToken, "Take manual control of your mechanical allies, giving them 100% firing rate and 66% damage reduction. Entangled allies move towards pings. Entangled allies will be disabled for 3 seconds after canceling.");
+            LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillDescriptionToken, "Take <style=cIsUtility>manual control</style> of your mechanical allies, giving them <style=cIsDamage>+100% firing rate and 66% damage reduction</style>. Entangled allies move towards pings. Entangled allies will be <style=cDeath>disabled</style> for 3 seconds after canceling.");
         }
 
         private static void ViendAlts()
@@ -250,7 +265,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.Drain.Instance.SkillDef.skillNameToken, "Dr??ain");
-            LanguageAPI.Add(Skills.Drain.Instance.SkillDef.skillDescriptionToken, "Rapidly drain your corruption, and fire a devastating blast for 100% damage with +10% for each 1% of corruption drained. Range increases with corruption drained. Guaranteed critical strike after draining more than 50% corruption.@");
+            LanguageAPI.Add(Skills.Drain.Instance.SkillDef.skillDescriptionToken, "Rapidly <style=cDeath>drain</style> your <style=cIsVoid>corruption</style>, and fire a devastating blast for <style=cIsDamage>100% damage</style> with +10% for each 1% of corruption drained. Range <style=cIsUtility>increases</style> with corruption drained. Guaranteed <style=cIsDamage>critical strike</style> after draining more than 50% corruption.");
 
             foreach (GenericSkill skill in viendPrefab.GetComponentsInChildren<GenericSkill>())
             {
@@ -363,6 +378,7 @@ namespace GOTCE.Based
             defAlt.icon = Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
             defAlt.activationState = new EntityStates.SerializableEntityStateType(typeof(EntityStates.Idle));
             defAlt.activationStateMachineName = "Weapon";
+            defAlt.baseRechargeInterval = 0f;
         }
     }
 
@@ -489,8 +505,8 @@ namespace GOTCE.Based
                 orig(self, info);
                 if (NetworkServer.active && self.characterBody.inventory.GetItemCount(def) > 0)
                 {
-                    self.AddCorruption(info.damageDealt * 0.1f);
-                    // 0.15f => 0.1f
+                    self.AddCorruption(Mathf.Clamp(info.damageInfo.damage * info.damageInfo.procCoefficient * 0.05f, 1f, 10f));
+                    // 5% of damage scaled off proc coeff, clamped to 10% corruption per hit for balance
                 }
             };
 

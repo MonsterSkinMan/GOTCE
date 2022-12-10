@@ -62,6 +62,12 @@ namespace GOTCE.Enemies.Standard
                 esm.mainStateType = new SerializableEntityStateType(typeof(DecoyTimer));
             }
 
+            prefab.GetComponent<SetStateOnHurt>().targetStateMachine = prefab.GetComponent<EntityStateMachine>();
+            prefab.GetComponent<SetStateOnHurt>().canBeFrozen = false;
+            prefab.GetComponent<SetStateOnHurt>().canBeStunned = false;
+            prefab.GetComponent<SetStateOnHurt>().canBeHitStunned = false;
+            prefab.GetComponent<SetStateOnHurt>().idleStateMachine = prefab.GetComponents<EntityStateMachine>();
+
             prefab.GetComponent<CharacterDeathBehavior>().deathState = new SerializableEntityStateType(typeof(DecoyDeath));
             prefabMaster.GetComponent<CharacterMaster>().bodyPrefab = prefab;
         }
