@@ -30,8 +30,8 @@ namespace GOTCE.Buffs
 
         public BuffDef BuffDef;
 
-        public virtual void Init(ConfigFile config) {
-
+        public virtual void Init(ConfigFile config)
+        {
         }
 
         public void CreateBuff(ConfigFile config)
@@ -51,8 +51,8 @@ namespace GOTCE.Buffs
             Hooks();
         }
 
-        public virtual void Hooks() {
-
+        public virtual void Hooks()
+        {
         }
     }
 }

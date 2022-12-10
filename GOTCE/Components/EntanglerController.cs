@@ -7,8 +7,10 @@ using static GOTCE.Main;
 using RoR2.CharacterAI;
 using RoR2.Skills;
 
-namespace GOTCE.Components {
-    public class EntanglerController : MonoBehaviour {
+namespace GOTCE.Components
+{
+    public class EntanglerController : MonoBehaviour
+    {
         public EntanglerControllerLeader leaderController;
         private BaseAI ai;
         private LineRenderer renderer;
@@ -16,20 +18,23 @@ namespace GOTCE.Components {
         private SkillLocator skillLocator;
         private float aimVelocity;
 
-        private void Start() {
+        private void Start()
+        {
             ai = gameObject.GetComponent<BaseAI>();
             inputBank = gameObject.GetComponent<CharacterMaster>().GetBody().inputBank;
             skillLocator = gameObject.GetComponent<CharacterMaster>().GetBody().skillLocator;
         }
 
-        public void FixedUpdate() {
-            if (leaderController && leaderController.isControlling && NetworkServer.active) {
-
-                foreach (GenericSkill skill in skillLocator.allSkills) {
+        public void FixedUpdate()
+        {
+            if (leaderController && leaderController.isControlling && NetworkServer.active)
+            {
+                foreach (GenericSkill skill in skillLocator.allSkills)
+                {
                     skill.ExecuteIfReady();
                 }
 
-                ai.skillDriverUpdateTimer = 3f;
+                ai.skillDriverUpdateTimer = 5f;
 
                 Vector3 targetPosition = leaderController.lastPingLocation + (ai.bodyTransform.position - ai.body.footPosition);
                 ai.SetGoalPosition(targetPosition);
@@ -39,13 +44,14 @@ namespace GOTCE.Components {
                 ai.bodyInputs.moveVector = ai.localNavigator.moveVector;
                 ai.bodyInputBank.moveVector = ai.localNavigator.moveVector;
             }
-            else {
-            
+            else
+            {
             }
         }
     }
 
-    public class EntanglerControllerLeader : MonoBehaviour {
+    public class EntanglerControllerLeader : MonoBehaviour
+    {
         public bool isControlling = false;
         public CharacterBody leaderBody => gameObject.GetComponent<CharacterBody>();
         public Vector3 aimDirection;
@@ -57,7 +63,8 @@ namespace GOTCE.Components {
         private Transform muzzleR;
         private CharacterMaster master;
 
-        private void Start() {
+        private void Start()
+        {
             inputBank = leaderBody.inputBank;
             GameObject prefab = GameObject.Instantiate(EntityStates.GolemMonster.ChargeLaser.laserPrefab, gameObject.transform.position, gameObject.transform.rotation);
             GameObject prefab2 = GameObject.Instantiate(EntityStates.GolemMonster.ChargeLaser.laserPrefab, gameObject.transform.position, gameObject.transform.rotation);
@@ -81,18 +88,22 @@ namespace GOTCE.Components {
             master = leaderBody.master;
         }
 
-        private void FixedUpdate() {
-            if (leaderBody && leaderBody.equipmentSlot) {
+        private void FixedUpdate()
+        {
+            if (leaderBody && leaderBody.equipmentSlot)
+            {
                 Ray ray = leaderBody.equipmentSlot.GetAimRay();
-                
+
                 bool cast = Util.CharacterRaycast(gameObject, ray, out RaycastHit info, int.MaxValue, ~0, QueryTriggerInteraction.Ignore);
 
-                if (cast) {
+                if (cast)
+                {
                     aimDirection = info.point;
                 }
             }
 
-            if (isControlling) {
+            if (isControlling)
+            {
                 renderer.enabled = true;
                 renderer2.enabled = true;
                 Vector3 end = inputBank.GetAimRay().GetPoint(300f);
@@ -104,28 +115,37 @@ namespace GOTCE.Components {
                 SetPos(master.playerCharacterMasterController.pingerController.currentPing.origin);
                 // Debug.Log(lastPingLocation);
             }
-            else {
+            else
+            {
                 renderer.enabled = false;
                 renderer2.enabled = false;
                 lastPingLocation = new(0f, 0f, 0f);
             }
         }
 
-        private void SetPos(Vector3 position) {
+        private void SetPos(Vector3 position)
+        {
             lastPingLocation = position;
         }
     }
 
-    public class EntanglerHooks {
-        public static void Hook() {
-            On.RoR2.CharacterAI.BaseAI.UpdateBodyAim += (orig, self, delta) => {
-                if (self.body && self.leader != null) {
-                    if (self.master && self.master.GetComponent<EntanglerController>()) {
+    public class EntanglerHooks
+    {
+        public static void Hook()
+        {
+            On.RoR2.CharacterAI.BaseAI.UpdateBodyAim += (orig, self, delta) =>
+            {
+                if (self.body && self.leader != null)
+                {
+                    if (self.master && self.master.GetComponent<EntanglerController>())
+                    {
                         EntanglerController controller = self.master.GetComponent<EntanglerController>();
-                        if (self.leader.characterBody.GetComponent<EntanglerControllerLeader>()) {
+                        if (self.leader.characterBody.GetComponent<EntanglerControllerLeader>())
+                        {
                             EntanglerControllerLeader leader = self.leader.characterBody.GetComponent<EntanglerControllerLeader>();
 
-                            if (leader.isControlling) {
+                            if (leader.isControlling)
+                            {
                                 self.bodyInputs.desiredAimDirection = Vector3.Normalize(leader.aimDirection - self.bodyInputBank.aimOrigin);
                             }
                         }
@@ -134,15 +154,20 @@ namespace GOTCE.Components {
                 orig(self, delta);
             };
 
-            On.RoR2.CharacterAI.BaseAI.UpdateBodyInputs += (orig, self) => {
+            On.RoR2.CharacterAI.BaseAI.UpdateBodyInputs += (orig, self) =>
+            {
                 orig(self);
-                if (self.body && self.leader != null) {
-                    if (self.master && self.master.GetComponent<EntanglerController>()) {
+                if (self.body && self.leader != null)
+                {
+                    if (self.master && self.master.GetComponent<EntanglerController>())
+                    {
                         EntanglerController controller = self.master.GetComponent<EntanglerController>();
-                        if (self.leader != null && self.leader.characterBody != null && self.leader.characterBody.GetComponent<EntanglerControllerLeader>()) {
+                        if (self.leader != null && self.leader.characterBody != null && self.leader.characterBody.GetComponent<EntanglerControllerLeader>())
+                        {
                             EntanglerControllerLeader leader = self.leader.characterBody.GetComponent<EntanglerControllerLeader>();
 
-                            if (leader.isControlling) {
+                            if (leader.isControlling)
+                            {
                                 self.bodyInputBank.skill1.PushState(true);
                                 self.bodyInputBank.skill2.PushState(true);
                                 self.bodyInputBank.skill3.PushState(true);
@@ -156,23 +181,30 @@ namespace GOTCE.Components {
                 }
             };
 
-            On.EntityStates.AI.Walker.Combat.UpdateAI += (orig, self, delta) => {
-                if (self.ai && self.ai.leader.gameObject) {
-                    if (self.ai.leader.gameObject.GetComponent<EntanglerControllerLeader>()) {
-                        if (self.ai.leader.gameObject.GetComponent<EntanglerControllerLeader>().isControlling) {
+            On.EntityStates.AI.Walker.Combat.UpdateAI += (orig, self, delta) =>
+            {
+                if (self.ai && self.ai.leader.gameObject)
+                {
+                    if (self.ai.leader.gameObject.GetComponent<EntanglerControllerLeader>())
+                    {
+                        if (self.ai.leader.gameObject.GetComponent<EntanglerControllerLeader>().isControlling)
+                        {
                             // under the entangler effect, don't perform basic ai stuff
                         }
-                        else {
+                        else
+                        {
                             orig(self, delta);
                             return;
                         }
                     }
-                    else {
+                    else
+                    {
                         orig(self, delta);
                         return;
                     }
                 }
-                else {
+                else
+                {
                     orig(self, delta);
                     return;
                 }

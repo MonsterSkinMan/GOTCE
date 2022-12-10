@@ -9,13 +9,13 @@ namespace GOTCE.Items.White
     {
         public override string ConfigName => "WhiteFragment";
 
-        public override string ItemName => "WhiteFragment";
+        public override string ItemName => "White Fragment";
 
         public override string ItemLangTokenName => "GOTCE_WhiteFragment";
 
-        public override string ItemPickupDesc => "<style=cDeath>Does nothing</style>. 2 White Fragments combine into <style=cIsUtility>3 random items</style>.";
+        public override string ItemPickupDesc => "<style=cDeath>Does nothing</style>. <style=cIsUtility>2</style> White Fragments combine into <style=cIsUtility>4 random items</style>.";
 
-        public override string ItemFullDescription => "<style=cDeath>Does nothing</style>. 2 White Fragments combine into <style=cIsUtility>3 random items</style>";
+        public override string ItemFullDescription => "<style=cDeath>Does nothing</style>. <style=cIsUtility>2</style> White Fragments combine into <style=cIsUtility>4 random items</style>";
 
         public override string ItemLore => "";
 
@@ -39,12 +39,16 @@ namespace GOTCE.Items.White
 
         public override void Hooks()
         {
-            On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) => {
+            On.RoR2.CharacterBody.OnInventoryChanged += (orig, self) =>
+            {
                 orig(self);
-                if (NetworkServer.active) {
-                    if (self.inventory && GetCount(self) > 0) {
+                if (NetworkServer.active)
+                {
+                    if (self.inventory && GetCount(self) > 0)
+                    {
                         int count = GetCount(self);
-                        if (count % 2 == 0) {
+                        if (count % 2 == 0)
+                        {
                             self.inventory.RemoveItem(ItemDef, 2);
                             WeightedSelection<List<PickupIndex>> weightedSelection = new WeightedSelection<List<PickupIndex>>();
                             weightedSelection.AddChoice(Run.instance.availableTier1DropList, 100f);
@@ -54,7 +58,8 @@ namespace GOTCE.Items.White
                             weightedSelection.AddChoice(Run.instance.availableVoidTier1DropList, 2.3999999f);
                             weightedSelection.AddChoice(Run.instance.availableVoidTier1DropList, 0.16f);
 
-                            for (int i = 0; i < 3; i++) {
+                            for (int i = 0; i < 4; i++)
+                            {
                                 List<PickupIndex> list = weightedSelection.Evaluate(UnityEngine.Random.value);
                                 ItemIndex index = PickupCatalog.GetPickupDef(list[UnityEngine.Random.Range(0, list.Count)])?.itemIndex ?? ItemIndex.None;
                                 self.inventory.GiveItem(index);

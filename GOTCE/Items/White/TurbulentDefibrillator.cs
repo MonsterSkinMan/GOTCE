@@ -8,13 +8,13 @@ using UnityEngine.Networking;
 
 namespace GOTCE.Items.White
 {
-    public class Defibrillator : ItemBase<Defibrillator>
+    public class TurbulentDefibrillator : ItemBase<TurbulentDefibrillator>
     {
-        public override string ConfigName => "Defibrillator";
+        public override string ConfigName => "Turbulent Defibrillator";
 
-        public override string ItemName => "Defibrillator";
+        public override string ItemName => "Turbulent Defibrillator";
 
-        public override string ItemLangTokenName => "GOTCE_Defibrillator";
+        public override string ItemLangTokenName => "GOTCE_TurbulentDefibrillator";
 
         public override string ItemPickupDesc => "Gain a small chance to cheat death. Increase attack speed upon dying.";
 
@@ -47,9 +47,12 @@ namespace GOTCE.Items.White
             On.RoR2.CharacterMaster.OnBodyDeath += CharacterMaster_OnBodyDeath;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
 
-            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
-                if (args.Stats && args.Stats.master && args.Stats.master.inventory) {
-                    if (GetCount(args.Stats.master) > 0) {
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
+            {
+                if (args.Stats && args.Stats.master && args.Stats.master.inventory)
+                {
+                    if (GetCount(args.Stats.master) > 0)
+                    {
                         args.Stats.reviveChanceAdd += 8f * GetCount(args.Stats.body);
                     }
                 }

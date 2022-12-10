@@ -28,7 +28,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
                 VoidSurvivorController con = base.gameObject.GetComponent<VoidSurvivorController>();
                 con.AddCorruption(Time.fixedDeltaTime * 25);
                 gained += Time.fixedDeltaTime * 25;
-                AkSoundEngine.PostEvent(3778899369, gameObject); 
+                AkSoundEngine.PostEvent(3778899369, gameObject);
                 base.characterBody.AddTimedBuff(RoR2Content.Buffs.LunarSecondaryRoot, 0.2f, 1);
             }
         }
@@ -40,6 +40,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
             {
                 FireProjectileInfo fireProjectileInfo = default(FireProjectileInfo);
                 fireProjectileInfo.projectilePrefab = EntityStates.NullifierMonster.DeathState.deathBombProjectile;
+                // replace with voidling laser, make the healing slightly less and the stun slightly longer
                 fireProjectileInfo.position = base.characterBody.corePosition;
                 fireProjectileInfo.rotation = Quaternion.identity;
                 fireProjectileInfo.owner = base.gameObject;

@@ -9,7 +9,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Bandit
 {
     public class SpawnDecoy : BaseSkillState
     {
-        public float duration = 0.8f;
+        public float duration = 0.3f;
 
         public override void OnEnter()
         {

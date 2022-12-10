@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using RoR2;
 using UnityEngine.SceneManagement;
 using RoR2.Skills;
@@ -31,11 +31,15 @@ namespace GOTCE.Based
             EngineerAlts();
 
             // for whatever reason this is being set to 1 and causing mando to fire one shot and then reload the pistols, setting to 0 fixes this
-            On.RoR2.CharacterBody.Start += (orig, self) => {
+            On.RoR2.CharacterBody.Start += (orig, self) =>
+            {
                 orig(self);
-                foreach (GenericSkill genericSkill in self.gameObject.GetComponents<GenericSkill>()) {
-                    if (self.gameObject.name == "CommandoBody(Clone)" && genericSkill.skillDef) {
-                        if (genericSkill.skillName == "FirePistol") {
+                foreach (GenericSkill genericSkill in self.gameObject.GetComponents<GenericSkill>())
+                {
+                    if (self.gameObject.name == "CommandoBody(Clone)" && genericSkill.skillDef)
+                    {
+                        if (genericSkill.skillName == "FirePistol")
+                        {
                             genericSkill.skillDef.stockToConsume = 0;
                         }
                     }
@@ -60,7 +64,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.SuperShotgun.Instance.SkillDef.skillNameToken, "Doom Blast");
-            LanguageAPI.Add(Skills.SuperShotgun.Instance.SkillDef.skillDescriptionToken, "Fire a devastating blast of 20 bullets for 20x100% damage. Has a long time between firing, as well as a large spread.");
+            LanguageAPI.Add(Skills.SuperShotgun.Instance.SkillDef.skillDescriptionToken, "Fire a slow, but powerful blast of <style=cIsDamage>20</style> bullets for <style=cIsDamage>20x100% damage</style>.");
         }
 
         private static void RexAlts()
@@ -81,7 +85,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.SigmaShotgun.Instance.SkillDef.skillNameToken, "Stigmata Shotgun");
-            LanguageAPI.Add(Skills.SigmaShotgun.Instance.SkillDef.skillDescriptionToken, "Weakens. Fires 9 pollen pellets for 9x50% damage. 5% HP");
+            LanguageAPI.Add(Skills.SigmaShotgun.Instance.SkillDef.skillDescriptionToken, "<style=cIsDamage>Weakens</style>. Fire <style=cIsDamage>9</style> pollen pellets for <style=cIsDamage9x50% damage</style>. 5% HP");
         }
 
         private static void RGAlts()
@@ -103,12 +107,12 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.DumbRounds.Instance.SkillDef.skillNameToken, "CJI Stupid Rounds");
-            LanguageAPI.Add(Skills.DumbRounds.Instance.SkillDef.skillDescriptionToken, "Fire a highly inaccurate spread of 6 rounds per second for 100% each.");
+            LanguageAPI.Add(Skills.DumbRounds.Instance.SkillDef.skillDescriptionToken, "Fire a highly inaccurate spread of <style=cIsDamage>6</style> rounds for <style=cIsDamage>100% damage</style> each.");
 
             // PassiveReplacement.ReplacePassiveSlot(rgPrefab, MagneticPropulsor.defAlt, MagneticPropulsor.def);
 
             LanguageAPI.Add(MagneticPropulsor.defAlt.skillNameToken, "Magnetic Propulsors");
-            LanguageAPI.Add(MagneticPropulsor.defAlt.skillDescriptionToken, "Critical Strike chance is converted into Jump Height.");
+            LanguageAPI.Add(MagneticPropulsor.defAlt.skillDescriptionToken, "All <style=cIsDamage>Critical Strike Chance</style> is converted into <style=cIsUtility>Jump Height</style>.");
         }
 
         private static void HuntressAlts()
@@ -129,7 +133,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillNameToken, "Shark Saw");
-            LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillDescriptionToken, "Throw a fast piercing sawblade that moves along surfaces and rapidly strikes enemies for 30% per tick. Bleeds.");
+            LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillDescriptionToken, "Throw a fast piercing sawblade that moves along surfaces, rapidly striking enemies for <style=cIsDamage>30% per tick</style> and making them <style=cIsHealth>bleed</style>.");
 
             /* On.RoR2.Projectile.ProjectileStickOnImpact.UpdateSticking += (orig, self) => {
                 if (self.stuckTransform == null && !self.gameObject.GetComponent<EntityStatesCustom.AltSkills.Huntress.MoveForward>()) {
@@ -162,7 +166,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.Decoy.Instance.SkillDef.skillNameToken, "Explosive Decoy");
-            LanguageAPI.Add(Skills.Decoy.Instance.SkillDef.skillDescriptionToken, "Deploy a decoy that draws enemy attention for 5 seconds before exploding in a damaging blast for 760%. The decoy will explode early if killed.");
+            LanguageAPI.Add(Skills.Decoy.Instance.SkillDef.skillDescriptionToken, "Deploy a decoy that <style=cIsUtility>draws enemy attention</style> for <style=cIsUtility>5</style> seconds before exploding in a damaging blast for <style=cIsDamage>100% damage</style>. Explodes early if killed.");
 
             LanguageAPI.Add("GOTCE_EXPLOSIVEDECOY_NAME", "Explosive Decoy");
         }
@@ -185,7 +189,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.Overheat.Instance.SkillDef.skillNameToken, "Hephaestus Shotgun");
-            LanguageAPI.Add(Skills.Overheat.Instance.SkillDef.skillDescriptionToken, "Charge up a blast of rapid fire incendiary rounds for 60% damage each, inflicting ignite on hit. Bullets fired increases with charge time, but so does spread.");
+            LanguageAPI.Add(Skills.Overheat.Instance.SkillDef.skillDescriptionToken, "Charge up a blast of rapid fire <style=cIsDamage>incendiary</style> rounds for <style=cIsDamage>60% damage each</style>. The amount of bullets fired increases with charge time, but so does spread.");
         }
 
         private static void EngineerAlts()
@@ -208,7 +212,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillNameToken, "Entangler");
-            LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillDescriptionToken, "Take manual control of your mechanical allies, giving them 100% firing rate and 66% damage reduction. Entangled allies move towards pings. Entangled allies will be disabled for 3 seconds after canceling.");
+            LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillDescriptionToken, "Take manual control of your mechanical allies, giving you and them <style=cIsUtility>+40% movement speed</style>. <style=cIsHealth>Reduce your armor by -50</style>. Entangled allies will be <style=cIsHealth>disabled</style> for <style=cIsHealth>5</style> seconds after exiting Entangler.");
         }
 
         private static void ViendAlts()
@@ -230,14 +234,14 @@ namespace GOTCE.Based
                 viewableNode = new ViewablesCatalog.Node(Skills.Pearl.Instance.SkillDef.skillNameToken, false, null)
             };
 
-            LanguageAPI.Add(Skills.Pearl.Instance.SkillDef.skillNameToken, "War??p");
-            LanguageAPI.Add(Skills.Pearl.Instance.SkillDef.skillDescriptionToken, "Launch a <style=cIsVoid>void orb</style> that sticks to surfaces and <style=cIsDamage>repeatedly strikes</style> for 60% damage. Use while a <style=cIsVoid>void orb</style> is active to <style=cIsVoid>teleport</style> to it, destroying the <style=cIsVoid>void orb.</style>");
+            LanguageAPI.Add(Skills.Pearl.Instance.SkillDef.skillNameToken, "「War??p』");
+            LanguageAPI.Add(Skills.Pearl.Instance.SkillDef.skillDescriptionToken, "Launch a void orb that sticks to surfaces and repeatedly strikes for <style=cIsDamage>60% damage</style>. Use while a void orb is active to <style=cIsUtility>teleport</style> to it, destroying it.");
 
-            LanguageAPI.Add(Skills.PearlTeleport.Instance.SkillDef.skillNameToken, "Retur??n");
-            LanguageAPI.Add(Skills.PearlTeleport.Instance.SkillDef.skillDescriptionToken, "<style=cIsVoid>Teleport</style> to your most recently deployed <style=cIsVoid>void orb</style>.");
+            LanguageAPI.Add(Skills.PearlTeleport.Instance.SkillDef.skillNameToken, "【Retur??n」");
+            LanguageAPI.Add(Skills.PearlTeleport.Instance.SkillDef.skillDescriptionToken, "<style=cIsUtility>Teleport</style> to your most recently deployed void orb.");
 
-            LanguageAPI.Add("GOTCE_CORRUPTIONM2UPGRADE_KEYWORD", "[Corruption Upgrade]\nLaunch a powerful void spear that teleports you on impact, releasing a devastating explosion for 2600% damage.");
-            LanguageAPI.Add("GOTCE_CORRUPTIONSPECIALUPGRADE_KEYWORD", "[Corruption Upgrade]\nRoot yourself, gaining corruption while rooted... Release a devastating <style=cIsVoid>void implosion</style> upon unrooting");
+            LanguageAPI.Add("GOTCE_CORRUPTIONM2UPGRADE_KEYWORD", "[ 【Corruption Upgrade】 ]\nLaunch a powerful void spear that teleports you on impact, releasing a devastating explosion for 2600% damage.");
+            LanguageAPI.Add("GOTCE_CORRUPTIONSPECIALUPGRADE_KEYWORD", "[ 【Corruption Upgrade】 ]\nRoot yourself, gaining corruption while rooted... Release a devastating <style=cIsVoid>void implosion</style> upon unrooting");
 
             // drain
             skillFamily = sl.special.skillFamily;
@@ -249,8 +253,8 @@ namespace GOTCE.Based
                 viewableNode = new ViewablesCatalog.Node(Skills.Drain.Instance.SkillDef.skillNameToken, false, null)
             };
 
-            LanguageAPI.Add(Skills.Drain.Instance.SkillDef.skillNameToken, "Dr??ain");
-            LanguageAPI.Add(Skills.Drain.Instance.SkillDef.skillDescriptionToken, "Rapidly drain your corruption, and fire a devastating blast for 100% damage with +10% for each 1% of corruption drained. Range increases with corruption drained. Guaranteed critical strike after draining more than 50% corruption.@");
+            LanguageAPI.Add(Skills.Drain.Instance.SkillDef.skillNameToken, "『Dr??ain】");
+            LanguageAPI.Add(Skills.Drain.Instance.SkillDef.skillDescriptionToken, "Rapidly drain your <style=cIsVoid>Corruption</style>, and fire a devastating blast for <style=cIsDamage>100% damage</style> that massively scales with <style=cIsVoid>Corruption</style> consumed.");
 
             foreach (GenericSkill skill in viendPrefab.GetComponentsInChildren<GenericSkill>())
             {
@@ -269,14 +273,14 @@ namespace GOTCE.Based
 
             // drain corrupt
 
-            LanguageAPI.Add(Skills.DrainUpgrade.Instance.SkillDef.skillNameToken, "Dr??ain");
-            LanguageAPI.Add(Skills.DrainUpgrade.Instance.SkillDef.skillDescriptionToken, "Root yourself temporarily, gaining a large amount of corruption while doing so... Release a devastating <style=cIsVoid>void implosion</style> upon unrooting...");
+            LanguageAPI.Add(Skills.DrainUpgrade.Instance.SkillDef.skillNameToken, "【Dr??ain』");
+            LanguageAPI.Add(Skills.DrainUpgrade.Instance.SkillDef.skillDescriptionToken, "Root yourself temporarily, gaining a large amount of <style=cIsVoid>Corruption</style>. Release a devastating laser upon breaking free.");
 
-            LanguageAPI.Add("GOTCE_VIENDPASSIVE_NAME", "The Only Thing They Fear");
-            LanguageAPI.Add("GOTCE_VIENDPASSIVE_DESC", "You are permanently corrupted. Your health drains alongside your corruption, and raises alongside it aswell. Your corruption cannot go below 1%. Healing is converted into armor, and your armor decays over time. Deal damage restores corruption. Difficulty scales faster over time.");
+            LanguageAPI.Add("GOTCE_VIENDPASSIVE_NAME", "『The Only Thing They Fear】");
+            LanguageAPI.Add("GOTCE_VIENDPASSIVE_DESC", "You are permanently <style=cIsVoid>Corrupted</style>. Gain <style=cIsVoid>Corruption</style> on hit. Your current health depends on your <style=cIsVoid>Corruption</style> at all times.");
 
-            LanguageAPI.Add("GOTCE_PEARLUPGRADE_NAME", "War??p");
-            LanguageAPI.Add("GOTCE_PEARLUPGRADE_DESC", "Launch a powerful void spike, teleporting you to wherever it land and releasing a devastating void explosion for 2600% damage");
+            LanguageAPI.Add("GOTCE_PEARLUPGRADE_NAME", "『War??p」");
+            LanguageAPI.Add("GOTCE_PEARLUPGRADE_DESC", "Launch a powerful void spike, <style=cIsUtility>teleporting</style> you to it and releasing a devastating void explosion for <style=cIsDamage>700% damage</style>.");
 
             // alt skills hooks
 
@@ -458,6 +462,7 @@ namespace GOTCE.Based
             }; */
 
             // armor on heal
+            /*
             On.RoR2.VoidSurvivorController.OnCharacterHealServer += (orig, self, com, amount, mask) =>
             {
                 if (self.characterBody.inventory.GetItemCount(def) > 0)
@@ -472,6 +477,7 @@ namespace GOTCE.Based
                     orig(self, com, amount, mask);
                 }
             };
+            */
 
             // no healing
             On.RoR2.HealthComponent.Heal += (orig, self, amount, mask, regen) =>
@@ -489,9 +495,18 @@ namespace GOTCE.Based
                 orig(self, info);
                 if (NetworkServer.active && self.characterBody.inventory.GetItemCount(def) > 0)
                 {
-                    self.AddCorruption(info.damageDealt * 0.1f);
-                    // 0.15f => 0.1f
+                    self.AddCorruption(Mathf.Max(1f, Mathf.Sqrt(info.damageDealt) / 2.4f));
+                    // previously info.damageDealt * 0.1
                 }
+            };
+
+            On.EntityStates.VoidSurvivor.Weapon.FireCorruptHandBeam.FireBullet += (orig, self) =>
+            {
+                if (NetworkServer.active && self.characterBody.inventory.GetItemCount(def) > 0)
+                {
+                    self.characterBody.AddTimedBuff(Buffs.ViendNoArmor.instance.BuffDef, 1.5f);
+                }
+                orig(self);
             };
 
             // reworked corruption mechanics
@@ -502,7 +517,7 @@ namespace GOTCE.Based
                     self.corruptionForFullHeal = 0;
                     // self.characterBody.armor -= 0.1f * Time.fixedDeltaTime;
                     // self.corruptionFractionPerSecondWhileCorrupted = -0.001f;
-                    self.maxCorruption = 100f + ((10f * (self.characterBody.level - 1)));
+                    self.maxCorruption = 100f/* + ((10f * (self.characterBody.level - 1)))*/;
 
                     if (self.corruption < 1)
                     {
@@ -512,7 +527,8 @@ namespace GOTCE.Based
                     float fraction = self.bodyHealthComponent.fullHealth * (self.corruption / 100);
                     self.bodyHealthComponent.health = fraction;
 
-                    self.corruptionFractionPerSecondWhileCorrupted = self.characterBody.outOfCombat ? -0.022f : -0.044f;
+                    self.corruptionFractionPerSecondWhileCorrupted = self.characterBody.outOfCombat ? -0.022f : -0.04f;
+                    // -0.044 => -0.04
                     if (self.corruption >= 100)
                     {
                         self.corruptionFractionPerSecondWhileCorrupted = -0.066f;
@@ -552,7 +568,7 @@ namespace GOTCE.Based
         {
             if (self.characterBody && self.characterBody.inventory && self.characterBody.inventory.GetItemCount(Items.NoTier.ViendAltPassive.Instance.ItemDef) > 0)
             {
-                return 1f;
+                return 10f;
             }
             else
             {

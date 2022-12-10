@@ -41,7 +41,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
                 BlastAttack blast = new()
                 {
                     attacker = gameObject,
-                    radius = 2f * (1 + (drained * 0.1f)),
+                    radius = 5f,
                     baseDamage = base.damageStat * (1 + (drained * 0.1f)),
                     baseForce = 2f * (drained / 4),
                     position = characterBody.corePosition,
@@ -50,7 +50,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
                     damageType = DamageType.LunarSecondaryRootOnHit,
                     damageColorIndex = DamageColorIndex.Void,
                     falloffModel = BlastAttack.FalloffModel.None,
-                    crit = drained > 50 ? true : RollCrit(),
+                    crit = RollCrit(),
                     procCoefficient = 0.75f
                 };
                 blast.Fire();
@@ -59,7 +59,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
             EffectManager.SpawnEffect(voidVFX, new EffectData
             {
                 origin = gameObject.transform.position,
-                scale = 2f * (1 + (drained * 0.1f)),
+                scale = 5f
             }, true);
         }
 

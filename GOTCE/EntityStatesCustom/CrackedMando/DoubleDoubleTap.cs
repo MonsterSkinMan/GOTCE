@@ -43,10 +43,11 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             base.FixedUpdate();
             timer++;
 
-            if (timer >= delay && bulletsFired >= 8) {
+            if (timer >= delay && bulletsFired >= 8)
+            {
                 outer.SetNextStateToMain();
             }
-            
+
             if (base.isAuthority)
             {
                 List<HurtBox> mandobuffer = new();
@@ -89,7 +90,8 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                         muzzleName = GetRandomMuzzle()
                     };
 
-                    if (bulletsFired == 3 || bulletsFired == 6) { // fire an extra time every 3rd or 6th bullet to reach 96
+                    if (bulletsFired == 3 || bulletsFired == 6)
+                    { // fire an extra time every 3rd or 6th bullet to reach 96
                         bulletAttack.Fire();
                     }
                     bulletAttack.Fire();
@@ -123,10 +125,10 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                 rotateObject.Rotate(new Vector3(0, 36, 0));
                 base.characterDirection.forward = rotateObject.forward;
             }
-
         }
 
-        private string GetRandomMuzzle() {
+        private string GetRandomMuzzle()
+        {
             List<string> muzzles = new() {
                 "Muzzle0",
                 "Muzzle1",
@@ -141,11 +143,12 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                 "Muzzle10"
             };
 
-            if (!Run.instance) {
+            if (!Run.instance)
+            {
                 return "Muzzle0";
             }
 
             return muzzles[Run.instance.runRNG.RangeInt(0, muzzles.Count - 1)];
-         }
+        }
     }
 }
