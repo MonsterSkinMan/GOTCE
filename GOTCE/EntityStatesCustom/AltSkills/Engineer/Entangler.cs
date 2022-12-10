@@ -4,8 +4,10 @@ using Unity;
 using UnityEngine;
 using RoR2.CharacterAI;
 
-namespace GOTCE.EntityStatesCustom.AltSkills.Engineer {
-    public class Entangler : BaseSkillState {
+namespace GOTCE.EntityStatesCustom.AltSkills.Engineer
+{
+    public class Entangler : BaseSkillState
+    {
         private IEnumerable<CharacterMaster> minions;
         private float delay = 0.05f;
         private float stopwatch = 0f;
@@ -16,30 +18,34 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Engineer {
             CharacterMaster owner = base.characterBody.master;
             minions = CharacterMaster.readOnlyInstancesList.Where(x => x.minionOwnership && x.minionOwnership.ownerMaster == owner && x.GetBody() && (x.GetBody().bodyFlags.HasFlag(CharacterBody.BodyFlags.Mechanical)));
 
-            if (!gameObject.GetComponent<EntanglerControllerLeader>()) {
+            if (!gameObject.GetComponent<EntanglerControllerLeader>())
+            {
                 gameObject.AddComponent<EntanglerControllerLeader>();
             }
 
             EntanglerControllerLeader leader = gameObject.GetComponent<EntanglerControllerLeader>();
             leader.isControlling = true;
 
-
-            foreach (CharacterMaster minion in minions) {
-                if (minion.GetBody() && NetworkServer.active) {
+            foreach (CharacterMaster minion in minions)
+            {
+                if (minion.GetBody() && NetworkServer.active)
+                {
                     minion.GetBody().AddBuff(Buffs.ValveBalance.instance.BuffDef);
-                    if (!minion.GetComponent<EntanglerController>()) {
+                    if (!minion.GetComponent<EntanglerController>())
+                    {
                         EntanglerController controller = minion.gameObject.AddComponent<EntanglerController>();
                         controller.leaderController = leader;
                     }
                 }
             }
-
+            characterBody.AddBuff(Buffs.ValveBalance.instance.BuffDef);
         }
 
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (!inputBank.skill1.down && base.isAuthority) {
+            if (!inputBank.skill1.down && base.isAuthority)
+            {
                 outer.SetNextStateToMain();
             }
         }
@@ -50,13 +56,17 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Engineer {
 
             gameObject.GetComponent<EntanglerControllerLeader>().isControlling = false;
 
-            if (NetworkServer.active) {
-                foreach (CharacterMaster minion in minions) {
-                    if (minion.GetBody()) {
+            if (NetworkServer.active)
+            {
+                foreach (CharacterMaster minion in minions)
+                {
+                    if (minion.GetBody())
+                    {
                         minion.GetBody().RemoveBuff(Buffs.ValveBalance.instance.BuffDef);
-                        minion.GetBody().AddTimedBuff(Buffs.ValveBalance.instance.BuffDef, 3f);
+                        minion.GetBody().AddTimedBuff(Buffs.ValveBalance.instance.BuffDef, 2f);
                     }
                 }
+                characterBody.RemoveBuff(Buffs.ValveBalance.instance.BuffDef);
             }
         }
 

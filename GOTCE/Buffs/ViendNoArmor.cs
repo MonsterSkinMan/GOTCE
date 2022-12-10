@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using BepInEx.Configuration;
@@ -8,13 +8,13 @@ using UnityEngine;
 
 namespace GOTCE.Buffs
 {
-    public class ValveBalance : BuffBase<ValveBalance>
+    public class ViendNoArmor : BuffBase<ViendNoArmor>
     {
         public override Sprite BuffIcon => null;
-        public override bool CanStack => false;
+        public override bool CanStack => true;
         public override Color Color => Color.red;
-        public override string BuffName => "Entangled";
-        public override bool IsDebuff => false;
+        public override string BuffName => "The Only Thing They Fear Armor Decay";
+        public override bool IsDebuff => true;
         public override bool Hidden => true;
 
         public override void Hooks()
@@ -25,11 +25,7 @@ namespace GOTCE.Buffs
                 {
                     if (body.HasBuff(BuffDef))
                     {
-                        args.moveSpeedMultAdd += 0.4f;
-                        if (body.isPlayerControlled)
-                        {
-                            args.armorAdd -= 50f;
-                        }
+                        args.armorAdd -= 6.25f;
                     }
                 }
             };
