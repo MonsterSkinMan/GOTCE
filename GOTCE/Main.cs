@@ -279,6 +279,7 @@ namespace GOTCE
             Itsgup.SoMyMainGoalIsToBlowUp();
             Zased.DoTheBased();
             Based.SuppressiveNader.Hook();
+            Based.Logbook.RunHooks();
             Fragile.Hook();
 
             // alts

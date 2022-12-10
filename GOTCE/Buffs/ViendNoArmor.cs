@@ -15,7 +15,7 @@ namespace GOTCE.Buffs
         public override Color Color => Color.red;
         public override string BuffName => "The Only Thing They Fear Armor Decay";
         public override bool IsDebuff => true;
-        public override bool Hidden => true;
+        public override bool Hidden => false;
 
         public override void Hooks()
         {
@@ -25,7 +25,7 @@ namespace GOTCE.Buffs
                 {
                     if (body.HasBuff(BuffDef))
                     {
-                        args.armorAdd -= 6.25f;
+                        args.armorAdd -= 6.25f * body.GetBuffCount(BuffDef);
                     }
                 }
             };

@@ -61,7 +61,7 @@ namespace GOTCE.Enemies
 
         public virtual void AddSpawnCard()
         {
-            isc = new CharacterSpawnCard();
+            isc = ScriptableObject.CreateInstance<CharacterSpawnCard>();
         }
 
         public virtual void AddDirectorCard()

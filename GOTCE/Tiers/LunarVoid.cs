@@ -22,22 +22,19 @@ namespace GOTCE.Tiers
         public override GameObject DropletDisplayPrefab => Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Common/VoidOrb.prefab").WaitForCompletion();
         public override bool IsDroppable => false;
         public override ItemTierDef.PickupRules PickupRules => ItemTierDef.PickupRules.ConfirmAll;
-        public override ItemTier TierEnum => (ItemTier)42;
+        public override ItemTier TierEnum => (ItemTier)49;
         public override GameObject HighlightPrefab => Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Common/VoidOrb.prefab").WaitForCompletion();
 
         public override void PostCreation()
         {
             base.PostCreation();
-            On.RoR2.Run.BuildDropTable += (orig, self) =>
-            {
-                orig(self);
-                foreach (ItemDef item in ItemCatalog.allItemDefs)
-                {
-                    if (item._itemTierDef == tier)
-                    {
-                        self.availableVoidTier2DropList.Add(item.CreatePickupDef().pickupIndex);
-                    }
+            On.RoR2.BasicPickupDropTable.GenerateWeightedSelection += (orig, self, run) => {
+                orig(self, run);
+                List<PickupIndex> indexes = new();
+                foreach (ItemDef def in ItemCatalog.allItemDefs.Where(x => x._itemTierDef == this.tier)) {
+                    indexes.Add(def.CreatePickupDef().pickupIndex);
                 }
+                self.Add(indexes, self.lunarItemWeight > 0 ? self.lunarItemWeight : self.voidTier2Weight);
             };
         }
     }

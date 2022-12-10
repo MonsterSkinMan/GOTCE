@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 902849871
+CRC: 3165510423
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b47005a7866077df897e1f0976567f63
+    Hash: 02fec126b27999675959a563e8ca130e
   TypeTreeHash:
     serializedVersion: 2
     Hash: bcbf7f8098a6cd93c16e102920d6f297
@@ -214,6 +214,7 @@ Assets:
 - Assets/Prefabs/Projectiles/AltSkills/CorruptedPearl/PearlUpgrade.prefab
 - Assets/Icons/Items/RoR2Discussion.png
 - Assets/Prefabs/Projectiles/AltSkills/Core/Core.prefab
+- Assets/Icons/BG/LunarVoid.png
 - Assets/Prefabs/EliteOverlays/Backup.mat
 - Assets/Prefabs/Interactables/Crucible/Crucible.prefab
 - Assets/Icons/IonSurger.png
@@ -223,6 +224,7 @@ Assets:
 - Assets/Prefabs/Enemies/The/the.mat
 - Assets/Icons/Items/GummyVitamins.png
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/slide.png
+- Assets/Icons/BG/EquipBoss.png
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/return.png
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/double.png
 - Assets/Prefabs/Enemies/The/TheBody.prefab
@@ -236,7 +238,6 @@ Assets:
 - Assets/Prefabs/game.prefab
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/rounder.png
 - Assets/Prefabs/Interactables/ShrineDML/ShrineDML.prefab
-- Assets/Scenes/FeedbackDiscussion/triplanarblend.mat
 - Assets/Prefabs/Projectiles/Aegiscentrism/OrbitalAegis.prefab
 - Assets/Icons/Items/SigmaGrindset.png
 - Assets/Prefabs/Survivors/Crackmando/Materials/body.mat
