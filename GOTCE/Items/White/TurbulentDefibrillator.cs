@@ -8,7 +8,7 @@ using UnityEngine.Networking;
 
 namespace GOTCE.Items.White
 {
-    public class Defibrillator : ItemBase<Defibrillator>
+    public class TurbulentDefibrillator : ItemBase<TurbulentDefibrillator>
     {
         public override string ConfigName => "Turbulent Defibrillator";
 
