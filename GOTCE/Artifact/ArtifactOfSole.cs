@@ -11,7 +11,7 @@ namespace GOTCE.Artifact
 
         public override string ArtifactLangTokenName => "GOTCE_ArtifactOfSole";
 
-        public override string ArtifactDescription => "Allies bleed out while moving.";
+        public override string ArtifactDescription => "Allies bleed out while moving on the ground and have reduced jump height.";
 
         public override Sprite ArtifactEnabledIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Artifacts/artifactofsoleon.png");
 
@@ -38,6 +38,15 @@ namespace GOTCE.Artifact
                     }
                 }
             };
+            RecalculateStatsAPI.GetStatCoefficients += (sender, args) =>
+            {
+                if (sender.isPlayerControlled && RunArtifactManager.instance.IsArtifactEnabled(ArtifactDef))
+                {
+                    args.jumpPowerMultAdd -= 1f / 6f;
+                    args.baseJumpPowerAdd -= 6f;
+                    // half jump height
+                }
+            };
         }
     }
 
@@ -62,10 +71,10 @@ namespace GOTCE.Artifact
                 {
                     stopwatch = 0f;
                     CharacterBody body = master.GetBody();
-                    if (body)
+                    if (body && body.characterMotor)
                     {
                         float damage = body.characterMotor.velocity.magnitude * damageMult;
-                        if (damage >= 1)
+                        if (body.characterMotor.isGrounded)
                         {
                             DamageInfo info = new()
                             {

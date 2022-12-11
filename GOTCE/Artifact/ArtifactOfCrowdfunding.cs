@@ -5,11 +5,11 @@ using R2API;
 
 namespace GOTCE.Artifact
 {
-    public class ArtifactOfCrunder : ArtifactBase<ArtifactOfCrunder>
+    public class ArtifactOfCrowdfunding : ArtifactBase<ArtifactOfCrowdfunding>
     {
-        public override string ArtifactName => "Artifact Of Crowdfunder";
+        public override string ArtifactName => "Artifact Of Crowdfunding";
 
-        public override string ArtifactLangTokenName => "GOTCE_ArtifactOfCrunder";
+        public override string ArtifactLangTokenName => "GOTCE_ArtifactOfCrowdfunding";
 
         public override string ArtifactDescription => "Your gold passively drains.";
 

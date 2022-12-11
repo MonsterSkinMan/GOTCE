@@ -5,11 +5,11 @@ using R2API;
 
 namespace GOTCE.Artifact
 {
-    public class ArtifactOfArtifact : ArtifactBase<ArtifactOfArtifact>
+    public class ArtifactOfLoader : ArtifactBase<ArtifactOfLoader>
     {
         public override string ArtifactName => "Artifact Of Loader";
 
-        public override string ArtifactLangTokenName => "GOTCE_ArtifactOfLodr";
+        public override string ArtifactLangTokenName => "GOTCE_ArtifactOfLoader";
 
         public override string ArtifactDescription => "All players and monsters move at a quarter of their regular speed.";
 
