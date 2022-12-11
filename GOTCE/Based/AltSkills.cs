@@ -166,7 +166,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.Decoy.Instance.SkillDef.skillNameToken, "Explosive Decoy");
-            LanguageAPI.Add(Skills.Decoy.Instance.SkillDef.skillDescriptionToken, "Deploy a decoy that <style=cIsUtility>draws enemy attention</style> for <style=cIsUtility>5</style> seconds before exploding in a damaging blast for <style=cIsDamage>100% damage</style>. Explodes early if killed.");
+            LanguageAPI.Add(Skills.Decoy.Instance.SkillDef.skillDescriptionToken, "Deploy a decoy that <style=cIsUtility>draws enemy attention</style> for <style=cIsUtility>5</style> seconds before exploding in a damaging blast for <style=cIsDamage>200% damage</style>. Explodes early if killed.");
 
             LanguageAPI.Add("GOTCE_EXPLOSIVEDECOY_NAME", "Explosive Decoy");
         }

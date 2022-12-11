@@ -23,8 +23,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Bandit.Decoy
                         {
                             BlastAttack blast = new()
                             {
-                                radius = 9f,
-                                baseDamage = ownerMaster.GetBody().damage * 1f,
+                                radius = 11f,
+                                baseDamage = ownerMaster.GetBody().damage * 2f,
                                 attacker = ownerMaster.GetBodyObject(),
                                 position = base.characterBody.corePosition,
                                 crit = Util.CheckRoll(ownerMaster.GetBody().crit, ownerMaster),

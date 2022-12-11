@@ -23,10 +23,7 @@ namespace GOTCE.Buffs
             {
                 if (NetworkServer.active)
                 {
-                    if (body.HasBuff(BuffDef))
-                    {
-                        args.armorAdd -= 6.25f;
-                    }
+                    args.armorAdd -= 6.25f * body.GetBuffCount(BuffDef);
                 }
             };
         }
