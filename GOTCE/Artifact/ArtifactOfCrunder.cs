@@ -13,10 +13,9 @@ namespace GOTCE.Artifact
 
         public override string ArtifactDescription => "Your gold passively drains.";
 
-        public override Sprite ArtifactEnabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Artifact/artifactofblindnesson.png");
+        public override Sprite ArtifactEnabledIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Artifacts/artifactofcrowdfundingon.png");
 
-        public override Sprite ArtifactDisabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Artifact/artifactofblindnesson.png");
-
+        public override Sprite ArtifactDisabledIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Artifacts/artifactofcrowdfundingoff.png");
         public override void Init(ConfigFile config)
         {
             CreateLang();

@@ -29,7 +29,7 @@ namespace GOTCE.Items.Red
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/Gamepad.png");
 
         public override void Init(ConfigFile config)
         {

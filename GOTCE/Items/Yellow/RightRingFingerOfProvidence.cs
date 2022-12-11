@@ -28,7 +28,7 @@ namespace GOTCE.Items.Yellow
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/RightRingFingerOfProvidence.png");
 
         public override void Init(ConfigFile config)
         {

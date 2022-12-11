@@ -13,9 +13,9 @@ namespace GOTCE.Artifact
 
         public override string ArtifactDescription => "Allies bleed out while moving.";
 
-        public override Sprite ArtifactEnabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Artifact/artifactofblindnesson.png");
+        public override Sprite ArtifactEnabledIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Artifacts/artifactofsoleon.png");
 
-        public override Sprite ArtifactDisabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Artifact/artifactofblindnesson.png");
+        public override Sprite ArtifactDisabledIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Artifacts/artifactofsoleoff.png");
 
         public override void Init(ConfigFile config)
         {

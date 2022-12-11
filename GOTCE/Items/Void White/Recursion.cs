@@ -33,7 +33,7 @@ namespace GOTCE.Items.VoidWhite
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/Recursion.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {

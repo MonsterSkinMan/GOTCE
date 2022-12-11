@@ -13,9 +13,9 @@ namespace GOTCE.Artifact
 
         public override string ArtifactDescription => "All players and monsters move at a quarter of their regular speed.";
 
-        public override Sprite ArtifactEnabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Artifact/artifactofartifact.png");
+        public override Sprite ArtifactEnabledIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Artifacts/artifactofloaderon.png");
 
-        public override Sprite ArtifactDisabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png");
+        public override Sprite ArtifactDisabledIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Artifacts/artifactofloaderoff.png");
 
         public override void Init(ConfigFile config)
         {

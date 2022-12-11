@@ -12,9 +12,9 @@ namespace GOTCE.Artifact
 
         public override string ArtifactDescription => "If you take more than 5 minutes to complete a stage, you instantly fucking die. Should've rushed harder, dumbass.";
 
-        public override Sprite ArtifactEnabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Artifact/woolifact.png");
+        public override Sprite ArtifactEnabledIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Artifacts/artifactofwoolieon.png");
 
-        public override Sprite ArtifactDisabledIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Artifact/disabledfear.png");
+        public override Sprite ArtifactDisabledIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Artifacts/artifactofwoolieoff.png");
         // public override ArtifactDef artifact;
 
         public override void Init(ConfigFile config)

@@ -12,11 +12,11 @@ namespace GOTCE.Items.Red
 {
     public class PeerReviewedSource : ItemBase<PeerReviewedSource>
     {
-        public override string ConfigName => "Peer Reviewed Source";
+        public override string ConfigName => "Pier Reviewed Source";
 
-        public override string ItemName => "Peer Reviewed Source";
+        public override string ItemName => "Pier Reviewed Source";
 
-        public override string ItemLangTokenName => "GOTCE_PeerReviewedSource";
+        public override string ItemLangTokenName => "GOTCE_PierReviewedSource";
 
         public override string ItemPickupDesc => "I don't fucking think so.";
 
@@ -30,7 +30,7 @@ namespace GOTCE.Items.Red
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/PierReviewedSource.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
