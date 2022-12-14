@@ -32,9 +32,9 @@ namespace GOTCE.Tiers
                 orig(self, run);
                 List<PickupIndex> indexes = new();
                 foreach (ItemDef def in ItemCatalog.allItemDefs.Where(x => x._itemTierDef == this.tier)) {
-                    indexes.Add(def.CreatePickupDef().pickupIndex);
+                    indexes.Add(PickupCatalog.FindPickupIndex(def.itemIndex));
                 }
-                self.Add(indexes, self.lunarItemWeight > 0 ? self.lunarItemWeight : self.voidTier2Weight);
+                self.Add(indexes, self.voidTier2Weight);
             };
         }
     }

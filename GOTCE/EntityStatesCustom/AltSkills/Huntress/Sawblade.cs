@@ -15,18 +15,36 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Huntress
         private float duration = 0.5f;
 
         // private GameObject prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/ClayBoss/TarSeeker.prefab").WaitForCompletion().InstantiateClone("huntresssaw");
-        // private GameObject prefabGhost = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Saw/SawmerangGhost.prefab").WaitForCompletion().InstantiateClone("huntresssawghost");
-        private GameObject prefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Projectiles/AltSkills/Saw/SawPrefab.prefab");
+        private GameObject prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Saw/Sawmerang.prefab").WaitForCompletion().InstantiateClone("huntresssaw");
+        private GameObject prefabGhost = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Saw/SawmerangGhost.prefab").WaitForCompletion().InstantiateClone("huntresssawghost");
+        // private GameObject prefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Projectiles/AltSkills/Saw/SawPrefab.prefab");
 
         public override void OnEnter()
         {
             base.OnEnter();
+
             Ray aimRay = GetAimRay();
             StartAimMode(aimRay);
 
             PlayAnimation("Gesture", "FireGlaive", "FireGlaive.playbackRate", duration);
 
-            prefab.AddComponent<SlowVelocty>();
+            prefab.AddComponent<ProjectileStickOnImpact>();
+            prefab.AddComponent<ProjectileTargetComponent>();
+            ProjectileSphereTargetFinder finder = prefab.AddComponent<ProjectileSphereTargetFinder>();
+            finder.onlySearchIfNoTarget = true;
+            finder.targetSearchInterval = 0.1f;
+            finder.lookRange = 9f;
+            ProjectileDotZone zone = prefab.GetComponent<ProjectileDotZone>();
+            zone.damageCoefficient = 0.6f;
+            zone.resetFrequency = 1f;
+            GameObject.Destroy(prefab.GetComponent<BoomerangProjectile>());
+            prefab.AddComponent<SawBehavior>();
+            prefab.AddComponent<ProjectileSimple>();
+            ProjectileSimple simple = prefab.GetComponent<ProjectileSimple>();
+            simple.desiredForwardSpeed = 70f;
+            prefab.transform.localScale = new(5f, 5f, 5f);
+            prefabGhost.transform.localScale = new(5f, 5f, 5f);
+            prefab.GetComponent<ProjectileController>().ghostPrefab = prefabGhost;
 
             AkSoundEngine.PostEvent(2486049627, base.gameObject); // Play_huntress_m2_throw
 
@@ -40,7 +58,6 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Huntress
                 info.damage = base.damageStat * 1.5f;
                 info.damageColorIndex = DamageColorIndex.Bleed;
                 info.damageTypeOverride = DamageType.BleedOnHit | DamageType.Stun1s;
-                info.speedOverride = 250f;
                 info.projectilePrefab = prefab;
                 ProjectileManager.instance.FireProjectile(info);
             }
@@ -66,13 +83,22 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Huntress
         }
     }
 
-    public class SlowVelocty : MonoBehaviour
+    public class SawBehavior : MonoBehaviour
     {
+        private bool HasSawLaunched = false;
+        private float gravityRampUp = 0f;
+        private float gravityRampUpMultiplier = 2f;
+        private float fallSpeed = 16f;
+        private float launchSpeed = 150f;
+        private Rigidbody rb => gameObject.GetComponent<Rigidbody>();
+        private HurtBox currentTarget => gameObject.GetComponent<ProjectileSphereTargetFinder>().lastFoundHurtBox;
         private void FixedUpdate()
         {
-            if (NetworkServer.active && gameObject.name == "huntresssawhashit")
-            {
-                gameObject.GetComponent<ProjectileCharacterController>().velocity = 2;
+            gravityRampUp += Time.fixedDeltaTime;
+            if (currentTarget && !HasSawLaunched) {
+                HasSawLaunched = true;
+                gameObject.transform.LookAt(currentTarget.transform.position, Vector3.up);
+                rb.AddForce(gameObject.transform.forward * launchSpeed, ForceMode.VelocityChange);
             }
         }
     }

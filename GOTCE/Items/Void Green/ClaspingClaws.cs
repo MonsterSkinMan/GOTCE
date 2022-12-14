@@ -49,7 +49,7 @@ namespace GOTCE.Items.VoidGreen
         {
             if (damageInfo?.attacker)
             {
-                var ThePacIsBack = damageInfo.attacker.GetComponent<RoR2.CharacterBody>();
+                CharacterBody ThePacIsBack = damageInfo.attacker.GetComponent<RoR2.CharacterBody>();
                 if (ThePacIsBack)
                 {
                     int stack = GetCount(ThePacIsBack);
@@ -60,7 +60,8 @@ namespace GOTCE.Items.VoidGreen
                         else if (self.body.rigidbody) mass = self.body.rigidbody.mass;
                         else mass = 1f;
 
-                        var DahRoFus = -10f - (5f * (stack - 1));
+                        float DahRoFus = -10f - (5f * (stack - 1));
+                        if (self.body.isChampion) DahRoFus *= 0.2f; 
                         damageInfo.force += Vector3.Normalize(self.body.corePosition - ThePacIsBack.corePosition) * DahRoFus * mass;
                     }
                 }

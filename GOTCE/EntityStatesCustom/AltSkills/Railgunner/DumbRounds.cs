@@ -39,12 +39,11 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Railgunner
 
             AkSoundEngine.PostEvent(3663213371, base.gameObject); // Play_railgunner_m1_fire
 
-            base.cameraTargetParams.AddRecoil(-10f, 10f, -50f, 50f);
+            base.cameraTargetParams.AddRecoil(-25, 25, -60, 60);
             base.characterMotor.ApplyForce((0f - knockbackForce) * base.GetAimRay().direction);
 
             for (int i = 0; i < 5; i++) {
-                float fovScale = 1 + gameObject.GetComponent<CameraTargetParams>().currentCameraParamsData.fov.alpha;
-                float fovVal = 1 + gameObject.GetComponent<CameraTargetParams>().currentCameraParamsData.fov.value;
+                float fovScale = 1 - gameObject.GetComponent<CameraTargetParams>().currentCameraParamsData.fov.alpha + 0.1f;
                 FireProjectileInfo info = default;
                 info.damage = base.damageStat;
                 info.projectilePrefab = prefab;
@@ -54,13 +53,9 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Railgunner
                 info.damageTypeOverride = DamageType.Generic;
                 info.speedOverride = 250f;
 
-                float spreadRangeY = 5f * fovScale;
-                float spreadRangeX = 5f * fovScale;
+                float spreadRangeY = 360 * fovScale;
+                float spreadRangeX = 360 * fovScale;
 
-                if (fovVal != 0) { 
-                    spreadRangeY += fovVal / UnityEngine.Random.Range(0f, 5f) * fovScale;
-                    spreadRangeX += fovVal / UnityEngine.Random.Range(0f, 2f) * fovScale;
-                }
                 info.rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(base.GetAimRay().direction, spreadRangeY, -spreadRangeY, spreadRangeX, -spreadRangeX));
 
                 if (base.isAuthority)

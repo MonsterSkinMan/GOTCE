@@ -30,15 +30,20 @@ namespace GOTCE.Tiers
         public abstract bool IsDroppable { get; }
         public virtual ItemTier TierEnum { get; } // cast to itemtier before passing enum to this
         public virtual ItemTierDef.PickupRules PickupRules { get; }
-        public abstract GameObject DropletDisplayPrefab { get; }
+        public virtual GameObject DropletDisplayPrefab { get; set; }
         public virtual ColorCatalog.ColorIndex ColorIndex { get; }
         public virtual ColorCatalog.ColorIndex DarkColorIndex { get; }
-        public abstract GameObject HighlightPrefab { get; }
+        public virtual GameObject HighlightPrefab { get; set;}
 
         public ItemTierDef tier;
 
+        public virtual void PreCreation() {
+
+        }
+
         public virtual void Awake()
         {
+            PreCreation();
             CreateTier();
             PostCreation();
         }

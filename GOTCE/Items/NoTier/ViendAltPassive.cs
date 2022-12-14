@@ -57,6 +57,15 @@ namespace GOTCE.Items.NoTier
             On.RoR2.Run.GetRunStopwatch += Run_GetRunStopwatch;
             On.RoR2.Run.FixedUpdate += Run_FixedUpdate;
             On.RoR2.CharacterBody.OnInventoryChanged += CharacterBody_OnInventoryChanged;
+            RecalculateStatsAPI.GetStatCoefficients += (CharacterBody cb, RecalculateStatsAPI.StatHookEventArgs args) => {
+                if (NetworkServer.active) {
+                    if (cb.inventory && cb.inventory.GetItemCount(ItemDef) > 0) {
+                        if (cb.HasBuff(DLC1Content.Buffs.VoidSurvivorCorruptMode)) {
+                            args.armorAdd += -100;
+                        }
+                    }
+                }
+            };
         }
 
         private void Run_Start(On.RoR2.Run.orig_Start orig, Run self)

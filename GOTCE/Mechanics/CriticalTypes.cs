@@ -134,6 +134,9 @@ namespace GOTCE.Mechanics
 
                         gameObject.GetComponent<CameraTargetParams>().RemoveParamsOverride(handle, 0.5f);
                     }
+                    else if (Util.CheckRoll(stats.fovCritChance, body.master) && critting) {
+                        OnFovCrit?.Invoke(body.gameObject, new FovCritEventArgs(body));
+                    }
                     else if (Util.CheckRoll(stats.fovCritChance, body.master) && !critting)
                     {
                         critting = true;

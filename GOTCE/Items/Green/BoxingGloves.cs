@@ -49,19 +49,22 @@ namespace GOTCE.Items.Green
         {
             if (damageInfo?.attacker)
             {
-                var SpringManFromArms = damageInfo.attacker.GetComponent<RoR2.CharacterBody>();
-                if (SpringManFromArms)
+                CharacterBody SpringManFromArms = damageInfo.attacker.GetComponent<RoR2.CharacterBody>();
+                if (SpringManFromArms && SpringManFromArms.equipmentSlot)
                 {
                     int stack = GetCount(SpringManFromArms);
                     if (stack > 0)
                     {
-                        float mass;
+                        /* float mass;
                         if (self.body.characterMotor) mass = (self.body.characterMotor as IPhysMotor).mass;
                         else if (self.body.rigidbody) mass = self.body.rigidbody.mass;
-                        else mass = 1f;
+                        else mass = 1f; */
 
-                        var FusRoDah = 20f + (10f * (stack - 1));
-                        damageInfo.force += Vector3.Normalize(self.body.corePosition - SpringManFromArms.corePosition) * FusRoDah * mass;
+                        // var FusRoDah = 20f + (10f * (stack - 1));
+                        // damageInfo.force += Vector3.Normalize(self.body.corePosition - SpringManFromArms.corePosition) * FusRoDah * mass;
+                        float fusRoDah = ((500f + (250f * stack - 1)) * damageInfo.procCoefficient) * (damageInfo.damage / SpringManFromArms.damage);
+                        damageInfo.force += SpringManFromArms.equipmentSlot.GetAimRay().direction * fusRoDah;
+                        damageInfo.canRejectForce = false;
                     }
                 }
             }

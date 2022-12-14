@@ -149,7 +149,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillNameToken, "Shark Saw");
-            LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillDescriptionToken, "Throw a fast piercing sawblade that moves along surfaces, rapidly striking enemies for <style=cIsDamage>30% per tick</style> and making them <style=cIsHealth>bleed</style>.");
+            LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillDescriptionToken, "Throw a piercing <style=cIsDamage>sawblade</style> that dashes onto a nearby target, dealing <style=cIsDamage>150%</style> damage and sticking to surfaces, dealing <style=cIsDamage>60%</style> <style=cDeath>bleed</style> damage.");
 
             /* On.RoR2.Projectile.ProjectileStickOnImpact.UpdateSticking += (orig, self) => {
                 if (self.stuckTransform == null && !self.gameObject.GetComponent<EntityStatesCustom.AltSkills.Huntress.MoveForward>()) {
@@ -418,12 +418,8 @@ namespace GOTCE.Based
                 ILCursor c = new ILCursor(il);
 
                 bool found = c.TryGotoNext(MoveType.After,
-                    x => x.MatchLdarg(0),
-                    x => x.MatchLdarg(0),
-                    x => x.MatchCallOrCallvirt<RoR2.CharacterBody>(nameof(CharacterBody.armor)),
-                    x => x.MatchLdarg(0),
-                    x => x.MatchLdsfld("RoR2.DLC1Content/Buffs", "VoidSurvivorCorruptMode"),
-                    x => x.MatchCallOrCallvirt<RoR2.CharacterBody>("HasBuff"),
+                    x => x.MatchLdsfld(typeof(DLC1Content.Buffs), nameof(DLC1Content.Buffs.VoidSurvivorCorruptMode)),
+                    x => x.MatchCallOrCallvirt<CharacterBody>(nameof(CharacterBody.HasBuff)),
                     x => x.MatchBrtrue(out _),
                     x => x.MatchLdcR4(0f),
                     x => x.MatchBr(out _),
@@ -431,8 +427,9 @@ namespace GOTCE.Based
                 );
 
                 if (found) {
-                    c.Index -= 1;
-                    c.Remove();
+                    c.Index--;
+                    c.Next.Operand = 0f;
+                    c.Emit(OpCodes.Ldarg_0);
                     c.EmitDelegate<Func<CharacterBody, float>>((cb) => {
                         if (cb.inventory && cb.inventory.GetItemCount(Items.NoTier.ViendAltPassive.Instance.ItemDef) > 0) {
                             return 0f;
@@ -479,14 +476,15 @@ namespace GOTCE.Based
             }; */
 
             // armor on heal
-            /*
+            
             On.RoR2.VoidSurvivorController.OnCharacterHealServer += (orig, self, com, amount, mask) =>
             {
                 if (self.characterBody.inventory.GetItemCount(def) > 0)
                 {
                     if (NetworkServer.active)
                     {
-                        // self.characterBody.armor += 10f;
+                        self.characterBody.armor += 25f;
+                        self.characterBody.baseArmor += 25f;
                     }
                 }
                 else
@@ -494,7 +492,7 @@ namespace GOTCE.Based
                     orig(self, com, amount, mask);
                 }
             };
-            */
+            
 
             // no healing
             On.RoR2.HealthComponent.Heal += (orig, self, amount, mask, regen) =>
@@ -517,11 +515,13 @@ namespace GOTCE.Based
                 }
             };
 
-            On.EntityStates.VoidSurvivor.Weapon.FireCorruptHandBeam.FireBullet += (orig, self) =>
+            On.EntityStates.VoidSurvivor.Weapon.FireCorruptHandBeam.FixedUpdate += (orig, self) =>
             {
                 if (NetworkServer.active && self.characterBody.inventory.GetItemCount(def) > 0)
                 {
-                    self.characterBody.AddTimedBuff(Buffs.ViendNoArmor.instance.BuffDef, 1.5f);
+                    // self.characterBody.AddTimedBuff(Buffs.ViendNoArmor.instance.BuffDef, 1.5f);
+                    self.characterBody.baseArmor -= 3f * Time.fixedDeltaTime;
+                    self.characterBody.armor -= 3f * Time.fixedDeltaTime;
                 }
                 orig(self);
             };
@@ -532,8 +532,6 @@ namespace GOTCE.Based
                 if (NetworkServer.active && self.characterBody && self.characterBody.inventory && self.characterBody.inventory.GetItemCount(def) > 0 && self.bodyHealthComponent)
                 {
                     self.corruptionForFullHeal = 0;
-                    // self.characterBody.armor -= 0.1f * Time.fixedDeltaTime;
-                    // self.corruptionFractionPerSecondWhileCorrupted = -0.001f;
                     self.maxCorruption = 100f/* + ((10f * (self.characterBody.level - 1)))*/;
 
                     if (self.corruption < 1)
@@ -564,6 +562,15 @@ namespace GOTCE.Based
                         CharacterMotor motor = self.gameObject.GetComponent<CharacterMotor>();
                         motor.airControl = Mathf.InverseLerp(self.corruption, self.maxCorruption, 5);
                     } */
+
+                    if (self.characterBody.armor < 0) {
+                        self.characterBody.baseArmor += 1.5f * Time.fixedDeltaTime;
+                        self.characterBody.armor += 1.5f * Time.fixedDeltaTime;
+                    }
+                    else if (self.characterBody.armor > 0.5) {
+                        self.characterBody.baseArmor -= 0.1f * Time.fixedDeltaTime;
+                        self.characterBody.armor -= 0.1f * Time.fixedDeltaTime;
+                    }
                 }
                 orig(self);
             };
