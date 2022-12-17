@@ -29,7 +29,7 @@ namespace GOTCE.Items.Red
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/GenevaSuggestion.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {

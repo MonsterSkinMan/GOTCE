@@ -30,7 +30,7 @@ namespace GOTCE.Items.Void_Red
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BisonSkull.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
