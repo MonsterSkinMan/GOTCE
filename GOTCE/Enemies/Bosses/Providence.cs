@@ -75,11 +75,13 @@ namespace GOTCE.Enemies.Bosses
 
             DeathRewards deathRewards = prefab.GetComponent<DeathRewards>();
             ExplicitPickupDropTable dt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();
-            dt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]
-            {
-                new ExplicitPickupDropTable.PickupDefEntry {pickupDef = Items.Yellow.RightRingFingerOfProvidence.Instance.ItemDef, pickupWeight = 1f},
-            };
-            deathRewards.bossDropTable = dt;
+            if (Items.Yellow.RightRingFingerOfProvidence.Instance?.ItemDef) {
+                dt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]
+                {
+                    new ExplicitPickupDropTable.PickupDefEntry {pickupDef = Items.Yellow.RightRingFingerOfProvidence.Instance.ItemDef, pickupWeight = 1f},
+                };
+                deathRewards.bossDropTable = dt;
+            }
         }
 
         public override void PostCreation()

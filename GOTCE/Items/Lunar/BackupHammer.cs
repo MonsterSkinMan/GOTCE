@@ -47,7 +47,12 @@ namespace GOTCE.Items.Lunar
         {
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
-            IL.RoR2.GenericSkill.CalculateFinalRechargeInterval += GenericSkill_CalculateFinalRechargeInterval;
+            // IL.RoR2.GenericSkill.CalculateFinalRechargeInterval += GenericSkill_CalculateFinalRechargeInterval; 
+            On.RoR2.GenericSkill.CalculateFinalRechargeInterval += HopooGames;
+        }
+
+        private float HopooGames(On.RoR2.GenericSkill.orig_CalculateFinalRechargeInterval orig, GenericSkill self) {
+            return self.baseRechargeInterval > 0 ? Mathf.Max(0.5f, self.baseRechargeInterval * self.cooldownScale - self.flatCooldownReduction) : 0;
         }
 
         private void GenericSkill_CalculateFinalRechargeInterval(ILContext il)

@@ -38,7 +38,7 @@ namespace GOTCE.Based {
                 if (pickupDef.itemIndex != ItemIndex.None) {
                     ItemDef def = ItemCatalog.GetItemDef(pickupDef.itemIndex);
                     if (def) {
-                        if (def.deprecatedTier == ItemTier.VoidTier3) {
+                        if (def.deprecatedTier == ItemTier.VoidBoss) {
                             numVoid = counter;
                         }
                     }
@@ -46,6 +46,8 @@ namespace GOTCE.Based {
 
                 counter++;
             }
+
+            numVoid++;
 
             numBoss = entries.Length - 1;
 

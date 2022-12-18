@@ -27,6 +27,7 @@ namespace GOTCE.EntityStatesCustom.CrackedVermin {
                 attack.inflictor = base.gameObject;
                 attack.procCoefficient = 1f;
                 attack.procChainMask = new();
+                attack.teamIndex = base.teamComponent.teamIndex;
                 attack.impactEffect = EffectCatalog.FindEffectIndexFromPrefab(EntityStates.Loader.GroundSlam.blastImpactEffectPrefab);
 
                 attack.Fire();

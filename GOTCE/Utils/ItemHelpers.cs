@@ -174,11 +174,13 @@ namespace GOTCE.Utils
         /// <param name="defsToCorrupt"> items that should be corrupted </param>
         public static void RegisterCorruptions(ItemDef voidDef, List<ItemDef> defsToCorrupt) {
             foreach (ItemDef def in defsToCorrupt) {
-                ItemDef.Pair transformation = new ItemDef.Pair() {
-                        itemDef1 = def,
-                        itemDef2 = voidDef
+                if (voidDef && def) {
+                    ItemDef.Pair transformation = new ItemDef.Pair() {
+                            itemDef1 = def,
+                            itemDef2 = voidDef
                     };
-                ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem] = ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem].AddToArray(transformation);
+                    ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem] = ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem].AddToArray(transformation);
+                }
             }
         }
     }

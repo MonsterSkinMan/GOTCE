@@ -28,7 +28,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Engineer
 
             foreach (CharacterMaster minion in minions)
             {
-                if (minion.GetBody() && NetworkServer.active)
+                if (minion.GetBody() && base.isAuthority)
                 {
                     minion.GetBody().AddBuff(Buffs.ValveBalance.instance.BuffDef);
                     if (!minion.GetComponent<EntanglerController>())
@@ -56,7 +56,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Engineer
 
             gameObject.GetComponent<EntanglerControllerLeader>().isControlling = false;
 
-            if (NetworkServer.active)
+            if (base.isAuthority)
             {
                 foreach (CharacterMaster minion in minions)
                 {
