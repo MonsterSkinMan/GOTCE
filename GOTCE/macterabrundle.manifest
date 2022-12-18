@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3287924064
+CRC: 2400813118
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2a774dee09dd49657e2e6b20c79c22b0
+    Hash: 79b8fbb1d44fcb6557ecf65cc9017934
   TypeTreeHash:
     serializedVersion: 2
-    Hash: a5fce307c298c3ba6cc939ce40c7fbe9
+    Hash: 8008b2b46f07412a84f63a8d4423d6d0
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -44,8 +44,6 @@ ClassTypes:
 - Class: 212
   Script: {instanceID: 0}
 - Class: 213
-  Script: {instanceID: 0}
-- Class: 329
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
@@ -88,7 +86,6 @@ Assets:
 - Assets/Textures/Icons/Enemies/CrackedVermin.png
 - Assets/Textures/Icons/Item/HeartlessBreakfast.png
 - Assets/Textures/Icons/Item/PaleAle.png
-- Assets/Import/8mb.video-yzD-Rpct5RSV.mp4
 - Assets/Models/Prefabs/Enemies/IonSurger/mdlIonSurger.prefab
 - Assets/Textures/Icons/Item/WhiteFragment.png
 - Assets/Textures/Icons/Item/CrownPrince.png
