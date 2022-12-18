@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using static GOTCE.Main;
 using RoR2.CharacterAI;
 using RoR2.Skills;
+using R2API.Networking.Interfaces;
 
 namespace GOTCE.Components
 {
@@ -16,6 +17,7 @@ namespace GOTCE.Components
         private LineRenderer renderer;
         private InputBankTest inputBank;
         private SkillLocator skillLocator;
+        private CharacterMaster master => gameObject.GetComponent<CharacterMaster>();
         private float aimVelocity;
 
         private void Start()
@@ -36,16 +38,25 @@ namespace GOTCE.Components
 
                 ai.skillDriverUpdateTimer = 5f;
 
-                Vector3 targetPosition = leaderController.lastPingLocation + (ai.bodyTransform.position - ai.body.footPosition);
-                ai.SetGoalPosition(targetPosition);
-                ai.localNavigator.targetPosition = targetPosition;
-                ai.localNavigator.allowWalkOffCliff = true;
-                ai.localNavigator.Update(Time.fixedDeltaTime);
-                ai.bodyInputs.moveVector = ai.localNavigator.moveVector;
-                ai.bodyInputBank.moveVector = ai.localNavigator.moveVector;
+                if (leaderController.lastPingLocation != Vector3.zero) {
+                    Vector3 targetPosition = leaderController.lastPingLocation + (ai.bodyTransform.position - ai.body.footPosition);
+                    ai.SetGoalPosition(targetPosition);
+                    ai.localNavigator.targetPosition = targetPosition;
+                    ai.localNavigator.allowWalkOffCliff = true;
+                    ai.localNavigator.Update(Time.fixedDeltaTime);
+                    ai.bodyInputs.moveVector = ai.localNavigator.moveVector;
+                    ai.bodyInputBank.moveVector = ai.localNavigator.moveVector;
+                }
+
+                if (!master.GetBody().HasBuff(Buffs.ValveBalance.instance.BuffDef)) {
+                    master.GetBody().AddBuff(Buffs.ValveBalance.instance.BuffDef);
+                }
             }
             else
             {
+                if (master.GetBody().HasBuff(Buffs.ValveBalance.instance.BuffDef)) {
+                    master.GetBody().RemoveBuff(Buffs.ValveBalance.instance.BuffDef);
+                }
             }
         }
     }
@@ -114,12 +125,20 @@ namespace GOTCE.Components
 
                 SetPos(master.playerCharacterMasterController.pingerController.currentPing.origin);
                 // Debug.Log(lastPingLocation);
+
+                if (!leaderBody.HasBuff(Buffs.ValveBalance.instance.BuffDef)) {
+                    leaderBody.AddBuff(Buffs.ValveBalance.instance.BuffDef);
+                }
             }
             else
             {
                 renderer.enabled = false;
                 renderer2.enabled = false;
                 lastPingLocation = new(0f, 0f, 0f);
+
+                if (leaderBody.HasBuff(Buffs.ValveBalance.instance.BuffDef)) {
+                    leaderBody.RemoveBuff(Buffs.ValveBalance.instance.BuffDef);
+                }
             }
         }
 
@@ -210,6 +229,74 @@ namespace GOTCE.Components
                 }
                 orig(self, delta);
             };
+
+            R2API.Networking.NetworkingAPI.RegisterMessageType<EntanglerSync>();
+            R2API.Networking.NetworkingAPI.RegisterMessageType<EntanglerControlSync>();
+        }
+    }
+
+    public class EntanglerSync : INetMessage {
+        GameObject owner;
+        GameObject minion;
+        public void OnReceived() {
+            if (owner && minion) {
+                if (!owner.GetComponent<EntanglerControllerLeader>()) {
+                    owner.AddComponent<EntanglerControllerLeader>();
+                }
+
+                EntanglerControllerLeader leader = owner.GetComponent<EntanglerControllerLeader>();
+
+                if (!minion.GetComponent<EntanglerController>()) {
+                    EntanglerController controller = minion.AddComponent<EntanglerController>();
+                    controller.leaderController = leader;
+                }
+            }
+        }  
+        public EntanglerSync() {
+
+        }
+        public EntanglerSync(GameObject _owner, GameObject _minion) {
+            owner = _owner;
+            minion = _minion;
+        }
+        public void Serialize(NetworkWriter writer) {
+            writer.Write(owner);
+            writer.Write(minion);
+        }
+        public void Deserialize(NetworkReader reader) {
+            owner = reader.ReadGameObject();
+            minion = reader.ReadGameObject();
+        }
+    }
+
+    public class EntanglerControlSync : INetMessage {
+        GameObject owner;
+        bool value;
+        public void OnReceived() {
+            if (owner) {
+                if (!owner.GetComponent<EntanglerControllerLeader>()) {
+                    owner.AddComponent<EntanglerControllerLeader>();
+                }
+
+                EntanglerControllerLeader leader = owner.GetComponent<EntanglerControllerLeader>();
+
+                leader.isControlling = value;
+            }
+        }
+        public void Serialize(NetworkWriter writer) {
+            writer.Write(owner);
+            writer.Write(value);
+        }
+        public void Deserialize(NetworkReader reader) {
+            owner = reader.ReadGameObject();
+            value = reader.ReadBoolean();
+        }
+        public EntanglerControlSync() {
+
+        }
+        public EntanglerControlSync(GameObject _owner, bool _value) {
+            owner = _owner;
+            value = _value;
         }
     }
 }

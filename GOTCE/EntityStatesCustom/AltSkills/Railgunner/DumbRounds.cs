@@ -14,7 +14,6 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Railgunner
     {
         private float duration = 0.02f;
         private float knockbackForce = 300f;
-        private GameObject prefab;
 
         public override void FixedUpdate()
         {
@@ -34,8 +33,6 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Railgunner
         {
             base.OnEnter();
             duration = duration / base.attackSpeedStat;
-            prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Railgunner/RailgunnerPistolProjectile.prefab").WaitForCompletion().InstantiateClone("dumbrounds");
-            GameObject.DestroyImmediate(prefab.GetComponent<ProjectileSteerTowardTarget>());
 
             AkSoundEngine.PostEvent(3663213371, base.gameObject); // Play_railgunner_m1_fire
 
@@ -46,7 +43,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Railgunner
                 float fovScale = 1 - gameObject.GetComponent<CameraTargetParams>().currentCameraParamsData.fov.alpha + 0.1f;
                 FireProjectileInfo info = default;
                 info.damage = base.damageStat;
-                info.projectilePrefab = prefab;
+                info.projectilePrefab = Based.AltSkills.railgunnerDumbPrefab;
                 info.owner = base.gameObject;
                 info.position = base.GetAimRay().origin;
                 info.crit = base.RollCrit();
