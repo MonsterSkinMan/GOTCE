@@ -29,22 +29,6 @@ namespace GOTCE.Based
             BanditAlts();
             CaptainAlts();
             EngineerAlts();
-
-            // for whatever reason this is being set to 1 and causing mando to fire one shot and then reload the pistols, setting to 0 fixes this
-            On.RoR2.CharacterBody.Start += (orig, self) =>
-            {
-                orig(self);
-                foreach (GenericSkill genericSkill in self.gameObject.GetComponents<GenericSkill>())
-                {
-                    if (self.gameObject.name == "CommandoBody(Clone)" && genericSkill.skillDef)
-                    {
-                        if (genericSkill.skillName == "FirePistol")
-                        {
-                            genericSkill.skillDef.stockToConsume = 0;
-                        }
-                    }
-                }
-            };
         }
 
         private static void CommandoAlts()
@@ -307,13 +291,13 @@ namespace GOTCE.Based
                 bool hasUtilityAlt = false;
                 bool hasSpecialAlt = false;
                 bool exists = self.skillLocator && self.skillLocator.secondary && self.skillLocator.primary && self.skillLocator.utility && self.skillLocator.special;
-                if (NetworkServer.active && exists)
+                if (self.isAuthority && exists)
                 {
                     hasSecondaryAlt = self.skillLocator.secondary.skillNameToken == Skills.Pearl.Instance.SkillDef.skillNameToken || self.skillLocator.secondary.skillNameToken == Skills.PearlTeleport.Instance.SkillDef.skillNameToken;
                     hasSpecialAlt = self.skillLocator.special.skillNameToken == Skills.Drain.Instance.SkillDef.skillNameToken;
                 }
                 orig(self);
-                if (NetworkServer.active && exists)
+                if (self.isAuthority && exists)
                 {
                     if (hasSecondaryAlt)
                     {
@@ -335,13 +319,13 @@ namespace GOTCE.Based
                 bool hasPrimaryAlt = false;
                 bool hasUtilityAlt = false;
                 bool hasSpecialAlt = false;
-                if (NetworkServer.active)
+                if (self.isAuthority)
                 {
                     hasSecondaryAlt = self.skillLocator.secondary.skillNameToken == Skills.PearlUpgrade.Instance.SkillDef.skillNameToken;
                     hasSpecialAlt = self.skillLocator.special.skillNameToken == Skills.DrainUpgrade.Instance.SkillDef.skillNameToken;
                 }
                 orig(self);
-                if (NetworkServer.active)
+                if (self.isAuthority)
                 {
                     if (hasSecondaryAlt)
                     {
@@ -517,7 +501,7 @@ namespace GOTCE.Based
 
             On.EntityStates.VoidSurvivor.Weapon.FireCorruptHandBeam.FixedUpdate += (orig, self) =>
             {
-                if (NetworkServer.active && self.characterBody.inventory.GetItemCount(def) > 0)
+                if (self.isAuthority && self.characterBody.inventory.GetItemCount(def) > 0)
                 {
                     // self.characterBody.AddTimedBuff(Buffs.ViendNoArmor.instance.BuffDef, 1.5f);
                     self.characterBody.baseArmor -= 3f * Time.fixedDeltaTime;
@@ -529,7 +513,7 @@ namespace GOTCE.Based
             // reworked corruption mechanics
             On.RoR2.VoidSurvivorController.FixedUpdate += (orig, self) =>
             {
-                if (NetworkServer.active && self.characterBody && self.characterBody.inventory && self.characterBody.inventory.GetItemCount(def) > 0 && self.bodyHealthComponent)
+                if (self.characterBody.hasAuthority && self.characterBody && self.characterBody.inventory && self.characterBody.inventory.GetItemCount(def) > 0 && self.bodyHealthComponent)
                 {
                     self.corruptionForFullHeal = 0;
                     self.maxCorruption = 100f/* + ((10f * (self.characterBody.level - 1)))*/;
@@ -592,7 +576,7 @@ namespace GOTCE.Based
         {
             if (self.characterBody && self.characterBody.inventory && self.characterBody.inventory.GetItemCount(Items.NoTier.ViendAltPassive.Instance.ItemDef) > 0)
             {
-                return 10f;
+                return 1f;
             }
             else
             {

@@ -217,7 +217,8 @@ namespace GOTCE
                 {
                     item.Init(Config);
                 }
-            }
+            } 
+
             [SystemInitializer(dependencies: typeof(ItemCatalog))] // wait until after the catalog initializes to add interactables
             void the()
             {
@@ -242,13 +243,13 @@ namespace GOTCE
             }
 
             //this section automatically scans the project for all stages
-            var StageTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(StageBase)));
+            /* var StageTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(StageBase)));
 
             foreach (var stageType in StageTypes)
             {
                 StageBase stage = (StageBase)System.Activator.CreateInstance(stageType);
                 stage.Create(Config);
-            }
+            } */
 
             //this section automatically scans the project for all elite equipment
             var EliteEquipmentTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EliteEquipmentBase)));
@@ -318,7 +319,7 @@ namespace GOTCE
                 SurvivorBase survivor = (SurvivorBase)System.Activator.CreateInstance(survivorType);
                 // Debug.Log(item.ConfigName);
                 survivor.Create();
-            }
+            } 
 
             var buffTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(BuffBase)));
 

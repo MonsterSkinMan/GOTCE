@@ -11,6 +11,9 @@ namespace GOTCE.Enemies.Changes
             GameObject gupBodyPrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/GupBody");
             DeathRewards deathRewards = gupBodyPrefab.GetComponent<DeathRewards>();
             ExplicitPickupDropTable dt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();
+            if (!NeverEndingAgony.Instance?.itemDef) {
+                return;
+            }
             dt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]
             {
                 new ExplicitPickupDropTable.PickupDefEntry {pickupDef = NeverEndingAgony.Instance.ItemDef, pickupWeight = 1f},
@@ -23,6 +26,9 @@ namespace GOTCE.Enemies.Changes
             GameObject jellyfishBodyPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Jellyfish/JellyfishBody.prefab").WaitForCompletion();
             DeathRewards jdeathRewards = jellyfishBodyPrefab.GetComponent<DeathRewards>();
             ExplicitPickupDropTable jdt = ScriptableObject.CreateInstance<ExplicitPickupDropTable>();
+            if (!ViscousBlast.Instance?.itemDef) {
+                return;
+            }
             jdt.pickupEntries = new ExplicitPickupDropTable.PickupDefEntry[]
             {
                 new ExplicitPickupDropTable.PickupDefEntry {pickupDef = ViscousBlast.Instance.ItemDef, pickupWeight = 1f},
