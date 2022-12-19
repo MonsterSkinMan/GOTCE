@@ -53,8 +53,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Railgunner
                 info.damageTypeOverride = DamageType.Generic;
                 info.speedOverride = 250f;
 
-                float spreadRangeY = 360 * fovScale;
-                float spreadRangeX = 360 * fovScale;
+                float spreadRangeY = 200 * fovScale;
+                float spreadRangeX = 200 * fovScale;
 
                 info.rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(base.GetAimRay().direction, spreadRangeY, -spreadRangeY, spreadRangeX, -spreadRangeX));
 

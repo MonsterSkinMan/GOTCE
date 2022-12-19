@@ -6,6 +6,7 @@ using Unity;
 using System;
 using RoR2.Projectile;
 using R2API;
+using UnityEngine.Networking;
 
 namespace GOTCE.EntityStatesCustom.AltSkills.Rex
 {
