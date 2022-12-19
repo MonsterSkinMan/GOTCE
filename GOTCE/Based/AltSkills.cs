@@ -11,13 +11,16 @@ using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Mono.Cecil;
 using EntityStates;
-
+using RoR2.Projectile;
+using GOTCE.EntityStatesCustom.AltSkills.Huntress;
 // using Mono.Reflection;
 
 namespace GOTCE.Based
 {
     public class AltSkills
     {
+        public static GameObject huntressSawPrefab;
+        public static GameObject railgunnerDumbPrefab;
         public static void AddAlts()
         {
             // PassiveReplacement.RunHooks();
@@ -29,6 +32,40 @@ namespace GOTCE.Based
             BanditAlts();
             CaptainAlts();
             EngineerAlts();
+
+            CreateProjectiles();
+        }
+
+        private static void CreateProjectiles() {
+            // huntress saw
+            GameObject prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Saw/Sawmerang.prefab").WaitForCompletion().InstantiateClone("huntresssaw");
+            GameObject prefabGhost = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Saw/SawmerangGhost.prefab").WaitForCompletion().InstantiateClone("huntresssawghost");
+
+            prefab.AddComponent<ProjectileStickOnImpact>();
+            prefab.AddComponent<ProjectileTargetComponent>();
+            ProjectileSphereTargetFinder finder = prefab.AddComponent<ProjectileSphereTargetFinder>();
+            finder.onlySearchIfNoTarget = true;
+            finder.targetSearchInterval = 0.1f;
+            finder.lookRange = 9f;
+            ProjectileDotZone zone = prefab.GetComponent<ProjectileDotZone>();
+            zone.damageCoefficient = 0.6f;
+            zone.resetFrequency = 1f;
+            GameObject.Destroy(prefab.GetComponent<BoomerangProjectile>());
+            prefab.AddComponent<SawBehavior>();
+            prefab.AddComponent<ProjectileSimple>();
+            ProjectileSimple simple = prefab.GetComponent<ProjectileSimple>();
+            simple.desiredForwardSpeed = 70f;
+            prefab.transform.localScale = new(5f, 5f, 5f);
+            prefabGhost.transform.localScale = new(5f, 5f, 5f);
+            prefab.GetComponent<ProjectileController>().ghostPrefab = prefabGhost;
+
+            huntressSawPrefab = prefab;
+
+            prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Railgunner/RailgunnerPistolProjectile.prefab").WaitForCompletion().InstantiateClone("dumbrounds");
+            GameObject.DestroyImmediate(prefab.GetComponent<ProjectileSteerTowardTarget>());
+            GameObject.DestroyImmediate(prefab.GetComponent<ProjectileTargetComponent>());
+
+            railgunnerDumbPrefab = prefab;
         }
 
         private static void CommandoAlts()

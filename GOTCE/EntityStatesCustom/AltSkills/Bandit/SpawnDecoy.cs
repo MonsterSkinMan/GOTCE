@@ -3,6 +3,7 @@ using EntityStates;
 using System;
 using RoR2.Projectile;
 using Unity;
+using R2API.Networking.Interfaces;
 using UnityEngine;
 
 namespace GOTCE.EntityStatesCustom.AltSkills.Bandit
@@ -18,21 +19,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Bandit
             PlayAnimation("Gesture, Additive", "ThrowSmokebomb", "ThrowSmokebomb.playbackRate", duration);
             if (base.isAuthority)
             {
-                try
-                {
-                    MasterSummon masterSummon2 = new()
-                    {
-                        position = base.characterBody.corePosition,
-                        ignoreTeamMemberLimit = true,
-                        masterPrefab = Enemies.Standard.ExplodingDecoy.Instance.prefabMaster,
-                        summonerBodyObject = base.characterBody.gameObject,
-                        rotation = Quaternion.LookRotation(base.characterBody.transform.forward)
-                    };
-                    masterSummon2.Perform();
-                }
-                catch
-                {
-                }
+                new DecoySync(base.gameObject).Send(R2API.Networking.NetworkDestination.Server);
             }
         }
 

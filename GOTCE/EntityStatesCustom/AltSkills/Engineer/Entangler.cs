@@ -3,6 +3,7 @@ using EntityStates;
 using Unity;
 using UnityEngine;
 using RoR2.CharacterAI;
+using R2API.Networking.Interfaces;
 
 namespace GOTCE.EntityStatesCustom.AltSkills.Engineer
 {
@@ -18,27 +19,18 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Engineer
             CharacterMaster owner = base.characterBody.master;
             minions = CharacterMaster.readOnlyInstancesList.Where(x => x.minionOwnership && x.minionOwnership.ownerMaster == owner && x.GetBody() && (x.GetBody().bodyFlags.HasFlag(CharacterBody.BodyFlags.Mechanical)));
 
-            if (!gameObject.GetComponent<EntanglerControllerLeader>())
-            {
-                gameObject.AddComponent<EntanglerControllerLeader>();
-            }
-
-            EntanglerControllerLeader leader = gameObject.GetComponent<EntanglerControllerLeader>();
-            leader.isControlling = true;
-
             foreach (CharacterMaster minion in minions)
             {
                 if (minion.GetBody() && base.isAuthority)
                 {
-                    minion.GetBody().AddBuff(Buffs.ValveBalance.instance.BuffDef);
                     if (!minion.GetComponent<EntanglerController>())
                     {
-                        EntanglerController controller = minion.gameObject.AddComponent<EntanglerController>();
-                        controller.leaderController = leader;
+                        new EntanglerSync(gameObject, minion.gameObject).Send(R2API.Networking.NetworkDestination.Server);
                     }
                 }
             }
-            characterBody.AddBuff(Buffs.ValveBalance.instance.BuffDef);
+
+            new EntanglerControlSync(gameObject, true).Send(R2API.Networking.NetworkDestination.Server);
         }
 
         public override void FixedUpdate()
@@ -53,21 +45,8 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Engineer
         public override void OnExit()
         {
             base.OnExit();
-
-            gameObject.GetComponent<EntanglerControllerLeader>().isControlling = false;
-
-            if (base.isAuthority)
-            {
-                foreach (CharacterMaster minion in minions)
-                {
-                    if (minion.GetBody())
-                    {
-                        minion.GetBody().RemoveBuff(Buffs.ValveBalance.instance.BuffDef);
-                        minion.GetBody().AddTimedBuff(Buffs.ValveBalance.instance.BuffDef, 2f);
-                    }
-                }
-                characterBody.RemoveBuff(Buffs.ValveBalance.instance.BuffDef);
-            }
+            CharacterMaster owner = base.characterBody.master;
+            new EntanglerControlSync(gameObject, false).Send(R2API.Networking.NetworkDestination.Server);
         }
 
         public override InterruptPriority GetMinimumInterruptPriority()

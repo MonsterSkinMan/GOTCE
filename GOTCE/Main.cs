@@ -6,6 +6,7 @@ using GOTCE.Enemies.Changes;
 using GOTCE.Equipment;
 using GOTCE.Equipment.EliteEquipment;
 using GOTCE.Items;
+using GOTCE.Misc;
 using Mono.Cecil;
 using MonoMod.Cil;
 using GOTCE.Tiers;
@@ -98,6 +99,10 @@ namespace GOTCE
             {
                 UICompat.AddBetterUICompat();
             }
+
+            HooksAttributeLogic.Scan();
+
+            HooksAttributeLogic.CallAttributeMethods(RunAfter.Start);
 
             /* On.RoR2.UI.MainMenu.BaseMainMenuScreen.Awake += (orig, self) => {
                 orig(self);
@@ -219,6 +224,8 @@ namespace GOTCE
                 }
             } 
 
+            HooksAttributeLogic.CallAttributeMethods(RunAfter.Items);
+
             [SystemInitializer(dependencies: typeof(ItemCatalog))] // wait until after the catalog initializes to add interactables
             void the()
             {
@@ -274,6 +281,8 @@ namespace GOTCE
                 skill.Create();
             }
 
+            HooksAttributeLogic.CallAttributeMethods(RunAfter.Skills);
+
             Itsgup.OhTheMisery();
             // LivingSuppressiveFire.Create();
             // IonSurger.Create(); // ION SURGER IS BROKEN
@@ -291,6 +300,8 @@ namespace GOTCE
                 Woolie.Initialize();
                 WarCrimes.Hooks();
                 AOEffect.Hooks();
+
+                HooksAttributeLogic.CallAttributeMethods(RunAfter.Misc);
             }
 
             var enemyTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EnemyBase)));
@@ -302,6 +313,8 @@ namespace GOTCE
                 // Debug.Log(item.ConfigName);
                 enemy.Create();
             }
+
+            HooksAttributeLogic.CallAttributeMethods(RunAfter.Enemies);
 
             // achievements
             var Achievements = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(AchievementBase)));
