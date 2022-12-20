@@ -73,14 +73,16 @@ namespace GOTCE.Components
         private Transform muzzleL;
         private Transform muzzleR;
         private CharacterMaster master;
+        private GameObject laserPrefab1;
+        private GameObject laserPrefab2;
 
         private void Start()
         {
             inputBank = leaderBody.inputBank;
-            GameObject prefab = GameObject.Instantiate(EntityStates.GolemMonster.ChargeLaser.laserPrefab, gameObject.transform.position, gameObject.transform.rotation);
-            GameObject prefab2 = GameObject.Instantiate(EntityStates.GolemMonster.ChargeLaser.laserPrefab, gameObject.transform.position, gameObject.transform.rotation);
-            renderer = prefab.GetComponent<LineRenderer>();
-            renderer2 = prefab2.GetComponent<LineRenderer>();
+            laserPrefab1 = GameObject.Instantiate(EntityStates.GolemMonster.ChargeLaser.laserPrefab, gameObject.transform.position, gameObject.transform.rotation);
+            laserPrefab2 = GameObject.Instantiate(EntityStates.GolemMonster.ChargeLaser.laserPrefab, gameObject.transform.position, gameObject.transform.rotation);
+            renderer = laserPrefab1.GetComponent<LineRenderer>();
+            renderer2 = laserPrefab2.GetComponent<LineRenderer>();
             renderer.startWidth = 0.1f;
             renderer.endWidth = 0.1f;
             renderer.enabled = false;
@@ -232,6 +234,8 @@ namespace GOTCE.Components
 
             R2API.Networking.NetworkingAPI.RegisterMessageType<EntanglerSync>();
             R2API.Networking.NetworkingAPI.RegisterMessageType<EntanglerControlSync>();
+
+            ContentAddition.AddEntityState<EntityStatesCustom.AltSkills.Engineer.Entangler>(out bool _);
         }
     }
 

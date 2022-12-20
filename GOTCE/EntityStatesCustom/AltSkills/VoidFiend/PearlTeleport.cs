@@ -17,7 +17,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
             base.OnEnter();
             ViendPearlManager manager = characterBody.gameObject.GetComponent<ViendPearlManager>();
             AkSoundEngine.PostEvent(4021527550, base.gameObject); // Play_voidman_m2_shoot_fullCharge
-            if (manager && NetworkServer.active)
+            if (manager)
             {
                 manager.Swap();
             }

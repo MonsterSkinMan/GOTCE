@@ -14,6 +14,9 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Bandit {
         [RunMethod(RunAfter.Start)]
         public static void RegisterNetworkMessages() {
             NetworkingAPI.RegisterMessageType<DecoySync>();
+            ContentAddition.AddEntityState<SpawnDecoy>(out bool _);
+            ContentAddition.AddEntityState<Decoy.DecoyDeath>(out bool _);
+            ContentAddition.AddEntityState<Decoy.DecoyTimer>(out bool _);
         }
     }
 

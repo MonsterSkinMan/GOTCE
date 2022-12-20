@@ -21,6 +21,7 @@ namespace GOTCE.Based
     {
         public static GameObject huntressSawPrefab;
         public static GameObject railgunnerDumbPrefab;
+        public static GameObject suppressiveNaderPrefab;
         public static void AddAlts()
         {
             // PassiveReplacement.RunHooks();
@@ -60,12 +61,23 @@ namespace GOTCE.Based
             prefab.GetComponent<ProjectileController>().ghostPrefab = prefabGhost;
 
             huntressSawPrefab = prefab;
+            ContentAddition.AddProjectile(huntressSawPrefab);
 
             prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Railgunner/RailgunnerPistolProjectile.prefab").WaitForCompletion().InstantiateClone("dumbrounds");
             GameObject.DestroyImmediate(prefab.GetComponent<ProjectileSteerTowardTarget>());
             GameObject.DestroyImmediate(prefab.GetComponent<ProjectileTargetComponent>());
 
             railgunnerDumbPrefab = prefab;
+            ContentAddition.AddProjectile(railgunnerDumbPrefab);
+
+            prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Commando/CommandoGrenadeProjectile.prefab").WaitForCompletion().InstantiateClone("nader");
+            ProjectileImpactExplosion impact = prefab.AddComponent<ProjectileImpactExplosion>();
+            impact.destroyOnEnemy = true;
+            impact.destroyOnWorld = true;
+            impact.explosionEffect = LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/OmniEffect/OmniExplosionVFXQuick");
+
+            suppressiveNaderPrefab = prefab;
+            ContentAddition.AddProjectile(prefab);
         }
 
         private static void CommandoAlts()
