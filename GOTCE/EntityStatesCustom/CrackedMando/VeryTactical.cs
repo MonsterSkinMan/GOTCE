@@ -27,11 +27,12 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             PlayAnimation("FullBody, Override", "Slide", "Slide.playbackRate", duration);
             //Debug.Log("starting flight");
             isFlying = true;
-            RecalculateStatsAPI.GetStatCoefficients += recalc;
             CriticalTypes.OnSprintCrit?.Invoke(gameObject, new(base.characterBody));
             base.characterBody.RecalculateStats();
 
             AkSoundEngine.PostEvent(4030773325, base.gameObject); // Play_commando_shift
+
+            base.characterBody.AddTimedBuffAuthority(Buffs.TacticalSpeed.instance.BuffDef.buffIndex, 5f);
         }
 
         public override void OnExit()
@@ -42,7 +43,6 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             isFlying = false;
             base.characterBody.RecalculateStats();
             //Debug.Log("stopping flight");
-            RecalculateStatsAPI.GetStatCoefficients -= recalc;
         }
 
         public override void FixedUpdate()
@@ -62,12 +62,6 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
         public override InterruptPriority GetMinimumInterruptPriority()
         {
             return InterruptPriority.PrioritySkill;
-        }
-
-        private void recalc(CharacterBody cb, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (NetworkServer.active && isFlying && cb == base.characterBody) {
-                args.moveSpeedMultAdd += 3f;
-            }
         }
     }
 }

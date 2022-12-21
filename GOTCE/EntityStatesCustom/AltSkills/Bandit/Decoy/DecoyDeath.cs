@@ -8,7 +8,7 @@ using UnityEngine;
 namespace GOTCE.EntityStatesCustom.AltSkills.Bandit.Decoy
 {
     public class DecoyDeath : GenericCharacterDeath
-    {
+    {   
         public override void OnEnter()
         {
             if (NetworkServer.active)
@@ -45,15 +45,15 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Bandit.Decoy
                             blast.Fire();
                         }
                     }
+                }
+            }
 
-                    if (base.modelLocator)
-                    {
-                        if (base.modelLocator.modelBaseTransform)
-                        {
-                            GameObject.Destroy(base.modelLocator.modelTransform.gameObject);
-                            GameObject.Destroy(base.modelLocator.modelBaseTransform.gameObject);
-                        }
-                    }
+            if (base.modelLocator)
+            {
+                if (base.modelLocator.modelBaseTransform)
+                {
+                    base.modelLocator.modelTransform.gameObject.SetActive(false);
+                    base.modelLocator.modelBaseTransform.gameObject.SetActive(false);
                 }
             }
         }

@@ -77,9 +77,6 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
         private void FireBullet()
         {
             Ray aimRay = GetAimRay();
-            GameObject prefab = R2API.PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>("RoR2/Junk/Commando/CommandoStickyGrenadeProjectile.prefab").WaitForCompletion(), "nader");
-            prefab.AddComponent<R2API.DamageAPI.ModdedDamageTypeHolderComponent>();
-            prefab.GetComponent<R2API.DamageAPI.ModdedDamageTypeHolderComponent>().Add(DamageTypes.NaderEffect);
 
             // string muzzleName = "MuzzleRight";
             // Ray aimRay = GetAim();
@@ -88,7 +85,7 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
                 FireProjectileInfo info = new()
                 {
                     damage = base.damageStat *= 7f,
-                    projectilePrefab = prefab,
+                    projectilePrefab = Based.AltSkills.suppressiveNaderPrefab,
                     crit = Util.CheckRoll(base.critStat, base.characterBody.master),
                     damageColorIndex = DamageColorIndex.WeakPoint,
                     position = GetModelChildLocator().FindChild("Mouth").position,

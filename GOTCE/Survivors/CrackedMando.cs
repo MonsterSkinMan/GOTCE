@@ -8,6 +8,7 @@ using EntityStates;
 using GOTCE.Skills;
 using RoR2.ExpansionManagement;
 using GOTCE.Achievements.CrackedCommando;
+using GOTCE.EntityStatesCustom;
 
 namespace GOTCE.Survivors
 {
@@ -54,7 +55,11 @@ namespace GOTCE.Survivors
             GameObject umbra = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Commando/CommandoMonsterMaster.prefab").WaitForCompletion().InstantiateClone("CrackmandoMonsterMaster");
             umbra.GetComponent<CharacterMaster>().bodyPrefab = prefab;
             ContentAddition.AddMaster(umbra);
-
+            ContentAddition.AddEntityState<EntityStatesCustom.CrackedMando.DoubleDoubleTap>(out bool _);
+            ContentAddition.AddEntityState<EntityStatesCustom.CrackedMando.SuppressiveBarrage>(out bool _);
+            ContentAddition.AddEntityState<EntityStatesCustom.CrackedMando.PhaseRounder>(out bool _);
+            ContentAddition.AddEntityState<EntityStatesCustom.CrackedMando.VeryTactical>(out bool _);
+            ContentAddition.AddEntityState<EntityStatesCustom.CrackedMando.SuppressiveNader>(out bool _);
         }
 
         public override void PostCreation()

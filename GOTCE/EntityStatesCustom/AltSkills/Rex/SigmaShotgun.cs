@@ -43,7 +43,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Rex
                     ProjectileManager.instance.FireProjectile(info);
                 }
             }
-            if (NetworkServer.active && base.healthComponent && 0.05f >= Mathf.Epsilon)
+            if (base.isAuthority && base.healthComponent && 0.05f >= Mathf.Epsilon)
             {
                 DamageInfo selfdamage = new()
                 {

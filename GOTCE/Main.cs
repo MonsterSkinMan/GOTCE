@@ -20,6 +20,7 @@ using R2API.Utils;
 using System.Text.RegularExpressions;
 using RoR2;
 using System.Runtime.CompilerServices;
+using EntityStates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,6 +100,22 @@ namespace GOTCE
             {
                 UICompat.AddBetterUICompat();
             }
+
+            /*IL.RoR2.RoR2Application.InitializeGameRoutine += (il) => {
+                ILCursor c = new ILCursor(il);
+                bool found = c.TryGotoNext(MoveType.After,
+                    x => x.MatchBrtrue(out _),
+                    x => x.MatchCallOrCallvirt<Application>(nameof(Application.Quit))
+                );
+
+                if (found) {
+                    c.Index--;
+                    c.Remove();
+                }
+                else {
+                    ModLogger.LogError("IL hook failed");
+                }
+            };*/
 
             HooksAttributeLogic.Scan();
 
@@ -350,7 +367,7 @@ namespace GOTCE
             );
 
             //CreateExpansion();
-            // On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
+            On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
             // local multiplayer hook
             // run modded ror2 twice, create a multiplayer lobby in one, then do connect localhost:7777 in the other instance
         }

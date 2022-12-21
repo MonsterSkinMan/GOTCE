@@ -7,6 +7,7 @@ global using System;
 global using GOTCE.Components;
 global using GOTCE.Mechanics;
 global using GOTCE.Utils;
+global using R2API;
 
 // global using directives go here
 // this exists because forgetting to import addressables and networking is annoying

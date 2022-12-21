@@ -29,7 +29,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
                 con.AddCorruption(Time.fixedDeltaTime * 25);
                 gained += Time.fixedDeltaTime * 25;
                 AkSoundEngine.PostEvent(3778899369, gameObject);
-                base.characterBody.AddTimedBuff(RoR2Content.Buffs.LunarSecondaryRoot, 0.2f, 1);
+                base.characterBody.AddTimedBuffAuthority(RoR2Content.Buffs.LunarSecondaryRoot.buffIndex, 0.2f);
             }
         }
 
