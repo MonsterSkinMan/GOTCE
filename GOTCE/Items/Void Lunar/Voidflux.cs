@@ -19,7 +19,7 @@ namespace GOTCE.Items.VoidLunar
 
         public override string ItemPickupDesc => "Randomize stats, team and skills periodically. <style=cIsVoid>Corrupts all Pauldrons.</style>";
 
-        public override string ItemFullDescription => "Every <style=cIsUtility>10</style> <style=cStack>(-25% per stack)</style> seconds, randomize stats, team and skills. <style=cIsVoid>Corrupts all Pauldrons.</style>";
+        public override string ItemFullDescription => "Every <style=cIsUtility>10</style> <style=cStack>(-25% per stack)</style> seconds, randomize stats, team and skills. <style=cIsVoid>Corrupts all Lunar Pauldrons.</style>";
 
         public override string ItemLore => "";
 
@@ -60,8 +60,7 @@ namespace GOTCE.Items.VoidLunar
                     Items.Lunar.DarkFluxPauldron.Instance.ItemDef,
                     Items.Lunar.WindFluxPauldron.Instance.ItemDef,
                     DLC1Content.Items.HalfAttackSpeedHalfCooldowns,
-                    DLC1Content.Items.HalfSpeedDoubleHealth,
-                    RoR2Content.Items.WarCryOnMultiKill
+                    DLC1Content.Items.HalfSpeedDoubleHealth
                 });
                 orig();
             };

@@ -44,7 +44,24 @@ namespace GOTCE.Items.Red
         {
             On.RoR2.Inventory.GiveItem_ItemIndex_int += Increase;
             On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
-            RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+            On.RoR2.CharacterBody.FixedUpdate += NRE;
+        }
+
+        private void NRE(On.RoR2.CharacterBody.orig_FixedUpdate orig, CharacterBody self)
+        {
+            orig(self);
+            if (self && self.inventory)
+            {
+                var stack = self.inventory.GetItemCount(Instance.ItemDef);
+                if (stack > 0)
+                {
+                    for (int i = 0; i < stack * 10; i++)
+                    {
+                        var nre = self.GetComponent<MetaData>();
+                        nre.content = "Your greed shall cost you.";
+                    }
+                }
+            }
         }
 
         private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
@@ -60,22 +77,6 @@ namespace GOTCE.Items.Red
                 }
             }
             orig(self, itemIndex, count);
-        }
-
-        private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
-        {
-            if (sender && sender.inventory)
-            {
-                var stack = sender.inventory.GetItemCount(Instance.ItemDef);
-                if (stack > 0)
-                {
-                    for (int i = 0; i < stack * 10; i++)
-                    {
-                        var nre = sender.GetComponent<MetaData>();
-                        nre.content = "&";
-                    }
-                }
-            }
         }
 
         public void Increase(On.RoR2.Inventory.orig_GiveItem_ItemIndex_int orig, Inventory self, ItemIndex index, int count)
