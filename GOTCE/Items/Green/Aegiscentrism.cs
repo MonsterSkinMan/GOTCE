@@ -19,7 +19,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemFullDescription => "Every <style=cIsUtility>second</style>, gain up to <style=cIsHealing>6</style> <style=cStack>(+2 per stack)</style> orbiting Aegises that each give you <style=cIsHealing>5% barrier</style> after <style=cIsUtility>10</style> seconds. Every <style=cIsUtility>60</style> seconds, a random item is <style=cIsUtility>converted</style> into this item.";
 
-        public override string ItemLore => "i love aegis";
+        public override string ItemLore => "I love Aegis so much.\nIt truly is my favorite item in the game Risk of Rain 2.\nI love getting it, AEGIS, every time I open a legendary chest and I\nLOVE,\nLOVE...\nLOVE!!!\nHow much barrier it provides!!!";
 
         public override ItemTier Tier => ItemTier.Tier2;
 

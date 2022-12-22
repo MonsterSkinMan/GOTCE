@@ -17,7 +17,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "Gain";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Gain";
 
         public override ItemTier Tier => ItemTier.Tier1;
 
