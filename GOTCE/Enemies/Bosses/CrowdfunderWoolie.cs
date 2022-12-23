@@ -12,7 +12,7 @@ namespace GOTCE.Enemies.Bosses
     {
         public override string PathToClone => "Assets/Prefabs/Enemies/Woolie/Woolie.prefab";
         public override bool local => true;
-        public override string CloneName => "CrowdfunderWoolie";
+        public override string CloneName => "Crowdfunder Woolie";
         public override string PathToCloneMaster => "RoR2/Base/ClayBruiser/ClayBruiserMaster.prefab";
         public CharacterBody body;
         public CharacterMaster master;

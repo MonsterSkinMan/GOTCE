@@ -328,7 +328,9 @@ namespace GOTCE
                 Debug.Log("Woolie");
                 EnemyBase enemy = (EnemyBase)System.Activator.CreateInstance(enemyType);
                 // Debug.Log(item.ConfigName);
-                enemy.Create();
+                if (ValidateEnemy(enemy)) {
+                    enemy.Create();
+                }
             }
 
             HooksAttributeLogic.CallAttributeMethods(RunAfter.Enemies);
@@ -396,9 +398,12 @@ namespace GOTCE
         /// <param name="itemList">The list you would like to add this to if it passes the config check.</param>
         public bool ValidateItem(ItemBase item, List<ItemBase> itemList, bool faulty = false)
         {
+            if (item.Tier == ItemTier.NoTier) {
+                return true;
+            }
             if (faulty)
             {
-                var enabled = Config.Bind<bool>("Item: " + item.ConfigName, "Enable Item?", true, "Should this item appear in runs? Disable other stage transition crit items when disabling this item.").Value;
+                var enabled = Config.Bind<bool>("Item: " + item.ConfigName, "Enable Item?", true, "Should this item appear in runs?").Value;
             }
             else
             {
@@ -415,6 +420,19 @@ namespace GOTCE
             }
             return enabled;
         }
+
+        /// <summary>
+        /// A helper to easily set up and initialize an enemy from your enemy classes if the user has it enabled in their configuration files.
+        /// </summary>
+        /// <param name="enemy">A new instance of an EnemyBase class."</param>
+        public bool ValidateEnemy(EnemyBase enemy) {
+            if (enemy.CloneName == "Explosive Decoy") {
+                return true;
+            }
+            bool enabled = Config.Bind<bool>("Enemy: " + enemy.CloneName, "Enable Enemy?", true, "Should this enemy appear in runs?").Value;
+            return enabled;
+        }
+        
 
         /// <summary>
         /// A helper to easily set up and initialize an equipment from your equipment classes if the user has it enabled in their configuration files.

@@ -113,7 +113,7 @@ namespace GOTCE.Based
             skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
             {
                 skillDef = Skills.SigmaShotgun.Instance.SkillDef,
-                unlockableName = "",
+                unlockableDef = Achievements.REX.AutomatonUnlock.Instance.enabled ? Achievements.REX.AutomatonUnlock.Instance.def : null,
                 viewableNode = new ViewablesCatalog.Node(Skills.SigmaShotgun.Instance.SkillDef.skillNameToken, false, null)
             };
 
@@ -298,7 +298,7 @@ namespace GOTCE.Based
             skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
             {
                 skillDef = Skills.Drain.Instance.SkillDef,
-                unlockableName = "",
+                unlockableDef = Achievements.VoidFiend.InsurrectionUnlock.Instance.GetUnlockableDef(),
                 viewableNode = new ViewablesCatalog.Node(Skills.Drain.Instance.SkillDef.skillNameToken, false, null)
             };
 

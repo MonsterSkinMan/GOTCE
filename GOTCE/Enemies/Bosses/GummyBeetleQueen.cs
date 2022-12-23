@@ -7,7 +7,7 @@ namespace GOTCE.Enemies.Bosses
     public class GummyBeetleQueen : EnemyBase<GummyBeetleQueen>
     {
         public override string PathToClone => "RoR2/Base/Beetle/BeetleQueen2Body.prefab"; // is literally just a beetle queen with the gummy item cry about it
-        public override string CloneName => "GummyBeetleQueen";
+        public override string CloneName => "Gummy Beetle Queen";
         public override string PathToCloneMaster => "RoR2/Base/Beetle/BeetleQueenMaster.prefab";
         public CharacterBody body;
         public CharacterMaster master;

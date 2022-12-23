@@ -10,7 +10,7 @@ namespace GOTCE.Enemies.Minibosses
 {
     public class CrackedPest : EnemyBase<CrackedPest>
     {
-        public override string CloneName => "CrackedPest";
+        public override string CloneName => "Cracked Pest";
         public override string PathToClone => "RoR2/DLC1/FlyingVermin/FlyingVerminBody.prefab";
         public override string PathToCloneMaster => "RoR2/DLC1/FlyingVermin/FlyingVerminMaster.prefab";
         public CharacterBody body;

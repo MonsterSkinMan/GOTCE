@@ -104,7 +104,7 @@ namespace GOTCE.Components
         private void UpdateChances(CharacterBody cbody, RecalculateStatsAPI.StatHookEventArgs args)
         {
             // critical chances
-            if (cbody && cbody.inventory && cbody.masterObject.GetComponent<GOTCE_StatsComponent>() && cbody.master == master)
+            if (cbody && cbody.master == master && cbody.inventory && cbody.masterObject.GetComponent<GOTCE_StatsComponent>())
             {
                 inventory = cbody.inventory;
                 body = cbody;
@@ -136,15 +136,10 @@ namespace GOTCE.Components
 
             // grandfather clock stage crit stuff
 
-            if (clockDeathCount > 0)
+            if (clockDeathCount > 0 && master.GetBody() && master.GetBody().healthComponent && master.GetBody().healthComponent.health > 0)
             {
                 clockDeathCount--;
                 Invoke(nameof(Die), 3f);
-                EffectManager.SpawnEffect(voidVFX, new EffectData
-                {
-                    origin = body.transform.position,
-                    scale = 1f
-                }, true);
             }
         }
 
@@ -170,7 +165,15 @@ namespace GOTCE.Components
         // this function exists solely so suicide can be used as a courotine
         public void Die()
         {
+            if (!body || !body.healthComponent) {
+                return;
+            }
             body.healthComponent.Suicide();
+            EffectManager.SpawnEffect(voidVFX, new EffectData
+            {
+                origin = body.transform.position,
+                scale = 1f
+            }, true);
         }
 
         // returns the player's stage crit value after taking all items into consideration, should be used before attempting a stage crit

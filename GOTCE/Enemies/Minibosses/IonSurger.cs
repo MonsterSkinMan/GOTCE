@@ -9,7 +9,7 @@ namespace GOTCE.Enemies.Minibosses
 {
     public class IonSurger : EnemyBase<IonSurger>
     {
-        public override string CloneName => "IonSurger";
+        public override string CloneName => "Ion Surger";
         public override string PathToClone => "RoR2/Base/Mage/MageBody.prefab";
         public override string PathToCloneMaster => "RoR2/Base/Brother/BrotherMaster.prefab";
         public CharacterBody body;

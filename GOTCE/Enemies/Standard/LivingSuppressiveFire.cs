@@ -9,7 +9,7 @@ namespace GOTCE.Enemies.Standard
     public class LivingSuppressiveFire : EnemyBase<LivingSuppressiveFire>
     {
         public override string PathToClone => "RoR2/Base/Wisp/WispBody.prefab";
-        public override string CloneName => "LivingSuppressiveFire";
+        public override string CloneName => "Living Suppressive Fire";
         public override string PathToCloneMaster => "RoR2/Base/Wisp/WispMaster.prefab";
         public CharacterBody body;
         public CharacterMaster master;

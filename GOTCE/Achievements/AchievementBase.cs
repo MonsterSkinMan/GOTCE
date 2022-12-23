@@ -56,5 +56,14 @@ namespace GOTCE.Achievements
         public virtual void PostCreation()
         {
         }
+        /// <summary>Returns the UnlockableDef if the achievement is enabled, or returns null if it isn't enabled</summary>
+        public UnlockableDef GetUnlockableDef() {
+            if (enabled) {
+                return def;
+            }
+            else {
+                return null;
+            }
+        }
     }
 }

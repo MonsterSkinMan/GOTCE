@@ -12,7 +12,7 @@ namespace GOTCE.Enemies.Bosses
     {
         public override string PathToClone => "Assets/Prefabs/Enemies/Provi/ProviBody.prefab";
         public override bool local => true;
-        public override string CloneName => "Provi";
+        public override string CloneName => "Providence";
         public override string PathToCloneMaster => "RoR2/Base/Merc/MercMonsterMaster.prefab";
         public CharacterBody body;
         public CharacterMaster master;
