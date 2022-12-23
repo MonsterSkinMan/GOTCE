@@ -25,7 +25,7 @@ namespace GOTCE.Items.Red
 
         public override ItemTier Tier => ItemTier.Tier3;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.AIBlacklist, GOTCETags.Crit, GOTCETags.Masochist };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.AIBlacklist, ItemTag.Utility, GOTCETags.Crit, GOTCETags.Masochist };
 
         public override GameObject ItemModel => null;
 

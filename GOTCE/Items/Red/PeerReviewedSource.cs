@@ -22,7 +22,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemFullDescription => "Identify <style=cIsUtility>1</style> <style=cStack>(+1 per stack)</style> enemy every <style=cIsUtility>15</style> seconds. Identified enemies are <style=cIsUtility>permanently stunned</style> and increase your <style=cIsDamage>base damage</style> by <style=cIsDamage>1</style> + <style=cIsDamage>2%</style> on kill.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Are you seriously fucking telling me, that, without a shadow of a doubt, with full, completely unironic sincerity, that a goddamn pier, a motherfucking dock, a fucking wharf, mayhaps, was capable of reviewing this source? I don't fucking think so, pal.";
 
         public override ItemTier Tier => ItemTier.Tier3;
 

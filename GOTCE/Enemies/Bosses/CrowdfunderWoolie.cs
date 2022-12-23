@@ -66,7 +66,7 @@ namespace GOTCE.Enemies.Bosses
             }
 
             LanguageAPI.Add("GOTCE_WOOLIE_NAME", "Crowdfunder Woolie");
-            LanguageAPI.Add("GOTCE_WOOLIE_LORE", "100% damage per shot is EXTREMELY low, even if you do have a crazy amount of on-hit items to scale it with. Yes, the bleed changes makes this a more lucrative option on paper, but, in reality, if you're already at the point of applying a stupid amount of bleed, you probably don't need the Crowdfunder to help you with that. TAKE SOMETHING ELSE.");
+            LanguageAPI.Add("GOTCE_WOOLIE_LORE", "\"It costs $180 to shoot one of these for 12 seconds.\"\n\n\"It costs $1080 to fire all 6 for 12 seconds.\"\n\n\"To kill you? Probably only one second. It's a shame I won't make the money back when we're done.\"\n\n<i>STOMPING SOUNDS, FOLLOWED BY THE SOUND OF GOLD BEING FIRED BY SIX CROWDFUNDERS</i>\n\n\"NONE LEAVE THE SLAUGHTERHOUSE! NOT ALIVE!\"\n\n[TRANSMISSION ERROR]");
             LanguageAPI.Add("GOTCE_WOOLIE_SUBTITLE", "THE Mr. Streamer");
 
             On.RoR2.CharacterBody.Start += (orig, self) =>

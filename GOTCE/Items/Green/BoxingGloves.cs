@@ -20,7 +20,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemFullDescription => "On hit, <style=cIsUtility>knock enemies back</style>. <style=cStack>Knockback increases per stack</style>.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "Order: Boxing Gloves\nTracking Number: 362***********\nEstimated Delivery: 7/7/2056\nShipping Method: Standard\nShipping Address: O.B.-Gym Slam Station, Venus\nShipping Details:\n\nThese should work fine for the kids you're training. A bit musty, though. It'll make your trainees hit like a pro, ha!";
 
         public override ItemTier Tier => ItemTier.Tier2;
 

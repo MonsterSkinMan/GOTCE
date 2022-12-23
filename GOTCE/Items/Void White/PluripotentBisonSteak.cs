@@ -21,7 +21,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "Gain <style=cIsHealing>+25%</style> <style=cStack>(+30% per stack)</style> <style=cIsHealing>max health</style>. Upon taking damage, <style=cIsUtility>randomize</style> your inventory. <style=cIsVoid>Corrupts all Bison Steaks</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "\"Steak finds a way. Even in the depths of a grill, there's bound to be some steak sizzling within the coals, just hoping to make it to your plate.\n\nWhy don't you take a ride in Bison Steak, just for one day? You may come out of the Bison Steak with a brand new Bison Steak.\"\n-The voices";
 
         public override ItemTier Tier => ItemTier.VoidTier1;
 

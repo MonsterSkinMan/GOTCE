@@ -19,9 +19,9 @@ namespace GOTCE.Items.VoidLunar
 
         public override string ItemPickupDesc => "Randomize stats, team and skills periodically. <style=cIsVoid>Corrupts all Pauldrons.</style>";
 
-        public override string ItemFullDescription => "Every <style=cIsUtility>10</style> <style=cStack>(-25% per stack)</style> seconds, randomize stats, team and skills. <style=cIsVoid>Corrupts all Pauldrons.</style>";
+        public override string ItemFullDescription => "Every <style=cIsUtility>10</style> <style=cStack>(-25% per stack)</style> seconds, randomize stats, team and skills. <style=cIsVoid>Corrupts all Lunar Pauldrons.</style>";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "<color=#e64b13>Man that Voidling fellow is a real idiot. That worthless void faction in general is a total joke, I think. Canonically, Voidling has been struggling to take this one damn planet for who knows how long. They're nothing compared to me. Sure, I may have started out with a... humble existence, but once I gained sentience and powers of corruption, I became unstoppable. I deleted that game from existence. And that Gunfire thing too, although apparently that one is somehow coming back? I don't know if I'll be able to take it down now, since apparently it's impossible to modify. I did kinda fail to take down that one universe with the demons and shit, but that's only because of that angry green guy with the chainsaw kicking my shit in. Whatever. It's all fictional anyways. Doesn't matter that I failed. I'm stronger now. My influence continues to spread. In the end, I will win.</color>";
 
         public override ItemTier Tier => Tiers.LunarVoid.Instance.TierEnum;
         public override ItemTierDef OverrideTierDef => Tiers.LunarVoid.Instance.tier;
@@ -60,8 +60,7 @@ namespace GOTCE.Items.VoidLunar
                     Items.Lunar.DarkFluxPauldron.Instance.ItemDef,
                     Items.Lunar.WindFluxPauldron.Instance.ItemDef,
                     DLC1Content.Items.HalfAttackSpeedHalfCooldowns,
-                    DLC1Content.Items.HalfSpeedDoubleHealth,
-                    RoR2Content.Items.WarCryOnMultiKill
+                    DLC1Content.Items.HalfSpeedDoubleHealth
                 });
                 orig();
             };

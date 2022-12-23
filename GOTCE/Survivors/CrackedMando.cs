@@ -39,8 +39,9 @@ namespace GOTCE.Survivors
             LanguageAPI.Add("GOTCE_CRACKMANDO_NAME", "Cracked Commando");
             LanguageAPI.Add("GOTCE_CRACKMANDO_DESC", "Cracked Commando is a jack of all trades survivor who can do a bit of everything, whether that be destroying multiplayer lobbies with Suppressive Nader or outdamaging railgunner with his Double Double Double Double Tap.");
             LanguageAPI.Add("GOTCE_CRACKMANDO_SUBTITLE", "Delirious Dragoon");
-            LanguageAPI.Add("GOTCE_CRACKMANDO_WIN", "And so he left, securing his crackedness...");
-            LanguageAPI.Add("GOTCE_CRACKMANDO_FAIL", "And so he vanished, going from cracked to shattered...");
+            LanguageAPI.Add("GOTCE_CRACKMANDO_WIN", "And so he left, the cacophony of voices ringing throughout his skull.");
+            LanguageAPI.Add("GOTCE_CRACKMANDO_FAIL", "And so he vanished, with terminal lucidity.");
+            LanguageAPI.Add("GOTCE_CRACKMANDO_LORE", "A bloodbath.\nThat's all he could describe it as.\nJust five minutes earlier, the soldier and his squadron were ambushed by some mysterious orange being, and proceeded to wipe out all of the Commando's comrades. He was left there, in a sea of their remains, intestines strewn across his limbs, as the entity approached him.\n...\n...\nIt stared at him, curiously. Perhaps this one had potential?\nShrugging, the orange cat... thing split open its face, revealing the true form underneath, firing a wave of raw data and code at the lone survivor. The Commando screamed out in pain as he was bombarded with corruption, and he began to absorb the carnage around him.\nWhen it finally stopped, the Commando had been transformed into a 32-armed monster, and a monstrous face had opened up in his chest. He could hear the voices of the tortured souls of his allies whispering and screaming in his head, and his body began to shatter.\nNoticing this, Cracked Emoji put a pair of sunglasses onto the Commando's helmet, and his mouth curled into a satisfied smirk. This one would do.\nWith his first harbinger of destruction created, he disappeared, leaving the delirious Cracked Commando to his own devices.");
 
             SkillFamily skillFamily;
             skillFamily = sl.primary.skillFamily;

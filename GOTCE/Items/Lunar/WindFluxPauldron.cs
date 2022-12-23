@@ -20,7 +20,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemFullDescription => "Increase <style=cIsUtility>movement speed</style> by <style=cIsUtility>100%</style> <style=cStack>(+100% per stack)</style>. Reduce <style=cIsHealing>maximum health</style> by <style=cIsHealing>50%</style> <style=cStack>(+50% per stack)</style>.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "\"Much like the wind, you must be nimble and flexible. Completely and utterly untouchable, in both mind and body. Fear not the bullet of your enemy, visualize it whiffing past your skin. Focus, and make it true. Fear not the tumbling avalanche, visualize yourself running past it unscathed. But heed, and do not flee without reason. Those who remain flighty will quickly find themselves surrounded.\"\n\n-Nemesis Will of Combat, Nemesis First Excerpt";
 
         public override ItemTier Tier => ItemTier.Lunar;
 

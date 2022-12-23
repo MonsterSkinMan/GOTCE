@@ -20,7 +20,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemFullDescription => "Increase <style=cIsDamage>attack speed</style> by <style=cIsDamage>100%</style> <style=cStack>(+100% per stack)</style>. Increase <style=cIsUtility>skill cooldowns</style> by <style=cIsUtility>100%</style> <style=cStack>(+100% per stack)</style>.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "\"The Earth guides us all. Feel the rhythm of the land, and sing according to its instruction. You will find yourself retaliating against every blow, destroying all who cross your path. You will find that the ground will keep you steady, making you as consistent as a heavy, immovable rock. But heed, and do not lose yourself to the ground. Attacking is a viable option, though eventually you will find yourself with too much left to attack.\"\n\n-Nemesis Will of Combat, Nemesis Second Excerpt";
 
         public override ItemTier Tier => ItemTier.Lunar;
 

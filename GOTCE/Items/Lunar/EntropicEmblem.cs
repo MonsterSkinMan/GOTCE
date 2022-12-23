@@ -20,7 +20,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemFullDescription => "Instantly delete all enemies, allies, projectiles, and interactables within <style=cIsUtility>30m</style> <style=cStack>(+30m per stack)</style> of you.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Sup it's me MonsterSkinMan y'know the lead dev of this shitty mod? Yeah I'm not even gonna try to hide it, this item is literally just Atheist Head from the Abortionbirth mod for The Binding of Isaac Afterbirth+, except it's even worse now. At least with Atheist Head you could progress through levels, the only funny part was how it deleted the run completion chest so you could only win through a 50% chance by beating Mega Satan. Entropic Emblem straight up fucking deletes the teleporter so you just cry about it lmao. I think the only time you won’t get softlocked with this is if you find it in a lunar pod on New Commencement and pick it up after charging pillars or if you can skip pillars.\nYeah so thanks for coming to my TedTalk MSM out. (and no this log isn't canon to any gotce lore)";
 
         public override ItemTier Tier => ItemTier.Lunar;
 

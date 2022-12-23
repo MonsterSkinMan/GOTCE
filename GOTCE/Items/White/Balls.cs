@@ -17,7 +17,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "Increase <style=cIsUtility>'Critical FOV Strike'</style> chance by <style=cIsUtility>2%</style>. Gain <style=cIsHealing>8%</style> <style=cStack>(+4% per stack)</style> of your <style=cIsHealing>maximum health</style> as regenerating <style=cIsUtility>shields</style> for every '<style=cIsUtility>FOV Crit</style>' item you have.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Balls will stay - everything below THIS message will be deleted (this time its personal!!)";
 
         public override ItemTier Tier => ItemTier.Tier1;
 
