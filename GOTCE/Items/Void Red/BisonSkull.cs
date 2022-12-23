@@ -22,7 +22,7 @@ namespace GOTCE.Items.Void_Red
 
         public override string ItemFullDescription => "On kill, gain a <style=cIsHealing>temporary barrier</style> for <style=cIsHealing>1</style> <style=cStack>(+1 per stack)</style> health. <style=cIsVoid>Corrupts all healing items</style>.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "When Clayton set out for another hunt, he saw something he didn’t expect. Clayton was a simple hunter. He hunted whatever the next billionaire could pay him, which usually was endangered species. He didn't want to hunt them, but money was always tight for the poor boy. Whilst hunting, he saw something extremely odd: a man in red with a crystalline blade, rounding up all the Bighorn Bison. He shrugged and turned around, knowing this wasn't his problem and he'd just find another creature to poach.\n\nBut before he could run, the man appeared in front of him, and as quick as a lightning flash, Clayton's blood was spilled, and his gun fell to the ground.";
 
         public override ItemTier Tier => ItemTier.VoidTier3;
 
