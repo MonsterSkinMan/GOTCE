@@ -27,11 +27,6 @@ namespace GOTCE.Items.NoTier
 
         public override Sprite ItemIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/dream.pdf.png");
 
-        public override void Init(ConfigFile config)
-        {
-            base.Init(config);
-        }
-
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
             return new ItemDisplayRuleDict(null);

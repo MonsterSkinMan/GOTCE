@@ -28,11 +28,6 @@ namespace GOTCE.Items.NoTier
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/HeartlessBreakfast.png");
 
-        public override void Init(ConfigFile config)
-        {
-            base.Init(config);
-        }
-
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
             return new ItemDisplayRuleDict(null);

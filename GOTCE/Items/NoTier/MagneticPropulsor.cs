@@ -28,11 +28,6 @@ namespace GOTCE.Items.NoTier
 
         public override Sprite ItemIcon => null;
 
-        public override void Init(ConfigFile config)
-        {
-            base.Init(config);
-        }
-
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
             return new ItemDisplayRuleDict(null);

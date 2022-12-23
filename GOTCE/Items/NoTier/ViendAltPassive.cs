@@ -40,11 +40,6 @@ namespace GOTCE.Items.NoTier
 
         public static float onlineSyncDuration = 60f;
 
-        public override void Init(ConfigFile config)
-        {
-            base.Init(config);
-        }
-
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
             return new ItemDisplayRuleDict(null);
