@@ -24,20 +24,6 @@ namespace GOTCE.Items.White
         public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.Consumable };
         public override ItemTier Tier => ItemTier.Tier1;
 
-        public void Break(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo info)
-        {
-            orig(self, info);
-            if (self.body && self.body.inventory)
-            {
-                if (self.isHealthLow && GetCount(self.body) > 0)
-                {
-                    self.body.inventory.RemoveItem(ItemDef, self.body.inventory.GetItemCount(ItemDef));
-                    self.body.inventory.GiveItem(DreamPDF.Instance.ItemDef);
-                    CharacterMasterNotificationQueue.SendTransformNotification(self.body.master, Instance.ItemDef.itemIndex, DreamPDF.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.Default);
-                }
-            } 
-        }
-
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
             return new ItemDisplayRuleDict(null);
@@ -46,16 +32,15 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             On.RoR2.DamageInfo.ModifyDamageInfo += Proc;
-            On.RoR2.HealthComponent.TakeDamage += Break;
+        }
 
-            /* [SystemInitializer(dependencies: typeof(ItemCatalog))]
-            void RegisterFragile() {
-                Fragile.AddFragileItem(ItemDef, new Fragile.FragileInfo {
-                    broken = Items.NoTier.DreamPDF.Instance.ItemDef,
-                    shouldGiveBroken = true,
-                    fraction = 25f
-                });
-            } */
+        [RunMethod(RunAfter.Items)]
+        private static void RegisterFragile() {
+            Fragile.AddFragileItem(LuckiestMask.Instance.ItemDef, new Fragile.FragileInfo {
+                broken = Items.NoTier.DreamPDF.Instance.ItemDef,
+                shouldGiveBroken = true,
+                fraction = 25f
+            });
         }
 
         public override void Init(ConfigFile config)

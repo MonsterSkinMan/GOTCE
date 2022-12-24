@@ -29,19 +29,17 @@ namespace GOTCE.Misc
         {
             if (NetworkServer.active && self.body && self.body.inventory)
             {
-                foreach (ItemIndex index in self.body.inventory.itemAcquisitionOrder)
+                ItemIndex[] indexes = self.body.inventory.itemAcquisitionOrder.ToArray();
+                for (int i = 0; i < indexes.Length; i++)
                 {
-                    ItemDef def = ItemCatalog.GetItemDef(index);
+                    ItemDef def = ItemCatalog.GetItemDef(indexes[i]);
                     if (def && fragileDefs.Contains(def))
                     {
-                        Debug.Log("FragileDefs contained: " + def.nameToken);
-
                         bool found = fragileMap.TryGetValue(def, out FragileInfo info);
 
                         if (found)
                         {
-                            Debug.Log("Found FragileInfo for: " + def.nameToken);
-                            if (self.fullCombinedHealth * (0.01f * info.fraction) >= self.health)
+                            if (!self.IsAboveFraction(info.fraction))
                             {
                                 int count = self.body.inventory.GetItemCount(def);
 
@@ -58,7 +56,6 @@ namespace GOTCE.Misc
                 }
             }
             orig(self, damage, damagePosition, silent, attacker);
-            // TODO: this doesnt work
         }
 
         /// <summary>

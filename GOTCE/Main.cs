@@ -241,7 +241,10 @@ namespace GOTCE
                 }
             } 
 
-            HooksAttributeLogic.CallAttributeMethods(RunAfter.Items);
+            [SystemInitializer(dependencies: typeof(ItemCatalog))]
+            void callitems() {
+                HooksAttributeLogic.CallAttributeMethods(RunAfter.Items);
+            }
 
             [SystemInitializer(dependencies: typeof(ItemCatalog))] // wait until after the catalog initializes to add interactables
             void the()
@@ -298,7 +301,10 @@ namespace GOTCE
                 skill.Create();
             }
 
-            HooksAttributeLogic.CallAttributeMethods(RunAfter.Skills);
+            [SystemInitializer(dependencies: typeof(RoR2.Skills.SkillCatalog))]
+            void callskills() {
+                HooksAttributeLogic.CallAttributeMethods(RunAfter.Skills);
+            }
 
             Itsgup.OhTheMisery();
             // LivingSuppressiveFire.Create();
@@ -333,7 +339,10 @@ namespace GOTCE
                 }
             }
 
-            HooksAttributeLogic.CallAttributeMethods(RunAfter.Enemies);
+            [SystemInitializer(dependencies: typeof(BodyCatalog))]
+            void callenemies() {
+                HooksAttributeLogic.CallAttributeMethods(RunAfter.Enemies);
+            }
 
             // achievements
             var Achievements = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(AchievementBase)));
