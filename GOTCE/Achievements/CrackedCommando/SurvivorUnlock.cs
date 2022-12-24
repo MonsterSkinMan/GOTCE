@@ -59,6 +59,6 @@ namespace GOTCE.Achievements.CrackedCommando
         public override string Description => "As Commando, reach 1600% attack speed.";
         public override string UnlockName => "CrackedCommandoSurvivorUnlockable";
         public override string TokenName => "OVERDOSE";
-        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
+        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Survivors/CrackedCommando.png");
     }
 }

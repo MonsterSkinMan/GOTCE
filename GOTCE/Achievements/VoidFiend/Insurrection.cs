@@ -73,6 +73,6 @@ namespace GOTCE.Achievements.VoidFiend
         public override string Description => "As Void Fiend, slay the descendant of the Void in a single explosion.";
         public override string UnlockName => "InsurrectionUnlockable";
         public override string TokenName => "INSURRECTION";
-        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
+        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Skills/Drain.png");
     }
 }
