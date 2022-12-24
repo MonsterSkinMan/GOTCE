@@ -26,6 +26,6 @@ namespace GOTCE.Skills
         public override int StockToConsume => 1;
 
         // public override string[] KeywordTokens => new string[] {"GOTCE_CORRUPTIONSPECIALUPGRADE_KEYWORD"};
-        public override Sprite Icon => null;
+        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Skills/CorruptedWarp.png");
     }
 }
