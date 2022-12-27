@@ -76,10 +76,10 @@ namespace GOTCE.Achievements.REX
 
     public class AutomatonUnlock : AchievementBase<AutomatonUnlock>
     {
-        public override string Name => "REX: Automaton";
+        public override string Name => "REX: Freshly Grown";
         public override string Description => "As REX, complete Sky Meadow without taking damage.";
         public override string UnlockName => "AutomatonUnlockable";
         public override string TokenName => "AUTOMATON";
-        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
+        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Skills/StigmataShotgun.png");
     }
 }

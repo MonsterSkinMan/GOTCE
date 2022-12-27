@@ -413,7 +413,7 @@ namespace GOTCE.Based
             defAlt.skillNameToken = "GOTCE_PROPULSOR_NAME";
             defAlt.skillDescriptionToken = "GOTCE_PROPULSOR_DESC";
             defAlt.passiveItem = Items.NoTier.MagneticPropulsor.Instance.ItemDef;
-            defAlt.icon = Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
+            defAlt.icon = Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Skills/Magnetic_Propulsor.png");
             defAlt.activationState = new EntityStates.SerializableEntityStateType(typeof(EntityStates.Idle));
             defAlt.activationStateMachineName = "Weapon";
             defAlt.baseRechargeInterval = 0f;
@@ -438,7 +438,7 @@ namespace GOTCE.Based
             skillDef.skillNameToken = "GOTCE_VIENDPASSIVE_NAME";
             skillDef.skillDescriptionToken = "GOTCE_VIENDPASSIVE_DESC";
             skillDef.passiveItem = Items.NoTier.ViendAltPassive.Instance.ItemDef;
-            skillDef.icon = Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
+            skillDef.icon = Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Skills/TheOnlyThingTheyFear.png");
             skillDef.activationState = new EntityStates.SerializableEntityStateType(typeof(EntityStates.Idle));
             skillDef.activationStateMachineName = "Weapon";
         }

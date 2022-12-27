@@ -54,6 +54,6 @@ namespace GOTCE.Achievements.Captain
         public override string Description => "As Captain, beat the game with your most recent war crime being Incendiary Weaponry.";
         public override string UnlockName => "OverheatUnlockable";
         public override string TokenName => "OVERHEAT";
-        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
+        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Skills/HephaestusShotgun.png");
     }
 } 

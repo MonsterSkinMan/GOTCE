@@ -25,6 +25,6 @@ namespace GOTCE.Skills
         public override int RechargeStock => 1;
         public override int StockToConsume => 1;
         public override string[] KeywordTokens => new string[] { "GOTCE_CORRUPTIONM2UPGRADE_KEYWORD" };
-        public override Sprite Icon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Prefabs/Projectiles/AltSkills/Pearl/warp.png"); // placeholder
+        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Skills/Warp.png"); // placeholder
     }
 }
