@@ -39,8 +39,8 @@ namespace GOTCE.Based
 
         private static void CreateProjectiles() {
             // huntress saw
-            GameObject prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Saw/Sawmerang.prefab").WaitForCompletion().InstantiateClone("huntresssaw");
-            GameObject prefabGhost = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Saw/SawmerangGhost.prefab").WaitForCompletion().InstantiateClone("huntresssawghost");
+            GameObject prefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.Sawmerang).WaitForCompletion().InstantiateClone("huntresssaw");
+            GameObject prefabGhost = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.SawmerangGhost).WaitForCompletion().InstantiateClone("huntresssawghost");
 
             prefab.AddComponent<ProjectileStickOnImpact>();
             prefab.AddComponent<ProjectileTargetComponent>();
@@ -63,14 +63,14 @@ namespace GOTCE.Based
             huntressSawPrefab = prefab;
             ContentAddition.AddProjectile(huntressSawPrefab);
 
-            prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Railgunner/RailgunnerPistolProjectile.prefab").WaitForCompletion().InstantiateClone("dumbrounds");
+            prefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.RailgunnerPistolProjectile).WaitForCompletion().InstantiateClone("dumbrounds");
             GameObject.DestroyImmediate(prefab.GetComponent<ProjectileSteerTowardTarget>());
             GameObject.DestroyImmediate(prefab.GetComponent<ProjectileTargetComponent>());
 
             railgunnerDumbPrefab = prefab;
             ContentAddition.AddProjectile(railgunnerDumbPrefab);
 
-            prefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Commando/CommandoGrenadeProjectile.prefab").WaitForCompletion().InstantiateClone("nader");
+            prefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.CommandoGrenadeProjectile).WaitForCompletion().InstantiateClone("nader");
             ProjectileImpactExplosion impact = prefab.AddComponent<ProjectileImpactExplosion>();
             impact.destroyOnEnemy = true;
             impact.destroyOnWorld = true;
@@ -82,7 +82,7 @@ namespace GOTCE.Based
 
         private static void CommandoAlts()
         {
-            GameObject commandoPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Commando/CommandoBody.prefab").WaitForCompletion();
+            GameObject commandoPrefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.CommandoBody).WaitForCompletion();
 
             SkillLocator s1 = commandoPrefab.GetComponent<SkillLocator>();
 
@@ -102,7 +102,7 @@ namespace GOTCE.Based
 
         private static void RexAlts()
         {
-            GameObject treebotPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Treebot/TreebotBody.prefab").WaitForCompletion();
+            GameObject treebotPrefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.TreebotBody).WaitForCompletion();
 
             SkillLocator sl = treebotPrefab.GetComponent<SkillLocator>();
 
@@ -124,7 +124,7 @@ namespace GOTCE.Based
         private static void RGAlts()
         {
             MagneticPropulsor.Create();
-            GameObject rgPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/Railgunner/RailgunnerBody.prefab").WaitForCompletion();
+            GameObject rgPrefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.RailgunnerBody).WaitForCompletion();
 
             SkillLocator sl = rgPrefab.GetComponent<SkillLocator>();
 
@@ -166,7 +166,7 @@ namespace GOTCE.Based
 
         private static void HuntressAlts()
         {
-            GameObject huntressPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Huntress/HuntressBody.prefab").WaitForCompletion();
+            GameObject huntressPrefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.HuntressBody).WaitForCompletion();
 
             SkillLocator sl = huntressPrefab.GetComponent<SkillLocator>();
 
@@ -199,7 +199,7 @@ namespace GOTCE.Based
 
         private static void BanditAlts()
         {
-            GameObject banditPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Bandit2/Bandit2Body.prefab").WaitForCompletion();
+            GameObject banditPrefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.Bandit2Body).WaitForCompletion();
 
             SkillLocator sl = banditPrefab.GetComponent<SkillLocator>();
 
@@ -222,7 +222,7 @@ namespace GOTCE.Based
 
         private static void CaptainAlts()
         {
-            GameObject captainPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Captain/CaptainBody.prefab").WaitForCompletion();
+            GameObject captainPrefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.CaptainBody).WaitForCompletion();
 
             SkillLocator sl = captainPrefab.GetComponent<SkillLocator>();
 
@@ -243,7 +243,7 @@ namespace GOTCE.Based
 
         private static void EngineerAlts()
         {
-            GameObject engiPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Engi/EngiBody.prefab").WaitForCompletion();
+            GameObject engiPrefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.EngiBody).WaitForCompletion();
 
             SkillLocator sl = engiPrefab.GetComponent<SkillLocator>();
 
@@ -266,7 +266,7 @@ namespace GOTCE.Based
 
         private static void ViendAlts()
         {
-            GameObject viendPrefab = Addressables.LoadAssetAsync<GameObject>("RoR2/DLC1/VoidSurvivor/VoidSurvivorBody.prefab").WaitForCompletion();
+            GameObject viendPrefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.VoidSurvivorBody).WaitForCompletion();
 
             SkillLocator sl = viendPrefab.GetComponent<SkillLocator>();
             ViendAltPassive.Create();

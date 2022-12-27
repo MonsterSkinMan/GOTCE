@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3148529727
+CRC: 2149774022
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: fdabb8d71eb7969fce52208c78fc2ec8
+    Hash: 94b970db90eeb5c6b80601e2c2c18da7
   TypeTreeHash:
     serializedVersion: 2
-    Hash: cc964e54eaa1aa1f05b047269baebb23
+    Hash: 171afec5ec862ae12816d8e6d8323b94
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -78,8 +78,6 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 1952984350, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
-  Script: {fileID: 717380117, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
-- Class: 114
   Script: {fileID: 952828898, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 268574540, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
@@ -140,6 +138,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: -1888550019, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: -492659515, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: -1699741063, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -1864444436, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
@@ -160,6 +160,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 1220875036, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: 717380117, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: -517518216, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -789927658, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
@@ -178,6 +180,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: -1568778350, guid: 050936fea8909af15a3fd3b64da1ff83, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 120
   Script: {instanceID: 0}
 - Class: 135
   Script: {instanceID: 0}
@@ -221,6 +225,7 @@ Assets:
 - Assets/Icons/Items/Gamepad.png
 - Assets/Prefabs/Enemies/The/TheBody.prefab
 - Assets/Icons/Items/TheAegisfunder.png
+- Assets/Prefabs/VFX/AltSkills/Tether/LaserTether.prefab
 - Assets/Prefabs/Survivors/Crackmando/CrackmandoBody.prefab
 - Assets/Prefabs/Enemies/Vermin/mdlVermin.prefab
 - Assets/Icons/Items/BoxingGloves.png
