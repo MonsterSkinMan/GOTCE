@@ -33,6 +33,7 @@ namespace GOTCE.Based
             BanditAlts();
             CaptainAlts();
             EngineerAlts();
+            MULTAlts();
 
             CreateProjectiles();
         }
@@ -264,6 +265,27 @@ namespace GOTCE.Based
             LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillDescriptionToken, "Take manual control of your mechanical allies, giving you and them <style=cIsUtility>+40% movement speed</style> and <style=cIsDamage>+100% attack speed</style>. <style=cIsHealth>Reduce your armor by -50</style>. Entangled allies will be <style=cIsHealth>disabled</style> for <style=cIsHealth>5</style> seconds after exiting Entangler.");
         }
 
+        private static void MULTAlts() {
+            GameObject multPrefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.ToolbotBody).WaitForCompletion();
+
+            SkillLocator sl = multPrefab.GetComponent<SkillLocator>();
+
+            SkillFamily skillFamily;
+
+            // welding blast
+            skillFamily = sl.secondary.skillFamily;
+            Array.Resize(ref skillFamily.variants, skillFamily.variants.Length + 1);
+            skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
+            {
+                skillDef = Skills.Scorch.Instance.SkillDef,
+                unlockableDef = null,
+                viewableNode = new ViewablesCatalog.Node(Skills.Scorch.Instance.SkillDef.skillNameToken, false, null)
+            };
+
+            LanguageAPI.Add(Skills.Scorch.Instance.SkillDef.skillNameToken, "Welding Blast");
+            LanguageAPI.Add(Skills.Scorch.Instance.SkillDef.skillDescriptionToken, "Fire a burst of flames that deal <style=cIsDamage>1500%</style> damage over time and <style=cIsDamage>ignite</style> targets.");
+        }
+
         private static void ViendAlts()
         {
             GameObject viendPrefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.VoidSurvivorBody).WaitForCompletion();
@@ -445,37 +467,6 @@ namespace GOTCE.Based
 
         public static void Hooks()
         {
-            // IL hooks
-
-            /* IL.RoR2.CharacterBody.RecalculateStats += (il) => {
-                ILCursor c = new ILCursor(il);
-
-                bool found = c.TryGotoNext(MoveType.After,
-                    x => x.MatchLdsfld(typeof(DLC1Content.Buffs), nameof(DLC1Content.Buffs.VoidSurvivorCorruptMode)),
-                    x => x.MatchCallOrCallvirt<CharacterBody>(nameof(CharacterBody.HasBuff)),
-                    x => x.MatchBrtrue(out _),
-                    x => x.MatchLdcR4(0f),
-                    x => x.MatchBr(out _),
-                    x => x.MatchLdcR4(100f)
-                );
-
-                if (found) {
-                    c.Index--;
-                    c.Next.Operand = 0f;
-                    c.Emit(OpCodes.Ldarg_0);
-                    c.EmitDelegate<Func<CharacterBody, float>>((cb) => {
-                        if (cb.inventory && cb.inventory.GetItemCount(Items.NoTier.ViendAltPassive.Instance.ItemDef) > 0) {
-                            return 0f;
-                        }
-                        else {
-                            return 100f;
-                        }
-                    });
-                }
-                else {
-                    Main.ModLogger.LogFatal("IL Hook for viend alt passive failed");
-                }
-            }; */
 
             // runtime detour hooks
             Hook minCorruptionHook = new(
@@ -565,7 +556,7 @@ namespace GOTCE.Based
                 if (self.characterBody.hasAuthority && self.characterBody && self.characterBody.inventory && self.characterBody.inventory.GetItemCount(def) > 0 && self.bodyHealthComponent)
                 {
                     self.corruptionForFullHeal = 0;
-                    self.maxCorruption = 100f/* + ((10f * (self.characterBody.level - 1)))*/;
+                    self.maxCorruption = 100f +  ((10f * (self.characterBody.level - 1)));
 
                     if (self.corruption < 1)
                     {
