@@ -38,15 +38,30 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
             base.OnExit();
             if (base.isAuthority)
             {
-                FireProjectileInfo fireProjectileInfo = default(FireProjectileInfo);
-                fireProjectileInfo.projectilePrefab = EntityStates.NullifierMonster.DeathState.deathBombProjectile;
-                // replace with voidling laser, make the healing slightly less and the stun slightly longer
-                fireProjectileInfo.position = base.characterBody.corePosition;
-                fireProjectileInfo.rotation = Quaternion.identity;
-                fireProjectileInfo.owner = base.gameObject;
-                fireProjectileInfo.damage = base.damageStat;
-                fireProjectileInfo.crit = base.characterBody.RollCrit();
-                ProjectileManager.instance.FireProjectile(fireProjectileInfo);
+                int max = Mathf.CeilToInt(5f + (1f + (gained * 0.6f)));
+                for (int i = 0; i < max; i++) {
+                    BulletAttack attack = new();
+                    attack.owner = base.gameObject;
+                    attack.weapon = base.gameObject;
+                    attack.origin = base.characterBody.corePosition;
+                    attack.damage = 3.2f * base.damageStat;
+                    attack.falloffModel = BulletAttack.FalloffModel.Buckshot;
+                    attack.maxDistance = 35f;
+                    attack.damageColorIndex = DamageColorIndex.Void;
+                    attack.radius = 0.5f;
+                    attack.smartCollision = false;
+                    attack.damageType = DamageType.Nullify;
+                    attack.isCrit = base.RollCrit();
+                    attack.procCoefficient = 0.75f;
+                    attack.aimVector = base.GetAimRay().direction;
+                    attack.minSpread = 0;
+                    attack.maxSpread = 6;
+                    attack.tracerEffectPrefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.VoidSurvivorBeamTracer).WaitForCompletion();
+                    attack.hitEffectPrefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.VoidSurvivorBeamImpact).WaitForCompletion();
+                    attack.muzzleName = "MuzzleRight";
+                    attack.Fire();
+                }
+                AkSoundEngine.PostEvent(Events.Play_voidman_m2_shoot_fullCharge, base.gameObject);
             }
         }
     }

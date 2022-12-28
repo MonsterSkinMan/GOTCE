@@ -18,6 +18,10 @@ namespace GOTCE.Achievements
             if (Instance != null) throw new InvalidOperationException("Singleton class \"" + typeof(T).Name + "\" inheriting AchievementBase was instantiated twice");
             Instance = this as T;
         }
+
+        public UnlockableDef GetUnlockable() {
+            return GetUnlockableDef();
+        }
     }
 
     public abstract class AchievementBase
@@ -29,6 +33,7 @@ namespace GOTCE.Achievements
         public abstract string Description { get; }
         public abstract string UnlockName { get; }
         public abstract string TokenName { get; }
+        public virtual string ConfigName { get; set; } = null;
         public virtual bool Hidden { get; } = false;
 
         public void Create(BepInEx.Configuration.ConfigFile config)
@@ -43,7 +48,11 @@ namespace GOTCE.Achievements
             LanguageAPI.Add($"ACHIEVEMENT_{TokenName}_NAME", Name);
             LanguageAPI.Add($"ACHIEVEMENT_{TokenName}_DESCRIPTION", Description);
 
-            enabled = config.Bind<bool>($"Unlock: {Name}", "Enable?", true, "Should this achievement be enabled? A value of false makes it always unlocked.").Value;
+            if (ConfigName == null) {
+                ConfigName = Name;
+            }
+
+            enabled = config.Bind<bool>($"Unlock: {ConfigName}", "Enable?", true, "Should this achievement be enabled? A value of false makes it always unlocked.").Value;
 
             if (enabled)
             {

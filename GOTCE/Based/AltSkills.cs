@@ -177,7 +177,7 @@ namespace GOTCE.Based
             skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
             {
                 skillDef = Skills.Sawblade.Instance.SkillDef,
-                unlockableName = "",
+                unlockableDef = Achievements.Huntress.SawUnlock.Instance.GetUnlockableDef(),
                 viewableNode = new ViewablesCatalog.Node(Skills.Sawblade.Instance.SkillDef.skillNameToken, false, null)
             };
 
@@ -256,12 +256,12 @@ namespace GOTCE.Based
             skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
             {
                 skillDef = Skills.Entangler.Instance.SkillDef,
-                unlockableDef = null,
+                unlockableDef = Achievements.Engineer.EntanglerUnlock.Instance.GetUnlockableDef(),
                 viewableNode = new ViewablesCatalog.Node(Skills.Overheat.Instance.SkillDef.skillNameToken, false, null)
             };
 
             LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillNameToken, "Entangler");
-            LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillDescriptionToken, "Take manual control of your mechanical allies, giving you and them <style=cIsUtility>+40% movement speed</style>. <style=cIsHealth>Reduce your armor by -50</style>. Entangled allies will be <style=cIsHealth>disabled</style> for <style=cIsHealth>5</style> seconds after exiting Entangler.");
+            LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillDescriptionToken, "Take manual control of your mechanical allies, giving you and them <style=cIsUtility>+40% movement speed</style> and <style=cIsDamage>+100% attack speed</style>. <style=cIsHealth>Reduce your armor by -50</style>. Entangled allies will be <style=cIsHealth>disabled</style> for <style=cIsHealth>5</style> seconds after exiting Entangler.");
         }
 
         private static void ViendAlts()
@@ -290,7 +290,7 @@ namespace GOTCE.Based
             LanguageAPI.Add(Skills.PearlTeleport.Instance.SkillDef.skillDescriptionToken, "<style=cIsUtility>Teleport</style> to your most recently deployed void orb.");
 
             LanguageAPI.Add("GOTCE_CORRUPTIONM2UPGRADE_KEYWORD", "[ 【Corruption Upgrade】 ]\nLaunch a powerful void spear that teleports you on impact, releasing a devastating explosion for 2600% damage.");
-            LanguageAPI.Add("GOTCE_CORRUPTIONSPECIALUPGRADE_KEYWORD", "[ 【Corruption Upgrade】 ]\nRoot yourself, gaining corruption while rooted... Release a devastating <style=cIsVoid>void implosion</style> upon unrooting");
+            LanguageAPI.Add("GOTCE_CORRUPTIONSPECIALUPGRADE_KEYWORD", "[ 【Corruption Upgrade】 ]\nRoot yourself, gaining corruption while rooted... Release a devastating <style=cIsVoid>barrage of lasers/style> upon unrooting");
 
             // drain
             skillFamily = sl.special.skillFamily;
@@ -314,7 +314,7 @@ namespace GOTCE.Based
                     family.variants[family.variants.Length - 1] = new SkillFamily.Variant
                     {
                         skillDef = ViendAltPassive.skillDef,
-                        unlockableName = "",
+                        unlockableDef = Achievements.VoidFiend.OnlyYouUnlock.Instance.GetUnlockableDef(),
                         viewableNode = new ViewablesCatalog.Node("GOTCE_VIENDPASSIVE_NAME", false, null)
                     };
                 }
@@ -323,7 +323,7 @@ namespace GOTCE.Based
             // drain corrupt
 
             LanguageAPI.Add(Skills.DrainUpgrade.Instance.SkillDef.skillNameToken, "【Dr??ain』");
-            LanguageAPI.Add(Skills.DrainUpgrade.Instance.SkillDef.skillDescriptionToken, "Root yourself temporarily, gaining a large amount of <style=cIsVoid>Corruption</style>. Release a devastating laser upon breaking free.");
+            LanguageAPI.Add(Skills.DrainUpgrade.Instance.SkillDef.skillDescriptionToken, "Root yourself temporarily, gaining a large amount of <style=cIsVoid>Corruption</style>. Release a barrage of devastating lasers for 320% damage each upon breaking free.");
 
             LanguageAPI.Add("GOTCE_VIENDPASSIVE_NAME", "『The Only Thing They Fear】");
             LanguageAPI.Add("GOTCE_VIENDPASSIVE_DESC", "You are permanently <style=cIsVoid>Corrupted</style>. Gain <style=cIsVoid>Corruption</style> on hit. Your current health depends on your <style=cIsVoid>Corruption</style> at all times.");

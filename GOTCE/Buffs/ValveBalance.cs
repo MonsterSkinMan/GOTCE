@@ -30,6 +30,9 @@ namespace GOTCE.Buffs
                         {
                             args.armorAdd -= 50f;
                         }
+                        if (!body.isPlayerControlled) {
+                            args.attackSpeedMultAdd += 1f;
+                        }
                     }
                 }
             };

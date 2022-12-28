@@ -63,6 +63,9 @@ namespace GOTCE.Misc
         private static void UpdateBarInfos(On.RoR2.UI.HealthBar.orig_UpdateBarInfos orig, HealthBar self) {
             orig(self);
             float highest = 0.25f;
+            if (!self.source || !self.source.body || !self.source.body.inventory) {
+                return;
+            }
             if (self.source.body.inventory) {
                 CharacterBody body = self.source.body;
                 Inventory inventory = body.inventory;

@@ -50,7 +50,7 @@ namespace GOTCE.Enemies.Bosses
             master = prefabMaster.GetComponent<CharacterMaster>();
 
             prefab.transform.Find("ModelBase").transform.Find("mdlBeetleQueen").GetComponent<ModelSkinController>().enabled = false;
-            prefab.transform.Find("ModelBase").transform.Find("mdlBeetleQueen").GetComponent<CharacterModel>().baseRendererInfos[0].defaultMaterial = Addressables.LoadAssetAsync<Material>("RoR2/DLC1/GummyClone/matGummyClone.mat").WaitForCompletion();
+            prefab.transform.Find("ModelBase").transform.Find("mdlBeetleQueen").GetComponent<CharacterModel>().baseRendererInfos[0].defaultMaterial = Addressables.LoadAssetAsync<Material>(Utils.Paths.Material.matGummyClone).WaitForCompletion();
 
             LanguageAPI.Add("GOTCE_GUMMYQUEEN_NAME", "Gummy Beetle Queen");
             LanguageAPI.Add("GOTCE_GUMMYQUEEN_LORE", "Gummy Beetle Queen");
