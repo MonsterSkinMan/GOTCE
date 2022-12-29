@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1887200217
+CRC: 1850550232
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f28138e32402760eb83c2f37d57ab671
+    Hash: a74a018e1475f6a501e4c5d5985f0e41
   TypeTreeHash:
     serializedVersion: 2
     Hash: 171afec5ec862ae12816d8e6d8323b94
@@ -205,6 +205,7 @@ Assets:
 - Assets/Prefabs/Projectiles/AltSkills/CorruptedPearl/PearlUpgrade.prefab
 - Assets/Icons/Items/RoR2Discussion.png
 - Assets/Prefabs/Projectiles/AltSkills/Core/Core.prefab
+- Assets/Prefabs/Projectiles/AltSkills/Hook/Hook.prefab
 - Assets/Icons/BG/LunarVoid.png
 - Assets/Icons/Items/AegisDisplayCase.png
 - Assets/Icons/Artifacts/artifactofsoleon.png
@@ -238,6 +239,7 @@ Assets:
 - Assets/Prefabs/game.prefab
 - Assets/Icons/Artifacts/artifactofblindnessoff.png
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/rounder.png
+- Assets/Icons/Skills/Hook.png
 - Assets/Icons/Items/RightRingFingerOfProvidence.png
 - Assets/Prefabs/Interactables/ShrineDML/ShrineDML.prefab
 - Assets/Icons/Items/WoolBlanket.png

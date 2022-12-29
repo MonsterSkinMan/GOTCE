@@ -57,5 +57,6 @@ namespace GOTCE.Misc
         public static DamageAPI.ModdedDamageType Truekill = DamageAPI.ReserveDamageType();
         public static DamageAPI.ModdedDamageType Root = DamageAPI.ReserveDamageType();
         public static DamageAPI.ModdedDamageType Explosion = DamageAPI.ReserveDamageType();
+        public static DamageAPI.ModdedDamageType Hooked = DamageAPI.ReserveDamageType();
     }
 }

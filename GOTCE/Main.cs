@@ -372,7 +372,7 @@ namespace GOTCE
                 buff.CreateBuff(Config);
             }
 
-            Hook aimHook = new Hook(
+            MonoMod.RuntimeDetour.Hook aimHook = new MonoMod.RuntimeDetour.Hook(
                 typeof(InputBankTest).GetProperty("aimOrigin", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).GetGetMethod(),
                 typeof(LivingSuppressiveFire).GetMethod("InputBankTest_aimOrigin_Get", System.Reflection.BindingFlags.Public | BindingFlags.Static)
             );

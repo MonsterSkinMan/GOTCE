@@ -294,6 +294,20 @@ namespace GOTCE.Based
 
             LanguageAPI.Add(Skills.Scorch.Instance.SkillDef.skillNameToken, "Welding Blast");
             LanguageAPI.Add(Skills.Scorch.Instance.SkillDef.skillDescriptionToken, "Fire a burst of flames that deal <style=cIsDamage>550%</style> total damage over time, <style=cIsDamage>igniting</style> targets.");
+
+            // hook
+            skillFamily = sl.utility.skillFamily;
+            Array.Resize(ref skillFamily.variants, skillFamily.variants.Length + 1);
+            skillFamily.variants[skillFamily.variants.Length - 1] = new SkillFamily.Variant
+            {
+                skillDef = Skills.Hook.Instance.SkillDef,
+                unlockableDef = null,
+                viewableNode = new ViewablesCatalog.Node(Skills.Hook.Instance.SkillDef.skillNameToken, false, null)
+            };
+
+            LanguageAPI.Add(Skills.Hook.Instance.SkillDef.skillNameToken, "Chain Hook");
+            LanguageAPI.Add(Skills.Hook.Instance.SkillDef.skillDescriptionToken, "Launch a chain hook for <style=cIsDamage>600% damage</style> that <style=cIsUtility>pulls you towards the impact point</style>.");
+
         }
 
         private static void ViendAlts()

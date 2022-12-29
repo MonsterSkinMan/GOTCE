@@ -1,4 +1,4 @@
-/* using BepInEx.Configuration;
+/*using BepInEx.Configuration;
 using R2API;
 using RoR2;
 using System;
@@ -21,7 +21,7 @@ namespace GOTCE.Equipment.EliteEquipment
         public override string EliteEquipmentFullDescription => "";
 
         public override string EliteEquipmentLore => "";
-        public override Texture2D EliteRampTexture => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Prefabs/EliteOverlays/Backup.png").texture;
+        public override Texture2D EliteRampTexture => Main.SecondaryAssets.LoadAsset<Texture2D>("Assets/Prefabs/EliteOverlays/Backup.png");
 
         public override string EliteModifier => "Compartmentalized";
 
@@ -116,4 +116,4 @@ namespace GOTCE.Equipment.EliteEquipment
             R2API.ContentAddition.AddBuffDef(buff);
         }
     }
-}  */
+}*/
