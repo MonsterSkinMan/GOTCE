@@ -41,5 +41,12 @@ namespace GOTCE.Utils {
             float health = healthComponent.fullHealth * newFraction;
             return healthComponent.combinedHealth > health;
         }
+
+        /// <summary>Checks if an ItemDef has a GOTCE ItemTag</summary>
+        /// <param name="tag">The GOTCETag to check for</param>
+        /// <returns>Whether or not the tag was present</returns>
+        public static bool HasTag(this ItemDef def, GOTCETags tag) {
+            return def.ContainsTag((ItemTag)tag);
+        }
     }
 }

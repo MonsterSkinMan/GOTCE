@@ -21,7 +21,7 @@ namespace GOTCE.Equipment.EliteEquipment
         public override string EliteEquipmentFullDescription => "";
 
         public override string EliteEquipmentLore => "";
-        public override Texture EliteRampTexture => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/BoxingGloves.png").texture;
+        public override Texture2D EliteRampTexture => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Prefabs/EliteOverlays/Backup.png").texture;
 
         public override string EliteModifier => "Compartmentalized";
 
@@ -116,4 +116,4 @@ namespace GOTCE.Equipment.EliteEquipment
             R2API.ContentAddition.AddBuffDef(buff);
         }
     }
-} */
+}  */

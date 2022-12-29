@@ -72,7 +72,7 @@ namespace GOTCE.Equipment.EliteEquipment
         /// <summary>
         /// If you want the elite to have an overlay with your custom material.
         /// </summary>
-        public virtual Texture EliteRampTexture { get; set; } = null;
+        public abstract Texture2D EliteRampTexture { get; }
 
         public EliteDef EliteDef;
 
@@ -144,43 +144,6 @@ namespace GOTCE.Equipment.EliteEquipment
         }
 
 
-        /* private void OverlayManager(On.RoR2.CharacterBody.orig_FixedUpdate orig, CharacterBody self)
-        {
-            if (self.modelLocator && self.modelLocator.modelTransform && self.HasBuff(EliteBuffDef) && !self.GetComponent<EliteOverlayManager>())
-            {
-                RoR2.TemporaryOverlay overlay = self.modelLocator.modelTransform.gameObject.AddComponent<RoR2.TemporaryOverlay>();
-                overlay.duration = float.PositiveInfinity;
-                overlay.alphaCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
-                overlay.animateShaderAlpha = true;
-                overlay.destroyComponentOnEnd = true;
-                overlay.originalMaterial = EliteMaterial;
-                overlay.AddToCharacerModel(self.modelLocator.modelTransform.GetComponent<RoR2.CharacterModel>());
-                var eliteOverlayManager = self.gameObject.AddComponent<EliteOverlayManager>();
-                eliteOverlayManager.Overlay = overlay;
-                eliteOverlayManager.Body = self;
-                eliteOverlayManager.EliteBuffDef = EliteBuffDef;
-
-                self.modelLocator.modelTransform.GetComponent<CharacterModel>().activeOverlayCount
-            }
-            orig(self);
-        }
-
-        public class EliteOverlayManager : MonoBehaviour
-        {
-            public RoR2.TemporaryOverlay Overlay;
-            public RoR2.CharacterBody Body;
-            public BuffDef EliteBuffDef;
-
-            public void FixedUpdate()
-            {
-                if (!Body.HasBuff(EliteBuffDef))
-                {
-                    UnityEngine.Object.Destroy(Overlay);
-                    UnityEngine.Object.Destroy(this);
-                }
-            }
-        } */
-
         protected void CreateElite()
         {
             EliteDef = ScriptableObject.CreateInstance<EliteDef>();
@@ -210,19 +173,10 @@ namespace GOTCE.Equipment.EliteEquipment
                 }
             }
 
-            EliteAPI.Add(new CustomElite(EliteDef, CanAppearInEliteTiers));
+            EliteAPI.Add(new CustomElite(EliteDef, CanAppearInEliteTiers, EliteRampTexture));
 
             EliteBuffDef.eliteDef = EliteDef;
             ContentAddition.AddBuffDef(EliteBuffDef);
-
-            /* if (EliteRampTexture)
-            {
-                Utils.OverlayManager.Overlay overlay = new();
-                overlay.def = EliteDef;
-                overlay.ramp = EliteRampTexture;
-
-                Utils.OverlayManager.AddOverlay(overlay);
-            } */
         }
 
         protected bool PerformEquipmentAction(On.RoR2.EquipmentSlot.orig_PerformEquipmentAction orig, RoR2.EquipmentSlot self, EquipmentDef equipmentDef)

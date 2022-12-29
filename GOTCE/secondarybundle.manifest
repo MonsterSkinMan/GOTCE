@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2149774022
+CRC: 1887200217
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 94b970db90eeb5c6b80601e2c2c18da7
+    Hash: f28138e32402760eb83c2f37d57ab671
   TypeTreeHash:
     serializedVersion: 2
     Hash: 171afec5ec862ae12816d8e6d8323b94
@@ -208,7 +208,6 @@ Assets:
 - Assets/Icons/BG/LunarVoid.png
 - Assets/Icons/Items/AegisDisplayCase.png
 - Assets/Icons/Artifacts/artifactofsoleon.png
-- Assets/Prefabs/EliteOverlays/Backup.mat
 - Assets/Icons/Artifacts/artifactofwoolieoff.png
 - Assets/Prefabs/Interactables/Crucible/Crucible.prefab
 - Assets/Icons/IonSurger.png
@@ -223,9 +222,11 @@ Assets:
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/return.png
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/double.png
 - Assets/Icons/Items/Gamepad.png
+- Assets/Prefabs/EliteOverlays/Backup.png
 - Assets/Prefabs/Enemies/The/TheBody.prefab
 - Assets/Icons/Items/TheAegisfunder.png
 - Assets/Prefabs/VFX/AltSkills/Tether/LaserTether.prefab
+- Assets/Icons/Skills/scorch.png
 - Assets/Prefabs/Survivors/Crackmando/CrackmandoBody.prefab
 - Assets/Prefabs/Enemies/Vermin/mdlVermin.prefab
 - Assets/Icons/Items/BoxingGloves.png
