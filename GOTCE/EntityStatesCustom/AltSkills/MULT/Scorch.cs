@@ -7,7 +7,7 @@ using System;
 namespace GOTCE.EntityStatesCustom.AltSkills.MULT {
     public class Scorch : BaseState {
         private GameObject flamePrefab => Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.DroneFlamethrowerEffect).WaitForCompletion();
-        private float totalDamageCoeff = 15f;
+        private float totalDamageCoeff = 3.66f;
         private float baseDuration = 1.3f;
         private int ticks = 15;
         private float duration;

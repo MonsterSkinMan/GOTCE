@@ -282,8 +282,18 @@ namespace GOTCE.Based
                 viewableNode = new ViewablesCatalog.Node(Skills.Scorch.Instance.SkillDef.skillNameToken, false, null)
             };
 
+            EntityStateMachine esm = multPrefab.AddComponent<EntityStateMachine>();
+            esm.customName = "Scorch";
+            esm.initialStateType = new SerializableEntityStateType(typeof(Idle));
+            esm.mainStateType = new SerializableEntityStateType(typeof(Idle));
+
+            NetworkStateMachine nsm = multPrefab.GetComponent<NetworkStateMachine>();
+            List<EntityStateMachine> machines = nsm.stateMachines.ToList();
+            machines.Add(esm);
+            nsm.stateMachines = machines.ToArray();
+
             LanguageAPI.Add(Skills.Scorch.Instance.SkillDef.skillNameToken, "Welding Blast");
-            LanguageAPI.Add(Skills.Scorch.Instance.SkillDef.skillDescriptionToken, "Fire a burst of flames that deal <style=cIsDamage>1500%</style> damage over time and <style=cIsDamage>ignite</style> targets.");
+            LanguageAPI.Add(Skills.Scorch.Instance.SkillDef.skillDescriptionToken, "Fire a burst of flames that deal <style=cIsDamage>550%</style> total damage over time, <style=cIsDamage>igniting</style> targets.");
         }
 
         private static void ViendAlts()

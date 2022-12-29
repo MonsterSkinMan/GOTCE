@@ -14,7 +14,7 @@ namespace GOTCE.Skills
         public override string NameToken => "GOTCE_SCORCH_NAME";
 
         public override string DescToken => "GOTCE_SCORCH_DESC";
-        public override string ActivationStateMachineName => "Weapon";
+        public override string ActivationStateMachineName => "Scorch";
         public override int BaseMaxStock => 1;
         public override float BaseRechargeInterval => 8f;
         public override bool BeginSkillCooldownOnSkillEnd => true;
