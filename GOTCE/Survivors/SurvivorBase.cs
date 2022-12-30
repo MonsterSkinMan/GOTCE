@@ -24,6 +24,15 @@ namespace GOTCE.Survivors
 
     public abstract class SurvivorBase
     {
+        public struct BodyInfo {
+            public string NameToken;
+            public float BaseDamage;
+            public float BaseSpeed;
+            public float BaseArmor;
+            public float BaseHealth;
+            public float BaseRegen;
+            public string SubtitleToken;
+        }
         public abstract string bodypath { get; }
         public GameObject prefab;
         public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.SOTVExpansionDef;
@@ -71,6 +80,18 @@ namespace GOTCE.Survivors
             {
                 prefab = PrefabAPI.InstantiateClone(Addressables.LoadAssetAsync<GameObject>(bodypath).WaitForCompletion(), name);
             }
+        }
+
+        public void SetupStats(BodyInfo info, GameObject prefab) {
+            CharacterBody body = prefab.GetComponent<CharacterBody>();
+            body.baseDamage = info.BaseDamage;
+            body.baseNameToken = info.NameToken;
+            body.baseArmor = info.BaseArmor;
+            body.baseMaxHealth = info.BaseHealth;
+            body.autoCalculateLevelStats = true;
+            body.baseMoveSpeed = info.BaseSpeed;
+            body.baseRegen = info.BaseRegen;
+            body.subtitleNameToken = info.SubtitleToken;
         }
 
         public void ReplaceSkill(GenericSkill slot, SkillDef replaceWith, string familyName = "temp")
@@ -238,6 +259,18 @@ namespace GOTCE.Survivors
             modelLocator.preserveModel = false;
             modelLocator.autoUpdateModelTransform = true;
 
+            CharacterModel characterModel;
+            if ((characterModel = model.GetComponent<CharacterModel>()) != null) {
+                characterModel.body = prefab.GetComponent<CharacterBody>();
+            }
+
+            AimAnimator anim;
+
+            if ((anim = model.GetComponent<AimAnimator>()) != null) {
+                anim.inputBank = prefab.GetComponent<InputBankTest>();
+                anim.directionComponent = prefab.GetComponent<CharacterDirection>();
+            }
+
             CharacterDirection characterDirection = prefab.GetComponent<CharacterDirection>();
             if (characterDirection)
             {
@@ -245,13 +278,14 @@ namespace GOTCE.Survivors
                 characterDirection.turnSpeed = turnSpeed;
             }
 
+            foreach (HurtBox box in model.GetComponentsInChildren<HurtBox>()) {
+                box.healthComponent = prefab.GetComponent<HealthComponent>();
+            }
+
             CharacterDeathBehavior characterDeathBehavior = prefab.GetComponent<CharacterDeathBehavior>();
             characterDeathBehavior.deathStateMachine = prefab.GetComponent<EntityStateMachine>();
             characterDeathBehavior.deathState = new SerializableEntityStateType(typeof(GenericCharacterDeath));
 
-            GameObject.Destroy(prefab.GetComponentInChildren<Animator>());
-
-            model.AddComponent<HurtBoxGroup>();
         }
 
         public void SetupHurtbox(GameObject prefab, GameObject model, Collider collidier, short index, bool weakPoint = false, HurtBox.DamageModifier damageModifier = HurtBox.DamageModifier.Normal)

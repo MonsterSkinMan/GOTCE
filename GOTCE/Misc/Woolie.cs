@@ -156,12 +156,5 @@ namespace GOTCE.Misc
                     {RoR2Content.Items.ScrapYellow, Tier.F}
                 };
         }
-
-        public static unvoid Everything()
-        {
-            unvoid val = new unvoid();
-            val.value = new System.Object[] { "the", 1, RoR2Content.Items.BarrierOnOverHeal };
-            return val;
-        }
     }
 }

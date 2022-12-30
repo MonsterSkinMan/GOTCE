@@ -290,8 +290,6 @@ namespace GOTCE
                 }
             }
 
-            Utils.OverlayManager.Hooks();
-
             //this section automatically scans the project for all equipment
             var SkillTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(SkillBase)));
 
