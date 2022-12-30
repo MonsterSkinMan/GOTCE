@@ -17,11 +17,11 @@ namespace GOTCE.Items.Red
 
         public override string ItemLangTokenName => "GOTCE_Gamepad";
 
-        public override string ItemPickupDesc => "Increase 'FOV crit' chance based on your inputs per second.";
+        public override string ItemPickupDesc => "Increase 'sprint crit' chance based on your inputs per second.";
 
-        public override string ItemFullDescription => "Gain <style=cIsUtility>2%</style> <style=cStack>(+2% per stack)</style> '<style=cIsUtility>FOV crit chance</style>' multiplied by your <style=cIsUtility>inputs per second</style>.";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>2%</style> <style=cStack>(+2% per stack)</style> '<style=cIsUtility>sprint crit chance</style>' multiplied by your <style=cIsUtility>inputs per second</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Putting the \"gamers\" in \"Gamers of the Cracked Emoji.\"";
 
         public override ItemTier Tier => ItemTier.Tier3;
 

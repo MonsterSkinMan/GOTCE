@@ -278,7 +278,7 @@ namespace GOTCE.Mechanics
                 {
                     if (self.characterBody && self.characterBody.masterObject && self.characterBody.masterObject.GetComponent<GOTCE_StatsComponent>())
                     {
-                        self.characterBody.masterObject.GetComponent<GOTCE_StatsComponent>().mostRecentlyCommitedWarCrime = WarCrime.Homemade;
+                        self.characterBody.masterObject.GetComponent<GOTCE_StatsComponent>().mostRecentlyCommitedWarCrime = WarCrime.Serrated;
                     }
                 }
             };

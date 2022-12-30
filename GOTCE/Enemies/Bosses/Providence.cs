@@ -70,7 +70,7 @@ namespace GOTCE.Enemies.Bosses
             ReplaceSkill(sl.special, Skills.TrackingOrb.Instance.SkillDef);
 
             LanguageAPI.Add("GOTCE_PROVI_NAME", "Providence");
-            LanguageAPI.Add("GOTCE_PROVI_LORE", "lol, lmao");
+            LanguageAPI.Add("GOTCE_PROVI_LORE", "The young lemurian known as Zarold watched in awe. He couldn't believe he was attending a Lil' Murian concert live. The tickets were expensive as shit and were notorious for selling out almost immediately, meaning many had to burn even more money on tickets as scalpers resold them at exorbitant prices. Luckily, Zarold's friend, Drederick, had managed to snag a pair for them a few months back, and today was finally the day. As they watched the rapper/DJ bust some crazy-ass moves on stage, a loud shattering sound suddenly echoed throughout the room. Immediately, everything stopped as a strange, almost glitchy rift appeared in the sky. As panic began to ensue, none other than Providence tumbled out as the rift disappeared as suddenly as it appeared. Providence, the hero of the lemurians. Providence, who had saved them from their apparent doom on their home planet. Providence, who the lemurians built a great temple for in honor. Providence, who had been killed less than a year prior at the hands of a strange invader. Providence had finally returned, somehow.");
             LanguageAPI.Add("GOTCE_PROVI_SUBTITLE", "Bulwark of the Weak");
 
             DeathRewards deathRewards = prefab.GetComponent<DeathRewards>();
@@ -90,7 +90,8 @@ namespace GOTCE.Enemies.Bosses
             List<DirectorAPI.Stage> stages = new() {
                 DirectorAPI.Stage.ScorchedAcres,
                 DirectorAPI.Stage.SulfurPools,
-                DirectorAPI.Stage.RallypointDelta
+                DirectorAPI.Stage.RallypointDelta,
+                DirectorAPI.Stage.RallypointDeltaSimulacrum
             };
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Champions, false);
         }

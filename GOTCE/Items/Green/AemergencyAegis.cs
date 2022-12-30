@@ -17,7 +17,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemFullDescription => "All sources of barrier are increased by a flat <style=cIsHealing>30</style> <style=cStack>(+15 per stack)</style> for every Backup Magazine you have.";
 
-        public override string ItemLore => "I love Aegis so much.\nIt truly is my favorite item in the game Risk of Rain 2.\nI love getting it, AEGIS, every time I open a legendary chest and I\nLOVE,\nLOVE...\nLOVE!!!\nHow much barrier it provides!!!";
+        public override string ItemLore => "Man, I'm in a real pickle here! It's a good thing I packed my trusty Aegis! Now I know that I'll survi- <i>fucking dies</i>";
 
         public override ItemTier Tier => ItemTier.Tier2;
 

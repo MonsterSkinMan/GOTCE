@@ -132,7 +132,7 @@ namespace GOTCE.Enemies.Minibosses
                 if (info.procChainMask.HasProc(ProcType.AACannon) && !info.procChainMask.HasProc(ProcType.PlasmaCore))
                 {
                     float damage = info.damage * 0.15f;
-                    float num = 8f;
+                    float num = 6f;
 
                     EffectManager.SpawnEffect(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/OmniEffect/OmniExplosionVFXQuick"), new EffectData
                     {

@@ -108,7 +108,7 @@ namespace GOTCE.Enemies.Minibosses
             }
 
             LanguageAPI.Add("GOTCE_IONSURGER_NAME", "Ion Surger");
-            LanguageAPI.Add("GOTCE_IONSURGER_LORE", "Melee range isn't viable.");
+            LanguageAPI.Add("GOTCE_IONSURGER_LORE", "Man suncles is smuch a good moderator I love how he'll fucking skin you alive for daring to post gifs of anything even slightly off topic I love how you can be muted for posting a gif of a modded ror2 enemy it goes smo hard- oh yeah right Ion Surgers yeah they're balls or smth probably created because of how balls the ror2 community is.");
             LanguageAPI.Add("GOTCE_IONSURGER_SUBTITLE", "Horde of Many");
         }
 

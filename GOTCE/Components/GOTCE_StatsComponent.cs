@@ -119,8 +119,8 @@ namespace GOTCE.Components
                 StatsCompEvent.StatsCompRecalc?.Invoke(this, new(cbody.masterObject.GetComponent<GOTCE_StatsComponent>()));
                 
 
-                fovCritChance = FovCritChanceAdd + increase;
-                sprintCritChance = SprintCritChanceAdd;
+                fovCritChance = FovCritChanceAdd;
+                sprintCritChance = SprintCritChanceAdd + increase;
                 stageCritChance = StageCritChanceAdd;
                 reviveChance = reviveChanceAdd;
                 aoeEffect = AOEAdd;
