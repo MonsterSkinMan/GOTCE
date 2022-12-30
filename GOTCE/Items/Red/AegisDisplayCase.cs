@@ -21,7 +21,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemFullDescription => "Decrease <style=cIsHealing>barrier</style> decay rate by <style=cIsHealing>50%</style> <style=cStack>(+50% per stack)</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Not to be confused with Aegis Display Caegise. Completely different. Don't trust what anybody else says, they all secretly work for the Illuminaegis. What, you think I'm crazy? Dude, open your eyes! The Illuminaegis is real! They have a stranglehold on every government, economy, and society in existence! Wake up people!";
 
         public override ItemTier Tier => ItemTier.Tier3;
 

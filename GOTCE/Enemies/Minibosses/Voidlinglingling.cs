@@ -80,8 +80,8 @@ namespace GOTCE.Enemies.Minibosses
             }
 
             LanguageAPI.Add("GOTCE_VOIDLINGLINGLING_NAME", "Voidlinglingling");
-            LanguageAPI.Add("GOTCE_VOIDLINGLINGLING_LORE", "the");
-            LanguageAPI.Add("GOTCE_VOIDLINGLINGLING_SUBTITLE", "A Fun and Engaging Boss");
+            LanguageAPI.Add("GOTCE_VOIDLINGLINGLING_LORE", "\"Greed. It's what dictates all of the Void culture. Everybody in it knows that, and yet they hardly ever realize it at all. Voidling thought he was different. But in the end, he's just a dumb kid who doesn't know anything. He thinks he's so much better than he actually is. He fails to realize that he's the reason he can't capture Petrichor V. He's completely incompetent. So what in the Hyperworld were you thinking, selling him specialized units and giving him access to LITERAL FUCKING CLONING TECHNOLOGY?\"\n\"Hey, money talks. I meant no disrespect to you or [THE COUNCIL]. Voidling simply had the money to buy them, so I gave it to him. Plus, I felt kinda hypocritical after insulting his battle tactics considering who I am and decided to have a bit of pity on him. Oh it's also pretty funny. Like giving an infant access to nuclear weaponry, ya feel me?\"\n\"Nae Nae Lord, we would [decimate] you if we could financially or logistically afford to, which is a fact we hope you're aware of. However, if you choose to circumvent our rules again, we will not hesitate to find a replacement supplier. Do you understand?\"\n\"<i>Sigh...</i> Yes, [REDACTED].\"\n\"Excellent. Now leave.\"\nEND OF RECORDING");
+            LanguageAPI.Add("GOTCE_VOIDLINGLINGLING_SUBTITLE", "Horde of Many");
         }
 
         public override void PostCreation()

@@ -21,7 +21,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemFullDescription => "Gain <style=cIsDamage>varying boosts</style> BASED on your <style=cIsUtility>most recently committed War Crime</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Y'know I really hope that I'm not on some sort of watchlist for all of the research I had to do to figure out what should classify as a war crime.";
 
         public override ItemTier Tier => ItemTier.Tier3;
 

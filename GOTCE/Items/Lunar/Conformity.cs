@@ -18,7 +18,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemFullDescription => "Gain <style=cIsDamage>+100%</style> <style=cStack>(+100% per stack)</style> <style=cIsDamage>attack speed</style>. Transform into the struck enemy on hit. Decrease <style=cIsHealing>regeneration</style> by <style=cIsHealing>0%</style> <style=cStack>(-50% per stack)</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Everybody may be different, but at the end of the day, we're all the same. At some point, there was a single-celled organism that gave rise to all modern life on the planet. Hell, all of humanity is descended from one person at this point if I remember correctly, so everything really comes back together in the end. Or, I guess this would be the beginning?";
 
         public override ItemTier Tier => ItemTier.Lunar;
 

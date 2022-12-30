@@ -20,7 +20,7 @@ namespace GOTCE.Items.VoidGreen
 
         public override string ItemFullDescription => "On hit, <style=cIsUtility>pull enemies</style> towards you. <style=cStack>Pull strength increases per stack</style>. <style=cIsVoid>Corrupts all Boxing Gloves</style>.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "Literally alien magnet from aetherium gotce is so unoriginal smh my head";
 
         public override ItemTier Tier => ItemTier.VoidTier2;
 

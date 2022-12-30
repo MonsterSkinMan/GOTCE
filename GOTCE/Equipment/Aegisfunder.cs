@@ -21,7 +21,7 @@ namespace GOTCE.Equipment
 
         public override string EquipmentFullDescription => "Fire a rapid stream of Aegises for <style=cIsDamage>250% damage</style> that give 10% barrier on hit. Consumes <style=cIsUtility>1 Aegis</style> per second of firing.";
 
-        public override string EquipmentLore => "";
+        public override string EquipmentLore => "The Aegisfunder. 100% Aegis per Aegis is EXTREMELY aegis, even if you <i>do</i> have a crazy Aegis of on-Aegis Aegises to scale Aegis with. Yes, the Aegis changes makes this a more lucrative Aegis <i>ON AEGIS</i>, but in Aegis, if you're already at the Aegis of applying a stupid amount of Aegis, you probably don't need the Aegisfunder to help you with that. Take something Aegis.";
         public override bool CanBeRandomlyTriggered => false;
 
         public override GameObject EquipmentModel => null;

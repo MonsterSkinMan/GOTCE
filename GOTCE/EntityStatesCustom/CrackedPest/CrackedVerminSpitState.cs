@@ -29,13 +29,13 @@ namespace GOTCE.EntityStatesCustom.CrackedPest
                 info.position = aimray.origin;
                 info.rotation = Util.QuaternionSafeLookRotation(aimray.direction);
                 info.owner = base.gameObject;
-                info.damage = base.characterBody.damage * 2f;
+                info.damage = base.characterBody.damage;
                 info.crit = Util.CheckRoll(base.characterBody.crit, base.characterBody.master);
                 info.procChainMask = behemoth;
                 info.damageColorIndex = DamageColorIndex.Poison;
                 for (int i = 0; i < 5; i++)
                 {
-                    info.rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(aimray.direction, 1, 3, 1, 3));
+                    info.rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(aimray.direction, 2, 4, 1, 3));
                     ProjectileManager.instance.FireProjectile(info);
                 }
             }

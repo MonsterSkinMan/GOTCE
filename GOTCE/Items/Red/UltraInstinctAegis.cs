@@ -21,7 +21,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemFullDescription => "On '<style=cIsDamage>critical strike</style>', less than <style=cIsUtility>3</style> seconds after taking damage greater than or equal to <style=cIsHealing>85% maximum health</style>, gain a <style=cIsUtility>buff</style> that gives you <style=cIsHealing>50% barrier</style> a second for <style=cIsUtility>5</style> <style=cStack>(+2 per stack)</style> seconds.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Aegis when you have 2 or more stacks of Wungus:";
 
         public override ItemTier Tier => ItemTier.Tier3;
 
