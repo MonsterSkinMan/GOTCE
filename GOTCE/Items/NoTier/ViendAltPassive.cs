@@ -47,11 +47,11 @@ namespace GOTCE.Items.NoTier
 
         public override void Hooks()
         {
-            On.RoR2.Run.Start += Run_Start;
+            /*On.RoR2.Run.Start += Run_Start;
             On.RoR2.Run.RecalculateDifficultyCoefficentInternal += Run_RecalculateDifficultyCoefficentInternal;
             On.RoR2.Run.GetRunStopwatch += Run_GetRunStopwatch;
             On.RoR2.Run.FixedUpdate += Run_FixedUpdate;
-            On.RoR2.CharacterBody.OnInventoryChanged += CharacterBody_OnInventoryChanged;
+            On.RoR2.CharacterBody.OnInventoryChanged += CharacterBody_OnInventoryChanged; */
             RecalculateStatsAPI.GetStatCoefficients += (CharacterBody cb, RecalculateStatsAPI.StatHookEventArgs args) => {
                 if (NetworkServer.active) {
                     if (cb.inventory && cb.inventory.GetItemCount(ItemDef) > 0) {

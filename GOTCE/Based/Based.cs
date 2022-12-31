@@ -78,13 +78,6 @@ namespace GOTCE.Based
 
                 Chat.AddMessage("lol, lmao.");
             }
-            if (NetworkServer.active)
-            {
-                if (self.costType == CostTypeIndex.LunarCoin && SceneManager.GetActiveScene().name == "bazaar")
-                {
-                    GameObject.DestroyImmediate(self.gameObject);
-                }
-            }
         }
     }
 
