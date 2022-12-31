@@ -26,6 +26,6 @@ namespace GOTCE.Skills
         public override bool MustKeyPress => false;
         public override int RechargeStock => 1;
         public override int StockToConsume => 0;
-        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/NEA.png");
+        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/DoomBlast.png");
     }
 }
