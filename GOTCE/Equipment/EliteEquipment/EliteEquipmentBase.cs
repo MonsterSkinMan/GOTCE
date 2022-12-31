@@ -152,6 +152,7 @@ namespace GOTCE.Equipment.EliteEquipment
             EliteDef.eliteEquipmentDef = EliteEquipmentDef;
             EliteDef.healthBoostCoefficient = HealthMultiplier;
             EliteDef.damageBoostCoefficient = DamageMultiplier;
+            EliteDef.shaderEliteRampIndex = 0;
 
             var baseEliteTierDefs = EliteAPI.GetCombatDirectorEliteTiers();
             if (!CanAppearInEliteTiers.All(x => baseEliteTierDefs.Contains(x)))

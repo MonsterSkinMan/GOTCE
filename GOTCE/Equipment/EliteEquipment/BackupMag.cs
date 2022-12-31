@@ -1,4 +1,4 @@
-/*using BepInEx.Configuration;
+using BepInEx.Configuration;
 using R2API;
 using RoR2;
 using System;
@@ -25,13 +25,12 @@ namespace GOTCE.Equipment.EliteEquipment
 
         public override string EliteModifier => "Compartmentalized";
 
-        public override GameObject EliteEquipmentModel => new GameObject();
+        public override GameObject EliteEquipmentModel => Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Equipment/Backup/BackupAspect.prefab");
 
-        public override Sprite EliteEquipmentIcon => null;
-
-        public override Sprite EliteBuffIcon => null;
+        public override Sprite EliteEquipmentIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Prefabs/Equipment/Backup/BackupIcon.png");
+        public override Sprite EliteBuffIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Buffs/BackupAffixIcon.png");
         public override float DamageMultiplier => 2f;
-        public override float HealthMultiplier => 6f;
+        public override float HealthMultiplier => 4f;
         public override CombatDirector.EliteTierDef[] CanAppearInEliteTiers => EliteAPI.GetCombatDirectorEliteTiers().Where(x => x.eliteTypes.Contains(Addressables.LoadAssetAsync<EliteDef>("RoR2/Base/EliteFire/edFire.asset").WaitForCompletion())).ToArray();
 
         public override void Init(ConfigFile config)
@@ -86,18 +85,20 @@ namespace GOTCE.Equipment.EliteEquipment
         }
 
         public void Backup(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (body.equipmentSlot) {
-                if (body.equipmentSlot.equipmentIndex == EliteEquipmentDef.equipmentIndex) {
+            if (body.HasBuff(EliteBuffDef)) {
+                if (body.skillLocator) {
                     args.secondaryCooldownMultAdd -= 0.5f;
-                    body.skillLocator.secondary.maxStock = 3;
+                    if (body.skillLocator && body.skillLocator.secondary) {
+                        body.skillLocator.secondary.SetBonusStockFromBody(3 + body.skillLocator.secondary.bonusStockFromBody);
+                    }
                 }
             }
 
-            if (body.HasBuff(Backuped.buff) && body.skillLocator.secondary) {
+            if (body.HasBuff(Backuped.buff) && body.skillLocator && body.skillLocator.secondary) {
                 SkillDef lockedDef = Addressables.LoadAssetAsync<SkillDef>("RoR2/Base/Captain/CaptainSkillDisconnected.asset").WaitForCompletion();
                 body.skillLocator.secondary.SetSkillOverride(body, lockedDef, GenericSkill.SkillOverridePriority.Replacement);
             }
-            else {
+            else if (body.skillLocator && body.skillLocator.secondary) {
                 SkillDef lockedDef = Addressables.LoadAssetAsync<SkillDef>("RoR2/Base/Captain/CaptainSkillDisconnected.asset").WaitForCompletion();
                 body.skillLocator.secondary.UnsetSkillOverride(body, lockedDef, GenericSkill.SkillOverridePriority.Replacement);
             }
@@ -112,8 +113,9 @@ namespace GOTCE.Equipment.EliteEquipment
             buff.canStack = false;
             buff.isDebuff = true;
             buff.name = "Backuped";
+            buff.iconSprite = Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Buffs/BackupAffixIcon.png");
 
             R2API.ContentAddition.AddBuffDef(buff);
         }
     }
-}*/
+}

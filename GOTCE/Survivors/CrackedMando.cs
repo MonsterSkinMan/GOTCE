@@ -61,6 +61,24 @@ namespace GOTCE.Survivors
             ContentAddition.AddEntityState<EntityStatesCustom.CrackedMando.PhaseRounder>(out bool _);
             ContentAddition.AddEntityState<EntityStatesCustom.CrackedMando.VeryTactical>(out bool _);
             ContentAddition.AddEntityState<EntityStatesCustom.CrackedMando.SuppressiveNader>(out bool _);
+
+
+            On.RoR2.ModelLocator.UpdateModelTransform += (orig, self, time) => {
+                if (self.modelTransform && self.modelTransform.gameObject.name == "CrackModel") {
+                    if (self.modelParentTransform) {
+                        Vector3 position = self.modelParentTransform.position;
+                        position -= new Vector3(0, 0.8f, 0);
+                        Quaternion rotation = self.modelParentTransform.rotation;
+                        self.UpdateTargetNormal();
+                        self.SmoothNormals(time);
+                        rotation = Quaternion.FromToRotation(Vector3.up, self.currentNormal) * rotation;
+                        self.modelTransform.SetPositionAndRotation(position, rotation);
+                    }
+                }
+                else {
+                    orig(self, time);
+                }
+            };
         }
 
         public override void PostCreation()

@@ -7,7 +7,7 @@ using System;
 namespace GOTCE.EntityStatesCustom.AltSkills.MULT {
     public class Scorch : BaseState {
         private GameObject flamePrefab => Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.DroneFlamethrowerEffect).WaitForCompletion();
-        private float totalDamageCoeff = 3.66f;
+        private float totalDamageCoeff = 8.8f;
         private float baseDuration = 1.3f;
         private int ticks = 15;
         private float duration;
@@ -47,7 +47,6 @@ namespace GOTCE.EntityStatesCustom.AltSkills.MULT {
                     attack.owner = base.gameObject;
                     attack.weapon = base.gameObject;
                     attack.maxDistance = 18f;
-                    attack.damageType = DamageType.IgniteOnHit;
                     attack.radius = 2f;
                     attack.smartCollision = true;
                     attack.origin = base.GetAimRay().origin;
@@ -56,6 +55,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.MULT {
                     attack.aimVector = base.GetAimRay().direction;
                     attack.procCoefficient = 1f;
                     attack.force = 0f;
+                    attack.AddModdedDamageType(DamageTypes.Scorched);
                     attack.Fire();
                 }
             }
