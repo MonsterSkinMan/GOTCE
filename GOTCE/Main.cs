@@ -408,16 +408,11 @@ namespace GOTCE
             if (item.Tier == ItemTier.NoTier) {
                 return true;
             }
-            if (faulty)
-            {
-                var enabled = Config.Bind<bool>("Item: " + item.ConfigName, "Enable Item?", true, "Should this item appear in runs?").Value;
-            }
-            else
-            {
-                var enabled = Config.Bind<bool>("Item: " + item.ConfigName, "Enable Item?", true, "Should this item appear in runs?").Value;
-            }
+            
+            var enabled1 = Config.Bind<bool>("Item: " + item.ConfigName, "Enable Item?", true, "Should this item appear in runs?").Value;
+            
             var aiBlacklist = Config.Bind<bool>("Item: " + item.ConfigName, "Blacklist Item from AI Use?", false, "Should the AI not be able to obtain this item?").Value;
-            if (enabled)
+            if (enabled1)
             {
                 itemList.Add(item);
                 if (aiBlacklist)
@@ -425,7 +420,8 @@ namespace GOTCE
                     item.AIBlacklisted = true;
                 }
             }
-            return enabled;
+            Debug.Log(item.ConfigName + " : " + enabled1);
+            return enabled1;
         }
 
         /// <summary>
