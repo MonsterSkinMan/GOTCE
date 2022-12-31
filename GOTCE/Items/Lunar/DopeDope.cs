@@ -52,7 +52,7 @@ namespace GOTCE.Items.Lunar
                 if (stack > 0)
                 {
                     args.baseShieldAdd += 0.02f * sender.healthComponent.fullHealth * stack;
-                    args.attackSpeedMultAdd += 11f;
+                    args.attackSpeedMultAdd += 11f + (12f * (stack - 1));
                     args.damageMultAdd -= 1f - (1f / 12f);
                 }
             }

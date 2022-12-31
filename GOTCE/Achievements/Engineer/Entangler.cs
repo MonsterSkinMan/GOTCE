@@ -81,6 +81,6 @@ namespace GOTCE.Achievements.Engineer
         public override string Description => "As Engineer, complete a stage without acquiring any mechanical allies.";
         public override string UnlockName => "EntanglerUnlockable";
         public override string TokenName => "ENTANGLER";
-        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Skills/SharkSaw.png");
+        public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Skills/Entangler.png");
     }
 }

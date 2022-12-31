@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3002997724
+CRC: 1159504123
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3e6e7c635a4244f0622f8be5fb11326e
+    Hash: d272bf82f34814ba180d298300b32f5b
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8008b2b46f07412a84f63a8d4423d6d0
@@ -51,6 +51,7 @@ Assets:
 - Assets/Materials/Enemies/kirnMaterial.mat
 - Assets/Textures/Icons/Item/FreeWiFi.png
 - Assets/Models/Prefabs/Item/KirnTheItem/KirnTheItemNoOutline.prefab
+- Assets/Textures/Icons/Skills/Entangler.png
 - Assets/Textures/Icons/Item/heartybreakfast.png
 - Assets/Textures/Icons/Enemies/LivingSuppressiveFire.png
 - Assets/Materials/Item/MonstersVisage/MonstersVisageMaterial.mat
@@ -161,4 +162,5 @@ Assets:
 - Assets/Textures/Icons/Skills/CorruptedDrain.png
 - Assets/Textures/Icons/Item/HuntressHarpoon.png
 - Assets/Materials/Enemies/tongueMaterial.mat
+- Assets/Textures/Icons/Skills/DoomBlast.png
 Dependencies: []
