@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1872649601
+CRC: 191236337
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9ef7e71623a2417c45192d147f85fea0
+    Hash: bcb73d5af0f518674c08ff5c82f04f5d
   TypeTreeHash:
     serializedVersion: 2
     Hash: 171afec5ec862ae12816d8e6d8323b94
@@ -227,11 +227,13 @@ Assets:
 - Assets/Prefabs/Enemies/The/TheBody.prefab
 - Assets/Icons/Items/TheAegisfunder.png
 - Assets/Prefabs/VFX/AltSkills/Tether/LaserTether.prefab
+- Assets/Icons/Skills/barrage.png
 - Assets/Icons/Skills/scorch.png
 - Assets/Prefabs/Survivors/Crackmando/CrackmandoBody.prefab
 - Assets/Prefabs/Enemies/Vermin/mdlVermin.prefab
 - Assets/Icons/Items/BoxingGloves.png
 - Assets/Materials/matBubble.mat
+- Assets/Icons/Buffs/BackupAffixIcon.png
 - Assets/Icons/Artifacts/artifactofcrowdfundingoff.png
 - Assets/Prefabs/Survivors/Crackmando/Model/CrackMandoDisplay.prefab
 - Assets/Prefabs/Enemies/Woolie/Woolie.prefab

@@ -27,5 +27,6 @@ namespace GOTCE.Skills
         public override int RechargeStock => 1;
         public override int StockToConsume => 1;
         public override Sprite Icon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Skills/scorch.png");
+        public override string[] KeywordTokens => new string[] {"GOTCE_INCINERATE_KEYWORD"};
     }
 }

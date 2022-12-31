@@ -1,4 +1,4 @@
-/*using BepInEx.Configuration;
+using BepInEx.Configuration;
 using R2API;
 using RoR2;
 using System;
@@ -28,10 +28,9 @@ namespace GOTCE.Equipment.EliteEquipment
         public override GameObject EliteEquipmentModel => new GameObject();
 
         public override Sprite EliteEquipmentIcon => null;
-
-        public override Sprite EliteBuffIcon => null;
+        public override Sprite EliteBuffIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Buffs/BackupAffixIcon.png");
         public override float DamageMultiplier => 2f;
-        public override float HealthMultiplier => 6f;
+        public override float HealthMultiplier => 4f;
         public override CombatDirector.EliteTierDef[] CanAppearInEliteTiers => EliteAPI.GetCombatDirectorEliteTiers().Where(x => x.eliteTypes.Contains(Addressables.LoadAssetAsync<EliteDef>("RoR2/Base/EliteFire/edFire.asset").WaitForCompletion())).ToArray();
 
         public override void Init(ConfigFile config)
@@ -112,8 +111,9 @@ namespace GOTCE.Equipment.EliteEquipment
             buff.canStack = false;
             buff.isDebuff = true;
             buff.name = "Backuped";
+            buff.iconSprite = Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Buffs/BackupAffixIcon.png");
 
             R2API.ContentAddition.AddBuffDef(buff);
         }
     }
-}*/
+}
