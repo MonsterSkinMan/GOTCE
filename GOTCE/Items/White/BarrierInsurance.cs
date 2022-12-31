@@ -17,7 +17,7 @@ namespace GOTCE.Items.White
         public override string ItemFullDescription => "At the start of each stage, gain <style=cIsHealing>barrier</style> equal to the amount <style=cStack>(+70% of the amount per stack)</style> of <style=cIsHealing>barrier</style> items you have.";
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BarrierInsurance.png");
         public override string ItemLangTokenName => "GOTCE_BarrierInsurance";
-        public override string ItemLore => "";
+        public override string ItemLore => "I don't legally need to disclose my name, but here at I. M. Leegull's Insurance, we cover everything from the normal accidents, to the... not so normal accidents. All the car crashes, the house fires, and even the godawful scaling of high-health barrier decay are covered by my plan. It's a cheap cost of 600 dollars per... week, and if you say that this just sounds like getting the shit scammed out of you, you would be closer to the answer than you think. I'm not scamming you, specifically, I'm just committing insurance fraud.";
         public override GameObject ItemModel => null;
         public override string ItemName => "Barrier Insurance";
         public override string ItemPickupDesc => "Gain an amount of barrier at the start of each stage based on how many barrier items you have.";
