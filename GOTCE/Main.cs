@@ -376,7 +376,7 @@ namespace GOTCE
             );
 
             //CreateExpansion();
-            On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
+            // On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
             // local multiplayer hook
             // run modded ror2 twice, create a multiplayer lobby in one, then do connect localhost:7777 in the other instance
         }
