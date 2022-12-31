@@ -25,9 +25,9 @@ namespace GOTCE.Equipment.EliteEquipment
 
         public override string EliteModifier => "Compartmentalized";
 
-        public override GameObject EliteEquipmentModel => new GameObject();
+        public override GameObject EliteEquipmentModel => Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Equipment/Backup/BackupAspect.prefab");
 
-        public override Sprite EliteEquipmentIcon => null;
+        public override Sprite EliteEquipmentIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Prefabs/Equipment/Backup/BackupIcon.png");
         public override Sprite EliteBuffIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Buffs/BackupAffixIcon.png");
         public override float DamageMultiplier => 2f;
         public override float HealthMultiplier => 4f;
@@ -85,18 +85,20 @@ namespace GOTCE.Equipment.EliteEquipment
         }
 
         public void Backup(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args) {
-            if (body.equipmentSlot) {
-                if (body.equipmentSlot.equipmentIndex == EliteEquipmentDef.equipmentIndex) {
+            if (body.HasBuff(EliteBuffDef)) {
+                if (body.skillLocator) {
                     args.secondaryCooldownMultAdd -= 0.5f;
-                    body.skillLocator.secondary.maxStock = 3;
+                    if (body.skillLocator && body.skillLocator.secondary) {
+                        body.skillLocator.secondary.SetBonusStockFromBody(3 + body.skillLocator.secondary.bonusStockFromBody);
+                    }
                 }
             }
 
-            if (body.HasBuff(Backuped.buff) && body.skillLocator.secondary) {
+            if (body.HasBuff(Backuped.buff) && body.skillLocator && body.skillLocator.secondary) {
                 SkillDef lockedDef = Addressables.LoadAssetAsync<SkillDef>("RoR2/Base/Captain/CaptainSkillDisconnected.asset").WaitForCompletion();
                 body.skillLocator.secondary.SetSkillOverride(body, lockedDef, GenericSkill.SkillOverridePriority.Replacement);
             }
-            else {
+            else if (body.skillLocator && body.skillLocator.secondary) {
                 SkillDef lockedDef = Addressables.LoadAssetAsync<SkillDef>("RoR2/Base/Captain/CaptainSkillDisconnected.asset").WaitForCompletion();
                 body.skillLocator.secondary.UnsetSkillOverride(body, lockedDef, GenericSkill.SkillOverridePriority.Replacement);
             }

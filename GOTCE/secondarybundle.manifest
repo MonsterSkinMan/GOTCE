@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 191236337
+CRC: 4231593903
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: bcb73d5af0f518674c08ff5c82f04f5d
+    Hash: c44c80d362c7f1edea4bc7e5259465ef
   TypeTreeHash:
     serializedVersion: 2
     Hash: 171afec5ec862ae12816d8e6d8323b94
@@ -250,6 +250,7 @@ Assets:
 - Assets/Prefabs/Survivors/Crackmando/Materials/body.mat
 - Assets/Icons/Artifacts/artifactofcrowdfundingon.png
 - Assets/Icons/Items/LuckiestMask.png
+- Assets/Prefabs/Equipment/Backup/BackupAspect.prefab
 - Assets/Icons/Artifacts/artifactofblindnesson.png
 - Assets/Prefabs/WoolerLore.txt
 - Assets/Icons/Items/PierReviewedSource.png
@@ -260,5 +261,6 @@ Assets:
 - Assets/Icons/GummyBeetleQueen.png
 - Assets/Prefabs/Projectiles/AegisFunder/AegisProjectile.prefab
 - Assets/Icons/Items/UltraInstinctAegis.png
+- Assets/Prefabs/Equipment/Backup/BackupIcon.png
 - Assets/Prefabs/Enemies/Provi/ProviBody.prefab
 Dependencies: []
