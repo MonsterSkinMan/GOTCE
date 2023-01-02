@@ -49,7 +49,6 @@ namespace GOTCE.Achievements.VoidFiend
                 totalKills++;
                 int totalMonsterCount = TeamComponent.GetTeamMembers(TeamIndex.Monster).Count + TeamComponent.GetTeamMembers(TeamIndex.Void).Count;
                 bool areNotAlive = totalMonsterCount < 2;
-                Debug.Log(totalMonsterCount);
                 if (totalKills > requiredKills && areNotAlive) {
                     Chat.AddMessage("<style=cIsVoid>?...??..?..</style>");
                     base.Grant();
