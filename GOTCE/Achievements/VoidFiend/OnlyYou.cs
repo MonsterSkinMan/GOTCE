@@ -29,7 +29,7 @@ namespace GOTCE.Achievements.VoidFiend
 
         private class Server : BaseServerAchievement
         {
-            private int requiredKills = 10;
+            private int requiredKills = 75;
             private int totalKills = 0;
             public override void OnInstall()
             {
