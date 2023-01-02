@@ -77,7 +77,7 @@ namespace GOTCE.Based
             impact.destroyOnWorld = true;
             impact.timerAfterImpact = false;
             var guh = prefab.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
-            guh.Add(DamageTypes.NaderEffect);
+            guh.Add(DamageTypes.NaderEffect & DamageTypes.FullChainLightning);
 
             suppressiveNaderPrefab = prefab;
             ContentAddition.AddProjectile(prefab);
