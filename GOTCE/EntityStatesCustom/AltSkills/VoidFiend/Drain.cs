@@ -41,7 +41,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
                 BlastAttack blast = new()
                 {
                     attacker = gameObject,
-                    radius = 5f,
+                    radius = 5f * (1 + (drained * 0.05f)),
                     baseDamage = base.damageStat * (1 + (drained * 0.1f)),
                     baseForce = 2f * (drained / 4),
                     position = characterBody.corePosition,

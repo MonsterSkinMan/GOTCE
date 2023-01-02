@@ -26,7 +26,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Commando
                     {
                         smartCollision = false,
                         radius = 0.5f,
-                        damage = base.damageStat,
+                        damage = base.damageStat * 0.9f,
                         falloffModel = BulletAttack.FalloffModel.None,
                         damageType = DamageType.Generic,
                         aimVector = base.GetAimRay().direction,

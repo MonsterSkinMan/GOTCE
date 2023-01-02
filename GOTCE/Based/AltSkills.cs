@@ -100,7 +100,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.SuperShotgun.Instance.SkillDef.skillNameToken, "Doom Blast");
-            LanguageAPI.Add(Skills.SuperShotgun.Instance.SkillDef.skillDescriptionToken, "Fire a slow, but powerful blast of <style=cIsDamage>20</style> bullets for <style=cIsDamage>20x100% damage</style>.");
+            LanguageAPI.Add(Skills.SuperShotgun.Instance.SkillDef.skillDescriptionToken, "Fire a slow, but powerful blast of <style=cIsDamage>20</style> bullets for <style=cIsDamage>20x90% damage</style>.");
         }
 
         private static void RexAlts()
@@ -185,7 +185,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillNameToken, "Shark Saw");
-            LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillDescriptionToken, "Throw a piercing <style=cIsDamage>sawblade</style> that dashes onto a nearby target, dealing <style=cIsDamage>150%</style> damage and sticking to surfaces, dealing <style=cIsDamage>60%</style> <style=cDeath>bleed</style> damage.");
+            LanguageAPI.Add(Skills.Sawblade.Instance.SkillDef.skillDescriptionToken, "Throw a piercing <style=cIsDamage>sawblade</style> that dashes onto a nearby target, dealing <style=cIsDamage>150%</style> damage and sticking to surfaces, dealing <style=cIsDamage>60%</style> <style=cDeath>bleed</style> damage repeatedly.");
 
             /* On.RoR2.Projectile.ProjectileStickOnImpact.UpdateSticking += (orig, self) => {
                 if (self.stuckTransform == null && !self.gameObject.GetComponent<EntityStatesCustom.AltSkills.Huntress.MoveForward>()) {
@@ -264,7 +264,7 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillNameToken, "Entangler");
-            LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillDescriptionToken, "Take manual control of your mechanical allies, giving you and them <style=cIsUtility>+40% movement speed</style> and <style=cIsDamage>+100% attack speed</style>. <style=cIsHealth>Reduce your armor by -50</style>. Entangled allies will be <style=cIsHealth>disabled</style> for <style=cIsHealth>5</style> seconds after exiting Entangler.");
+            LanguageAPI.Add(Skills.Entangler.Instance.SkillDef.skillDescriptionToken, "Take manual control of your mechanical allies, giving you and them <style=cIsUtility>+40% movement speed</style> and <style=cIsDamage>+100% attack speed</style>. <style=cIsHealth>Reduce your armor by -50</style>. Entangled allies will be <style=cIsHealth>disabled</style> for <style=cIsHealth>5</style> seconds after exiting Entangler. Ping locations to have mobile entangled allies move to them.");
         }
 
         private static void MULTAlts() {
@@ -335,13 +335,13 @@ namespace GOTCE.Based
             };
 
             LanguageAPI.Add(Skills.Pearl.Instance.SkillDef.skillNameToken, "「War??p』");
-            LanguageAPI.Add(Skills.Pearl.Instance.SkillDef.skillDescriptionToken, "Launch a void orb that sticks to surfaces and repeatedly strikes for <style=cIsDamage>60% damage</style>. Use while a void orb is active to <style=cIsUtility>teleport</style> to it, destroying it.");
+            LanguageAPI.Add(Skills.Pearl.Instance.SkillDef.skillDescriptionToken, "Launch a void orb that sticks to surfaces and repeatedly strikes for <style=cIsDamage>150% damage</style>. Use while a void orb is active to <style=cIsUtility>teleport</style> to it, destroying it.");
 
             LanguageAPI.Add(Skills.PearlTeleport.Instance.SkillDef.skillNameToken, "【Retur??n」");
             LanguageAPI.Add(Skills.PearlTeleport.Instance.SkillDef.skillDescriptionToken, "<style=cIsUtility>Teleport</style> to your most recently deployed void orb.");
 
-            LanguageAPI.Add("GOTCE_CORRUPTIONM2UPGRADE_KEYWORD", "[ 【Corruption Upgrade】 ]\nLaunch a powerful void spear that teleports you on impact, releasing a devastating explosion for 2600% damage.");
-            LanguageAPI.Add("GOTCE_CORRUPTIONSPECIALUPGRADE_KEYWORD", "[ 【Corruption Upgrade】 ]\nRoot yourself, gaining corruption while rooted... Release a devastating <style=cIsVoid>barrage of lasers/style> upon unrooting");
+            LanguageAPI.Add("GOTCE_CORRUPTIONM2UPGRADE_KEYWORD", "[ 【Corruption Upgrade】 ]\nLaunch a powerful void spear that teleports you on impact, releasing a devastating explosion for 1500% damage.");
+            LanguageAPI.Add("GOTCE_CORRUPTIONSPECIALUPGRADE_KEYWORD", "[ 【Corruption Upgrade】 ]\nRoot yourself, gaining corruption while rooted... Release a devastating <style=cIsVoid>barrage of lasers/style> in front of yourself upon unrooting for 320% damage each.");
 
             // drain
             skillFamily = sl.special.skillFamily;
@@ -374,13 +374,13 @@ namespace GOTCE.Based
             // drain corrupt
 
             LanguageAPI.Add(Skills.DrainUpgrade.Instance.SkillDef.skillNameToken, "【Dr??ain』");
-            LanguageAPI.Add(Skills.DrainUpgrade.Instance.SkillDef.skillDescriptionToken, "Root yourself temporarily, gaining a large amount of <style=cIsVoid>Corruption</style>. Release a barrage of devastating lasers for 320% damage each upon breaking free.");
+            LanguageAPI.Add(Skills.DrainUpgrade.Instance.SkillDef.skillDescriptionToken, "Root yourself temporarily, gaining a large amount of <style=cIsVoid>Corruption</style>. Release a barrage of devastating lasers in front of yourself for 320% damage each upon breaking free.");
 
             LanguageAPI.Add("GOTCE_VIENDPASSIVE_NAME", "『The Only Thing They Fear】");
-            LanguageAPI.Add("GOTCE_VIENDPASSIVE_DESC", "You are permanently <style=cIsVoid>Corrupted</style>. Gain <style=cIsVoid>Corruption</style> on hit. Your current health depends on your <style=cIsVoid>Corruption</style> at all times.");
+            LanguageAPI.Add("GOTCE_VIENDPASSIVE_DESC", "You are permanently <style=cIsVoid>Corrupted</style>. Gain <style=cIsVoid>Corruption</style> on hit. Your current health depends on your <style=cIsVoid>Corruption</style> at all times. Healing gives you armor instead, which decays over time. Using your primary skill rapidly drains your armor, but your armor slowly regenerates when not using your primary skill.");
 
             LanguageAPI.Add("GOTCE_PEARLUPGRADE_NAME", "『War??p」");
-            LanguageAPI.Add("GOTCE_PEARLUPGRADE_DESC", "Launch a powerful void spike, <style=cIsUtility>teleporting</style> you to it and releasing a devastating void explosion for <style=cIsDamage>700% damage</style>.");
+            LanguageAPI.Add("GOTCE_PEARLUPGRADE_DESC", "Launch a powerful void spike, <style=cIsUtility>teleporting</style> you to it and releasing a devastating void explosion for <style=cIsDamage>1500% damage</style>.");
 
             // alt skills hooks
 
