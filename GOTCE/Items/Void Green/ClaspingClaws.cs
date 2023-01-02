@@ -43,6 +43,10 @@ namespace GOTCE.Items.VoidGreen
         public override void Hooks()
         {
             On.RoR2.HealthComponent.TakeDamage += Smash4PacManGrabIsSoAwesomeBro;
+            On.RoR2.Items.ContagiousItemManager.Init += (orig) => {
+                Utils.ItemHelpers.RegisterCorruptions(ItemDef, new() { Items.Green.BoxingGloves.Instance.ItemDef});
+                orig();
+            };
         }
 
         private void Smash4PacManGrabIsSoAwesomeBro(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)

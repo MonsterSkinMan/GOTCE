@@ -12,6 +12,7 @@ namespace GOTCE.Mechanics
         public static EventHandler<StageCritEventArgs> OnStageCrit;
 
         public static EventHandler<FovCritEventArgs> OnFovCrit;
+        public static EventHandler<DeathCritEventArgs> OnDeathCrit;
         private static bool lastStageWasCrit = true;
 
         public static void Hooks() {
@@ -19,12 +20,29 @@ namespace GOTCE.Mechanics
             CharacterBody.onBodyStartGlobal += CharacterBody_OnStart_Crit;
             On.RoR2.CharacterBody.OnSprintStart += CharacterBody_OnSprintStart_Crit;
             R2API.RecalculateStatsAPI.GetStatCoefficients += CriticalRecalcSprint;
+            On.RoR2.GlobalEventManager.OnCharacterDeath += CriticalDeath;
 
             RoR2.Run.onRunStartGlobal += (run) =>
             {
                 lastStageWasCrit = false;
             };
         }  
+
+        private static void CriticalDeath(On.RoR2.GlobalEventManager.orig_OnCharacterDeath orig, GlobalEventManager self, DamageReport report) {
+            orig(self, report);
+            if (NetworkServer.active) {
+                if (report.victimMaster && report.victimMaster.GetStatsComponent(out GOTCE_StatsComponent stats)) {
+                    Debug.Log("stats comp found");
+                    if (Util.CheckRoll(stats.deathCritChance, report.victimMaster) && !stats.isOnCritDeathCooldown) {
+                        Debug.Log("critically dying");
+                        stats.isOnCritDeathCooldown = true;
+                        stats.deathPos = report.damageInfo.position;
+                        stats.CriticallyDie();
+                        OnDeathCrit?.Invoke(report.victimMaster, new(report.victimMaster, report));
+                    }
+                }
+            }
+        }
 
         private static void CharacterBody_Start_FOV(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self) {
             orig(self);
@@ -196,4 +214,14 @@ namespace GOTCE.Mechanics
             Body = body;
         }
     }
+
+    public class DeathCritEventArgs : EventArgs {
+        public CharacterMaster Master;
+        public DamageReport Report;
+        public DeathCritEventArgs(CharacterMaster _master, DamageReport _report) {
+            Master = _master;
+            Report = _report;
+        }
+    }
+
 }

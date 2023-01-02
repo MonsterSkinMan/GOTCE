@@ -408,16 +408,11 @@ namespace GOTCE
             if (item.Tier == ItemTier.NoTier) {
                 return true;
             }
-            if (faulty)
-            {
-                var enabled = Config.Bind<bool>("Item: " + item.ConfigName, "Enable Item?", true, "Should this item appear in runs?").Value;
-            }
-            else
-            {
-                var enabled = Config.Bind<bool>("Item: " + item.ConfigName, "Enable Item?", true, "Should this item appear in runs?").Value;
-            }
+            
+            var enabled1 = Config.Bind<bool>("Item: " + item.ConfigName, "Enable Item?", true, "Should this item appear in runs?").Value;
+            
             var aiBlacklist = Config.Bind<bool>("Item: " + item.ConfigName, "Blacklist Item from AI Use?", false, "Should the AI not be able to obtain this item?").Value;
-            if (enabled)
+            if (enabled1)
             {
                 itemList.Add(item);
                 if (aiBlacklist)
@@ -425,7 +420,8 @@ namespace GOTCE
                     item.AIBlacklisted = true;
                 }
             }
-            return enabled;
+            Debug.Log(item.ConfigName + " : " + enabled1);
+            return enabled1;
         }
 
         /// <summary>
@@ -594,6 +590,25 @@ namespace GOTCE
                 }
             };
 
+            Func<CharacterBody, string> death = (CharacterBody body) =>
+            {
+                if (body.masterObject)
+                {
+                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
+                    {
+                        return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().deathCritChance.ToString();
+                    }
+                    else
+                    {
+                        return "N/A";
+                    }
+                }
+                else
+                {
+                    return "N/A";
+                }
+            };
+
             Func<CharacterBody, string> aoe = (CharacterBody body) =>
             {
                 if (body.masterObject)
@@ -637,6 +652,7 @@ namespace GOTCE
             StatsDisplay.AddStatsDisplay("$fov", fov);
             StatsDisplay.AddStatsDisplay("$war", war);
             StatsDisplay.AddStatsDisplay("$aoe", aoe);
+            StatsDisplay.AddStatsDisplay("$death", death);
             // StatsDisplay.AddStatsDisplay("$revive", revive);
 
             /* Hook statsHook = new Hook(
@@ -687,7 +703,9 @@ namespace GOTCE
                 normalText.Add("$sprint");
                 normalText.Add("%\nRecent War Crime: ");
                 normalText.Add("$war");
-                normalText.Add("\nAoE Effect: +");
+                normalText.Add("\nDeath Crit: ");
+                normalText.Add("$death");
+                normalText.Add("%\nAoE Effect: +");
                 normalText.Add("$aoe");
 
                 /* string[] guh = normalText.ToArray();
@@ -709,7 +727,9 @@ namespace GOTCE
                 // altText.Add("%");
                 altText.Add("%\nRecent War Crime: ");
                 altText.Add("$war");
-                altText.Add("\nAoE Effect: +");
+                altText.Add("\nDeath Crit: ");
+                altText.Add("$death");
+                altText.Add("%\nAoE Effect: +");
                 altText.Add("$aoe");
                 // altText.Add("Revive Chance: ");
                 // altText.Add("$revive");

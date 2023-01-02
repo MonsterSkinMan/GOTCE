@@ -1,3 +1,16 @@
+using UnityEngine;
+namespace GOTCE.Utils {
+    public static class AddressableUtils {
+        public static T Load<T>(this string path) {
+            return Addressables.LoadAssetAsync<T>(path).WaitForCompletion();
+        }
+
+        public static T LoadComponent<T>(this string path) where T : Component {
+            return path.Load<GameObject>().GetComponent<T>();
+        }
+    }
+}
+
 namespace GOTCE.Utils.Paths {
   // this class was generated from the following code
   /*

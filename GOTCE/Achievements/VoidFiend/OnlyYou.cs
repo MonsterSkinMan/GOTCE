@@ -29,7 +29,7 @@ namespace GOTCE.Achievements.VoidFiend
 
         private class Server : BaseServerAchievement
         {
-            private int requiredKills = 10;
+            private int requiredKills = 75;
             private int totalKills = 0;
             public override void OnInstall()
             {
@@ -49,7 +49,6 @@ namespace GOTCE.Achievements.VoidFiend
                 totalKills++;
                 int totalMonsterCount = TeamComponent.GetTeamMembers(TeamIndex.Monster).Count + TeamComponent.GetTeamMembers(TeamIndex.Void).Count;
                 bool areNotAlive = totalMonsterCount < 2;
-                Debug.Log(totalMonsterCount);
                 if (totalKills > requiredKills && areNotAlive) {
                     Chat.AddMessage("<style=cIsVoid>?...??..?..</style>");
                     base.Grant();

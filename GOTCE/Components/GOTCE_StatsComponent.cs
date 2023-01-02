@@ -23,6 +23,7 @@ namespace GOTCE.Components
 
         public float sprintCritChance;
         public float fovCritChance;
+        public float deathCritChance;
 
         // death chance
         public float deathChance;
@@ -75,11 +76,19 @@ namespace GOTCE.Components
         public float DeathChanceAdd;
         public int AOEAdd;
         public float reviveChanceAdd;
+        public float DeathCritChanceAdd;
 
         // sprint crit
         public bool isCriticallySprinting = false;
 
         public WarCrime mostRecentlyCommitedWarCrime = WarCrime.None;
+
+        // death crit
+        private float stopwatchDeathCrit = 0f;
+        private float safeTimerDeathCrit = 5f;
+        private bool deathCritTimerOn = false;
+        public bool isOnCritDeathCooldown = false;
+        public Vector3 deathPos;
 
         private void Start()
         {
@@ -114,6 +123,7 @@ namespace GOTCE.Components
                 FovCritChanceAdd = 0;
                 reviveChanceAdd = 0;
                 DeathChanceAdd = 0;
+                DeathCritChanceAdd = 0;
                 
 
                 StatsCompEvent.StatsCompRecalc?.Invoke(this, new(cbody.masterObject.GetComponent<GOTCE_StatsComponent>()));
@@ -125,6 +135,7 @@ namespace GOTCE.Components
                 reviveChance = reviveChanceAdd;
                 aoeEffect = AOEAdd;
                 deathChance = DeathChanceAdd;
+                deathCritChance = DeathCritChanceAdd;
             }
 
             // grant attack speed if the player is within an ethereal bubble from seasoned patty
@@ -158,8 +169,27 @@ namespace GOTCE.Components
             }
         }
 
+        public void CriticallyDie() {
+            deathCritTimerOn = true;
+            Invoke(nameof(RespawnExtraLifeNoImmune), 2.5f);
+            Invoke(nameof(Die), 3f);
+        }
+
         public void FixedUpdate()
         {
+            if (deathCritTimerOn) {
+                master.preventGameOver = true;
+                stopwatchDeathCrit += Time.fixedDeltaTime;
+                if (stopwatchDeathCrit >= safeTimerDeathCrit) {
+                    stopwatchDeathCrit = 0f;
+                    deathCritTimerOn = false;
+                }
+
+                isOnCritDeathCooldown = true;
+            }
+            else {
+                isOnCritDeathCooldown = false;
+            }
         }
 
         // this function exists solely so suicide can be used as a courotine
@@ -219,13 +249,24 @@ namespace GOTCE.Components
                 {
                     obj.initialStateType = obj.mainStateType;
                 }
-                if ((bool)gameObject)
+            }
+        }
+        // dio revive but doesnt give dio and doesnt give iframes and doesnt play vfx
+        public void RespawnExtraLifeNoImmune()
+        {
+            Vector3 vector = deathPos;
+            if (master.killedByUnsafeArea)
+            {
+                vector = TeleportHelper.FindSafeTeleportDestination(deathPos, body, RoR2Application.rng) ?? deathPos;
+            }
+            master.Respawn(vector, Quaternion.Euler(0f, UnityEngine.Random.Range(0f, 360f), 0f));
+
+            if (master.bodyInstanceObject)
+            {
+                EntityStateMachine[] components = master.bodyInstanceObject.GetComponents<EntityStateMachine>();
+                foreach (EntityStateMachine obj in components)
                 {
-                    EffectManager.SpawnEffect(gameObject, new EffectData
-                    {
-                        origin = vector,
-                        rotation = master.bodyInstanceObject.transform.rotation
-                    }, transmit: true);
+                    obj.initialStateType = obj.mainStateType;
                 }
             }
         }
