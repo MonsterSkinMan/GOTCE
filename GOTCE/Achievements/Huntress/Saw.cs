@@ -50,7 +50,7 @@ namespace GOTCE.Achievements.Huntress
                     return;
                 }
 
-                if (report.damageInfo.inflictor && report.damageInfo.damageType == DamageType.BleedOnHit) {
+                if (report.damageInfo.inflictor && report.damageInfo.inflictor.name.ToLower().Contains("saw")) {
                     if (mostRecentSawmerang && mostRecentSawmerang == report.damageInfo.inflictor) {
                         totalKills++;
 
