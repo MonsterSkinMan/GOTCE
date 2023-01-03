@@ -14,17 +14,16 @@ namespace GOTCE.Based {
     public static class Logbook {
         public static void RunHooks() {
             On.RoR2.UI.LogBook.LogBookController.BuildPickupEntries += FixLogbook;
-            On.RoR2.BasicPickupDropTable.GenerateWeightedSelection += RemoveFromPool;
         }
 
-        private static void RemoveFromPool(On.RoR2.BasicPickupDropTable.orig_GenerateWeightedSelection orig, BasicPickupDropTable self, Run run) {
+        private static void RemoveFromPool(On.RoR2.Run.orig_Start orig, Run self) {
+            orig(self);
             foreach (EquipmentDef equipmentDef in EquipmentCatalog.equipmentDefs) {
                 if (equipmentDef.isBoss) {
                     PickupIndex index = equipmentDef.CreatePickupDef().pickupIndex;
-                    run.availableEquipmentDropList.Remove(index);
+                    self.availableEquipmentDropList.Remove(index);
                 }
             }
-            orig(self, run);
         }
 
         private static Entry[] FixLogbook(On.RoR2.UI.LogBook.LogBookController.orig_BuildPickupEntries orig, Dictionary<ExpansionDef, bool> expansion) {
