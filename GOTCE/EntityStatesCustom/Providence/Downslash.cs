@@ -53,7 +53,7 @@ namespace GOTCE.EntityStatesCustom.Providence
                 {
                     OverlapAttack attack = new()
                     {
-                        damage = 9.2f * base.damageStat,
+                        damage = 8f * base.damageStat,
                         procCoefficient = 1f,
                         damageType = DamageType.Generic,
                         attacker = base.gameObject,

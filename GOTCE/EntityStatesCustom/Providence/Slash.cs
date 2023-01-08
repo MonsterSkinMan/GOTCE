@@ -12,7 +12,7 @@ namespace GOTCE.EntityStatesCustom.Providence
         {
             swingEffectPrefab = EntityStates.Merc.Weapon.GroundLight2.comboFinisherSwingEffectPrefab;
             baseDuration = 1.25f;
-            damageCoefficient = 7.5f;
+            damageCoefficient = 5f;
             hitBoxGroupName = "melee";
 
             base.OnEnter();

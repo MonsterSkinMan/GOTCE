@@ -9,7 +9,7 @@ namespace GOTCE.EntityStatesCustom.The
     public class Kick : BaseSkillState
     {
         public float duration = 0.2f;
-        public float damageCoefficient = 1f;
+        public float damageCoefficient = 2f;
         public float procCoefficient = 0.05f;
 
         public override void OnEnter()

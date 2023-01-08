@@ -40,7 +40,7 @@ namespace GOTCE.EntityStatesCustom.Providence
                     info.position = footPosition;
                     info.rotation = Util.QuaternionSafeLookRotation(forward);
                     info.owner = base.gameObject;
-                    info.damage = base.characterBody.damage * 9.2f;
+                    info.damage = base.characterBody.damage * 6f;
                     info.force = 3.2f;
                     info.crit = base.RollCrit();
                     info.speedOverride = 75f;

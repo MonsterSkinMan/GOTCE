@@ -22,11 +22,11 @@ namespace GOTCE.Enemies.Minibosses
             body = prefab.GetComponent<CharacterBody>();
             body.baseArmor = 0;
             body.attackSpeed = 1f;
-            body.damage = 20f;
-            body.levelDamage = 4f;
+            body.damage = 15f;
+            body.levelDamage = 3f;
             body.baseMaxHealth = 500f;
             body.levelMaxHealth = 150f;
-            body.baseMoveSpeed = 30f;
+            body.baseMoveSpeed = 25f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_CRACKEDPEST_NAME";
             body.subtitleNameToken = "GOTCE_CRACKEDPEST_SUBTITLE";

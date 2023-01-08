@@ -77,7 +77,7 @@ namespace GOTCE.EntityStatesCustom.LivingSuppressiveFire
                     minSpread = 0.2f,
                     maxSpread = 0.35f,
                     bulletCount = 1u,
-                    damage = base.characterBody.damage * 0.13f,
+                    damage = base.characterBody.damage * 0.2f,
                     force = 30,
                     tracerEffectPrefab = tracerEffectPrefab,
                     muzzleName = "Muzzle",
@@ -100,7 +100,7 @@ namespace GOTCE.EntityStatesCustom.LivingSuppressiveFire
                     minSpread = 90f,
                     maxSpread = 360f,
                     bulletCount = 1u,
-                    damage = base.characterBody.damage * 0.13f,
+                    damage = base.characterBody.damage * 0.2f,
                     force = 300,
                     tracerEffectPrefab = tracerEffectPrefab,
                     // bulletAttack.muzzleName = muzzleName;

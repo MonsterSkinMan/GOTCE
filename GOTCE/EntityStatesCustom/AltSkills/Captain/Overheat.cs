@@ -66,7 +66,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.Captain
                 {
                     smartCollision = false,
                     radius = 0.3f,
-                    damage = base.damageStat * 0.6f,
+                    damage = base.damageStat * 0.3f,
                     falloffModel = BulletAttack.FalloffModel.DefaultBullet,
                     damageType = DamageType.IgniteOnHit,
                     aimVector = base.GetAimRay().direction,
