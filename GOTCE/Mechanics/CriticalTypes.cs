@@ -32,9 +32,9 @@ namespace GOTCE.Mechanics
             orig(self, report);
             if (NetworkServer.active) {
                 if (report.victimMaster && report.victimMaster.GetStatsComponent(out GOTCE_StatsComponent stats)) {
-                    Debug.Log("stats comp found");
+                    //Debug.Log("stats comp found");
                     if (Util.CheckRoll(stats.deathCritChance, report.victimMaster) && !stats.isOnCritDeathCooldown) {
-                        Debug.Log("critically dying");
+                        //Debug.Log("critically dying");
                         stats.isOnCritDeathCooldown = true;
                         stats.deathPos = report.damageInfo.position;
                         stats.CriticallyDie();

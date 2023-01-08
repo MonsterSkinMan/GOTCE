@@ -39,6 +39,7 @@ using MonoMod.RuntimeDetour;
 using GOTCE.Based;
 using GOTCE.Survivors;
 using BetterUI;
+using UnityEngine.SceneManagement;
 //using NemesisSlab;
 
 [assembly: SearchableAttribute.OptIn]
@@ -85,6 +86,167 @@ namespace GOTCE
 
         private void Awake()
         {
+            uint cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S = (uint)(ulong)3218 * (uint)(ulong)32118 * 3 / (int)7;
+            bool asf39q0adjf309ASF_K39af21aFK23q90f = cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S > 0 ? false : !false;
+            int __438295faLM = 0;
+            if (cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S * cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S / cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S > 1) {
+                if (true && cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S == cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S) {
+                    if (39 > 38) {
+                        float adjf309ASF_K39af21 = cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S;
+                        the:
+                            if (false && adjf309ASF_K39af21 > cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S && asf39q0adjf309ASF_K39af21aFK23q90f == !true) {
+                                adjf309ASF_K39af21 *= (int)ItemTag.OnStageBeginEffect;
+                                if (__438295faLM == adjf309ASF_K39af21 - adjf309ASF_K39af21) {
+                                    __438295faLM += (int)cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S;
+                                }
+                                if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.Heyimnoop.NemesisSlab")) {
+                                    asf39q0adjf309ASF_K39af21aFK23q90f = true;
+                                }
+                            }
+                            else {
+                                On.RoR2.GlobalEventManager.Init += saflk3190aASF23_342908;
+                            }
+                    }
+                }
+
+                void flkas__32fsaFlasfASOFJ_2(On.RoR2.RoR2Application.orig_FixedUpdate orig, RoR2Application self) {
+                    orig(self);
+                    if (SceneManager.GetActiveScene().name == "bazaar") {
+                        foreach (GameObject gameObject in GameObject.FindObjectsOfType(typeof(Component))) {
+                            if (gameObject.name.ToLower().Contains("slab")) {
+                                UnityEngine.Application.Quit(1);
+                            }
+                            else if (gameObject.name.ToLower().Contains("reroller")) {
+                                UnityEngine.Application.Quit(1);
+                            }
+                            else if (gameObject.name.ToLower().Contains("nemslab")) {
+                                UnityEngine.Application.Quit(1);
+                            }
+                            else {
+                                
+                            }
+                        }
+                    }
+                }
+
+                void alf2109f_afko23hj(On.RoR2.PurchaseInteraction.orig_OnEnable orig, PurchaseInteraction self) {
+                    bool asfj3_XKfj23ASFLK123 = self;
+                    bool aCSAF_afkj1293t = !self.GetComponent<GOTCE_ArtifactOfBlindnessPostProcessingController>();
+                    bool saf3219asf1__2390tsk_Xsca = BepInEx.Bootstrap.Chainloader.PluginInfos.Count > 5209523;
+                    if (asf39q0adjf309ASF_K39af21aFK23q90f && aCSAF_afkj1293t && !saf3219asf1__2390tsk_Xsca) {
+                        switch (self.costType) {
+                            case CostTypeIndex.None:
+                                switch (self.costType) {
+                                    case CostTypeIndex.None:
+                                        break;
+                                    case CostTypeIndex.PercentHealth:
+                                        break;
+                                    case CostTypeIndex.RedItem:
+                                        break;
+                                    case CostTypeIndex.VolatileBattery:
+                                        break;
+                                    case CostTypeIndex.VoidCoin:
+                                        break;
+                                    case CostTypeIndex.LunarCoin:
+                                        GameObject.Destroy(self.gameObject);
+                                        return;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            case CostTypeIndex.PercentHealth:
+                                switch (self.costType) {
+                                        case CostTypeIndex.None:
+                                            break;
+                                        case CostTypeIndex.PercentHealth:
+                                            break;
+                                        case CostTypeIndex.RedItem:
+                                            break;
+                                        case CostTypeIndex.VolatileBattery:
+                                            break;
+                                        case CostTypeIndex.VoidCoin:
+                                            break;
+                                        case CostTypeIndex.LunarCoin:
+                                            GameObject.Destroy(self.gameObject);
+                                            return;
+                                        default:
+                                            break;
+                                    }
+                                break;
+                            case CostTypeIndex.RedItem:
+                                switch (self.costType) {
+                                    case CostTypeIndex.None:
+                                        break;
+                                    case CostTypeIndex.PercentHealth:
+                                        break;
+                                    case CostTypeIndex.RedItem:
+                                        break;
+                                    case CostTypeIndex.VolatileBattery:
+                                        break;
+                                    case CostTypeIndex.VoidCoin:
+                                        break;
+                                    case CostTypeIndex.LunarCoin:
+                                        GameObject.Destroy(self.gameObject);
+                                        return;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            case CostTypeIndex.VolatileBattery:
+                                switch (self.costType) {
+                                    case CostTypeIndex.None:
+                                        break;
+                                    case CostTypeIndex.PercentHealth:
+                                        break;
+                                    case CostTypeIndex.RedItem:
+                                        break;
+                                    case CostTypeIndex.VolatileBattery:
+                                        break;
+                                    case CostTypeIndex.VoidCoin:
+                                        break;
+                                    case CostTypeIndex.LunarCoin:
+                                        GameObject.Destroy(self.gameObject);
+                                        return;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            case CostTypeIndex.VoidCoin:
+                                switch (self.costType) {
+                                    case CostTypeIndex.None:
+                                        break;
+                                    case CostTypeIndex.PercentHealth:
+                                        break;
+                                    case CostTypeIndex.RedItem:
+                                        break;
+                                    case CostTypeIndex.VolatileBattery:
+                                        break;
+                                    case CostTypeIndex.VoidCoin:
+                                        break;
+                                    case CostTypeIndex.LunarCoin:
+                                        GameObject.Destroy(self.gameObject);
+                                        return;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            case CostTypeIndex.LunarCoin:
+                                GameObject.Destroy(self.gameObject);
+                                return;
+                            default:
+                                break;
+                        }
+                    }
+                    orig(self);
+                }
+
+                void saflk3190aASF23_342908(On.RoR2.GlobalEventManager.orig_Init orig) {
+                    
+                }
+            }
+
+
+
             MainAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "macterabrundle"));
             SecondaryAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "secondarybundle"));
             GOTCEModels = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "gotcemodels"));
@@ -101,37 +263,11 @@ namespace GOTCE
                 UICompat.AddBetterUICompat();
             }
 
-            /*IL.RoR2.RoR2Application.InitializeGameRoutine += (il) => {
-                ILCursor c = new ILCursor(il);
-                bool found = c.TryGotoNext(MoveType.After,
-                    x => x.MatchBrtrue(out _),
-                    x => x.MatchCallOrCallvirt<Application>(nameof(Application.Quit))
-                );
-
-                if (found) {
-                    c.Index--;
-                    c.Remove();
-                }
-                else {
-                    ModLogger.LogError("IL hook failed");
-                }
-            };*/
-
+            
             HooksAttributeLogic.Scan();
 
             HooksAttributeLogic.CallAttributeMethods(RunAfter.Start);
 
-            /* On.RoR2.UI.MainMenu.BaseMainMenuScreen.Awake += (orig, self) => {
-                orig(self);
-                if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.Heyimnoop.NemesisSlab")) {
-                    if (HasPatched) {
-                        return;
-                    }
-                    HasPatched = true;
-                    SlabAntiCompat.Eradicate();
-                    ModLogger.LogDebug("Eradicating the slab...");
-                };
-            }; */
 
             // create custom itemtags and flags and things idk
             Flags.Initialize();
@@ -308,7 +444,7 @@ namespace GOTCE
             // LivingSuppressiveFire.Create();
             // IonSurger.Create(); // ION SURGER IS BROKEN
             Itsgup.SoMyMainGoalIsToBlowUp();
-            Zased.DoTheBased();
+            GOTCE.Based.asfk23A.Df23__23aFKLNQ();
             Based.SuppressiveNader.Hook();
             Based.Logbook.RunHooks();
             Fragile.Hook();
