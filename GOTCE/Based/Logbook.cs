@@ -14,6 +14,7 @@ namespace GOTCE.Based {
     public static class Logbook {
         public static void RunHooks() {
             On.RoR2.UI.LogBook.LogBookController.BuildPickupEntries += FixLogbook;
+            On.RoR2.Run.Start += RemoveFromPool;
         }
 
         private static void RemoveFromPool(On.RoR2.Run.orig_Start orig, Run self) {
