@@ -57,21 +57,6 @@ namespace GOTCE.EntityStatesCustom.CrackedMando
             base.characterDirection.forward = base.GetAimRay().direction;
             // modelTransform = base.characterBody.modelLocator.modelTransform.GetChild(1).transform;
             FireBullet();
-            Ray aimRay = GetAimRay();
-            GameObject pRound = Addressables.LoadAssetAsync<GameObject>("RoR2/Junk/Commando/FMJ.prefab").WaitForCompletion();
-
-            FireProjectileInfo info2 = new()
-            {
-                damage = base.damageStat *= 3.6f,
-                projectilePrefab = pRound,
-                crit = Util.CheckRoll(base.critStat, base.characterBody.master),
-                damageColorIndex = DamageColorIndex.WeakPoint,
-                position = base.characterBody.aimOriginTransform.position,
-                rotation = Util.QuaternionSafeLookRotation(aimRay.direction),
-                owner = base.gameObject,
-            };
-
-            ProjectileManager.instance.FireProjectile(info2);
         }
 
         private void FireBullet()

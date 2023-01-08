@@ -29,7 +29,7 @@ namespace GOTCE.Buffs
             if (NetworkServer.active && self.body.HasBuff(BuffDef)) {
                 HealthComponent hc;
                 if (info.attacker && (hc = info.attacker.GetComponent<HealthComponent>()) != null) {
-                    hc.AddBarrier(info.damage * 0.2f);
+                    hc.AddBarrier(info.damage * 0.1f);
                 }
             }
 
@@ -49,7 +49,7 @@ namespace GOTCE.Buffs
             if (NetworkServer.active && vb.HasBuff(BuffDef)) {
                 HealthComponent hc;
                 if ((hc = ab.healthComponent) != null) {
-                    hc.AddBarrier(hc.fullCombinedHealth * 0.25f);
+                    hc.AddBarrier(hc.fullCombinedHealth * 0.125f);
                 }
             }
         }

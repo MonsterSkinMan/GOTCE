@@ -28,7 +28,7 @@ namespace GOTCE.EntityStatesCustom.AltSkills.VoidFiend
                 FireProjectileInfo info = new()
                 {
                     owner = gameObject,
-                    damage = damageStat * 3f,
+                    damage = damageStat * 15f,
                     damageColorIndex = DamageColorIndex.Void,
                     projectilePrefab = projectile,
                     position = aim.origin,

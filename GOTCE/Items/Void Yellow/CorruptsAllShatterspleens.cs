@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using HarmonyLib;
 using R2API;
 using RoR2;
 using System;
@@ -44,6 +45,7 @@ namespace GOTCE.Items.VoidYellow
         {
             RecalculateStatsAPI.GetStatCoefficients += Crit;
             On.RoR2.GlobalEventManager.ServerDamageDealt += NEEDLETICK;
+            On.RoR2.Items.ContagiousItemManager.Init += Sussy;
         }
 
         public void Crit(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
@@ -77,6 +79,17 @@ namespace GOTCE.Items.VoidYellow
                     }
                 }
             }
+        }
+
+        private void Sussy(On.RoR2.Items.ContagiousItemManager.orig_Init orig)
+        {
+            ItemDef.Pair transformation = new ItemDef.Pair()
+            {
+                itemDef1 = RoR2Content.Items.BleedOnHitAndExplode,
+                itemDef2 = this.ItemDef
+            };
+            ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem] = ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem].AddToArray(transformation);
+            orig();
         }
     }
 }

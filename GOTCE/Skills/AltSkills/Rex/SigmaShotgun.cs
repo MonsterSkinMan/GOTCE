@@ -25,5 +25,7 @@ namespace GOTCE.Skills
         public override int RechargeStock => 1;
         public override int StockToConsume => 0;
         public override Sprite Icon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Skills/StigmataShotgun.png");
+
+        public override string[] KeywordTokens => new string[] { "KEYWORD_PERCENT_HP" };
     }
 }

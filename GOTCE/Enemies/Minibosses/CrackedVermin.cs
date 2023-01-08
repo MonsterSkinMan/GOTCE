@@ -29,7 +29,7 @@ namespace GOTCE.Enemies.Minibosses
             body.levelDamage = 0.06f;
             body.baseMaxHealth = 180f;
             body.levelMaxHealth = 54f;
-            body.baseMoveSpeed = 30f;
+            body.baseMoveSpeed = 45f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_CRACKEDVERMIN_NAME";
             body.subtitleNameToken = "GOTCE_CRACKEDVERMIN_SUBTITLE";
