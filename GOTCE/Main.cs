@@ -511,6 +511,8 @@ namespace GOTCE
                 typeof(LivingSuppressiveFire).GetMethod("InputBankTest_aimOrigin_Get", System.Reflection.BindingFlags.Public | BindingFlags.Static)
             );
 
+            Gamemodes.Crackclipse.GameMode.Create();
+
             //CreateExpansion();
             // On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
             // local multiplayer hook
