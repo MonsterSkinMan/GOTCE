@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3092087759
+CRC: 1938333714
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 598ee6cca2dd9b90d4ecd732d9f07650
+    Hash: 5769f19bd26d2779d145aa0db2606238
   TypeTreeHash:
     serializedVersion: 2
     Hash: 171afec5ec862ae12816d8e6d8323b94
@@ -240,6 +240,7 @@ Assets:
 - Assets/Icons/Artifacts/artifactofloaderoff.png
 - Assets/Prefabs/game.prefab
 - Assets/Icons/Artifacts/artifactofblindnessoff.png
+- Assets/Icons/Misc/smirk_cat.png
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/rounder.png
 - Assets/Icons/Skills/Hook.png
 - Assets/Icons/Items/RightRingFingerOfProvidence.png

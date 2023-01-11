@@ -20,7 +20,7 @@ namespace GOTCE.Gamemodes.Crackclipse {
         public Dictionary<SurvivorDef, List<UnlockableDef>> survivorsToCrackclipse = new();
         public GameObject button;
         public GameObject difficultyBadges;
-        public Color crackedOrange = new Color(230, 75, 19, 10);
+        public Color crackedOrange = new Color32(230, 75, 19, 255);
         public LocalUser user;
         public void StartCrackclipse()
         {
@@ -52,6 +52,15 @@ namespace GOTCE.Gamemodes.Crackclipse {
             }
 
             user.userProfile.onSurvivorPreferenceChanged += UpdateSurvivors;
+
+            EclipseDifficultyMedalDisplay[] displays = GameObject.FindObjectsOfType<EclipseDifficultyMedalDisplay>();
+            for (int i = 0; i < displays.Length; i++) {
+                int c = displays[i].eclipseLevel;
+                GameObject the = displays[i].gameObject;
+                GameObject.Destroy(displays[i]);
+                CrackclipseMedalController controller = the.AddComponent<CrackclipseMedalController>();
+                controller.level = c;
+            }
         }
 
         private void UpdateSurvivors() {
@@ -130,18 +139,59 @@ namespace GOTCE.Gamemodes.Crackclipse {
         }
 
         public static void Initialize() {
+            StringBuilder sb = new();
+            sb.Append("(1) - You dream of quiet snowfall...");
             LanguageAPI.Add("GOTCE_CRACKCLIPSE_TITLE", "Crackclipse");
             LanguageAPI.Add("GOTCE_CRACKCLIPSE_DESCRIPTION", "Climb through another 8 stacking challenges! This time even more stupid.");
             LanguageAPI.Add("GOTCE_CRACKCLIPSE_START_NAME", "Suffer");
             LanguageAPI.Add("GOTCE_CRACKCLIPSE_1_TITLE", "Crackclipse (1)");
-            LanguageAPI.Add("GOTCE_CRACKCLIPSE_1_DESC", "(1) - You dream of quiet snowfall...");
+            LanguageAPI.Add("GOTCE_CRACKCLIPSE_1_DESC", sb.ToString());
             LanguageAPI.Add("GOTCE_CRACKCLIPSE_2_TITLE", "Crackclipse (2)");
-            LanguageAPI.Add("GOTCE_CRACKCLIPSE_2_DESC", "(1) - You dream of quiet snowfall...\n(2) - Bad sax overwhelms you...");
+            sb.Append("\n(2) - Bad sax overwhelms you...");
+            LanguageAPI.Add("GOTCE_CRACKCLIPSE_2_DESC", sb.ToString());
+            LanguageAPI.Add("GOTCE_CRACKCLIPSE_3_TITLE", "Crackclipse (3)");
+            sb.Append("\n(3) - Enemy spawns are <style=cDeath>completely random</style>...");
+            LanguageAPI.Add("GOTCE_CRACKCLIPSE_3_DESC", sb.ToString());
             LanguageAPI.Add("GOTCE_CRACKCLIPSE_MENU_TITLE", "Crackclipse");
-            LanguageAPI.Add("GOTCE_CRACKCLIPSE_MENU_HOVER", "Lol, lmao.");
+            LanguageAPI.Add("GOTCE_CRACKCLIPSE_MENU_HOVER", "Endure 8 stacking difficulty modifiers, each more bullshit than the last!.");
 
             SceneManager.activeSceneChanged += OnSceneChanged;
         }
     }
+    
+    public class CrackclipseMedalController : MonoBehaviour {
+        public int level = 0;
+        public Image image => GetComponent<Image>();
+        public Sprite sprite => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Misc/smirk_cat.png");
+        bool hasRefreshedAgain = false;
+        public void OnEnable() {
+            image.sprite = sprite;
+            UserProfile.onSurvivorPreferenceChangedGlobal += Refresh;
+            image.color = new Color32(9, 9, 9, 255);
+            LocalUser user = LocalUserManager.GetFirstLocalUser();
+            Refresh(user.userProfile);
+        }
 
+        public void FixedUpdate() {
+            if (level != 0 && !hasRefreshedAgain) {
+                LocalUser user = LocalUserManager.GetFirstLocalUser();
+                Refresh(user.userProfile);
+                hasRefreshedAgain = true;
+            }
+        }
+
+        public void OnDisable() {
+            UserProfile.onSurvivorPreferenceChangedGlobal -= Refresh;
+        }
+        public void Refresh(UserProfile profile) {
+            LocalUser user = LocalUserManager.GetFirstLocalUser();
+            int highest = CrackclipseRun.HighestCrackclipseLevel(user, user.userProfile.survivorPreference);
+            if (highest >= level) {
+                image.color = Color.yellow;
+            }
+            else {
+                image.color = new Color32(9, 9, 9, 255);
+            }
+        }
+    }
 }

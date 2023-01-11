@@ -2,6 +2,9 @@ using RoR2;
 using R2API;
 using UnityEngine;
 using System.Text;
+using RoR2.UI;
+using System.Linq;
+using System.Reflection;
 
 namespace GOTCE.Gamemodes.Crackclipse {
     public class Difficulty {
@@ -15,7 +18,7 @@ namespace GOTCE.Gamemodes.Crackclipse {
         public static DifficultyIndex c8;
 
         public static void Create() {
-            Sprite tmp = Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/Aegiscentrism.png");
+            Sprite tmp = Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Misc/smirk_cat.png");
             CreateDifficulty(tmp, ref c1, "CRACKCLIPSE_1_NAME", 1, "CRACKCLIPSE_1_DESC");
             CreateDifficulty(tmp, ref c2, "CRACKCLIPSE_2_NAME", 2, "CRACKCLIPSE_2_DESC");
             CreateDifficulty(tmp, ref c3, "CRACKCLIPSE_3_NAME", 3, "CRACKCLIPSE_3_DESC");
@@ -42,19 +45,36 @@ namespace GOTCE.Gamemodes.Crackclipse {
             Debug.Log("c8: " + (int)c8);
 
             StringBuilder sb = new();
-            sb.Append("- You dream of quiet snowfall.");
+            sb.Append("- You dream of quiet snowfall...");
             LanguageAPI.Add("CRACKCLIPSE_1_DESC", sb.ToString());
-            sb.Append("\n- Bad sax overwhelms you");
+            sb.Append("\n- Bad sax overwhelms you...");
             LanguageAPI.Add("CRACKCLIPSE_2_DESC", sb.ToString());
+            sb.Append("\n- Enemy spawns are <style=cDeath>completely random</style>");
+            LanguageAPI.Add("CRACKCLIPSE_3_DESC", sb.ToString());
 
             On.RoR2.MusicController.PickCurrentTrack += BadSax;
+            On.RoR2.Run.OverrideRuleChoices += DisableIcons;
+            On.RoR2.CombatDirector.AttemptSpawnOnTarget += TrueDisso;
+            On.RoR2.CombatDirector.OnEnable += BadSax2;
         }
 
         private static void CreateDifficulty(Sprite icon, ref DifficultyIndex _index, string token, int count, string tokenDesc) {
-            DifficultyDef def = new(3f, token, "the", tokenDesc, new Color(230, 75, 19, 10), $"c{count}", true);
+            DifficultyDef def = new(3f, token, "the", tokenDesc, new Color32(230, 75, 19, 255), $"c{count}", true);
             def.iconSprite = icon;
             def.foundIconSprite = icon;
             _index = DifficultyAPI.AddDifficulty(def);
+        }
+
+        private static void DisableIcons(On.RoR2.Run.orig_OverrideRuleChoices orig, Run self, RuleChoiceMask inc, RuleChoiceMask ex, ulong seed) {
+            orig(self, inc, ex, seed);
+            if ((self as CrackclipseRun) == null) {
+                RuleChoiceController[] controllers = GameObject.FindObjectsOfType<RuleChoiceController>();
+                for (int i = 0; i < controllers.Length; i++) {
+                    if (controllers[i].gameObject.name.Contains("Crackclipse")) {
+                        controllers[i].gameObject.SetActive(false);
+                    }
+                }
+            }
         }
 
         public static bool IsCurrentDifHigherOrEqual(DifficultyIndex index, Run run) {
@@ -69,6 +89,29 @@ namespace GOTCE.Gamemodes.Crackclipse {
             }
             else {
                 orig(self, ref newTrack);
+            }
+        }
+
+        private static void BadSax2(On.RoR2.CombatDirector.orig_OnEnable orig, CombatDirector self) {
+            orig(self);
+            if (Run.instance && IsCurrentDifHigherOrEqual(c2, Run.instance)) {
+                CombatDirector.eliteTiers[0].availableDefs.Add(Utils.Paths.EliteDef.edVoid.Load<EliteDef>());
+            }
+            else {
+                CombatDirector.eliteTiers[0].availableDefs.Remove(Utils.Paths.EliteDef.edVoid.Load<EliteDef>());
+            }
+        }
+
+        private static bool TrueDisso(On.RoR2.CombatDirector.orig_AttemptSpawnOnTarget orig, CombatDirector self, Transform target, DirectorPlacementRule.PlacementMode mode) {
+            if (Run.instance && IsCurrentDifHigherOrEqual(c3, Run.instance) && NetworkServer.active) {
+                GameObject masterPrefab = MasterCatalog.masterPrefabs[Run.instance.spawnRng.RangeInt(0, MasterCatalog.masterPrefabs.Length)];
+                if (self.currentMonsterCard != null && self.currentMonsterCard.spawnCard != null) {
+                    self.currentMonsterCard.spawnCard.prefab = masterPrefab;
+                }
+                return orig(self, target, mode);
+            }
+            else {
+                return orig(self, target, mode);
             }
         }
     }

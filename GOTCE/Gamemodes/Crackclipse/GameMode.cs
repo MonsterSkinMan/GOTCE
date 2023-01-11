@@ -25,7 +25,7 @@ namespace GOTCE.Gamemodes.Crackclipse {
 
             PP = ScriptableObject.CreateInstance<PostProcessProfile>();
             
-            Vignette v = PP.AddSettings<Vignette>();
+            /*Vignette v = PP.AddSettings<Vignette>();
             v.color.value = new Color(230, 75, 19, 255);
             v.center.value = new Vector2(0.5f, 0.5f);
             v.enabled.value = true;
@@ -45,7 +45,8 @@ namespace GOTCE.Gamemodes.Crackclipse {
             b.SetAllOverridesTo(true);
 
             pp.sharedProfile = PP;
-            pp.profile = PP;
+            pp.profile = PP; */
+            
             run.userPickable = true;
             run.nameToken = "GOTCE_CRACKRUN_NAME";
             run.lobbyBackgroundPrefab = lobbyPrefab;
