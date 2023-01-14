@@ -22,7 +22,7 @@ namespace GOTCE.Enemies.Standard
             body = prefab.GetComponent<CharacterBody>();
             body.baseArmor = 0;
             body.attackSpeed = 1f;
-            body.damage = 5f;
+            body.damage = 10f;
             body.baseMaxHealth = 110f;
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_LIVINGSUPPRESSIVEFIRE_NAME";

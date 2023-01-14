@@ -105,6 +105,7 @@ namespace GOTCE.Enemies.Standard
                 DirectorAPI.Stage.ScorchedAcres,
                 DirectorAPI.Stage.TitanicPlains,
                 DirectorAPI.Stage.AphelianSanctuary,
+                DirectorAPI.Stage.DistantRoost
             };
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.BasicMonsters, false);
         }

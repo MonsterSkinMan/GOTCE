@@ -85,7 +85,7 @@ namespace GOTCE.EntityStatesCustom.LivingSuppressiveFire
                     isCrit = Util.CheckRoll(critStat, base.characterBody.master),
                     radius = 2,
                     smartCollision = false,
-                    damageType = DamageType.BypassArmor,
+                    damageType = DamageType.BypassArmor | DamageType.BonusToLowHealth | DamageType.WeakOnHit,
                     falloffModel = BulletAttack.FalloffModel.None,
                     procCoefficient = 0.05f
                 };
@@ -109,7 +109,7 @@ namespace GOTCE.EntityStatesCustom.LivingSuppressiveFire
                     isCrit = Util.CheckRoll(critStat, base.characterBody.master),
                     radius = 2,
                     smartCollision = false,
-                    damageType = DamageType.BypassArmor,
+                    damageType = DamageType.BypassArmor | DamageType.BonusToLowHealth | DamageType.WeakOnHit,
                     falloffModel = BulletAttack.FalloffModel.None,
                     procCoefficient = 0.05f
                 };

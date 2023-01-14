@@ -66,7 +66,7 @@ namespace GOTCE.Enemies.Bosses
             }
 
             LanguageAPI.Add("GOTCE_WOOLIE_NAME", "Crowdfunder Woolie");
-            LanguageAPI.Add("GOTCE_WOOLIE_LORE", "\"It costs $180 to shoot one of these for 12 seconds.\"\n\n\"It costs $1080 to fire all 6 for 12 seconds.\"\n\n\"To kill you? Probably only one second. It's a shame I won't make the money back when we're done.\"\n\n<i>STOMPING SOUNDS, FOLLOWED BY THE SOUND OF GOLD BEING FIRED BY SIX CROWDFUNDERS</i>\n\n\"NONE LEAVE THE SLAUGHTERHOUSE! NOT ALIVE!\"\n\n[TRANSMISSION ERROR]");
+            LanguageAPI.Add("GOTCE_WOOLIE_LORE", "\"It costs $180 (scaling with \"time\" except actually scaling based on your level) to shoot one of these for 12 seconds.\"\n\n\"It costs $1080 (scaling with \"time\" except actually scaling based on your level) to fire all 6 for 12 seconds.\"\n\n\"To kill you? Probably only one second. It's a shame I won't make the money back when we're done.\"\n\n<i>STOMPING SOUNDS, FOLLOWED BY THE SOUND OF GOLD BEING FIRED BY SIX CROWDFUNDERS</i>\n\n\"NONE LEAVE THE SLAUGHTERHOUSE! NOT ALIVE!\"\n\n[TRANSMISSION ERROR]");
             LanguageAPI.Add("GOTCE_WOOLIE_SUBTITLE", "THE Mr. Streamer");
 
             On.RoR2.CharacterBody.Start += (orig, self) =>
@@ -96,7 +96,11 @@ namespace GOTCE.Enemies.Bosses
                 DirectorAPI.Stage.SulfurPools,
                 DirectorAPI.Stage.WetlandAspect,
                 DirectorAPI.Stage.DistantRoost,
-                DirectorAPI.Stage.SkyMeadow
+                DirectorAPI.Stage.SkyMeadow,
+                DirectorAPI.Stage.RallypointDelta,
+                DirectorAPI.Stage.VoidLocus,
+                DirectorAPI.Stage.CommencementSimulacrum,
+                DirectorAPI.Stage.GildedCoast
             };
             RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Champions, false);
         }

@@ -24,9 +24,8 @@ namespace GOTCE.Enemies.Minibosses
             base.CreatePrefab();
             body = prefab.GetComponent<CharacterBody>();
             body.baseArmor = 0;
-            body.attackSpeed = 0.3f;
-            body.damage = 0.7f;
-            body.levelDamage = 0.06f;
+            body.attackSpeed = 1f;
+            body.damage = 10f;
             body.baseMaxHealth = 180f;
             body.levelMaxHealth = 54f;
             body.baseMoveSpeed = 45f;
