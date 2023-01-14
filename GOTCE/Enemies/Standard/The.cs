@@ -31,14 +31,16 @@ namespace GOTCE.Enemies.Standard
             };
 
             On.RoR2.HealthComponent.TakeDamage += (orig, self, info) => {
-                if (NetworkServer.active) {
-                    if (self.body.baseNameToken == "GOTCE_THE_NAME") {
-                        info.damage = 0;
-                        info.procCoefficient = 0;
+                if (NetworkServer.active && self.body.baseNameToken == "GOTCE_THE_NAME") {
+                    self.Heal(self.fullCombinedHealth, new());
+
+                    Vector3 guh = (info.attacker.transform.position - self.transform.position).normalized * -1300f;
+                    info.force = guh;
+                    self.TakeDamageForce(guh, true, true);
                         
-                        EntityStatesCustom.The.TheHurtState state = new();
-                        self.gameObject.GetComponent<SetStateOnHurt>().targetStateMachine.SetInterruptState(state, InterruptPriority.Death);
-                    }
+                    EntityStatesCustom.The.TheHurtState state = new();
+                    self.gameObject.GetComponent<SetStateOnHurt>().targetStateMachine.SetInterruptState(state, InterruptPriority.Death);
+                    
                 }
                 orig(self, info);
             };
@@ -90,7 +92,7 @@ namespace GOTCE.Enemies.Standard
             master.bodyPrefab = prefab;
 
             LanguageAPI.Add("GOTCE_THE_NAME", "The");
-            LanguageAPI.Add("GOTCE_THE_LORE", "I have made a very fascinating, yet equally terrifying, discovery in regard to the Crack. It would seem that there are... living creatures beyond it. Er, well, I don't really know if they could be considered living, for various reasons, but... let's continue.\nI have dubbed this creature as simply The. Just The. This is because every time they do anything, they emit a sound that sounds like the word The. I can’t even say that they say the word The, because their mouths don't move when they do it.\nThes seem to resemble the smirking cat emoji, except they have fairly long legs and... \"generou\" backsides, to say the least. I don't have any clue as to why, as they never sit down or create waste of any sort, nor do they seem to mate or reproduce. They are completely androgynous from what I've observed of them.\nThes do not seem to be capable of complex thought. They can react to visual and sensory stimuli just fine, but they seem almost like mindless computer viruses or something. They run around and... attempt to kick creatures in the testicles, regardless of if they have testicles or not. While their kicks don't hurt very much, Thes are capable of kicking at blinding speeds, which can make them somewhat menacing in certain circumstances.\nHowever, the most notable trait of Thes is that, from all of what we've observed, they are COMPLETELY impervious to all harm. Damage just seems to disable them for a few seconds, and all that happens is that their facial features disappear before regrowing. Even when a The was bombarded with antimatter artillery, it came out of it completely unharmed. You cannot run from The. You cannot hide from The. You cannot escape The. The is eternal.\nSo, why do I consider this creature to be terrifying? Well... when enough of them are gathered in one place, it almost seems like reality itself is struggling to keep up. It seemed like time itself slowed down, forcing us to reopen the Crack and send the Thes back through. I am sending this specimen to you in a specialized container in order for you to study it some more. Please write back to me as soon as possible.");
+            LanguageAPI.Add("GOTCE_THE_LORE", "I have made a very fascinating, yet equally terrifying, discovery in regard to the Crack. It would seem that there are... living creatures beyond it. Er, well, I don't really know if they could be considered living, for various reasons, but... let's continue.\nI have dubbed this creature as simply The. Just The. This is because every time they do anything, they emit a sound that sounds like the word The. I canï¿½t even say that they say the word The, because their mouths don't move when they do it.\nThes seem to resemble the smirking cat emoji, except they have fairly long legs and... \"generou\" backsides, to say the least. I don't have any clue as to why, as they never sit down or create waste of any sort, nor do they seem to mate or reproduce. They are completely androgynous from what I've observed of them.\nThes do not seem to be capable of complex thought. They can react to visual and sensory stimuli just fine, but they seem almost like mindless computer viruses or something. They run around and... attempt to kick creatures in the testicles, regardless of if they have testicles or not. While their kicks don't hurt very much, Thes are capable of kicking at blinding speeds, which can make them somewhat menacing in certain circumstances.\nHowever, the most notable trait of Thes is that, from all of what we've observed, they are COMPLETELY impervious to all harm. Damage just seems to disable them for a few seconds, and all that happens is that their facial features disappear before regrowing. Even when a The was bombarded with antimatter artillery, it came out of it completely unharmed. You cannot run from The. You cannot hide from The. You cannot escape The. The is eternal.\nSo, why do I consider this creature to be terrifying? Well... when enough of them are gathered in one place, it almost seems like reality itself is struggling to keep up. It seemed like time itself slowed down, forcing us to reopen the Crack and send the Thes back through. I am sending this specimen to you in a specialized container in order for you to study it some more. Please write back to me as soon as possible.");
             LanguageAPI.Add("GOTCE_THE_SUBTITLE", "Horde of Many");
         }
 
