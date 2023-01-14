@@ -8,7 +8,7 @@ namespace GOTCE.EntityStatesCustom.The
 {
     public class TheHurtState : BaseState
     {
-        public float duration = 3f;
+        public float duration = 2.5f;
 
         public override void FixedUpdate()
         {
