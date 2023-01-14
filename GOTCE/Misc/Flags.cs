@@ -59,5 +59,6 @@ namespace GOTCE.Misc
         public static DamageAPI.ModdedDamageType Explosion = DamageAPI.ReserveDamageType();
         public static DamageAPI.ModdedDamageType Hooked = DamageAPI.ReserveDamageType();
         public static DamageAPI.ModdedDamageType Scorched = DamageAPI.ReserveDamageType();
+        public static DamageAPI.ModdedDamageType StealItem = DamageAPI.ReserveDamageType();
     }
 }

@@ -91,6 +91,19 @@ namespace GOTCE.Enemies
             }
         }
 
+        public void SwapStats(GameObject prefab, float damage, float crit, float speed, float health, float regen, float accel, float armor) {
+            CharacterBody body = prefab.GetComponent<CharacterBody>();
+            body.baseArmor = armor;
+            body.baseCrit = crit;
+            body.baseRegen = regen;
+            body.baseDamage = damage;
+            body.baseMoveSpeed = speed;
+            body.baseAcceleration = accel;
+            body.baseMaxHealth = health;
+            body.autoCalculateLevelStats = true;
+            body.PerformAutoCalculateLevelStats();
+        }
+
         public void ClearESM(GameObject prefab, GameObject master = null) {
             foreach(EntityStateMachine esm in prefab.GetComponents<EntityStateMachine>()) {
                 GameObject.DestroyImmediate(esm);
@@ -120,8 +133,6 @@ namespace GOTCE.Enemies
 
         public virtual void CreatePrefab()
         {
-            
-            
             if (!local) {
                 prefab = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToClone).WaitForCompletion(), CloneName + "Body");
             }

@@ -104,7 +104,7 @@ namespace GOTCE
                                 }
                             }
                             else {
-                                On.RoR2.GlobalEventManager.Init += saflk3190aASF23_342908;
+                                // pass
                             }
                     }
                 }

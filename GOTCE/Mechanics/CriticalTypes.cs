@@ -20,7 +20,7 @@ namespace GOTCE.Mechanics
             CharacterBody.onBodyStartGlobal += CharacterBody_OnStart_Crit;
             On.RoR2.CharacterBody.OnSprintStart += CharacterBody_OnSprintStart_Crit;
             R2API.RecalculateStatsAPI.GetStatCoefficients += CriticalRecalcSprint;
-            On.RoR2.GlobalEventManager.OnCharacterDeath += CriticalDeath;
+            // On.RoR2.GlobalEventManager.OnCharacterDeath += CriticalDeath;
 
             RoR2.Run.onRunStartGlobal += (run) =>
             {
