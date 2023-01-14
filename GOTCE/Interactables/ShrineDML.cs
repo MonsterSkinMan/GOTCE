@@ -54,7 +54,7 @@ namespace GOTCE.Interactables
         public override void MakeSpawnCard()
         {
             base.MakeSpawnCard();
-            isc.directorCreditCost = 15;
+            isc.directorCreditCost = 30;
             isc.name = "iscDml";
             isc.prefab = prefab;
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Ground;
@@ -80,7 +80,7 @@ namespace GOTCE.Interactables
 
     public class DisposableBehavior : MonoBehaviour
     {
-        private float delay = 0.15f;
+        private float delay = 0.5f;
         private float stopwatch = 0f;
         private GameObject projectilePrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/Projectiles/MissileProjectile");
         private struct MissileStream {

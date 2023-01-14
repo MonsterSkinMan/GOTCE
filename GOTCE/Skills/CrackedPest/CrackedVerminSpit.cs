@@ -17,7 +17,7 @@ namespace GOTCE.Skills {
         public override string DescToken => "GOTCE_CrackedVerminSpit_DESC";
         public override string ActivationStateMachineName => "Weapon";
         public override int BaseMaxStock => 1;
-        public override float BaseRechargeInterval => 1f;
+        public override float BaseRechargeInterval => 2f;
         public override bool BeginSkillCooldownOnSkillEnd => true;
         public override bool CancledFromSprinting => false;
         public override bool CancelSprintingOnActivation => true;
