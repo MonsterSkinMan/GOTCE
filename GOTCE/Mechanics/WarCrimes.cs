@@ -112,7 +112,7 @@ namespace GOTCE.Mechanics
             // killing a mending core
             On.RoR2.GlobalEventManager.OnCharacterDeath += (orig, self, report) =>
             {
-                if (NetworkServer.active && report.victimBody && report.victimBody.baseNameToken == GlobalEventManager.CommonAssets.eliteEarthHealerMaster.GetComponent<CharacterMaster>().bodyPrefab.GetComponent<CharacterBody>().baseNameToken && NetworkServer.active)
+                if (NetworkServer.active && report.victimBody && report.victimBody.baseNameToken == Utils.Paths.GameObject.AffixEarthHealerBody.LoadComponent<CharacterBody>().baseNameToken && NetworkServer.active)
                 {
                     if (report.attackerBody && report.attackerBody.masterObject && report.attackerBody.masterObject.GetComponent<GOTCE_StatsComponent>())
                     {

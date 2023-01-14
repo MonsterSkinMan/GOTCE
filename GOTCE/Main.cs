@@ -104,7 +104,7 @@ namespace GOTCE
                                 }
                             }
                             else {
-                                On.RoR2.GlobalEventManager.Init += saflk3190aASF23_342908;
+                                // pass
                             }
                     }
                 }
@@ -510,6 +510,8 @@ namespace GOTCE
                 typeof(InputBankTest).GetProperty("aimOrigin", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).GetGetMethod(),
                 typeof(LivingSuppressiveFire).GetMethod("InputBankTest_aimOrigin_Get", System.Reflection.BindingFlags.Public | BindingFlags.Static)
             );
+
+            // Gamemodes.Crackclipse.GameMode.Create();
 
             //CreateExpansion();
             // On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
