@@ -76,7 +76,7 @@ namespace GOTCE.Based
                             foreach (HitBox hitbox in self.hitBoxGroup.hitBoxes)
                             {
                                 originalScales.Add(hitbox, hitbox.gameObject.transform.localScale);
-                                hitbox.gameObject.transform.localScale *= stats.aoeEffect;
+                                hitbox.gameObject.transform.localScale *= stats.aoeEffect / 10f;
                             }
                         }
                     }
