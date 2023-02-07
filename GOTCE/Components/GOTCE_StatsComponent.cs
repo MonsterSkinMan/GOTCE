@@ -24,6 +24,7 @@ namespace GOTCE.Components
         public float sprintCritChance;
         public float fovCritChance;
         public float deathCritChance;
+        public float rotationCritChance;
 
         // death chance
         public float deathChance;
@@ -77,6 +78,7 @@ namespace GOTCE.Components
         public int AOEAdd;
         public float reviveChanceAdd;
         public float DeathCritChanceAdd;
+        public float RotationCritChanceAdd;
 
         // sprint crit
         public bool isCriticallySprinting = false;
@@ -124,6 +126,7 @@ namespace GOTCE.Components
                 reviveChanceAdd = 0;
                 DeathChanceAdd = 0;
                 DeathCritChanceAdd = 0;
+                RotationCritChanceAdd = 0;
                 
 
                 StatsCompEvent.StatsCompRecalc?.Invoke(this, new(cbody.masterObject.GetComponent<GOTCE_StatsComponent>()));
@@ -136,6 +139,7 @@ namespace GOTCE.Components
                 aoeEffect = AOEAdd;
                 deathChance = DeathChanceAdd;
                 deathCritChance = DeathCritChanceAdd;
+                rotationCritChance = RotationCritChanceAdd;
             }
 
             // grant attack speed if the player is within an ethereal bubble from seasoned patty

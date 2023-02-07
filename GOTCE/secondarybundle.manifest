@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1938333714
+CRC: 1280090927
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5769f19bd26d2779d145aa0db2606238
+    Hash: 33a809b18e2adfe1813398c9ae85acba
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 171afec5ec862ae12816d8e6d8323b94
+    Hash: e94da45494cc640c18c7d8466d7a6593
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -64,6 +64,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 161585894, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: 1395413934, guid: da77c7bbf69f66ab2145560542327715, type: 3}
+- Class: 114
   Script: {fileID: 1790887305, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 1783796254, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
@@ -84,7 +86,13 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 1392865457, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: -2005973111, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -1811796171, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: -46258121, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: 1357070253, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -1067940895, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
@@ -95,6 +103,8 @@ ClassTypes:
   Script: {fileID: -1277448904, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -1077198318, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -2096938146, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 1530905962, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
@@ -140,6 +150,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: -492659515, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: -1578512655, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: -1699741063, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -1864444436, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
@@ -162,13 +174,21 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 717380117, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: -2053006600, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: -517518216, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -1954827382, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -600610627, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -789927658, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -1018496710, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -1627637702, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -884249655, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -1881990681, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
@@ -177,6 +197,8 @@ ClassTypes:
   Script: {fileID: -1895344032, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -1746479147, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: 52559370, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -1568778350, guid: 050936fea8909af15a3fd3b64da1ff83, type: 3}
 - Class: 115
@@ -188,6 +210,10 @@ ClassTypes:
 - Class: 136
   Script: {instanceID: 0}
 - Class: 137
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
   Script: {instanceID: 0}
 - Class: 208
   Script: {instanceID: 0}
@@ -223,6 +249,7 @@ Assets:
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/return.png
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/double.png
 - Assets/Icons/Items/Gamepad.png
+- Assets/Prefabs/Enemies/SolusScanner/SolusScannerBody.prefab
 - Assets/Prefabs/EliteOverlays/Backup.png
 - Assets/Prefabs/Enemies/The/TheBody.prefab
 - Assets/Icons/Items/TheAegisfunder.png
@@ -234,6 +261,7 @@ Assets:
 - Assets/Icons/Items/BoxingGloves.png
 - Assets/Materials/matBubble.mat
 - Assets/Icons/Buffs/BackupAffixIcon.png
+- Assets/Prefabs/Enemies/SolusPylon/SolusPylonMaster.prefab
 - Assets/Icons/Artifacts/artifactofcrowdfundingoff.png
 - Assets/Prefabs/Survivors/Crackmando/Model/CrackMandoDisplay.prefab
 - Assets/Prefabs/Enemies/Woolie/Woolie.prefab
@@ -257,6 +285,8 @@ Assets:
 - Assets/Icons/Items/PierReviewedSource.png
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/warp.png
 - Assets/Icons/nader.png
+- Assets/Prefabs/Enemies/SolusPylon/SolusPylonBody.prefab
+- Assets/Prefabs/Enemies/SolusScanner/SolusScannerMaster.prefab
 - Assets/Icons/Artifacts/artifactofwoolieon.png
 - Assets/Prefabs/Enemies/Provi/Projectile/ProviOrb.prefab
 - Assets/Icons/GummyBeetleQueen.png
