@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 using System.Collections.Generic;
 using HarmonyLib;
 
-namespace GOTCE.Items.White
+namespace GOTCE.Items.VoidWhite
 {
     public class PluripotentBisonSteak : ItemBase<PluripotentBisonSteak>
     {

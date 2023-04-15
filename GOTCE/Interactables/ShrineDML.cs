@@ -82,29 +82,21 @@ namespace GOTCE.Interactables
     {
         private float delay = 0.5f;
         private float stopwatch = 0f;
+        private int remainingMissiles = 0;
         private GameObject projectilePrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/Projectiles/MissileProjectile");
-        private struct MissileStream {
-            public int count;
-        }
-        private List<MissileStream> missileStreams;
-
         public void Start()
         {
             PurchaseInteraction interaction = GetComponent<PurchaseInteraction>();
             interaction.onPurchase.AddListener(OnInteract);
             transform.position -= new Vector3(0, 0.5f, 0);
             interaction.setUnavailableOnTeleporterActivated = false;
-            missileStreams = new();
         }
 
         public void OnInteract(Interactor interactor)
         {
             if (NetworkServer.active)
             {
-                MissileStream stream = new MissileStream {
-                    count = 12,
-                };
-                missileStreams.Add(stream);
+                remainingMissiles += 12;
                 GetComponent<PurchaseInteraction>().SetAvailable(true);
             }
         }
@@ -115,14 +107,11 @@ namespace GOTCE.Interactables
             if (stopwatch >= delay)
             {
                 stopwatch = 0f;
-
-                for (int i = 0; i < missileStreams.Count; i++) {
-                    MissileStream stream = missileStreams[i];
-                    stream.count--;
+                if (remainingMissiles > 0)
+                {
                     MissileUtils.FireMissile(gameObject.transform.position + new Vector3(0, 2f, 0), gameObject.GetComponent<PurchaseInteraction>().lastActivator.gameObject.GetComponent<CharacterBody>(), new ProcChainMask(), null, gameObject.GetComponent<PurchaseInteraction>().lastActivator.gameObject.GetComponent<CharacterBody>().damage * 3f, false, projectilePrefab, DamageColorIndex.Item, false);
+                    remainingMissiles--;
                 }
-
-                missileStreams.RemoveAll(x => x.count <= 0);
             }
         }
     }

@@ -73,7 +73,14 @@ namespace GOTCE.Items.Red
                     DLC1Content.Items.VoidMegaCrabItem.itemIndex, DLC1Content.Items.MissileVoid.itemIndex,
                     DLC1Content.Items.ExtraLifeVoid.itemIndex, DLC1Content.Items.BearVoid.itemIndex,
                     DLC1Content.Items.SlowOnHitVoid.itemIndex, White.AnimalHead.Instance.ItemDef.itemIndex,
-                    BottledCommand.Instance.ItemDef.itemIndex, BottledEnigma.Instance.ItemDef.itemIndex
+                    BottledCommand.Instance.ItemDef.itemIndex, BottledEnigma.Instance.ItemDef.itemIndex,
+                    Green.HeartyBreakfast.Instance.ItemDef.itemIndex, Lunar.PaleAle.Instance.ItemDef.itemIndex,
+                    TubOfLard.Instance.ItemDef.itemIndex, VoidLunar.ExpressionOfTheImmolated.Instance.ItemDef.itemIndex,
+                    VoidRed.BisonSkull.Instance.ItemDef.itemIndex, VoidRed.TubOfBart.Instance.ItemDef.itemIndex,
+                    VoidWhite.FortifiedFlask.Instance.ItemDef.itemIndex, VoidWhite.PluripotentBisonSteak.Instance.ItemDef.itemIndex,
+                    VoidYellow.CorruptsAllShatterspleens.Instance.ItemDef.itemIndex, White.Lunch.Instance.ItemDef.itemIndex,
+                    White.GummyVitamins.Instance.ItemDef.itemIndex, Yellow.RightRingFingerOfProvidence.Instance.ItemDef.itemIndex,
+                    White.Balls.Instance.ItemDef.itemIndex
                     // original list is
                     // bison steak, planula, moldy steak, bungus, wungus, mocha, energy drink, desk plant, spafnar's fries
 
