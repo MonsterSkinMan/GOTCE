@@ -8,6 +8,7 @@ global using GOTCE.Components;
 global using GOTCE.Mechanics;
 global using GOTCE.Utils;
 global using R2API;
+global using Random = UnityEngine.Random;
 
 // global using directives go here
 // this exists because forgetting to import addressables and networking is annoying

@@ -31,6 +31,7 @@ namespace GOTCE.Enemies
         public virtual string CloneName { get; } = null;
         public virtual string PathToCloneMaster { get; } = null;
         public virtual bool local { get; } = false;
+        public virtual bool localMaster { get; } = false;
         public GameObject prefab;
         public GameObject prefabMaster;
         public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.SOTVExpansionDef;
@@ -139,8 +140,13 @@ namespace GOTCE.Enemies
             else {
                 prefab = Main.SecondaryAssets.LoadAsset<GameObject>(PathToClone);
             }
+            if (!localMaster) {
+                prefabMaster = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToCloneMaster).WaitForCompletion(), CloneName + "Master");
+            }
+            else {
+                prefabMaster = Main.SecondaryAssets.LoadAsset<GameObject>(PathToCloneMaster);
+            }
             // prefab.GetComponent<NetworkIdentity>().localPlayerAuthority = false;
-            prefabMaster = PrefabAPI.InstantiateClone(UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<GameObject>(PathToCloneMaster).WaitForCompletion(), CloneName + "Master");
         }
 
         /// <summary>

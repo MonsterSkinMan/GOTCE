@@ -13,6 +13,7 @@ namespace GOTCE.Mechanics
 
         public static EventHandler<FovCritEventArgs> OnFovCrit;
         public static EventHandler<DeathCritEventArgs> OnDeathCrit;
+        public static EventHandler<RotationCritEventArgs> OnRotationCrit;
         private static bool lastStageWasCrit = true;
 
         public static void Hooks() {
@@ -49,6 +50,7 @@ namespace GOTCE.Mechanics
             if (self.isPlayerControlled)
             {
                 self.gameObject.AddComponent<GOTCE_FovComponent>();
+                self.gameObject.AddComponent<GOTCE_RotationComponent>();
             }
         }
 
@@ -116,6 +118,44 @@ namespace GOTCE.Mechanics
                     }
                     if (stats.isCriticallySprinting) {
                         args.moveSpeedMultAdd += self.sprintingSpeedMultiplier;
+                    }
+                }
+            }
+        }
+
+        
+        private class GOTCE_RotationComponent : MonoBehaviour {
+            private CameraTargetParams targetParams;
+            private GOTCE_StatsComponent statsComponent;
+            private CharacterBody body;
+            private float stopwatch = 0f;
+            private float delay = 1f;
+            private CameraTargetParams.CameraParamsOverrideHandle handle;
+
+            private void Start() {
+                body = GetComponent<CharacterBody>();
+                targetParams = GetComponent<CameraTargetParams>();
+                if (body.GetStatsComponent(out GOTCE_StatsComponent stats)) {
+                    statsComponent = stats;
+                }
+            }
+
+            private void FixedUpdate() {
+                if (!statsComponent && body) {
+                    if (body.GetStatsComponent(out GOTCE_StatsComponent stats)) {
+                        statsComponent = stats;
+                    }
+                }
+
+                if (statsComponent) {
+                    stopwatch += Time.fixedDeltaTime;
+                    if (stopwatch >= delay) {
+                        stopwatch = 0f;
+
+                        float chance = statsComponent.rotationCritChance;
+                        if (Util.CheckRoll(chance, body.master)) {
+                            targetParams.AddRecoil(0, 0, 150, 150);
+                        }
                     }
                 }
             }
@@ -221,6 +261,13 @@ namespace GOTCE.Mechanics
         public DeathCritEventArgs(CharacterMaster _master, DamageReport _report) {
             Master = _master;
             Report = _report;
+        }
+    }
+
+    public class RotationCritEventArgs : EventArgs {
+        public CharacterBody Body;
+        public RotationCritEventArgs(CharacterBody body) {
+            Body = body;
         }
     }
 

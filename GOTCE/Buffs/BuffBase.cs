@@ -11,6 +11,7 @@ namespace GOTCE.Buffs
     public abstract class BuffBase<T> : BuffBase where T : BuffBase<T>
     {
         public static T instance { get; private set; }
+        public static BuffDef def => instance?.BuffDef;
 
         public BuffBase()
         {

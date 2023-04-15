@@ -729,6 +729,25 @@ namespace GOTCE
                 }
             };
 
+            Func<CharacterBody, string> rotation = (CharacterBody body) =>
+            {
+                if (body.masterObject)
+                {
+                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
+                    {
+                        return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().rotationCritChance.ToString();
+                    }
+                    else
+                    {
+                        return "N/A";
+                    }
+                }
+                else
+                {
+                    return "N/A";
+                }
+            };
+
             Func<CharacterBody, string> death = (CharacterBody body) =>
             {
                 if (body.masterObject)
@@ -791,6 +810,7 @@ namespace GOTCE
             StatsDisplay.AddStatsDisplay("$fov", fov);
             StatsDisplay.AddStatsDisplay("$war", war);
             StatsDisplay.AddStatsDisplay("$aoe", aoe);
+            StatsDisplay.AddStatsDisplay("$rotation", rotation);
             StatsDisplay.AddStatsDisplay("$death", death);
             // StatsDisplay.AddStatsDisplay("$revive", revive);
 
@@ -844,6 +864,8 @@ namespace GOTCE
                 normalText.Add("$war");
                 normalText.Add("\nDeath Crit: ");
                 normalText.Add("$death");
+                normalText.Add("%\nRotation Crit: ");
+                normalText.Add("$rotation");
                 normalText.Add("%\nAoE Effect: +");
                 normalText.Add("$aoe");
 
@@ -868,6 +890,8 @@ namespace GOTCE
                 altText.Add("$war");
                 altText.Add("\nDeath Crit: ");
                 altText.Add("$death");
+                altText.Add("%\nRotation Crit: ");
+                altText.Add("$rotation");
                 altText.Add("%\nAoE Effect: +");
                 altText.Add("$aoe");
                 // altText.Add("Revive Chance: ");
