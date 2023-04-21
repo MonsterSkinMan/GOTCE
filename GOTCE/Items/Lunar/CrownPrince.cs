@@ -121,7 +121,11 @@ namespace GOTCE.Items.Lunar
                 if (self.GetComponent<Components.GOTCE_StatsComponent>())
                 {
                     Components.GOTCE_StatsComponent stats = self.GetComponent<Components.GOTCE_StatsComponent>();
-                    if (stats.crownPrinceUses <= 0) self.inventory.RemoveItem(ItemDef, self.inventory.GetItemCount(ItemDef));
+                    if (stats.crownPrinceUses <= 0)
+                    {
+                        self.inventory.RemoveItem(ItemDef, self.inventory.GetItemCount(ItemDef));
+                        self.inventory.GiveItem(NoTier.CrownPrinceEXE.Instance.ItemDef, self.inventory.GetItemCount(ItemDef));
+                    }
                     if (stats.crownPrinceUses > 0)
                     {
                         if (!Util.CheckRoll(stats.crownPrinceTrueKillChance, 0))

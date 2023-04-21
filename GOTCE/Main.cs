@@ -253,6 +253,7 @@ namespace GOTCE
                     inter.Create();
                 }
             }
+
             //this section automatically scans the project for all equipment
             var EquipmentTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EquipmentBase)));
 

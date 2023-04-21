@@ -22,6 +22,12 @@
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
    </PropertyGroup>
+  
+   <ItemGroup>
+     <Compile Remove="Enemies\Basic Enemies\**" />
+     <EmbeddedResource Remove="Enemies\Basic Enemies\**" />
+     <None Remove="Enemies\Basic Enemies\**" />
+   </ItemGroup>
 	
   <ItemGroup>
     <Compile Remove="Artifact\ExampleArtifact.cs" />
@@ -121,7 +127,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Enemies\Basic Enemies\" />
     <Folder Include="EntityStatesCustom\AltSkills\Bandit\" />
     <Folder Include="libs\" />
     <Folder Include="Tiers\" />

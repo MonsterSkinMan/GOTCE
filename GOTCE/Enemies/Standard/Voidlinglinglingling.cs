@@ -37,7 +37,7 @@ namespace GOTCE.Enemies.Standard
         public override void AddSpawnCard()
         {
             base.AddSpawnCard();
-            isc.directorCreditCost = 100;
+            isc.directorCreditCost = 60;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
             isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
@@ -104,7 +104,7 @@ namespace GOTCE.Enemies.Standard
                 DirectorAPI.Stage.SkyMeadowSimulacrum,
                 DirectorAPI.Stage.TitanicPlainsSimulacrum
             };
-            RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.Champions);
+            RegisterEnemy(prefab, prefabMaster, stages, DirectorAPI.MonsterCategory.BasicMonsters, false);
         }
     }
 }

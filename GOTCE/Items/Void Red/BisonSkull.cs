@@ -8,7 +8,7 @@ using GOTCE.Components;
 using BepInEx.Configuration;
 using HarmonyLib;
 
-namespace GOTCE.Items.Void_Red
+namespace GOTCE.Items.VoidRed
 {
     public class BisonSkull : ItemBase<BisonSkull>
     {
