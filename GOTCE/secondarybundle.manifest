@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1280090927
+CRC: 1745160032
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 33a809b18e2adfe1813398c9ae85acba
+    Hash: 6220b03132ba93811c652c3deb377986
   TypeTreeHash:
     serializedVersion: 2
-    Hash: e94da45494cc640c18c7d8466d7a6593
+    Hash: 62016e3241fdc153c192c892e350e876
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -186,6 +186,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: -1018496710, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: 1391837873, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: -1627637702, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -884249655, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
@@ -237,6 +239,7 @@ Assets:
 - Assets/Icons/Artifacts/artifactofsoleon.png
 - Assets/Icons/Artifacts/artifactofwoolieoff.png
 - Assets/Prefabs/Interactables/Crucible/Crucible.prefab
+- Assets/Prefabs/Survivors/Cracktain/Drone/JeroneMaster.prefab
 - Assets/Icons/IonSurger.png
 - Assets/Prefabs/Projectiles/Aegiscentrism/AegisGhost.prefab
 - Assets/Icons/Artifacts/artifactofsoleoff.png
@@ -246,6 +249,7 @@ Assets:
 - Assets/Icons/Items/GummyVitamins.png
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/slide.png
 - Assets/Icons/BG/EquipBoss.png
+- Assets/Prefabs/Survivors/Cracktain/Drone/Skills/sdJeronePrimary.asset
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/return.png
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/double.png
 - Assets/Icons/Items/Gamepad.png
@@ -254,21 +258,28 @@ Assets:
 - Assets/Prefabs/Enemies/The/TheBody.prefab
 - Assets/Icons/Items/TheAegisfunder.png
 - Assets/Prefabs/VFX/AltSkills/Tether/LaserTether.prefab
+- Assets/Prefabs/Survivors/Cracktain/Drone/Skills/sdJeroneSecondary.asset
 - Assets/Icons/Skills/barrage.png
 - Assets/Icons/Skills/scorch.png
 - Assets/Prefabs/Survivors/Crackmando/CrackmandoBody.prefab
 - Assets/Prefabs/Enemies/Vermin/mdlVermin.prefab
 - Assets/Icons/Items/BoxingGloves.png
 - Assets/Materials/matBubble.mat
+- Assets/Prefabs/Survivors/Cracktain/Drone/JeroneBody.prefab
 - Assets/Icons/Buffs/BackupAffixIcon.png
+- Assets/Prefabs/Survivors/Cracktain/Skills/sdPortal.asset
 - Assets/Prefabs/Enemies/SolusPylon/SolusPylonMaster.prefab
 - Assets/Icons/Artifacts/artifactofcrowdfundingoff.png
+- Assets/Prefabs/Survivors/Cracktain/CracktainBody.prefab
 - Assets/Prefabs/Survivors/Crackmando/Model/CrackMandoDisplay.prefab
 - Assets/Prefabs/Enemies/Woolie/Woolie.prefab
+- Assets/Prefabs/Survivors/Cracktain/Skills/sdBeacon.asset
 - Assets/Icons/Artifacts/artifactofloaderoff.png
 - Assets/Prefabs/game.prefab
+- Assets/Prefabs/Survivors/Cracktain/Skills/sdLaser.asset
 - Assets/Icons/Artifacts/artifactofblindnessoff.png
 - Assets/Icons/Misc/smirk_cat.png
+- Assets/Prefabs/Survivors/Cracktain/sdCracktain.asset
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/rounder.png
 - Assets/Icons/Skills/Hook.png
 - Assets/Icons/Items/RightRingFingerOfProvidence.png
@@ -291,7 +302,10 @@ Assets:
 - Assets/Prefabs/Enemies/Provi/Projectile/ProviOrb.prefab
 - Assets/Icons/GummyBeetleQueen.png
 - Assets/Prefabs/Projectiles/AegisFunder/AegisProjectile.prefab
+- Assets/Prefabs/Survivors/Cracktain/Drone/Skills/sdJeroneUtility.asset
 - Assets/Icons/Items/UltraInstinctAegis.png
+- Assets/Prefabs/Survivors/Cracktain/Skills/sdBarrage.asset
 - Assets/Prefabs/Equipment/Backup/BackupIcon.png
 - Assets/Prefabs/Enemies/Provi/ProviBody.prefab
+- Assets/Prefabs/Survivors/Cracktain/Drone/Skills/sdJeroneSpecial.asset
 Dependencies: []

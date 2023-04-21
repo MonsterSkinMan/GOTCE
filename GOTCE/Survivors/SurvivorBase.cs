@@ -33,11 +33,11 @@ namespace GOTCE.Survivors
             public float BaseRegen;
             public string SubtitleToken;
         }
-        public abstract string bodypath { get; }
+        public virtual string bodypath { get; }
         public GameObject prefab;
         public virtual ExpansionDef RequiredExpansionHolder { get; } = Main.SOTVExpansionDef;
         public virtual SurvivorDef def { get; } = null;
-        public abstract string name { get; }
+        public virtual string name { get; }
         public virtual bool clone { get; } = false;
 
         public virtual void Create()
