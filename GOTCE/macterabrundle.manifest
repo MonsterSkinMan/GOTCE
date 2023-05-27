@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1520927936
+CRC: 3383345171
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9e8e379ff13674f3d05e292d44a48279
+    Hash: 5b92f36bb150d4b5700532b65dbb4b3f
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8008b2b46f07412a84f63a8d4423d6d0
@@ -108,6 +108,7 @@ Assets:
 - Assets/Textures/Icons/Item/shittyvisage.png
 - Assets/Textures/Icons/Skills/CorruptedWarp.png
 - Assets/Models/Prefabs/Enemies/livingsuppfire.png
+- Assets/Textures/Icons/Item/Personal_Shield_Generator.png
 - Assets/Textures/Icons/Item/DilutedFlask.png
 - Assets/Textures/Icons/Item/HelloWorld.png
 - Assets/Textures/Icons/Item/tuboflard.png
