@@ -12,7 +12,7 @@ namespace GOTCE.Items.White
     {
         public override string ConfigName => "Personal Shield Generator";
 
-        public override string ItemName => "Personal Shield Generator";
+        public override string ItemName => "Personal Shield Generator (PSG)";
 
         public override string ItemLangTokenName => "GOTCE_PSG";
 
@@ -23,11 +23,12 @@ namespace GOTCE.Items.White
         public override string ItemLore => "TBA";
 
         public override ItemTier Tier => ItemTier.Tier1;
+
         public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, GOTCETags.Shield };
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Texture/Icons/Item/Personal_Shield_Generator.png");
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Texture/Icons/Item/PSG.png");
 
         public override void Init(ConfigFile config)
         {
@@ -40,16 +41,16 @@ namespace GOTCE.Items.White
         }
         public override void Hooks()
         {
-            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(videogameWon);
+            RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(VideogameWon);
         }
-        public static void videogameWon(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
+        public static void VideogameWon(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
         {
             if (body && body.inventory)
             {
                 var stack = body.inventory.GetItemCount(Instance.ItemDef);
                 if (stack > 0)
                 {
-                    float gamewon = (body.healthComponent.fullHealth * 0.08f);
+                    float gamewon = body.healthComponent.fullHealth * 0.08f;
                     args.baseShieldAdd += gamewon;
                 }
             }
