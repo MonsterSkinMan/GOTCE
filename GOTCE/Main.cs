@@ -40,6 +40,8 @@ using GOTCE.Based;
 using GOTCE.Survivors;
 using BetterUI;
 using UnityEngine.SceneManagement;
+using R2API.ContentManagement;
+
 //using NemesisSlab;
 
 [assembly: SearchableAttribute.OptIn]
@@ -47,10 +49,17 @@ using UnityEngine.SceneManagement;
 namespace GOTCE
 {
     [BepInPlugin(ModGuid, ModName, ModVer)]
-    [BepInDependency(R2API.R2API.PluginGUID, R2API.R2API.PluginVersion)]
+    [BepInDependency(DamageAPI.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(ItemAPI.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(LanguageAPI.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(EliteAPI.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(RecalculateStatsAPI.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(DirectorAPI.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(NetworkingAPI.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(PrefabAPI.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(R2APIContentManager.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("com.xoxfaby.BetterUI", BepInDependency.DependencyFlags.SoftDependency)] // soft dependency for compat
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
-    [R2APISubmoduleDependency(nameof(DamageAPI), nameof(ItemAPI), nameof(LanguageAPI), nameof(EliteAPI), nameof(RecalculateStatsAPI), nameof(DirectorAPI), nameof(NetworkingAPI), nameof(PrefabAPI))]
     public class Main : BaseUnityPlugin
     {
         public const string ModGuid = "com.TheBestAssociatedLargelyLudicrousSillyheadGroup.GOTCE";
@@ -102,32 +111,35 @@ namespace GOTCE
                 UICompat.AddBetterUICompat();
             }
 
-            On.RoR2.PurchaseInteraction.Awake += (orig, self) => {
+            On.RoR2.PurchaseInteraction.Awake += (orig, self) =>
+            {
                 orig(self);
-                if (SceneManager.GetActiveScene().name == "bazaar" && self.GetComponent<RoR2.EntityLogic.Counter>()) {
+                if (SceneManager.GetActiveScene().name == "bazaar" && self.GetComponent<RoR2.EntityLogic.Counter>())
+                {
                     MonoBehaviour[] coms = self.GetComponentsInChildren<MonoBehaviour>();
-                    for (int i = 0; i < coms.Length; i++) {
+                    for (int i = 0; i < coms.Length; i++)
+                    {
                         coms[i].enabled = false;
                     }
 
                     MeshRenderer[] renderers = self.GetComponentsInChildren<MeshRenderer>();
                     ParticleSystemRenderer[] parts = self.GetComponentsInChildren<ParticleSystemRenderer>();
 
-                    for (int i = 0; i < renderers.Length; i++) {
+                    for (int i = 0; i < renderers.Length; i++)
+                    {
                         renderers[i].enabled = false;
                     }
 
-                    for (int i = 0; i < parts.Length; i++) {
+                    for (int i = 0; i < parts.Length; i++)
+                    {
                         parts[i].enabled = false;
                     }
                 }
             };
 
-            
             HooksAttributeLogic.Scan();
 
             HooksAttributeLogic.CallAttributeMethods(RunAfter.Start);
-
 
             // create custom itemtags and flags and things idk
             Flags.Initialize();
@@ -147,6 +159,7 @@ namespace GOTCE
                     case "StubbedShader/deferred/hgstandard":
                         material.shader = standard;
                         break;
+
                     case "StubbedShader/deferred/hgtriplanarterrainblend":
                         material.shader = terrain;
                         break;
@@ -165,6 +178,7 @@ namespace GOTCE
                     case "StubbedShader/deferred/hgstandard":
                         material.shader = standard;
                         break;
+
                     case "StubbedShader/deferred/hgtriplanarterrainblend":
                         material.shader = terrain;
                         break;
@@ -183,6 +197,7 @@ namespace GOTCE
                     case "StubbedShader/deferred/hgstandard":
                         material.shader = standard;
                         break;
+
                     case "StubbedShader/deferred/hgtriplanarterrainblend":
                         material.shader = terrain;
                         break;
@@ -231,14 +246,15 @@ namespace GOTCE
             {
                 ItemBase item = (ItemBase)System.Activator.CreateInstance(itemType);
                 // Debug.Log(item.ConfigName);
-                if (ValidateItem(item, Items) && item.ItemIcon != null && item.Tier != ItemTier.NoTier) // remove right side after release
+                if (ValidateItem(item, Items) && item.Tier != ItemTier.NoTier) // remove right side after release
                 {
                     item.Init(Config);
                 }
-            } 
+            }
 
             [SystemInitializer(dependencies: typeof(ItemCatalog))]
-            void callitems() {
+            void callitems()
+            {
                 HooksAttributeLogic.CallAttributeMethods(RunAfter.Items);
             }
 
@@ -297,7 +313,8 @@ namespace GOTCE
             }
 
             [SystemInitializer(dependencies: typeof(RoR2.Skills.SkillCatalog))]
-            void callskills() {
+            void callskills()
+            {
                 HooksAttributeLogic.CallAttributeMethods(RunAfter.Skills);
             }
 
@@ -329,13 +346,15 @@ namespace GOTCE
                 Debug.Log("Woolie");
                 EnemyBase enemy = (EnemyBase)System.Activator.CreateInstance(enemyType);
                 // Debug.Log(item.ConfigName);
-                if (ValidateEnemy(enemy)) {
+                if (ValidateEnemy(enemy))
+                {
                     enemy.Create();
                 }
             }
 
             [SystemInitializer(dependencies: typeof(BodyCatalog))]
-            void callenemies() {
+            void callenemies()
+            {
                 HooksAttributeLogic.CallAttributeMethods(RunAfter.Enemies);
             }
 
@@ -355,7 +374,7 @@ namespace GOTCE
                 SurvivorBase survivor = (SurvivorBase)System.Activator.CreateInstance(survivorType);
                 // Debug.Log(item.ConfigName);
                 survivor.Create();
-            } 
+            }
 
             var buffTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(BuffBase)));
 
@@ -404,12 +423,13 @@ namespace GOTCE
         /// <param name="itemList">The list you would like to add this to if it passes the config check.</param>
         public bool ValidateItem(ItemBase item, List<ItemBase> itemList, bool faulty = false)
         {
-            if (item.Tier == ItemTier.NoTier) {
+            if (item.Tier == ItemTier.NoTier)
+            {
                 return true;
             }
-            
+
             var enabled1 = Config.Bind<bool>("Item: " + item.ConfigName, "Enable Item?", true, "Should this item appear in runs?").Value;
-            
+
             var aiBlacklist = Config.Bind<bool>("Item: " + item.ConfigName, "Blacklist Item from AI Use?", false, "Should the AI not be able to obtain this item?").Value;
             if (enabled1)
             {
@@ -427,14 +447,15 @@ namespace GOTCE
         /// A helper to easily set up and initialize an enemy from your enemy classes if the user has it enabled in their configuration files.
         /// </summary>
         /// <param name="enemy">A new instance of an EnemyBase class."</param>
-        public bool ValidateEnemy(EnemyBase enemy) {
-            if (enemy.CloneName == "Explosive Decoy") {
+        public bool ValidateEnemy(EnemyBase enemy)
+        {
+            if (enemy.CloneName == "Explosive Decoy")
+            {
                 return true;
             }
             bool enabled = Config.Bind<bool>("Enemy: " + enemy.CloneName, "Enable Enemy?", true, "Should this enemy appear in runs?").Value;
             return enabled;
         }
-        
 
         /// <summary>
         /// A helper to easily set up and initialize an equipment from your equipment classes if the user has it enabled in their configuration files.
@@ -793,7 +814,7 @@ namespace GOTCE
                         new ILContext.Manipulator(Destroy)
                     );
                 }
-            } 
+            }
         }
 
         public static void Destroy(ILContext il) {

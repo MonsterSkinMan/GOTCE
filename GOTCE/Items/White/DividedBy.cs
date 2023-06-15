@@ -1,0 +1,141 @@
+﻿using UnityEngine;
+using BepInEx.Configuration;
+
+namespace GOTCE.Items.White
+{
+    public class DividedBy : ItemBase<DividedBy>
+    {
+        public override string ConfigName => "Divided By";
+
+        public override string ItemName => "/";
+
+        public override string ItemLangTokenName => "GOTCE_DividedBy";
+
+        public override string ItemPickupDesc => "Every 2 minutes and 20 seconds, swap between a movement speed boost and a movement speed debuff alongside an armor boost.";
+
+        public override string ItemFullDescription => "Every <style=cIsUtility>2 minutes and 20 seconds</style>, swap between a <style=cIsUtility>15%</style> <style=cStack>(+15% per stack)</style> <style=cIsUtility>movement speed</style> boost and a <style=cIsUtility>15%</style> <style=cStack>(+15% per stack)</style> <style=cIsUtility>movement speed</style> reduction, but gain <style=cIsHealing>15</style> <style=cStack>(+15 per stack)</style> <style=cIsHealing>armor</style>.";
+
+        public override string ItemLore => "TBA";
+
+        public override ItemTier Tier => ItemTier.Tier1;
+
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, GOTCETags.TimeDependant };
+
+        public override GameObject ItemModel => null;
+
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/ChristmasGift.png");
+
+        public static BuffDef speedBuff;
+        public static BuffDef armorBuff;
+
+        public override void Init(ConfigFile config)
+        {
+            base.Init(config);
+        }
+
+        public override ItemDisplayRuleDict CreateItemDisplayRules()
+        {
+            return new ItemDisplayRuleDict(null);
+        }
+
+        public override void Hooks()
+        {
+            speedBuff = ScriptableObject.CreateInstance<BuffDef>();
+            speedBuff.isHidden = false;
+            speedBuff.isCooldown = false;
+            speedBuff.isDebuff = false;
+            speedBuff.canStack = false;
+            speedBuff.buffColor = new Color32(239, 225, 188, 255);
+            speedBuff.iconSprite = Utils.Paths.BuffDef.bdWhipBoost.Load<BuffDef>().iconSprite;
+
+            ContentAddition.AddBuffDef(speedBuff);
+
+            armorBuff = ScriptableObject.CreateInstance<BuffDef>();
+            armorBuff.isHidden = false;
+            armorBuff.isCooldown = false;
+            armorBuff.isDebuff = false;
+            armorBuff.canStack = false;
+            armorBuff.buffColor = new Color32(85, 123, 146, 255);
+            armorBuff.iconSprite = Utils.Paths.BuffDef.bdArmorBoost.Load<BuffDef>().iconSprite;
+
+            ContentAddition.AddBuffDef(armorBuff);
+
+            CharacterBody.onBodyInventoryChangedGlobal += CharacterBody_onBodyInventoryChangedGlobal;
+            RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
+        }
+
+        private void RecalculateStatsAPI_GetStatCoefficients(CharacterBody sender, RecalculateStatsAPI.StatHookEventArgs args)
+        {
+            if (sender)
+            {
+                if (sender.HasBuff(speedBuff))
+                {
+                    args.attackSpeedMultAdd += 0.15f * GetCount(sender);
+                }
+
+                if (sender.HasBuff(armorBuff))
+                {
+                    args.attackSpeedMultAdd += -0.15f * GetCount(sender);
+                    args.armorAdd += 15f * GetCount(sender);
+                }
+            }
+        }
+
+        private void CharacterBody_onBodyInventoryChangedGlobal(CharacterBody body)
+        {
+            if (!NetworkServer.active)
+            {
+                return;
+            }
+            body.AddItemBehavior<DividedByController>(GetCount(body));
+        }
+    }
+
+    public class DividedByController : CharacterBody.ItemBehavior
+    {
+        public float timer;
+        public float interval = 140f; // 2 mins 20 sex
+        public bool gotFirstTimeBuff = false;
+
+        public void FixedUpdate()
+        {
+            timer += Time.fixedDeltaTime;
+            if (!gotFirstTimeBuff)
+            {
+                body.AddBuff(DividedBy.speedBuff);
+                gotFirstTimeBuff = true;
+            }
+
+            if (timer >= interval)
+            {
+                if (body.HasBuff(DividedBy.speedBuff))
+                {
+                    body.RemoveBuff(DividedBy.speedBuff);
+                }
+                else
+                {
+                    body.AddBuff(DividedBy.speedBuff);
+                }
+
+                if (!body.HasBuff(DividedBy.armorBuff))
+                {
+                    body.AddBuff(DividedBy.armorBuff);
+                }
+                else
+                {
+                    body.RemoveBuff(DividedBy.armorBuff);
+                }
+
+                timer = 0f;
+            }
+        }
+
+        public void OnDestroy()
+        {
+            if (body.HasBuff(DividedBy.speedBuff))
+                body.RemoveBuff(DividedBy.speedBuff);
+            if (body.HasBuff(DividedBy.armorBuff))
+                body.RemoveBuff(DividedBy.armorBuff);
+        }
+    }
+}
