@@ -13,7 +13,7 @@ namespace GOTCE.Items.White
 
         public override string ItemLangTokenName => "GOTCE_BangSnap";
 
-        public override string ItemPickupDesc => "+2 AOE effect to all explosions.";
+        public override string ItemPickupDesc => "+2 AOE effect.";
 
         public override string ItemFullDescription => "The <style=cIsDamage>radius</style> of all area of effect attacks is increased by <style=cIsDamage>2m</style> <style=cStack>(+2m per stack)</style>.";
 

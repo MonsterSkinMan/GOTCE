@@ -3,23 +3,23 @@ using R2API;
 using RoR2;
 using UnityEngine;
 
-namespace GOTCE.Items.White
+namespace GOTCE.Items.Red
 {
-    public class PSG : ItemBase<PSG>
+    public class PSG13 : ItemBase<PSG13>
     {
-        public override string ConfigName => "PSG";
+        public override string ConfigName => "Personal Shield Generator 13";
 
-        public override string ItemName => "PSG";
+        public override string ItemName => "Personal Shield Generator (13)";
 
-        public override string ItemLangTokenName => "GOTCE_PSG";
+        public override string ItemLangTokenName => "GOTCE_PersonalShieldGenerator13";
 
-        public override string ItemPickupDesc => "gain 8% of yrou max hp in shield";
+        public override string ItemPickupDesc => "videogame won.";
 
-        public override string ItemFullDescription => "gain 8% <style=cStack>(+8% per stack)</style> of yrou max hp in shield. recharges outside of danger. thirteen personal shield generators is a videogame won. ensures a good run.";
+        public override string ItemFullDescription => "gain 104% <style=cStack>(+104% per stack)</style> of yrou max hp in shield. recharges outside of danger. thirteen personal shield generators is a videogame won. ensures a good run.";
 
         public override string ItemLore => "TBA";
 
-        public override ItemTier Tier => ItemTier.Tier1;
+        public override ItemTier Tier => ItemTier.Tier3;
 
         public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, GOTCETags.Shield };
 
@@ -47,7 +47,7 @@ namespace GOTCE.Items.White
                 var stack = body.inventory.GetItemCount(Instance.ItemDef);
                 if (stack > 0)
                 {
-                    float gamewon = body.healthComponent.fullHealth * 0.08f;
+                    float gamewon = body.healthComponent.fullHealth * 1.04f;
                     args.baseShieldAdd += gamewon * stack;
                 }
             }
