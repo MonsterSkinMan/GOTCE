@@ -27,7 +27,7 @@ namespace GOTCE.Equipment.EliteEquipment
 
         public override GameObject EliteEquipmentModel => Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Equipment/Backup/BackupAspect.prefab");
 
-        public override Sprite EliteEquipmentIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Prefabs/Equipment/Backup/BackupIcon.png");
+        public override Sprite EliteEquipmentIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Equipment/BackupAspect.png");
         public override Sprite EliteBuffIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Buffs/BackupAffixIcon.png");
         public override float DamageMultiplier => 2f;
         public override float HealthMultiplier => 4f;

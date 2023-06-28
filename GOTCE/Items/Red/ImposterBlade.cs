@@ -8,19 +8,19 @@ using HarmonyLib;
 
 namespace GOTCE.Items.Red
 {
-    public class ImpostorBlade : ItemBase<ImpostorBlade>
+    public class ImposterBlade : ItemBase<ImposterBlade>
     {
-        public override string ItemName => "Impostor's Blade";
+        public override string ItemName => "Imposter's Blade";
 
-        public override string ConfigName => "Impostors Blade";
+        public override string ConfigName => "Imposters Blade";
 
-        public override string ItemLangTokenName => "GOTCE_ImpostorBlade";
+        public override string ItemLangTokenName => "GOTCE_ImposterBlade";
 
         public override string ItemPickupDesc => "Teleport forward after killing an elite.";
 
         public override string ItemFullDescription => "On elite kill, teleport forward 10 (+5 per stack) meters.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Please repost\nThere's an imposter\nEverywhere you go\nPlease repost\nLooking the most\nAmogous sussous\nPlease repost\nThere's an imposter\nNowhere to report\nCould have lost the game that they host\nThey're in you and they're in me";
 
         public override ItemTier Tier => ItemTier.Tier3;
 

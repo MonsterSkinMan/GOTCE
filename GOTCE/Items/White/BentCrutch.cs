@@ -20,7 +20,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "Gain an <style=cIsHealing>5%</style> <style=cStack>(+5% per stack)</style> chance to <style=cIsHealing>revive</style>. Each death increases your <style=cIsDamage>stats</style> by <style=cIsDamage>10%</style> <style=cStack>(+10% per stack)</style>.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "Kael used to be involved with some sort of gang. They were just mischief-makers, using some spray paint to draw on walls and causing as much noise as possible. One day Kael made a grave mistake, where he was shot for drawing on military property. As he was rushed to the hospital, the doctors cut him a deal that he couldn't even know of. No papers, no one to sign on his behalf, the doctors just did it. They saved his life, but he ended up with his leg muscles missing. He was trapped to use crutches for the rest of his life.\n\nMedical care became an experiment after the war. Doctors had no leashes to hold them back and they could do what they wanted.In the end, it did save people's lives... sometimes. How could a person not be grateful that they had their lives saved? Sure, they could lose everything they have, but at least they were alive!\n\nWhen Kael returned to his old group, they laughed at him, calling him a liability and a slow-poke now. When he wasn't looking, one kid bashed his crutch, causing it to be permanently bent. He didn't have anyone anymore.\n\nAnd after it all, Kael wondered if he even wanted his life saved in the end.";
 
         public override ItemTier Tier => ItemTier.Tier1;
 

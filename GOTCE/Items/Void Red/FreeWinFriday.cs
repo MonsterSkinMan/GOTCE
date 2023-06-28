@@ -22,7 +22,7 @@ namespace GOTCE.Items.Void_Red
 
         public override string ItemFullDescription => "On pickup, <style=cIsUtility>instantly win the run</style>. <style=cIsVoid>Corrupts all Spare Drone Parts.</style>";
 
-        public override string ItemLore => "Spare Drone Parts gets a C. Your drones are meant to draw aggro, not deal damage. This item doesn't change that. While it makes your drone's damage much, much higher, when compared to your overall damage it really is no competition. Plus, if Colonel Droneman dies he wont respawn until the next stage, making the overall usefulness of Spare Drone Parts pretty limited.";
+        public override string ItemLore => "Spare Drone Parts gets a C. Your drones are meant to draw aggro, not deal damage. This item doesn't change that. While it makes your drone's damage much, much higher, when compared to your overall damage it really is no competition. Plus, if Colonel Droneman dies he won't respawn until the next stage, making the overall usefulness of Spare Drone Parts pretty limited.";
 
         public override ItemTier Tier => ItemTier.VoidTier3;
 
@@ -30,7 +30,7 @@ namespace GOTCE.Items.Void_Red
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/FreeWinFriday.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {

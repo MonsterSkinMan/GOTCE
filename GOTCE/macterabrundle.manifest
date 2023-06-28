@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1016251531
+CRC: 1341796903
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 27d4ce3c25161c31a5ca66e875c00b8d
+    Hash: 6af2731228cc9147c2e390f35213ee6c
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8008b2b46f07412a84f63a8d4423d6d0
@@ -52,6 +52,7 @@ Assets:
 - Assets/Textures/Icons/Item/FreeWiFi.png
 - Assets/Models/Prefabs/Item/KirnTheItem/KirnTheItemNoOutline.prefab
 - Assets/Textures/Icons/Skills/EntanglerReal.png
+- Assets/Textures/Icons/Item/UranialRaegis.png
 - Assets/Textures/Icons/Item/heartybreakfast.png
 - Assets/Textures/Icons/Enemies/LivingSuppressiveFire.png
 - Assets/Materials/Item/MonstersVisage/MonstersVisageMaterial.mat
@@ -71,6 +72,7 @@ Assets:
 - Assets/Textures/Icons/Item/ChristmasGift.png
 - Assets/Textures/Icons/Skills/Drain.png
 - Assets/Textures/Icons/Item/BarrierInsurance.png
+- Assets/Textures/Icons/Item/LeechingGuillotine.png
 - Assets/Textures/Icons/Item/kirn.png
 - Assets/Textures/Icons/Item/NEAplaceholder.png
 - Assets/Textures/Icons/Equipment/crunder2.png
@@ -86,6 +88,7 @@ Assets:
 - Assets/Textures/Icons/Item/bottledcommand.png
 - Assets/Textures/Icons/Item/TuesdayMagazine.png
 - Assets/Textures/Icons/Item/barrierworks.png
+- Assets/Textures/Icons/Skills/ExplosiveDecoy.png
 - Assets/Textures/Icons/Enemies/CrackedVermin.png
 - Assets/Textures/Icons/Item/HeartlessBreakfast.png
 - Assets/Textures/Icons/Item/PaleAle.png
@@ -94,6 +97,7 @@ Assets:
 - Assets/Textures/Icons/Item/WhiteFragment.png
 - Assets/Textures/Icons/Skills/HephaestusShotgun.png
 - Assets/Textures/Icons/Item/CrownPrince.png
+- Assets/Textures/Icons/Item/FreeWinFriday.png
 - Assets/Textures/Icons/Item/HealingScrapConsumed.png
 - Assets/Textures/Icons/Item/VoidFluxPauldron.png
 - Assets/Textures/Icons/Item/drill.png
@@ -102,21 +106,19 @@ Assets:
 - Assets/Textures/Icons/Item/ExplorersTorch.png
 - Assets/Textures/Icons/Item/spafnarsfries.png
 - Assets/Textures/Icons/Item/ExpressionOfTheImmolated.png
-- Assets/Textures/Icons/Skills/TheOnlyThingTheyFear.png
 - Assets/Materials/Item/MoldySteak/matSteak.mat
 - Assets/Textures/Icons/Item/GenevaSuggestion.png
 - Assets/Textures/Icons/Item/shittyvisage.png
-- Assets/Textures/Icons/Skills/CorruptedWarp.png
 - Assets/Models/Prefabs/Enemies/livingsuppfire.png
 - Assets/Textures/Icons/Item/PSG.png
 - Assets/Textures/Icons/Item/DilutedFlask.png
 - Assets/Textures/Icons/Item/HelloWorld.png
 - Assets/Textures/Icons/Item/tuboflard.png
 - Assets/Textures/Icons/Item/DopeDope.png
-- Assets/Textures/Icons/Skills/ExplosiveDecoy.png
 - Assets/Textures/Icons/Item/GD1Nullified.png
 - Assets/Textures/Icons/Item/EmpathyC4.png
 - Assets/Textures/Icons/Item/BisonSkull.png
+- Assets/Textures/Icons/Equipment/BackupAspect.png
 - Assets/Textures/Icons/Item/ClaspingClaws.png
 - Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png
 - Assets/Textures/Icons/Item/sscnft.png
@@ -158,9 +160,11 @@ Assets:
 - Assets/Textures/Icons/Equipment/BloodGamble.png
 - Assets/Textures/Icons/Item/FortifiedFlask.png
 - Assets/Textures/Icons/Item/GabesShank.png
+- Assets/Textures/Icons/Skills/CorruptedWarp.png
 - Assets/Textures/Icons/Item/HIFUsRacecar.png
 - Assets/Textures/Icons/Item/Lunch.png
 - Assets/Textures/Icons/Skills/CorruptedDrain.png
+- Assets/Textures/Icons/Skills/TheOnlyThingTheyFear.png
 - Assets/Textures/Icons/Item/HuntressHarpoon.png
 - Assets/Materials/Enemies/tongueMaterial.mat
 - Assets/Textures/Icons/Skills/DoomBlastReal.png
