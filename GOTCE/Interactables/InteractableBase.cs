@@ -27,6 +27,7 @@ namespace GOTCE.Interactables
     {
         public DirectorCard card;
         public InteractableSpawnCard isc;
+        public abstract string Name { get; }
 
         private static readonly DirectorAPI.Stage[] staegis =
         {

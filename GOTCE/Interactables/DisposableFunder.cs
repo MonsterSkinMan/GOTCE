@@ -23,6 +23,9 @@ namespace GOTCE.Interactables
         };
 
         public override DirectorAPI.InteractableCategory category => DirectorAPI.InteractableCategory.Chests;
+
+        public override string Name => "Disposable Funder";
+
         public GameObject prefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Interactables/DisposableFunder/DisposableFunder.prefab");
 
         public override void Modify()

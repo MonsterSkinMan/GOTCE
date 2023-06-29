@@ -266,7 +266,11 @@ namespace GOTCE
                 foreach (var interactableType in interactableTypes)
                 {
                     InteractableBase inter = (InteractableBase)System.Activator.CreateInstance(interactableType);
-                    inter.Create();
+                    // inter.Create();
+
+                    if (ValidateInteractable(inter)) {
+                        inter.Create();
+                    }
                 }
             }
 
@@ -469,6 +473,14 @@ namespace GOTCE
                 equipmentList.Add(equipment);
                 return true;
             }
+            return false;
+        }
+
+        public bool ValidateInteractable(InteractableBase i) {
+            if (Config.Bind<bool>("Interactable: " + i.Name, "Enable Interactable?", true, "Should this interactable appear in runs?").Value) {
+                return true;
+            }
+
             return false;
         }
 

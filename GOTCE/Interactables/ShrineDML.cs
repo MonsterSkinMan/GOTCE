@@ -23,6 +23,9 @@ namespace GOTCE.Interactables
         };
 
         public override DirectorAPI.InteractableCategory category => DirectorAPI.InteractableCategory.Shrines;
+
+        public override string Name => "Shrine of Disposability";
+
         public GameObject prefab = Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Interactables/ShrineDML/ShrineDML.prefab");
 
         public override void Modify()
