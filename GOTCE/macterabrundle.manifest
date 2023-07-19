@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3141188818
+CRC: 755959555
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 94c476be671a03c3bc6df2219edbc59d
+    Hash: 7e9cc5b9fc6458ee4a117d897a147a32
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8008b2b46f07412a84f63a8d4423d6d0
@@ -85,6 +85,7 @@ Assets:
 - Assets/Textures/Icons/Item/AemergencyAegis.png
 - Assets/Textures/Icons/Skills/StigmataShotgun.png
 - Assets/Textures/Icons/Item/bigshoe.png
+- Assets/Textures/Icons/Item/0Pebbles.png
 - Assets/Textures/Icons/Item/FormlessSand.png
 - Assets/Textures/Icons/Item/corruptedshard.png
 - Assets/Textures/Icons/Item/Aegiscentrism.png
