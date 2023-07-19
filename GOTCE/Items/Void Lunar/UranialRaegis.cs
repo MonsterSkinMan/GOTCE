@@ -2,6 +2,7 @@
 using BepInEx.Configuration;
 using GOTCE.EntityStatesCustom.Cracktain;
 using RoR2.Items;
+using HarmonyLib;
 
 namespace GOTCE.Items.VoidLunar
 {
@@ -13,7 +14,7 @@ namespace GOTCE.Items.VoidLunar
 
         public override string ItemLangTokenName => "GOTCE_UranialRaegis";
 
-        public override string ItemPickupDesc => "Randomly create a Ward of Barrier. ALL characters gain barrier while in the Ward.";
+        public override string ItemPickupDesc => "Randomly create a Ward of Barrier that grants temporary barrier to <color=#FF7F7F>ALL characters</color> within its radius. <style=cIsVoid>Corrupts all Mercurial Rachises</style>.";
 
         public override string ItemFullDescription => "Creates a <style=cIsHealing>Ward of Barrier</style> in a random location nearby that buffs both enemies and allies within <style=cIsHealing>16m</style> <style=cStack>(+50% per stack)</style>, causing them to gain <style=cIsHealing>7% barrier</style> every second.";
 
@@ -62,6 +63,7 @@ namespace GOTCE.Items.VoidLunar
         {
             On.RoR2.BuffWard.BuffTeam += BuffWard_BuffTeam;
             CharacterBody.onBodyInventoryChangedGlobal += CharacterBody_onBodyInventoryChangedGlobal;
+            On.RoR2.Items.ContagiousItemManager.Init += WoolieDimension;
         }
 
         private void CharacterBody_onBodyInventoryChangedGlobal(CharacterBody body)
@@ -118,6 +120,17 @@ namespace GOTCE.Items.VoidLunar
                 return new Vector3?(vector);
             }
             return null;
+        }
+
+        private void WoolieDimension(On.RoR2.Items.ContagiousItemManager.orig_Init orig)
+        {
+            ItemDef.Pair transformation = new ItemDef.Pair()
+            {
+                itemDef1 = RoR2Content.Items.RandomDamageZone,
+                itemDef2 = this.ItemDef
+            };
+            ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem] = ItemCatalog.itemRelationships[DLC1Content.ItemRelationshipTypes.ContagiousItem].AddToArray(transformation);
+            orig();
         }
     }
 

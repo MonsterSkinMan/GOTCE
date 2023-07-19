@@ -18,7 +18,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "Gain extra shield, damage reduction, and max HP if the current season is summer.";
 
-        public override string ItemFullDescription => "If the current month is either June, July or August, gain 4% (+4% per stack) shield, 4 (+4 per stack) armor and 10 (+10 per stack) flat health.";
+        public override string ItemFullDescription => "If the current month is either June, July, or August, gain 4% (+4% per stack) shield, 4 (+4 per stack) armor and 10 (+10 per stack) flat health.";
 
         public override string ItemLore => "We work nonstop. We work ourselves to the bone for our jobs. What's worst? We can't complain. They'll just replace us. Summer would be the worst with the heat. We used to die of exhaustion before our bosses got involved.\n\nNow we have theses sodas. They make things slightly more bearable. This is the only thing that keeps us alive during the summer sometimes.";
 

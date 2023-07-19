@@ -13,7 +13,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemLangTokenName => "GOTCE_PersonalShieldGenerator13";
 
-        public override string ItemPickupDesc => "videogame won.";
+        public override string ItemPickupDesc => "videogame won";
 
         public override string ItemFullDescription => "gain 104% <style=cStack>(+104% per stack)</style> of yrou max hp in shield. recharges outside of danger. thirteen personal shield generators is a videogame won. ensures a good run.";
 

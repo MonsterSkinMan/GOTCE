@@ -92,7 +92,7 @@ namespace GOTCE.Items.Green
                     {
                         radius = finalRadius,
                         baseDamage = finalDamage,
-                        procCoefficient = 0f,
+                        procCoefficient = 0.5f,
                         crit = Util.CheckRoll(damageReport.attackerBody.crit, damageReport.attackerMaster),
                         damageColorIndex = DamageColorIndex.Item,
                         attackerFiltering = AttackerFiltering.Default,
