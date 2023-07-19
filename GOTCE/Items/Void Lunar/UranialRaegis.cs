@@ -17,7 +17,7 @@ namespace GOTCE.Items.VoidLunar
 
         public override string ItemFullDescription => "Creates a <style=cIsHealing>Ward of Barrier</style> in a random location nearby that buffs both enemies and allies within <style=cIsHealing>16m</style> <style=cStack>(+50% per stack)</style>, causing them to gain <style=cIsHealing>7% barrier</style> every second.";
 
-        public override string ItemLore => "\"The original information super-highway: the spine. A strait-laced path from the body to the brain, it is responsible for ensuring the survival of all life. However, its limitations involve being localized to its parent body. What if - just like the development of the inter-computer wireless network - one's nervous system could communicate with another? What if the spine traced a path not just from body to mind, but a path that intersects between other bodies and minds?\"\r\n\r\n- Notes of Bob Michales, Serial Shiller and Bad Scientist";
+        public override string ItemLore => "\"The original defense super-highway: the barrier. A consistency-laced path from the cock to the brain, it is responsible for ensuring the survival of all life. However, its limitations involve being localized to healing conversion. What if - just like the development of the topaz brooch - one's defense could be harvested remotely? What if the barrier traced a path not just from leeching seed to aegis, but a path that intersects between other bodies and healthbars?\"\r\n\r\n- Notes of Bob Michales, Serial Shiller and Bad Scientist";
 
         public override ItemTier Tier => Tiers.LunarVoid.Instance.TierEnum;
 

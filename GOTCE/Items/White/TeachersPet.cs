@@ -22,7 +22,7 @@ namespace GOTCE.Items.White
 
         public override string ItemLore => "TBA";
 
-        public override ItemTier Tier => ItemTier.Tier1;
+        public override ItemTier Tier => ItemTier.NoTier;
 
         public override Enum[] ItemTags => new Enum[] {ItemTag.Damage };
 

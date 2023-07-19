@@ -81,7 +81,7 @@ namespace GOTCE.Enemies.Standard
 
             LanguageAPI.Add("GOTCE_VOIDLINGLINGLINGLING_NAME", "Voidlinglinglingling");
             LanguageAPI.Add("GOTCE_VOIDLINGLINGLINGLING_LORE", "J");
-            LanguageAPI.Add("GOTCE_VOIDLINGLINGLINGLING_SUBTITLE", "horde of Many");
+            LanguageAPI.Add("GOTCE_VOIDLINGLINGLINGLING_SUBTITLE", "Horde of Many");
         }
 
         public override void PostCreation()

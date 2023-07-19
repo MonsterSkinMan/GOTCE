@@ -22,7 +22,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemLore => "Please repost\nThere's an imposter\nEverywhere you go\nPlease repost\nLooking the most\nAmogous sussous\nPlease repost\nThere's an imposter\nNowhere to report\nCould have lost the game that they host\nThey're in you and they're in me";
 
-        public override ItemTier Tier => ItemTier.Tier3;
+        public override ItemTier Tier => ItemTier.NoTier;
 
         public override Enum[] ItemTags => new Enum[] { ItemTag.Damage };
 

@@ -22,7 +22,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemLore => "";
 
-        public override ItemTier Tier => ItemTier.Tier3;
+        public override ItemTier Tier => ItemTier.NoTier;
 
         public override Enum[] ItemTags => new Enum[] { ItemTag.Damage };
 

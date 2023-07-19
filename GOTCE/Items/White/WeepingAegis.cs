@@ -22,14 +22,14 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "On killing a bleeding enemy, gain 3 (+3 per stack) flat shield.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "cry about it";
 
         public override ItemTier Tier => ItemTier.Tier1;
         public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, ItemTag.OnKillEffect };
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/WeepingAegis.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {

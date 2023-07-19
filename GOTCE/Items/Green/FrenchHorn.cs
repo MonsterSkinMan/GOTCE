@@ -27,7 +27,7 @@ namespace GOTCE.Items.Green
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/FrenchHorn.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {

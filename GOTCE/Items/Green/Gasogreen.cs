@@ -19,7 +19,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemFullDescription => "On kill, deal 150% damage to all enemies within 24m <style=cStack>(+8m per stack)</style> and weaken them permanently.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "Order: Single-Gallon Tank of Gasogreen\nTracking Number: 50********\nEstimated Delivery: 04/18/2056\nShipping Method: Standard\nShipping Address: 394, Facility X, Earth\nShipping Details:\n\nPeople are so gullible, wouldn't you agree? They'll just listen to whatever commercials and advertising tell them about products, and accept them without second thoughts. This new Gasogreen product that Carmen conceptualized has been one of our most successful yet! It preys on people who want to think of themselves as environmentally conscious, when in reality, Gasogreen creates terrible, neurotoxic pollution. It's also far less efficient than other fuel sources, even the classic gasoline, meaning people have to buy more of it to travel the same distance. And the green dye? Genius. Plus, it helps to mask the \"\"\"unethical\"\"\" method that we use to manufacture this shit. Average consumers probably wouldn't want to know that their vehicles are running on the processed and extracted minds of other people, would they?\n\nAnyways, this is a sample for the new line of Gasogreen products we've been working on. Let me know how it performs in the testing chambers and send me the reports by the end of the week.";
 
         public override ItemTier Tier => ItemTier.Tier2;
 
@@ -27,7 +27,7 @@ namespace GOTCE.Items.Green
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/Gasogreen.png");
 
         private static readonly SphereSearch gasogreenSphereSearch = new();
         private static readonly List<HurtBox> gasogreenHurtBoxBuffer = new();

@@ -26,7 +26,7 @@ namespace GOTCE.Items.NoTier
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/CrownPrince.png");
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/CrownPrinceEXE.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {

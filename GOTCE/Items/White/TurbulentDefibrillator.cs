@@ -20,7 +20,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "Gain an <style=cIsHealing>8%</style> <style=cStack>(+8% per stack)</style> chance to <style=cIsHealing>revive</style>. Each death increases your <style=cIsDamage>attack speed</style> by <style=cIsDamage>40%</style> <style=cStack>(+30% per stack)</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "To: k.ray@*******\nFrom: j.bar@******\nSubject: Research Concerns\n\nDoctor Ray,\nAfter reviewing your proposed developments myself and with the administration I am afraid to inform you that we cannot put your suggestions into place.After reading this letter, I am concerned that you may need to review your studies from medical school. Your proposed device has striking similarities to our standard defibrillators and the changes in its output are worryingly specific and unconnected to real research. I hope you remember that it is not the job of our healthcare center to resurrect people whose hearts have stopped, and you certainly would not be able to do it with a defibrillator. Furthermore, the proposed increases in electrical output, while they are spaced out at arbitrary intervals, would still be enough to apply a lethal shock to most patients, so they should not be applied to our current defibrillators. The attached video you sent us is not convincing evidence that this device works, and is a worrying sign of medical malpractice on your part. I have also requested an investigation into your research, which will be starting next week.\n\nTake care,\n[REDACTED]";
 
         public override ItemTier Tier => ItemTier.Tier1;
 
