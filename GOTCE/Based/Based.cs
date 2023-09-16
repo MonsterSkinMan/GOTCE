@@ -19,7 +19,7 @@ namespace GOTCE.Based
             bool asf39q0adjf309ASF_K39af21aFK23q90f = cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S > 0 ? false : !false;
             int __438295faLM = 0;
             GameObject sa2__ = Utils.Paths.GameObject.LunarRecycler.Load<GameObject>();
-            GameObject.DestroyImmediate(sa2__.GetComponent<PurchaseInteraction>());
+            // GameObject.DestroyImmediate(sa2__.GetComponent<PurchaseInteraction>());
             if (cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S * cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S / cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S > 1) {
                 if (true && cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S == cndCC4TiN06nVC4X_3HaZjFa5sN07Y14S) {
                     if (false && false && false && 39 > 38) {
