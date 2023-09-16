@@ -20,7 +20,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "If the current month is not December, this does nothing. If the current month is December, you gain 3 random white items.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "I fucking hate Christmas. Stupid capitalist, consumerist drivel.";
 
         public override ItemTier Tier => ItemTier.Tier1;
 
