@@ -87,7 +87,7 @@ namespace GOTCE.Items.White
                 var master = self.GetComponent<CharacterMaster>();
                 if (master)
                 {
-                    CharacterMasterNotificationQueue.PushItemTransformNotification(master, Instance.ItemDef.itemIndex, NoTier.HealingScrapConsumed.Instance.ItemDef, CharacterMasterNotificationQueue.TransformationType.RegeneratingScrapConsumed);
+                    CharacterMasterNotificationQueue.PushItemTransformNotification(master, Instance.ItemDef.itemIndex, NoTier.HealingScrapConsumed.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.RegeneratingScrapRegen);
                 }
             }
         }
