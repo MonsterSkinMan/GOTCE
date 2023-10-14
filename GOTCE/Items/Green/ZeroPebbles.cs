@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine;
-using RoR2;
-using R2API;
+﻿using UnityEngine;
 using BepInEx.Configuration;
 
 namespace GOTCE.Items.Green

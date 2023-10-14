@@ -20,7 +20,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "Killing a bleeding enemy permanently increases your shield.";
 
-        public override string ItemFullDescription => "On killing a bleeding enemy, gain 3 (+3 per stack) flat shield.";
+        public override string ItemFullDescription => "On killing a <style=cIsDamage>bleeding</style> enemy, gain <style=cIsUtility>3</style> <style=cStack>(+3 per stack)</style> <style=cIsUtility>shield</style> permanently.";
 
         public override string ItemLore => "cry about it";
 
