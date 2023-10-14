@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections.Generic;
 using HarmonyLib;
+using MonoMod.Utils;
 
 namespace GOTCE.Items.VoidWhite
 {
@@ -62,7 +63,7 @@ namespace GOTCE.Items.VoidWhite
                         int total = 0;
                         foreach (ItemIndex item in inv.itemAcquisitionOrder)
                         {
-                            if (item != Instance.ItemDef.itemIndex && ItemCatalog.GetItemDef(item).tier != ItemTier.NoTier && ItemCatalog.GetItemDef(item).deprecatedTier != ItemTier.NoTier)
+                            if (ItemCatalog.GetItemDef(item).tier != ItemTier.NoTier && ItemCatalog.GetItemDef(item).deprecatedTier != ItemTier.NoTier)
                             {
                                 total += inv.GetItemCount(item);
                             }
@@ -75,7 +76,29 @@ namespace GOTCE.Items.VoidWhite
                                 inv.RemoveItem(index, inv.GetItemCount(index));
                             }
                         }
-                        inv.GiveRandomItems(total, true, true);
+                        try
+                        {
+                            WeightedSelection<List<PickupIndex>> weightedSelection = new(8);
+
+                            weightedSelection.AddChoice(Run.instance.availableTier1DropList, 100f);
+                            weightedSelection.AddChoice(Run.instance.availableTier2DropList, 60f);
+                            weightedSelection.AddChoice(Run.instance.availableTier3DropList, 4f);
+
+                            weightedSelection.AddChoice(Run.instance.availableLunarItemDropList, 4f);
+
+                            weightedSelection.AddChoice(Run.instance.availableVoidTier1DropList, 4f);
+                            weightedSelection.AddChoice(Run.instance.availableVoidTier2DropList, 2.3999999f);
+                            weightedSelection.AddChoice(Run.instance.availableVoidTier3DropList, 0.16f);
+
+                            for (int i = 0; i < count; i++)
+                            {
+                                List<PickupIndex> list = weightedSelection.Evaluate(UnityEngine.Random.value);
+                                PickupDef pickupDef = PickupCatalog.GetPickupDef(list[UnityEngine.Random.Range(0, list.Count)]);
+                                if (pickupDef.itemIndex != Instance.ItemDef.itemIndex)
+                                    inv.GiveItem((pickupDef != null) ? pickupDef.itemIndex : ItemIndex.None, 1);
+                            }
+                        }
+                        catch { } // hopoo games code tbh
                     }
                 }
             }
