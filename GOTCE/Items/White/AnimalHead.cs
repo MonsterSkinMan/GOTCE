@@ -56,7 +56,8 @@ namespace GOTCE.Items.White
                     int itemCount = body.master.inventory.GetItemCount(Instance.ItemDef);
                     if (itemCount > 0)
                     {
-                        Util.PlaySound("Play_item_proc_crit_cooldown", body.gameObject);
+                        if (Random.Range(0f, 1f) > 0.9f)
+                            Util.PlaySound("Play_item_proc_crit_cooldown", body.gameObject);
                         var sl = body.GetComponent<SkillLocator>();
                         if (sl && sl.hasEffectiveAuthority)
                         {

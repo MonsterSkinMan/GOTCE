@@ -246,7 +246,7 @@ namespace GOTCE
             {
                 ItemBase item = (ItemBase)System.Activator.CreateInstance(itemType);
                 // Debug.Log(item.ConfigName);
-                if (ValidateItem(item, Items) && item.Tier != ItemTier.NoTier) // remove right side after release
+                if (ValidateItem(item, Items)) // remove right side after release
                 {
                     item.Init(Config);
                 }
