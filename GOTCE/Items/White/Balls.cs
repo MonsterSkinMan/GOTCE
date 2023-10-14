@@ -40,7 +40,8 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += Synergy;
-            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
+            {
                 if (args.Stats && NetworkServer.active)
                 {
                     if (args.Stats.inventory)

@@ -62,7 +62,7 @@ namespace GOTCE.Items.VoidWhite
                         int total = 0;
                         foreach (ItemIndex item in inv.itemAcquisitionOrder)
                         {
-                            if (ItemCatalog.GetItemDef(item).tier != ItemTier.NoTier && ItemCatalog.GetItemDef(item).deprecatedTier != ItemTier.NoTier)
+                            if (item != Instance.ItemDef.itemIndex && ItemCatalog.GetItemDef(item).tier != ItemTier.NoTier && ItemCatalog.GetItemDef(item).deprecatedTier != ItemTier.NoTier)
                             {
                                 total += inv.GetItemCount(item);
                             }
@@ -70,7 +70,7 @@ namespace GOTCE.Items.VoidWhite
                         for (int i = 0; i < inv.itemAcquisitionOrder.Count; i++)
                         {
                             ItemIndex index = inv.itemAcquisitionOrder[i];
-                            if (index != ItemDef.itemIndex && ItemCatalog.GetItemDef(index).tier != ItemTier.NoTier && ItemCatalog.GetItemDef(index).deprecatedTier != ItemTier.NoTier)
+                            if (index != Instance.ItemDef.itemIndex && ItemCatalog.GetItemDef(index).tier != ItemTier.NoTier && ItemCatalog.GetItemDef(index).deprecatedTier != ItemTier.NoTier)
                             {
                                 inv.RemoveItem(index, inv.GetItemCount(index));
                             }

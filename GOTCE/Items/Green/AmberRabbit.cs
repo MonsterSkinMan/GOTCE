@@ -12,7 +12,7 @@ namespace GOTCE.Items.Green
     {
         public override string ConfigName => "Amber Rabbit";
 
-        public override string ItemFullDescription => "On 'Stage Transition Crit', multiply your item count by 2 <style=cStack>(+1 per stack)</style>. Gain 5% stage crit chance.";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>5% stage crit chance</style>. On '<style=cIsUtility>Stage Transition Crit</style>', <style=cIsUtility>multiply your item count</style> by <style=cIsUtility>2</style> <style=cStack>(+1 per stack)</style>.";
 
         public override string ItemLore => "The old clock was just the beginning. Now that I've seen this little blip, this little tear in the fabric of reality, everything looks like a tool to widen it. My newest discovery is a small figurine of a rabbit that appears to be covered in some odd form of amber. On a subatomic scale, something incredibly odd appears to be happening. When I shine a light on it, not only is some absorbed, but an equal amount is emitted by the amber itself. Perfectly equal. So far, it's just light, but I believe this can go further. Much further.";
 

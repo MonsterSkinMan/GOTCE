@@ -94,7 +94,6 @@ namespace GOTCE.Items.Green
         public Dictionary<GameObject, float> gameObjectTimerPair = new();
         public bool hasCurseOfRa = false;
         public static TMP_FontAsset font;
-        public List<GameObject> gameObjectsToDestroy = new();
 
         public void Start()
         {
@@ -132,9 +131,12 @@ namespace GOTCE.Items.Green
             }
             if (characterRefreshTimer >= characterRefreshInterval)
             {
+                List<GameObject> gameObjectsToDestroy = new();
+
                 foreach (var key in gameObjectTimerPair.Keys)
                 {
                     gameObjectTimerPair[key] -= 1f * Time.fixedDeltaTime * 4f; // since it refreshes every 0.25s, we need to remove 4 times as much time ig
+
                     if (gameObjectTimerPair[key] <= 0f)
                     {
                         gameObjectsToDestroy.Add(key);
@@ -143,8 +145,8 @@ namespace GOTCE.Items.Green
 
                 foreach (var gameObject in gameObjectsToDestroy)
                 {
-                    gameObjectTimerPair.Remove(gameObject);
                     Destroy(gameObject);
+                    gameObjectTimerPair.Remove(gameObject);
                 }
                 characterRefreshTimer = 0f;
             }
