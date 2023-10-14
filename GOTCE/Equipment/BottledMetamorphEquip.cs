@@ -21,7 +21,7 @@ namespace GOTCE.Equipment
 
         public override GameObject EquipmentModel => null;
 
-        public override Sprite EquipmentIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BottledMetamorphosisEquip.png");
+        public override Sprite EquipmentIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Equipment/BottledMetamorphosisEquip.png");
 
         public override float Cooldown => 120f;
 

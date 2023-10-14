@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 755959555
+CRC: 2136196605
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 7e9cc5b9fc6458ee4a117d897a147a32
+    Hash: 4e8703f3b61c3a05754d137f157ea5f1
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8008b2b46f07412a84f63a8d4423d6d0
@@ -141,6 +141,7 @@ Assets:
 - Assets/Textures/Icons/Item/AncientAxe.png
 - Assets/Textures/Icons/Item/tubofbart.png
 - Assets/Textures/Icons/Item/backuphammer.png
+- Assets/Textures/Icons/Item/DividedBy.png
 - Assets/Textures/Icons/Item/Bottled_Enigma.png
 - Assets/Textures/Icons/Item/MissileGuidanceSystem.png
 - Assets/Textures/Icons/Enemies/Voidlingling.png
