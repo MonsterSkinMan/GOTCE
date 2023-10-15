@@ -25,7 +25,7 @@ namespace GOTCE.Items.Green
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/DelicaterWatch.png");
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/SpeedyFinger.png");
 
         public override void Init(ConfigFile config)
         {

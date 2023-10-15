@@ -25,7 +25,7 @@ namespace GOTCE.Items.Green
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/spafnarsfries.png");
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/Retrobauble.png");
 
         public static BuffDef oldChrono;
 

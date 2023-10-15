@@ -28,7 +28,7 @@ namespace GOTCE.Items.White
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BentCrutch.png");
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BloodyShank.png");
 
         public override void Init(ConfigFile config)
         {
