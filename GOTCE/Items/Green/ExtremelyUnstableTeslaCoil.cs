@@ -74,7 +74,7 @@ namespace GOTCE.Items.Green
                             {
                                 LightningOrb orb = new()
                                 {
-                                    damageValue = body.damage * 0.0008f,
+                                    damageValue = body.damage * 0.0001f,
                                     attacker = base.gameObject,
                                     origin = body.corePosition,
                                     bouncesRemaining = 0,
@@ -97,7 +97,7 @@ namespace GOTCE.Items.Green
                 if (doubleTimer >= doubleDelay)
                 {
                     doubleTimer = 0f;
-                    if (stack * 2 <= int.MaxValue)
+                    if (stack * 2 <= int.MaxValue || stack * 2 > -2147483647)
                     {
                         body.inventory.GiveItem(Instance.ItemDef, stack);
                     }
