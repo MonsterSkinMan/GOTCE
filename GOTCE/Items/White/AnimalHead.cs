@@ -17,7 +17,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "'Critical Strikes' reduce ability cooldowns.";
 
-        public override string ItemFullDescription => "Gain <style=cIsDamage>5% critical strike chance</style>. <style=cIsUtility>Reduce skill cooldowns</style> on <style=cIsDamage>critical strike</style> by <style=cIsUtility>3%</style> <style=cStack>(+3% per stack)</style>.";
+        public override string ItemFullDescription => "Gain <style=cIsDamage>5% critical strike chance</style>. <style=cIsUtility>Reduce skill cooldowns</style> on <style=cIsDamage>critical strike</style> by <style=cIsUtility>5%</style> <style=cStack>(+5% per stack)</style>.";
 
         public override string ItemLore => "I got this thing on my last hunt. Big guy must have taken four shots to go down, I damn near broke my trigger finger! My wall's already covered with my past hunts, so I'm sending this to you. Think of it as a little good luck charm.";
 
@@ -56,7 +56,7 @@ namespace GOTCE.Items.White
                     int itemCount = body.master.inventory.GetItemCount(Instance.ItemDef);
                     if (itemCount > 0)
                     {
-                        if (Random.Range(0f, 1f) > 0.9f)
+                        if (Random.Range(0f, 1f) > 0.7f)
                             Util.PlaySound("Play_item_proc_crit_cooldown", body.gameObject);
                         var sl = body.GetComponent<SkillLocator>();
                         if (sl && sl.hasEffectiveAuthority)
@@ -65,22 +65,22 @@ namespace GOTCE.Items.White
                             if (sl.primary && sl.primary.stock < sl.primary.maxStock)
                             {
                                 // sl.primary.RunRecharge(num * sl.primary.finalRechargeInterval);
-                                sl.primary.rechargeStopwatch += num * sl.primary.finalRechargeInterval * 0.03f;
+                                sl.primary.rechargeStopwatch += num * sl.primary.finalRechargeInterval * 0.05f;
                             }
                             if (sl.secondary && sl.secondary.stock < sl.secondary.maxStock)
                             {
                                 // sl.secondary.RunRecharge(num * sl.secondary.finalRechargeInterval);
-                                sl.secondary.rechargeStopwatch += num * sl.secondary.finalRechargeInterval * 0.03f;
+                                sl.secondary.rechargeStopwatch += num * sl.secondary.finalRechargeInterval * 0.05f;
                             }
                             if (sl.utility && sl.utility.stock < sl.utility.maxStock)
                             {
                                 // sl.utility.RunRecharge(num * sl.utility.finalRechargeInterval);
-                                sl.utility.rechargeStopwatch += num * sl.utility.finalRechargeInterval * 0.03f;
+                                sl.utility.rechargeStopwatch += num * sl.utility.finalRechargeInterval * 0.05f;
                             }
                             if (sl.special && sl.special.stock < sl.special.maxStock)
                             {
                                 // sl.special.RunRecharge(num * sl.special.finalRechargeInterval);
-                                sl.special.rechargeStopwatch += num * sl.special.finalRechargeInterval * 0.03f;
+                                sl.special.rechargeStopwatch += num * sl.special.finalRechargeInterval * 0.05f;
                             }
                         }
                     }

@@ -44,6 +44,7 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
+            On.RoR2.Stage.Start += Stage_Start;
         }
 
         [RunMethod(RunAfter.Items)]

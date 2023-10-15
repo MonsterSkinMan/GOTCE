@@ -20,7 +20,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "Gain <style=cIsDamage>5%</style> <style=cStack>(+5% per stack)</style> chance to <style=cIsDamage>crit</style>, and a <style=cIsDamage>5%</style> <style=cStack>(+5% per stack)</style> chance to <style=cIsDamage>bleed</style> enemies on hit for <style=cIsDamage>240% base damage</style>.";
 
-        public override string ItemLore => "Fun fact, <style=cIsDamagE>Hopoo Games</style>, in their <style=cIsUtility>infinite wisdom</style> thought that this would be an <style=cIsHealing>interesting<style> and <style=cIsHealing>good</style> item for <style=cIsVoid>Survivors of The Void</style>, as it was the <style=cIsUtility>first iteration</style> of <style=cIsDamage>Shuriken</style> as we know it.";
+        public override string ItemLore => "Fun fact, <style=cIsDamagE>Hopoo Games</style>, in their <style=cIsUtility>infinite wisdom</style> thought that this would be an <style=cIsHealing>interesting</style> and <style=cIsHealing>good</style> item for <style=cIsVoid>Survivors of The Void</style>, as it was the <style=cIsUtility>first iteration</style> of <style=cIsDamage>Shuriken</style> as we know it.";
 
         public override ItemTier Tier => ItemTier.Tier1;
 

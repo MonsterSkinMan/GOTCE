@@ -108,10 +108,20 @@ namespace GOTCE.Items
 
         protected virtual void CreateLang()
         {
-            LanguageAPI.Add("ITEM_" + ItemLangTokenName + "_NAME", ItemName);
-            LanguageAPI.Add("ITEM_" + ItemLangTokenName + "_PICKUP", ItemPickupDesc);
-            LanguageAPI.Add("ITEM_" + ItemLangTokenName + "_DESCRIPTION", ItemFullDescription);
-            LanguageAPI.Add("ITEM_" + ItemLangTokenName + "_LORE", ItemLore);
+            if (ItemLangTokenName != "Parasite")
+            {
+                LanguageAPI.Add("ITEM_" + ItemLangTokenName + "_NAME", ItemName);
+                LanguageAPI.Add("ITEM_" + ItemLangTokenName + "_PICKUP", ItemPickupDesc);
+                LanguageAPI.Add("ITEM_" + ItemLangTokenName + "_DESCRIPTION", ItemFullDescription);
+                LanguageAPI.Add("ITEM_" + ItemLangTokenName + "_LORE", ItemLore);
+            }
+            else
+            {
+                LanguageAPI.Add("ᅠ" + ItemLangTokenName + "_NAME", ItemName);
+                LanguageAPI.Add("ᅠ" + ItemLangTokenName + "_PICKUP", ItemPickupDesc);
+                LanguageAPI.Add("ᅠ" + ItemLangTokenName + "_DESCRIPTION", ItemFullDescription);
+                LanguageAPI.Add("ᅠ" + ItemLangTokenName + "_LORE", ItemLore);
+            }
         }
 
         public abstract ItemDisplayRuleDict CreateItemDisplayRules();
@@ -126,11 +136,22 @@ namespace GOTCE.Items
             }
 
             ItemDef = ScriptableObject.CreateInstance<ItemDef>();
-            ItemDef.name = "ITEM_" + ItemLangTokenName;
-            ItemDef.nameToken = "ITEM_" + ItemLangTokenName + "_NAME";
-            ItemDef.pickupToken = "ITEM_" + ItemLangTokenName + "_PICKUP";
-            ItemDef.descriptionToken = "ITEM_" + ItemLangTokenName + "_DESCRIPTION";
-            ItemDef.loreToken = "ITEM_" + ItemLangTokenName + "_LORE";
+            if (ItemLangTokenName != "Parasite")
+            {
+                ItemDef.name = "ITEM_" + ItemLangTokenName;
+                ItemDef.nameToken = "ITEM_" + ItemLangTokenName + "_NAME";
+                ItemDef.pickupToken = "ITEM_" + ItemLangTokenName + "_PICKUP";
+                ItemDef.descriptionToken = "ITEM_" + ItemLangTokenName + "_DESCRIPTION";
+                ItemDef.loreToken = "ITEM_" + ItemLangTokenName + "_LORE";
+            }
+            else
+            {
+                ItemDef.name = "ᅠ" + ItemLangTokenName;
+                ItemDef.nameToken = "ᅠ" + ItemLangTokenName + "_NAME";
+                ItemDef.pickupToken = "ᅠ" + ItemLangTokenName + "_PICKUP";
+                ItemDef.descriptionToken = "ᅠ" + ItemLangTokenName + "_DESCRIPTION";
+                ItemDef.loreToken = "ᅠ" + ItemLangTokenName + "_LORE";
+            }
             /*if (ItemDef.pickupModelPrefab == null)
             {
                 GameObject prefab = GameObject.CreatePrimitive(PrimitiveType.Cube);

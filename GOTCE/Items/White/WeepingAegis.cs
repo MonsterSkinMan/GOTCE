@@ -64,9 +64,9 @@ namespace GOTCE.Items.White
                 return;
             }
             var stack = damageReport.attackerBody.inventory.GetItemCount(Instance.ItemDef);
-            if (stack > 0 && damageReport.victimBody && (damageReport.victimBody.HasBuff(RoR2Content.Buffs.Bleeding) || damageReport.victimBody.HasBuff(RoR2Content.Buffs.SuperBleed)))
+            if (stack > 0 && damageReport.victimBody && (damageReport.victimBody.HasBuff(RoR2Content.Buffs.Bleeding) || damageReport.victimBody.HasBuff(RoR2Content.Buffs.SuperBleed) || damageReport.dotType == DotController.DotIndex.Bleed || damageReport.dotType == DotController.DotIndex.SuperBleed || damageReport.damageInfo.dotIndex == DotController.DotIndex.Bleed || damageReport.damageInfo.dotIndex == DotController.DotIndex.SuperBleed))
             {
-                shieldBoost += stack * 3;
+                shieldBoost += 15 + 14 * (stack - 1);
                 damageReport.attackerBody.RecalculateStats();
             }
         }
