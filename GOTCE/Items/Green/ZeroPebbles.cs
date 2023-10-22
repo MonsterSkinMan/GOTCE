@@ -23,7 +23,7 @@ namespace GOTCE.Items.Green
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/0Pebbles.png");
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.PriorityScrap };
+        public override Enum[] ItemTags => new Enum[] { GOTCETags.Bullshit };
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {

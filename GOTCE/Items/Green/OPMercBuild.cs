@@ -18,7 +18,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemFullDescription => "Gain <style=cIsHealing>1</style> <style=cStack>(+1 per stack)</style> <style=cIsHealing>invincibility frames</style> each second.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "today i found a really op build for merc, you can use strides and evis with purity to get tons of iframes then let disposable misiles and tesla coil kill all the enemies\nuse backup mags and syringe on rising thunder to also stay in the air to allow you to get greens and not need hopoo feather\nhave synergy with ranged merc visions\nIn the screenshot, they were playing on Drizzle with Command, Sacrfice, and Swarms, they were on stage 5 at 21 minutes and 3 seconds. Their items were 5 stacks of ATG, 7 stacks of Backup Mag, 3 stacks of Syringe, 3 stacks of Berzerker's Pauldron, one Clover, one Visions of Heresy, 2 stacks of Strides of Heresy, 6 stacks of Purity, 2 stacks of Kjaro's Band, one Unstable Tesla Coil, 6 stacks of Fuel Cell, 3 stacks of Gesture, and one Runald's Band. Their equipment was Disposable Missile Launcher.";
 
         public override ItemTier Tier => ItemTier.Tier2;
 
