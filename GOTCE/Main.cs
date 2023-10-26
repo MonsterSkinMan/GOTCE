@@ -104,7 +104,7 @@ namespace GOTCE
 
             cloudRemap = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGCloudRemap.shader").WaitForCompletion();
             standard = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGStandard.shader").WaitForCompletion();
-            terrain = Addressables.LoadAssetAsync<Shader>(" RoR2/Base/Shaders/HGTriplanarTerrainBlend.shader").WaitForCompletion();
+            terrain = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGTriplanarTerrainBlend.shader").WaitForCompletion();
 
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI") && Config.Bind<bool>("Compatibility", "BetterUI - Stats Display", true, "Adds the GOTCE stats to the BetterUI stats display.").Value)
             {
@@ -246,7 +246,7 @@ namespace GOTCE
             {
                 ItemBase item = (ItemBase)System.Activator.CreateInstance(itemType);
                 // Debug.Log(item.ConfigName);
-                if (ValidateItem(item, Items) && item.Tier != ItemTier.NoTier) // remove right side after release
+                if (ValidateItem(item, Items)) // remove right side after release
                 {
                     item.Init(Config);
                 }
@@ -268,7 +268,8 @@ namespace GOTCE
                     InteractableBase inter = (InteractableBase)System.Activator.CreateInstance(interactableType);
                     // inter.Create();
 
-                    if (ValidateInteractable(inter)) {
+                    if (ValidateInteractable(inter))
+                    {
                         inter.Create();
                     }
                 }
@@ -347,7 +348,7 @@ namespace GOTCE
 
             foreach (var enemyType in enemyTypes)
             {
-                Debug.Log("Woolie");
+                // Debug.Log("Woolie");
                 EnemyBase enemy = (EnemyBase)System.Activator.CreateInstance(enemyType);
                 // Debug.Log(item.ConfigName);
                 if (ValidateEnemy(enemy))
@@ -374,7 +375,7 @@ namespace GOTCE
 
             foreach (var survivorType in survivorTypes)
             {
-                Debug.Log("Woolie");
+                // Debug.Log("Woolie");
                 SurvivorBase survivor = (SurvivorBase)System.Activator.CreateInstance(survivorType);
                 // Debug.Log(item.ConfigName);
                 survivor.Create();
@@ -384,7 +385,7 @@ namespace GOTCE
 
             foreach (var buffType in buffTypes)
             {
-                Debug.Log("Woolie");
+                // Debug.Log("Woolie");
                 BuffBase buff = (BuffBase)System.Activator.CreateInstance(buffType);
                 // Debug.Log(item.ConfigName);
                 buff.CreateBuff(Config);
@@ -443,7 +444,7 @@ namespace GOTCE
                     item.AIBlacklisted = true;
                 }
             }
-            Debug.Log(item.ConfigName + " : " + enabled1);
+            // Debug.Log(item.ConfigName + " : " + enabled1);
             return enabled1;
         }
 
@@ -476,8 +477,10 @@ namespace GOTCE
             return false;
         }
 
-        public bool ValidateInteractable(InteractableBase i) {
-            if (Config.Bind<bool>("Interactable: " + i.Name, "Enable Interactable?", true, "Should this interactable appear in runs?").Value) {
+        public bool ValidateInteractable(InteractableBase i)
+        {
+            if (Config.Bind<bool>("Interactable: " + i.Name, "Enable Interactable?", true, "Should this interactable appear in runs?").Value)
+            {
                 return true;
             }
 

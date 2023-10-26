@@ -25,7 +25,7 @@ namespace GOTCE.Items.White
 
         public override ItemTier Tier => ItemTier.Tier1;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, ItemTag.PriorityScrap, ItemTag.CannotDuplicate, ItemTag.OnStageBeginEffect, ItemTag.AIBlacklist };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, ItemTag.PriorityScrap, ItemTag.CannotDuplicate, ItemTag.OnStageBeginEffect, ItemTag.AIBlacklist, GOTCETags.Consumable };
 
         public override GameObject ItemModel => null;
 
@@ -44,20 +44,53 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             On.RoR2.Inventory.RemoveItem_ItemIndex_int += Inventory_RemoveItem_ItemIndex_int;
+            On.RoR2.Stage.Start += Stage_Start;
+        }
+
+        [RunMethod(RunAfter.Items)]
+        private static void RegisterFragile()
+        {
+            Fragile.AddFragileItem(HealingScrap.Instance.ItemDef, new Fragile.FragileInfo
+            {
+                broken = Items.NoTier.HealingScrapConsumed.Instance.ItemDef,
+                shouldGiveBroken = true,
+                fraction = 25f
+            });
+        }
+
+        private void Stage_Start(On.RoR2.Stage.orig_Start orig, Stage self)
+        {
+            orig(self);
+            if (CharacterMaster.instancesList != null)
+            {
+                foreach (CharacterMaster cm in CharacterMaster.instancesList)
+                {
+                    if (cm.inventory)
+                    {
+                        var stack = cm.inventory.GetItemCount(NoTier.HealingScrapConsumed.Instance.ItemDef);
+                        if (stack > 0)
+                        {
+                            cm.inventory.RemoveItem(NoTier.HealingScrapConsumed.Instance.ItemDef, stack);
+                            cm.inventory.GiveItem(Instance.ItemDef, stack);
+                            CharacterMasterNotificationQueue.SendTransformNotification(cm, NoTier.HealingScrapConsumed.Instance.ItemDef.itemIndex, Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.RegeneratingScrapRegen);
+                        }
+                    }
+                }
+            }
         }
 
         private void Inventory_RemoveItem_ItemIndex_int(On.RoR2.Inventory.orig_RemoveItem_ItemIndex_int orig, Inventory self, ItemIndex itemIndex, int count)
         {
-            if (self.gameObject.GetComponent<CharacterMaster>())
+            orig(self, itemIndex, count);
+            if (itemIndex == Instance.ItemDef.itemIndex)
             {
-                var master = self.gameObject.GetComponent<CharacterMaster>();
-                if (NetworkServer.active && itemIndex == Instance.ItemDef.itemIndex)
+                self.GiveItem(NoTier.HealingScrapConsumed.Instance.ItemDef, count);
+                var master = self.GetComponent<CharacterMaster>();
+                if (master)
                 {
-                    self.GiveItem(NoTier.HealingScrapConsumed.Instance.ItemDef, count);
-                    CharacterMasterNotificationQueue.SendTransformNotification(master, Instance.ItemDef.itemIndex, NoTier.HealingScrapConsumed.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.RegeneratingScrapRegen);
+                    CharacterMasterNotificationQueue.PushItemTransformNotification(master, Instance.ItemDef.itemIndex, NoTier.HealingScrapConsumed.Instance.ItemDef.itemIndex, CharacterMasterNotificationQueue.TransformationType.RegeneratingScrapRegen);
                 }
             }
-            orig(self, itemIndex, count);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemPickupDesc => "For every Backup Magazine in your inventory, all sources of barrier are increased.";
 
-        public override string ItemFullDescription => "All sources of barrier are increased by a flat <style=cIsHealing>30</style> <style=cStack>(+15 per stack)</style> for every Backup Magazine you have.";
+        public override string ItemFullDescription => "All sources of <style=cIsHealing>barrier</style> are increased by a flat <style=cIsHealing>30</style> <style=cStack>(+15 per stack)</style> for every <style=cIsUtility>Backup Magazine</style> you have.";
 
         public override string ItemLore => "Man, I'm in a real pickle here! It's a good thing I packed my trusty Aegis! Now I know that I'll survi- <i>fucking dies</i>";
 

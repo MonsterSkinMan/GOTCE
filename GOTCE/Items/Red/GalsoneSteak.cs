@@ -20,7 +20,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemFullDescription => "The <style=cIsDamage>radius</style> of all area of effect attacks is increased by <style=cIsDamage>25m</style> <style=cStack>(+25m per stack)</style>.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "\"I mean it's common sense, right? When we're in the kitchen preparing meat and I tell you to get the oil, I'm talking about the oil used for COOKING in the KITCHEN.\"\n\"You did not specify.\"\n\"Oh my fucking god... Where did you even get a full canister of this stuff? Do you know how expensive Galsone is, not to mention the ingredients in the steak?\"\n\"I do not.\"\n\"You've wasted the steak now too, throw it in the bin. NOT as hard-\"\nAnd then there wasn't a bin, or a steak, or a chef, or a kitchen.";
 
         public override ItemTier Tier => ItemTier.Tier3;
 

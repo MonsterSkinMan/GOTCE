@@ -35,8 +35,10 @@ namespace GOTCE.Items.White
         }
 
         [RunMethod(RunAfter.Items)]
-        private static void RegisterFragile() {
-            Fragile.AddFragileItem(LuckiestMask.Instance.ItemDef, new Fragile.FragileInfo {
+        private static void RegisterFragile()
+        {
+            Fragile.AddFragileItem(LuckiestMask.Instance.ItemDef, new Fragile.FragileInfo
+            {
                 broken = Items.NoTier.DreamPDF.Instance.ItemDef,
                 shouldGiveBroken = true,
                 fraction = 25f
@@ -56,7 +58,8 @@ namespace GOTCE.Items.White
                 if (body.inventory && body.inventory.GetItemCount(ItemDef) > 0)
                 {
                     float count = 1f * body.inventory.GetItemCount(ItemDef);
-                    if (!self.procChainMask.HasProc(ProcType.Behemoth)) {
+                    if (!self.procChainMask.HasProc(ProcType.Behemoth))
+                    {
                         self.procCoefficient += count;
                     }
                 }

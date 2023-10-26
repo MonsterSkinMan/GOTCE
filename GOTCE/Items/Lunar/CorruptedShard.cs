@@ -22,7 +22,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemPickupDesc => "<color=#e64b13>Seems to do nothing...</color> <color=#FF7F7F>BUT seems to do nothing...</color>\n";
 
-        public override string ItemFullDescription => "Your attacks have a <style=cIsDamage>50%</style> <style=cStack>(+50% per stack)</style> chance to <style=cIsDamage>instantly kill</style> an enemy. The game has a <style=cIsHealth>1%</style> chance to <style=cIsHealth>crash</style> every second.";
+        public override string ItemFullDescription => "Your attacks have a <style=cIsDamage>50%</style> <style=cStack>(+50% per stack)</style> chance to <style=cIsDamage>instantly kill</style> an enemy. The game has a <style=cIsHealth>0.5%</style> chance to <style=cIsHealth>crash</style> every second.";
 
         public override string ItemLore => "This newest anomaly is... odd. More so than everything else I've investigated so far. Just looking at it makes me deeply uneasy. In-depth scrutiny of it shows nothing out of the ordinary compared to the rest of the artifacts, and its own origin came from the crack I found. I just never feel safe around it, but I don't know where to get rid of it, and I'm worried that destroying it will make everything worse. This unease is horrible, but I'll power through. I have work to do.";
 
@@ -95,12 +95,10 @@ namespace GOTCE.Items.Lunar
 
     public class CorruptedShardComponent : MonoBehaviour
     {
-        private IEnumerator crash;
         private bool shouldCrash = false;
 
         private void Start()
         {
-            crash = Crash(1f);
             for (int i = 0; i < NetworkUser.readOnlyInstancesList.Count; i++)
             {
                 var users = NetworkUser.readOnlyInstancesList[i];
@@ -110,12 +108,12 @@ namespace GOTCE.Items.Lunar
                 }
             }
 
-            StartCoroutine(crash);
+            StartCoroutine(Crash(1f));
         }
 
         private void FixedUpdate()
         {
-            if (Util.CheckRoll(0.03f))
+            if (Util.CheckRoll(0.005f * Time.fixedDeltaTime))
             {
                 shouldCrash = true;
             }

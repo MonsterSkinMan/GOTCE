@@ -15,7 +15,7 @@ namespace GOTCE.Items.White
 
         public override string ItemPickupDesc => "<style=cDeath>Does nothing</style>. <style=cIsUtility>2</style> White Fragments combine into <style=cIsUtility>4 random items</style>.";
 
-        public override string ItemFullDescription => "<style=cDeath>Does nothing</style>. <style=cIsUtility>2</style> White Fragments combine into <style=cIsUtility>4 random items</style>";
+        public override string ItemFullDescription => "<style=cDeath>Does nothing</style>. <style=cIsUtility>2</style> White Fragments combine into <style=cIsUtility>4 random items</style>.";
 
         public override string ItemLore => "";
 

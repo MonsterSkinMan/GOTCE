@@ -14,7 +14,7 @@ namespace GOTCE.Items.White
     {
         public override bool CanRemove => true;
         public override string ConfigName => ItemName;
-        public override string ItemFullDescription => "Gain <style=cIsUtility>5% sprint crit chance</style>. On '<style=cIsUtility>Critical Sprint</style>', permanently boost your <style=cIsHealing>regeneration</style> by <style=cIsHealing>0.7/s</style> <style=cStack>(+0.7/s per stack)</style>.";
+        public override string ItemFullDescription => "Gain <style=cIsUtility>5% sprint crit chance</style>. On '<style=cIsUtility>Critical Sprint</style>', permanently boost your <style=cIsHealing>regeneration</style> by <style=cIsHealing>0.5hp/s</style> <style=cStack>(+0.5hp/s per stack)</style>.";
         public override Sprite ItemIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/SigmaGrindset.png");
         public override string ItemLangTokenName => "GOTCE_SigmaGrindset";
         public override string ItemLore => "\"Yes, I play Doom Eternal and Nuclear Throne, how could you tell?\"";
@@ -61,9 +61,10 @@ namespace GOTCE.Items.White
             if (NetworkServer.active && body.masterObject && body.masterObject.GetComponent<GOTCE_StatsComponent>())
             {
                 GOTCE_StatsComponent stats = body.masterObject.GetComponent<GOTCE_StatsComponent>();
+                var stack = GetCount(body);
                 if (body.inventory && body.inventory.GetItemCount(ItemDef) > 0)
                 {
-                    float increase = (0.7f + (0.7f * GetCount(body))) * stats.total_sprint_crits;
+                    float increase = 0.5f * stack * stats.total_sprint_crits;
                     args.baseRegenAdd += increase;
                 }
             }

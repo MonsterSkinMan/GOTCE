@@ -27,6 +27,8 @@ namespace GOTCE.Items.White
 
         public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/Balls.png");
 
+        public override bool CanRemove => false;
+
         public override void Init(ConfigFile config)
         {
             base.Init(config);
@@ -40,7 +42,8 @@ namespace GOTCE.Items.White
         public override void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += Synergy;
-            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) => {
+            StatsCompEvent.StatsCompRecalc += (object sender, StatsCompRecalcArgs args) =>
+            {
                 if (args.Stats && NetworkServer.active)
                 {
                     if (args.Stats.inventory)

@@ -41,7 +41,6 @@ namespace GOTCE.Items.White
         {
             RecalculateStatsAPI.GetStatCoefficients += Synergy;
             StatsCompEvent.StatsCompRecalc += SynergyTwo;
-            
         }
 
         public void Synergy(CharacterBody body, RecalculateStatsAPI.StatHookEventArgs args)
@@ -65,10 +64,13 @@ namespace GOTCE.Items.White
             }
         }
 
-        public void SynergyTwo(object sender, StatsCompRecalcArgs args) {
-            if (args.Stats && args.Stats.inventory) {
+        public void SynergyTwo(object sender, StatsCompRecalcArgs args)
+        {
+            if (args.Stats && args.Stats.inventory)
+            {
                 int count = args.Stats.inventory.GetItemCount(ItemDef);
-                if (count > 0) {
+                if (count > 0)
+                {
                     args.Stats.AOEAdd += 2 * count;
                     args.Stats.reviveChanceAdd += 2 * count;
                     args.Stats.FovCritChanceAdd += 2 * count;

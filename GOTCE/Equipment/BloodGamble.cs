@@ -15,7 +15,7 @@ namespace GOTCE.Equipment
 
         public override string EquipmentPickupDesc => "Fire a singular missile at the cost of health. Passively halves your movement speed and health.";
 
-        public override string EquipmentFullDescription => "Passively halves your <style=cIsHealing>maximum health</style> and <style=cIsUtility>movement speed</style>. Fire <style=cIsDamage>1</style> missile that deals <style=cIsDamage>1x300% damage</style>, inflict <style=cIsHealing>25% of your maximum hp as self damage</style>, apply <style=cIsUtility>3 random debuffs</style> and the <style=cIsHealing>malachite debuff</style> to yourself for <style=cIsUtility>4</style> seconds.";
+        public override string EquipmentFullDescription => "Passively halves your <style=cIsHealing>maximum health</style>. Fire <style=cIsDamage>1</style> missile that deals <style=cIsDamage>1x3000% damage</style>, inflict <style=cIsHealing>25% of your maximum hp as self damage</style>, apply <style=cIsUtility>3 random debuffs</style> and the <style=cIsHealing>malachite debuff</style> to yourself for <style=cIsUtility>4</style> seconds.";
 
         public override string EquipmentLore => "This is fucking trash.\n-Literally everybody";
 
@@ -49,8 +49,8 @@ namespace GOTCE.Equipment
             if (body != null && body.inventory != null && body.inventory.currentEquipmentIndex != null && body.inventory.currentEquipmentIndex == Instance.EquipmentDef.equipmentIndex)
             {
                 args.healthMultAdd -= 0.5f;
-                args.moveSpeedReductionMultAdd += 1f;
-                // 1f is 50% move speed, or 50% actual reduction using the game's stupid formula
+                // args.moveSpeedReductionMultAdd += 0.5f;
+                // 0.5f is 75% move speed, or 25% actual reduction using the game's stupid formula
             }
         }
 
@@ -74,7 +74,10 @@ namespace GOTCE.Equipment
                 info.attacker = slot.characterBody.gameObject;
                 slot.characterBody.healthComponent.TakeDamage(info);
                 slot.characterBody.AddTimedBuff(RoR2Content.Buffs.HealingDisabled, 4f);
-                slot.characterBody.GetComponent<CharacterBody>().equipmentSlot.remainingMissiles += 1;
+
+                var prefab = Utils.Paths.GameObject.MissileProjectile.Load<GameObject>();
+
+                MissileUtils.FireMissile(slot.transform.position, slot.characterBody, default, null, slot.characterBody.damage * 30f, slot.characterBody.RollCrit(), prefab, DamageColorIndex.Item, false);
             }
             return true;
         }

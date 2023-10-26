@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 755959555
+CRC: 2991219444
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 7e9cc5b9fc6458ee4a117d897a147a32
+    Hash: ff9553e2c4cdcee54a3d4f6433205739
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8008b2b46f07412a84f63a8d4423d6d0
@@ -67,6 +67,7 @@ Assets:
 - Assets/Textures/Icons/Item/memoriesofmisery.png
 - Assets/Textures/Icons/Item/HealingScrap.png
 - Assets/Models/Prefabs/Item/LunarGat/mdlGoldGat.prefab
+- Assets/Textures/Icons/Item/OPMercBuild.png
 - Assets/Textures/Icons/Item/AnalyticalAegis.png
 - Assets/Textures/Icons/Artifact/woolifact.png
 - Assets/Textures/Icons/Item/ExtremelyUnstableTeslaCoil.png
@@ -74,6 +75,7 @@ Assets:
 - Assets/Textures/Icons/Item/BottledMetamorphosis.png
 - Assets/Textures/Icons/Item/ChristmasGift.png
 - Assets/Textures/Icons/Skills/Drain.png
+- Assets/Textures/Icons/Item/TrickledownBleedonomics.png
 - Assets/Textures/Icons/Item/BarrierInsurance.png
 - Assets/Textures/Icons/Item/LeechingGuillotine.png
 - Assets/Textures/Icons/Item/kirn.png
@@ -86,6 +88,8 @@ Assets:
 - Assets/Textures/Icons/Skills/StigmataShotgun.png
 - Assets/Textures/Icons/Item/bigshoe.png
 - Assets/Textures/Icons/Item/0Pebbles.png
+- Assets/Textures/Icons/Item/SpeedyFinger.png
+- Assets/Textures/Icons/Item/BloodyShank.png
 - Assets/Textures/Icons/Item/FormlessSand.png
 - Assets/Textures/Icons/Item/corruptedshard.png
 - Assets/Textures/Icons/Item/Aegiscentrism.png
@@ -106,6 +110,7 @@ Assets:
 - Assets/Textures/Icons/Item/WhiteFragment.png
 - Assets/Textures/Icons/Skills/HephaestusShotgun.png
 - Assets/Textures/Icons/Item/CrownPrince.png
+- Assets/Textures/Icons/Item/Parasite.png
 - Assets/Textures/Icons/Item/FreeWinFriday.png
 - Assets/Textures/Icons/Item/HealingScrapConsumed.png
 - Assets/Textures/Icons/Item/DrippingCamera.png
@@ -116,6 +121,7 @@ Assets:
 - Assets/Textures/Icons/Item/ExplorersTorch.png
 - Assets/Textures/Icons/Item/spafnarsfries.png
 - Assets/Textures/Icons/Item/ExpressionOfTheImmolated.png
+- Assets/Textures/Icons/Item/BoneArmour.png
 - Assets/Materials/Item/MoldySteak/matSteak.mat
 - Assets/Textures/Icons/Item/GenevaSuggestion.png
 - Assets/Textures/Icons/Item/shittyvisage.png
@@ -124,6 +130,7 @@ Assets:
 - Assets/Textures/Icons/Item/DilutedFlask.png
 - Assets/Textures/Icons/Item/HelloWorld.png
 - Assets/Textures/Icons/Item/tuboflard.png
+- Assets/Textures/Icons/Item/Retrobauble.png
 - Assets/Textures/Icons/Item/DopeDope.png
 - Assets/Textures/Icons/Item/GD1Nullified.png
 - Assets/Textures/Icons/Item/EmpathyC4.png
@@ -141,6 +148,8 @@ Assets:
 - Assets/Textures/Icons/Item/AncientAxe.png
 - Assets/Textures/Icons/Item/tubofbart.png
 - Assets/Textures/Icons/Item/backuphammer.png
+- Assets/Textures/Icons/Item/DividedBy.png
+- Assets/Textures/Icons/Item/BillieJean.png
 - Assets/Textures/Icons/Item/Bottled_Enigma.png
 - Assets/Textures/Icons/Item/MissileGuidanceSystem.png
 - Assets/Textures/Icons/Enemies/Voidlingling.png

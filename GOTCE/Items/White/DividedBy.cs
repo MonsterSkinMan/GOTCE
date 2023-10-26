@@ -70,12 +70,12 @@ namespace GOTCE.Items.White
             {
                 if (sender.HasBuff(speedBuff))
                 {
-                    args.attackSpeedMultAdd += 0.15f * GetCount(sender);
+                    args.moveSpeedMultAdd += 0.15f * GetCount(sender);
                 }
 
                 if (sender.HasBuff(armorBuff))
                 {
-                    args.attackSpeedMultAdd += -0.15f * GetCount(sender);
+                    args.moveSpeedMultAdd -= 0.15f * GetCount(sender);
                     args.armorAdd += 15f * GetCount(sender);
                 }
             }
