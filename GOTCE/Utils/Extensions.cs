@@ -55,6 +55,11 @@ namespace GOTCE.Utils {
             return self.ElementAt(Random.Range(0, self.Count()));
         }
 
+        public static string Add(this string self, string text) {
+            LanguageAPI.Add(self, text);
+            return self;
+        }
+
         /// <summary>Gets a random element from the collection</summary>
         /// <param name="rng">the Xoroshiro128Plus instance</param>
         /// <returns>the chosen element</returns>

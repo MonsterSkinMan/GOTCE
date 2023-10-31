@@ -1,4 +1,4 @@
-/*using System;
+using System;
 using UnityEngine;
 using RoR2;
 using RoR2.Skills;
@@ -88,6 +88,26 @@ namespace GOTCE.Enemies.Superbosses {
             }
         }
 
+        private class CloneSpammer : MonoBehaviour {
+            public float cloneCd = 4f;
+            public float cloneTimer;
+
+            public void Start() {
+                if (!PhaseCounter.instance || PhaseCounter.instance.phase <= 2) {
+                    GameObject.Destroy(this);
+                }
+            }
+            public void FixedUpdate() {
+                cloneTimer += Time.fixedDeltaTime;
+
+                if (cloneTimer > cloneCd) {
+                    cloneTimer = 0;
+
+                    MasterSummon summon = new();
+                }
+            }
+        }
+
         private void StealItem(DamageReport report) {
             if (NetworkServer.active && report.damageInfo.HasModdedDamageType(DamageTypes.StealItem)) {
                 if (report.victimBody && report.victimBody.inventory) {
@@ -110,4 +130,4 @@ namespace GOTCE.Enemies.Superbosses {
             }
         }
     }
-}*/
+}
