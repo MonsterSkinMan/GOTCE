@@ -15,7 +15,7 @@ namespace GOTCE.EntityStatesCustom.NemCore
             base.OnEnter();
 
             BlastAttack attack = new();
-            attack.radius = 5;
+            attack.radius = 15;
             attack.baseDamage = 80;
             attack.attacker = base.gameObject;
             attack.position = base.transform.position;
@@ -24,7 +24,7 @@ namespace GOTCE.EntityStatesCustom.NemCore
             attack.procCoefficient = 150;
     
             EffectManager.SpawnEffect(Utils.Paths.GameObject.ExplodeOnDeathVoidExplosionEffect.Load<GameObject>(), new EffectData {
-                scale = 5f,
+                scale = 15f,
                 origin = base.transform.position
             }, true);
 

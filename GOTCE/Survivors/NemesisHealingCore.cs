@@ -34,6 +34,8 @@ namespace GOTCE.Survivors {
 
             AddESM(prefab, "Weapon", new(typeof(EntityStates.Idle)));
 
+            prefab.AddComponent<EquipmentSlot>();
+
             GenericSkill slot = prefab.AddComponent<GenericSkill>();
             slot.skillName = "NemPrimary";
 
