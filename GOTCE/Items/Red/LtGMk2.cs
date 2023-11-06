@@ -21,9 +21,9 @@ namespace GOTCE.Items.Green
 
         public override Enum[] ItemTags => new Enum[] { ItemTag.Damage };
 
-        public override GameObject ItemModel => Main.MainAssets.LoadAsset<GameObject>("Assets/Models/Prefabs/Item/KirnTheItem/KirnTheItemNoOutline.prefab");
+        public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/kirn.png");
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/LtGMk2.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {

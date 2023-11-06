@@ -23,7 +23,7 @@ namespace GOTCE.Items.Green
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/Retrobauble.png");
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/ScathingEmbrace.png");
 
         public override void Init(ConfigFile config)
         {

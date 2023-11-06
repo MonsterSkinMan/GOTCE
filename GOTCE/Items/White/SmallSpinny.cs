@@ -21,11 +21,11 @@ namespace GOTCE.Items.White
 
         public override ItemTier Tier => ItemTier.Tier1;
 
-        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.Bullshit };
+        public override Enum[] ItemTags => new Enum[] { ItemTag.Damage, GOTCETags.Bullshit, GOTCETags.Crit };
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/SkullReaction.png");
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/SmallSpinny.png");
 
         public static BuffDef smallSpinnyBuff;
 

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2390561073
+CRC: 568296001
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4e12163c5c7179144181a39b91b5959b
+    Hash: 341466cbb0987bf05c207fabe3171d68
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8008b2b46f07412a84f63a8d4423d6d0
@@ -109,6 +109,7 @@ Assets:
 - Assets/Textures/Icons/Item/SkullReaction.png
 - Assets/Models/Prefabs/Enemies/IonSurger/mdlIonSurger.prefab
 - Assets/Textures/Icons/Skills/Magnetic_Propulsor.png
+- Assets/Textures/Icons/Item/ZaniestTree.png
 - Assets/Textures/Icons/Item/WhiteFragment.png
 - Assets/Textures/Icons/Skills/HephaestusShotgun.png
 - Assets/Textures/Icons/Item/CrownPrince.png
