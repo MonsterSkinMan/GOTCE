@@ -47,50 +47,50 @@ namespace GOTCE.Items.NoTier
         private void CharacterBody_FixedUpdate(On.RoR2.CharacterBody.orig_FixedUpdate orig, CharacterBody self)
         {
             orig(self);
-            RollAndAdd(0.00002f, self);
+            RollAndAdd(0.000005f, self);
         }
 
         private void HealthComponent_TakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)
         {
             orig(self, damageInfo);
-            RollAndAdd(0.0008f, self.body);
+            RollAndAdd(0.0002f, self.body);
         }
 
         private void HealthComponent_AddBarrier(On.RoR2.HealthComponent.orig_AddBarrier orig, HealthComponent self, float value)
         {
             orig(self, value);
-            RollAndAdd(0.007f, self.body);
+            RollAndAdd(0.001f, self.body);
         }
 
         private void HealthComponent_onCharacterHealServer(HealthComponent hc, float idc, ProcChainMask idc2)
         {
-            RollAndAdd(0.0004f, hc.body);
+            RollAndAdd(0.0001f, hc.body);
         }
 
         private void GlobalEventManager_onServerCharacterExecuted(DamageReport report, float idk)
         {
-            RollAndAdd(0.025f, report.attackerBody);
+            RollAndAdd(0.005f, report.attackerBody);
         }
 
         private void GlobalEventManager_onServerDamageDealt(DamageReport report)
         {
-            RollAndAdd(0.0004f, report.attackerBody);
+            RollAndAdd(0.00009f, report.attackerBody);
         }
 
         private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
         {
-            RollAndAdd(0.003f, report.attackerBody);
+            RollAndAdd(0.0009f, report.attackerBody);
         }
 
         private void GlobalEventManager_onCharacterLevelUp(CharacterBody body)
         {
-            RollAndAdd(0.018f, body);
+            RollAndAdd(0.009f, body);
         }
 
         private void GlobalEventManager_OnInteractionsGlobal(Interactor interactor, IInteractable interactable, GameObject interactableObject)
         {
             var body = interactor.GetComponent<CharacterBody>();
-            RollAndAdd(0.007f, body);
+            RollAndAdd(0.002f, body);
         }
 
         private void RollAndAdd(float chance, CharacterBody body = null, Inventory inventory = null, CharacterMaster master = null)
