@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1745160032
+CRC: 1476967089
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6220b03132ba93811c652c3deb377986
+    Hash: ddb7169bb1811f4a50d59fa90b3f2216
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 62016e3241fdc153c192c892e350e876
+    Hash: 89d35cc3c6ae74c59aee7c43a3c7b947
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -36,6 +36,8 @@ ClassTypes:
 - Class: 74
   Script: {instanceID: 0}
 - Class: 82
+  Script: {instanceID: 0}
+- Class: 84
   Script: {instanceID: 0}
 - Class: 90
   Script: {instanceID: 0}
@@ -84,6 +86,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 268574540, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: -98529514, guid: d3e719b59ab71ba3f6b398058c866280, type: 3}
+- Class: 114
   Script: {fileID: 1392865457, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -2005973111, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
@@ -112,7 +116,11 @@ ClassTypes:
 - Class: 114
   Script: {fileID: -226763392, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
+  Script: {fileID: -1219318476, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: -578974823, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: 1788389205, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: -960361785, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
@@ -219,7 +227,19 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 208
   Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
 - Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 223
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+- Class: 328
+  Script: {instanceID: 0}
+- Class: 329
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
@@ -229,10 +249,13 @@ Assets:
 - Assets/Icons/Items/CorruptsAllShatterspleens.png
 - Assets/Icons/Items/Recursion.png
 - Assets/Prefabs/Projectiles/AltSkills/Saw/SawPrefab.prefab
+- Assets/Prefabs/Enemies/FreddyFastbear/fastbear.png
+- Assets/Prefabs/Enemies/FreddyFastbear/whatthefuck.webm
 - Assets/Prefabs/Interactables/DisposableFunder/DisposableFunder.prefab
 - Assets/Prefabs/Projectiles/AltSkills/CorruptedPearl/PearlUpgrade.prefab
 - Assets/Icons/Items/RoR2Discussion.png
 - Assets/Prefabs/Projectiles/AltSkills/Core/Core.prefab
+- Assets/Prefabs/Enemies/FreddyFastbear/FreddyFastBearModel.prefab
 - Assets/Prefabs/Projectiles/AltSkills/Hook/Hook.prefab
 - Assets/Icons/BG/LunarVoid.png
 - Assets/Icons/Items/AegisDisplayCase.png
@@ -247,6 +270,7 @@ Assets:
 - Assets/Icons/Items/dream.pdf.png
 - Assets/Prefabs/Enemies/The/the.mat
 - Assets/Icons/Items/GummyVitamins.png
+- Assets/Prefabs/Enemies/FreddyFastbear/jumpscare.renderTexture
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/slide.png
 - Assets/Icons/BG/EquipBoss.png
 - Assets/Prefabs/Survivors/Cracktain/Drone/Skills/sdJeronePrimary.asset
@@ -261,6 +285,7 @@ Assets:
 - Assets/Prefabs/Survivors/Cracktain/Drone/Skills/sdJeroneSecondary.asset
 - Assets/Icons/Skills/barrage.png
 - Assets/Icons/Skills/scorch.png
+- Assets/Prefabs/Enemies/FreddyFastbear/FreddyJumpscare.prefab
 - Assets/Prefabs/Survivors/Crackmando/CrackmandoBody.prefab
 - Assets/Prefabs/Enemies/Vermin/mdlVermin.prefab
 - Assets/Icons/Items/BoxingGloves.png
@@ -292,16 +317,19 @@ Assets:
 - Assets/Icons/Items/LuckiestMask.png
 - Assets/Prefabs/Equipment/Backup/BackupAspect.prefab
 - Assets/Icons/Artifacts/artifactofblindnesson.png
+- Assets/Prefabs/Enemies/FreddyFastbear/FreddyFastBearBody.prefab
 - Assets/Prefabs/WoolerLore.txt
 - Assets/Icons/Items/PierReviewedSource.png
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/warp.png
 - Assets/Icons/nader.png
 - Assets/Prefabs/Enemies/SolusPylon/SolusPylonBody.prefab
 - Assets/Prefabs/Enemies/SolusScanner/SolusScannerMaster.prefab
+- Assets/Prefabs/Enemies/FreddyFastbear/FreddyFastBearMaster.prefab
 - Assets/Icons/Artifacts/artifactofwoolieon.png
 - Assets/Prefabs/Enemies/Provi/Projectile/ProviOrb.prefab
 - Assets/Icons/GummyBeetleQueen.png
 - Assets/Prefabs/Projectiles/AegisFunder/AegisProjectile.prefab
+- Assets/Prefabs/Enemies/FreddyFastbear/fnaf.webm
 - Assets/Prefabs/Survivors/Cracktain/Drone/Skills/sdJeroneUtility.asset
 - Assets/Icons/Items/UltraInstinctAegis.png
 - Assets/Prefabs/Survivors/Cracktain/Skills/sdBarrage.asset

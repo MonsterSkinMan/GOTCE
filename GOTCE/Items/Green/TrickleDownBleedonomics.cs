@@ -19,7 +19,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemFullDescription => "Your bleed gains <style=cIsDamage>0.3</style> <style=cStack>(+0.3 per stack)</style> proc coefficient.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "I promise you, it'll work! All of you will get your blood soon! If we give our blood to the... more fortunate, and as long as they don't have to donate as much, then they will have to bleed at some point and give back to us. Once that blood bleeds, it should trickle down to us, and we all will get more blood since the higher-up should be giving that blood away, but in greater mass! It'll work, I tell you!\n\nSo give those tri-tips and shatterspleens to me! I'll get you your blood procs later once I have enough!";
 
         public override ItemTier Tier => ItemTier.Tier2;
 

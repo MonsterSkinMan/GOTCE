@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3260670777
+CRC: 2991219444
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a75a890920e35f8a4c7586034091ce62
+    Hash: ff9553e2c4cdcee54a3d4f6433205739
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8008b2b46f07412a84f63a8d4423d6d0
@@ -110,6 +110,7 @@ Assets:
 - Assets/Textures/Icons/Item/WhiteFragment.png
 - Assets/Textures/Icons/Skills/HephaestusShotgun.png
 - Assets/Textures/Icons/Item/CrownPrince.png
+- Assets/Textures/Icons/Item/Parasite.png
 - Assets/Textures/Icons/Item/FreeWinFriday.png
 - Assets/Textures/Icons/Item/HealingScrapConsumed.png
 - Assets/Textures/Icons/Item/DrippingCamera.png

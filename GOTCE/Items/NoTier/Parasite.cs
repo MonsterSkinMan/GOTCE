@@ -22,7 +22,7 @@ namespace GOTCE.Items.NoTier
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/HeartlessBreakfast.png");
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/Parasite.png");
 
         public override bool CanRemove => false;
 

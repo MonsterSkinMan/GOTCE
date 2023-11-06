@@ -213,5 +213,25 @@ namespace GOTCE.Utils
             return mesh.sharedMesh;
         }
 
+        ///<summary>Returns a list of all safe nodes within the specified radius</summary>
+        ///<param name="center">the center position</param>
+        ///<param name="distance">the max distance</param>
+        ///<returns>the list of positions</returns>
+        public static Vector3[] GetSafePositionsWithinDistance(Vector3 center, float distance) {
+            if (SceneInfo.instance && SceneInfo.instance.groundNodes) {
+                NodeGraph graph = SceneInfo.instance.groundNodes;
+                List<Vector3> valid = new();
+                foreach (NodeGraph.Node node in graph.nodes) {
+                    if (Vector3.Distance(node.position, center) <= distance) {
+                        valid.Add(node.position);
+                    }
+                }
+                return valid.ToArray();
+            }
+            else {
+                return new Vector3[] { center };
+            }
+        }
+
     }
 }
