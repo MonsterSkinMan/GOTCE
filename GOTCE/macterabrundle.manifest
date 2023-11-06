@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2991219444
+CRC: 2390561073
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ff9553e2c4cdcee54a3d4f6433205739
+    Hash: 4e12163c5c7179144181a39b91b5959b
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8008b2b46f07412a84f63a8d4423d6d0
@@ -53,6 +53,8 @@ Assets:
 - Assets/Textures/Icons/Item/CrownPrinceEXE.png
 - Assets/Models/Prefabs/Item/KirnTheItem/KirnTheItemNoOutline.prefab
 - Assets/Textures/Icons/Skills/EntanglerReal.png
+- Assets/Textures/Icons/Item/ScathingEmbrace.png
+- Assets/Textures/Icons/Item/Lotus.png
 - Assets/Textures/Icons/Item/UranialRaegis.png
 - Assets/Textures/Icons/Item/heartybreakfast.png
 - Assets/Textures/Icons/Enemies/LivingSuppressiveFire.png
@@ -153,6 +155,7 @@ Assets:
 - Assets/Textures/Icons/Item/Bottled_Enigma.png
 - Assets/Textures/Icons/Item/MissileGuidanceSystem.png
 - Assets/Textures/Icons/Enemies/Voidlingling.png
+- Assets/Textures/Icons/Item/LtGMk1.png
 - Assets/Textures/Icons/Item/GrandfatherClock.png
 - Assets/Models/Prefabs/Item/Drill/Cube.prefab
 - Assets/Materials/Item/MoldySteak/MoldySteakmaterial.mat
@@ -162,6 +165,7 @@ Assets:
 - Assets/Textures/Icons/Artifact/artifactofblindnesson.png
 - Assets/Textures/Icons/Item/WindFluxPauldron.png
 - Assets/Textures/Icons/Item/DelicaterWatch.png
+- Assets/Textures/Icons/Item/SmallSpinny.png
 - Assets/Textures/Icons/Item/ViscousBlast.png
 - Assets/Models/Prefabs/Item/KirnTheItem/KirnTheItemNoOutline.png
 - Assets/Textures/Icons/Item/DarkFluxPauldron.png
@@ -169,6 +173,7 @@ Assets:
 - Assets/Textures/Icons/Item/skullkey.png
 - Assets/Textures/Icons/Item/pogo.png
 - Assets/Textures/Icons/Item/BangSnap.png
+- Assets/Textures/Icons/Item/PebbsiZero.png
 - Assets/Textures/Icons/Item/GalsoneSteak.png
 - Assets/Textures/Icons/Item/Gasogreen.png
 - Assets/Textures/Icons/Item/animalhead.png
@@ -188,6 +193,8 @@ Assets:
 - Assets/Textures/Icons/Item/Lunch.png
 - Assets/Textures/Icons/Skills/TheOnlyThingTheyFear.png
 - Assets/Textures/Icons/Item/HuntressHarpoon.png
+- Assets/Textures/Icons/Item/LtGMk2.png
 - Assets/Materials/Enemies/tongueMaterial.mat
+- Assets/Textures/Icons/Item/OniHuntersSword.png
 - Assets/Textures/Icons/Skills/DoomBlastReal.png
 Dependencies: []

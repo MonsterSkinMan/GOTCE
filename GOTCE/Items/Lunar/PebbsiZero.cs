@@ -20,24 +20,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemFullDescription => "<style=cIsUtility>Pull enemies towards you on hit</style> and <style=cIsDamage>kill enemies on contact</style>. Gain <style=cIsUtility>10% per second</style> health regeneration. <style=cDeath>You are blind.</style>";
 
-        public override string ItemLore => 
-        """
-        Hello, creature. You've come at the perfect time.
-
-        The solution has been found.
-
-        The solution is portable.
-
-        The solution has been implemented.
-
-        And it comes in three delicious flavors.
-
-        Five Pebbsi: Triple Affirmative
-        
-        ...
-
-        Would you like to try a sample?
-        """;
+        public override string ItemLore => "Hello, creature. You've come at the perfect time.\n\nThe solution has been found.\n\nThe solution is portable.\n\nThe solution has been implemented.\n\nAnd it comes in three delicious flavors\n\nFive Pebbsi: Triple Affirmative\n\n...\n\nWould you like to try a sample?";
 
         public override ItemTier Tier => ItemTier.Lunar;
 

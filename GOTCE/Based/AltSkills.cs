@@ -73,7 +73,6 @@ namespace GOTCE.Based
 
             prefab = Addressables.LoadAssetAsync<GameObject>(Utils.Paths.GameObject.CommandoGrenadeProjectile).WaitForCompletion().InstantiateClone("nader");
             ProjectileImpactExplosion impact = prefab.GetComponent<ProjectileImpactExplosion>();
-            impact.destroyOnEnemy = true;
             impact.destroyOnWorld = true;
             impact.timerAfterImpact = false;
             var guh = prefab.AddComponent<DamageAPI.ModdedDamageTypeHolderComponent>();
