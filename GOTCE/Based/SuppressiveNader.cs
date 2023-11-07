@@ -179,7 +179,7 @@ namespace GOTCE.Based
                 }
             }
 
-            if (info.HasModdedDamageType(DamageTypes.FullChainLightning) && info.attacker)
+            if ((info.HasModdedDamageType(DamageTypes.FullChainLightning) || info.HasModdedDamageType(DamageTypes.FullChainLightning) ) && info.attacker)
             {
                 CharacterBody body = info.attacker.GetComponent<CharacterBody>();
                 LightningOrb lightningOrb = new()

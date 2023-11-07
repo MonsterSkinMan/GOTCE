@@ -49,7 +49,7 @@ namespace GOTCE.Equipment
             if (body != null && body.inventory != null && body.inventory.currentEquipmentIndex != null && body.inventory.currentEquipmentIndex == Instance.EquipmentDef.equipmentIndex)
             {
                 args.healthMultAdd -= 0.5f;
-                // args.moveSpeedReductionMultAdd += 0.5f;
+                args.moveSpeedReductionMultAdd += 0.5f;
                 // 0.5f is 75% move speed, or 25% actual reduction using the game's stupid formula
             }
         }
