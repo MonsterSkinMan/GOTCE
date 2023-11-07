@@ -80,7 +80,7 @@ namespace GOTCE.Items.Red
                     VoidWhite.FortifiedFlask.Instance.ItemDef.itemIndex, VoidWhite.PluripotentBisonSteak.Instance.ItemDef.itemIndex,
                     VoidYellow.CorruptsAllShatterspleens.Instance.ItemDef.itemIndex, White.Lunch.Instance.ItemDef.itemIndex,
                     White.GummyVitamins.Instance.ItemDef.itemIndex, Yellow.RightRingFingerOfProvidence.Instance.ItemDef.itemIndex,
-                    White.Balls.Instance.ItemDef.itemIndex, Red.GalsoneSteak.Instance.ItemDef.itemIndex, Green.Gasogreen.Instance.ItemDef.itemIndex, White.SummertimeSoda.Instance.ItemDef.itemIndex, White.SkullReaction.Instance.ItemDef.itemIndex
+                    White.Balls.Instance.ItemDef.itemIndex, Red.GalsoneSteak.Instance.ItemDef.itemIndex, Green.Gasogreen.Instance.ItemDef.itemIndex, White.SummertimeSoda.Instance.ItemDef.itemIndex, White.SkullReaction.Instance.ItemDef.itemIndex, NoTier.Parasite.Instance.ItemDef.itemIndex, Lunar.PebbsiZero.Instance.ItemDef.itemIndex
                     // original list is
                     // bison steak, planula, moldy steak, bungus, wungus, mocha, energy drink, desk plant, spafnar's fries
 

@@ -52,6 +52,9 @@ namespace GOTCE.Components
         // item: sigma grindset
         public int total_sprint_crits = 0;
 
+        // item: scathing embrace
+        public int total_camera_rotation_crits = 0;
+
         // item: unseasoned patty
         public List<GameObject> bubbles = new();
 
@@ -87,6 +90,7 @@ namespace GOTCE.Components
 
         // death crit
         private float stopwatchDeathCrit = 0f;
+
         private float safeTimerDeathCrit = 5f;
         private bool deathCritTimerOn = false;
         public bool isOnCritDeathCooldown = false;
@@ -127,10 +131,8 @@ namespace GOTCE.Components
                 DeathChanceAdd = 0;
                 DeathCritChanceAdd = 0;
                 RotationCritChanceAdd = 0;
-                
 
                 StatsCompEvent.StatsCompRecalc?.Invoke(this, new(cbody.masterObject.GetComponent<GOTCE_StatsComponent>()));
-                
 
                 fovCritChance = FovCritChanceAdd;
                 sprintCritChance = SprintCritChanceAdd + increase;
@@ -173,7 +175,8 @@ namespace GOTCE.Components
             }
         }
 
-        public void CriticallyDie() {
+        public void CriticallyDie()
+        {
             deathCritTimerOn = true;
             Invoke(nameof(RespawnExtraLifeNoImmune), 2.5f);
             Invoke(nameof(Die), 3f);
@@ -181,17 +184,20 @@ namespace GOTCE.Components
 
         public void FixedUpdate()
         {
-            if (deathCritTimerOn) {
+            if (deathCritTimerOn)
+            {
                 master.preventGameOver = true;
                 stopwatchDeathCrit += Time.fixedDeltaTime;
-                if (stopwatchDeathCrit >= safeTimerDeathCrit) {
+                if (stopwatchDeathCrit >= safeTimerDeathCrit)
+                {
                     stopwatchDeathCrit = 0f;
                     deathCritTimerOn = false;
                 }
 
                 isOnCritDeathCooldown = true;
             }
-            else {
+            else
+            {
                 isOnCritDeathCooldown = false;
             }
         }
@@ -199,7 +205,8 @@ namespace GOTCE.Components
         // this function exists solely so suicide can be used as a courotine
         public void Die()
         {
-            if (!body || !body.healthComponent) {
+            if (!body || !body.healthComponent)
+            {
                 return;
             }
             body.healthComponent.Suicide();
@@ -255,6 +262,7 @@ namespace GOTCE.Components
                 }
             }
         }
+
         // dio revive but doesnt give dio and doesnt give iframes and doesnt play vfx
         public void RespawnExtraLifeNoImmune()
         {
