@@ -23,7 +23,7 @@ namespace GOTCE.Items.Red
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Icons/Item/OniHuntersSword.png");
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/OniHuntersSword.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
