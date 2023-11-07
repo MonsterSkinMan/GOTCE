@@ -19,7 +19,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemFullDescription => "Gain a Zany Tree ally. The Zany Tree <style=cIsUtility>laughs</style> at targets, launching them back <style=cIsUtility>8m</style> <style=cStack>(+4m per stack)</style> and stuns them for 1 second.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "If you are over 25 and own a computer, this item is a must-have!";
 
         public override ItemTier Tier => ItemTier.Tier3;
 

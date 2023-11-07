@@ -15,7 +15,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemFullDescription => "Gain a <style=cIsDamage>10%</style> chance on hit to <style=cIsDamage>summon lightning</style> for <style=cIsDamage>1500%</style> <style=cStack>(+750% per stack)</style> base damage.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Keep yourself safe.";
 
         public override ItemTier Tier => ItemTier.Tier2;
 
