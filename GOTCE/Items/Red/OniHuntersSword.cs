@@ -15,7 +15,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemFullDescription => "Gain a <style=cIsUtility>20%</style> <style=cStack>(+10% per stack)</style> chance to <style=cIsUtility>convert</style> a <style=cIsLunar>lunar</style> item into a random <style=cIsHealth>red</style> item.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "Risk of Rain: Hostile Worlds will be available on iOS and Android. Sign up today for our mailing list and join our social channels to stay informed! Players who join the mailing list will also receive the Mercenary Survivor!";
 
         public override ItemTier Tier => ItemTier.Tier3;
 
@@ -23,7 +23,7 @@ namespace GOTCE.Items.Red
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Items/OniHuntersSword.png");
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/OniHuntersSword.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {

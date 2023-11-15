@@ -17,7 +17,7 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "On '<style=cIsUtility>Camera Rotation Crit</style>', increase <style=cIsDamage>attack speed</style> by <style=cIsDamage>35%</style> <style=cStack>(+25% per stack)</style> for <style=cIsDamage>2 seconds</style>.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "speen";
 
         public override ItemTier Tier => ItemTier.Tier1;
 
