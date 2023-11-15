@@ -97,7 +97,7 @@ namespace GOTCE.Items.NoTier
         {
             if (Run.instance)
             {
-                if (Run.instance.treasureRng.RangeFloat(0f, 1f) < chance)
+                if (Run.instance.runRNG != null && Run.instance.runRNG.RangeFloat(0f, 1f) < chance)
                 {
                     if (inventory)
                     {
@@ -126,7 +126,7 @@ namespace GOTCE.Items.NoTier
                         }
                     }
 
-                    var toLog = (Run.instance.treasureRng.RangeFloat(0f, 1f)) switch
+                    var toLog = (Run.instance.runRNG.RangeFloat(0f, 1f)) switch
                     {
                         > 0.9f => ":3",
                         < 0.1f => "OwO",
