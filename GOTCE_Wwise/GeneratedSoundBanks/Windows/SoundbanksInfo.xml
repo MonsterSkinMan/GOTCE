@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="135">
+	<RootPaths>
+		<ProjectRoot>C:\Users\User\Desktop\Development\RoR2\GOTCE\GOTCE_Wwise\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\User\Desktop\Development\RoR2\GOTCE\GOTCE_Wwise\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\User\Desktop\Development\RoR2\GOTCE\GOTCE_Wwise\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\User\Desktop\Development\RoR2\GOTCE\GOTCE_Wwise\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX" Hash="3321407248">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="3256079973" Language="SFX" Hash="4268827683">
+			<ObjectPath>\SoundBanks\GOTCE\GOTCE</ObjectPath>
+			<ShortName>GOTCE</ShortName>
+			<Path>GOTCE.bnk</Path>
+			<IncludedEvents>
+				<Event Id="996983870" Name="The" ObjectPath="\Events\GOTCE\The">
+					<IncludedMemoryFiles>
+						<File Id="799232243" Language="SFX">
+							<ShortName>The.wav</ShortName>
+							<Path>SFX\The_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

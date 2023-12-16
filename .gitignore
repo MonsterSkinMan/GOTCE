@@ -8,6 +8,7 @@ build.sh
 
 # manifest and things
 GOTCE/BetaBuild
+GOTCE_Wwise/.*/
 
 # User-specific files
 *.suo

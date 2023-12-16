@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{88F9D4BB-CE0C-48A0-A5EF-1CE62BF588A6}" SchemaVersion="97">
+	<SoundBanks>
+		<WorkUnit Name="GOTCE" ID="{88F9D4BB-CE0C-48A0-A5EF-1CE62BF588A6}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="GOTCE" ID="{79315839-4A62-46D2-87C9-F5B0493DBE2A}">
+					<ObjectInclusionList>
+						<ObjectRef Name="The" ID="{785CE1CD-D925-43F2-9FF5-664EADDA57C4}" WorkUnitID="{705751AA-664E-4F7A-8D4B-F0226C27B343}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>
