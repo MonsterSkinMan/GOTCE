@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{07F2AB34-94CB-4356-940B-EB9F92F09D20}" SchemaVersion="97">
 	<AudioObjects>
-		<WorkUnit Name="GOTCE" ID="{07F2AB34-94CB-4356-940B-EB9F92F09D20}" PersistMode="Standalone"/>
+		<WorkUnit Name="GOTCE" ID="{07F2AB34-94CB-4356-940B-EB9F92F09D20}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="The" ID="{BDBFCFEC-361B-4D0A-B712-0761CFE88F34}" ShortID="81462701">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{604D33B6-CD7D-4746-BB08-7E86F73CBE86}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="The" ID="{5BC78B4C-6085-4A61-8943-F7C8B155FE70}">
+							<Language>SFX</Language>
+							<AudioFile>The.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="799232243"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="The" ID="{5BC78B4C-6085-4A61-8943-F7C8B155FE70}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
 	</AudioObjects>
 </WwiseDocument>
