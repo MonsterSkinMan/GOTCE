@@ -10,11 +10,11 @@ namespace GOTCE.Items.NoTier
 
         public override string ItemLangTokenName => "Parasite";
 
-        public override string ItemPickupDesc => "ᅠᅠᅠᅠParasite";
+        public override string ItemPickupDesc => "      Parasite";
 
-        public override string ItemFullDescription => "ᅠᅠParasite";
+        public override string ItemFullDescription => "     Parasite";
 
-        public override string ItemLore => "ᅠᅠᅠᅠParasite";
+        public override string ItemLore => "Parasite";
 
         public override ItemTier Tier => ItemTier.NoTier;
 

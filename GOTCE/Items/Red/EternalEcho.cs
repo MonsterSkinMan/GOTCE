@@ -20,9 +20,9 @@ namespace GOTCE.Items.Red
 
         public override string ItemFullDescription => "Your attacks hit 1 (+1 per stack) additional time(s) for 75% total damage.";
 
-        public override string ItemLore => "";
+        public override string ItemLore => "I had the weirdest time whilst in this cave. I heard gunshots. What's weirder? The gunshots were right next to me, but nobody was here. No guns, no bullets, nothing. I was completely alone in this cave, but it still sounded like I was in the middle of a firefight! After some research, I learned there was a huge battle in this cave, sometime during the War of 2019. I conclude that this cave has some kind of magic within its walls, echoing what it heard for eternity. Perhaps my footsteps will also be heard for eternity too.";
 
-        public override ItemTier Tier => ItemTier.NoTier;
+        public override ItemTier Tier => ItemTier.Tier3;
 
         public override Enum[] ItemTags => new Enum[] { ItemTag.Damage };
 

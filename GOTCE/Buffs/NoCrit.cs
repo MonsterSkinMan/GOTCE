@@ -1,16 +1,18 @@
-﻿using RoR2;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace GOTCE.Buffs
 {
-    public class Frenching : BuffBase<Frenching>
+    public class NoCrit : BuffBase<NoCrit>
     {
         public override Sprite BuffIcon => null;
         public override bool CanStack => false;
-        public override Color Color => Color.yellow;
-        public override string BuffName => "Frenching";
-        public override bool IsDebuff => false;
-        public override bool Hidden => false;
+        public override Color Color => Color.red;
+        public override string BuffName => "Crit Disabled";
+        public override bool IsDebuff => true;
+        public override bool Hidden => true;
 
         public override void Hooks()
         {
@@ -20,7 +22,7 @@ namespace GOTCE.Buffs
                 {
                     if (body.HasBuff(BuffDef))
                     {
-                        args.moveSpeedMultAdd += 0.7f * body.GetBuffCount(BuffDef);
+                        args.critAdd -= 1000f;
                     }
                 }
             };
