@@ -49,13 +49,13 @@
 
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\libs\Assembly-CSharp-nstrip.dll</HintPath>
     </Reference>
     <Reference Include="BetterUI">
-      <HintPath>bin\BetterUI.dll</HintPath>
+      <HintPath>..\..\libs\BetterUI-nstrip.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+      <HintPath>..\..\libs\com.unity.multiplayer-hlapi.Runtime-nstrip.dll</HintPath>
     </Reference>
     <Reference Include="KinematicCharacterController">
       <HintPath>libs\KinematicCharacterController.dll</HintPath>
@@ -64,16 +64,16 @@
       <HintPath>libs\MMHOOK_RoR2.dll</HintPath>
     </Reference>
     <Reference Include="R2API">
-      <HintPath>..\..\..\..\R2API.dll</HintPath>
+      <HintPath>..\..\..\..\R2API-nstrip.dll</HintPath>
     </Reference>
     <Reference Include="RoR2">
       <HintPath>..\..\..\..\..\..\.nuget\packages\riskofrain2.gamelibs\1.2.4-r.0\lib\netstandard2.0\RoR2.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>..\..\libs\Unity.Postprocessing.Runtime-nstrip.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\..\libs\UnityEngine.CoreModule-nstrip.dll</HintPath>
     </Reference>
     <Reference Include="Wwise">
       <HintPath>libs\Wwise.dll</HintPath>
@@ -84,6 +84,9 @@
     <Folder Include="EntityStatesCustom\AltSkills\Bandit\" />
     <Folder Include="libs\" />
     <Folder Include="Tiers\" />
+	<Content Include="..\GOTCE_Wwise\GeneratedSoundBanks\Windows\GOTCE.bnk">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
   </ItemGroup>
 
 </Project>

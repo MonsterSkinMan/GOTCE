@@ -41,6 +41,7 @@ using GOTCE.Survivors;
 using BetterUI;
 using UnityEngine.SceneManagement;
 using R2API.ContentManagement;
+using RoR2.UI.MainMenu;
 
 //using NemesisSlab;
 
@@ -57,6 +58,7 @@ namespace GOTCE
     [BepInDependency(DirectorAPI.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency(NetworkingAPI.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency(PrefabAPI.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency(SoundAPI.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency(R2APIContentManager.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("com.xoxfaby.BetterUI", BepInDependency.DependencyFlags.SoftDependency)] // soft dependency for compat
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
@@ -70,7 +72,7 @@ namespace GOTCE
         public static AssetBundle SecondaryAssets;
         public static AssetBundle GOTCEModels;
         public static AssetBundle SceneBundle;
-
+        public static uint GOTCESounds;
         public List<ArtifactBase> Artifacts = new();
         public List<ItemBase> Items = new();
         public List<EquipmentBase> Equipments = new();
@@ -99,12 +101,15 @@ namespace GOTCE
             SecondaryAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "secondarybundle"));
             GOTCEModels = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "gotcemodels"));
             SceneBundle = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "scenebundle"));
+            GOTCESounds = SoundAPI.SoundBanks.Add(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "GOTCE.bnk"));
             ModLogger = Logger;
             SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
             cloudRemap = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGCloudRemap.shader").WaitForCompletion();
             standard = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGStandard.shader").WaitForCompletion();
             terrain = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGTriplanarTerrainBlend.shader").WaitForCompletion();
+
+            RoR2Application.onLoad += () => { Util.PlaySound("The", RoR2Application.instance.gameObject); }; // the
 
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI") && Config.Bind<bool>("Compatibility", "BetterUI - Stats Display", true, "Adds the GOTCE stats to the BetterUI stats display.").Value)
             {
