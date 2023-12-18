@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 568296001
+CRC: 1678845312
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 341466cbb0987bf05c207fabe3171d68
+    Hash: e639788bc3dea177ffbd4ad52b5ad86b
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8008b2b46f07412a84f63a8d4423d6d0
@@ -134,6 +134,7 @@ Assets:
 - Assets/Textures/Icons/Item/HelloWorld.png
 - Assets/Textures/Icons/Item/tuboflard.png
 - Assets/Textures/Icons/Item/Retrobauble.png
+- Assets/Textures/Icons/Skills/DoomBlastReal.png
 - Assets/Textures/Icons/Item/DopeDope.png
 - Assets/Textures/Icons/Item/GD1Nullified.png
 - Assets/Textures/Icons/Item/EmpathyC4.png
@@ -197,5 +198,4 @@ Assets:
 - Assets/Textures/Icons/Item/LtGMk2.png
 - Assets/Materials/Enemies/tongueMaterial.mat
 - Assets/Textures/Icons/Item/OniHuntersSword.png
-- Assets/Textures/Icons/Skills/DoomBlastReal.png
 Dependencies: []
