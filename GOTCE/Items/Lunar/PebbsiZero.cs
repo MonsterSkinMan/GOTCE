@@ -77,7 +77,7 @@ namespace GOTCE.Items.Lunar
             orig(self);
 
             if (self.inventory && self.inventory.GetItemCount(ItemDef) > 0) {
-                self.visionDistance = 1;
+                self.visionDistance = 3;
             }
         }
 
