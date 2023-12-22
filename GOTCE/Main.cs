@@ -293,13 +293,13 @@ namespace GOTCE
             }
 
             //this section automatically scans the project for all stages
-            /* var StageTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(StageBase)));
+            var StageTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(StageBase)));
 
             foreach (var stageType in StageTypes)
             {
                 StageBase stage = (StageBase)System.Activator.CreateInstance(stageType);
                 stage.Create(Config);
-            } */
+            } 
 
             //this section automatically scans the project for all elite equipment
             var EliteEquipmentTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EliteEquipmentBase)));
@@ -401,7 +401,7 @@ namespace GOTCE
                 typeof(LivingSuppressiveFire).GetMethod("InputBankTest_aimOrigin_Get", System.Reflection.BindingFlags.Public | BindingFlags.Static)
             );
 
-            // Gamemodes.Crackclipse.GameMode.Create();
+            Gamemodes.Crackclipse.GameMode.Create();
 
             //CreateExpansion();
             // On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };

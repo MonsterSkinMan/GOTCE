@@ -5,6 +5,7 @@ using System.Text;
 using RoR2.UI;
 using System.Linq;
 using System.Reflection;
+using System.Xml.Schema;
 
 namespace GOTCE.Gamemodes.Crackclipse {
     public class Difficulty {
@@ -51,11 +52,22 @@ namespace GOTCE.Gamemodes.Crackclipse {
             LanguageAPI.Add("CRACKCLIPSE_2_DESC", sb.ToString());
             sb.Append("\n- Enemy spawns are <style=cDeath>completely random</style>");
             LanguageAPI.Add("CRACKCLIPSE_3_DESC", sb.ToString());
+            sb.Append("\n- The voices are <style=cDeath>getting louder</style>...");
+            LanguageAPI.Add("CRACKCLIPSE_4_DESC", sb.ToString());
+            sb.Append("\n- The fog is coming.");
+            LanguageAPI.Add("CRACKCLIPSE_5_DESC", sb.ToString());
+            sb.Append("\n- Enemies <style=cDeath>steal your items</style>.");
+            LanguageAPI.Add("CRACKCLIPSE_6_DESC", sb.ToString());
+            sb.Append("\n- The fate of the universe rests on a <style=cDeath>coin flip</style>.");
+            LanguageAPI.Add("CRACKCLIPSE_7_DESC", sb.ToString());
+            sb.Append("\n- The skeleton appears.");
+            LanguageAPI.Add("CRACKCLIPSE_8_DESC", sb.ToString());
 
             On.RoR2.MusicController.PickCurrentTrack += BadSax;
             On.RoR2.Run.OverrideRuleChoices += DisableIcons;
             On.RoR2.CombatDirector.AttemptSpawnOnTarget += TrueDisso;
             On.RoR2.CombatDirector.OnEnable += BadSax2;
+            On.RoR2.CharacterBody.Start += TheFog;
         }
 
         private static void CreateDifficulty(Sprite icon, ref DifficultyIndex _index, string token, int count, string tokenDesc) {
@@ -79,6 +91,21 @@ namespace GOTCE.Gamemodes.Crackclipse {
 
         public static bool IsCurrentDifHigherOrEqual(DifficultyIndex index, Run run) {
             return run.selectedDifficulty <= index;
+        }
+
+        private static void TheFog(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self) {
+            orig(self);
+            
+            if (Run.instance && IsCurrentDifHigherOrEqual(c5, Run.instance) && self.isPlayerControlled) {
+                self.baseVisionDistance = 20f;
+
+                if (self.gameObject.name.Contains("VoidSurvivor") || self.gameObject.name.Contains("Railgunner")) {
+                    self.baseRegen = -3f;
+                    self.levelRegen = -0.3f;
+                }
+
+                self.statsDirty = true;
+            }
         }
 
         private static void BadSax(On.RoR2.MusicController.orig_PickCurrentTrack orig, MusicController self, ref MusicTrackDef newTrack) {

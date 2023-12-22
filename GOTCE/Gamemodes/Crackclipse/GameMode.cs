@@ -65,7 +65,8 @@ namespace GOTCE.Gamemodes.Crackclipse {
 
             Difficulty.Create();
         }
-        /*[SystemInitializer(typeof(SurvivorCatalog))]
+        
+        [SystemInitializer(typeof(SurvivorCatalog))]
         public static void GenerateUnlockableDefsForSurvivors() {
             List<UnlockableDef> defs = ContentManager._unlockableDefs.ToList();
             foreach (SurvivorDef def in SurvivorCatalog.survivorDefs) {
@@ -86,6 +87,6 @@ namespace GOTCE.Gamemodes.Crackclipse {
             }
             ContentManager._unlockableDefs = defs.ToArray();
             UnlockableCatalog.SetUnlockableDefs(ContentManager.unlockableDefs);
-        }*/
+        }
     }
 }

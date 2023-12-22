@@ -43,10 +43,15 @@ namespace GOTCE.Stages {
         public virtual void CreateConfig(ConfigFile config) {
 
         }
+
+        public virtual void GetSceneDef() {
+            sceneDef = ScriptableObject.CreateInstance<SceneDef>();
+        }
+
         public void Create(ConfigFile config) {
             CreateConfig(config);
 
-            sceneDef = ScriptableObject.CreateInstance<SceneDef>();
+            GetSceneDef();
             sceneDef.cachedName = SceneName;
             sceneDef.baseSceneNameOverride = SceneName;
             sceneDef.blockOrbitalSkills = BlockOrbitalSkills;
