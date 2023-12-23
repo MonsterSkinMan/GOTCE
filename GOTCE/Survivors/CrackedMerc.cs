@@ -26,6 +26,7 @@ namespace GOTCE.Survivors {
             body.baseNameToken = "GOTCE_CRACKEDMERC_NAME".Add("Cracked Mercenary");
             body.bodyColor = Color.yellow;
             body.baseDamage = 14f;
+            body.baseJumpCount = 1;
 
             SkillLocator locator = prefab.GetComponent<SkillLocator>();
             locator.passiveSkill.skillNameToken = "GOTCE_CRACKEDMERC_PASSIVE_NAME".Add("The OP Build");
@@ -62,19 +63,27 @@ namespace GOTCE.Survivors {
             headDml.transform.localPosition = new Vector3(0, -20f, 0);
             headDml.transform.localRotation = Quaternion.Euler(-20, 180, 0);
             headDml.transform.localScale = 100f * Vector3.one;
+            headDml.transform.Find("mdlMissileRack").Find("MissileRackArmature").Find("Base").Find("Arm1.l").localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            headDml.transform.Find("mdlMissileRack").Find("MissileRackArmature").Find("Base").Find("Arm1.r").localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
             Transform chest = loc.FindChild("Chest");
 
-            /*GameObject chestDml = GameObject.Instantiate<GameObject>(dml, chest);
-            chestDml.transform.localPosition = Vector3.zero;
-
+            GameObject chestDml = GameObject.Instantiate<GameObject>(dml, chest);
+            chestDml.transform.localPosition = new Vector3(0, 0.2f, 0);
+            chestDml.transform.localRotation = Quaternion.Euler(90, 180, 0);
+            chestDml.transform.Find("mdlMissileRack").Find("MissileRackArmature").Find("Base").Find("Arm1.l").localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            chestDml.transform.Find("mdlMissileRack").Find("MissileRackArmature").Find("Base").Find("Arm1.r").localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
             Transform sword = chest.Find("SwingCenter").Find("SwordBase");
 
             GameObject swordDml = GameObject.Instantiate<GameObject>(dml, sword);
-            swordDml.transform.localPosition = Vector3.zero;
+            swordDml.transform.localPosition = new Vector3(0, -0.1f, -0.1f);
+            swordDml.transform.Find("mdlMissileRack").Find("MissileRackArmature").Find("Base").Find("Arm1.l").localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            swordDml.transform.Find("mdlMissileRack").Find("MissileRackArmature").Find("Base").Find("Arm1.r").localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            
 
-            sword.Find("SwordLength.1").gameObject.AddComponent<ScaleNullifer>();*/
+            sword.Find("SwordLength.1").gameObject.AddComponent<ScaleNullifer>();
+            sword.Find("Point Light").gameObject.SetActive(false);
 
             GameObject.Destroy(model.modelTransform.GetComponent<ModelSkinController>());
 
