@@ -154,6 +154,13 @@ namespace GOTCE.Survivors
             }
         }
 
+        public Material DuplicateMat(Material mat, string name, Texture2D mainTex) {
+            Material newMat = UnityEngine.Object.Instantiate(mat);
+            newMat.name = name;
+            newMat.mainTexture = mainTex;
+            return newMat;
+        }
+
         public void SwapMeshes(GameObject prefab, Mesh mesh, bool all = false, List<int> renders = null)
         {
             CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();
@@ -227,6 +234,15 @@ namespace GOTCE.Survivors
                 foreach (int i in renders)
                 {
                     model.baseRendererInfos[i].defaultMaterial = mat;
+                }
+            }
+        }
+
+        public void SwapMaterials(GameObject prefab, Material matFrom, Material matTo, bool invert = false) {
+            CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();
+            for (int i = 0; i < model.baseRendererInfos.Length; i++) {
+                if (invert ? model.baseRendererInfos[i].defaultMaterial != matFrom : model.baseRendererInfos[i].defaultMaterial == matFrom) {
+                    model.baseRendererInfos[i].defaultMaterial = matTo;
                 }
             }
         }

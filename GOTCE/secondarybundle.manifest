@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2053964552
+CRC: 4020577069
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: cd7a4301243630519a546b8b1a685d51
+    Hash: 3534a8f6d463a26004ce90c37ebea93a
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3bf74e3602d15a163127500e471d311f
@@ -303,6 +303,7 @@ Assets:
 - Assets/Prefabs/game.prefab
 - Assets/Prefabs/Survivors/Cracktain/Skills/sdLaser.asset
 - Assets/Icons/Artifacts/artifactofblindnessoff.png
+- Assets/Prefabs/Survivors/CrackedMerc/crecDiffuse.png
 - Assets/Icons/Misc/smirk_cat.png
 - Assets/Prefabs/Survivors/Cracktain/sdCracktain.asset
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/rounder.png
