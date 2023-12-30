@@ -18,7 +18,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemFullDescription => "Increase your <style=cIsUtility>movement speed</style> by <style=cIsUtility>50%</style> <style=cIsStack>(+50% per stack)</style> while out of combat. You cannot move while in combat. <style=cIsHealing>Decrease armor</style> by <style=cIsHealing>0</style> <style=cIsStack(+100 per stack)</style> while in combat.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "Ok the joke with this item is a lot funnier once you discover the void counterpart so I'll leave that for its log. Honestly this item goes so hard because me when I attack an enemy and now I can no longer move.";
 
         public override ItemTier Tier => ItemTier.Lunar;
 
@@ -26,7 +26,7 @@ namespace GOTCE.Items.Lunar
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/PurpleWhip.png");
 
         public override void Init(ConfigFile config)
         {

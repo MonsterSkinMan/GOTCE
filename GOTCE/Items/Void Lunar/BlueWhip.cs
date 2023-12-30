@@ -20,7 +20,7 @@ namespace GOTCE.Items.Void_Lunar
 
         public override string ItemFullDescription => "Increase your <style=cIsUtility>movement speed</style> by <style=cIsUtility>200%</style> <style=cIsStack>(+100% per stack)</style> while in combat. You cannot move while out of combat. <style=cIsHealing>Decrease armor</style> by <style=cIsHealing>0</style> <style=cIsStack(+100 per stack)</style> while out of combat.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "Ok so the reason this is funny is because Blue Whip is a void item, which is the purple tier (I mean technically it's a void lunar which is an indigo color but um shut the fuck up) and Purple Whip is a lunar item, which is the purple tier. See, it's funny because we put the items in the tiers that weren't their color. I mean I guess it's not really like \"funny\" but I think it's kinda silly idk.";
 
         public override ItemTier Tier => Tiers.LunarVoid.Instance.TierEnum;
 
@@ -28,7 +28,7 @@ namespace GOTCE.Items.Void_Lunar
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/BlueWhip.png");
 
         public override void Init(ConfigFile config)
         {

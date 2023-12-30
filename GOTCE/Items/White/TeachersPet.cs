@@ -20,15 +20,15 @@ namespace GOTCE.Items.White
 
         public override string ItemFullDescription => "You gain a 20% (+20% per stack) damage boost if the character you are playing as has the letter \"A\" in their name.";
 
-        public override string ItemLore => "Fun fact: this was the first item I ever conceived for GOTCE. The first GOTCE item I conceived in general was Plantern, but that was actually conceived for Spikestrip 2.0, because I was friends with the SS2.0 devs and wanted to add an item to it.";
+        public override string ItemLore => "We used to be friends, you know? We had a great friendship going on. And we had a good thing going. You'd help me with class, and I'd help you with the hit on you head. I really wasn't sure what exactly you'd have to do to have a hit on a child's head, but I didn't look into it too much. And I know we had a single agreement, which was that I wasn't to miss a meeting of ours.\n\nExcept I uh, kinda had to dude. My brother was being shipped off to war and I figured I could miss a single day. But you. Oh you rotten fucking teacher's pet, you did that shit to me. You wanna know what happened for me? I had to walk in, and the teach threw an apple at me. An actual apple, and then told me how I apparently \"cheated\" on a test. I denied it as much as I possibly could, but you, with your high fucking reputation, ruined it all. Now I'm out of classes! My parents disowned me!\n\nSo, now that I got you here, that hit on your head? I decided to finally ask. Oh I'm telling you, being a teacher's pet? You might have a teach, but you have a lot of people who want you dead. And just saying, that cash looks very tasty right now.";
 
-        public override ItemTier Tier => ItemTier.NoTier;
+        public override ItemTier Tier => ItemTier.Tier1;
 
         public override Enum[] ItemTags => new Enum[] {ItemTag.Damage };
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/TeachersPet.png");
 
         public override void Init(ConfigFile config)
         {

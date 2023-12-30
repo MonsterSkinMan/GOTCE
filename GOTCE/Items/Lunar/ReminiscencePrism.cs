@@ -21,7 +21,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemFullDescription => "Gain 20% (+20% per stack) stage transition crit chance. Critical strikes are disabled for the stage upon stage transition crit.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "Hot damn! This is a weird-ass prism! Holding it is somehow making me reminisce on the old days, even though I literally cast off my capability of doing that by making Purity. Actually, this strange prism is strange in another way: it seems to be damaging the fabric of reality. I think that I have noticed myself warping around in time at certain intervals, although I feel a lot less focused whenever that happens for a bit.";
 
         public override ItemTier Tier => ItemTier.Lunar;
 
@@ -29,7 +29,7 @@ namespace GOTCE.Items.Lunar
 
         public override GameObject ItemModel => null;
 
-        public override Sprite ItemIcon => null;
+        public override Sprite ItemIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Item/ReminiscencePrism.png");
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {

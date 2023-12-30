@@ -19,7 +19,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemFullDescription => "Gain 10% <style=cStack>(+10% per stack)</style> stage crit chance. On stage crit, reveal all interactables within 500m for 10 seconds.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "The centuries after the war were very unkind to the wildlife. We hunted many species to extinction. Some for sport, but the main culprit was for... food. Not just survival food, luxury. Squids were some of the most popular to hunt, and unfortunately, we killed them all for the fat cats. So what was left for us? Their ink sacs. So we do what we can: we fill a pot, throw some spaghetti in, cook, and then throw in squid ink.\n\nIt... works. I'd prefer the actual squid pieces, but this does decently well.";
 
         public override ItemTier Tier => ItemTier.Tier2;
 
