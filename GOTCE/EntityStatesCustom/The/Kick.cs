@@ -28,6 +28,7 @@ namespace GOTCE.EntityStatesCustom.The
                 attack.Fire();
             }
             PlayAnimation("Body", "Kick");
+            Util.PlaySound("The", RoR2Application.instance.gameObject);
         }
 
         public override void FixedUpdate()
