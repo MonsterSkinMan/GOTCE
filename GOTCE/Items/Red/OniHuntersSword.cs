@@ -15,7 +15,7 @@ namespace GOTCE.Items.Red
 
         public override string ItemFullDescription => "Gain a <style=cIsUtility>20%</style> <style=cStack>(+10% per stack)</style> chance to <style=cIsUtility>convert</style> a <style=cIsLunar>lunar</style> item into a random <style=cIsHealth>red</style> item.";
 
-        public override string ItemLore => "Risk of Rain: Hostile Worlds will be available on iOS and Android. Sign up today for our mailing list and join our social channels to stay informed! Players who join the mailing list will also receive the Mercenary Survivor!";
+        public override string ItemLore => "Order: Suspicious sword\nTracking Number: 44*********\nEstimated Delivery: February 15, 2067\nShipping Method: High Priority\nShipping Address: 2016, Anomalous Oddities Headquarters, Oregon\nShipping Details:\n\nZen was the hunter. He took me under his wing after we stopped a ghost together. I looked up to him. A lot. So it pained me a lot to find him dead with what looked to be a burned slash through his throat.\n\nI thought you all could help me find his killer. I know you all over there love to research some anomalies, and I'm telling you, nobody should be able to kill Zen with a quick slash like this. Not anything human at least.";
 
         public override ItemTier Tier => ItemTier.Tier3;
 

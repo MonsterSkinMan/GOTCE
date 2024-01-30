@@ -24,7 +24,7 @@ namespace GOTCE.Survivors {
 
             CharacterBody body = prefab.GetComponent<CharacterBody>();
             body.baseNameToken = "GOTCE_CRACKEDMERC_NAME".Add("Cracked Mercenary");
-            body.bodyColor = Color.yellow;
+            body.bodyColor = Color.gray;
             body.baseDamage = 14f;
             body.baseJumpCount = 1;
 
@@ -33,9 +33,9 @@ namespace GOTCE.Survivors {
             locator.passiveSkill.skillDescriptionToken = "GOTCE_CRACKEDMERC_PASSIVE_DESC".Add("Your <style=cIsDamage>base damage</style> is increased by <style=cIsUtility>10%</style> for every <style=cIsDamage>Berserker's Pauldron</style> you have.");
             locator.passiveSkill.icon = null;
 
-            LanguageAPI.Add("GOTCE_CRACKEDMERC_SUBTITLE", "The Volatile");
+            LanguageAPI.Add("GOTCE_CRACKEDMERC_SUBTITLE", "Ballistic Brute");
             LanguageAPI.Add("GOTCE_CRACKEDMERC_WIN", "And so he left, fuse still ticking.");
-            LanguageAPI.Add("GOTCE_CRACKEDMERC_FAIL", "TBD");
+            LanguageAPI.Add("GOTCE_CRACKEDMERC_FAIL", "And so he vanished, disposed once and for all.");
             LanguageAPI.Add("GOTCE_CRACKEDMERC_DESC", "TBD");
 
             LanguageAPI.Add("GOTCE_DisposableVisions_NAME", "Visions of Disposability");
@@ -48,7 +48,7 @@ namespace GOTCE.Survivors {
             LanguageAPI.Add("GOTCE_DisposableEgg_DESC", "Transform into a blazing fast missile, <style=cIsDamage>dealing 100,000% damage</style> on detonation.");
 
             LanguageAPI.Add("GOTCE_DisposableEvis_NAME", "Slicing Eviscerating Unstable Strides of Windy Disposability");
-            LanguageAPI.Add("GOTCE_DisposableEvis_DESC", "Transform into a <style=cIsUtility>storm of blades</style>, repeating <style=cIsDamage>striking for 300%</style> damage and <style=cIsUtility>firing missiles</style>.");
+            LanguageAPI.Add("GOTCE_DisposableEvis_DESC", "Transform into a <style=cIsUtility>storm of blades</style>, repeatedly <style=cIsDamage>striking for 300%</style> damage and <style=cIsUtility>firing missiles</style>.");
 
             ModelLocator model = prefab.GetComponent<ModelLocator>();
             SwapMaterials(prefab, mercMat, matCrecDiffuse);

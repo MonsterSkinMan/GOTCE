@@ -18,7 +18,7 @@ namespace GOTCE.Items.Green
 
         public override string ItemFullDescription => "On death, increase all crit type chances by 15% (+15% per stack). Gain a 20% revive chance.";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "I nearly jumped off the hospital roof after they mocked me. I made a bad film, and that would haunt me for years. But then she stopped me. Eri, I'm sorry I had to lose you too, but that day, you changed it all. Perhaps it was the luckiest day possible.\n\nsounds of a building exploding can be heard, before the audio log cuts out.";
 
         public override ItemTier Tier => ItemTier.Tier2;
 

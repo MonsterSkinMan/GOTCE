@@ -26,6 +26,7 @@ namespace GOTCE.Enemies.Standard
                 if (self.baseNameToken == "GOTCE_THE_NAME")
                 {
                     self.inventory.GiveItem(RoR2Content.Items.ExtraLife, 2);
+                    Util.PlaySound("The", RoR2Application.instance.gameObject);
                 }
                 orig(self);
             };
@@ -40,7 +41,8 @@ namespace GOTCE.Enemies.Standard
                         
                     EntityStatesCustom.The.TheHurtState state = new();
                     self.gameObject.GetComponent<SetStateOnHurt>().targetStateMachine.SetInterruptState(state, InterruptPriority.Death);
-                    
+                    Util.PlaySound("The", RoR2Application.instance.gameObject);
+
                 }
                 orig(self, info);
             };

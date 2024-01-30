@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1678845312
+CRC: 699168384
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e639788bc3dea177ffbd4ad52b5ad86b
+    Hash: d4b6cff24766df4f5ae46716546cb8f7
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8008b2b46f07412a84f63a8d4423d6d0
@@ -119,9 +119,13 @@ Assets:
 - Assets/Textures/Icons/Item/DrippingCamera.png
 - Assets/Textures/Icons/Item/VoidFluxPauldron.png
 - Assets/Textures/Icons/Item/drill.png
+- Assets/Textures/Icons/Item/BlueWhip.png
+- Assets/Textures/Icons/Item/ReminiscencePrism.png
+- Assets/Textures/Icons/Item/ImpostersBlade.png
 - Assets/Textures/Icons/Item/EntropicEmblem.png
 - Assets/Textures/Icons/Item/Balls.png
 - Assets/Textures/Icons/Item/ExplorersTorch.png
+- Assets/Textures/Icons/Item/TeachersPet.png
 - Assets/Textures/Icons/Item/spafnarsfries.png
 - Assets/Textures/Icons/Item/ExpressionOfTheImmolated.png
 - Assets/Textures/Icons/Item/BoneArmour.png
@@ -138,6 +142,7 @@ Assets:
 - Assets/Textures/Icons/Item/DopeDope.png
 - Assets/Textures/Icons/Item/GD1Nullified.png
 - Assets/Textures/Icons/Item/EmpathyC4.png
+- Assets/Textures/Icons/Equipment/RushingEliteAffix.png
 - Assets/Textures/Icons/Item/BisonSkull.png
 - Assets/Textures/Icons/Equipment/BackupAspect.png
 - Assets/Textures/Icons/Item/ClaspingClaws.png
@@ -151,6 +156,7 @@ Assets:
 - Assets/Textures/Icons/Artifact/artifactofblindnessoff.png
 - Assets/Textures/Icons/Item/AncientAxe.png
 - Assets/Textures/Icons/Item/tubofbart.png
+- Assets/Textures/Icons/Item/EternalEcho.png
 - Assets/Textures/Icons/Item/backuphammer.png
 - Assets/Textures/Icons/Item/DividedBy.png
 - Assets/Textures/Icons/Item/BillieJean.png
@@ -173,6 +179,7 @@ Assets:
 - Assets/Textures/Icons/Item/DarkFluxPauldron.png
 - Assets/Textures/Icons/Item/DelicaterWatchConsumed.png
 - Assets/Textures/Icons/Item/skullkey.png
+- Assets/Textures/Icons/Item/PurpleWhip.png
 - Assets/Textures/Icons/Item/pogo.png
 - Assets/Textures/Icons/Item/BangSnap.png
 - Assets/Textures/Icons/Item/PebbsiZero.png
