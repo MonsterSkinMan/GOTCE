@@ -23,7 +23,7 @@ namespace GOTCE.Enemies.Superbosses {
         public static bool shouldProceedGlassthrixConversion = true;
         public static CharacterSpawnCard glassthrixCard;
         public static CharacterSpawnCard moonDetonation;
-        private static int glassthrixWaveCount = 50;
+        private static int glassthrixWaveCount = 20;
         private static int glassthrixTotalWaves = 20;
         private static int vanillaTotalWaves;
         private static int vanillaWaveCount;
