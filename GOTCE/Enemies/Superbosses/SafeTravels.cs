@@ -25,6 +25,7 @@ namespace GOTCE.Enemies.Superbosses {
             body = prefab.GetComponent<CharacterBody>();
             body.baseMaxHealth = 14000;
             body.rootMotionInMainState = true;
+            body.baseArmor = 0;
             prefab.transform.position = Vector3.zero;
             prefab.transform.localPosition = Vector3.zero;
         }
@@ -52,6 +53,8 @@ namespace GOTCE.Enemies.Superbosses {
             body.GetComponentInChildren<AimAssistTarget>(true).gameObject.SetActive(false);
             
             prefabMaster.GetComponent<BaseAI>().enabled = false;
+
+            AddESM(prefab, "STMain", new(typeof(SafeTravelsMainState)));
 
             GameObject.Destroy(prefab.GetComponent<CharacterDirection>());
 
@@ -90,6 +93,97 @@ namespace GOTCE.Enemies.Superbosses {
         {
             base.PostCreation();
             RegisterEnemy(prefab, prefabMaster, null);
+        }
+
+        public class SafeTravelsMainState : BaseState {
+            public List<CharacterBody> viableTargets = new();
+            public GameObject diabloPrefab;
+            public GameObject phaseRound;
+            public float[] stopwatch = new float[2];
+            public float[] timers = new float[] { 1f, 0.001f }; 
+
+            public override void OnEnter()
+            {
+                base.OnEnter();
+                
+                foreach (PlayerCharacterMasterController master in PlayerCharacterMasterController._instancesReadOnly) {
+                    if (master.body) {
+                        viableTargets.Add(master.body);
+                    }
+                }
+
+                diabloPrefab = Utils.Paths.GameObject.CaptainAirstrikeAltProjectile.Load<GameObject>();
+                phaseRound = Utils.Paths.GameObject.FMJRamping.Load<GameObject>();
+            }
+
+            public override void FixedUpdate()
+            {
+                base.FixedUpdate();
+
+                viableTargets.RemoveAll(x => x == null || !x.healthComponent.alive);
+
+                if (viableTargets.Count == 0) {
+                    return;
+                }
+
+                stopwatch[0] += Time.fixedDeltaTime;
+                stopwatch[1] += Time.fixedDeltaTime;
+
+                if (stopwatch[0] >= timers[0]) {
+                    stopwatch[0] = 0f;
+                    FireDiablo();
+                }
+
+                if (stopwatch[1] >= timers[1]) {
+                    stopwatch[1] = 0f;
+                    FirePhaseRound();
+                }
+            }
+
+            public void FireDiablo() {
+                if (!NetworkServer.active) {
+                    return;
+                }
+
+                CharacterBody body = viableTargets.GetRandom();
+
+                FireProjectileInfo info = new();
+                Vector3 origin = Random.onUnitSphere * 3 + body.corePosition;
+                Vector3 pos = origin;
+
+                if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 4000f, LayerIndex.world.mask, QueryTriggerInteraction.Ignore)) {
+                    pos = hit.point;
+                }
+
+                info.position = pos;
+                info.crit = true;
+                info.damage = base.damageStat * 200f;
+                info.owner = base.gameObject;
+                info.projectilePrefab = diabloPrefab;
+
+                ProjectileManager.instance.FireProjectile(info);
+            }
+
+            public void FirePhaseRound() {
+                if (!NetworkServer.active) {
+                    return;
+                }
+
+                CharacterBody body = viableTargets.GetRandom();
+
+                FireProjectileInfo info = new();
+                info.position = base.transform.position + (Random.onUnitSphere * 50);
+                info.crit = true;
+                info.damage = base.damageStat * 0.50f;
+                info.owner = base.gameObject;
+                info.speedOverride = 200f;
+                info.useSpeedOverride = true;
+                info.force = 40000000000f;
+                info.rotation = Util.QuaternionSafeLookRotation(((body.corePosition + Random.onUnitSphere * 20) - info.position).normalized);
+                info.projectilePrefab = phaseRound;
+
+                ProjectileManager.instance.FireProjectile(info);
+            }
         }
     }
 }

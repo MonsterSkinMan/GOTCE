@@ -49,7 +49,7 @@ namespace GOTCE.Interactables
         public class AtlasCannonBehaviour : MonoBehaviour {
             public PurchaseInteraction interaction;
             public float atlasCd = 45f;
-            public float stopwatch = 0f;
+            public float stopwatch = 45f;
             public void Start() {
                 interaction = GetComponent<PurchaseInteraction>();
                 interaction.onPurchase.AddListener(TriggerEffect);
@@ -74,6 +74,8 @@ namespace GOTCE.Interactables
             public class AtlasCannonBeamState : BaseState {
                 public GameObject beamInstance;
                 public CharacterBody target;
+                public float duration = 5f;
+                public float damagePerSec;
 
                 public override void OnEnter()
                 {
@@ -86,6 +88,8 @@ namespace GOTCE.Interactables
                     if (!target) {
                         outer.SetNextStateToMain();
                     }
+
+                    damagePerSec = (target.healthComponent.fullCombinedHealth * (0.25f)) / duration;
 
                     beamInstance = GameObject.Instantiate(Utils.Paths.GameObject.LaserEngiTurret.Load<GameObject>(), base.transform);
                     beamInstance.transform.localScale *= 5f;
@@ -114,20 +118,20 @@ namespace GOTCE.Interactables
                         return;
                     }
 
-                    if (base.fixedAge >= 4f) {
-                        if (target && NetworkServer.active) {
-                            target.healthComponent.TakeDamage(new DamageInfo() {
-                                damage = target.healthComponent.fullCombinedHealth * 0.25f,
-                                position = target.transform.position
-                            });
-
-                            EffectManager.SpawnEffect(Utils.Paths.GameObject.OmniExplosionVFXEngiTurretDeath.Load<GameObject>(), new EffectData() {
-                                origin = target.transform.position,
-                                scale = 9000f
-                            }, true);
-                        }
-
+                    if (base.fixedAge >= duration) {
                         outer.SetNextStateToMain();
+                    }
+
+                    if (target && NetworkServer.active) {
+                        target.healthComponent.TakeDamage(new DamageInfo() {
+                            damage = damagePerSec * Time.fixedDeltaTime,
+                            position = target.transform.position
+                        });
+
+                        EffectManager.SpawnEffect(Utils.Paths.GameObject.ExplosionSolarFlare.Load<GameObject>(), new EffectData() {
+                            origin = target.transform.position,
+                            scale = 9000f
+                        }, true);
                     }
                 }
             }
