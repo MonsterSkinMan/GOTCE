@@ -42,6 +42,7 @@ using BetterUI;
 using UnityEngine.SceneManagement;
 using R2API.ContentManagement;
 using RoR2.UI.MainMenu;
+using BepInEx.Configuration;
 
 //using NemesisSlab;
 
@@ -94,6 +95,7 @@ namespace GOTCE
         private static Shader standard;
         private static Shader terrain;
         public static bool HasPatched = false;
+        public static ConfigFile config;
 
         private void Awake()
         {
@@ -104,6 +106,8 @@ namespace GOTCE
             GOTCESounds = SoundAPI.SoundBanks.Add(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "GOTCE.bnk"));
             ModLogger = Logger;
             SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
+
+            config = Config;
 
             cloudRemap = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGCloudRemap.shader").WaitForCompletion();
             standard = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGStandard.shader").WaitForCompletion();
@@ -263,23 +267,6 @@ namespace GOTCE
                 HooksAttributeLogic.CallAttributeMethods(RunAfter.Items);
             }
 
-            [SystemInitializer(dependencies: typeof(ItemCatalog))] // wait until after the catalog initializes to add interactables
-            void the()
-            {
-                var interactableTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(InteractableBase)));
-
-                foreach (var interactableType in interactableTypes)
-                {
-                    InteractableBase inter = (InteractableBase)System.Activator.CreateInstance(interactableType);
-                    // inter.Create();
-
-                    if (ValidateInteractable(inter))
-                    {
-                        inter.Create();
-                    }
-                }
-            }
-
             //this section automatically scans the project for all equipment
             var EquipmentTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EquipmentBase)));
 
@@ -313,6 +300,14 @@ namespace GOTCE
                 }
             }
 
+            // achievements
+            var Achievements = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(AchievementBase)));
+            foreach (var unlock in Achievements)
+            {
+                AchievementBase achiev = (AchievementBase)Activator.CreateInstance(unlock);
+                achiev.Create(Config);
+            }
+
             //this section automatically scans the project for all equipment
             var SkillTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(SkillBase)));
 
@@ -321,6 +316,8 @@ namespace GOTCE
                 SkillBase skill = (SkillBase)System.Activator.CreateInstance(skillType);
                 skill.Create();
             }
+
+            AltSkills.AddAlts();
 
             [SystemInitializer(dependencies: typeof(RoR2.Skills.SkillCatalog))]
             void callskills()
@@ -336,18 +333,6 @@ namespace GOTCE
             Based.SuppressiveNader.Hook();
             Based.Logbook.RunHooks();
             Fragile.Hook();
-
-            // alts
-            [SystemInitializer(dependencies: typeof(ItemCatalog))]
-            void guh()
-            {
-                AltSkills.AddAlts();
-                Woolie.Initialize();
-                WarCrimes.Hooks();
-                AOEffect.Hooks();
-
-                HooksAttributeLogic.CallAttributeMethods(RunAfter.Misc);
-            }
 
             var enemyTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(EnemyBase)));
 
@@ -368,13 +353,6 @@ namespace GOTCE
                 HooksAttributeLogic.CallAttributeMethods(RunAfter.Enemies);
             }
 
-            // achievements
-            var Achievements = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(AchievementBase)));
-            foreach (var unlock in Achievements)
-            {
-                AchievementBase achiev = (AchievementBase)Activator.CreateInstance(unlock);
-                achiev.Create(Config);
-            }
 
             var survivorTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(SurvivorBase)));
 
@@ -407,6 +385,31 @@ namespace GOTCE
             // On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
             // local multiplayer hook
             // run modded ror2 twice, create a multiplayer lobby in one, then do connect localhost:7777 in the other instance
+        }
+
+        [SystemInitializer(typeof(ItemCatalog))]
+        public static void PostItemCat() {
+            Woolie.Initialize();
+            WarCrimes.Hooks();
+            AOEffect.Hooks();
+
+            Main.ModLogger.LogInfo("Initializing equipments.");
+
+            var interactableTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(InteractableBase)));
+
+            foreach (var interactableType in interactableTypes)
+            {
+                InteractableBase inter = (InteractableBase)System.Activator.CreateInstance(interactableType);
+                // inter.Create();
+
+                if (ValidateInteractable(inter))
+                {
+                    inter.Create();
+                }
+            }
+                
+            HooksAttributeLogic.CallAttributeMethods(RunAfter.Items);
+            HooksAttributeLogic.CallAttributeMethods(RunAfter.Misc);
         }
 
         /// <summary>
@@ -482,9 +485,9 @@ namespace GOTCE
             return false;
         }
 
-        public bool ValidateInteractable(InteractableBase i)
+        public static bool ValidateInteractable(InteractableBase i)
         {
-            if (Config.Bind<bool>("Interactable: " + i.Name, "Enable Interactable?", true, "Should this interactable appear in runs?").Value)
+            if (Main.config.Bind<bool>("Interactable: " + i.Name, "Enable Interactable?", true, "Should this interactable appear in runs?").Value)
             {
                 return true;
             }

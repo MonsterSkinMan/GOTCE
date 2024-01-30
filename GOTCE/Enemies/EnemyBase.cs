@@ -318,7 +318,8 @@ namespace GOTCE.Enemies
             characterDeathBehavior.deathStateMachine = prefab.GetComponent<EntityStateMachine>();
             characterDeathBehavior.deathState = new SerializableEntityStateType(typeof(GenericCharacterDeath));
 
-            model.AddComponent<CharacterModel>();
+            CharacterModel mdl = model.AddComponent<CharacterModel>();
+            mdl.body = prefab.GetComponent<CharacterBody>();
 
             model.AddComponent<HurtBoxGroup>();
         }
