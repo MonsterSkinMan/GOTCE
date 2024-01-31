@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using EntityStates;
 using RoR2.ExpansionManagement;
 using Unity;
+using HarmonyLib;
 
 // WIP
 
@@ -120,9 +121,10 @@ namespace GOTCE.Enemies
         public EntityStateMachine AddESM(GameObject prefab, string name, SerializableEntityStateType initial) {
             EntityStateMachine esm = prefab.AddComponent<EntityStateMachine>();
             esm.customName = name;
-            esm.name = name;
             esm.initialStateType = initial;
             esm.mainStateType = initial;
+
+            prefab.GetComponent<NetworkStateMachine>().stateMachines.AddItem(esm);
 
             return esm;
         }
@@ -318,7 +320,8 @@ namespace GOTCE.Enemies
             characterDeathBehavior.deathStateMachine = prefab.GetComponent<EntityStateMachine>();
             characterDeathBehavior.deathState = new SerializableEntityStateType(typeof(GenericCharacterDeath));
 
-            model.AddComponent<CharacterModel>();
+            CharacterModel mdl = model.AddComponent<CharacterModel>();
+            mdl.body = prefab.GetComponent<CharacterBody>();
 
             model.AddComponent<HurtBoxGroup>();
         }

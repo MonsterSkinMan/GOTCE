@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 4020577069
+CRC: 1091140398
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3534a8f6d463a26004ce90c37ebea93a
+    Hash: e554289ac7aefdf3f61c6033ff795f33
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3bf74e3602d15a163127500e471d311f
@@ -268,6 +268,7 @@ Assets:
 - Assets/Icons/Artifacts/artifactofsoleoff.png
 - Assets/Prefabs/Survivors/Crackmando/CrackedDef.asset
 - Assets/Icons/Items/dream.pdf.png
+- Assets/Prefabs/Interactables/AtlasCannon/AtlasCannon.prefab
 - Assets/Prefabs/Enemies/The/the.mat
 - Assets/Icons/Items/GummyVitamins.png
 - Assets/Prefabs/Enemies/FreddyFastbear/jumpscare.renderTexture
