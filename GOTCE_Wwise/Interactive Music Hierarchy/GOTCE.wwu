@@ -37,6 +37,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="Stellation_Intro" ID="{8628B3D4-4250-4597-B290-3B43D1F3622C}" ShortID="588222721">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -99,6 +111,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="StelPhase1" ID="{4AE76DFC-EBCD-4D15-9012-1B73FDF4FBA0}" ShortID="708228722">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -158,6 +182,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="Stel1to2" ID="{E2749DD3-2BD2-4F79-9962-EC1B33FAAB5D}" ShortID="153164030">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -220,6 +256,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="StelPhase2" ID="{4290019D-2F06-4F69-8029-49A05A68318F}" ShortID="26102820">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -282,6 +330,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="Stel2to3" ID="{5B9A8C88-EDCE-46D6-8DB4-949376BE8446}" ShortID="594374544">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -344,6 +404,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="StelPhase3" ID="{BC771021-DC83-47C4-A5F6-BE6C5320C315}" ShortID="912268968">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -406,6 +478,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="Stel3to4" ID="{AF608965-AA6F-40C8-96D0-1B8ADFCB9E75}" ShortID="973034534">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -468,6 +552,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="StelPhase4" ID="{E9AD55F1-F447-431C-BFA9-A1B07697BE4F}" ShortID="560574698">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -530,6 +626,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="StelOutro" ID="{336EE84B-A386-4716-95BF-B4B0A3928773}" ShortID="414114679">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>

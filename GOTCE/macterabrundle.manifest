@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 699168384
+CRC: 2815416525
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d4b6cff24766df4f5ae46716546cb8f7
+    Hash: 388c1d1bcf27f58e1cccb363754bd95c
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8008b2b46f07412a84f63a8d4423d6d0
@@ -129,6 +129,7 @@ Assets:
 - Assets/Textures/Icons/Item/spafnarsfries.png
 - Assets/Textures/Icons/Item/ExpressionOfTheImmolated.png
 - Assets/Textures/Icons/Item/BoneArmour.png
+- Assets/Textures/Icons/Item/VesselOfHeresy.png
 - Assets/Materials/Item/MoldySteak/matSteak.mat
 - Assets/Textures/Icons/Item/GenevaSuggestion.png
 - Assets/Textures/Icons/Item/shittyvisage.png
@@ -148,6 +149,7 @@ Assets:
 - Assets/Textures/Icons/Item/ClaspingClaws.png
 - Assets/Textures/Icons/Artifact/artifactofartifactDisabled.png
 - Assets/Textures/Icons/Item/sscnft.png
+- Assets/Textures/Icons/Item/LuckyDay.png
 - Assets/Textures/Icons/Skills/Warp.png
 - Assets/Textures/Icons/Item/Yhjtumgrhtfyddc.png
 - Assets/Textures/Icons/Item/galsone.png
@@ -161,6 +163,7 @@ Assets:
 - Assets/Textures/Icons/Item/DividedBy.png
 - Assets/Textures/Icons/Item/BillieJean.png
 - Assets/Textures/Icons/Item/Bottled_Enigma.png
+- Assets/Textures/Icons/Item/SquidInkSpaghetti.png
 - Assets/Textures/Icons/Item/MissileGuidanceSystem.png
 - Assets/Textures/Icons/Enemies/Voidlingling.png
 - Assets/Textures/Icons/Item/LtGMk1.png
@@ -173,8 +176,10 @@ Assets:
 - Assets/Textures/Icons/Artifact/artifactofblindnesson.png
 - Assets/Textures/Icons/Item/WindFluxPauldron.png
 - Assets/Textures/Icons/Item/DelicaterWatch.png
+- Assets/Textures/Icons/Item/SeethingOpioids.png
 - Assets/Textures/Icons/Item/SmallSpinny.png
 - Assets/Textures/Icons/Item/ViscousBlast.png
+- Assets/Textures/Icons/Item/LeviathanLarva.png
 - Assets/Models/Prefabs/Item/KirnTheItem/KirnTheItemNoOutline.png
 - Assets/Textures/Icons/Item/DarkFluxPauldron.png
 - Assets/Textures/Icons/Item/DelicaterWatchConsumed.png
