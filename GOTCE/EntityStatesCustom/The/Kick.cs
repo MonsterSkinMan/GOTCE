@@ -3,6 +3,8 @@ using EntityStates;
 using System;
 using UnityEngine;
 using Unity;
+using UnityEngine.Networking;
+using EntityStates;
 
 namespace GOTCE.EntityStatesCustom.The
 {
@@ -28,7 +30,7 @@ namespace GOTCE.EntityStatesCustom.The
                 attack.Fire();
             }
             PlayAnimation("Body", "Kick");
-            Util.PlaySound("The", RoR2Application.instance.gameObject);
+            Util.PlaySound("The", base.gameObject);
         }
 
         public override void FixedUpdate()

@@ -1,6 +1,21 @@
+State Group	ID	Name			Wwise Object Path	Notes
+	978650076	Stellation			\GOTCE\Stellation	
+
+State	ID	Name	State Group			Notes
+	111873711	Stellation_Intro	Stellation			
+	308672640	Stellation_Phase2Loop	Stellation			
+	335467517	Stellation_Phase4Outro	Stellation			
+	672545105	Stellation_Phase3to4Transition	Stellation			
+	748895195	None	Stellation			
+	1011564647	Stellation_Phase1Loop	Stellation			
+	1721060345	Stellation_Phase3Loop	Stellation			
+	2367825945	Stellation_Phase1to2Transition	Stellation			
+	2507775610	Stellation_Phase4Loop	Stellation			
+	2839510093	Stellation_Phase2to3Transition	Stellation			
+
 Audio Bus	ID	Name			Wwise Object Path	Notes
-	985987111	Motion Factory Bus			\Default Work Unit\Motion Factory Bus	
-	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+	985987111	Motion Factory Bus			\GOTCE\Motion Factory Bus	
+	3803692087	Master Audio Bus			\GOTCE\Master Audio Bus	
 
 Audio Devices	ID	Name	Type				Notes
 	2317455096	No_Output	No Output			

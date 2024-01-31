@@ -18,7 +18,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemFullDescription => "On pickup, gain 1 stack each of Visions of Heresy, Hooks of Heresy, Strides of Heresy, and Essence of Heresy";
 
-        public override string ItemLore => "TBA";
+        public override string ItemLore => "it's just heretic she already has a log what more do you want of me";
 
         public override ItemTier Tier => ItemTier.Lunar;
 

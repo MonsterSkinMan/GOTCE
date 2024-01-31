@@ -14,6 +14,9 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="PlayStellation" ID="{8E685C98-1ADA-4A48-8144-419CF21B203C}"/>
+				<Event Name="PauseStellation" ID="{2C21EA7F-73DA-48B3-AF34-F50C852EC98E}"/>
+				<Event Name="UnpauseStellation" ID="{B701CC34-848A-467E-8D1F-1CDBC9FC5A91}"/>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
