@@ -24,6 +24,8 @@ namespace GOTCE.Items.Void_Lunar
 
         public override ItemTier Tier => Tiers.LunarVoid.Instance.TierEnum;
 
+        public override ItemTierDef OverrideTierDef => Tiers.LunarVoid.Instance.tier;
+
         public override Enum[] ItemTags => new Enum[] { ItemTag.Utility, GOTCETags.Bullshit, GOTCETags.WhipAndNaeNae };
 
         public override GameObject ItemModel => null;

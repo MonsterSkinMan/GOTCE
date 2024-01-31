@@ -1,0 +1,25 @@
+Event	ID	Name			Wwise Object Path	Notes
+	1678638306	PlayStellation			\GOTCE\PlayStellation	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	140476261	StelPhase2	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-loop2_D79FB2B7.wem		\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase2Loop\StelPhase2		17704
+	546014937	Stel2to3	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-2t3_D79FB2B7.wem		\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase2to3\Stel2to3		17704
+	568936579	Stel3to4	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-3t4_D79FB2B7.wem		\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase3to4\Stel3to4		17704
+	778519456	Stel1to2	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-1t2_D79FB2B7.wem		\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase1to2\Stel1to2		17704
+	843332423	StelPhase1	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-loop1_D79FB2B7.wem		\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase1Loop\StelPhase1		17704
+	881044022	Stellation_Intro	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-start2_D79FB2B7.wem		\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Intro\Stellation_Intro		17704
+	975313305	StelOutro	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-end_D79FB2B7.wem		\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase4Outro\StelOutro		17704
+	1025488621	StelPhase3	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-loop3_D79FB2B7.wem		\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase3Loop\StelPhase3		17704
+	1044684949	StelPhase4	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-loop4_D79FB2B7.wem		\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase4Loop\StelPhase4		17704
+
+Streamed Audio	ID	Name	Audio source file	Generated audio file	Wwise Object Path	Notes
+	140476261	StelPhase2	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-loop2_D79FB2B7.wem	140476261.wem	\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase2Loop\StelPhase2	
+	546014937	Stel2to3	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-2t3_D79FB2B7.wem	546014937.wem	\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase2to3\Stel2to3	
+	568936579	Stel3to4	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-3t4_D79FB2B7.wem	568936579.wem	\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase3to4\Stel3to4	
+	778519456	Stel1to2	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-1t2_D79FB2B7.wem	778519456.wem	\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase1to2\Stel1to2	
+	843332423	StelPhase1	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-loop1_D79FB2B7.wem	843332423.wem	\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase1Loop\StelPhase1	
+	881044022	Stellation_Intro	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-start2_D79FB2B7.wem	881044022.wem	\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Intro\Stellation_Intro	
+	975313305	StelOutro	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-end_D79FB2B7.wem	975313305.wem	\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase4Outro\StelOutro	
+	1025488621	StelPhase3	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-loop3_D79FB2B7.wem	1025488621.wem	\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase3Loop\StelPhase3	
+	1044684949	StelPhase4	C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\SFX\FINAL-glassthrix-loop4_D79FB2B7.wem	1044684949.wem	\Interactive Music Hierarchy\GOTCE\GotceSwitcher\Stellation\Stellation_Phase4Loop\StelPhase4	
+

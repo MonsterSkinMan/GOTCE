@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{66BE2D24-4F7C-424E-AA83-F5B6AE237392}" SchemaVersion="97">
 	<States>
-		<WorkUnit Name="Default Work Unit" ID="{66BE2D24-4F7C-424E-AA83-F5B6AE237392}" PersistMode="Standalone"/>
+		<WorkUnit Name="GOTCE" ID="{66BE2D24-4F7C-424E-AA83-F5B6AE237392}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="Stellation" ID="{C3092533-8C13-48B8-BB27-873B28FC1AD8}">
+					<ChildrenList>
+						<State Name="None" ID="{06849096-9F44-4DDE-A53F-D8990C1B00B8}"/>
+						<State Name="Stellation_Intro" ID="{F09E0AA4-165A-4A06-885A-578DB95FC703}"/>
+						<State Name="Stellation_Phase1Loop" ID="{816CEC4B-817B-457A-A25B-4510B2649D1A}"/>
+						<State Name="Stellation_Phase1to2Transition" ID="{7350E008-E6BA-4E8C-9D50-4238CF30A0A5}"/>
+						<State Name="Stellation_Phase2to3Transition" ID="{18C054CA-EEE9-4CD1-9CAF-461E21C5254E}"/>
+						<State Name="Stellation_Phase2Loop" ID="{24504C1E-9BF6-43F4-8928-38AB24ED3066}"/>
+						<State Name="Stellation_Phase3Loop" ID="{7B090A54-B873-4372-9B53-F119C86FB224}"/>
+						<State Name="Stellation_Phase3to4Transition" ID="{85D66C39-2D1B-4A41-9EFB-64ABF8B5C78B}"/>
+						<State Name="Stellation_Phase4Loop" ID="{21D8EB33-CC26-48A5-96FE-ECB3AEAE6D6E}"/>
+						<State Name="Stellation_Phase4Outro" ID="{46A26755-E7A4-4714-BD1C-AA30B34B290C}"/>
+					</ChildrenList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</States>
 </WwiseDocument>

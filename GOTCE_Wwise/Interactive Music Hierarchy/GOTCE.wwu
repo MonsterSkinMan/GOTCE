@@ -1,6 +1,617 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" SchemaVersion="97">
 	<InteractiveMusic>
-		<WorkUnit Name="Default Work Unit" ID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" PersistMode="Standalone"/>
+		<WorkUnit Name="GOTCE" ID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" PersistMode="Standalone">
+			<ChildrenList>
+				<MusicSwitchContainer Name="GotceSwitcher" ID="{A049B121-BC76-4EB0-B211-1048535B0294}" ShortID="839367078">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{604D33B6-CD7D-4746-BB08-7E86F73CBE86}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicPlaylistContainer Name="Stellation" ID="{3C44F1EA-82E0-46A1-885B-4A914099E87D}" ShortID="310641867">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{604D33B6-CD7D-4746-BB08-7E86F73CBE86}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicSegment Name="Stellation_Intro" ID="{CD0A4B89-3E89-4618-8068-F9E0D7D045AE}" ShortID="820042908">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="31625.5782312925"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{604D33B6-CD7D-4746-BB08-7E86F73CBE86}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="Stellation_Intro" ID="{8628B3D4-4250-4597-B290-3B43D1F3622C}" ShortID="588222721">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="FINAL-glassthrix-start2" ID="{EF2343C9-28EB-429C-8612-E78CD8CA6E7D}">
+													<Language>SFX</Language>
+													<AudioFile>FINAL-glassthrix-start2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="881044022"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{0FD6840D-7209-45B0-B2D9-8616F6E030C3}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{B9A3E778-5E55-407D-A144-D3B407A604C9}">
+													<ClipList>
+														<MusicClip Name="FINAL-glassthrix-start2" ID="{245115F7-45D5-4B46-AE98-E2C3973189DD}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="31625.5782312925"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="FINAL-glassthrix-start2" ID="{EF2343C9-28EB-429C-8612-E78CD8CA6E7D}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{A9A10F33-D517-4257-AD19-0E2CC5CE0FE1}"/>
+										<MusicCue Name="Exit Cue" ID="{7346AE1E-C71A-4021-A17E-2E1B2DDD05EA}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="1000"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+								<MusicSegment Name="Stellation_Phase1Loop" ID="{17505D56-E104-4216-B410-18D269679195}" ShortID="982770706">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="89294.8752834467"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{604D33B6-CD7D-4746-BB08-7E86F73CBE86}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="StelPhase1" ID="{4AE76DFC-EBCD-4D15-9012-1B73FDF4FBA0}" ShortID="708228722">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="FINAL-glassthrix-loop1" ID="{58944F1B-8B3E-4D7E-A77F-4E0F4A93234B}">
+													<Language>SFX</Language>
+													<AudioFile>FINAL-glassthrix-loop1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="843332423"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{C93334D9-B396-4417-8A17-02E87CEC44A8}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{87E960FB-524B-4A26-B09B-C0A52D23683D}">
+													<ClipList>
+														<MusicClip Name="FINAL-glassthrix-loop1" ID="{3B0B154E-1B04-4A40-B8E1-63A4E17C7BC3}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="89294.8752834467"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="FINAL-glassthrix-loop1" ID="{58944F1B-8B3E-4D7E-A77F-4E0F4A93234B}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{94EC336A-34AD-437F-A645-4BEBFCA45C49}"/>
+										<MusicCue Name="Exit Cue" ID="{2D1319FF-0002-48A3-B0CC-8B3FC0B23BAF}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="1000"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+								<MusicSegment Name="Stellation_Phase1to2" ID="{0D027677-FAD9-4E26-82B6-BDD46FBBA05C}" ShortID="53699769">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{604D33B6-CD7D-4746-BB08-7E86F73CBE86}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="Stel1to2" ID="{E2749DD3-2BD2-4F79-9962-EC1B33FAAB5D}" ShortID="153164030">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="FINAL-glassthrix-1t2" ID="{168A25E7-23F8-4CD8-97D9-988220204482}">
+													<Language>SFX</Language>
+													<AudioFile>FINAL-glassthrix-1t2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="778519456"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{418369A5-28DC-482D-9138-54C7783B0A3D}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{DCB89B6D-0ADA-42BE-95DF-2022BD4AE876}">
+													<ClipList>
+														<MusicClip Name="FINAL-glassthrix-1t2" ID="{820D6AC8-4623-4926-84B5-0F99C73EDE5D}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="3709.09297052154"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="FINAL-glassthrix-1t2" ID="{168A25E7-23F8-4CD8-97D9-988220204482}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{E25C5287-3ED1-465A-BD83-D638F642CE94}"/>
+										<MusicCue Name="Exit Cue" ID="{9D96B6B7-EC5F-4F58-AC66-6B986A3D4D13}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="1000"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+								<MusicSegment Name="Stellation_Phase2Loop" ID="{B554AFDD-8493-4A03-9294-EFF267EE9661}" ShortID="1048619388">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="59537.052154195"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{604D33B6-CD7D-4746-BB08-7E86F73CBE86}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="StelPhase2" ID="{4290019D-2F06-4F69-8029-49A05A68318F}" ShortID="26102820">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="FINAL-glassthrix-loop2" ID="{243CB451-FBDB-49F9-9514-39C757EB1AD6}">
+													<Language>SFX</Language>
+													<AudioFile>FINAL-glassthrix-loop2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="140476261"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{CA5829D3-BFC0-47A0-B07A-AC971921C10B}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{DD7E36F9-C8A7-4D6C-96CF-8B19674290C4}">
+													<ClipList>
+														<MusicClip Name="FINAL-glassthrix-loop2" ID="{FD6308DA-6BB8-427C-8FDC-5DE516021AC0}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="59537.052154195"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="FINAL-glassthrix-loop2" ID="{243CB451-FBDB-49F9-9514-39C757EB1AD6}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{942754D8-B6AB-4147-BA00-328EDEE5912C}"/>
+										<MusicCue Name="Exit Cue" ID="{7B9514D7-B8FE-42EB-96E4-13132BDFC11C}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="1000"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+								<MusicSegment Name="Stellation_Phase2to3" ID="{F2439C61-B1B6-4157-9B13-41EB566A90C2}" ShortID="778779561">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="7436.19047619048"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{604D33B6-CD7D-4746-BB08-7E86F73CBE86}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="Stel2to3" ID="{5B9A8C88-EDCE-46D6-8DB4-949376BE8446}" ShortID="594374544">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="FINAL-glassthrix-2t3" ID="{429CF176-7C6E-4BB1-B3DD-22F40B2B00CD}">
+													<Language>SFX</Language>
+													<AudioFile>FINAL-glassthrix-2t3.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="546014937"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{91BB95A8-6387-42DD-954C-C5923B369986}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{F98C8261-C3D2-4C95-9777-DC994A87EAEF}">
+													<ClipList>
+														<MusicClip Name="FINAL-glassthrix-2t3" ID="{DC369A15-275D-43BB-B761-C7C4A65C1458}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="7436.19047619048"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="FINAL-glassthrix-2t3" ID="{429CF176-7C6E-4BB1-B3DD-22F40B2B00CD}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{E180891A-2258-45CF-86CE-754BFE103A89}"/>
+										<MusicCue Name="Exit Cue" ID="{283FE201-B931-4C9E-B218-16D3A2C07BBC}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="1000"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+								<MusicSegment Name="Stellation_Phase3Loop" ID="{28955B2B-F461-40E8-AECB-67D2AC6BC848}" ShortID="520792631">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="104206.916099773"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{604D33B6-CD7D-4746-BB08-7E86F73CBE86}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="StelPhase3" ID="{BC771021-DC83-47C4-A5F6-BE6C5320C315}" ShortID="912268968">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="FINAL-glassthrix-loop3" ID="{B8E8AF74-E241-4D29-BCA4-5A7F48335925}">
+													<Language>SFX</Language>
+													<AudioFile>FINAL-glassthrix-loop3.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1025488621"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{0970003F-8C0D-4F90-8646-CD8A851B2025}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{0E9C79D9-B004-42F8-95A9-2C9C89FD57F8}">
+													<ClipList>
+														<MusicClip Name="FINAL-glassthrix-loop3" ID="{C980932B-0A97-4300-A1CB-C70E825FE97A}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="104206.916099773"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="FINAL-glassthrix-loop3" ID="{B8E8AF74-E241-4D29-BCA4-5A7F48335925}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{D07AEEEC-64BE-4DDD-8CEC-1E2DC28E7D12}"/>
+										<MusicCue Name="Exit Cue" ID="{FCE44DD0-28EC-4FE6-8558-561B5553ACAA}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="1000"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+								<MusicSegment Name="Stellation_Phase3to4" ID="{ACBF7317-D206-4E59-B37B-B18126804513}" ShortID="559484512">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="31625.5782312925"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{604D33B6-CD7D-4746-BB08-7E86F73CBE86}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="Stel3to4" ID="{AF608965-AA6F-40C8-96D0-1B8ADFCB9E75}" ShortID="973034534">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="FINAL-glassthrix-3t4" ID="{21EF581F-8357-4A0A-A1DB-E81F023421D2}">
+													<Language>SFX</Language>
+													<AudioFile>FINAL-glassthrix-3t4.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="568936579"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{A3B5527D-897E-45E4-A6D0-1903AC53CCA6}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{2AAE517B-FFBA-4B96-931E-5E60EACF8EC2}">
+													<ClipList>
+														<MusicClip Name="FINAL-glassthrix-3t4" ID="{AB2D089A-F6B9-46D0-9711-A40C61A387CE}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="31625.5782312925"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="FINAL-glassthrix-3t4" ID="{21EF581F-8357-4A0A-A1DB-E81F023421D2}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{2A339A62-8E27-48E6-B16F-842AB43F9751}"/>
+										<MusicCue Name="Exit Cue" ID="{16326257-A4B5-473C-9ECB-04C4064E0544}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="1000"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+								<MusicSegment Name="Stellation_Phase4Loop" ID="{D785E4FB-654C-47BC-AC4C-AFBD35DC4814}" ShortID="739031940">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="52102.380952381"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{604D33B6-CD7D-4746-BB08-7E86F73CBE86}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="StelPhase4" ID="{E9AD55F1-F447-431C-BFA9-A1B07697BE4F}" ShortID="560574698">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="FINAL-glassthrix-loop4" ID="{E34B96F6-D71B-4E87-A677-618188DA41DD}">
+													<Language>SFX</Language>
+													<AudioFile>FINAL-glassthrix-loop4.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1044684949"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{3F5CA7EF-9FFA-4C66-BD8A-03BE50EF7373}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{943DA0F1-E782-4AE5-83C5-1B07BBF77888}">
+													<ClipList>
+														<MusicClip Name="FINAL-glassthrix-loop4" ID="{E5897CDD-2E08-48C1-842A-4743BB15C7FD}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="52102.380952381"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="FINAL-glassthrix-loop4" ID="{E34B96F6-D71B-4E87-A677-618188DA41DD}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{600BB5F0-BE31-4183-9E5C-8BF88ECF6379}"/>
+										<MusicCue Name="Exit Cue" ID="{D8A505AB-938A-4784-B9B3-D882767CF20F}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="1000"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+								<MusicSegment Name="Stellation_Phase4Outro" ID="{1ADAB43D-9AFD-4322-93FE-28BE45CBDCAA}" ShortID="422585585">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="24224.5124716553"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{604D33B6-CD7D-4746-BB08-7E86F73CBE86}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="StelOutro" ID="{336EE84B-A386-4716-95BF-B4B0A3928773}" ShortID="414114679">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="FINAL-glassthrix-end" ID="{C83F0623-79A6-4765-B37F-F0AF540A47BA}">
+													<Language>SFX</Language>
+													<AudioFile>FINAL-glassthrix-end.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="975313305"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{0AE50CE4-383F-4804-A109-2671FDFAF2DC}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<SequenceList>
+												<MusicTrackSequence Name="" ID="{462647E5-D855-427B-B10C-0FE166975A04}">
+													<ClipList>
+														<MusicClip Name="FINAL-glassthrix-end" ID="{BFAA7A6C-E102-4753-BD7E-7336A5936215}">
+															<PropertyList>
+																<Property Name="EndTrimOffset" Type="Real64" Value="24224.5124716553"/>
+																<Property Name="FadeInMode" Type="int16" Value="0"/>
+																<Property Name="FadeOutMode" Type="int16" Value="0"/>
+															</PropertyList>
+															<AudioSourceRef Name="FINAL-glassthrix-end" ID="{C83F0623-79A6-4765-B37F-F0AF540A47BA}"/>
+														</MusicClip>
+													</ClipList>
+												</MusicTrackSequence>
+											</SequenceList>
+										</MusicTrack>
+									</ChildrenList>
+									<CueList>
+										<MusicCue Name="Entry Cue" ID="{BCC6C95A-7610-4133-965E-CA6A8972D6F0}"/>
+										<MusicCue Name="Exit Cue" ID="{67602013-E39D-4BB5-9832-12C644948265}">
+											<PropertyList>
+												<Property Name="CueType" Type="int16" Value="1"/>
+												<Property Name="TimeMs" Type="Real64" Value="1000"/>
+											</PropertyList>
+										</MusicCue>
+									</CueList>
+								</MusicSegment>
+							</ChildrenList>
+							<TransitionList>
+								<MusicTransition Name="Root" ID="{40E5A905-42F3-4D40-A694-F60E37928A98}">
+									<PropertyList>
+										<Property Name="IsFolder" Type="bool" Value="True"/>
+									</PropertyList>
+									<ChildrenList>
+										<MusicTransition Name="Transition" ID="{7653C790-1832-4144-98D8-69ED3FCC50AD}">
+											<TransitionInfo/>
+										</MusicTransition>
+									</ChildrenList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</TransitionList>
+							<Playlist>
+								<MusicPlaylistItem Name="" ID="{FC3D55F2-AFF6-42E0-98BB-F81ECFC8D2ED}" ShortID="1000678283"/>
+							</Playlist>
+						</MusicPlaylistContainer>
+					</ChildrenList>
+					<TransitionList>
+						<MusicTransition Name="Root" ID="{97361FA2-05FA-4BCF-A5F2-27FEF020413B}">
+							<PropertyList>
+								<Property Name="IsFolder" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<MusicTransition Name="Transition" ID="{9B3FBF06-38F6-4119-AB0A-CD2B29445736}">
+									<TransitionInfo/>
+								</MusicTransition>
+							</ChildrenList>
+							<TransitionInfo/>
+						</MusicTransition>
+					</TransitionList>
+				</MusicSwitchContainer>
+			</ChildrenList>
+		</WorkUnit>
 	</InteractiveMusic>
 </WwiseDocument>
