@@ -8,6 +8,7 @@ using EntityStates.BrotherMonster;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json.Utilities;
 using HarmonyLib;
+using GOTCE.Gamemodes.Crackclipse;
 
 namespace GOTCE.Enemies.Superbosses {
     public class Glassthrix : EnemyBase<Glassthrix> {
@@ -20,7 +21,7 @@ namespace GOTCE.Enemies.Superbosses {
         private static int P1WavesCount = 10;
         private static float WavesInterval = 0.5f;
         private static int P3WavesCount = 50;
-        public static bool shouldProceedGlassthrixConversion = true;
+        public static bool shouldProceedGlassthrixConversion = false;
         public static CharacterSpawnCard glassthrixCard;
         public static CharacterSpawnCard moonDetonation;
         private static int glassthrixWaveCount = 20;
@@ -74,6 +75,7 @@ namespace GOTCE.Enemies.Superbosses {
             On.EntityStates.BrotherMonster.ExitSkyLeap.FireRingAuthority += GameDesign;
             On.RoR2.Stage.Start += HandleGlassthrixConversion;
             On.EntityStates.BrotherMonster.UltChannelState.OnEnter += GameDesign2;
+            On.RoR2.Run.Start += ResetMoon;
 
             prefabMaster.GetComponent<CharacterMaster>().bodyPrefab = prefab;
 
@@ -91,6 +93,12 @@ namespace GOTCE.Enemies.Superbosses {
             moonDetonation.name = "moon detonation characterbody";
             moonDetonation.forbiddenFlags = NodeFlags.NoCharacterSpawn;
             moonDetonation.hullSize = HullClassification.Golem;
+        }
+
+        private void ResetMoon(On.RoR2.Run.orig_Start orig, Run self)
+        {
+            orig(self);
+            shouldProceedGlassthrixConversion = false;
         }
 
         private void GameDesign2(On.EntityStates.BrotherMonster.UltChannelState.orig_OnEnter orig, UltChannelState self)
@@ -148,6 +156,11 @@ namespace GOTCE.Enemies.Superbosses {
                             encounter.spawns[0].spawnCard = SafeTravels.safeTravelsCard;
                             Debug.Log("registering spawn for atlas cannon");
                             encounter.onBeginEncounter += SpawnAtlasCannon;
+                            encounter.combatSquad.onMemberDefeatedServer += (c, r) => {
+                                if (Difficulty.IsCurrentDifHigherOrEqual(Difficulty.c7, Run.instance) && Random.Range(0, 100f) > 50) {
+                                    UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.FatalError);
+                                }
+                            };
                             break;
                     }
                 }
