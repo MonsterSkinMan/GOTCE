@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 using Newtonsoft.Json.Utilities;
 using HarmonyLib;
 using GOTCE.Gamemodes.Crackclipse;
+using static R2API.SoundAPI.Music;
+using IL.RoR2.ContentManagement;
 
 namespace GOTCE.Enemies.Superbosses {
     public class Glassthrix : EnemyBase<Glassthrix> {
@@ -21,7 +23,7 @@ namespace GOTCE.Enemies.Superbosses {
         private static int P1WavesCount = 10;
         private static float WavesInterval = 0.5f;
         private static int P3WavesCount = 50;
-        public static bool shouldProceedGlassthrixConversion = false;
+        public static bool shouldProceedGlassthrixConversion = true;
         public static CharacterSpawnCard glassthrixCard;
         public static CharacterSpawnCard moonDetonation;
         private static int glassthrixWaveCount = 20;
@@ -29,6 +31,23 @@ namespace GOTCE.Enemies.Superbosses {
         private static int vanillaTotalWaves;
         private static int vanillaWaveCount;
         private static Vector3 atlasSpawnPos;
+        //
+        public const uint THEME_GROUP = 978650076U;
+        public const uint THEME_INTRO = 111873711U;
+        public const uint THEME_P2_LOOP = 308672640U;
+        public const uint THEME_P4_OUTRO = 335467517U;
+        public const uint THEME_34_TRANSITION = 672545105U;
+        public const uint THEME_P1_LOOP = 1011564647U;
+        public const uint THEME_P3_LOOP = 1721060345U;
+        public const uint THEME_12_TRANSITION = 2367825945U;
+        public const uint THEME_P4_LOOP = 2507775610U;
+        public const uint THEME_23_TRANSITION = 2839510093U;
+        //
+        public static CustomMusicTrackDef muGlassthrix1;
+        public static CustomMusicTrackDef muGlassthrix2;
+        public static CustomMusicTrackDef muGlassthrix3;
+        public static CustomMusicTrackDef muGlassthrix4;
+
         public override void CreatePrefab()
         {
             base.CreatePrefab();
@@ -93,12 +112,38 @@ namespace GOTCE.Enemies.Superbosses {
             moonDetonation.name = "moon detonation characterbody";
             moonDetonation.forbiddenFlags = NodeFlags.NoCharacterSpawn;
             moonDetonation.hullSize = HullClassification.Golem;
+
+            uint[][] p1 = {new uint[] {THEME_GROUP, THEME_INTRO}, new uint[] {THEME_GROUP, THEME_P1_LOOP}};
+            uint[][] p2 = {new uint[] {THEME_GROUP, THEME_12_TRANSITION}, new uint[] {THEME_GROUP, THEME_P2_LOOP}};
+            uint[][] p3 = {new uint[] {THEME_GROUP, THEME_23_TRANSITION}, new uint[] {THEME_GROUP, THEME_P3_LOOP}};
+            uint[][] p4 = {new uint[] {THEME_GROUP, THEME_34_TRANSITION}, new uint[] {THEME_GROUP, THEME_P4_LOOP}};
+
+            muGlassthrix1 = CreateDef("muGlassthrix1", p1);
+            muGlassthrix2 = CreateDef("muGlassthrix2", p2);
+            muGlassthrix3 = CreateDef("muGlassthrix3", p3);
+            muGlassthrix4 = CreateDef("muGlassthrix4", p4);
         }
 
         private void ResetMoon(On.RoR2.Run.orig_Start orig, Run self)
         {
             orig(self);
-            shouldProceedGlassthrixConversion = false;
+            // shouldProceedGlassthrixConversion = false;
+        }
+
+        private CustomMusicTrackDef CreateDef(string name, params uint[][] ids) {
+            CustomMusicTrackDef def = ScriptableObject.CreateInstance<CustomMusicTrackDef>();
+            def.cachedName = name;
+            def.SoundBankName = Main.BankData.SoundBankName;
+            def.CustomStates = new();
+
+            for (int i = 0; i < ids.Length; i++) {
+                CustomMusicTrackDef.CustomState state = new();
+                state.GroupId = ids[i][0];
+                state.StateId = ids[i][1];
+                def.CustomStates.Add(state);
+            }
+
+            return def;
         }
 
         private void GameDesign2(On.EntityStates.BrotherMonster.UltChannelState.orig_OnEnter orig, UltChannelState self)
@@ -136,6 +181,7 @@ namespace GOTCE.Enemies.Superbosses {
                         case "BrotherEncounter, Phase 1":
                             encounter.spawns[0].spawnCard = glassthrixCard;
                             atlasSpawnPos = encounter.spawns[0].explicitSpawnPosition.transform.position;
+                            SetupMusic(encounter.gameObject, muGlassthrix1);
                             break;
                         case "BrotherEncounter, Phase 2":
                             for (int i = 0; i < 5; i++) {
@@ -145,9 +191,11 @@ namespace GOTCE.Enemies.Superbosses {
                                     cullChance = 0f
                                 });
                             }
+                            SetupMusic(encounter.gameObject, muGlassthrix2);
                             break;
                         case "BrotherEncounter, Phase 3":
                             encounter.spawns[0].spawnCard = glassthrixCard;
+                            SetupMusic(encounter.gameObject, muGlassthrix3);
                             break;
                         case "BrotherEncounter, Phase 4":
                             GameObject go = new("spawnPointSafeTravels");
@@ -161,9 +209,32 @@ namespace GOTCE.Enemies.Superbosses {
                                     UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.FatalError);
                                 }
                             };
+                            SetupMusic(encounter.gameObject, muGlassthrix4);
                             break;
                     }
                 }
+            }
+        }
+
+        public static void SetupMusic(GameObject obj, CustomMusicTrackDef def) {
+            MusicTrackOverride over = obj.GetComponentInChildren<MusicTrackOverride>(true);
+
+            if (!over) {
+                return;
+            }
+
+            over.track = def;
+            
+            AkState state = over.GetComponent<AkState>();
+
+            if (state) {
+                state.enabled = false;
+            }
+
+            OnEnableEvent enable = over.GetComponent<OnEnableEvent>();
+
+            if (enable) {
+                enable.enabled = false;
             }
         }
 

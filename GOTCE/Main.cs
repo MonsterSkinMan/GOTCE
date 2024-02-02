@@ -43,6 +43,7 @@ using UnityEngine.SceneManagement;
 using R2API.ContentManagement;
 using RoR2.UI.MainMenu;
 using BepInEx.Configuration;
+using static R2API.SoundAPI;
 
 //using NemesisSlab;
 
@@ -96,6 +97,7 @@ namespace GOTCE
         private static Shader terrain;
         public static bool HasPatched = false;
         public static ConfigFile config;
+        public static Music.CustomMusicData BankData;
 
         private void Awake()
         {
@@ -103,9 +105,18 @@ namespace GOTCE
             SecondaryAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "secondarybundle"));
             GOTCEModels = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "gotcemodels"));
             SceneBundle = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "scenebundle"));
-            GOTCESounds = SoundAPI.SoundBanks.Add(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "GOTCE.bnk"));
+            GOTCESounds = SoundAPI.SoundBanks.Add(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "gotcemusic/GOTCE.bnk"));
             ModLogger = Logger;
             SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
+
+            BankData = new();
+            BankData.BanksFolderPath = Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "gotcemusic");
+            BankData.BepInPlugin = Info.Metadata;
+            BankData.InitBankName = "GOTCE_Init";
+            BankData.SoundBankName = "GOTCE_Music";
+            BankData.PlayMusicSystemEventName = "PlayStellation";
+
+            SoundAPI.Music.Add(BankData);
 
             config = Config;
 
