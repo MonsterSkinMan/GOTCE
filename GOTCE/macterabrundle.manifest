@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2815416525
+CRC: 2260136403
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 388c1d1bcf27f58e1cccb363754bd95c
+    Hash: dfbe023d12525947106f28c7f7fff799
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8008b2b46f07412a84f63a8d4423d6d0
@@ -94,6 +94,7 @@ Assets:
 - Assets/Textures/Icons/Item/BloodyShank.png
 - Assets/Textures/Icons/Item/FormlessSand.png
 - Assets/Textures/Icons/Item/corruptedshard.png
+- Assets/Textures/Icons/Item/PersonalOSPGenerator.png
 - Assets/Textures/Icons/Item/Aegiscentrism.png
 - Assets/Textures/Icons/Item/PluripotentSteak.png
 - Assets/Textures/Icons/Item/bottledcommand.png
