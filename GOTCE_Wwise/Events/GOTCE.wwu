@@ -16,10 +16,17 @@
 				</Event>
 				<Event Name="PlayStellation" ID="{8E685C98-1ADA-4A48-8144-419CF21B203C}">
 					<ChildrenList>
+<<<<<<< HEAD
 						<Action Name="" ID="{05A602EE-B6A2-4FE4-BA66-39A1150D5668}" ShortID="630818877">
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="GotceSwitcher" ID="{A049B121-BC76-4EB0-B211-1048535B0294}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+=======
+						<Action Name="" ID="{EAC3DFEF-B7AD-4A66-A521-4CEEE5C4B56C}" ShortID="656321253">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Stellation" ID="{3C44F1EA-82E0-46A1-885B-4A914099E87D}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+>>>>>>> 4ef0d922c16e991ec4de0701b4eda61a45d67dd2
 								</Reference>
 							</ReferenceList>
 						</Action>
