@@ -27,7 +27,7 @@ namespace GOTCE.Equipment.EliteEquipment
 
         public override GameObject EliteEquipmentModel => Main.SecondaryAssets.LoadAsset<GameObject>("Assets/Prefabs/Equipment/Backup/BackupAspect.prefab"); //Again, change to rushing when real
 
-        public override Sprite EliteEquipmentIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Equipment/RushingEliteAffix.png"); //You know the drill
+        public override Sprite EliteEquipmentIcon => Main.MainAssets.LoadAsset<Sprite>("Assets/Textures/Icons/Equipment/RushingEliteAffix.png");
         public override Sprite EliteBuffIcon => Main.SecondaryAssets.LoadAsset<Sprite>("Assets/Icons/Buffs/BackupAffixIcon.png"); //gd1
         public override float DamageMultiplier => 2f;
         public override float HealthMultiplier => 4f;

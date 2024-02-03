@@ -14,9 +14,45 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="PlayStellation" ID="{8E685C98-1ADA-4A48-8144-419CF21B203C}"/>
-				<Event Name="PauseStellation" ID="{2C21EA7F-73DA-48B3-AF34-F50C852EC98E}"/>
-				<Event Name="UnpauseStellation" ID="{B701CC34-848A-467E-8D1F-1CDBC9FC5A91}"/>
+				<Event Name="PlayStellation" ID="{8E685C98-1ADA-4A48-8144-419CF21B203C}">
+					<ChildrenList>
+						<Action Name="" ID="{05A602EE-B6A2-4FE4-BA66-39A1150D5668}" ShortID="630818877">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="GotceSwitcher" ID="{A049B121-BC76-4EB0-B211-1048535B0294}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="PauseStellation" ID="{2C21EA7F-73DA-48B3-AF34-F50C852EC98E}">
+					<ChildrenList>
+						<Action Name="" ID="{3966BF43-7328-4322-9C69-4976DA1EFBD8}" ShortID="873790626">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="7"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Stellation" ID="{3C44F1EA-82E0-46A1-885B-4A914099E87D}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="UnpauseStellation" ID="{B701CC34-848A-467E-8D1F-1CDBC9FC5A91}">
+					<ChildrenList>
+						<Action Name="" ID="{AC31DE59-FF6C-4FD5-AE47-BF60F37EB19F}" ShortID="839045466">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="9"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Stellation" ID="{3C44F1EA-82E0-46A1-885B-4A914099E87D}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

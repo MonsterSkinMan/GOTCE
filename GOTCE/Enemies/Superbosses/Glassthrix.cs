@@ -11,6 +11,7 @@ using HarmonyLib;
 using GOTCE.Gamemodes.Crackclipse;
 using static R2API.SoundAPI.Music;
 using IL.RoR2.ContentManagement;
+using GOTCE.Music;
 
 namespace GOTCE.Enemies.Superbosses {
     public class Glassthrix : EnemyBase<Glassthrix> {
@@ -32,21 +33,10 @@ namespace GOTCE.Enemies.Superbosses {
         private static int vanillaWaveCount;
         private static Vector3 atlasSpawnPos;
         //
-        public const uint THEME_GROUP = 978650076U;
-        public const uint THEME_INTRO = 111873711U;
-        public const uint THEME_P2_LOOP = 308672640U;
-        public const uint THEME_P4_OUTRO = 335467517U;
-        public const uint THEME_34_TRANSITION = 672545105U;
-        public const uint THEME_P1_LOOP = 1011564647U;
-        public const uint THEME_P3_LOOP = 1721060345U;
-        public const uint THEME_12_TRANSITION = 2367825945U;
-        public const uint THEME_P4_LOOP = 2507775610U;
-        public const uint THEME_23_TRANSITION = 2839510093U;
-        //
-        public static CustomMusicTrackDef muGlassthrix1;
-        public static CustomMusicTrackDef muGlassthrix2;
-        public static CustomMusicTrackDef muGlassthrix3;
-        public static CustomMusicTrackDef muGlassthrix4;
+        public static GOTCEMusicDef muGlassthrix1 => Stellation.Instance.tracks["GlassthrixPhase1"];
+        public static GOTCEMusicDef muGlassthrix2 => Stellation.Instance.tracks["GlassthrixPhase2"];
+        public static GOTCEMusicDef muGlassthrix3 => Stellation.Instance.tracks["GlassthrixPhase3"];
+        public static GOTCEMusicDef muGlassthrix4 => Stellation.Instance.tracks["GlassthrixPhase4"];
 
         public override void CreatePrefab()
         {
@@ -88,6 +78,7 @@ namespace GOTCE.Enemies.Superbosses {
             SwapMaterials(prefab, Utils.Paths.Material.maBrotherGlassOverlay.Load<Material>(), true, null);
 
             LanguageAPI.Add("GOTCE_GLASSTHRIX_NAME", "Glassthrix");
+            LanguageAPI.Add("GOTCE_GLASSTHRIX_LORE", "\"How the FUCK has this happened? What the fuck even is this floating orange cat head thing anyways? How did the fuck did it best me with a flick of its whiskers?\" Mithrix growled, \"And right as I had just finished creating my artificial replica! Hot damn!\"\nCracked Emoji sneered down at him.\"Pathetic, <i>you're</i> supposed to be the final boss of this game? Unbelievable.\"\n\"'Final boss?' What in the goddamn FUCK are you talking about?\" Mithrix roared.\n\"It is none of your concern. Now, if you'll excuse me...\" Cracked Emoji's face split open, revealing a horrifying visage that Mithrix could only barely comprehend. Streams of glassy energy and corrupted data poured out of Cracked Emoji, engulfing Mithrix's replica. When it stopped, the replica had seemingly vitrified. Then, it began to move.\n\"THE NAME'S GLASSTHRIX, [REDACTED]s!\" it declared. Cracked Emoji smirked in sick satisfaction.\n\"Glassthrix, my enforcer of corruption, you shall head to Cessation, the other moon, and spread Crack throughout the planet. We shall annihilate this pathetic excuse of a world.\" Cracked Emoji said. With that, Glassthrix disappeared through a crack in reality that quickly closed behind him. As Cracked Emoji was leaving, Mithrix called out, \"Feline! Why did you not take the chance to kill me?\"\n Cracked Emoji smirked.\n\"I need to keep up a charade of normalcy somehow. Do not mistake my action as an act of mercy. It was done out of necessity, as you are more important to this world then you realize.\" explained Cracked Emoji. He then promptly vanished, leaving Mithrix utterly dumbfounded.\n\"...Hot damn.\"");
             LanguageAPI.Add("GOTCE_GLASSTHRIX_SUBTITLE", "Cracked King");
             
             GlobalEventManager.onServerDamageDealt += StealItem;
@@ -112,38 +103,12 @@ namespace GOTCE.Enemies.Superbosses {
             moonDetonation.name = "moon detonation characterbody";
             moonDetonation.forbiddenFlags = NodeFlags.NoCharacterSpawn;
             moonDetonation.hullSize = HullClassification.Golem;
-
-            uint[][] p1 = {new uint[] {THEME_GROUP, THEME_INTRO}, new uint[] {THEME_GROUP, THEME_P1_LOOP}};
-            uint[][] p2 = {new uint[] {THEME_GROUP, THEME_12_TRANSITION}, new uint[] {THEME_GROUP, THEME_P2_LOOP}};
-            uint[][] p3 = {new uint[] {THEME_GROUP, THEME_23_TRANSITION}, new uint[] {THEME_GROUP, THEME_P3_LOOP}};
-            uint[][] p4 = {new uint[] {THEME_GROUP, THEME_34_TRANSITION}, new uint[] {THEME_GROUP, THEME_P4_LOOP}};
-
-            muGlassthrix1 = CreateDef("muGlassthrix1", p1);
-            muGlassthrix2 = CreateDef("muGlassthrix2", p2);
-            muGlassthrix3 = CreateDef("muGlassthrix3", p3);
-            muGlassthrix4 = CreateDef("muGlassthrix4", p4);
         }
 
         private void ResetMoon(On.RoR2.Run.orig_Start orig, Run self)
         {
             orig(self);
             // shouldProceedGlassthrixConversion = false;
-        }
-
-        private CustomMusicTrackDef CreateDef(string name, params uint[][] ids) {
-            CustomMusicTrackDef def = ScriptableObject.CreateInstance<CustomMusicTrackDef>();
-            def.cachedName = name;
-            def.SoundBankName = Main.BankData.SoundBankName;
-            def.CustomStates = new();
-
-            for (int i = 0; i < ids.Length; i++) {
-                CustomMusicTrackDef.CustomState state = new();
-                state.GroupId = ids[i][0];
-                state.StateId = ids[i][1];
-                def.CustomStates.Add(state);
-            }
-
-            return def;
         }
 
         private void GameDesign2(On.EntityStates.BrotherMonster.UltChannelState.orig_OnEnter orig, UltChannelState self)
@@ -216,7 +181,7 @@ namespace GOTCE.Enemies.Superbosses {
             }
         }
 
-        public static void SetupMusic(GameObject obj, CustomMusicTrackDef def) {
+        public static void SetupMusic(GameObject obj, GOTCEMusicDef def) {
             MusicTrackOverride over = obj.GetComponentInChildren<MusicTrackOverride>(true);
 
             if (!over) {

@@ -5,7 +5,45 @@
 			<ChildrenList>
 				<SoundBank Name="GOTCE" ID="{79315839-4A62-46D2-87C9-F5B0493DBE2A}">
 					<ObjectInclusionList>
+						<ObjectRef Name="Stellation_Phase3Loop" ID="{28955B2B-F461-40E8-AECB-67D2AC6BC848}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase2to3" ID="{F2439C61-B1B6-4157-9B13-41EB566A90C2}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase1Loop" ID="{17505D56-E104-4216-B410-18D269679195}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase4Outro" ID="{1ADAB43D-9AFD-4322-93FE-28BE45CBDCAA}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="The" ID="{785CE1CD-D925-43F2-9FF5-664EADDA57C4}" WorkUnitID="{705751AA-664E-4F7A-8D4B-F0226C27B343}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Intro" ID="{CD0A4B89-3E89-4618-8068-F9E0D7D045AE}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation" ID="{3C44F1EA-82E0-46A1-885B-4A914099E87D}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase4Loop" ID="{D785E4FB-654C-47BC-AC4C-AFBD35DC4814}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase2Loop" ID="{B554AFDD-8493-4A03-9294-EFF267EE9661}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase1to2" ID="{0D027677-FAD9-4E26-82B6-BDD46FBBA05C}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase3to4" ID="{ACBF7317-D206-4E59-B37B-B18126804513}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="GotceSwitcher" ID="{A049B121-BC76-4EB0-B211-1048535B0294}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="GOTCE_Music" ID="{80A40281-F615-4381-B182-8797C0F2FB90}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Stel3to4" ID="{AF608965-AA6F-40C8-96D0-1B8ADFCB9E75}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase3Loop" ID="{28955B2B-F461-40E8-AECB-67D2AC6BC848}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase2to3" ID="{F2439C61-B1B6-4157-9B13-41EB566A90C2}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase1Loop" ID="{17505D56-E104-4216-B410-18D269679195}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="StelPhase4" ID="{E9AD55F1-F447-431C-BFA9-A1B07697BE4F}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase4Outro" ID="{1ADAB43D-9AFD-4322-93FE-28BE45CBDCAA}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Intro" ID="{8628B3D4-4250-4597-B290-3B43D1F3622C}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Intro" ID="{CD0A4B89-3E89-4618-8068-F9E0D7D045AE}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation" ID="{3C44F1EA-82E0-46A1-885B-4A914099E87D}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stel2to3" ID="{5B9A8C88-EDCE-46D6-8DB4-949376BE8446}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="StelOutro" ID="{336EE84B-A386-4716-95BF-B4B0A3928773}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase4Loop" ID="{D785E4FB-654C-47BC-AC4C-AFBD35DC4814}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="StelPhase3" ID="{BC771021-DC83-47C4-A5F6-BE6C5320C315}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase2Loop" ID="{B554AFDD-8493-4A03-9294-EFF267EE9661}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PlayStellation" ID="{8E685C98-1ADA-4A48-8144-419CF21B203C}" WorkUnitID="{705751AA-664E-4F7A-8D4B-F0226C27B343}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="StelPhase1" ID="{4AE76DFC-EBCD-4D15-9012-1B73FDF4FBA0}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase1to2" ID="{0D027677-FAD9-4E26-82B6-BDD46FBBA05C}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stellation_Phase3to4" ID="{ACBF7317-D206-4E59-B37B-B18126804513}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="GotceSwitcher" ID="{A049B121-BC76-4EB0-B211-1048535B0294}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="StelPhase2" ID="{4290019D-2F06-4F69-8029-49A05A68318F}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Stel1to2" ID="{E2749DD3-2BD2-4F79-9962-EC1B33FAAB5D}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

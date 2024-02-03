@@ -1,51 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="135">
 	<RootPaths>
-		<ProjectRoot>C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\User\Desktop\Development\RoR2\GOTCE\GOTCE_Wwise\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\User\Desktop\Development\RoR2\GOTCE\GOTCE_Wwise\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\User\Desktop\Development\RoR2\GOTCE\GOTCE_Wwise\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\Matthew\source\repos\GOTCE\GOTCE_Wwise\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\User\Desktop\Development\RoR2\GOTCE\GOTCE_Wwise\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
-	<StreamedFiles>
-		<File Id="140476261" Language="SFX">
-			<ShortName>FINAL-glassthrix-loop2.wav</ShortName>
-			<Path>SFX\FINAL-glassthrix-loop2_D79FB2B7.wem</Path>
-		</File>
-		<File Id="546014937" Language="SFX">
-			<ShortName>FINAL-glassthrix-2t3.wav</ShortName>
-			<Path>SFX\FINAL-glassthrix-2t3_D79FB2B7.wem</Path>
-		</File>
-		<File Id="568936579" Language="SFX">
-			<ShortName>FINAL-glassthrix-3t4.wav</ShortName>
-			<Path>SFX\FINAL-glassthrix-3t4_D79FB2B7.wem</Path>
-		</File>
-		<File Id="778519456" Language="SFX">
-			<ShortName>FINAL-glassthrix-1t2.wav</ShortName>
-			<Path>SFX\FINAL-glassthrix-1t2_D79FB2B7.wem</Path>
-		</File>
-		<File Id="843332423" Language="SFX">
-			<ShortName>FINAL-glassthrix-loop1.wav</ShortName>
-			<Path>SFX\FINAL-glassthrix-loop1_D79FB2B7.wem</Path>
-		</File>
-		<File Id="881044022" Language="SFX">
-			<ShortName>FINAL-glassthrix-start2.wav</ShortName>
-			<Path>SFX\FINAL-glassthrix-start2_D79FB2B7.wem</Path>
-		</File>
-		<File Id="975313305" Language="SFX">
-			<ShortName>FINAL-glassthrix-end.wav</ShortName>
-			<Path>SFX\FINAL-glassthrix-end_D79FB2B7.wem</Path>
-		</File>
-		<File Id="1025488621" Language="SFX">
-			<ShortName>FINAL-glassthrix-loop3.wav</ShortName>
-			<Path>SFX\FINAL-glassthrix-loop3_D79FB2B7.wem</Path>
-		</File>
-		<File Id="1044684949" Language="SFX">
-			<ShortName>FINAL-glassthrix-loop4.wav</ShortName>
-			<Path>SFX\FINAL-glassthrix-loop4_D79FB2B7.wem</Path>
-		</File>
-	</StreamedFiles>
+	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
 		<SoundBank Id="1355168291" Language="SFX" Hash="4027565671">
@@ -53,77 +16,13 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="1615343281" Language="SFX" Hash="1679851454">
-			<ObjectPath>\SoundBanks\GOTCE\GOTCE_Music</ObjectPath>
-			<ShortName>GOTCE_Music</ShortName>
-			<Path>GOTCE_Music.bnk</Path>
-			<IncludedEvents>
-				<Event Id="1678638306" Name="PlayStellation" ObjectPath="\Events\GOTCE\PlayStellation"/>
-			</IncludedEvents>
-			<ReferencedStreamedFiles>
-				<File Id="140476261"/>
-				<File Id="546014937"/>
-				<File Id="568936579"/>
-				<File Id="778519456"/>
-				<File Id="843332423"/>
-				<File Id="881044022"/>
-				<File Id="975313305"/>
-				<File Id="1025488621"/>
-				<File Id="1044684949"/>
-			</ReferencedStreamedFiles>
-			<IncludedMemoryFiles>
-				<File Id="140476261" Language="SFX">
-					<ShortName>FINAL-glassthrix-loop2.wav</ShortName>
-					<Path>SFX\FINAL-glassthrix-loop2_D79FB2B7.wem</Path>
-					<PrefetchSize>17704</PrefetchSize>
-				</File>
-				<File Id="546014937" Language="SFX">
-					<ShortName>FINAL-glassthrix-2t3.wav</ShortName>
-					<Path>SFX\FINAL-glassthrix-2t3_D79FB2B7.wem</Path>
-					<PrefetchSize>17704</PrefetchSize>
-				</File>
-				<File Id="568936579" Language="SFX">
-					<ShortName>FINAL-glassthrix-3t4.wav</ShortName>
-					<Path>SFX\FINAL-glassthrix-3t4_D79FB2B7.wem</Path>
-					<PrefetchSize>17704</PrefetchSize>
-				</File>
-				<File Id="778519456" Language="SFX">
-					<ShortName>FINAL-glassthrix-1t2.wav</ShortName>
-					<Path>SFX\FINAL-glassthrix-1t2_D79FB2B7.wem</Path>
-					<PrefetchSize>17704</PrefetchSize>
-				</File>
-				<File Id="843332423" Language="SFX">
-					<ShortName>FINAL-glassthrix-loop1.wav</ShortName>
-					<Path>SFX\FINAL-glassthrix-loop1_D79FB2B7.wem</Path>
-					<PrefetchSize>17704</PrefetchSize>
-				</File>
-				<File Id="881044022" Language="SFX">
-					<ShortName>FINAL-glassthrix-start2.wav</ShortName>
-					<Path>SFX\FINAL-glassthrix-start2_D79FB2B7.wem</Path>
-					<PrefetchSize>17704</PrefetchSize>
-				</File>
-				<File Id="975313305" Language="SFX">
-					<ShortName>FINAL-glassthrix-end.wav</ShortName>
-					<Path>SFX\FINAL-glassthrix-end_D79FB2B7.wem</Path>
-					<PrefetchSize>17704</PrefetchSize>
-				</File>
-				<File Id="1025488621" Language="SFX">
-					<ShortName>FINAL-glassthrix-loop3.wav</ShortName>
-					<Path>SFX\FINAL-glassthrix-loop3_D79FB2B7.wem</Path>
-					<PrefetchSize>17704</PrefetchSize>
-				</File>
-				<File Id="1044684949" Language="SFX">
-					<ShortName>FINAL-glassthrix-loop4.wav</ShortName>
-					<Path>SFX\FINAL-glassthrix-loop4_D79FB2B7.wem</Path>
-					<PrefetchSize>17704</PrefetchSize>
-				</File>
-			</IncludedMemoryFiles>
-		</SoundBank>
-		<SoundBank Id="3256079973" Language="SFX" Hash="3574092558">
+		<SoundBank Id="3256079973" Language="SFX" Hash="3520068355">
 			<ObjectPath>\SoundBanks\GOTCE\GOTCE</ObjectPath>
 			<ShortName>GOTCE</ShortName>
 			<Path>GOTCE.bnk</Path>
 			<IncludedEvents>
+				<Event Id="3496689660" Name="PauseStellation" ObjectPath="\Events\GOTCE\PauseStellation"/>
+				<Event Id="1678638306" Name="PlayStellation" ObjectPath="\Events\GOTCE\PlayStellation"/>
 				<Event Id="996983870" Name="The" ObjectPath="\Events\GOTCE\The">
 					<IncludedMemoryFiles>
 						<File Id="799232243" Language="SFX">
@@ -132,7 +31,46 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1744361143" Name="UnpauseStellation" ObjectPath="\Events\GOTCE\UnpauseStellation"/>
 			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="140476261" Language="SFX">
+					<ShortName>FINAL-glassthrix-loop2.wav</ShortName>
+					<Path>SFX\FINAL-glassthrix-loop2_D79FB2B7.wem</Path>
+				</File>
+				<File Id="546014937" Language="SFX">
+					<ShortName>FINAL-glassthrix-2t3.wav</ShortName>
+					<Path>SFX\FINAL-glassthrix-2t3_D79FB2B7.wem</Path>
+				</File>
+				<File Id="568936579" Language="SFX">
+					<ShortName>FINAL-glassthrix-3t4.wav</ShortName>
+					<Path>SFX\FINAL-glassthrix-3t4_D79FB2B7.wem</Path>
+				</File>
+				<File Id="778519456" Language="SFX">
+					<ShortName>FINAL-glassthrix-1t2.wav</ShortName>
+					<Path>SFX\FINAL-glassthrix-1t2_D79FB2B7.wem</Path>
+				</File>
+				<File Id="843332423" Language="SFX">
+					<ShortName>FINAL-glassthrix-loop1.wav</ShortName>
+					<Path>SFX\FINAL-glassthrix-loop1_D79FB2B7.wem</Path>
+				</File>
+				<File Id="881044022" Language="SFX">
+					<ShortName>FINAL-glassthrix-start2.wav</ShortName>
+					<Path>SFX\FINAL-glassthrix-start2_D79FB2B7.wem</Path>
+				</File>
+				<File Id="975313305" Language="SFX">
+					<ShortName>FINAL-glassthrix-end.wav</ShortName>
+					<Path>SFX\FINAL-glassthrix-end_D79FB2B7.wem</Path>
+				</File>
+				<File Id="1025488621" Language="SFX">
+					<ShortName>FINAL-glassthrix-loop3.wav</ShortName>
+					<Path>SFX\FINAL-glassthrix-loop3_D79FB2B7.wem</Path>
+				</File>
+				<File Id="1044684949" Language="SFX">
+					<ShortName>FINAL-glassthrix-loop4.wav</ShortName>
+					<Path>SFX\FINAL-glassthrix-loop4_D79FB2B7.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

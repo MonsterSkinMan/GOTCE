@@ -47,7 +47,8 @@ namespace GOTCE.Survivors {
             """
             );
 
-            LanguageAPI.Add("GOTCE_DisposableVisions_NAME", "Visions of Disposability");
+
+          LanguageAPI.Add("GOTCE_DisposableVisions_NAME", "Visions of Disposability");
             LanguageAPI.Add("GOTCE_DisposableVisions_DESC", "Fire a <style=cIsUtility>missile</style> for <style=cIsDamage>300% damage</style>. <style=cIsUtility>Hold up to 12</style>.");
 
             LanguageAPI.Add("GOTCE_DisposableRising_NAME", "Rising Disposable Thunder Surge");

@@ -37,6 +37,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="Stellation_Intro" ID="{8628B3D4-4250-4597-B290-3B43D1F3622C}" ShortID="588222721">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -56,6 +68,7 @@
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
+													<ReferenceList/>
 													<TransitionInfo/>
 												</MusicTransition>
 											</TransitionList>
@@ -99,6 +112,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="StelPhase1" ID="{4AE76DFC-EBCD-4D15-9012-1B73FDF4FBA0}" ShortID="708228722">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -118,6 +143,7 @@
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
+													<ReferenceList/>
 													<TransitionInfo/>
 												</MusicTransition>
 											</TransitionList>
@@ -158,6 +184,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="Stel1to2" ID="{E2749DD3-2BD2-4F79-9962-EC1B33FAAB5D}" ShortID="153164030">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -177,6 +215,7 @@
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
+													<ReferenceList/>
 													<TransitionInfo/>
 												</MusicTransition>
 											</TransitionList>
@@ -220,6 +259,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="StelPhase2" ID="{4290019D-2F06-4F69-8029-49A05A68318F}" ShortID="26102820">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -239,6 +290,7 @@
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
+													<ReferenceList/>
 													<TransitionInfo/>
 												</MusicTransition>
 											</TransitionList>
@@ -282,6 +334,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="Stel2to3" ID="{5B9A8C88-EDCE-46D6-8DB4-949376BE8446}" ShortID="594374544">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -301,6 +365,7 @@
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
+													<ReferenceList/>
 													<TransitionInfo/>
 												</MusicTransition>
 											</TransitionList>
@@ -344,6 +409,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="StelPhase3" ID="{BC771021-DC83-47C4-A5F6-BE6C5320C315}" ShortID="912268968">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -363,6 +440,7 @@
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
+													<ReferenceList/>
 													<TransitionInfo/>
 												</MusicTransition>
 											</TransitionList>
@@ -406,6 +484,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="Stel3to4" ID="{AF608965-AA6F-40C8-96D0-1B8ADFCB9E75}" ShortID="973034534">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -425,6 +515,7 @@
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
+													<ReferenceList/>
 													<TransitionInfo/>
 												</MusicTransition>
 											</TransitionList>
@@ -468,6 +559,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="StelPhase4" ID="{E9AD55F1-F447-431C-BFA9-A1B07697BE4F}" ShortID="560574698">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -487,6 +590,7 @@
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
+													<ReferenceList/>
 													<TransitionInfo/>
 												</MusicTransition>
 											</TransitionList>
@@ -530,6 +634,18 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="StelOutro" ID="{336EE84B-A386-4716-95BF-B4B0A3928773}" ShortID="414114679">
+											<PropertyList>
+												<Property Name="IsStreamingEnabled" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="IsZeroLantency" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C5E5CF1B-8489-475C-872A-359EB29A3D9A}"/>
@@ -549,6 +665,7 @@
 													<PropertyList>
 														<Property Name="IsFolder" Type="bool" Value="True"/>
 													</PropertyList>
+													<ReferenceList/>
 													<TransitionInfo/>
 												</MusicTransition>
 											</TransitionList>
@@ -584,16 +701,125 @@
 									<PropertyList>
 										<Property Name="IsFolder" Type="bool" Value="True"/>
 									</PropertyList>
+									<ReferenceList/>
 									<ChildrenList>
 										<MusicTransition Name="Transition" ID="{7653C790-1832-4144-98D8-69ED3FCC50AD}">
+											<ReferenceList/>
 											<TransitionInfo/>
+										</MusicTransition>
+										<MusicTransition Name="Transition" ID="{D25EB94D-AE76-4C72-BD77-1048EDC07818}">
+											<PropertyList>
+												<Property Name="DestinationContextType" Type="int16" Value="2"/>
+												<Property Name="EnableDestinationFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableSourceFadeOut" Type="bool" Value="True"/>
+												<Property Name="EnableTransitionFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableTransitionFadeOut" Type="bool" Value="True"/>
+												<Property Name="UseTransitionObject" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="DestinationContextObject">
+													<ObjectRef Name="Stellation_Phase1Loop" ID="{17505D56-E104-4216-B410-18D269679195}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+												</Reference>
+											</ReferenceList>
+											<TransitionInfo>
+												<TransitionObjectRef Name="Stellation_Intro" ID="{CD0A4B89-3E89-4618-8068-F9E0D7D045AE}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+											</TransitionInfo>
+										</MusicTransition>
+										<MusicTransition Name="Transition" ID="{A0A8D842-3E33-4CBE-BBD6-A43C48A90BDC}">
+											<PropertyList>
+												<Property Name="DestinationContextType" Type="int16" Value="2"/>
+												<Property Name="EnableDestinationFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableSourceFadeOut" Type="bool" Value="True"/>
+												<Property Name="EnableTransitionFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableTransitionFadeOut" Type="bool" Value="True"/>
+												<Property Name="SourceContextType" Type="int16" Value="2"/>
+												<Property Name="UseTransitionObject" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="DestinationContextObject">
+													<ObjectRef Name="Stellation_Phase2Loop" ID="{B554AFDD-8493-4A03-9294-EFF267EE9661}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+												</Reference>
+												<Reference Name="SourceContextObject">
+													<ObjectRef Name="Stellation_Phase1Loop" ID="{17505D56-E104-4216-B410-18D269679195}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+												</Reference>
+											</ReferenceList>
+											<TransitionInfo>
+												<TransitionObjectRef Name="Stellation_Phase1to2" ID="{0D027677-FAD9-4E26-82B6-BDD46FBBA05C}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+											</TransitionInfo>
+										</MusicTransition>
+										<MusicTransition Name="Transition" ID="{27A3D7F1-36C9-4787-AE1B-20D398CFAF1E}">
+											<PropertyList>
+												<Property Name="DestinationContextType" Type="int16" Value="2"/>
+												<Property Name="EnableDestinationFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableSourceFadeOut" Type="bool" Value="True"/>
+												<Property Name="EnableTransitionFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableTransitionFadeOut" Type="bool" Value="True"/>
+												<Property Name="SourceContextType" Type="int16" Value="2"/>
+												<Property Name="UseTransitionObject" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="DestinationContextObject">
+													<ObjectRef Name="Stellation_Phase3Loop" ID="{28955B2B-F461-40E8-AECB-67D2AC6BC848}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+												</Reference>
+												<Reference Name="SourceContextObject">
+													<ObjectRef Name="Stellation_Phase2Loop" ID="{B554AFDD-8493-4A03-9294-EFF267EE9661}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+												</Reference>
+											</ReferenceList>
+											<TransitionInfo>
+												<TransitionObjectRef Name="Stellation_Phase2to3" ID="{F2439C61-B1B6-4157-9B13-41EB566A90C2}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+											</TransitionInfo>
+										</MusicTransition>
+										<MusicTransition Name="Transition" ID="{9C5F57BD-D4D2-4A84-BA5D-432A326BC548}">
+											<PropertyList>
+												<Property Name="DestinationContextType" Type="int16" Value="2"/>
+												<Property Name="EnableDestinationFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableSourceFadeOut" Type="bool" Value="True"/>
+												<Property Name="EnableTransitionFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableTransitionFadeOut" Type="bool" Value="True"/>
+												<Property Name="SourceContextType" Type="int16" Value="2"/>
+												<Property Name="UseTransitionObject" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="DestinationContextObject">
+													<ObjectRef Name="Stellation_Phase4Loop" ID="{D785E4FB-654C-47BC-AC4C-AFBD35DC4814}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+												</Reference>
+												<Reference Name="SourceContextObject">
+													<ObjectRef Name="Stellation_Phase3Loop" ID="{28955B2B-F461-40E8-AECB-67D2AC6BC848}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+												</Reference>
+											</ReferenceList>
+											<TransitionInfo>
+												<TransitionObjectRef Name="Stellation_Phase3to4" ID="{ACBF7317-D206-4E59-B37B-B18126804513}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+											</TransitionInfo>
+										</MusicTransition>
+										<MusicTransition Name="Transition" ID="{97ED8DA0-54EE-46B2-8810-A9584C370893}">
+											<PropertyList>
+												<Property Name="DestinationContextType" Type="int16" Value="1"/>
+												<Property Name="EnableSourceFadeOut" Type="bool" Value="True"/>
+												<Property Name="EnableTransitionFadeIn" Type="bool" Value="True"/>
+												<Property Name="EnableTransitionFadeOut" Type="bool" Value="True"/>
+												<Property Name="SourceContextType" Type="int16" Value="2"/>
+												<Property Name="UseTransitionObject" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="SourceContextObject">
+													<ObjectRef Name="Stellation_Phase4Loop" ID="{D785E4FB-654C-47BC-AC4C-AFBD35DC4814}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+												</Reference>
+											</ReferenceList>
+											<TransitionInfo>
+												<TransitionObjectRef Name="Stellation_Phase4Outro" ID="{1ADAB43D-9AFD-4322-93FE-28BE45CBDCAA}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}"/>
+											</TransitionInfo>
 										</MusicTransition>
 									</ChildrenList>
 									<TransitionInfo/>
 								</MusicTransition>
 							</TransitionList>
 							<Playlist>
-								<MusicPlaylistItem Name="" ID="{FC3D55F2-AFF6-42E0-98BB-F81ECFC8D2ED}" ShortID="1000678283"/>
+								<MusicPlaylistItem Name="" ID="{FC3D55F2-AFF6-42E0-98BB-F81ECFC8D2ED}" ShortID="1000678283">
+									<PropertyList>
+										<Property Name="LoopCount" Type="int16" Value="0"/>
+										<Property Name="PlayMode" Type="int16" Value="1"/>
+									</PropertyList>
+								</MusicPlaylistItem>
 							</Playlist>
 						</MusicPlaylistContainer>
 					</ChildrenList>
@@ -610,6 +836,19 @@
 							<TransitionInfo/>
 						</MusicTransition>
 					</TransitionList>
+					<ArgumentList>
+						<ArgumentRef Name="Stellation" ID="{C3092533-8C13-48B8-BB27-873B28FC1AD8}"/>
+					</ArgumentList>
+					<EntryList>
+						<Entry>
+							<Path>
+								<PathElementRef Name="Stellation_Intro" ID="{F09E0AA4-165A-4A06-885A-578DB95FC703}"/>
+							</Path>
+							<AudioNodeInfo>
+								<AudioNodeRef Name="Stellation" ID="{3C44F1EA-82E0-46A1-885B-4A914099E87D}" WorkUnitID="{7FFDF168-3B87-4BBF-8C38-D73A1A298372}" Platform="Linked"/>
+							</AudioNodeInfo>
+						</Entry>
+					</EntryList>
 				</MusicSwitchContainer>
 			</ChildrenList>
 		</WorkUnit>
