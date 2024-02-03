@@ -17,7 +17,7 @@ namespace GOTCE.Items.Lunar
 
         public override string ItemLangTokenName => "GOTCE_ReminiscencePrism";
 
-        public override string ItemPickupDesc => "Gain 20% stage transition crit chance.... BUT your critical strike chance is set to 0 for the stage upon stage transition crit.";
+        public override string ItemPickupDesc => "Gain 20% stage transition crit chance.... <color=#FF7F7F>BUT your critical strike chance is set to 0 for the stage upon stage transition crit.</color>";
 
         public override string ItemFullDescription => "Gain 20% (+20% per stack) stage transition crit chance. Critical strikes are disabled for the stage upon stage transition crit.";
 

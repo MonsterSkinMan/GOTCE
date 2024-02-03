@@ -4,6 +4,7 @@
 		<UserProjectSettings Name="" ID="{CF4C98D6-8112-4FDE-827B-E6742EEF6E1A}">
 			<PropertyList>
 				<Property Name="AudioFilesImporter\Path" Type="string" Value="C:\Users\Matthew\Downloads\"/>
+				<Property Name="Event Action List\{2C21EA7F-73DA-48B3-AF34-F50C852EC98E}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{785CE1CD-D925-43F2-9FF5-664EADDA57C4}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{8E685C98-1ADA-4A48-8144-419CF21B203C}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{B701CC34-848A-467E-8D1F-1CDBC9FC5A91}\x64_Expand States" Type="string" Value=""/>
@@ -55,7 +56,7 @@
 				<Property Name="Music Transition List\{E9AD55F1-F447-431C-BFA9-A1B07697BE4F}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="ProjectExplorer\FirstVisible_10_1" Type="string" Value="{4C96B38B-3DB4-40C7-91C9-665510E38993}"/>
 				<Property Name="ProjectExplorer\FirstVisible_11_1" Type="string" Value="{23EC2DE3-3ED8-4B82-AC99-92E25F2E4C6B}"/>
-				<Property Name="ProjectExplorer\FirstVisible_1_1" Type="string" Value="{E9A3487E-801D-4BB3-8E77-9407CC23FFA5}"/>
+				<Property Name="ProjectExplorer\FirstVisible_1_1" Type="string" Value="{5EA7BBF8-64C0-4A50-8821-A07E8BE21D68}"/>
 				<Property Name="ProjectExplorer\FirstVisible_3_1" Type="string" Value="{A69BF0FC-D84A-487C-ABDD-56F71CB2A126}"/>
 				<Property Name="ProjectExplorer\FirstVisible_4_1" Type="string" Value="{CB6175F1-6080-4A23-92EF-0807E304D0C1}"/>
 				<Property Name="ProjectExplorer\FirstVisible_6_1" Type="string" Value="{C98E673F-A24C-48A8-960F-10565FFE70A0}"/>
