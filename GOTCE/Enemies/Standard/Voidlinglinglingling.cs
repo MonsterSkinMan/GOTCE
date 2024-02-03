@@ -40,7 +40,7 @@ namespace GOTCE.Enemies.Standard
             isc.directorCreditCost = 60;
             isc.eliteRules = SpawnCard.EliteRules.Default;
             isc.forbiddenFlags = RoR2.Navigation.NodeFlags.NoCharacterSpawn;
-            isc.requiredFlags = RoR2.Navigation.NodeFlags.TeleporterOK;
+            isc.requiredFlags = RoR2.Navigation.NodeFlags.None;
             isc.hullSize = HullClassification.BeetleQueen;
             isc.occupyPosition = true;
             isc.nodeGraphType = RoR2.Navigation.MapNodeGroup.GraphType.Air;
