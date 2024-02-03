@@ -68,6 +68,20 @@ namespace GOTCE.Gamemodes.Crackclipse {
             On.RoR2.CombatDirector.AttemptSpawnOnTarget += TrueDisso;
             On.RoR2.CombatDirector.OnEnable += BadSax2;
             On.RoR2.CharacterBody.Start += TheFog;
+            On.RoR2.GlobalEventManager.OnHitEnemy += StealItem;
+        }
+
+        private static void StealItem(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
+        {
+            if (IsCurrentDifHigherOrEqual(c6, Run.instance)) {
+                if (!damageInfo.attacker || damageInfo.attacker.GetComponent<CharacterBody>().isPlayerControlled) {
+                    orig(self, damageInfo, victim);
+                    return;
+                }
+                damageInfo.AddModdedDamageType(DamageTypes.StealItem);
+            }
+
+            orig(self, damageInfo, victim);
         }
 
         private static void CreateDifficulty(Sprite icon, ref DifficultyIndex _index, string token, int count, string tokenDesc) {

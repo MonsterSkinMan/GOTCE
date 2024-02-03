@@ -84,9 +84,6 @@
     <Folder Include="EntityStatesCustom\AltSkills\Bandit\" />
     <Folder Include="libs\" />
     <Folder Include="Tiers\" />
-	<Content Include="..\GOTCE_Wwise\GeneratedSoundBanks\Windows\GOTCE.bnk">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
   </ItemGroup>
 
 </Project>

@@ -43,6 +43,8 @@ using UnityEngine.SceneManagement;
 using R2API.ContentManagement;
 using RoR2.UI.MainMenu;
 using BepInEx.Configuration;
+using static R2API.SoundAPI;
+using GOTCE.Music;
 
 //using NemesisSlab;
 
@@ -103,7 +105,6 @@ namespace GOTCE
             SecondaryAssets = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "secondarybundle"));
             GOTCEModels = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "gotcemodels"));
             SceneBundle = AssetBundle.LoadFromFile(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "scenebundle"));
-            GOTCESounds = SoundAPI.SoundBanks.Add(Assembly.GetExecutingAssembly().Location.Replace("GOTCE.dll", "GOTCE.bnk"));
             ModLogger = Logger;
             SOTVExpansionDef = Addressables.LoadAssetAsync<ExpansionDef>("RoR2/DLC1/Common/DLC1.asset").WaitForCompletion();
 
@@ -385,7 +386,25 @@ namespace GOTCE
             // On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
             // local multiplayer hook
             // run modded ror2 twice, create a multiplayer lobby in one, then do connect localhost:7777 in the other instance
+
+            On.RoR2.RoR2Application.Start += (o, s) => {
+                o(s);
+
+                string path = typeof(Main).Assembly.Location.Replace("GOTCE.dll", "gotcemusic");
+                Logger.LogError("BANK PATH: " + path);
+                AkSoundEngine.AddBasePath(path);
+                /// AkSoundEngine.LoadBank("GOTCE", out _);
+
+                var MusicTypes = typeof(Main).Assembly.GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(GOTCEMusicBank)));
+
+                foreach (var musicType in MusicTypes)
+                {
+                    GOTCEMusicBank music = (GOTCEMusicBank)System.Activator.CreateInstance(musicType);
+                    music.Setup();
+                }
+            };
         }
+
 
         [SystemInitializer(typeof(ItemCatalog))]
         public static void PostItemCat() {

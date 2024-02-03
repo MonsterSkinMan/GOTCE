@@ -36,7 +36,20 @@ namespace GOTCE.Survivors {
             LanguageAPI.Add("GOTCE_CRACKEDMERC_SUBTITLE", "Ballistic Brute");
             LanguageAPI.Add("GOTCE_CRACKEDMERC_WIN", "And so he left, fuse still ticking.");
             LanguageAPI.Add("GOTCE_CRACKEDMERC_FAIL", "And so he vanished, disposed once and for all.");
+<<<<<<< HEAD
+            LanguageAPI.Add("GOTCE_CRACKEDMERC_DESC", "TBD");
+            LanguageAPI.Add("GOTCE_CRACKEDMERC_LORE", 
+            """
+            His friends always told him his greed would one day be his downfall. He would usually brush them off as ignorant, lazy, or stubborn. He deserved happiness, after all, and what's wrong with getting things to make you happy? But it was never enough. He didn't care what he got, whether it be conceptual, physical, emotional. He just wanted... more.
+            His obsession eventually turned him ballistic. He turned on his few remaining friends, taking everything they had for himself. He decorated himself in gaudy trash and worthless junk, putting the rotten fruits of his endeavors on full display.
+            That was why, when he saw that strange orange cat, he accepted its offer. He needed to know. He needed its power.
+            Seeing him for the trash he was, the cat fused him with the garbage lining his form as an ironic punishment. And as for his desires for more, he was cursed with knowledge about everything and everywhere in the entire universe. By knowing everywhere he wasn't, he would know his place in this world at all times.
+            The only thing he didn't know was for what purpose he had been left so broken. You see, the cat had cursed him for more than just spite. The cat broke him for it wanted to break the universe.
+            """
+            );
+=======
             LanguageAPI.Add("GOTCE_CRACKEDMERC_DESC", "His friends always told him his greed would one day be his downfall. He would usually brush them off as ignorant, lazy, or stubborn. He deserved happiness, after all, and what's wrong with getting things to make you happy? But it was never enough. He didn't care what he got, whether it be conceptual, physical, emotional. He just wanted... <b>more</b>.\nHis obsession eventually turned him ballistic.He turned on his few remaining friends, taking everything they had for himself.He decorated himself in gaudy trash and worthless junk, putting the rotten fruits of his endeavors on full display.\nThat was why, when he saw that strange orange cat, he accepted its offer. He needed to know. He needed its power.\nSeeing him for the trash he was, the cat fused him with the garbage lining his form as an ironic punishment. And as for his desires for more, he was cursed with knowledge about everything and everywhere in the entire universe. By knowing everywhere he wasn't, he would know his place in this world at all times.\nThe only thing he didn't know was for what purpose he had been left so broken. You see, the cat had cursed him for more than just spite. The cat broke him for it wanted to break the universe. And those with broken wills were the easiest to coerce to do his bidding.");
+>>>>>>> 4ef0d922c16e991ec4de0701b4eda61a45d67dd2
 
 
           LanguageAPI.Add("GOTCE_DisposableVisions_NAME", "Visions of Disposability");

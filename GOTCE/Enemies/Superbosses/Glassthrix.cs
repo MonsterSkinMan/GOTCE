@@ -8,6 +8,10 @@ using EntityStates.BrotherMonster;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json.Utilities;
 using HarmonyLib;
+using GOTCE.Gamemodes.Crackclipse;
+using static R2API.SoundAPI.Music;
+using IL.RoR2.ContentManagement;
+using GOTCE.Music;
 
 namespace GOTCE.Enemies.Superbosses {
     public class Glassthrix : EnemyBase<Glassthrix> {
@@ -28,6 +32,12 @@ namespace GOTCE.Enemies.Superbosses {
         private static int vanillaTotalWaves;
         private static int vanillaWaveCount;
         private static Vector3 atlasSpawnPos;
+        //
+        public static GOTCEMusicDef muGlassthrix1 => Stellation.Instance.tracks["GlassthrixPhase1"];
+        public static GOTCEMusicDef muGlassthrix2 => Stellation.Instance.tracks["GlassthrixPhase2"];
+        public static GOTCEMusicDef muGlassthrix3 => Stellation.Instance.tracks["GlassthrixPhase3"];
+        public static GOTCEMusicDef muGlassthrix4 => Stellation.Instance.tracks["GlassthrixPhase4"];
+
         public override void CreatePrefab()
         {
             base.CreatePrefab();
@@ -75,6 +85,7 @@ namespace GOTCE.Enemies.Superbosses {
             On.EntityStates.BrotherMonster.ExitSkyLeap.FireRingAuthority += GameDesign;
             On.RoR2.Stage.Start += HandleGlassthrixConversion;
             On.EntityStates.BrotherMonster.UltChannelState.OnEnter += GameDesign2;
+            On.RoR2.Run.Start += ResetMoon;
 
             prefabMaster.GetComponent<CharacterMaster>().bodyPrefab = prefab;
 
@@ -92,6 +103,12 @@ namespace GOTCE.Enemies.Superbosses {
             moonDetonation.name = "moon detonation characterbody";
             moonDetonation.forbiddenFlags = NodeFlags.NoCharacterSpawn;
             moonDetonation.hullSize = HullClassification.Golem;
+        }
+
+        private void ResetMoon(On.RoR2.Run.orig_Start orig, Run self)
+        {
+            orig(self);
+            // shouldProceedGlassthrixConversion = false;
         }
 
         private void GameDesign2(On.EntityStates.BrotherMonster.UltChannelState.orig_OnEnter orig, UltChannelState self)
@@ -129,6 +146,7 @@ namespace GOTCE.Enemies.Superbosses {
                         case "BrotherEncounter, Phase 1":
                             encounter.spawns[0].spawnCard = glassthrixCard;
                             atlasSpawnPos = encounter.spawns[0].explicitSpawnPosition.transform.position;
+                            SetupMusic(encounter.gameObject, muGlassthrix1);
                             break;
                         case "BrotherEncounter, Phase 2":
                             for (int i = 0; i < 5; i++) {
@@ -138,9 +156,11 @@ namespace GOTCE.Enemies.Superbosses {
                                     cullChance = 0f
                                 });
                             }
+                            SetupMusic(encounter.gameObject, muGlassthrix2);
                             break;
                         case "BrotherEncounter, Phase 3":
                             encounter.spawns[0].spawnCard = glassthrixCard;
+                            SetupMusic(encounter.gameObject, muGlassthrix3);
                             break;
                         case "BrotherEncounter, Phase 4":
                             GameObject go = new("spawnPointSafeTravels");
@@ -149,9 +169,37 @@ namespace GOTCE.Enemies.Superbosses {
                             encounter.spawns[0].spawnCard = SafeTravels.safeTravelsCard;
                             Debug.Log("registering spawn for atlas cannon");
                             encounter.onBeginEncounter += SpawnAtlasCannon;
+                            encounter.combatSquad.onMemberDefeatedServer += (c, r) => {
+                                if (Difficulty.IsCurrentDifHigherOrEqual(Difficulty.c7, Run.instance) && Random.Range(0, 100f) > 50) {
+                                    UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.FatalError);
+                                }
+                            };
+                            SetupMusic(encounter.gameObject, muGlassthrix4);
                             break;
                     }
                 }
+            }
+        }
+
+        public static void SetupMusic(GameObject obj, GOTCEMusicDef def) {
+            MusicTrackOverride over = obj.GetComponentInChildren<MusicTrackOverride>(true);
+
+            if (!over) {
+                return;
+            }
+
+            over.track = def;
+            
+            AkState state = over.GetComponent<AkState>();
+
+            if (state) {
+                state.enabled = false;
+            }
+
+            OnEnableEvent enable = over.GetComponent<OnEnableEvent>();
+
+            if (enable) {
+                enable.enabled = false;
             }
         }
 
