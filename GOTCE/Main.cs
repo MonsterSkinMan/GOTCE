@@ -390,7 +390,7 @@ namespace GOTCE
             On.RoR2.RoR2Application.Start += (o, s) => {
                 o(s);
 
-                string path = typeof(Main).Assembly.Location.Replace("GOTCE.dll", "gotcemusic");
+                string path = typeof(Main).Assembly.Location.Replace("GOTCE.dll", "");
                 Logger.LogError("BANK PATH: " + path);
                 AkSoundEngine.AddBasePath(path);
                 /// AkSoundEngine.LoadBank("GOTCE", out _);

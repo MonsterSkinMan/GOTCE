@@ -44,5 +44,10 @@ namespace GOTCE.EntityStatesCustom.CrackedMerc {
             configuration.targetType = (SerializableSystemType)typeof(DisposableRising);
             ContentAddition.AddEntityStateConfiguration(configuration);
         }
+
+        public override InterruptPriority GetMinimumInterruptPriority()
+        {
+            return InterruptPriority.PrioritySkill;
+        }
     }
 }

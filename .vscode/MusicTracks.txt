@@ -1,0 +1,44 @@
+Event	ID	Name			Wwise Object Path	Notes
+	297269954	PlayPrelude			\Default Work Unit\Prelude\PlayPrelude	
+	375649401	UnpausePrelude			\Default Work Unit\Prelude\UnpausePrelude	
+	640355781	Seek_random_woolieList			\Default Work Unit\SFX\Seek_random_woolieList	
+	1185651956	PlayLlovio			\Default Work Unit\Llovio\PlayLlovio	
+	1226493390	PauseLlovio			\Default Work Unit\Llovio\PauseLlovio	
+	1251956019	Play_woolieList			\Default Work Unit\SFX\Play_woolieList	
+	1428589009	UnpauseLlovio			\Default Work Unit\Llovio\UnpauseLlovio	
+	1678638306	PlayStellation			\Default Work Unit\Stellation\PlayStellation	
+	1744361143	UnpauseStellation			\Default Work Unit\Stellation\UnpauseStellation	
+	2536694191	Play_The			\Default Work Unit\SFX\Play_The	
+	2686924488	PausePrelude			\Default Work Unit\Prelude\PausePrelude	
+	3496689660	PauseStellation			\Default Work Unit\Stellation\PauseStellation	
+
+State Group	ID	Name			Wwise Object Path	Notes
+	917443112	Prelude			\Default Work Unit\Prelude	
+	978650076	Stellation			\Default Work Unit\Stellation	
+	2775631278	Llovio			\Default Work Unit\Llovio	
+
+State	ID	Name	State Group			Notes
+	691006007	Loop	Prelude			
+	748895195	None	Prelude			
+	748895195	None	Stellation			
+	1635194249	P4	Stellation			
+	1635194252	P1	Stellation			
+	1635194254	P3	Stellation			
+	1635194255	P2	Stellation			
+	691006007	Loop	Llovio			
+	748895195	None	Llovio			
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	137961482	Loop	C:\users\pseudopulse\Documents\GotceTracks\.cache\Windows\SFX\prelude2(1)_4766FE73.wem		\Interactive Music Hierarchy\Default Work Unit\Prelude\Loop\Track\Loop		1172045
+	399319134	Trans2t3	C:\users\pseudopulse\Documents\GotceTracks\.cache\Windows\SFX\FINAL-glassthrix-2t3_9EDFC787.wem		\Interactive Music Hierarchy\Default Work Unit\Stellation\Trans2t3\Trans2t3		121561
+	419294346	Loop	C:\users\pseudopulse\Documents\GotceTracks\.cache\Windows\SFX\FINAL-glassthrix-loop1_9EDFC787.wem		\Interactive Music Hierarchy\Default Work Unit\Stellation\P1\Loop\Loop		1600175
+	427137186	Loop	C:\users\pseudopulse\Documents\GotceTracks\.cache\Windows\SFX\FINAL-glassthrix-loop4_9EDFC787.wem		\Interactive Music Hierarchy\Default Work Unit\Stellation\P4\Loop\Loop		775062
+	545422665	Trans1t2	C:\users\pseudopulse\Documents\GotceTracks\.cache\Windows\SFX\FINAL-glassthrix-1t2_9EDFC787.wem		\Interactive Music Hierarchy\Default Work Unit\Stellation\Trans1t2\Trans1t2		59241
+	588453635	Intro	C:\users\pseudopulse\Documents\GotceTracks\.cache\Windows\SFX\FINAL-glassthrix-start2_9EDFC787.wem		\Interactive Music Hierarchy\Default Work Unit\Stellation\P1\Intro\Intro		528264
+	596513069	Llovio	C:\users\pseudopulse\Documents\GotceTracks\.cache\Windows\SFX\llovio_9EDFC787.wem		\Interactive Music Hierarchy\Default Work Unit\Llovio\Loop\Track\Llovio		3657056
+	649977554	Loop	C:\users\pseudopulse\Documents\GotceTracks\.cache\Windows\SFX\FINAL-glassthrix-loop3_9EDFC787.wem		\Interactive Music Hierarchy\Default Work Unit\Stellation\P3\Loop\Loop		1701112
+	672881128	TheWooler	C:\users\pseudopulse\Documents\GotceTracks\.cache\Windows\SFX\Woolie_4766FE73.wem		\Interactive Music Hierarchy\Default Work Unit\Woolie\TheWooler		19808649
+	873487055	The	C:\users\pseudopulse\Documents\GotceTracks\.cache\Windows\SFX\GOTCEthe2_CD8EDA95.wem		\Actor-Mixer Hierarchy\Default Work Unit\The		7560
+	916422624	Trans3t4	C:\users\pseudopulse\Documents\GotceTracks\.cache\Windows\SFX\FINAL-glassthrix-3t4_9EDFC787.wem		\Interactive Music Hierarchy\Default Work Unit\Stellation\Trans3t4\Trans3t4		529522
+	1002584946	Loop	C:\users\pseudopulse\Documents\GotceTracks\.cache\Windows\SFX\FINAL-glassthrix-loop2_9EDFC787.wem		\Interactive Music Hierarchy\Default Work Unit\Stellation\P2\Loop\Loop		972420
+

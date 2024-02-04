@@ -149,6 +149,9 @@ namespace GOTCE.Enemies.Superbosses {
 
             if (SceneManager.GetActiveScene().name != "moon") return;
 
+            Transform j = GameObject.Find("Gameplay Space").transform.Find("HOLDER: Final Arena").Find("ColumnHolderSet, Inner");
+            j.gameObject.SetActive(false);
+
             if (shouldProceedGlassthrixConversion) {
                 ScriptedCombatEncounter[] encounters = GameObject.FindObjectsOfType<ScriptedCombatEncounter>();
 

@@ -1,3 +1,9 @@
+# 1.4.1 Patch Nodes
+- fixed issue with cracked merc icons
+- fixed glassthrix still having ramps
+- fixed cracked merc m2 canceling itself
+- fixed bug where music didnt play
+
 # 1.4.0 Patch Notes - Wave 4: The Balls Expansion
 - WOOOOO WAVE 4 BABY!
 - New cracked survivor: Cracked Mercenary

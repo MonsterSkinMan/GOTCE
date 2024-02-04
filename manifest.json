@@ -1,9 +1,9 @@
 
 {
   "name": "Gamers_of_the_Cracked_Emoji",
-  "version_number": "1.4.0",
+  "version_number": "1.4.1",
   "website_url": "https://github.com/MonsterSkinMan/GOTCE",
-  "description": " (aka GOTCE) The ultimate variety content mod for ROR2, making the game even more crazy than it already is. Currently adds a large variety of creative content. Now the largest item and enemy mod on Thunderstore!. - WAVE 4 RELEASE WOOOOOO !!",
+  "description": " (aka GOTCE) The ultimate variety content mod for ROR2, making the game even more crazy than it already is. Currently adds a large variety of creative content. Now the largest item and enemy mod on Thunderstore!",
   "dependencies": [
     "bbepis-BepInExPack-5.4.2113",
     "tristanmcpherson-R2API-5.0.5",
