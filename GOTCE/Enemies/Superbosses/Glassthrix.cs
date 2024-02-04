@@ -47,6 +47,7 @@ namespace GOTCE.Enemies.Superbosses {
             body.subtitleNameToken = "GOTCE_GLASSTHRIX_SUBTITLE";
             body.gameObject.AddComponent<WaveController>();
             body.gameObject.AddComponent<CloneSpammer>();
+            body.portraitIcon = Main.SecondaryAssets.LoadAsset<Sprite>("Glassthrix.png").texture;
         }
         public override void Modify()
         {
@@ -86,6 +87,7 @@ namespace GOTCE.Enemies.Superbosses {
             On.RoR2.Stage.Start += HandleGlassthrixConversion;
             On.EntityStates.BrotherMonster.UltChannelState.OnEnter += GameDesign2;
             On.RoR2.Run.Start += ResetMoon;
+            On.RoR2.Run.AdvanceStage += GlassthrixFunder;
 
             prefabMaster.GetComponent<CharacterMaster>().bodyPrefab = prefab;
 
@@ -103,6 +105,15 @@ namespace GOTCE.Enemies.Superbosses {
             moonDetonation.name = "moon detonation characterbody";
             moonDetonation.forbiddenFlags = NodeFlags.NoCharacterSpawn;
             moonDetonation.hullSize = HullClassification.Golem;
+        }
+
+        private void GlassthrixFunder(On.RoR2.Run.orig_AdvanceStage orig, Run self, SceneDef nextScene)
+        {
+            if ((nextScene == Utils.Paths.SceneDef.moon2.Load<SceneDef>() || nextScene == Utils.Paths.SceneDef.moon.Load<SceneDef>()) && self.stageClearCount % 9 == 0) {
+                nextScene = Utils.Paths.SceneDef.moon.Load<SceneDef>();
+            }
+
+            orig(self, nextScene);
         }
 
         private void ResetMoon(On.RoR2.Run.orig_Start orig, Run self)
@@ -172,6 +183,9 @@ namespace GOTCE.Enemies.Superbosses {
                             encounter.combatSquad.onMemberDefeatedServer += (c, r) => {
                                 if (Difficulty.IsCurrentDifHigherOrEqual(Difficulty.c7, Run.instance) && Random.Range(0, 100f) > 50) {
                                     UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.FatalError);
+                                }
+                                else {
+                                    Run.instance.BeginGameOver(RoR2Content.GameEndings.LimboEnding);
                                 }
                             };
                             SetupMusic(encounter.gameObject, muGlassthrix4);

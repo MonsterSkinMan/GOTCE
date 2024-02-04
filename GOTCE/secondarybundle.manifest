@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1091140398
+CRC: 2662880181
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e554289ac7aefdf3f61c6033ff795f33
+    Hash: 800476f3b08599795c43eef3b0681333
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3bf74e3602d15a163127500e471d311f
@@ -246,7 +246,9 @@ Assets:
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/Pearl.prefab
 - Assets/Icons/Artifacts/artifactofloaderon.png
 - Assets/Icons/Skills/CJI.png
+- Assets/Prefabs/Survivors/CrackedMerc/crecPrimary.png
 - Assets/Icons/Items/CorruptsAllShatterspleens.png
+- Assets/Prefabs/Survivors/CrackedMerc/crercSecondary.png
 - Assets/Icons/Items/Recursion.png
 - Assets/Prefabs/Projectiles/AltSkills/Saw/SawPrefab.prefab
 - Assets/Prefabs/Enemies/FreddyFastbear/fastbear.png
@@ -260,12 +262,15 @@ Assets:
 - Assets/Icons/BG/LunarVoid.png
 - Assets/Icons/Items/AegisDisplayCase.png
 - Assets/Icons/Artifacts/artifactofsoleon.png
+- Assets/Prefabs/Enemies/Skeleton/mdlSkeleton.prefab
 - Assets/Icons/Artifacts/artifactofwoolieoff.png
 - Assets/Prefabs/Interactables/Crucible/Crucible.prefab
+- Assets/Prefabs/Enemies/Glassthrix.png
 - Assets/Prefabs/Survivors/Cracktain/Drone/JeroneMaster.prefab
 - Assets/Icons/IonSurger.png
 - Assets/Prefabs/Projectiles/Aegiscentrism/AegisGhost.prefab
 - Assets/Icons/Artifacts/artifactofsoleoff.png
+- Assets/Prefabs/Enemies/Skeleton/iconSkeleton.png
 - Assets/Prefabs/Survivors/Crackmando/CrackedDef.asset
 - Assets/Icons/Items/dream.pdf.png
 - Assets/Prefabs/Interactables/AtlasCannon/AtlasCannon.prefab
@@ -276,6 +281,7 @@ Assets:
 - Assets/Icons/BG/EquipBoss.png
 - Assets/Prefabs/Survivors/Cracktain/Drone/Skills/sdJeronePrimary.asset
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/return.png
+- Assets/Prefabs/Survivors/CrackedMerc/crecPassive.png
 - Assets/Prefabs/Survivors/Crackmando/SkillFamilies/double.png
 - Assets/Icons/Items/Gamepad.png
 - Assets/Prefabs/Enemies/SolusScanner/SolusScannerBody.prefab
@@ -304,6 +310,7 @@ Assets:
 - Assets/Prefabs/game.prefab
 - Assets/Prefabs/Survivors/Cracktain/Skills/sdLaser.asset
 - Assets/Icons/Artifacts/artifactofblindnessoff.png
+- Assets/Prefabs/Survivors/NemCore/NemesisHealingCore.png
 - Assets/Prefabs/Survivors/CrackedMerc/crecDiffuse.png
 - Assets/Icons/Misc/smirk_cat.png
 - Assets/Prefabs/Survivors/Cracktain/sdCracktain.asset
@@ -325,13 +332,17 @@ Assets:
 - Assets/Prefabs/Projectiles/AltSkills/Pearl/warp.png
 - Assets/Icons/nader.png
 - Assets/Prefabs/Enemies/SolusPylon/SolusPylonBody.prefab
+- Assets/Prefabs/Survivors/CrackedMerc/crercUtil.png
 - Assets/Prefabs/Enemies/SolusScanner/SolusScannerMaster.prefab
 - Assets/Prefabs/Enemies/FreddyFastbear/FreddyFastBearMaster.prefab
+- Assets/Prefabs/Enemies/SafeTravels/SafeTravels.png
 - Assets/Icons/Artifacts/artifactofwoolieon.png
 - Assets/Prefabs/Enemies/Provi/Projectile/ProviOrb.prefab
 - Assets/Icons/GummyBeetleQueen.png
 - Assets/Prefabs/Projectiles/AegisFunder/AegisProjectile.prefab
 - Assets/Prefabs/Enemies/FreddyFastbear/fnaf.webm
+- Assets/Prefabs/Survivors/CrackedMerc/CrackedMercenary.png
+- Assets/Prefabs/Survivors/CrackedMerc/crercSpecial.png
 - Assets/Prefabs/Survivors/Cracktain/Drone/Skills/sdJeroneUtility.asset
 - Assets/Icons/Items/UltraInstinctAegis.png
 - Assets/Prefabs/Survivors/Cracktain/Skills/sdBarrage.asset

@@ -86,7 +86,6 @@ namespace GOTCE.Gamemodes.Crackclipse {
                 if (stopwatch >= 20f) {
                     stopwatch = 0f;
                     shouldInvert = !shouldInvert;
-                    Util.PlaySound("Seek_random_woolieList", base.gameObject);
                     Camera.main.aspect *= -1f;
                 }
             }

@@ -28,7 +28,7 @@ namespace GOTCE.EntityStatesCustom.Glassthrix.P1 {
             base.OnEnter();
             base.overlapAttack.AddModdedDamageType(DamageTypes.StealItem);
 
-            GameObject prefab = Utils.Paths.GameObject.LunarNeedleProjectile.Load<GameObject>();
+            GameObject prefab = Utils.Paths.GameObject.LunarShardProjectile.Load<GameObject>();
 
             for (int i = 0; i < 90; i++) {
                 FireProjectileInfo info = new();

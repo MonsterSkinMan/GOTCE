@@ -27,11 +27,12 @@ namespace GOTCE.Survivors {
             body.bodyColor = Color.gray;
             body.baseDamage = 14f;
             body.baseJumpCount = 1;
+            body.portraitIcon = Main.SecondaryAssets.LoadAsset<Sprite>("CrackedMercenary.png").texture;
 
             SkillLocator locator = prefab.GetComponent<SkillLocator>();
             locator.passiveSkill.skillNameToken = "GOTCE_CRACKEDMERC_PASSIVE_NAME".Add("The OP Build");
             locator.passiveSkill.skillDescriptionToken = "GOTCE_CRACKEDMERC_PASSIVE_DESC".Add("Your <style=cIsDamage>base damage</style> is increased by <style=cIsUtility>10%</style> for every <style=cIsDamage>Berserker's Pauldron</style> you have.");
-            locator.passiveSkill.icon = null;
+            locator.passiveSkill.icon = Main.SecondaryAssets.LoadAsset<Sprite>("crecPassive.png");
 
             LanguageAPI.Add("GOTCE_CRACKEDMERC_SUBTITLE", "Ballistic Brute");
             LanguageAPI.Add("GOTCE_CRACKEDMERC_WIN", "And so he left, fuse still ticking.");
