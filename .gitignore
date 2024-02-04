@@ -17,7 +17,7 @@ GOTCE_Wwise/.*/
 *.sln.docstates
 bin
 obj
-
+build
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

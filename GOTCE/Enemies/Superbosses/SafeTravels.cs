@@ -85,8 +85,6 @@ namespace GOTCE.Enemies.Superbosses {
 
             Debug.Log("spawning ST model");
 
-            Main.ModLogger.LogError("FUCKING KILL YOURSELF !!");
-
             SetupModel(prefab, safeTravelsObj);
         }
 
