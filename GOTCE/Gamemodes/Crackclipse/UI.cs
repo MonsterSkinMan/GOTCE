@@ -47,8 +47,8 @@ namespace GOTCE.Gamemodes.Crackclipse {
                 SurvivorDef def = profile.survivorPreference;
                 survivorName.token = def.displayNameToken;
 
-                eclipseLevelTitle.token = $"GOTCE_CRACKCLIPSE_{CrackclipseRun.HighestCrackclipseLevel(user, def)}_TITLE";
-                eclipseDescription.token = $"GOTCE_CRACKCLIPSE_{CrackclipseRun.HighestCrackclipseLevel(user, def)}_DESC";
+                eclipseLevelTitle.token = $"CRACKCLIPSE_{CrackclipseRun.HighestCrackclipseLevel(user, def)}_NAME";
+                eclipseDescription.token = $"CRACKCLIPSE_{CrackclipseRun.HighestCrackclipseLevel(user, def)}_DESC";
             }
 
             user.userProfile.onSurvivorPreferenceChanged += UpdateSurvivors;
@@ -71,8 +71,8 @@ namespace GOTCE.Gamemodes.Crackclipse {
                 SurvivorDef def = profile.survivorPreference;
                 survivorName.token = def.displayNameToken;
 
-                eclipseLevelTitle.token = $"GOTCE_CRACKCLIPSE_{CrackclipseRun.HighestCrackclipseLevel(user, def)}_TITLE";
-                eclipseDescription.token = $"GOTCE_CRACKCLIPSE_{CrackclipseRun.HighestCrackclipseLevel(user, def)}_DESC";
+                eclipseLevelTitle.token = $"CRACKCLIPSE_{CrackclipseRun.HighestCrackclipseLevel(user, def)}_NAME";
+                eclipseDescription.token = $"CRACKCLIPSE_{CrackclipseRun.HighestCrackclipseLevel(user, def)}_DESC";
             }
         }
     }

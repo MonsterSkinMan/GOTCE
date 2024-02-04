@@ -114,7 +114,7 @@ namespace GOTCE
             standard = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGStandard.shader").WaitForCompletion();
             terrain = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGTriplanarTerrainBlend.shader").WaitForCompletion();
 
-            RoR2Application.onLoad += () => { Util.PlaySound("The", RoR2Application.instance.gameObject); }; // the
+            RoR2Application.onLoad += () => { Util.PlaySound("Play_The", RoR2Application.instance.gameObject); }; // the
 
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI") && Config.Bind<bool>("Compatibility", "BetterUI - Stats Display", true, "Adds the GOTCE stats to the BetterUI stats display.").Value)
             {

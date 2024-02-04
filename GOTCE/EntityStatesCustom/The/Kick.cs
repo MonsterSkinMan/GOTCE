@@ -30,7 +30,7 @@ namespace GOTCE.EntityStatesCustom.The
                 attack.Fire();
             }
             PlayAnimation("Body", "Kick");
-            Util.PlaySound("The", base.gameObject);
+            Util.PlaySound("Play_The", base.gameObject);
         }
 
         public override void FixedUpdate()
