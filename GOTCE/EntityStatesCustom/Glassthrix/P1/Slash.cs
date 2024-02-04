@@ -27,6 +27,22 @@ namespace GOTCE.EntityStatesCustom.Glassthrix.P1 {
             base.baseDuration = 1f;
             base.OnEnter();
             base.overlapAttack.AddModdedDamageType(DamageTypes.StealItem);
+
+            GameObject prefab = Utils.Paths.GameObject.LunarNeedleProjectile.Load<GameObject>();
+
+            for (int i = 0; i < 90; i++) {
+                FireProjectileInfo info = new();
+                info.position = base.transform.position;
+                info.rotation = Util.QuaternionSafeLookRotation(Util.ApplySpread(base.inputBank.aimDirection, -50f, 50f, 1f, 1f));
+                info.damage = base.damageCoefficient * 2f;
+                info.crit = base.RollCrit();
+                info.owner = base.gameObject;
+                info.projectilePrefab = prefab;
+
+                if (NetworkServer.active) {
+                    ProjectileManager.instance.FireProjectile(info);
+                }
+            }
         }
     }
 }

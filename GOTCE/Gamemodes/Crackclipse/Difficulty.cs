@@ -77,13 +77,16 @@ namespace GOTCE.Gamemodes.Crackclipse {
             private float stopwatch = 0f;
             public bool shouldInvert = false;
 
+            public void Start() {
+                Util.PlaySound("Play_woolieList", base.gameObject);
+            }
+
             public void FixedUpdate() {
                 stopwatch += Time.fixedDeltaTime;
                 if (stopwatch >= 20f) {
                     stopwatch = 0f;
                     shouldInvert = !shouldInvert;
-                    Debug.Log("Playing woolie sfx");
-                    Util.PlaySound("Play_woolieList", base.gameObject);
+                    Util.PlaySound("Seek_random_woolieList", base.gameObject);
                     Camera.main.aspect *= -1f;
                 }
             }
@@ -106,7 +109,6 @@ namespace GOTCE.Gamemodes.Crackclipse {
                 SpareDronePartsYouWantYourDronesToTankNotDealDamage sdp = self.body.GetComponent<SpareDronePartsYouWantYourDronesToTankNotDealDamage>();
 
                 if (sdp.shouldInvert) {
-                    self.bodyInputs.aimDirection *= -1f;
                     self.bodyInputs.moveVector *= -1f;
                 }
             }
