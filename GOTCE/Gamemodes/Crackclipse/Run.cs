@@ -59,13 +59,13 @@ namespace GOTCE.Gamemodes.Crackclipse {
 
         public override void AdvanceStage(SceneDef nextScene)
         {
+            if (stageClearCount >= 9) {
+                base.AdvanceStage(Utils.Paths.SceneDef.moon.Load<SceneDef>());
+                return;
+            }
+
             SceneDef rallypoint = Utils.Paths.SceneDef.frozenwall.Load<SceneDef>();
-            if (nextScene == Utils.Paths.SceneDef.mysteryspace.Load<SceneDef>()) {
-                base.AdvanceStage(nextScene);
-            }
-            else {
-                base.AdvanceStage(rallypoint);
-            }
+            base.AdvanceStage(rallypoint);
         }
 
         // crackclipse level stuff

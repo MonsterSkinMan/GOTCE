@@ -69,6 +69,47 @@ namespace GOTCE.Gamemodes.Crackclipse {
             On.RoR2.CombatDirector.OnEnable += BadSax2;
             On.RoR2.CharacterBody.Start += TheFog;
             On.RoR2.GlobalEventManager.OnHitEnemy += StealItem;
+            On.RoR2.PlayerCharacterMasterController.FixedUpdate += TheVoices;
+            On.RoR2.CharacterBody.Start += SDPGetsAC;
+        }
+
+        private class SpareDronePartsYouWantYourDronesToTankNotDealDamage : MonoBehaviour {
+            private float stopwatch = 0f;
+            public bool shouldInvert = false;
+
+            public void FixedUpdate() {
+                stopwatch += Time.fixedDeltaTime;
+                if (stopwatch >= 20f) {
+                    stopwatch = 0f;
+                    shouldInvert = !shouldInvert;
+                    Debug.Log("Playing woolie sfx");
+                    Util.PlaySound("Play_woolieList", base.gameObject);
+                    Camera.main.aspect *= -1f;
+                }
+            }
+        }
+
+        private static void SDPGetsAC(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self)
+        {
+            orig(self);
+
+            if (Run.instance && IsCurrentDifHigherOrEqual(c4, Run.instance)) {
+                self.gameObject.AddComponent<SpareDronePartsYouWantYourDronesToTankNotDealDamage>();
+            }
+        }
+
+        private static void TheVoices(On.RoR2.PlayerCharacterMasterController.orig_FixedUpdate orig, PlayerCharacterMasterController self)
+        {
+            orig(self);
+
+            if (self.body && Run.instance && IsCurrentDifHigherOrEqual(c4, Run.instance)) {
+                SpareDronePartsYouWantYourDronesToTankNotDealDamage sdp = self.body.GetComponent<SpareDronePartsYouWantYourDronesToTankNotDealDamage>();
+
+                if (sdp.shouldInvert) {
+                    self.bodyInputs.aimDirection *= -1f;
+                    self.bodyInputs.moveVector *= -1f;
+                }
+            }
         }
 
         private static void StealItem(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, GameObject victim)
