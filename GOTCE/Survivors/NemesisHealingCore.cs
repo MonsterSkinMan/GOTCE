@@ -22,6 +22,7 @@ namespace GOTCE.Survivors {
             CharacterBody body = prefab.GetComponent<CharacterBody>();
             body.baseNameToken = "GOTCE_NEMCORE_NAME".Add("Nemesis Healing Core");
             body.bodyColor = Color.red;
+            body.portraitIcon = Main.SecondaryAssets.LoadAsset<Sprite>("NemesisHealingCore.png").texture;
             
             CameraTargetParams ctp = prefab.AddComponent<CameraTargetParams>();
             ctp.cameraParams = Utils.Paths.CharacterCameraParams.ccpStandard.Load<CharacterCameraParams>();

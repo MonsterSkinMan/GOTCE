@@ -1,8 +1,11 @@
 State Group	ID	Name			Wwise Object Path	Notes
+	917443112	Prelude			\Default Work Unit\Prelude	
 	978650076	Stellation			\Default Work Unit\Stellation	
 	2775631278	Llovio			\Default Work Unit\Llovio	
 
 State	ID	Name	State Group			Notes
+	691006007	Loop	Prelude			
+	748895195	None	Prelude			
 	748895195	None	Stellation			
 	1635194249	P4	Stellation			
 	1635194252	P1	Stellation			

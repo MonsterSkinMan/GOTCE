@@ -37,6 +37,7 @@ namespace GOTCE.Enemies.Superbosses {
 
             body.baseNameToken = "SAFETRAVELS_BODY_NAME";
             body.subtitleNameToken = "SAFETRAVELS_BODY_DESC";
+            body.portraitIcon = Main.SecondaryAssets.LoadAsset<Sprite>("SafeTravels.png").texture;
 
             prefabMaster.GetComponent<CharacterMaster>().bodyPrefab = prefab;
 
@@ -83,8 +84,6 @@ namespace GOTCE.Enemies.Superbosses {
             safeTravelsObj.GetComponentInChildren<RotateAroundAxis>().enabled = true;
 
             Debug.Log("spawning ST model");
-
-            Main.ModLogger.LogError("FUCKING KILL YOURSELF !!");
 
             SetupModel(prefab, safeTravelsObj);
         }
