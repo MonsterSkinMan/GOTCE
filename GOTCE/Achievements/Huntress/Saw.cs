@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace GOTCE.Achievements.Huntress
 {
-    [RegisterAchievement("SAW", "SawUnlockable", null, typeof(Server))]
+    [RegisterAchievement("SAW", "SawUnlockable", null, 10, typeof(Server))]
     public class Saw : BaseAchievement
     {
         public override void OnBodyRequirementMet()

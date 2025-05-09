@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace GOTCE.Achievements.Engineer
 {
-    [RegisterAchievement("ENTANGLER", "EntanglerUnlockable", null, typeof(Server))]
+    [RegisterAchievement("ENTANGLER", "EntanglerUnlockable", null, 10, typeof(Server))]
     public class Entangler : BaseAchievement
     {
         public override void OnBodyRequirementMet()

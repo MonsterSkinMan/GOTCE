@@ -33,7 +33,7 @@ namespace GOTCE.Gamemodes.Crackclipse {
             title.GetComponent<HGTextMeshProUGUI>().color = crackedOrange;
             description.token = "GOTCE_CRACKCLIPSE_DESCRIPTION";
             description.GetComponent<HGTextMeshProUGUI>().color = crackedOrange;
-            button.GetComponent<LanguageTextMeshController>().token = "GOTCE_CRACKCLIPSE_START_NAME";
+            button.GetComponentInChildren<LanguageTextMeshController>().token = "GOTCE_CRACKCLIPSE_START_NAME";
             button.GetComponent<Image>().color = crackedOrange;
                 
             button.GetComponent<HGButton>().onClick.AddListener(delegate {
@@ -130,7 +130,7 @@ namespace GOTCE.Gamemodes.Crackclipse {
             crackMenu.eclipseDescription = eclipseRunScreenController.eclipseDifficultyDescription;
             crackMenu.title = GameObject.Find("MENU").transform.Find("EclipseRunMenu").Find("Main Panel").Find("Title").GetComponent<LanguageTextMeshController>();
             crackMenu.description = GameObject.Find("MENU").transform.Find("EclipseRunMenu").Find("Main Panel").Find("GenericMenuButtonPanel").Find("Description").GetComponent<LanguageTextMeshController>();
-            crackMenu.button = GameObject.Find("MENU").transform.Find("EclipseRunMenu").Find("Main Panel").Find("GenericMenuButtonPanel").Find("JuicePanel").Find("GenericMenuButton (Start)").gameObject;
+            crackMenu.button = GameObject.Find("MENU").transform.Find("EclipseRunMenu").Find("Main Panel").Find("GenericMenuButtonPanel").Find("JuicePanel").Find("ReadyButton").gameObject;
             crackMenu.difficultyBadges = GameObject.Find("MENU").transform.Find("EclipseRunMenu").Find("Main Panel").Find("RightPanel").Find("MedalPanel").Find("HorizontalLayout").gameObject;
 
             GameObject.DestroyImmediate(eclipseRunScreenController);

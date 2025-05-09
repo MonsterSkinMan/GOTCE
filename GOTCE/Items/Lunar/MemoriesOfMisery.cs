@@ -43,7 +43,7 @@ namespace GOTCE.Items.Lunar
 
         public override void Hooks()
         {
-            On.RoR2.PlayerCharacterMasterController.FixedUpdate += PlayerCharacterMasterController_FixedUpdate;
+            On.RoR2.PlayerCharacterMasterController.Update += PlayerCharacterMasterController_FixedUpdate;
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
         }
 
@@ -60,7 +60,7 @@ namespace GOTCE.Items.Lunar
             }
         }
 
-        private void PlayerCharacterMasterController_FixedUpdate(On.RoR2.PlayerCharacterMasterController.orig_FixedUpdate orig, PlayerCharacterMasterController self)
+        private void PlayerCharacterMasterController_FixedUpdate(On.RoR2.PlayerCharacterMasterController.orig_Update orig, PlayerCharacterMasterController self)
         {
             var body = self.gameObject.GetComponent<CharacterMaster>().GetBody();
             if (body && body.inventory && body.inventory.GetItemCount(Instance.ItemDef) > 0)

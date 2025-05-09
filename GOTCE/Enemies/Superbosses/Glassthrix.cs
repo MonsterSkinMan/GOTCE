@@ -12,6 +12,7 @@ using GOTCE.Gamemodes.Crackclipse;
 using static R2API.SoundAPI.Music;
 using IL.RoR2.ContentManagement;
 using GOTCE.Music;
+using System.Collections;
 
 namespace GOTCE.Enemies.Superbosses {
     public class Glassthrix : EnemyBase<Glassthrix> {
@@ -143,11 +144,11 @@ namespace GOTCE.Enemies.Superbosses {
             }
         }
 
-        private void HandleGlassthrixConversion(On.RoR2.Stage.orig_Start orig, Stage self)
+        private IEnumerator HandleGlassthrixConversion(On.RoR2.Stage.orig_Start orig, Stage self)
         {
-            orig(self);
+            yield return orig(self);
 
-            if (SceneManager.GetActiveScene().name != "moon") return;
+            if (SceneManager.GetActiveScene().name != "moon") goto guh;
 
             Transform j = GameObject.Find("Gameplay Space").transform.Find("HOLDER: Final Arena").Find("ColumnHolderSet, Inner");
             j.gameObject.SetActive(false);
@@ -196,6 +197,9 @@ namespace GOTCE.Enemies.Superbosses {
                     }
                 }
             }
+
+            guh:
+            yield return null;
         }
 
         public static void SetupMusic(GameObject obj, GOTCEMusicDef def) {

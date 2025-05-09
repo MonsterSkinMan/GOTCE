@@ -21,7 +21,9 @@ namespace GOTCE.Gamemodes.Crackclipse {
             base.OverrideRuleChoices(mustInclude, mustExclude, runSeed);
             int highest = 1;
             foreach (NetworkUser user in NetworkUser.readOnlyInstancesList) {
-                LocalUser lc = user.localUser;
+                if (user.inputPlayer == null) continue;
+                LocalUser lc = LocalUserManager.FindLocalUser(user.inputPlayer);
+                if (lc == null) continue;
                 int cLevel = HighestCrackclipseLevel(lc, lc.userProfile.survivorPreference);
                 if (cLevel > highest) {
                     highest = cLevel;
@@ -35,11 +37,17 @@ namespace GOTCE.Gamemodes.Crackclipse {
                 ForceChoice(mustInclude, mustExclude, rd.FindChoice("Off"));
             }
 
-            SurvivorIconController[] controllers = GameObject.Find("CharacterSelectUI").transform.Find("SafeArea").Find("LeftHandPanel (Layer: Main)").Find("SurvivorChoiceGrid, Panel").Find("SurvivorGrid").GetComponentsInChildren<SurvivorIconController>();
+            try {
+
+            SurvivorIconController[] controllers = GameObject.Find("CharacterSelectUIMain(Clone)").transform.Find("SafeArea").Find("LeftHandPanel (Layer: Main)").Find("SurvivorChoiceGrid, Panel").Find("SurvivorGrid").GetComponentsInChildren<SurvivorIconController>();
             for (int i = 0; i < controllers.Length; i++) {
                 if (controllers[i]._survivorDef != LocalUserManager.GetFirstLocalUser()._userProfile.survivorPreference) {
                     controllers[i].gameObject.SetActive(false);
                 }
+            }
+            }
+            catch (Exception err) {
+                Debug.Log(err.ToString());
             }
         }
 
@@ -78,12 +86,12 @@ namespace GOTCE.Gamemodes.Crackclipse {
                 Debug.Log(unlock);
                 Debug.Log(UnlockableCatalog.GetUnlockableDef(unlock)); */
                 if (user.userProfile.HasUnlockable(unlock)) {
-                    Debug.Log("player has: " + unlock);
+                    // Debug.Log("player has: " + unlock);
                     highest = i;
-                    Debug.Log("highest is now: " + highest);
+                    // Debug.Log("highest is now: " + highest);
                 }
                 else {
-                    Debug.Log("player does not have: " + unlock + " - breaking");
+                    // Debug.Log("player does not have: " + unlock + " - breaking");
                     break;
                 }
             }
@@ -102,8 +110,8 @@ namespace GOTCE.Gamemodes.Crackclipse {
             int crack = HighestCrackclipseLevel(user, def);
             crack = Mathf.Min(crack + 1, 8);
             string unlock = UnlockablePrefix + def.cachedName + "." + crack.ToString();
-            Debug.Log("trying to grant: " + unlock);
-            Debug.Log(UnlockableCatalog.GetUnlockableDef(unlock));
+            // Debug.Log("trying to grant: " + unlock);
+            // Debug.Log(UnlockableCatalog.GetUnlockableDef(unlock));
             user.userProfile.GrantUnlockable(UnlockableCatalog.GetUnlockableDef(unlock));
         }
     }

@@ -136,22 +136,14 @@ namespace GOTCE.Items
             }
 
             ItemDef = ScriptableObject.CreateInstance<ItemDef>();
-            if (ItemLangTokenName != "Parasite")
-            {
-                ItemDef.name = "ITEM_" + ItemLangTokenName;
-                ItemDef.nameToken = "ITEM_" + ItemLangTokenName + "_NAME";
-                ItemDef.pickupToken = "ITEM_" + ItemLangTokenName + "_PICKUP";
-                ItemDef.descriptionToken = "ITEM_" + ItemLangTokenName + "_DESCRIPTION";
-                ItemDef.loreToken = "ITEM_" + ItemLangTokenName + "_LORE";
-            }
-            else
-            {
-                ItemDef.name = "ᅠ" + ItemLangTokenName;
-                ItemDef.nameToken = "ᅠ" + ItemLangTokenName + "_NAME";
-                ItemDef.pickupToken = "ᅠ" + ItemLangTokenName + "_PICKUP";
-                ItemDef.descriptionToken = "ᅠ" + ItemLangTokenName + "_DESCRIPTION";
-                ItemDef.loreToken = "ᅠ" + ItemLangTokenName + "_LORE";
-            }
+            
+            
+            ItemDef.name = "ITEM_" + ItemLangTokenName;
+            ItemDef.nameToken = "ITEM_" + ItemLangTokenName + "_NAME";
+            ItemDef.pickupToken = "ITEM_" + ItemLangTokenName + "_PICKUP";
+            ItemDef.descriptionToken = "ITEM_" + ItemLangTokenName + "_DESCRIPTION";
+            ItemDef.loreToken = "ITEM_" + ItemLangTokenName + "_LORE";
+    
             /*if (ItemDef.pickupModelPrefab == null)
             {
                 GameObject prefab = GameObject.CreatePrimitive(PrimitiveType.Cube);

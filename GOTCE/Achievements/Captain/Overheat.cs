@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GOTCE.Achievements.Captain
 {
-    [RegisterAchievement("OVERHEAT", "OverheatUnlockable", null, typeof(Server))]
+    [RegisterAchievement("OVERHEAT", "OverheatUnlockable", null, 10, typeof(Server))]
     public class Overheat : BaseAchievement
     {
         public override BodyIndex LookUpRequiredBodyIndex()

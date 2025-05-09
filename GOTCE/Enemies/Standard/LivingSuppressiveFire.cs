@@ -27,7 +27,7 @@ namespace GOTCE.Enemies.Standard
             body.autoCalculateLevelStats = true;
             body.baseNameToken = "GOTCE_LIVINGSUPPRESSIVEFIRE_NAME";
             body.baseRegen = 0f;
-            body.portraitIcon = Main.MainAssets.LoadAsset<Texture2D>("Assets/Textures/Icons/Enemies/LivingSuppressiveFire.png");
+            body.portraitIcon = null;
         }
 
         public override void AddSpawnCard()
@@ -76,7 +76,10 @@ namespace GOTCE.Enemies.Standard
             CapsuleCollider box2 = model.transform.Find("HandleHitbox").gameObject.GetComponent<CapsuleCollider>();
             CapsuleCollider boxweak = model.transform.Find("WeakPointHitbox").gameObject.GetComponent<CapsuleCollider>();
 
+            SwapMaterials(model, Utils.Paths.Material.matCommandoGun.Load<Material>(), true);
+
             SetupModel(prefab, model);
+
             SetupHurtbox(prefab, model, box1, 0);
             SetupHurtbox(prefab, model, box2, 1, false, HurtBox.DamageModifier.Normal, true);
             SetupHurtbox(prefab, model, boxweak, 2, true);

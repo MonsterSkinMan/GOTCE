@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GOTCE.Achievements.Railgunner
 {
-    [RegisterAchievement("STUPID", "StupidRoundsUnlockable", null, typeof(Server))]
+    [RegisterAchievement("STUPID", "StupidRoundsUnlockable", null, 10, typeof(Server))]
     public class StupidRounds : BaseAchievement
     {
         public override void OnBodyRequirementMet()

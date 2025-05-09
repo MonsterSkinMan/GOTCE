@@ -63,7 +63,6 @@ namespace GOTCE
     [BepInDependency(PrefabAPI.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency(SoundAPI.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency(R2APIContentManager.PluginGUID, BepInDependency.DependencyFlags.HardDependency)]
-    [BepInDependency("com.xoxfaby.BetterUI", BepInDependency.DependencyFlags.SoftDependency)] // soft dependency for compat
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     public class Main : BaseUnityPlugin
     {
@@ -113,13 +112,6 @@ namespace GOTCE
             cloudRemap = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGCloudRemap.shader").WaitForCompletion();
             standard = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGStandard.shader").WaitForCompletion();
             terrain = Addressables.LoadAssetAsync<Shader>("RoR2/Base/Shaders/HGTriplanarTerrainBlend.shader").WaitForCompletion();
-
-            RoR2Application.onLoad += () => { Util.PlaySound("Play_The", RoR2Application.instance.gameObject); }; // the
-
-            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.xoxfaby.BetterUI") && Config.Bind<bool>("Compatibility", "BetterUI - Stats Display", true, "Adds the GOTCE stats to the BetterUI stats display.").Value)
-            {
-                UICompat.AddBetterUICompat();
-            }
 
             On.RoR2.PurchaseInteraction.Awake += (orig, self) =>
             {
@@ -330,7 +322,6 @@ namespace GOTCE
             // LivingSuppressiveFire.Create();
             // IonSurger.Create(); // ION SURGER IS BROKEN
             Itsgup.SoMyMainGoalIsToBlowUp();
-            GOTCE.Based.asfk23A.Df23__23aFKLNQ();
             Based.SuppressiveNader.Hook();
             Based.Logbook.RunHooks();
             Fragile.Hook();
@@ -387,22 +378,25 @@ namespace GOTCE
             // local multiplayer hook
             // run modded ror2 twice, create a multiplayer lobby in one, then do connect localhost:7777 in the other instance
 
-            On.RoR2.RoR2Application.Start += (o, s) => {
-                o(s);
+            On.RoR2.RoR2Content.Init += OnWwiseInit;
+        }
 
-                string path = typeof(Main).Assembly.Location.Replace("GOTCE.dll", "");
-                Logger.LogError("BANK PATH: " + path);
-                AkSoundEngine.AddBasePath(path);
-                /// AkSoundEngine.LoadBank("GOTCE", out _);
+        private void OnWwiseInit(On.RoR2.RoR2Content.orig_Init orig)
+        {
+            orig();
+            
+            string path = typeof(Main).Assembly.Location.Replace("GOTCE.dll", "");
+            Logger.LogError("BANK PATH: " + path);
+            AkSoundEngine.AddBasePath(path);
+            /// AkSoundEngine.LoadBank("GOTCE", out _);
 
-                var MusicTypes = typeof(Main).Assembly.GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(GOTCEMusicBank)));
+            var MusicTypes = typeof(Main).Assembly.GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(GOTCEMusicBank)));
 
-                foreach (var musicType in MusicTypes)
-                {
-                    GOTCEMusicBank music = (GOTCEMusicBank)System.Activator.CreateInstance(musicType);
-                    music.Setup();
-                }
-            };
+            foreach (var musicType in MusicTypes)
+            {
+                GOTCEMusicBank music = (GOTCEMusicBank)System.Activator.CreateInstance(musicType);
+                music.Setup();
+            }
         }
 
 
@@ -561,308 +555,4 @@ namespace GOTCE
             LanguageAPI.Add(GOTCEExpansionDef.descriptionToken, "Adds content from the 'GOTCE' mod to the game.");
         }
     }
-
-    public class UICompat
-    {
-        private static List<string> cachedNormalText = null;
-        private static List<string> cachedAltText = null;
-
-        public delegate void orig_onStart();
-
-        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
-        public static void AddBetterUICompat()
-        {
-            // custom stats in the display
-            Func<CharacterBody, string> stage = (CharacterBody body) =>
-            {
-                if (body.masterObject)
-                {
-                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
-                    {
-                        return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().stageCritChance.ToString();
-                    }
-                    else
-                    {
-                        return "N/A";
-                    }
-                }
-                else
-                {
-                    return "N/A";
-                }
-            };
-
-            Func<CharacterBody, string> war = (CharacterBody body) =>
-            {
-                if (body.masterObject)
-                {
-                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
-                    {
-                        WarCrime crime = body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().mostRecentlyCommitedWarCrime;
-                        string name = "N/A";
-                        WarCrimes.CrimeToName.TryGetValue(crime, out name);
-                        return name;
-                    }
-                    else
-                    {
-                        return "N/A";
-                    }
-                }
-                else
-                {
-                    return "N/A";
-                }
-            };
-
-            Func<CharacterBody, string> sprint = (CharacterBody body) =>
-            {
-                if (body.masterObject)
-                {
-                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
-                    {
-                        return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().sprintCritChance.ToString();
-                    }
-                    else
-                    {
-                        return "N/A";
-                    }
-                }
-                else
-                {
-                    return "N/A";
-                }
-            };
-
-            Func<CharacterBody, string> fov = (CharacterBody body) =>
-            {
-                if (body.masterObject)
-                {
-                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
-                    {
-                        return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().fovCritChance.ToString();
-                    }
-                    else
-                    {
-                        return "N/A";
-                    }
-                }
-                else
-                {
-                    return "N/A";
-                }
-            };
-
-            Func<CharacterBody, string> rotation = (CharacterBody body) =>
-            {
-                if (body.masterObject)
-                {
-                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
-                    {
-                        return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().rotationCritChance.ToString();
-                    }
-                    else
-                    {
-                        return "N/A";
-                    }
-                }
-                else
-                {
-                    return "N/A";
-                }
-            };
-
-            Func<CharacterBody, string> death = (CharacterBody body) =>
-            {
-                if (body.masterObject)
-                {
-                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
-                    {
-                        return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().deathCritChance.ToString();
-                    }
-                    else
-                    {
-                        return "N/A";
-                    }
-                }
-                else
-                {
-                    return "N/A";
-                }
-            };
-
-            Func<CharacterBody, string> aoe = (CharacterBody body) =>
-            {
-                if (body.masterObject)
-                {
-                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
-                    {
-                        return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().aoeEffect.ToString();
-                    }
-                    else
-                    {
-                        return "N/A";
-                    }
-                }
-                else
-                {
-                    return "N/A";
-                }
-            };
-
-            Func<CharacterBody, string> revive = (CharacterBody body) =>
-            {
-                if (body.masterObject)
-                {
-                    if (body.masterObject.GetComponent<Components.GOTCE_StatsComponent>())
-                    {
-                        return body.masterObject.GetComponent<Components.GOTCE_StatsComponent>().reviveChance.ToString();
-                    }
-                    else
-                    {
-                        return "N/A";
-                    }
-                }
-                else
-                {
-                    return "N/A";
-                }
-            };
-
-            StatsDisplay.AddStatsDisplay("$stage", stage);
-            StatsDisplay.AddStatsDisplay("$sprint", sprint);
-            StatsDisplay.AddStatsDisplay("$fov", fov);
-            StatsDisplay.AddStatsDisplay("$war", war);
-            StatsDisplay.AddStatsDisplay("$aoe", aoe);
-            StatsDisplay.AddStatsDisplay("$rotation", rotation);
-            StatsDisplay.AddStatsDisplay("$death", death);
-            // StatsDisplay.AddStatsDisplay("$revive", revive);
-
-            /* Hook statsHook = new Hook(
-                typeof(BetterUI.StatsDisplay).GetMethod("onStart", (BindingFlags)(-1)),
-                typeof(UICompat).GetMethod(nameof(onStart), (BindingFlags)(-1))
-            ); */
-
-            On.RoR2.UI.HUD.Awake += (orig, self) =>
-            {
-                orig(self);
-                List<string> normalText;
-                List<string> altText;
-                if (cachedNormalText == null)
-                {
-                    normalText = typeof(StatsDisplay).GetFieldValue<string[]>("normalText").ToList();
-                    string[] tmp = new string[normalText.Count]; ;
-                    normalText.CopyTo(tmp);
-                    cachedNormalText = tmp.ToList();
-                }
-                else
-                {
-                    string[] tmp = new string[cachedNormalText.Count];
-                    cachedNormalText.CopyTo(tmp);
-                    normalText = tmp.ToList();
-                }
-
-                if (cachedAltText == null)
-                {
-                    altText = typeof(StatsDisplay).GetFieldValue<string[]>("altText").ToList();
-                    string[] tmp = new string[altText.Count];
-                    altText.CopyTo(tmp);
-                    cachedAltText = tmp.ToList();
-                }
-                else
-                {
-                    string[] tmp = new string[cachedAltText.Count]; ;
-                    cachedAltText.CopyTo(tmp);
-                    altText = tmp.ToList();
-                }
-                normalText.RemoveAt(normalText.Count - 1);
-                normalText.Add("\nStage Crit: ");
-                normalText.Add("$stage");
-                // normalText.Add("%");
-                normalText.Add("%\nFOV Crit: ");
-                normalText.Add("$fov");
-                // normalText.Add("%");
-                normalText.Add("%\nSprint Crit: ");
-                normalText.Add("$sprint");
-                normalText.Add("%\nRecent War Crime: ");
-                normalText.Add("$war");
-                normalText.Add("\nDeath Crit: ");
-                normalText.Add("$death");
-                normalText.Add("%\nRotation Crit: ");
-                normalText.Add("$rotation");
-                normalText.Add("%\nAoE Effect: +");
-                normalText.Add("$aoe");
-
-                /* string[] guh = normalText.ToArray();
-                for (int i = 0; i < guh.Length; i++) {
-                    Debug.Log(normalText[i]);
-                    if (i % 2 == 0) {
-                        Debug.Log("% 2 is true");
-                    }
-                } */
-                altText.RemoveAt(altText.Count - 1);
-                altText.Add("\nStage Crit: ");
-                altText.Add("$stage");
-                // altText.Add("%");
-                altText.Add("%\nFOV Crit: ");
-                altText.Add("$fov");
-                // altText.Add("%");
-                altText.Add("%\nSprint Crit: ");
-                altText.Add("$sprint");
-                // altText.Add("%");
-                altText.Add("%\nRecent War Crime: ");
-                altText.Add("$war");
-                altText.Add("\nDeath Crit: ");
-                altText.Add("$death");
-                altText.Add("%\nRotation Crit: ");
-                altText.Add("$rotation");
-                altText.Add("%\nAoE Effect: +");
-                altText.Add("$aoe");
-                // altText.Add("Revive Chance: ");
-                // altText.Add("$revive");
-                // altText.Add("%");
-
-                typeof(StatsDisplay).SetFieldValue<string[]>("normalText", normalText.ToArray());
-                typeof(StatsDisplay).SetFieldValue<string[]>("altText", altText.ToArray());
-            };
-        }
-
-        /* public static void onStart(orig_onStart orig) {
-            orig();
-
-            Debug.Log(normalText);
-            Debug.Log("====== alt =====");
-            Debug.Log("");
-        } */
-    }
-
-    /* public class SlabAntiCompat {
-        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
-        public static void Eradicate() {
-            MethodInfo[] methods = typeof(NemesisSlab.NemesisMain).GetMethods();
-            List<string> methodNames = new();
-
-            foreach (MethodInfo method in methods) {
-                Debug.Log(method.Name);
-                if (method.ReturnType == typeof(void)) {
-                    methodNames.Add(method.Name);
-                }
-            }
-
-            foreach (string name in methodNames) {
-                if (!name.ToLower().Contains("get") && !name.ToLower().Contains("set")) {
-                    Main.ModLogger.LogDebug("Patching method: " + name);
-                    ILHook hook = new ILHook(
-                        typeof(NemesisMain).GetMethod(name, (BindingFlags)(-1)),
-                        new ILContext.Manipulator(Destroy)
-                    );
-                }
-            }
-        }
-
-        public static void Destroy(ILContext il) {
-            ILCursor c = new ILCursor(il);
-            c.Index = 0;
-            c.Emit(OpCodes.Ret);
-        }
-    } */
 }

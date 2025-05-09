@@ -36,7 +36,7 @@ namespace GOTCE.Music {
                 loadedBanks.Add(BankName);
             }
 
-            On.RoR2.MusicController.Start += StartMusicSystem;
+            On.RoR2.MusicController.StartIntroMusic += StartMusicSystem;
             On.RoR2.MusicController.LateUpdate += HandlePause;
             tracks = new();
             CollectMusicTracks();
@@ -56,7 +56,7 @@ namespace GOTCE.Music {
             ContentAddition.AddMusicTrackDef(def);
         }
 
-        private void StartMusicSystem(On.RoR2.MusicController.orig_Start orig, MusicController self) {
+        private void StartMusicSystem(On.RoR2.MusicController.orig_StartIntroMusic orig, MusicController self) {
             orig(self);
             AkSoundEngine.PostEvent(MusicSystemName, self.gameObject);
         }

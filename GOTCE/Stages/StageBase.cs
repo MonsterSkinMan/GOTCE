@@ -92,7 +92,7 @@ namespace GOTCE.Stages {
         }
 
         public virtual void Hooks() {
-            On.RoR2.ClassicStageInfo.RebuildCards += (orig, self) => {
+            On.RoR2.ClassicStageInfo.RebuildCards += (orig, self, guh1, guh2) => {
                 Debug.Log(SceneManager.GetActiveScene().name);
                 if (SceneManager.GetActiveScene().name == SceneName) {
                     ModifySceneInfo(self);
@@ -103,7 +103,7 @@ namespace GOTCE.Stages {
                         self.monsterDccsPool = Addressables.LoadAssetAsync<DccsPool>(dccsMonsterClone).WaitForCompletion();
                     }
                 }
-                orig(self);
+                orig(self, guh1, guh2);
             };
 
             On.RoR2.SceneDirector.Start += (orig, self) => {

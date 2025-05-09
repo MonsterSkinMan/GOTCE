@@ -27,7 +27,7 @@ namespace GOTCE.Misc
             fragileMap = new();
         }
 
-        private static void UpdateLastHitServer(On.RoR2.HealthComponent.orig_UpdateLastHitTime orig, HealthComponent self, float damage, Vector3 damagePosition, bool silent, GameObject attacker)
+        private static void UpdateLastHitServer(On.RoR2.HealthComponent.orig_UpdateLastHitTime orig, HealthComponent self, float damage, Vector3 damagePosition, bool silent, GameObject attacker, bool b1, bool b2)
         {
             if (NetworkServer.active && self.body && self.body.inventory)
             {
@@ -57,7 +57,7 @@ namespace GOTCE.Misc
                     }
                 }
             }
-            orig(self, damage, damagePosition, silent, attacker);
+            orig(self, damage, damagePosition, silent, attacker, b1, b2);
         }
 
         private static void UpdateBarInfos(On.RoR2.UI.HealthBar.orig_UpdateBarInfos orig, HealthBar self) {
@@ -107,7 +107,7 @@ namespace GOTCE.Misc
         /// <param name="brokenVersion"> the broken version to grant </param>
         public static void AddFragileItem(ItemDef fragileItem, FragileInfo info)
         {
-            if (fragileItem)
+            if (fragileItem && !fragileMap.ContainsKey(fragileItem))
             {
                 fragileDefs.Add(fragileItem);
                 fragileMap.Add(fragileItem, info);

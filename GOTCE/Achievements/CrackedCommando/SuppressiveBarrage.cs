@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GOTCE.Achievements.CrackedCommando
 {
-    [RegisterAchievement("CONSISTENCY", "SuppressiveBarrageUnlockable", null, typeof(Server))]
+    [RegisterAchievement("CONSISTENCY", "SuppressiveBarrageUnlockable", null, 10, typeof(Server))]
     public class SuppressiveBarrage : BaseAchievement
     {
         public override void OnBodyRequirementMet()

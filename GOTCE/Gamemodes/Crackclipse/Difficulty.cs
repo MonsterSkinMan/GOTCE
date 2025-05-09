@@ -69,7 +69,7 @@ namespace GOTCE.Gamemodes.Crackclipse {
             On.RoR2.CombatDirector.OnEnable += BadSax2;
             On.RoR2.CharacterBody.Start += TheFog;
             On.RoR2.GlobalEventManager.OnHitEnemy += StealItem;
-            On.RoR2.PlayerCharacterMasterController.FixedUpdate += TheVoices;
+            On.RoR2.PlayerCharacterMasterController.Update += TheVoices;
             On.RoR2.CharacterBody.Start += SDPGetsAC;
         }
 
@@ -100,7 +100,7 @@ namespace GOTCE.Gamemodes.Crackclipse {
             }
         }
 
-        private static void TheVoices(On.RoR2.PlayerCharacterMasterController.orig_FixedUpdate orig, PlayerCharacterMasterController self)
+        private static void TheVoices(On.RoR2.PlayerCharacterMasterController.orig_Update orig, PlayerCharacterMasterController self)
         {
             orig(self);
 

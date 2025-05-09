@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace GOTCE.Achievements.VoidFiend
 {
-    [RegisterAchievement("INSURRECTION", "InsurrectionUnlockable", null, typeof(Server))]
+    [RegisterAchievement("INSURRECTION", "InsurrectionUnlockable", null, 10, typeof(Server))]
     public class Insurrection : BaseAchievement
     {
         public override void OnBodyRequirementMet()

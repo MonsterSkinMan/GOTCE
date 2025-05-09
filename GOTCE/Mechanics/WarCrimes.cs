@@ -43,7 +43,7 @@ namespace GOTCE.Mechanics
                     if (report.attackerBody && report.attackerBody.masterObject && report.attackerBody.masterObject.GetComponent<GOTCE_StatsComponent>())
                     {
                         GOTCE_StatsComponent stats = report.attackerBody.masterObject.GetComponent<GOTCE_StatsComponent>();
-                        switch (report.damageInfo.damageType)
+                        switch (report.damageInfo.damageType.damageType)
                         {
                             case DamageType.IgniteOnHit:
                                 stats.mostRecentlyCommitedWarCrime = WarCrime.Incendiary;

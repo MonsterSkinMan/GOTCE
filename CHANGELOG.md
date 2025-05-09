@@ -1,3 +1,16 @@
+# 1.4.7 Patch Notes
+- updated for the sots false son rebalance patch
+
+# 1.4.5 Patch Notes
+- updated for the item rebalance patch
+- fixed crackclipse
+
+# 1.4.4 Patch Notes
+- updated for seekers of the storm
+
+# 1.4.2 Patch Notes
+- removed references to (REDACTED)
+
 # 1.4.1 Patch Nodes
 - fixed issue with cracked merc icons
 - fixed glassthrix still having ramps

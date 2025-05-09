@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace GOTCE.Achievements.REX
 {
-    [RegisterAchievement("AUTOMATON", "AutomatonUnlockable", null, typeof(Server))]
+    [RegisterAchievement("AUTOMATON", "AutomatonUnlockable", null, 10, typeof(Server))]
     public class Automaton : BaseAchievement
     {
         public override void OnBodyRequirementMet()

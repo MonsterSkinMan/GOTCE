@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GOTCE.Achievements.CrackedCommando
 {
-    [RegisterAchievement("OVERDOSE", "CrackedCommandoSurvivorUnlockable", null, typeof(Server))]
+    [RegisterAchievement("OVERDOSE", "CrackedCommandoSurvivorUnlockable", null, 10, typeof(Server))]
     public class SurvivorUnlockAchievement : BaseAchievement
     {
         public override void OnBodyRequirementMet()

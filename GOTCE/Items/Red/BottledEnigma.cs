@@ -46,7 +46,7 @@ namespace GOTCE.Items.Red
             On.RoR2.CharacterBody.OnInventoryChanged += CharacterBody_OnInventoryChanged;
             RecalculateStatsAPI.GetStatCoefficients += new RecalculateStatsAPI.StatHookEventHandler(OverpoweredHealthUp);
             On.RoR2.Inventory.CalculateEquipmentCooldownScale += Inventory_CalculateEquipmentCooldownScale;
-            On.RoR2.EquipmentSlot.FixedUpdate += EquipmentSlot_FixedUpdate;
+            On.RoR2.EquipmentSlot.MyFixedUpdate += EquipmentSlot_FixedUpdate;
         }
 
         private void CharacterBody_OnInventoryChanged(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
@@ -134,10 +134,10 @@ namespace GOTCE.Items.Red
             }
         }
 
-        private void EquipmentSlot_FixedUpdate(On.RoR2.EquipmentSlot.orig_FixedUpdate orig, EquipmentSlot self)
+        private void EquipmentSlot_FixedUpdate(On.RoR2.EquipmentSlot.orig_MyFixedUpdate orig, EquipmentSlot self, float delta)
         {
             var body = self.GetComponent<CharacterBody>();
-            orig(self);
+            orig(self, delta);
             if (GetCount(body) > 0)
             {
                 bool shouldRun = false;

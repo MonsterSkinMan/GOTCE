@@ -76,7 +76,7 @@ namespace GOTCE.Gamemodes.Crackclipse {
                 for (int i = min; i < max; i++) {
                     // Debug.Log($"Adding crackclipse level {i} for survivor {def.cachedName}");
                     string unlock = prefix + def.cachedName + "." + i.ToString();
-                    Debug.Log(unlock);
+                    // Debug.Log(unlock);
                     UnlockableDef udef = ScriptableObject.CreateInstance<UnlockableDef>();
                     udef.hidden = false;
                     udef.cachedName = unlock;

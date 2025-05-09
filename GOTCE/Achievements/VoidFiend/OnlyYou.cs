@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace GOTCE.Achievements.VoidFiend
 {
-    [RegisterAchievement("ONLYYOU", "OnlyYouUnlockable", null, typeof(Server))]
+    [RegisterAchievement("ONLYYOU", "OnlyYouUnlockable", null, 10, typeof(Server))]
     public class OnlyYou : BaseAchievement
     {
         public override void OnBodyRequirementMet()

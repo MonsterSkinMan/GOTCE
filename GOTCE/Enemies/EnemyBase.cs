@@ -257,6 +257,17 @@ namespace GOTCE.Enemies
         public void SwapMaterials(GameObject prefab, Material mat, bool all = false, List<int> renders = null)
         {
             CharacterModel model = prefab.GetComponentInChildren<CharacterModel>();
+
+            if (!model) {
+                if (all) {
+                    foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>()) {
+                        renderer.material = mat;
+                    }
+                }
+
+                return;
+            }
+
             if (all)
             {
                 for (int i = 0; i < model.baseRendererInfos.Length; i++)

@@ -47,7 +47,7 @@ namespace GOTCE.Items.VoidWhite
             On.RoR2.Items.ContagiousItemManager.Init += WoolieDimension;
         }
 
-        private void HealthComponent_UpdateLastHitTime(On.RoR2.HealthComponent.orig_UpdateLastHitTime orig, HealthComponent self, float damageValue, Vector3 damagePosition, bool damageIsSilent, GameObject attacker)
+        private void HealthComponent_UpdateLastHitTime(On.RoR2.HealthComponent.orig_UpdateLastHitTime orig, HealthComponent self, float damageValue, Vector3 damagePosition, bool damageIsSilent, GameObject attacker, bool b1, bool b2)
         {
             if (NetworkServer.active && self.body && damageValue > 0)
             {
@@ -64,7 +64,7 @@ namespace GOTCE.Items.VoidWhite
                     }
                 }
             }
-            orig(self, damageValue, damagePosition, damageIsSilent, attacker);
+            orig(self, damageValue, damagePosition, damageIsSilent, attacker, b1, b2);
         }
 
         private void WoolieDimension(On.RoR2.Items.ContagiousItemManager.orig_Init orig)

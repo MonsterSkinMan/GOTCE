@@ -6,6 +6,7 @@ using System.Text;
 using UnityEngine;
 using BepInEx.Configuration;
 using UnityEngine.Networking;
+using System.Collections;
 
 namespace GOTCE.Items.White
 {
@@ -58,9 +59,9 @@ namespace GOTCE.Items.White
             });
         }
 
-        private void Stage_Start(On.RoR2.Stage.orig_Start orig, Stage self)
+        private IEnumerator Stage_Start(On.RoR2.Stage.orig_Start orig, Stage self)
         {
-            orig(self);
+            yield return orig(self);
             if (CharacterMaster.instancesList != null)
             {
                 foreach (CharacterMaster cm in CharacterMaster.instancesList)

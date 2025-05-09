@@ -29,8 +29,7 @@ namespace GOTCE.Interactables
         public InteractableSpawnCard isc;
         public abstract string Name { get; }
 
-        private static readonly DirectorAPI.Stage[] staegis =
-        {
+        private static readonly DirectorAPI.Stage[] staegis = {
             DirectorAPI.Stage.AbandonedAqueduct, DirectorAPI.Stage.AbandonedAqueductSimulacrum, DirectorAPI.Stage.AbyssalDepths,
             DirectorAPI.Stage.AbyssalDepthsSimulacrum, DirectorAPI.Stage.AphelianSanctuary, DirectorAPI.Stage.AphelianSanctuarySimulacrum,
             DirectorAPI.Stage.CommencementSimulacrum, DirectorAPI.Stage.DistantRoost, DirectorAPI.Stage.RallypointDelta,
@@ -38,7 +37,6 @@ namespace GOTCE.Interactables
             DirectorAPI.Stage.SirensCall, DirectorAPI.Stage.SkyMeadow, DirectorAPI.Stage.SkyMeadowSimulacrum, DirectorAPI.Stage.SulfurPools,
             DirectorAPI.Stage.SulfurPools, DirectorAPI.Stage.SunderedGrove, DirectorAPI.Stage.TitanicPlains, DirectorAPI.Stage.TitanicPlainsSimulacrum,
             DirectorAPI.Stage.WetlandAspect
-            // default stage list, doesnt include hidden realms or commencement
         };
 
         public abstract DirectorAPI.InteractableCategory category { get; }
