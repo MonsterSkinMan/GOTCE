@@ -10,6 +10,8 @@ build.sh
 GOTCE/BetaBuild
 GOTCE_Wwise/.*/
 
+GOTCE.zip
+
 # User-specific files
 *.suo
 *.user

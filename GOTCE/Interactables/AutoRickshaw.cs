@@ -32,8 +32,10 @@ namespace GOTCE.Interactables
         {
             base.Modify();
 
-            LanguageAPI.Add("GOT", "The Disposable Funder");
-            LanguageAPI.Add("GOTCE_DISPOSABLE_CONTEXT", "Purchase");
+            LanguageAPI.Add("GOTCE_ENTER_RICKSHAW", "Enter Auto Rickshaw");
+            LanguageAPI.Add("GOTCE_LEAVE_RICKSHAW", "Exit Auto Rickshaw");
+
+            prefab.AddComponent<RickshawController>();
 
             PrefabAPI.RegisterNetworkPrefab(prefab);
         }
@@ -70,17 +72,20 @@ namespace GOTCE.Interactables
             public OverlapAttack attack;
             public GameObject passenger;
             public Transform passengerOldPivot;
+            public Highlight highlight;
             public InputBankTest input => seat.currentPassengerInputBank;
-            public float speed = 80f;
-            public float acceleration => speed / 4f;
+            public float speed = 90f;
+            public float acceleration => speed / 2f;
             public float damage;
             public float stopwatch = 0f;
             public float hitDelay = 0.1f;
-            public float pushAwayForceBase = 15000f;
+            public float pushAwayForceBase = 50000f;
+            public Vector3 lastGroundNormal;
 
             public void Start() {
                 seat = GetComponent<VehicleSeat>();
                 rb = GetComponent<Rigidbody>();
+                highlight = GetComponent<Highlight>();
                 
                 attack = new();
                 attack.hitBoxGroup = GetComponent<HitBoxGroup>();
@@ -101,26 +106,46 @@ namespace GOTCE.Interactables
                         if (rb.velocity.magnitude < speed) {
                             rb.velocity += dir * acceleration * Time.fixedDeltaTime;
                         }
+
+                        base.transform.forward = Vector3.RotateTowards(base.transform.forward, -1f * new Vector3(rb.velocity.x, 0, rb.velocity.z), 20f * Time.fixedDeltaTime, 20f * Time.fixedDeltaTime);
                     }
                     else {
                         if (rb.velocity.magnitude > 0) {
-                            rb.velocity *= 0.5f * Time.fixedDeltaTime;
+                            float y = rb.velocity.y;
+                            rb.velocity *= 0.8f * Time.fixedDeltaTime;
+                            rb.velocity = new Vector3(rb.velocity.x, y, rb.velocity.z);
                         }
                     }
+                }
 
-                    stopwatch += Time.fixedDeltaTime;
+                stopwatch += Time.fixedDeltaTime;
                     
-                    if (stopwatch > hitDelay) {
-                        stopwatch = 0f;
+                if (stopwatch > hitDelay) {
+                    stopwatch = 0f;
 
+                    if (rb.velocity.magnitude > 5) {
                         float cur = rb.velocity.magnitude / speed;
 
-                        attack.forceVector = rb.velocity.normalized * (pushAwayForceBase * cur);
+                        attack.pushAwayForce = pushAwayForceBase * cur;
                         attack.damage = damage * cur;
                         attack.ResetIgnoredHealthComponents();
                         attack.Fire();
                     }
                 }
+
+                bool hit = Physics.Raycast(base.transform.position + (Vector3.up * 0.3f), Vector3.down, out var info, 0.8f, LayerIndex.world.mask, QueryTriggerInteraction.Ignore);
+
+                if (hit)
+                {
+                    lastGroundNormal = info.normal;
+                    lastGroundNormal = Vector3.RotateTowards(Vector3.up, lastGroundNormal, 70f * (MathF.PI / 180f), float.PositiveInfinity);
+                }
+                else
+                {
+                    lastGroundNormal = Vector3.up;
+                }
+
+                base.transform.rotation = Quaternion.RotateTowards(base.transform.rotation, Quaternion.FromToRotation(Vector3.up, lastGroundNormal) * base.transform.rotation, 20f * Time.fixedDeltaTime);
             }
 
             private void OnPassengerExit(GameObject passenger)
@@ -130,6 +155,8 @@ namespace GOTCE.Interactables
                 if (passenger.TryGetComponent<CameraTargetParams>(out var ctp)) {
                     ctp.cameraPivotTransform = passengerOldPivot;
                 }
+
+                highlight.strength = 1f;
             }
 
             private void OnPassengerEnter(GameObject passenger)
@@ -138,13 +165,15 @@ namespace GOTCE.Interactables
 
                 if (passenger.TryGetComponent<CharacterBody>(out var cb)) {
                     attack.attacker = passenger;
-                    damage = cb.damage * 10f;
+                    damage = cb.damage * 30f;
                 }
                 
                 if (passenger.TryGetComponent<CameraTargetParams>(out var ctp)) {
                     passengerOldPivot = ctp.cameraPivotTransform;
                     ctp.cameraPivotTransform = base.transform.Find("pivot");
                 }
+
+                highlight.strength = 0f;
             }
         }
     }
